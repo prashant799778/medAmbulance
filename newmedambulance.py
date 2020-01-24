@@ -284,6 +284,43 @@ def updateambulanceMaster():
         return output
 
 
+@app.route('/allusers', methods=['GET'])
+def allusers():
+    try:
+        column="*"
+        whereCondition="usertypeId='2' "
+        data=databasefile.SelectQuery("userMaster",column,whereCondition)
+        if data:           
+            Data = {"result":data,"status":"true"}
+            return Data
+        else:
+            output = {"result":"No Data Found","status":"false"}
+            return output
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+@app.route('/alldriver', methods=['GET'])
+def alldrivers():
+    try:
+        column="*"
+        whereCondition="usertypeId='3' "
+        data=databasefile.SelectQuery("userMaster",column,whereCondition)
+        if data:           
+            Data = {"result":data,"status":"true"}
+            return Data
+        else:
+            output = {"result":"No Data Found","status":"false"}
+            return output
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output          
+
+
 
 
 
