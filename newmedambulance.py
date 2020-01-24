@@ -657,7 +657,7 @@ def addpaymentType():
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
         return output
-        
+
 
 
 
@@ -672,7 +672,7 @@ def allHospital():
         column= "hosp.id,hosp.hospitalName,hosp.address,am.ambulanceType "   
 
         WhereCondition=  " hosp.id=ahm.hospital_Id and am.id=ahm.ambulance_Id and  ambulanceType   = '" + ambulanceType + "'  "
-        data=databasefile.SelectQuery("hospitalMaster as hosp,hospitalambulanceMapping as ahm,ambulanceMaster as am",column,WhereCondition)
+        data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalambulanceMapping as ahm,ambulanceMaster as am",column,WhereCondition)
         
         
         
