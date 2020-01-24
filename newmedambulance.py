@@ -260,7 +260,29 @@ def ambulanceMaster():
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
-        return output        
+        return output  
+
+@app.route('/updateambulanceMaster', methods=['POST'])
+def updateambulanceMaster():
+    try:
+       data=commonfile.DecodeInputdata(request.get_data())  
+       column= " ambulanceType='" + str(data["ambulanceType"]) + "'"
+       whereCondition="id = '" + str(data["id"])+ "'"
+       data=databasefile.UpdateQuery("ambulanceMaster",column,whereCondition)
+       
+       
+        output = {"result":"Updated Successfully","status":"true"}
+        return output  
+    except KeyError :
+        print("Key Exception---->")   
+        output = {"result":"key error","status":"false"}
+        return output  
+
+    except Exception as e :
+        print("Exception---->" +str(e))    
+        output = {"result":"somthing went wrong","status":"false"}
+        return output
+
 
 
 
