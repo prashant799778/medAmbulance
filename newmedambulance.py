@@ -240,6 +240,31 @@ def updateambulanceMode():
        
 
 
+@app.route('/addambulance', methods=['POST'])
+def addambulance():
+    try:
+        data1 = commonfile.DecodeInputdata(request.get_data())
+        column="*"
+        whereCondition="ambulanceType='"+str(data1["ambulanceType"])"'"
+        data= databasefile.SelectQuery("ambulanceMaster",column,whereCondition)
+        if data==None:
+            column=ambulanceType
+            values="'"+str(data1["ambulanceType"])"'"
+            insertdata=databasefile.InsertQuery("ambulanceMaster",column,values)
+            column="*"
+            whereCondition="ambulanceType='"+str(data1["ambulanceType"])"'"
+            data1= databasefile.SelectQuery1("ambulanceMaster",column,whereCondition)
+            output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
+            cursor.close()
+            return output
+        else:
+            output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
+            return output 
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+ 
 
 
 
