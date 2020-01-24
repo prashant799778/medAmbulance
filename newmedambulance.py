@@ -94,7 +94,7 @@ def addDriver():
     	data1 = commonfile.DecodeInputdata(request.get_data())
         column = " * "
         whereCondition= "mobile='"+str(data1["mobile"])+ "' and usertypeId='3'"
-        data= SelectQuery("userMaster",column,whereCondition)
+        data= databasefile.SelectQuery("userMaster",column,whereCondition)
         if data !=None:
         	column="name,mobile,driverId,ambulanceModeId,ambulanceId,panCardNo,DlNo,currentLocation,currentLocationlatlong,vehicleNo"
 
@@ -156,14 +156,14 @@ def addambulanceMode():
         data1=commonfile.DecodeInputdata(request.get_data())  
         column = " * "
         whereCondition= "ambulanceType='"+str(data1["ambulanceType"])+ "'"
-        data= SelectQuery("ambulanceMode",column,whereCondition)
+        data= databasefile.SelectQuery("ambulanceMode",column,whereCondition)
         if data==None:
             column="ambulanceType"
             values="'"+str(data1["password"])+"'"
-            insertdata=InsertQuery("ambulanceMode",column,values)
+            insertdata=databasefile.InsertQuery("ambulanceMode",column,values)
             column="*"
             whereCondition= "ambulanceType='"+str(data1["ambulanceType"])+ "'"
-            data8= SelectQuery1("ambulanceMode",column,whereCondition)
+            data8= databasefile.SelectQuery1("ambulanceMode",column,whereCondition)
             output= {"result":"User Added Successfully","ambulance Details":data8[-1],"status":"true"}
             return output
         
