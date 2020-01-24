@@ -688,6 +688,63 @@ def allHospital():
         output = {"result":"something went wrong","status":"false"}
         return output
 
+@app.route('/updateDriverMasterlocation', methods=['POST'])
+def updateDriverMasterlocation():
+    try:
+        data=commonfile.DecodeInputdata(request.get_data())  
+        column= " currentLocation ='" + str(data["currentLocation"]) + "',currentLocationlatlong='" + str(data["currentLocationlatlong"]) + "' "
+        whereCondition= "driverId = '" + str(data["driverId"])+ "' and ambulanceId='" + str(data["ambulanceId"]) + "'"
+        databasefile.UpdateQuery("driverMaster",column,whereCondition)
+        output = {"result":"Updated Successfully","status":"true"}
+        return output  
+    except KeyError :
+        print("Key Exception---->")   
+        output = {"result":"key error","status":"false"}
+        return output  
+
+    except Exception as e :
+        print("Exception---->" +str(e))    
+        output = {"result":"somthing went wrong","status":"false"}
+        return output 
+@app.route('/DriverTraceUser', methods=['POST'])
+def DriverTraceUser():
+    try:
+        data=commonfile.DecodeInputdata(request.get_data())  
+        column="um.name,um.mobile,dbm.farDistance,dbm.pickup,dbm.bookingId "
+        whereCondition=" dbm.userId=dm.userId and dbm.driverId='" + str(data["driverId"]) + "'"
+        data=databasefile.SelectQuery(" driverBookingMapping as dbm,userMaster as  um")
+        if data:           
+            Data = {"result":data,"status":"true"}
+            return Data
+        else:
+            output = {"result":"No Data Found","status":"false"}
+            return output
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+@app.route('/ResponderTraceUser', methods=['GET'])
+def ResponderTraceUser():
+    try:
+        data=commonfile.DecodeInputdata(request.get_data())  
+        column="um.name,um.mobile,dbm.farDistance,dbm.pickup,dbm.bookingId "
+        whereCondition="dbm.userId=dm.userId and dbm.responderId='" + str(data["responderId"]) + "'"
+        data=databasefile.SelectQuery1("responderbookingMapping as dbm,userMaster as  um",column,whereCondition)
+        if data:           
+            Data = {"result":data,"status":"true"}
+            return Data
+        else:
+            output = {"result":"No Data Found","status":"false"}
+            return output
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output                       
+
 
 
 
