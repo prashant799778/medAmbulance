@@ -148,7 +148,32 @@ def login():
     except Exception as e :
         print("Exception---->" +str(e))           
         output = {"result":"something went wrong","status":"false"}
-        return output 
+        return output
+
+@app.route('/addambulanceMode', methods=['POST'])
+def addambulanceMode():
+    try:
+        data1=commonfile.DecodeInputdata(request.get_data())  
+        column = " * "
+        whereCondition= "ambulanceType='"+str(data1["ambulanceType"])+ "'"
+        data= SelectQuery("ambulanceMode",column,whereCondition)
+        if data==None:
+            column="ambulanceType"
+            values="'"+str(data1["password"])+"'"
+            insertdata=InsertQuery("ambulanceMode",column,values)
+            column="*"
+            whereCondition= "ambulanceType='"+str(data1["ambulanceType"])+ "'"
+            data8= SelectQuery1("ambulanceMode",column,whereCondition)
+            output= {"result":"User Added Successfully","ambulance Details":data8[-1],"status":"true"}
+            return output
+        
+        else:
+            output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
+            return output 
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output         
 
 
 @app.route('/ambulanceMode', methods=['GET'])
