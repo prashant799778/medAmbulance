@@ -52,7 +52,7 @@ def addUser():
         data1 = commonfile.DecodeInputdata(request.get_data())
         column = " * "
         whereCondition= "mobile='"+str(data1["mobile"])+ "'"
-        data= SelectQuery("userMaster",column,whereCondition)
+        data= databasefile.SelectQuery("userMaster",column,whereCondition)
         UserId=uuid.uuid1()
         UserID=UserId.hex
         if data==None:
@@ -67,11 +67,11 @@ def addUser():
         	values= values+ " '"+str(data1["ipAddress"])+"','"+str(data1["userAgent"])+"','"+str(data1["deviceId"])+ "'"
         	values= values+ " '"+str(data1["os"])+"','"+str(data1["deviceType"])+"','"+str(data1["appVersion"])+ "','"+str(data1["notificationToken"])+ "'"
 
-        	insertdata=InsertQuery("userMaster",column,values)
+        	insertdata=databasefile.InsertQuery("userMaster",column,values)
         	
         	column = " * "
         	whereCondition= "mobile='"+str(data1["mobile"])+ "'"
-        	data8= SelectQuery1("userMaster",column,whereCondition)
+        	data8= databasefile.SelectQuery1("userMaster",column,whereCondition)
 
         	output= {"result":"User Added Successfully","patient Details":data8[-1],"status":"true"}
             cursor.close()
@@ -102,12 +102,12 @@ def addDriver():
         	values=values+"'"+str(data1["ambulanceId"])+"','"+str(data1["panCardNo"])+"','"+str(data1["DlNo"])+"','"
         	values="'"+str(data["currentLocation"])+"','"+str(data["currentLocationlatlong"])+"','"+str(data1["vehicleNo"])+"'"
 
-        	insertdata=InsertQuery("driverMaster",column,values)
+        	insertdata=databasefile.InsertQuery("driverMaster",column,values)
            
 
             column = " * "
         	whereCondition= "mobile='"+str(data1["mobile"])+ "'"
-        	data17= SelectQuery1("driverMaster",column,whereCondition)
+        	data17= databasefile.SelectQuery1("driverMaster",column,whereCondition)
             
             output= {"result":"Revert You Soon,After Verification","status":"true"}
             return output
@@ -129,7 +129,7 @@ def login():
         mobile = request.args['mobile']
         column=  "us.mobile,us.name,um.usertype,us.userId"
         whereCondition= "us.mobile = '" + mobile + "' and us.password = '" + password + "'  and and us.usertypeId=um.Id"
-        loginuser=SelectQuery("userMaster as us,usertypeMaster as um",column,whereCondition)
+        loginuser=databasefile.SelectQuery("userMaster as us,usertypeMaster as um",column,whereCondition)
         
                
       
