@@ -149,6 +149,25 @@ def login():
         print("Exception---->" +str(e))           
         output = {"result":"something went wrong","status":"false"}
         return output
+#select(resonder,driver,user,)
+
+@app.route('/selectusertypeMaster', methods=['GET'])
+def usertypeMaster():
+    try:
+        column="id,usertype"
+        whereCondition=""
+        data=databasefile.SelectQuery("usertypeMaster",column,whereCondition)
+        if data:           
+            Data = {"result":data,"status":"true"}
+            return Data
+        else:
+            output = {"result":"No Data Found","status":"false"}
+            return output
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output         
 
 @app.route('/addambulanceMode', methods=['POST'])
 def addambulanceMode():
@@ -176,7 +195,7 @@ def addambulanceMode():
         return output         
 
 
-@app.route('/ambulanceMode', methods=['GET'])
+@app.route('/selectambulanceMode', methods=['GET'])
 def ambulanceMode():
     try:
         column="id ,ambulanceType"
@@ -195,7 +214,37 @@ def ambulanceMode():
         return output
 
 
-@app.route('/ambulanceMaster', methods=['GET'])
+@app.route('/updateambulanceMode', methods=['POST'])
+def updateambulanceMode():
+    try:
+       data=commonfile.DecodeInputdata(request.get_data())  
+       column= " ambulanceType='" + str(data["ambulanceType"]) + "'"
+       whereCondition="id = '" + str(data["id"])+ "'"
+       Data.UpdateQuery("ambulanceMode",column,whereCondition)
+       
+       
+        output = {"result":"Updated Successfully","status":"true"}
+        return output  
+    except KeyError :
+        print("Key Exception---->")   
+        output = {"result":"key error","status":"false"}
+        return output  
+
+    except Exception as e :
+        print("Exception---->" +str(e))    
+        output = {"result":"somthing went wrong","status":"false"}
+        return output
+
+
+
+       
+
+
+
+
+
+
+@app.route('/selectambulanceMaster', methods=['GET'])
 def ambulanceMaster():
     try:
         column="id ,ambulanceType"
