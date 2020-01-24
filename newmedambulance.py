@@ -61,7 +61,7 @@ def addUser():
         	column=column+ "ipAddress,userAgent,deviceId,os,deviceType,appVersion,notificationToken"
         	
         	values =  "'"+str(data1["name"])+"','"+str(data1["password"])
-        	values= values++ " '" +"','"+str(data1["mobile"])+"','"+str(UserID)+"','"+str(data1["imeiNo"])+"','"+str(data1["deviceName"])+"','"
+        	values= values+ " '" +"','"+str(data1["mobile"])+"','"+str(UserID)+"','"+str(data1["imeiNo"])+"','"+str(data1["deviceName"])+"','"
         	values= values+ " '"+str(data1["currentLocation"])+"','"+str(data1["currentLocationLatlong"])+"','"+str(data1["usertypeId"])+ "'"
         	values= values+ " '"+str(data1["email"])+"','"+str(data1["country"])+"','"+str(data1["city"])+ "'"
         	values= values+ " '"+str(data1["ipAddress"])+"','"+str(data1["userAgent"])+"','"+str(data1["deviceId"])+ "'"
@@ -119,6 +119,36 @@ def addDriver():
         output = {"result":"something went wrong","status":"false"}
         return output
 
+
+#Login
+@app.route('/Login', methods=['GET'])
+def login():
+    try:
+        password = request.args['password']
+       
+        mobile = request.args['mobile']
+        column=  "us.mobile,us.name,um.usertype,us.userId"
+        whereCondition= "us.mobile = '" + mobile + "' and us.password = '" + password + "'  and and us.usertypeId=um.Id"
+        loginuser=SelectQuery("userMaster as us,usertypeMaster as um",column,whereCondition)
+        
+               
+      
+        if loginuser:   
+            Data = {"result":loginuser,"status":"true"}                  
+            return Data
+        else:
+            data={"status":"Failed","result":"Login Failed"}
+            return data
+
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output 
+    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output 
 
 
 

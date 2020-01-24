@@ -75,7 +75,7 @@ def SelectQuery1(table,columns,whereCondition):
         conn = Connection()      
         cursor = conn.cursor()
         cursor.execute(query)
-        data = cursor.fetchone()
+        data = cursor.fetchall()
         cursor.close()
       
         if data:
