@@ -743,7 +743,66 @@ def ResponderTraceUser():
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
-        return output                       
+        return output 
+
+#track Ambulance
+@app.route('/trackResponder', methods=['GET'])
+def trackRider():
+    try:
+        
+        data=commonfile.DecodeInputdata(request.get_data())
+        column="dm.name,dm.mobile,dbm.farDistance,dm.currentLocation"
+        whereCondition= "dbm.responderId=dm.responderId and dbm.bookingId='" + str(data["bookingId"]) + "'"
+        data=databasefile.SelectQuery1(" responderMaster as dm ,responderBookingMapping as dbm",column,whereCondition)
+        
+        query = "select dm.name,dm.mobile,dbm.farDistance,dm.currentLocation from responderMaster as dm ,responderBookingMapping as dbm where dbm.responderId=dm.responderId and dbm.bookingId='" + str(data["bookingId"]) + "'"
+        conn=Connection()
+        cursor = conn.cursor()
+        cursor.execute(query)
+        data = cursor.fetchone()
+        cursor.close()
+        if data:           
+            Data = {"result":data,"status":"true"}
+            return Data
+        else:
+            output = {"result":"No Data Found","status":"false"}
+            return output
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+#track Ambulance
+@app.route('/trackAmbulance', methods=['GET'])
+def trackAmbulance():
+    try:
+        data=commonfile.DecodeInputdata(request.get_data())
+        column="dm.name,dm.mobile,dbm.farDistance,dm.currentLocation"
+        whereCondition="dbm.driverId=dm.driverId and dbm.bookingId='" + str(data["bookingId"]) + "'"
+        data=databasefile.SelectQuery1("driverMaster as dm ,driverBookingMapping as dbm",column,whereCondition)
+        
+        
+        if data:           
+            Data = {"result":data,"status":"true"}
+            return Data
+        else:
+            output = {"result":"No Data Found","status":"false"}
+            return output
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+        
+
+
+
+
+
+
 
 
 
