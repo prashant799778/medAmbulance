@@ -178,7 +178,7 @@ def addambulanceMode():
         data= databasefile.SelectQuery("ambulanceMode",column,whereCondition)
         if data==None:
             column="ambulanceType"
-            values="'"+str(data1["password"])+"'"
+            values="'"+str(data1["ambulanceType"])+"'"
             insertdata=databasefile.InsertQuery("ambulanceMode",column,values)
             column="*"
             whereCondition= "ambulanceType='"+str(data1["ambulanceType"])+ "'"
@@ -249,7 +249,7 @@ def addambulance():
         data= databasefile.SelectQuery("ambulanceMaster",column,whereCondition)
         if data==None:
             column=ambulanceType
-            values="'"+str(data1["ambulanceType"])"'"
+            values="'"+str(data1["ambulanceType"])+"'"
             insertdata=databasefile.InsertQuery("ambulanceMaster",column,values)
             column="*"
             whereCondition="ambulanceType='"+str(data1["ambulanceType"])"'"
@@ -370,7 +370,7 @@ def responderMode():
     try:
         column="id ,responderType"
         whereCondition=""
-        data=databasefile.SelectQuery("responderMode",column,whereCondition)
+        data=databasefile.SelectQuery1("responderMode",column,whereCondition)
         if data:           
             Data = {"result":data,"status":"true"}
             return Data
@@ -418,7 +418,7 @@ def addriderType():
         data= databasefile.SelectQuery("responderTypeMaster",column,whereCondition)
         if data==None:
             column=ambulanceType
-            values="'"+str(data1["responderType"])"'"
+            values="'"+str(data1["responderType"])+"'"
             insertdata=databasefile.InsertQuery("responderTypeMaster",column,values)
             column="*"
             whereCondition="responderType='"+str(data1["responderType"])"'"
@@ -444,7 +444,7 @@ def responderType():
     try:
         column="id ,responderType"
         whereCondition=""
-        data=databasefile.SelectQuery("responderTypeMaster",column,whereCondition)
+        data=databasefile.SelectQuery1("responderTypeMaster",column,whereCondition)
         if data:           
             Data = {"result":data,"status":"true"}
             return Data
@@ -478,7 +478,113 @@ def updateriderType():
         print("Exception---->" +str(e))    
         output = {"result":"somthing went wrong","status":"false"}
         return output
-                            
+
+#addOns
+@app.route('/addOns', methods=['POST'])
+def addOns():
+    try:
+        data1=commonfile.DecodeInputdata(request.get_data())  
+        column="name"
+        whereCondition= " name='"+str(data1["name"])+ "'"
+        data=databasefile.SelectQuery("addOns",column,whereCondition)
+        if data==None:
+            column="name"
+            values="('"+str(data1["name"])+"' "
+            insertdata=databasefile.InsertQuery("addOns",column,values)
+            column="*"
+            whereCondition= " name='"+str(data1["name"])+ "'"
+            data1=databasefile.SelectQuery1("addOns",column,whereCondition)
+
+            output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
+            cursor.close()
+            return output
+
+
+               
+            
+        else:
+            output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
+            return output 
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+#select addOns
+@app.route('/addOnsSelect', methods=['GET'])
+def addsOn():
+    try:
+        column="id ,name"
+        whereCondition=""
+        data=databasefile.SelectQuery1("addOns",column,whereCondition)
+        if data:           
+            Data = {"result":data,"status":"true"}
+            return Data
+        else:
+            output = {"result":"No Data Found","status":"false"}
+            return output
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+@app.route('/updateaddOns', methods=['POST'])
+def updateaddOns():
+    try:
+        data=commonfile.DecodeInputdata(request.get_data())  
+        column= " name='" + str(data["name"]) + "'"
+        whereCondition= "id = '" + str(data["id"])+ "'"
+        databasefile.UpdateQuery("addOns",column,whereCondition)
+        output = {"result":"Updated Successfully","status":"true"}
+        return output  
+    except KeyError :
+        print("Key Exception---->")   
+        output = {"result":"key error","status":"false"}
+        return output  
+
+    except Exception as e :
+        print("Exception---->" +str(e))    
+        output = {"result":"somthing went wrong","status":"false"}
+        return output
+
+
+
+#finalPayment
+
+@app.route('/finalPayment', methods=['POST'])
+def finalPayment():
+    try:
+        data1=commonfile.DecodeInputdata(request.get_data())  
+        column="userId,paymentmodeId,totalAmount"
+        values=  " '"+str(data1["userId"])+"','"+str(data1["paymentmodeId"])+"','"+str(data1["totalAmount"])+ "'"
+        
+        insertdata=databasefile.InsertQuery("finalPayment",column,values)
+
+        column="*"
+        WhereCondition= "userId='"+str(data1["userId"])+ "' "
+        data2=databasefile.SelectQuery1("finalPayment",column,values)
+
+       
+
+
+        output= {"result":"Payment Successfull","patient Details":data2[-1],"status":"true"}
+        cursor.close()
+        return output
+
+
+               
+            
+        if data2 ==None:
+            output = {"result":"Payment Unsuccessfull","status":"false"}
+            return output 
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output        
+
 
 
 
