@@ -53,15 +53,12 @@ def addUser():
         column = " * "
         whereCondition= "mobile='"+str(data1["mobile"])+ "'"
         data= SelectQuery("userMaster",column,whereCondition)
-        
-       
         UserId=uuid.uuid1()
         UserID=UserId.hex
         if data==None:
+        	
         	column="name,password,mobile,userid,imeiNo,deviceName,currentLocation,currentLocationlatlong,usertypeId,email,country,city, "
         	column=column+ "ipAddress,userAgent,deviceId,os,deviceType,appVersion,notificationToken"
-        	
-
         	
         	values =  "'"+str(data1["name"])+"','"+str(data1["password"])
         	values= values++ " '" +"','"+str(data1["mobile"])+"','"+str(UserID)+"','"+str(data1["imeiNo"])+"','"+str(data1["deviceName"])+"','"
@@ -69,17 +66,14 @@ def addUser():
         	values= values+ " '"+str(data1["email"])+"','"+str(data1["country"])+"','"+str(data1["city"])+ "'"
         	values= values+ " '"+str(data1["ipAddress"])+"','"+str(data1["userAgent"])+"','"+str(data1["deviceId"])+ "'"
         	values= values+ " '"+str(data1["os"])+"','"+str(data1["deviceType"])+"','"+str(data1["appVersion"])+ "','"+str(data1["notificationToken"])+ "'"
-        	
 
-
-        	
         	insertdata=InsertQuery("userMaster",column,values)
         	
         	column = " * "
         	whereCondition= "mobile='"+str(data1["mobile"])+ "'"
-        	data= SelectQuery1("userMaster",column,whereCondition)
+        	data8= SelectQuery1("userMaster",column,whereCondition)
 
-        	output= {"result":"User Added Successfully","patient Details":data1[-1],"status":"true"}
+        	output= {"result":"User Added Successfully","patient Details":data8[-1],"status":"true"}
             cursor.close()
             return output
 
@@ -93,3 +87,42 @@ def addUser():
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
         return output
+
+@app.route('/addDriver', methods=['POST'])
+def addDriver():
+    try:
+    	data1 = commonfile.DecodeInputdata(request.get_data())
+        column = " * "
+        whereCondition= "mobile='"+str(data1["mobile"])+ "' and usertypeId='3'"
+        data= SelectQuery("userMaster",column,whereCondition)
+        if data !=None:
+        	column="name,mobile,driverId,ambulanceModeId,ambulanceId,panCardNo,DlNo,currentLocation,currentLocationlatlong,vehicleNo"
+
+        	values="'"+str(data["name"])+"','"+str(data["mobile"])"','"+str(data["userId"])+"','"+str(data1["ambulanceModeId"])+"','"
+        	values=values+"'"+str(data1["ambulanceId"])+"','"+str(data1["panCardNo"])+"','"+str(data1["DlNo"])+"','"
+        	values="'"+str(data["currentLocation"])+"','"+str(data["currentLocationlatlong"])+"','"+str(data1["vehicleNo"])+"'"
+
+        	insertdata=InsertQuery("driverMaster",column,values)
+           
+
+            column = " * "
+        	whereCondition= "mobile='"+str(data1["mobile"])+ "'"
+        	data17= SelectQuery1("driverMaster",column,whereCondition)
+            
+            output= {"result":"Revert You Soon,After Verification","status":"true"}
+            return output
+        else:
+            output = {"result":"User Already Added Existed ","status":"false"}
+            return output 
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+
+if __name__ == "__main__":
+    CORS(app, support_credentials=True)
+    app.run(host='0.0.0.0',port=5055,debug=True)
+    socketio.run(app)        
