@@ -151,6 +151,45 @@ def login():
         return output 
 
 
+@app.route('/ambulanceMode', methods=['GET'])
+def ambulanceMode():
+    try:
+        column="id ,ambulanceType"
+        whereCondition=""
+        data=databasefile.SelectQuery("ambulanceMode",column,whereCondition)
+        if data:           
+            Data = {"result":data,"status":"true"}
+            return Data
+        else:
+            output = {"result":"No Data Found","status":"false"}
+            return output
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+@app.route('/ambulanceMaster', methods=['GET'])
+def ambulanceMaster():
+    try:
+        column="id ,ambulanceType"
+        whereCondition=""
+        data=databasefile.SelectQuery("ambulanceMaster",column,whereCondition)
+        if data:           
+            Data = {"result":data,"status":"true"}
+            return Data
+        else:
+            output = {"result":"No Data Found","status":"false"}
+            return output
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output        
+
+
+
 
 if __name__ == "__main__":
     CORS(app, support_credentials=True)
