@@ -583,7 +583,111 @@ def finalPayment():
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
-        return output        
+        return output   
+
+
+
+@app.route('/updatepaymentType', methods=['POST'])
+def updatepaymentType():
+    try:
+        data=commonfile.DecodeInputdata(request.get_data())  
+        column= " paymentType='" + str(data["paymentType"]) + "'"
+        whereCondition= "id = '" + str(data["id"])+ "'"
+        databasefile.UpdateQuery("paymentTypeMaster",column,whereCondition)
+       
+
+        output = {"result":"Updated Successfully","status":"true"}
+        return output  
+    except KeyError :
+        print("Key Exception---->")   
+        output = {"result":"key error","status":"false"}
+        return output  
+
+    except Exception as e :
+        print("Exception---->" +str(e))    
+        output = {"result":"somthing went wrong","status":"false"}
+        return output
+
+@app.route('/paymentTypeMaster', methods=['GET'])
+def paymentTypeMaster():
+    try:
+        column="id ,paymentType"
+        whereCondition=""
+        data=databasefile.SelectQuery1("paymentTypeMaster",column,whereCondition)
+       
+        if data:           
+            Data = {"result":data,"status":"true"}
+            return Data
+        else:
+            output = {"result":"No Data Found","status":"false"}
+            return output
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+@app.route('/addpaymentType', methods=['POST'])
+def addpaymentType():
+    try:
+        data1=commonfile.DecodeInputdata(request.get_data())  
+        column="*"
+        whereCondition= "paymentType='"+str(data1["paymentType"])+ "'"
+        data=databasefile.SelectQuery("paymentTypeMaster",column,whereCondition)
+        if data==None:
+            column="paymentType"
+            values="('"+str(data1["paymentType"])+"' "
+            insertdata=databasefile.InsertQuery("paymentTypeMaster",column,values)
+            column="*"
+            whereCondition= " paymentType='"+str(data1["paymentType"])+ "'"
+            data1=databasefile.SelectQuery1("paymentTypeMaster",column,whereCondition)
+
+            output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
+            cursor.close()
+            return output
+
+
+               
+            
+        else:
+            output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
+            return output 
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+        
+
+
+
+@app.route('/allHospital', methods=['GET'])
+def allHospital():
+    try:
+        ambulanceType=""
+
+        if 'ambulanceType' in request.args:
+            ambulanceType=request.args["ambulanceType"]
+
+        column= "hosp.id,hosp.hospitalName,hosp.address,am.ambulanceType "   
+
+        WhereCondition=  " hosp.id=ahm.hospital_Id and am.id=ahm.ambulance_Id and  ambulanceType   = '" + ambulanceType + "'  "
+        data=databasefile.SelectQuery("hospitalMaster as hosp,hospitalambulanceMapping as ahm,ambulanceMaster as am",column,WhereCondition)
+        
+        
+        
+        if data:           
+            Data = {"result":data,"status":"true"}
+            return Data
+        else:
+            output = {"result":"No Data Found","status":"false"}
+            return output
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
 
 
 
