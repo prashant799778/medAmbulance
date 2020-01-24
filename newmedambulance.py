@@ -129,7 +129,7 @@ def login():
         mobile = request.args['mobile']
         column=  "us.mobile,us.name,um.usertype,us.userId"
         whereCondition= "us.mobile = '" + mobile + "' and us.password = '" + password + "'  and and us.usertypeId=um.Id"
-        loginuser=databasefile.SelectQuery("userMaster as us,usertypeMaster as um",column,whereCondition)
+        loginuser=databasefile.SelectQuery1("userMaster as us,usertypeMaster as um",column,whereCondition)
         
                
       
@@ -156,7 +156,7 @@ def usertypeMaster():
     try:
         column="id,usertype"
         whereCondition=""
-        data=databasefile.SelectQuery("usertypeMaster",column,whereCondition)
+        data=databasefile.SelectQuery1("usertypeMaster",column,whereCondition)
         if data:           
             Data = {"result":data,"status":"true"}
             return Data
@@ -200,7 +200,7 @@ def ambulanceMode():
     try:
         column="id ,ambulanceType"
         whereCondition=""
-        data=databasefile.SelectQuery("ambulanceMode",column,whereCondition)
+        data=databasefile.SelectQuery1("ambulanceMode",column,whereCondition)
         if data:           
             Data = {"result":data,"status":"true"}
             return Data
@@ -274,7 +274,7 @@ def ambulanceMaster():
     try:
         column="id ,ambulanceType"
         whereCondition=""
-        data=databasefile.SelectQuery("ambulanceMaster",column,whereCondition)
+        data=databasefile.SelectQuery1("ambulanceMaster",column,whereCondition)
         if data:           
             Data = {"result":data,"status":"true"}
             return Data
@@ -314,7 +314,7 @@ def allusers():
     try:
         column="*"
         whereCondition="usertypeId='2' "
-        data=databasefile.SelectQuery("userMaster",column,whereCondition)
+        data=databasefile.SelectQuery1("userMaster",column,whereCondition)
         if data:           
             Data = {"result":data,"status":"true"}
             return Data
@@ -332,7 +332,7 @@ def alldrivers():
     try:
         column="*"
         whereCondition="usertypeId='3' "
-        data=databasefile.SelectQuery("userMaster",column,whereCondition)
+        data=databasefile.SelectQuery1("userMaster",column,whereCondition)
         if data:           
             Data = {"result":data,"status":"true"}
             return Data
@@ -351,7 +351,7 @@ def alldresponder():
     try:
         column="*"
         whereCondition="usertypeId='4' "
-        data=databasefile.SelectQuery("userMaster",column,whereCondition)
+        data=databasefile.SelectQuery1("userMaster",column,whereCondition)
         if data:           
             Data = {"result":data,"status":"true"}
             return Data
@@ -362,7 +362,123 @@ def alldresponder():
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
-        return output                     
+        return output 
+
+
+@app.route('/responderMode', methods=['GET'])
+def responderMode():
+    try:
+        column="id ,responderType"
+        whereCondition=""
+        data=databasefile.SelectQuery("responderMode",column,whereCondition)
+        if data:           
+            Data = {"result":data,"status":"true"}
+            return Data
+        else:
+            output = {"result":"No Data Found","status":"false"}
+            return output
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+#update riderMode(g,p,h)
+
+@app.route('/updateresponderMode', methods=['POST'])
+def updateresponderMode():
+    try:
+        data=commonfile.DecodeInputdata(request.get_data())  
+        column= " responderType='" + str(data["responderType"]) + "'"
+        whereCondition= "id = '" + str(data["id"])+ "'"
+        databasefile.UpdateQuery("responderMode",column,whereCondition)
+       
+        output = {"result":"Updated Successfully","status":"true"}
+        return output  
+    except KeyError :
+        print("Key Exception---->")   
+        output = {"result":"key error","status":"false"}
+        return output  
+
+    except Exception as e :
+        print("Exception---->" +str(e))    
+        output = {"result":"somthing went wrong","status":"false"}
+        return output
+
+
+#(rider(ALs,BLS,PVT,DBT,AIR))
+
+@app.route('/addriderType', methods=['POST'])
+def addriderType():
+    try:
+        data1 = commonfile.DecodeInputdata(request.get_data())
+        column="*"
+        whereCondition="responderType='"+str(data1["ambulanceType"])"'"
+        data= databasefile.SelectQuery("responderTypeMaster",column,whereCondition)
+        if data==None:
+            column=ambulanceType
+            values="'"+str(data1["responderType"])"'"
+            insertdata=databasefile.InsertQuery("responderTypeMaster",column,values)
+            column="*"
+            whereCondition="responderType='"+str(data1["responderType"])"'"
+            data1= databasefile.SelectQuery1("responderTypeMaster",column,whereCondition)
+            output= {"result":"User Added Successfully","responder Details":data1[-1],"status":"true"}
+            cursor.close()
+            return output
+
+
+               
+            
+        else:
+            output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
+            return output 
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+ 
+#(select  rider)
+@app.route('/responderType', methods=['GET'])
+def responderType():
+    try:
+        column="id ,responderType"
+        whereCondition=""
+        data=databasefile.SelectQuery("responderTypeMaster",column,whereCondition)
+        if data:           
+            Data = {"result":data,"status":"true"}
+            return Data
+        else:
+            output = {"result":"No Data Found","status":"false"}
+            return output
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+#update rider
+@app.route('/updateriderType', methods=['POST'])
+def updateriderType():
+    try:
+        data=commonfile.DecodeInputdata(request.get_data())  
+        column= " responderType='" + str(data["responderType"]) + "'"
+        whereCondition= "id = '" + str(data["id"])+ "'"
+        databasefile.UpdateQuery("responderTypeMaster",column,whereCondition)
+        output = {"result":"Updated Successfully","status":"true"}
+        return output  
+    except KeyError :
+        print("Key Exception---->")   
+        output = {"result":"key error","status":"false"}
+        return output  
+
+    except Exception as e :
+        print("Exception---->" +str(e))    
+        output = {"result":"somthing went wrong","status":"false"}
+        return output
+                            
 
 
 
