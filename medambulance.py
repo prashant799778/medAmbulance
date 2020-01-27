@@ -59,22 +59,22 @@ def addUser():
         UserID=UserId.hex
         if data==None:
         	if data1["password"]==data1["confirm_password"]:
-            query="insert into userMaster(name,password,mobile,userid,imeiNo,deviceName,currentLocation,currentLocationlatlong,usertypeId)values"
-        	query = query+"('"+str(data1["name"])+"','"+str(data1["password"])
-        	query= query+"','"+str(data1["mobile"])+"','"+str(UserID)+"','"+str(data1["imeiNo"])+"','"+str(data1["deviceName"])+"','"+str(data1["currentLocation"])+"','"+str(data1["currentLocationLatlong"])+"','"+str(data1["usertypeId"])+"');"
-        	conn=Connection()
-        	cursor = conn.cursor()
-        	cursor.execute(query)
-        	conn.commit()
-        	query = "select * from userMaster where   mobile='"+str(data1["mobile"])+ "';"
-        	conn=Connection()
-        	cursor = conn.cursor()
-        	cursor.execute(query)
-        	data1 = cursor.fetchall()
+                query="insert into userMaster(name,password,mobile,userid,imeiNo,deviceName,currentLocation,currentLocationlatlong,usertypeId)values"
+                query = query+"('"+str(data1["name"])+"','"+str(data1["password"])
+                query= query+"','"+str(data1["mobile"])+"','"+str(UserID)+"','"+str(data1["imeiNo"])+"','"+str(data1["deviceName"])+"','"+str(data1["currentLocation"])+"','"+str(data1["currentLocationLatlong"])+"','"+str(data1["usertypeId"])+"');"
+                conn=Connection()
+                cursor = conn.cursor()
+                cursor.execute(query)
+                conn.commit()
+                query = "select * from userMaster where   mobile='"+str(data1["mobile"])+ "';"
+                conn=Connection()
+                cursor = conn.cursor()
+                cursor.execute(query)
+                data1 = cursor.fetchall()
 
-        	output= {"result":"User Added Successfully","patient Details":data1[-1],"status":"true"}
-            cursor.close()
-            return output
+                output= {"result":"User Added Successfully","patient Details":data1[-1],"status":"true"}
+                cursor.close()
+                return output
 
 
                
