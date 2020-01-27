@@ -5,7 +5,7 @@ import uuid
 import pymysql
 from flask import Flask, send_from_directory, abort                
 from flask_cors import CORS
-import cv2
+
 
 def Connection():
     connection = pymysql.connect(host='localhost',
