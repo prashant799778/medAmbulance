@@ -405,7 +405,7 @@ def addbooking():
                     column="addsOnId,bookingId"
                     values="'"+str(mainId)+"','"+str(i)+"'"
                     insertdata=databasefile.InsertQuery("addsOnbookambulanceMapping",column,values)
-            cursor.close()                
+                            
             output = {"result":"data inserted successfully","status":"true","ride Details":data[-1]}
             return output
            
@@ -629,7 +629,7 @@ def addOns():
             data1=databasefile.SelectQuery1("addOns",column,whereCondition)
 
             output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
-            cursor.close()
+            
             return output
 
 
@@ -777,7 +777,7 @@ def addpaymentType():
             data1=databasefile.SelectQuery1("paymentTypeMaster",column,whereCondition)
 
             output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
-            cursor.close()
+            
             return output
 
 
