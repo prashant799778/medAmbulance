@@ -359,14 +359,14 @@ def addhospital():
             insertdata=databasefile.InsertQuery("hospitalMaster",column,values)
             column=" id as hospitalId "
             whereCondition="hospitalName= '"+str(data1["hospitalName"])+ "' and  address='"+str(data1["address"])+ "'"
-            data= databasefile.SelectQuery("hospitalMaster",column,whereCondition)
+            data= databasefile.SelectQuery1("hospitalMaster",column,whereCondition)
             yu=data[-1]
             mainId=yu["hospitalId"]
             ambulanceId = data1["ambulanceId"]
             for i in ambulanceId:
                 column=" * "
                 whereCondition="ambulance_Id='"+str(i)+"'  and hospital_Id='"+str(mainId)+"'"
-                userHospitalMappingdata = databasefile.SelectQuery("ambulanceHospitalMapping",column,whereCondition)
+                userHospitalMappingdata = databasefile.SelectQuery1("ambulanceHospitalMapping",column,whereCondition)
                 if userHospitalMappingdata==():
                     column="hospital_Id,ambulance_Id"
                     values="'"+str(mainId)+"','"+str(i)+"'"
@@ -418,7 +418,7 @@ def addbooking():
         if data==None:
             column="driverId,currentLocationlatlong,mobile"
             whereCondition="drivingstatus<>'F'"
-            datavv= databasefile.SelectQuery("driverMaster",column,whereCondition)
+            datavv= databasefile.SelectQuery1("driverMaster",column,whereCondition)
             for da in datavv:
                 da.split(",")
                 driverlattitude=int(da[0])
@@ -441,7 +441,7 @@ def addbooking():
             insertdata=databasefile.InsertQuery("bookAmbulance",column,values)
             column=" * "
             whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
-            data=databasefile.SelectQuery("bookAmbulance",column,whereCondition)
+            data=databasefile.SelectQuery1("bookAmbulance",column,whereCondition)
             yu=data[-1]
             mainId=yu["bookingId"]
             pickuplocation=yu["pickup"]
@@ -453,7 +453,7 @@ def addbooking():
             for i in ambulanceId:
                 column=" * "
                 whereCondition="addsOnId='"+str(i)+"'  and bookingId='"+str(mainId)+"'"
-                userHospitalMappingdata=databasefile.SelectQuery("addsOnbookambulanceMapping",column,whereCondition)
+                userHospitalMappingdata=databasefile.SelectQuery1("addsOnbookambulanceMapping",column,whereCondition)
                 if userHospitalMappingdata==():
                     column="addsOnId,bookingId"
                     values="'"+str(mainId)+"','"+str(i)+"'"

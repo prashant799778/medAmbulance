@@ -137,9 +137,10 @@
 @app.route('/trackAmbulance', methods=['GET'])
 def trackAmbulance():
     try:
-        json1=request.get_data() 
-        data1=json.loads(json1.decode("utf-8"))  
-        
+        data1 = commonfile.DecodeInputdata(request.get_data())
+        column="dm.name,dm.mobile,dbm.farDistance,dm.currentLocation" 
+        whereCondition="dbm.driverId=dm.driverId and dbm.bookingId='" + str(data["bookingId"]) + "'"
+        data==databasefile.SelectQuery("driverMaster as dm, driverBookingMapping as dbm",column,whereCondition)
         query = "select dm.name,dm.mobile,dbm.farDistance,dm.currentLocation from driverMaster as dm ,driverBookingMapping as dbm where dbm.driverId=dm.driverId and dbm.bookingId='" + str(data["bookingId"]) + "'"
         conn=Connection()
         cursor = conn.cursor()
