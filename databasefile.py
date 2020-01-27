@@ -1,5 +1,6 @@
 
-from config import connection
+
+from config import Connection
 import commonfile
 import json
 import smtplib 
