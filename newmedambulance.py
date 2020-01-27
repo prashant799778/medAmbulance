@@ -3,7 +3,7 @@ from flask_socketio import SocketIO,emit
 import uuid
 import json
 #import socketio
-from googlegeocoder import GoogleGeocoder
+
 from math import sin,cos,sqrt,atan2,radians
 from decimal import Decimal
 import json
