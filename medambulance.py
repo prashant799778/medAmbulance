@@ -58,23 +58,23 @@ def addUser():
         UserId=uuid.uuid1()
         UserID=UserId.hex
         if data==None:
-        	if data1["password"]==data1["confirm_password"]
-        	query="insert into userMaster(name,password,mobile,userid,imeiNo,deviceName,currentLocation,currentLocationlatlong,usertypeId)values"
-        	query = query+"('"+str(data1["name"])+"','"+str(data1["password"])
-        	query= query+"','"+str(data1["mobile"])+"','"+str(UserID)+"','"+str(data1["imeiNo"])+"','"+str(data1["deviceName"])+"','"+str(data1["currentLocation"])+"','"+str(data1["currentLocationLatlong"])+"','"+str(data1["usertypeId"])+"');"
-        	conn=Connection()
-        	cursor = conn.cursor()
-        	cursor.execute(query)
-        	conn.commit()
-        	query = "select * from userMaster where   mobile='"+str(data1["mobile"])+ "';"
-        	conn=Connection()
-        	cursor = conn.cursor()
-        	cursor.execute(query)
-        	data1 = cursor.fetchall()
+        	if data1["password"]==data1["confirm_password"]:
+                query=" insert into userMaster(name,password,mobile,userid,imeiNo,deviceName,currentLocation,currentLocationlatlong,usertypeId)values "
+                query = query+"('"+str(data1["name"])+"','"+str(data1["password"])
+                query= query+"','"+str(data1["mobile"])+"','"+str(UserID)+"','"+str(data1["imeiNo"])+"','"+str(data1["deviceName"])+"','"+str(data1["currentLocation"])+"','"+str(data1["currentLocationLatlong"])+"','"+str(data1["usertypeId"])+"');"
+                conn=Connection()
+                cursor = conn.cursor()
+                cursor.execute(query)
+                conn.commit()
+                query = "select * from userMaster where   mobile='"+str(data1["mobile"])+ "';"
+                conn=Connection()
+                cursor = conn.cursor()
+                cursor.execute(query)
+                data1 = cursor.fetchall()
 
-        	output= {"result":"User Added Successfully","patient Details":data1[-1],"status":"true"}
-            cursor.close()
-            return output
+                output= {"result":"User Added Successfully","patient Details":data1[-1],"status":"true"}
+                cursor.close()
+                return output
 
 
                
@@ -1345,5 +1345,5 @@ def allresponders():
 
 if __name__ == "__main__":
     CORS(app, support_credentials=True)
-    app.run(host='0.0.0.0',port=5055,debug=True)
-    socketio.run(app)
+    app.run(host='0.0.0.0',port=5078,debug=True)
+    
