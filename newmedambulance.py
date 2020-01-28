@@ -802,9 +802,9 @@ def allHospital():
         if 'ambulanceType' in request.args:
             ambulanceType=request.args["ambulanceType"]
 
-        column= "hosp.id,hosp.hospitalName,hosp.address,am.ambulanceType "   
+        column = "hosp.id,hosp.hospitalName,hosp.address,am.ambulanceType "   
 
-        WhereCondition=  " hosp.id=ahm.hospital_Id and am.id=ahm.ambulance_Id and  ambulanceType   = '" + ambulanceType + "'  "
+        WhereCondition =  " hosp.id=ahm.hospital_Id and am.id=ahm.ambulance_Id and  ambulanceType   = '" + ambulanceType + "'  "
         data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalambulanceMapping as ahm,ambulanceMaster as am",column,WhereCondition)
         
         
