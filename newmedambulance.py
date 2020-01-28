@@ -3,7 +3,7 @@ from flask_socketio import SocketIO,emit
 import uuid
 import json
 #import socketio
-#from googlegeocoder import GoogleGeocoder
+from googlegeocoder import GoogleGeocoder
 from math import sin,cos,sqrt,atan2,radians
 from decimal import Decimal
 import json
@@ -40,7 +40,7 @@ class JSONEncoder(json.JSONEncoder):
             return str(o)
         return json.JSONEncoder.default(self, o)
 
-#geocoder = GoogleGeocoder("AIzaSyB0Pz6VjrQmWPCCbDbWDuyjo79GhDJPOlI")
+geocoder = GoogleGeocoder("AIzaSyB0Pz6VjrQmWPCCbDbWDuyjo79GhDJPOlI")
 
 
 
@@ -73,8 +73,9 @@ def addUser():
         	whereCondition= "mobile='"+str(data1["mobile"])+ "'"
         	data8= databasefile.SelectQuery1("userMaster",column,whereCondition)
 
-        	return {"result":"User Added Successfully","patient Details":data8[-1],"status":"true"}
-            
+        	output= {"result":"User Added Successfully","patient Details":data8[-1],"status":"true"}
+            cursor.close()
+            return output
 
 
                
@@ -87,7 +88,36 @@ def addUser():
         output = {"result":"something went wrong","status":"false"}
         return output
 
+@app.route('/addDriver', methods=['POST'])
+def addDriver():
+    try:
+    	data1 = commonfile.DecodeInputdata(request.get_data())
+        column = " * "
+        whereCondition= "mobile='"+str(data1["mobile"])+ "' and usertypeId='3'"
+        data= databasefile.SelectQuery("userMaster",column,whereCondition)
+        if data !=None:
+        	column="name,mobile,driverId,ambulanceModeId,ambulanceId,panCardNo,DlNo,currentLocation,currentLocationlatlong,vehicleNo"
 
+        	values="'"+str(data["name"])+"','"+str(data["mobile"])"','"+str(data["userId"])+"','"+str(data1["ambulanceModeId"])+"','"
+        	values=values+"'"+str(data1["ambulanceId"])+"','"+str(data1["panCardNo"])+"','"+str(data1["DlNo"])+"','"
+        	values="'"+str(data["currentLocation"])+"','"+str(data["currentLocationlatlong"])+"','"+str(data1["vehicleNo"])+"'"
+
+        	insertdata=databasefile.InsertQuery("driverMaster",column,values)
+           
+
+            column = " * "
+        	whereCondition= "mobile='"+str(data1["mobile"])+ "'"
+        	data17= databasefile.SelectQuery1("driverMaster",column,whereCondition)
+            
+            output= {"result":"Revert You Soon,After Verification","status":"true"}
+            return output
+        else:
+            output = {"result":"User Already Added Existed ","status":"false"}
+            return output 
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
 
 
 #Login
@@ -187,10 +217,10 @@ def ambulanceMode():
 @app.route('/updateambulanceMode', methods=['POST'])
 def updateambulanceMode():
     try:
-        data=commonfile.DecodeInputdata(request.get_data())  
-        column= " ambulanceType='" + str(data["ambulanceType"]) + "'"
-        whereCondition="id = '" + str(data["id"])+ "'"
-        Data.UpdateQuery("ambulanceMode",column,whereCondition)
+       data=commonfile.DecodeInputdata(request.get_data())  
+       column= " ambulanceType='" + str(data["ambulanceType"]) + "'"
+       whereCondition="id = '" + str(data["id"])+ "'"
+       Data.UpdateQuery("ambulanceMode",column,whereCondition)
        
        
         output = {"result":"Updated Successfully","status":"true"}
@@ -210,7 +240,30 @@ def updateambulanceMode():
        
 
 
-
+@app.route('/addambulance', methods=['POST'])
+def addambulance():
+    try:
+        data1 = commonfile.DecodeInputdata(request.get_data())
+        column="*"
+        whereCondition="ambulanceType='"+str(data1["ambulanceType"])"'"
+        data= databasefile.SelectQuery("ambulanceMaster",column,whereCondition)
+        if data==None:
+            column=ambulanceType
+            values="'"+str(data1["ambulanceType"])+"'"
+            insertdata=databasefile.InsertQuery("ambulanceMaster",column,values)
+            column="*"
+            whereCondition="ambulanceType='"+str(data1["ambulanceType"])"'"
+            data1= databasefile.SelectQuery1("ambulanceMaster",column,whereCondition)
+            output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
+            cursor.close()
+            return output
+        else:
+            output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
+            return output 
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
  
 
 
@@ -237,11 +290,11 @@ def ambulanceMaster():
 @app.route('/updateambulanceMaster', methods=['POST'])
 def updateambulanceMaster():
     try:
-        data=commonfile.DecodeInputdata(request.get_data())  
-        column= " ambulanceType='" + str(data["ambulanceType"]) + "'"
-        whereCondition="id = '" + str(data["id"])+ "'"
-        data=databasefile.UpdateQuery("ambulanceMaster",column,whereCondition)
-        
+       data=commonfile.DecodeInputdata(request.get_data())  
+       column= " ambulanceType='" + str(data["ambulanceType"]) + "'"
+       whereCondition="id = '" + str(data["id"])+ "'"
+       data=databasefile.UpdateQuery("ambulanceMaster",column,whereCondition)
+       
        
         output = {"result":"Updated Successfully","status":"true"}
         return output  
@@ -405,7 +458,7 @@ def addbooking():
                     column="addsOnId,bookingId"
                     values="'"+str(mainId)+"','"+str(i)+"'"
                     insertdata=databasefile.InsertQuery("addsOnbookambulanceMapping",column,values)
-                            
+            cursor.close()                
             output = {"result":"data inserted successfully","status":"true","ride Details":data[-1]}
             return output
            
@@ -569,7 +622,36 @@ def updateresponderMode():
         return output
 
 
+#(rider(ALs,BLS,PVT,DBT,AIR))
 
+@app.route('/addriderType', methods=['POST'])
+def addriderType():
+    try:
+        data1 = commonfile.DecodeInputdata(request.get_data())
+        column="*"
+        whereCondition="responderType='"+str(data1["ambulanceType"])"'"
+        data= databasefile.SelectQuery("responderTypeMaster",column,whereCondition)
+        if data==None:
+            column=ambulanceType
+            values="'"+str(data1["responderType"])+"'"
+            insertdata=databasefile.InsertQuery("responderTypeMaster",column,values)
+            column="*"
+            whereCondition="responderType='"+str(data1["responderType"])"'"
+            data1= databasefile.SelectQuery1("responderTypeMaster",column,whereCondition)
+            output= {"result":"User Added Successfully","responder Details":data1[-1],"status":"true"}
+            cursor.close()
+            return output
+
+
+               
+            
+        else:
+            output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
+            return output 
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
  
 #(select  rider)
 @app.route('/responderType', methods=['GET'])
@@ -629,7 +711,7 @@ def addOns():
             data1=databasefile.SelectQuery1("addOns",column,whereCondition)
 
             output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
-            
+            cursor.close()
             return output
 
 
@@ -704,7 +786,7 @@ def finalPayment():
 
 
         output= {"result":"Payment Successfull","patient Details":data2[-1],"status":"true"}
-        
+        cursor.close()
         return output
 
 
@@ -777,7 +859,7 @@ def addpaymentType():
             data1=databasefile.SelectQuery1("paymentTypeMaster",column,whereCondition)
 
             output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
-            
+            cursor.close()
             return output
 
 
@@ -802,9 +884,9 @@ def allHospital():
         if 'ambulanceType' in request.args:
             ambulanceType=request.args["ambulanceType"]
 
-        column = "hosp.id,hosp.hospitalName,hosp.address,am.ambulanceType "   
+        column= "hosp.id,hosp.hospitalName,hosp.address,am.ambulanceType "   
 
-        WhereCondition =  " hosp.id=ahm.hospital_Id and am.id=ahm.ambulance_Id and  ambulanceType   = '" + ambulanceType + "'  "
+        WhereCondition=  " hosp.id=ahm.hospital_Id and am.id=ahm.ambulance_Id and  ambulanceType   = '" + ambulanceType + "'  "
         data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalambulanceMapping as ahm,ambulanceMaster as am",column,WhereCondition)
         
         
@@ -909,37 +991,6 @@ def trackRider():
 
 
 
-@app.route('/addDriver', methods=['POST'])
-def addDriver():
-    try:
-    	data1 = commonfile.DecodeInputdata(request.get_data())
-        column ="*"              
-        whereCondition= "mobile='"+str(data1["mobile"])+ "' and usertypeId='3'"
-        data= databasefile.SelectQuery("userMaster",column,whereCondition)
-        if data !=None:
-        	column="name,mobile,driverId,ambulanceModeId,ambulanceId,panCardNo,DlNo,currentLocation,currentLocationlatlong,vehicleNo"
-
-        	values="'"+str(data["name"])+"','"+str(data["mobile"])"','"+str(data["userId"])+"','"+str(data1["ambulanceModeId"])+"','"
-        	values=values+"'"+str(data1["ambulanceId"])+"','"+str(data1["panCardNo"])+"','"+str(data1["DlNo"])+"','"
-        	values="'"+str(data["currentLocation"])+"','"+str(data["currentLocationlatlong"])+"','"+str(data1["vehicleNo"])+"'"
-
-        	insertdata=databasefile.InsertQuery("driverMaster",column,values)
-           
-
-            column = "*"
-        	whereCondition= "mobile='"+str(data1["mobile"])+ "'"
-        	data17= databasefile.SelectQuery1("driverMaster",column,whereCondition)
-            
-            output= {"result":"Revert You Soon,After Verification","status":"true"}
-            return output
-        else:
-            output = {"result":"User Already Added Existed ","status":"false"}
-            return output 
-    except Exception as e :
-        print("Exception---->" + str(e))    
-        output = {"result":"something went wrong","status":"false"}
-        return output
-
 
 
 
@@ -955,4 +1006,4 @@ def addDriver():
 if __name__ == "__main__":
     CORS(app, support_credentials=True)
     app.run(host='0.0.0.0',port=5077,debug=True)
-           
+    socketio.run(app)        
