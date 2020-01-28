@@ -1007,11 +1007,7 @@ def addOns():
 
             output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
             cursor.close()
-            return output
-
-
-               
-            
+            return output           
         else:
             output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
             return output 
@@ -1049,8 +1045,7 @@ def updateaddOns():
     try:
        
         json1=request.get_data() 
-        data=json.loads(json1.decode("utf-8")) 
-       
+        data=json.loads(json1.decode("utf-8"))        
         query1 = " update addOns set   name='" + str(data["name"]) + "'  where   id = '" + str(data["id"])+ "' ;"
         print(query1)
         conn=Connection()
@@ -1064,7 +1059,6 @@ def updateaddOns():
         print("Key Exception---->")   
         output = {"result":"key error","status":"false"}
         return output  
-
     except Exception as e :
         print("Exception---->" +str(e))    
         output = {"result":"somthing went wrong","status":"false"}
@@ -1091,15 +1085,9 @@ def finalPayment():
         cursor = conn.cursor()
         cursor.execute(query)
         data2 = cursor.fetchall()
-
-
         output= {"result":"Payment Successfull","patient Details":data2[-1],"status":"true"}
         cursor.close()
-        return output
-
-
-               
-            
+        return output          
         if data2 ==None:
             output = {"result":"Payment Unsuccessfull","status":"false"}
             return output 
