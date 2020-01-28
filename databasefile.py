@@ -5,8 +5,7 @@ import commonfile
 import json
 import smtplib 
 import config
-# from sendgrid import SendGridAPIClient
-# from sendgrid.helpers.mail import Mail
+
 
 def InsertQuery(table,columns,values):
     try:
@@ -142,34 +141,3 @@ def DeleteQuery(table,whereCondition):
        print("Error--->" + str(e))            
        return "0"
 
-def SendEmail(emailto,subject,message):
-       
-    message = Mail(
-    from_email = config.EmailFrom,
-    to_emails = emailto,
-    subject = "Fandom email Varification",
-    html_content = '<strong>Thank you for visiting FandomLive </strong> <br> . <br> Thanks, FandomLive Team')
-    print(message)
-
-    try:
-        sg = SendGridAPIClient('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')
-        response = sg.send(message)
-       
-        return "1" 
-            
-    except Exception as e:
-        print("Error--->" + str(e))            
-        return "0"
-
-
-
-def SendSMS(SMSTo,message):
-    try:   
-            
-        return commonfile.GetRandomNo()
-            
-        #return "1" 
-                
-    except Exception as e:
-       print("Error--->" + str(e))            
-       return "0"
