@@ -55,7 +55,7 @@ def addUser():
         data= databasefile.SelectQuery("userMaster",column,whereCondition)
         UserId=uuid.uuid1()
         UserID=UserId.hex
-        if data==None:
+        if data==0:
             column="name,password,mobile,userid,imeiNo,deviceName,currentLocation,currentLocationlatlong,usertypeId,email,country,city, "
             column=column+ "ipAddress,userAgent,deviceId,os,deviceType,appVersion,notificationToken"
 
