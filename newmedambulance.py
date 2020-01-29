@@ -61,10 +61,10 @@ def addUser():
 
             values =  "'"+str(data1["name"])+"','"+str(data1["password"])+"','"
             values= values +str(data1["mobile"])+"','"+str(UserID)+"','"+str(data1["imeiNo"])+"','"+str(data1["deviceName"])+"','"
-            values= values+ " '"+str(data1["currentLocation"])+"','"+str(data1["currentLocationLatlong"])+"','"+str(data1["usertypeId"])+ "'"
-            values= values+ " '"+"','"+str(data1["email"])+"','"+str(data1["country"])+"','"+str(data1["city"])+ "'"
-            values= values+ " '"+"','"+str(data1["ipAddress"])+"','"+str(data1["userAgent"])+"','"+str(data1["deviceId"])+ "'"
-            values= values+ " '"+"','"+str(data1["os"])+"','"+str(data1["deviceType"])+"','"+str(data1["appVersion"])+ "','"+str(data1["notificationToken"])+ "'"
+            values= values+ " '"+str(data1["currentLocation"])+"','"+str(data1["currentLocationLatlong"])+"','"+str(data1["usertypeId"])+"','"
+            values= values+str(data1["email"])+"','"+str(data1["country"])+"','"+str(data1["city"])+"','"
+            values= values+str(data1["ipAddress"])+"','"+str(data1["userAgent"])+"','"+str(data1["deviceId"])+"','"
+            values= values+str(data1["os"])+"','"+str(data1["deviceType"])+"','"+str(data1["appVersion"])+ "','"+str(data1["notificationToken"])+ "'"
 
             insertdata=databasefile.InsertQuery("userMaster",column,values)
             column = " * "
