@@ -47,11 +47,10 @@ def SelectQuery(table,columns,whereCondition):
         cursor.close()
       
         if data:
-            data = {"status":"true","message":"","result":data}
+            return data
         else:
             data = {"status":"true","message":"No Data Found","result":""}
-
-        return data
+            return data
 
     except Exception as e:
         print("Error--->" + str(e))            
@@ -79,11 +78,10 @@ def SelectQuery1(table,columns,whereCondition):
         cursor.close()
       
         if data:
-            data = {"status":"true","message":"","result":data}
+            return data
         else:
             data = {"status":"true","message":"No Data Found","result":""}
-
-        return data
+            return data
 
     except Exception as e:
         print("Error--->" + str(e))            
