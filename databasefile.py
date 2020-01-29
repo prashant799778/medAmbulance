@@ -95,7 +95,7 @@ def UpdateQuery(table,columns,whereCondition):
     try:
 
         if whereCondition != "":
-            whereCondition = " where 1=1 " + whereCondition  
+            whereCondition = " where 1=1 and" + whereCondition  
 
         if columns != "":   
             query = " update " + table + " set " + columns  + " " + whereCondition  + ";"             
@@ -120,14 +120,14 @@ def DeleteQuery(table,whereCondition):
     try:
 
         if whereCondition != "":
-            whereCondition = " where 1=1 " + whereCondition        
+            whereCondition = " where 1=1 and " + whereCondition        
 
             query = " delete from " + table + " " + whereCondition + ";" 
             print(query)
-            con = DBconnection()
-            cursor = con.cursor()
+            conn = Connection()
+            cursor = conn.cursor()
             cursor.execute(query)
-            con.commit()
+            conn.commit()
             cursor.close()
 
             message = commonfile.Successmessage('delete')
