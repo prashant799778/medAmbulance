@@ -32,7 +32,7 @@ def SelectQuery(table,columns,whereCondition):
        
         
         if whereCondition != "":
-            whereCondition = " where 1=1  and" + whereCondition
+            whereCondition = " where 1=1  and " + whereCondition
         
         
        
@@ -93,7 +93,7 @@ def UpdateQuery(table,columns,whereCondition):
     try:
 
         if whereCondition != "":
-            whereCondition = " where 1=1 and" + whereCondition  
+            whereCondition = " where 1=1 and " + whereCondition  
 
         if columns != "":   
             query = " update " + table + " set " + columns  + " " + whereCondition  + ";"             
