@@ -32,7 +32,7 @@ def SelectQuery(table,columns,whereCondition):
        
         
         if whereCondition != "":
-            whereCondition = " where 1=1 " + whereCondition
+            whereCondition = " where 1=1  and" + whereCondition
         
         
        
@@ -64,7 +64,7 @@ def SelectQuery1(table,columns,whereCondition):
        
         
         if whereCondition != "":
-            whereCondition = " where 1=1 " + whereCondition
+            whereCondition = " where 1=1 and " + whereCondition
         
         
        
