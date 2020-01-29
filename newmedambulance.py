@@ -56,16 +56,16 @@ def addUser():
         UserId=uuid.uuid1()
         UserID=UserId.hex
         if data==None:
-        	
-        	column="name,password,mobile,userid,imeiNo,deviceName,currentLocation,currentLocationlatlong,usertypeId,email,country,city, "
-        	column=column+ "ipAddress,userAgent,deviceId,os,deviceType,appVersion,notificationToken"
-        	
-        	values =  "'"+str(data1["name"])+"','"+str(data1["password"])
-        	values= values+ " '" +"','"+str(data1["mobile"])+"','"+str(UserID)+"','"+str(data1["imeiNo"])+"','"+str(data1["deviceName"])+"','"
-        	values= values+ " '"+str(data1["currentLocation"])+"','"+str(data1["currentLocationLatlong"])+"','"+str(data1["usertypeId"])+ "'"
-        	values= values+ " '"+str(data1["email"])+"','"+str(data1["country"])+"','"+str(data1["city"])+ "'"
-        	values= values+ " '"+str(data1["ipAddress"])+"','"+str(data1["userAgent"])+"','"+str(data1["deviceId"])+ "'"
-        	values= values+ " '"+str(data1["os"])+"','"+str(data1["deviceType"])+"','"+str(data1["appVersion"])+ "','"+str(data1["notificationToken"])+ "'"
+            column="name,password,mobile,userid,imeiNo,deviceName,currentLocation,currentLocationlatlong,usertypeId,email,country,city, "
+            column=column+ "ipAddress,userAgent,deviceId,os,deviceType,appVersion,notificationToken"
+
+            values =  "'"+str(data1["name"])+"','"+str(data1["password"])
+            values= values+ " '" +"','"+str(data1["mobile"])+"','"+str(UserID)+"','"+str(data1["imeiNo"])+"','"+str(data1["deviceName"])+"','"
+            values= values+ " '"+str(data1["currentLocation"])+"','"+str(data1["currentLocationLatlong"])+"','"+str(data1["usertypeId"])+ "'"
+            values= values+ " '"+str(data1["email"])+"','"+str(data1["country"])+"','"+str(data1["city"])+ "'"
+            values= values+ " '"+str(data1["ipAddress"])+"','"+str(data1["userAgent"])+"','"+str(data1["deviceId"])+ "'"
+            values= values+ " '"+str(data1["os"])+"','"+str(data1["deviceType"])+"','"+str(data1["appVersion"])+ "','"+str(data1["notificationToken"])+ "'"
+
             insertdata=databasefile.InsertQuery("userMaster",column,values)
             column = " * "
             whereCondition= "mobile='"+str(data1["mobile"])+ "'"
@@ -83,29 +83,24 @@ def addUser():
 @app.route('/addDriver', methods=['POST'])
 def addDriver():
     try:
-    	data1 = commonfile.DecodeInputdata(request.get_data())
+        data1 = commonfile.DecodeInputdata(request.get_data())
         column = " * "
         whereCondition= "mobile='"+str(data1["mobile"])+ "' and usertypeId='3'"
         data= databasefile.SelectQuery("userMaster",column,whereCondition)
         if data !=None:
-        	column="name,mobile,driverId,ambulanceModeId,ambulanceId,panCardNo,DlNo,currentLocation,currentLocationlatlong,vehicleNo"
-
-        	values="'"+str(data["name"])+"','"+str(data["mobile"])"','"+str(data["userId"])+"','"+str(data1["ambulanceModeId"])+"','"
-        	values=values+"'"+str(data1["ambulanceId"])+"','"+str(data1["panCardNo"])+"','"+str(data1["DlNo"])+"','"
-        	values="'"+str(data["currentLocation"])+"','"+str(data["currentLocationlatlong"])+"','"+str(data1["vehicleNo"])+"'"
-
-        	insertdata=databasefile.InsertQuery("driverMaster",column,values)
-           
-
+            column="name,mobile,driverId,ambulanceModeId,ambulanceId,panCardNo,DlNo,currentLocation,currentLocationlatlong,vehicleNo"
+            values= " '" +"','"+str(data["name"])+"','"+str(data["mobile"])+"','"+str(data["userId"])+"','"+str(data1["ambulanceModeId"])+"','"
+            values=values+"'"+str(data1["ambulanceId"])+"','"+str(data1["panCardNo"])+"','"+str(data1["DlNo"])+"','"
+            values="'"+str(data["currentLocation"])+"','"+str(data["currentLocationlatlong"])+"','"+str(data1["vehicleNo"])+"'"
+            insertdata=databasefile.InsertQuery("driverMaster",column,values)
             column = " * "
-        	whereCondition= "mobile='"+str(data1["mobile"])+ "'"
-        	data17= databasefile.SelectQuery1("driverMaster",column,whereCondition)
-            
+            whereCondition= "mobile='"+str(data1["mobile"])+ "'"
+            data17= databasefile.SelectQuery1("driverMaster",column,whereCondition)
             output= {"result":"Revert You Soon,After Verification","status":"true"}
             return output
         else:
             output = {"result":"User Already Added Existed ","status":"false"}
-            return output 
+            return output
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
@@ -213,10 +208,8 @@ def updateambulanceMode():
        column= " ambulanceType='" + str(data["ambulanceType"]) + "'"
        whereCondition="id = '" + str(data["id"])+ "'"
        databasefile.UpdateQuery("ambulanceMode",column,whereCondition)
-       
-       
-        output = {"result":"Updated Successfully","status":"true"}
-        return output  
+       output = {"result":"Updated Successfully","status":"true"}
+       return output  
     except KeyError :
         print("Key Exception---->")   
         output = {"result":"key error","status":"false"}
@@ -237,14 +230,14 @@ def addambulance():
     try:
         data1 = commonfile.DecodeInputdata(request.get_data())
         column="*"
-        whereCondition="ambulanceType='"+str(data1["ambulanceType"])"'"
+        whereCondition="ambulanceType='"+str(data1["ambulanceType"])+"'"
         data= databasefile.SelectQuery("ambulanceMaster",column,whereCondition)
         if data==None:
             column=ambulanceType
             values="'"+str(data1["ambulanceType"])+"'"
             insertdata=databasefile.InsertQuery("ambulanceMaster",column,values)
             column="*"
-            whereCondition="ambulanceType='"+str(data1["ambulanceType"])"'"
+            whereCondition="ambulanceType='"+str(data1["ambulanceType"])+"'"
             data1= databasefile.SelectQuery1("ambulanceMaster",column,whereCondition)
             output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
             return output
@@ -285,10 +278,8 @@ def updateambulanceMaster():
        column= " ambulanceType='" + str(data["ambulanceType"]) + "'"
        whereCondition="id = '" + str(data["id"])+ "'"
        data=databasefile.UpdateQuery("ambulanceMaster",column,whereCondition)
-       
-       
-        output = {"result":"Updated Successfully","status":"true"}
-        return output  
+       output = {"result":"Updated Successfully","status":"true"}
+       return output  
     except KeyError :
         print("Key Exception---->")   
         output = {"result":"key error","status":"false"}
@@ -619,14 +610,14 @@ def addriderType():
     try:
         data1 = commonfile.DecodeInputdata(request.get_data())
         column="*"
-        whereCondition="responderType='"+str(data1["ambulanceType"])"'"
+        whereCondition="responderType='"+str(data1["ambulanceType"])+"'"
         data= databasefile.SelectQuery("responderTypeMaster",column,whereCondition)
         if data==None:
             column=ambulanceType
             values="'"+str(data1["responderType"])+"'"
             insertdata=databasefile.InsertQuery("responderTypeMaster",column,values)
             column="*"
-            whereCondition="responderType='"+str(data1["responderType"])"'"
+            whereCondition="responderType='"+str(data1["responderType"])+"'"
             data1= databasefile.SelectQuery1("responderTypeMaster",column,whereCondition)
             output= {"result":"User Added Successfully","responder Details":data1[-1],"status":"true"}
             return output
