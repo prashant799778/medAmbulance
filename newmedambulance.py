@@ -74,7 +74,6 @@ def addUser():
         	data8= databasefile.SelectQuery1("userMaster",column,whereCondition)
 
         	output= {"result":"User Added Successfully","patient Details":data8[-1],"status":"true"}
-            #cursor.close()
             return output
 
 
@@ -255,7 +254,6 @@ def addambulance():
             whereCondition="ambulanceType='"+str(data1["ambulanceType"])"'"
             data1= databasefile.SelectQuery1("ambulanceMaster",column,whereCondition)
             output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
-            #cursor.close()
             return output
         else:
             output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
@@ -458,7 +456,6 @@ def addbooking():
                     column="addsOnId,bookingId"
                     values="'"+str(mainId)+"','"+str(i)+"'"
                     insertdata=databasefile.InsertQuery("addsOnbookambulanceMapping",column,values)
-            #cursor.close()                
             output = {"result":"data inserted successfully","status":"true","ride Details":data[-1]}
             return output
            
@@ -639,7 +636,6 @@ def addriderType():
             whereCondition="responderType='"+str(data1["responderType"])"'"
             data1= databasefile.SelectQuery1("responderTypeMaster",column,whereCondition)
             output= {"result":"User Added Successfully","responder Details":data1[-1],"status":"true"}
-            #cursor.close()
             return output
 
 
@@ -711,7 +707,6 @@ def addOns():
             data1=databasefile.SelectQuery1("addOns",column,whereCondition)
 
             output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
-            #cursor.close()
             return output
 
 
@@ -786,7 +781,6 @@ def finalPayment():
 
 
         output= {"result":"Payment Successfull","patient Details":data2[-1],"status":"true"}
-        #cursor.close()
         return output
 
 
@@ -859,7 +853,6 @@ def addpaymentType():
             data1=databasefile.SelectQuery1("paymentTypeMaster",column,whereCondition)
 
             output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
-            #cursor.close()
             return output
 
 
@@ -975,7 +968,6 @@ def trackRider():
         cursor = conn.cursor()
         cursor.execute(query)
         data = cursor.fetchone()
-        #cursor.close()
         if data:           
             Data = {"result":data,"status":"true"}
             return Data
