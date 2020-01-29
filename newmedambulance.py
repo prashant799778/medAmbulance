@@ -417,7 +417,7 @@ def addbooking():
         data=databasefile.SelectQuery("bookAmbulance",column,whereCondition)
         if data==None:
             column="driverId,currentLocationlatlong,mobile"
-            whereCondition="drivingstatus<>'F'"
+            whereCondition="verificationStatus<>'F'"
             datavv= databasefile.SelectQuery1("driverMaster",column,whereCondition)
             for da in datavv:
                 da.split(",")
@@ -513,7 +513,7 @@ def addRiderBooking():
         data=databasefile.SelectQuery("responderBooking",column,whereCondition)
         if data==None:
             column="responderId,currentLocationlatlong,mobile"
-            whereCondition="ridingstatus<>'F'"
+            whereCondition="verificationStatus<>'F'"
             datavv=databasefile.SelectQuery1("responderMaster",column,whereCondition)
             for da in datavv:
                 da.split(",")
