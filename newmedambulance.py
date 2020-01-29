@@ -868,7 +868,7 @@ def allHospital():
         
         
         
-        if data!="":           
+        if (data!=0):           
             Data = {"result":data,"status":"true"}
             return Data
         else:
