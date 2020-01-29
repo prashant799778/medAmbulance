@@ -80,7 +80,7 @@ def SelectQuery1(table,columns,whereCondition):
         if data:
             return data
         else:
-            data = {"status":"false","message":"No Data Found","result":""}
+            data=0
             return data
 
     except Exception as e:
