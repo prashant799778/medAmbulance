@@ -120,7 +120,7 @@ def login():
         
                
       
-        if loginuser:   
+        if (loginuser!=0):   
             Data = {"result":loginuser,"status":"true"}                  
             return Data
         else:
@@ -144,7 +144,7 @@ def usertypeMaster():
         column="id,usertype"
         whereCondition=""
         data=databasefile.SelectQuery1("usertypeMaster",column,whereCondition)
-        if data:           
+        if (data!=0):           
             Data = {"result":data,"status":"true"}
             return Data
         else:
@@ -188,7 +188,7 @@ def ambulanceMode():
         column="id ,ambulanceType"
         whereCondition=""
         data=databasefile.SelectQuery1("ambulanceMode",column,whereCondition)
-        if data:           
+        if (data!=0):           
             Data = {"result":data,"status":"true"}
             return Data
         else:
@@ -259,7 +259,7 @@ def ambulanceMaster():
         column="id ,ambulanceType"
         whereCondition=""
         data=databasefile.SelectQuery1("ambulanceMaster",column,whereCondition)
-        if data:           
+        if (data!=0):           
             Data = {"result":data,"status":"true"}
             return Data
         else:
@@ -297,7 +297,7 @@ def allusers():
         column="*"
         whereCondition="usertypeId='2' "
         data=databasefile.SelectQuery1("userMaster",column,whereCondition)
-        if data:           
+        if (data!=0):           
             Data = {"result":data,"status":"true"}
             return Data
         else:
@@ -315,7 +315,7 @@ def alldrivers():
         column="*"
         whereCondition="usertypeId='3' "
         data=databasefile.SelectQuery1("userMaster",column,whereCondition)
-        if data:           
+        if (data!=0):           
             Data = {"result":data,"status":"true"}
             return Data
         else:
@@ -462,7 +462,7 @@ def trackAmbulance():
         data=databasefile.SelectQuery1("driverMaster as dm ,driverBookingMapping as dbm",column,whereCondition)
         
         
-        if data:           
+        if (data!=0):           
             Data = {"result":data,"status":"true"}
             return Data
         else:
@@ -548,7 +548,7 @@ def alldresponder():
         column="*"
         whereCondition="usertypeId='4' "
         data=databasefile.SelectQuery1("userMaster",column,whereCondition)
-        if data:           
+        if (data!=0):           
             Data = {"result":data,"status":"true"}
             return Data
         else:
@@ -567,7 +567,7 @@ def responderMode():
         column="id ,responderType"
         whereCondition=""
         data=databasefile.SelectQuery1("responderMode",column,whereCondition)
-        if data:           
+        if (data!=0):           
             Data = {"result":data,"status":"true"}
             return Data
         else:
@@ -640,7 +640,7 @@ def responderType():
         column="id ,responderType"
         whereCondition=""
         data=databasefile.SelectQuery1("responderTypeMaster",column,whereCondition)
-        if data:           
+        if (data!=0):           
             Data = {"result":data,"status":"true"}
             return Data
         else:
@@ -711,7 +711,7 @@ def addsOn():
         column="id ,name"
         whereCondition=""
         data=databasefile.SelectQuery1("addOns",column,whereCondition)
-        if data:           
+        if (data!=0):           
             Data = {"result":data,"status":"true"}
             return Data
         else:
@@ -808,7 +808,7 @@ def paymentTypeMaster():
         whereCondition=""
         data=databasefile.SelectQuery1("paymentTypeMaster",column,whereCondition)
        
-        if data:           
+        if (data!=0):           
             Data = {"result":data,"status":"true"}
             return Data
         else:
@@ -908,7 +908,7 @@ def DriverTraceUser():
         column="um.name,um.mobile,dbm.farDistance,dbm.pickup,dbm.bookingId "
         whereCondition=" dbm.userId=dm.userId and dbm.driverId='" + str(data["driverId"]) + "'"
         data=databasefile.SelectQuery(" driverBookingMapping as dbm,userMaster as  um")
-        if data:           
+        if (data!=0):           
             Data = {"result":data,"status":"true"}
             return Data
         else:
@@ -928,7 +928,7 @@ def ResponderTraceUser():
         column="um.name,um.mobile,dbm.farDistance,dbm.pickup,dbm.bookingId "
         whereCondition="dbm.userId=dm.userId and dbm.responderId='" + str(data["responderId"]) + "'"
         data=databasefile.SelectQuery1("responderbookingMapping as dbm,userMaster as  um",column,whereCondition)
-        if data:           
+        if (data!=0):           
             Data = {"result":data,"status":"true"}
             return Data
         else:
@@ -955,7 +955,7 @@ def trackRider():
         cursor = conn.cursor()
         cursor.execute(query)
         data = cursor.fetchone()
-        if data:           
+        if (data!=0):           
             Data = {"result":data,"status":"true"}
             return Data
         else:
