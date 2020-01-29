@@ -72,13 +72,9 @@ def addUser():
         	column = " * "
         	whereCondition= "mobile='"+str(data1["mobile"])+ "'"
         	data8= databasefile.SelectQuery1("userMaster",column,whereCondition)
-
-        	output= {"result":"User Added Successfully","patient Details":data8[-1],"status":"true"}
+            output= {"result":"User Added Successfully","patient Details":data8[-1],"status":"true"}
             return output
 
-
-               
-            
         else:
             output = {"result":"User Already Added Existed ","status":"true","patient Details":data}
             return output 
