@@ -66,15 +66,12 @@ def addUser():
         	values= values+ " '"+str(data1["email"])+"','"+str(data1["country"])+"','"+str(data1["city"])+ "'"
         	values= values+ " '"+str(data1["ipAddress"])+"','"+str(data1["userAgent"])+"','"+str(data1["deviceId"])+ "'"
         	values= values+ " '"+str(data1["os"])+"','"+str(data1["deviceType"])+"','"+str(data1["appVersion"])+ "','"+str(data1["notificationToken"])+ "'"
-
-        	insertdata=databasefile.InsertQuery("userMaster",column,values)
-        	
-        	column = " * "
-        	whereCondition= "mobile='"+str(data1["mobile"])+ "'"
-        	data8= databasefile.SelectQuery1("userMaster",column,whereCondition)
+            insertdata=databasefile.InsertQuery("userMaster",column,values)
+            column = " * "
+            whereCondition= "mobile='"+str(data1["mobile"])+ "'"
+            data8= databasefile.SelectQuery1("userMaster",column,whereCondition)
             output= {"result":"User Added Successfully","patient Details":data8[-1],"status":"true"}
             return output
-
         else:
             output = {"result":"User Already Added Existed ","status":"true","patient Details":data}
             return output 
