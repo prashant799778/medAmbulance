@@ -247,7 +247,7 @@ def addambulanceMode():
         keyarr = ['ambulanceType']
         commonfile.writeLog("addambulanceMode",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
-        if msg = 1:
+        if msg = "1":
             ambulanceType = inputdata["ambulanceType"]
             column = " * "
             whereCondition= "ambulanceType='"+str(ambulanceType)+ "'"
