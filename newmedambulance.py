@@ -311,14 +311,18 @@ def updateambulanceMode():
             whereCondition="id = '" + str(id)+ "'"
             data1 = databasefile.SelectQuery("ambulanceMode",column,whereCondition)
             print(data1,"data1")
-            column = ""
-            whereCondition = ""
-            column= " ambulanceType='" + str(ambulanceType) + "'"
-            whereCondition="id = '" + str(id)+ "'"
-            data = databasefile.UpdateQuery("ambulanceMode",column,whereCondition)
-            print(data,'===')
-            output = {"result":"Updated Successfully","status":"true"}
-            return output
+            if data1 != 0:
+                column = ""
+                whereCondition = ""
+                column= " ambulanceType='" + str(ambulanceType) + "'"
+                whereCondition="id = '" + str(id)+ "'"
+                data = databasefile.UpdateQuery("ambulanceMode",column,whereCondition)
+                print(data,'===')
+                output = {"result":"Updated Successfully","status":"true"}
+                return output
+            else:
+                output = {"result":"Data Not Found","status":"true"}
+                return output
         else:
             return msg 
     except KeyError :
