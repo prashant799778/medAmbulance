@@ -127,7 +127,7 @@ def addUser():
                 column=column+ "ipAddress,userAgent,deviceId,os,deviceType,appVersion,notificationToken"
 
                 values =  "'"+str(Name)+"','"+str(password)+"','"
-                values= values +str(Mobile)+"','"+str(UserID)+"','"+str(imeiNo)+"','"+str(deviceName)+"','"
+                values= values +str(Mobile)+"','"+str(UserId)+"','"+str(imeiNo)+"','"+str(deviceName)+"','"
                 values= values+str(currentLocation)+"','"+str(currentLocationLatlong)+"','"+str(usertypeId)+"','"
                 values= values+str(Email)+"','"+str(country)+"','"+str(city)+"','"
                 values= values+str(ipAddress)+"','"+str(userAgent)+"','"+str(deviceId)+"','"
