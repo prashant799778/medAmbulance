@@ -128,7 +128,7 @@ def addUser():
 
                 values =  "'"+str(Name)+"','"+str(password)+"','"
                 values= values +str(Mobile)+"','"+str(UserId)+"','"+str(imeiNo)+"','"+str(deviceName)+"','"
-                values= values+str(currentLocation)+"','"+str(currentLocationLatlong)+"','"+str(usertypeId)+"','"
+                values= values+str(currentLocation)+"','"+str(currentLocationlatlong)+"','"+str(usertypeId)+"','"
                 values= values+str(Email)+"','"+str(country)+"','"+str(city)+"','"
                 values= values+str(ipAddress)+"','"+str(userAgent)+"','"+str(deviceId)+"','"
                 values= values+str(os)+"','"+str(deviceType)+"','"+str(appVersion)+ "','"+str(notificationToken)+ "'"
