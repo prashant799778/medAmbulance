@@ -19,6 +19,7 @@ from datetime import datetime
 import pytz 
 import pytz
 from config import Connection
+import commonfile
 
 
 from flask import Flask, render_template
@@ -45,9 +46,120 @@ geocoder = GoogleGeocoder("AIzaSyB0Pz6VjrQmWPCCbDbWDuyjo79GhDJPOlI")
 
 
 
-#user signup
+
 @app.route('/addUser', methods=['POST'])
 def addUser():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+        startlimit,endlimit="",""
+        keyarr = ['name','mobile','userTypeId','email','password','currentLocation','currentLocationlatlong']
+        commonfile.writeLog("addUser",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+       
+        if msg == "1":
+            imeiNo,country,city,deviceName,deviceId,deviceType="","","","","",""
+            os,appVersion,notificationToken,ipAddress,userAgent="","","","",""
+            
+            Name = inputdata["name"]
+            userTypeId = inputdata["userTypeId"]
+            Mobile=inputdata["mobile"]
+            Email = inputdata["email"]
+            password = inputdata["password"]
+            currentLocation=inputdata["currentLocation"]
+            currentLocationlatlong=inputdata["currentLocationlatlong"]
+
+            
+           
+
+           
+
+            UserId = commonfile.CreateHashKey(Mobile,Name)
+            
+            WhereCondition = " and mobile = '" + str(Mobile) + "' and password = '" + str(password) + "'"
+            count = databasefile.SelectCountQuery("userMaster",WhereCondition,"")
+            
+            if int(count) > 0:
+                return commonfile.EmailMobileAlreadyExistMsg()
+            else:
+                if 'imeiNo' in inputdata:
+                    imeiNo=inputdata["imeiNo"] 
+
+                if 'deviceName' in inputdata:
+                    deviceName=inputdata["deviceName"]
+
+                if 'country' in inputdata:
+                    country=inputdata["country"]
+
+                if 'city' in inputdata:
+                    city=inputdata["city"]
+
+                if 'ipAddress' in inputdata:
+                    ipAddress=inputdata["ipAddress"]
+
+                if 'userAgent' in inputdata:
+                    userAgent=inputdata["userAgent"]
+
+
+                if 'deviceId' in inputdata:
+                    deviceId=inputdata["deviceId"]
+
+                
+                if 'os' in inputdata:
+                    os=inputdata["os"]
+
+                
+                if 'deviceType' in inputdata:
+                    deviceType=inputdata["deviceType"]
+
+                if 'appVersion' in inputdata:
+                    appVersion=inputdata["appVersion"] 
+
+
+                if 'notificationToken' in inputdata:
+                    notificationToken=inputdata["notificationToken"]
+
+
+
+ 
+
+
+                column="name,password,mobile,userId,imeiNo,deviceName,currentLocation,currentLocationlatlong,usertypeId,email,country,city, "
+                column=column+ "ipAddress,userAgent,deviceId,os,deviceType,appVersion,notificationToken"
+
+                values =  "'"+str(Name)+"','"+str(password)+"','"
+                values= values +str(Mobile)+"','"+str(UserID)+"','"+str(imeiNo)+"','"+str(deviceName)+"','"
+                values= values+str(currentLocation)+"','"+str(currentLocationLatlong)+"','"+str(usertypeId)+"','"
+                values= values+str(Email)+"','"+str(country)+"','"+str(city)+"','"
+                values= values+str(ipAddress)+"','"+str(userAgent)+"','"+str(deviceId)+"','"
+                values= values+str(os)+"','"+str(deviceType)+"','"+str(appVersion)+ "','"+str(notificationToken)+ "'"
+                data=databasefile.InsertQuery("userMaster",column,values)
+             
+
+                if data != "0":
+                    column = '*'
+                    
+                    data = databasefile.SelectQuery2("userMaster",column,WhereCondition,"",startlimit,endlimit)
+                    print(data)
+                    Data = {"status":"true","message":"","result":data["result"]}                  
+                    return Data
+                else:
+                    return commonfile.Errormessage()
+           
+                    
+
+                        
+        else:
+            return msg 
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"status":"false","message":"something went wrong","result":""}
+        return output
+
+
+
+#user signup
+@app.route('/addUser1', methods=['POST'])
+def addUser1():
     try:
         data1 = commonfile.DecodeInputdata(request.get_data())
         column = " * "
