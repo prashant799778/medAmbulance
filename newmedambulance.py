@@ -299,12 +299,21 @@ def ambulanceMode():
 @app.route('/updateambulanceMode', methods=['POST'])
 def updateambulanceMode():
     try:
-       data=commonfile.DecodeInputdata(request.get_data())  
-       column= " ambulanceType='" + str(data["ambulanceType"]) + "'"
-       whereCondition="id = '" + str(data["id"])+ "'"
-       databasefile.UpdateQuery("ambulanceMode",column,whereCondition)
-       output = {"result":"Updated Successfully","status":"true"}
-       return output  
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['ambulanceType','id']
+        commonfile.writeLog("updateambulanceMode",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            ambulanceType = inputdata["ambulanceType"]
+            id = inputdata["id"]
+            column= " ambulanceType='" + str(ambulanceType) + "'"
+            whereCondition="id = '" + str(id)+ "'"
+            databasefile.UpdateQuery("ambulanceMode",column,whereCondition)
+            output = {"result":"Updated Successfully","status":"true"}
+            return output
+        else:
+            return msg 
     except KeyError :
         print("Key Exception---->")   
         output = {"result":"key error","status":"false"}
