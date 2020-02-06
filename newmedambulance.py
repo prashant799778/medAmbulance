@@ -409,7 +409,7 @@ def updateambulanceMaster():
             id = inputdata["id"]
             column= " * "
             whereCondition="id = '" + str(id)+ "'"
-            data1 = databasefile.SelectQuery("ambulanceMode",column,whereCondition)
+            data1 = databasefile.SelectQuery("ambulanceMaster",column,whereCondition)
             print(data1,"data1")
             if data1 != 0:
                 column = ""
