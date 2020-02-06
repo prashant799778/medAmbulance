@@ -343,22 +343,31 @@ def updateambulanceMode():
 @app.route('/addambulance', methods=['POST'])
 def addambulance():
     try:
-        data1 = commonfile.DecodeInputdata(request.get_data())
-        column="*"
-        whereCondition="ambulanceType='"+str(data1["ambulanceType"])+"'"
-        data= databasefile.SelectQuery("ambulanceMaster",column,whereCondition)
-        if data==None:
-            column=ambulanceType
-            values="'"+str(data1["ambulanceType"])+"'"
-            insertdata=databasefile.InsertQuery("ambulanceMaster",column,values)
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['ambulanceType']
+        commonfile.writeLog("addambulance",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            ambulanceType = inputdata["ambulanceType"]
             column="*"
-            whereCondition="ambulanceType='"+str(data1["ambulanceType"])+"'"
-            data1= databasefile.SelectQuery1("ambulanceMaster",column,whereCondition)
-            output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
-            return output
+            whereCondition="ambulanceType='"+str(ambulanceType)+"'"
+            data= databasefile.SelectQuery("ambulanceMaster",column,whereCondition)
+            print(data,"==data")
+            if data==None:
+                column="ambulanceType"
+                values="'"+str(ambulanceType)+"'"
+                insertdata=databasefile.InsertQuery("ambulanceMaster",column,values)
+                column="*"
+                whereCondition="ambulanceType='"+str(ambulanceType)+"'"
+                data1= databasefile.SelectQuery1("ambulanceMaster",column,whereCondition)
+                output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
+                return output
+            else:
+                output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
+                return output 
         else:
-            output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
-            return output 
+            return msg
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
