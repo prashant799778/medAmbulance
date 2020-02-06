@@ -225,10 +225,10 @@ def usertypeMaster():
             whereCondition=""
             data=databasefile.SelectQuery1("usertypeMaster",column,whereCondition)
             if (data!=0):           
-                Data = {"result":data,"status":"true"}
+                Data = {"result":data,"status":"true","message":""}
                 return Data
             else:
-                output = {"result":"No Data Found","status":"false"}
+                output = {"message":"No Data Found","status":"false","result":""}
                 return output
                         
         else:
