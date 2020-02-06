@@ -374,9 +374,6 @@ def addambulance():
         return output
  
 
-
-
-
 @app.route('/selectambulanceMaster', methods=['GET'])
 def ambulanceMaster():
     try:
@@ -398,20 +395,40 @@ def ambulanceMaster():
         output = {"result":"something went wrong","status":"false"}
         return output  
 
+
 @app.route('/updateambulanceMaster', methods=['POST'])
 def updateambulanceMaster():
     try:
-       data=commonfile.DecodeInputdata(request.get_data())  
-       column= " ambulanceType='" + str(data["ambulanceType"]) + "'"
-       whereCondition="id = '" + str(data["id"])+ "'"
-       data=databasefile.UpdateQuery("ambulanceMaster",column,whereCondition)
-       output = {"result":"Updated Successfully","status":"true"}
-       return output  
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['ambulanceType','id']
+        commonfile.writeLog("updateambulanceMaster",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            ambulanceType = inputdata["ambulanceType"]
+            id = inputdata["id"]
+            column= " * "
+            whereCondition="id = '" + str(id)+ "'"
+            data1 = databasefile.SelectQuery("ambulanceMode",column,whereCondition)
+            print(data1,"data1")
+            if data1 != 0:
+                column = ""
+                whereCondition = ""
+                column= " ambulanceType='" + str(ambulanceType) + "'"
+                whereCondition="id = '" + str(id)+ "'"
+                data = databasefile.UpdateQuery("ambulanceMaster",column,whereCondition)
+                print(data,'===')
+                output = {"result":"Updated Successfully","status":"true"}
+                return output
+            else:
+                output = {"result":"Data Not Found","status":"true"}
+                return output
+        else:
+            return msg 
     except KeyError :
         print("Key Exception---->")   
         output = {"result":"key error","status":"false"}
         return output  
-
     except Exception as e :
         print("Exception---->" +str(e))    
         output = {"result":"somthing went wrong","status":"false"}
