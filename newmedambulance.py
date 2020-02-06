@@ -254,6 +254,7 @@ def addambulanceMode():
             data = databasefile.SelectQuery("ambulanceMode",column,whereCondition)
             print(data,'==data')
             if data=="0":
+                print("Hello")
                 column="ambulanceType"
                 values="'"+str(ambulanceType)+"'"
                 insertdata=databasefile.InsertQuery("ambulanceMode",column,values)
