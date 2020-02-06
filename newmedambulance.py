@@ -264,6 +264,7 @@ def addambulanceMode():
                 output= {"result":"User Added Successfully","ambulance Details":data8[-1],"status":"true"}
                 return output
             else:
+                print("Hello g")
                 output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
                 return output
         else:
