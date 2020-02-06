@@ -243,3 +243,31 @@ def DeleteQuery(table,whereCondition):
        print("Error--->" + str(e))            
        return "0"
 
+
+def SelectCountQuery(table,whereCondition,groupby):
+    try:
+        groupby = ""
+        if whereCondition != "":
+            whereCondition = " where 1=1 " + whereCondition
+        if groupby != "":
+            groupby = " group by " + groupby
+               
+        query = " select count(1) as count from " + table + " " + whereCondition  + " " + groupby  + ";"
+        print(query)
+        conn = Connection()
+        cursor = conn.cursor()
+        cursor.execute(query)
+        data = cursor.fetchall()  
+        cursor.close()   
+
+        if data:
+            data = json.loads(json.dumps(data))                                 
+            return str(data[0]["count"])
+        else:
+            return "0"
+
+    except Exception as e:
+        print("Error--->" + str(e))            
+        return "0" 
+
+
