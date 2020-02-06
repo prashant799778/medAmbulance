@@ -380,7 +380,7 @@ def addambulance():
 @app.route('/selectambulanceMaster', methods=['GET'])
 def ambulanceMaster():
     try:
-        msgt = "1"
+        msg = "1"
         if msg=="1":
             column="id ,ambulanceType"
             whereCondition=""
