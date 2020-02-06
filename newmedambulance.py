@@ -144,9 +144,6 @@ def addUser():
                     return Data
                 else:
                     return commonfile.Errormessage()
-           
-                    
-
                         
         else:
             return msg 
@@ -156,41 +153,6 @@ def addUser():
         return output
 
 
-
-#user signup
-@app.route('/addUser1', methods=['POST'])
-def addUser1():
-    try:
-        data1 = commonfile.DecodeInputdata(request.get_data())
-        column = " * "
-        whereCondition= "mobile='"+str(data1["mobile"])+ "'"
-        data= databasefile.SelectQuery("userMaster",column,whereCondition)
-        UserId=uuid.uuid1()
-        UserID=UserId.hex
-        if data==0:
-            column="name,password,mobile,userid,imeiNo,deviceName,currentLocation,currentLocationlatlong,usertypeId,email,country,city, "
-            column=column+ "ipAddress,userAgent,deviceId,os,deviceType,appVersion,notificationToken"
-
-            values =  "'"+str(data1["name"])+"','"+str(data1["password"])+"','"
-            values= values +str(data1["mobile"])+"','"+str(UserID)+"','"+str(data1["imeiNo"])+"','"+str(data1["deviceName"])+"','"
-            values= values+str(data1["currentLocation"])+"','"+str(data1["currentLocationLatlong"])+"','"+str(data1["usertypeId"])+"','"
-            values= values+str(data1["email"])+"','"+str(data1["country"])+"','"+str(data1["city"])+"','"
-            values= values+str(data1["ipAddress"])+"','"+str(data1["userAgent"])+"','"+str(data1["deviceId"])+"','"
-            values= values+str(data1["os"])+"','"+str(data1["deviceType"])+"','"+str(data1["appVersion"])+ "','"+str(data1["notificationToken"])+ "'"
-
-            insertdata=databasefile.InsertQuery("userMaster",column,values)
-            column = " * "
-            whereCondition= "mobile='"+str(data1["mobile"])+ "'"
-            data8= databasefile.SelectQuery1("userMaster",column,whereCondition)
-            output= {"result":"User Added Successfully","patient Details":data8[-1],"status":"true"}
-            return output
-        else:
-            output = {"result":"User Already Added Existed ","status":"true","patient Details":data}
-            return output 
-    except Exception as e :
-        print("Exception---->" + str(e))    
-        output = {"result":"something went wrong","status":"false"}
-        return output
 
 @app.route('/addDriver', methods=['POST'])
 def addDriver():
