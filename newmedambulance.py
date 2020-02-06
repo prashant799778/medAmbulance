@@ -439,7 +439,7 @@ def updateambulanceMaster():
 def allusers():
     try:
         msg = "1"
-        if msg = "1":
+        if msg == "1":
             column="*"
             whereCondition="usertypeId='2' "
             data=databasefile.SelectQuery1("userMaster",column,whereCondition)
