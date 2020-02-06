@@ -158,6 +158,7 @@ def addUser():
 def addDriver():
     try:
         data1 = commonfile.DecodeInputdata(request.get_data())
+        
         column = " * "
         whereCondition= "mobile='"+str(data1["mobile"])+ "' and usertypeId='3'"
         data= databasefile.SelectQuery("userMaster",column,whereCondition)
@@ -185,27 +186,27 @@ def addDriver():
 @app.route('/Login', methods=['GET'])
 def login():
     try:
-        password = request.args['password']
-       
-        mobile = request.args['mobile']
-        column=  "us.mobile,us.name,um.usertype,us.userId"
-        whereCondition= "us.mobile = '" + mobile + "' and us.password = '" + password + "'  and  us.usertypeId=um.Id"
-        loginuser=databasefile.SelectQuery1("userMaster as us,usertypeMaster as um",column,whereCondition)
-        
-               
-      
-        if (loginuser!=0):   
-            Data = {"result":loginuser,"status":"true"}                  
-            return Data
-        else:
-            data={"status":"Failed","result":"Login Failed"}
-            return data
-
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['password','mobile']
+        commonfile.writeLog("Login",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            mobile = inputdata["mobile"]
+            password = inputdata["password"]
+            column=  "us.mobile,us.name,um.usertype,us.userId"
+            whereCondition= "us.mobile = '" + mobile + "' and us.password = '" + password + "'  and  us.usertypeId=um.Id"
+            loginuser=databasefile.SelectQuery1("userMaster as us,usertypeMaster as um",column,whereCondition)
+            if (loginuser!=0):   
+                Data = {"result":loginuser,"status":"true"}                  
+                return Data
+            else:
+                data={"status":"Failed","result":"Login Failed"}
+                return data
     except KeyError as e:
         print("Exception---->" +str(e))        
         output = {"result":"Input Keys are not Found","status":"false"}
-        return output 
-    
+        return output    
     except Exception as e :
         print("Exception---->" +str(e))           
         output = {"result":"something went wrong","status":"false"}
