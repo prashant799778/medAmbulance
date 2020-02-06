@@ -203,6 +203,9 @@ def login():
             else:
                 data={"status":"Failed","result":"Login Failed"}
                 return data
+
+        else:
+            return msg 
     except KeyError as e:
         print("Exception---->" +str(e))        
         output = {"result":"Input Keys are not Found","status":"false"}
@@ -216,15 +219,20 @@ def login():
 @app.route('/selectusertypeMaster', methods=['GET'])
 def usertypeMaster():
     try:
-        column="id,usertype"
-        whereCondition=""
-        data=databasefile.SelectQuery1("usertypeMaster",column,whereCondition)
-        if (data!=0):           
-            Data = {"result":data,"status":"true"}
-            return Data
+        msg="1"
+        if msg == "1":
+            column="id,usertype"
+            whereCondition=""
+            data=databasefile.SelectQuery1("usertypeMaster",column,whereCondition)
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
+                        
         else:
-            output = {"result":"No Data Found","status":"false"}
-            return output
+            return msg 
 
     except Exception as e :
         print("Exception---->" + str(e))    
