@@ -380,16 +380,19 @@ def addambulance():
 @app.route('/selectambulanceMaster', methods=['GET'])
 def ambulanceMaster():
     try:
-        column="id ,ambulanceType"
-        whereCondition=""
-        data=databasefile.SelectQuery1("ambulanceMaster",column,whereCondition)
-        if (data!=0):           
-            Data = {"result":data,"status":"true"}
-            return Data
+        msgt = "1"
+        if msg=="1":
+            column="id ,ambulanceType"
+            whereCondition=""
+            data=databasefile.SelectQuery1("ambulanceMaster",column,whereCondition)
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
         else:
-            output = {"result":"No Data Found","status":"false"}
-            return output
-
+            return msg
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
