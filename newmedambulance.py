@@ -195,7 +195,7 @@ def login():
             mobile = inputdata["mobile"]
             password = inputdata["password"]
             column=  "us.mobile,us.name,um.usertype,us.userId"
-            whereCondition= "us.mobile = '" + mobile + "' and us.password = '" + password + "'  and  us.usertypeId=um.Id"
+            whereCondition= "us.mobile = '" + str(mobile) + "' and us.password = '" + password + "'  and  us.usertypeId=um.Id"
             loginuser=databasefile.SelectQuery1("userMaster as us,usertypeMaster as um",column,whereCondition)
             if (loginuser!=0):   
                 Data = {"result":loginuser,"status":"true"}                  
