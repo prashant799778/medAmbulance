@@ -309,6 +309,8 @@ def updateambulanceMode():
             id = inputdata["id"]
             column= " ambulanceType='" + str(ambulanceType) + "'"
             whereCondition="id = '" + str(id)+ "'"
+            data1 = databasefile.SelectQuery1("ambulanceMode",column,whereCondition)
+            print(data1,"data1")
             data = databasefile.UpdateQuery("ambulanceMode",column,whereCondition)
             print(data,'===')
             output = {"result":"Updated Successfully","status":"true"}
