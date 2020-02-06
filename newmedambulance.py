@@ -254,7 +254,6 @@ def addambulanceMode():
             data = databasefile.SelectQuery("ambulanceMode",column,whereCondition)
             print(data,'==data')
             if data == 0:
-                print("Hello")
                 column="ambulanceType"
                 values="'"+str(ambulanceType)+"'"
                 insertdata=databasefile.InsertQuery("ambulanceMode",column,values)
@@ -264,7 +263,6 @@ def addambulanceMode():
                 output= {"result":"User Added Successfully","ambulance Details":data8[-1],"status":"true"}
                 return output
             else:
-                print("Hello g")
                 output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
                 return output
         else:
@@ -278,15 +276,19 @@ def addambulanceMode():
 @app.route('/selectambulanceMode', methods=['GET'])
 def ambulanceMode():
     try:
-        column="id ,ambulanceType"
-        whereCondition=""
-        data=databasefile.SelectQuery1("ambulanceMode",column,whereCondition)
-        if (data!=0):           
-            Data = {"result":data,"status":"true"}
-            return Data
+        msg = "1"
+        if msg =="1":
+            column="id ,ambulanceType"
+            whereCondition=""
+            data=databasefile.SelectQuery1("ambulanceMode",column,whereCondition)
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
         else:
-            output = {"result":"No Data Found","status":"false"}
-            return output
+            return msg
 
     except Exception as e :
         print("Exception---->" + str(e))    
