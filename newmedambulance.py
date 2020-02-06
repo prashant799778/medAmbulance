@@ -183,7 +183,7 @@ def addDriver():
 
 
 #Login
-@app.route('/Login', methods=['GET'])
+@app.route('/Login', methods=['POST'])
 def login():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
