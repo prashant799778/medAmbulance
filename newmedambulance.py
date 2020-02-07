@@ -1241,7 +1241,7 @@ def DriverTraceUser():
         return output
 
 
-@app.route('/ResponderTraceUser', methods=['GET'])
+@app.route('/ResponderTraceUser', methods=['POST'])
 def ResponderTraceUser():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
