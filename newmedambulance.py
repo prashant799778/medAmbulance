@@ -1244,16 +1244,24 @@ def DriverTraceUser():
 @app.route('/ResponderTraceUser', methods=['GET'])
 def ResponderTraceUser():
     try:
-        data=commonfile.DecodeInputdata(request.get_data())  
-        column="um.name,um.mobile,dbm.farDistance,dbm.pickup,dbm.bookingId "
-        whereCondition="dbm.userId=dm.userId and dbm.responderId='" + str(data["responderId"]) + "'"
-        data=databasefile.SelectQuery1("responderbookingMapping as dbm,userMaster as  um",column,whereCondition)
-        if (data!=0):           
-            Data = {"result":data,"status":"true"}
-            return Data
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['responderId']
+        commonfile.writeLog("ResponderTraceUser",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            responderId = inputdata["responderId"]
+            column="um.name,um.mobile,dbm.farDistance,dbm.pickup,dbm.bookingId "
+            whereCondition="dbm.userId=um.userId and dbm.responderId='" + str(responderId) + "'"
+            data=databasefile.SelectQuery1("responderbookingMapping as dbm,userMaster as  um",column,whereCondition)
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
         else:
-            output = {"result":"No Data Found","status":"false"}
-            return output
+            return msg
 
     except Exception as e :
         print("Exception---->" + str(e))    
