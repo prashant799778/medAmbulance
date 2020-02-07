@@ -1015,28 +1015,29 @@ def updateaddOns():
 @app.route('/finalPayment', methods=['POST'])
 def finalPayment():
     try:
-        data1=commonfile.DecodeInputdata(request.get_data())  
-        column="userId,paymentmodeId,totalAmount"
-        values=  " '"+str(data1["userId"])+"','"+str(data1["paymentmodeId"])+"','"+str(data1["totalAmount"])+ "'"
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['userId','paymentmodeId','totalAmount']
+        commonfile.writeLog("finalPayment",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            userId = inputdata["userId"]
+            paymentmodeId = inputdata["paymentmodeId"]
+            totalAmount = inputdata["totalAmount"]
         
-        insertdata=databasefile.InsertQuery("finalPayment",column,values)
-
-        column="*"
-        WhereCondition= "userId='"+str(data1["userId"])+ "' "
-        data2=databasefile.SelectQuery1("finalPayment",column,values)
-
-       
-
-
-        output= {"result":"Payment Successfull","patient Details":data2[-1],"status":"true"}
-        return output
-
-
-               
-            
-        if data2 ==None:
-            output = {"result":"Payment Unsuccessfull","status":"false"}
-            return output 
+            column="userId,paymentmodeId,totalAmount"
+            values=  " '"+str(userId)+"','"+str(paymentmodeId)+"','"+str(totalAmount)+ "'"
+            insertdata=databasefile.InsertQuery("finalPayment",column,values)
+            column="*"
+            WhereCondition= "userId='"+str(userId)+ "' "
+            data2=databasefile.SelectQuery1("finalPayment",column,values)
+            output= {"result":"Payment Successfull","patient Details":data2,"status":"true"}
+            return output         
+            if data2 == 0:
+                output = {"result":"Payment Unsuccessfull","status":"false"}
+                return output 
+        else:
+            return msg
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
