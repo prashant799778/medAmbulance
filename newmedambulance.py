@@ -930,7 +930,7 @@ def addOns():
                 whereCondition= " name='"+str(name)+ "'"
                 data1=databasefile.SelectQuery1("addOns",column,whereCondition)
 
-                output= {"result":"User Added Successfully","ambulance Details":data,"status":"true"}
+                output= {"result":"User Added Successfully","addons Details":data1,"status":"true"}
                 return output 
             else:
                 output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
