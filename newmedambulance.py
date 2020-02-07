@@ -812,23 +812,30 @@ def updateresponderMode():
 @app.route('/addriderType', methods=['POST'])
 def addriderType():
     try:
-        data1 = commonfile.DecodeInputdata(request.get_data())
-        column="*"
-        whereCondition="responderType='"+str(data1["ambulanceType"])+"'"
-        data= databasefile.SelectQuery("responderTypeMaster",column,whereCondition)
-        if data==None:
-            column=ambulanceType
-            values="'"+str(data1["responderType"])+"'"
-            insertdata=databasefile.InsertQuery("responderTypeMaster",column,values)
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['ambulanceType','responderType']
+        commonfile.writeLog("addriderType",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            responderType = inputdata["responderType"]
+            ambulanceType = inputdata["ambulanceType"]
+        
             column="*"
-            whereCondition="responderType='"+str(data1["responderType"])+"'"
-            data1= databasefile.SelectQuery1("responderTypeMaster",column,whereCondition)
-            output= {"result":"User Added Successfully","responder Details":data1[-1],"status":"true"}
-            return output
-
-
-               
-            
+            whereCondition="responderType='"+str(ambulanceType)+"'"
+            data= databasefile.SelectQuery("responderTypeMaster",column,whereCondition)
+            if data==None:
+                column=ambulanceType
+                values="'"+str(responderType)+"'"
+                insertdata=databasefile.InsertQuery("responderTypeMaster",column,values)
+                column="*"
+                whereCondition="responderType='"+str(responderType)+"'"
+                data1= databasefile.SelectQuery1("responderTypeMaster",column,whereCondition)
+                print(data1,'data1')
+                output= {"result":"User Added Successfully","responder Details":data1[-1],"status":"true"}
+                return output
+            else:
+                return msg
         else:
             output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
             return output 
