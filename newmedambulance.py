@@ -508,7 +508,9 @@ def addhospital():
                 print(data[-1],'data1111')
                 yu=data[-1]
                 mainId=str(yu["hospitalId"])
+                print(mainId,'mainId')
                 ambulanceId1 = ambulanceId
+                print(ambulanceId1,'ambulance')
                 for i in ambulanceId1:
                     print('B')
                     column=" * "
