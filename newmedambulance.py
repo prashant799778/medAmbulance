@@ -1056,7 +1056,7 @@ def updatepaymentType():
         commonfile.writeLog("updatepaymentType",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg=="1":
-            name = inputdata["paymentType"]
+            paymentType = inputdata["paymentType"]
             id = inputdata["id"]
             column= " * "
             whereCondition="id = '" + str(id)+ "'"
