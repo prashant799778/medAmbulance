@@ -1253,7 +1253,7 @@ def ResponderTraceUser():
             responderId = inputdata["responderId"]
             column="um.name,um.mobile,dbm.farDistance,dbm.pickup,dbm.bookingId "
             whereCondition="dbm.userId=um.userId and dbm.responderId='" + str(responderId) + "'"
-            data=databasefile.SelectQuery1("responderbookingMapping as dbm,userMaster as  um",column,whereCondition)
+            data=databasefile.SelectQuery1("responderBookingMapping as dbm,userMaster as  um",column,whereCondition)
             if (data!=0):           
                 Data = {"result":data,"status":"true"}
                 return Data
