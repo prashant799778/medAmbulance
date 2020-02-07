@@ -496,6 +496,7 @@ def addhospital():
             column=" * "
             whereCondition= "hospitalName='"+str(hospitalName)+ "'"
             data= databasefile.SelectQuery("hospitalMaster",column,whereCondition)
+            print(data,'===data')
             if data==None:
                 column="hospitalName,address"
                 values="'"+str(hospitalName)+"','"+str(address)+"'"
