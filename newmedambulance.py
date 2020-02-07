@@ -507,23 +507,25 @@ def addhospital():
                 data= databasefile.SelectQuery1("hospitalMaster",column,whereCondition)
                 print(data[-1],'data1111')
                 yu=data[-1]
-                mainId=str(yu["hospitalId"])
+                mainId=yu["hospitalId"]
                 print(mainId,'mainId')
                 ambulanceId1 = ambulanceId
                 print(ambulanceId1,'ambulance')
-                for i in ambulanceId1:
-                    print('B')
-                    column=" * "
-                    whereCondition="ambulance_Id='"+str(i)+"'  and hospital_Id='"+str(mainId)+"'"
-                    userHospitalMappingdata = databasefile.SelectQuery1("ambulanceHospitalMapping",column,whereCondition)
-                    if userHospitalMappingdata==():
-                        print('C')
-                        column="hospital_Id,ambulance_Id"
-                        values="'"+str(mainId)+"','"+str(i)+"'"
-                        insertdata=databasefile.InsertQuery("ambulanceHospitalMapping",column,values)                
-                output = {"result":"data inserted successfully","status":"true"}
-                return output
-            
+                print('B')
+                column=" * "
+                whereCondition="ambulance_Id='"+str(i)+"'  and hospital_Id='"+str(mainId)+"'"
+                userHospitalMappingdata = databasefile.SelectQuery1("hospitalambulanceMapping",column,whereCondition)
+                print(userHospitalMappingdata,'lets see')
+                if userHospitalMappingdata==():
+                    print('C')
+                    column="hospital_Id,ambulance_Id"
+                    values="'"+str(mainId)+"','"+str(i)+"'"
+                    insertdata=databasefile.InsertQuery("hospitalambulanceMapping",column,values)                
+                    output = {"result":"data inserted successfully","status":"true"}
+                    return output
+                else:
+                    output = {"result":"Data already existed in mapping table","status":"true"}
+                    return output
             else:
                 output = {"result":"Hospital Already  Existed ","status":"true"}
                 return output
