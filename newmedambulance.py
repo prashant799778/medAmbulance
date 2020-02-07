@@ -912,27 +912,31 @@ def updateriderType():
 @app.route('/addOns', methods=['POST'])
 def addOns():
     try:
-        data1=commonfile.DecodeInputdata(request.get_data())  
-        column="name"
-        whereCondition= " name='"+str(data1["name"])+ "'"
-        data=databasefile.SelectQuery("addOns",column,whereCondition)
-        if data==None:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['name']
+        commonfile.writeLog("addOns",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            name = inputdata["name"]
             column="name"
-            values="('"+str(data1["name"])+"' "
-            insertdata=databasefile.InsertQuery("addOns",column,values)
-            column="*"
-            whereCondition= " name='"+str(data1["name"])+ "'"
-            data1=databasefile.SelectQuery1("addOns",column,whereCondition)
+            whereCondition= " name='"+str(name)+ "'"
+            data=databasefile.SelectQuery("addOns",column,whereCondition)
+            if data==0:
+                column="name"
+                values="('"+str(name)+"' "
+                insertdata=databasefile.InsertQuery("addOns",column,values)
+                column="*"
+                whereCondition= " name='"+str(name)+ "'"
+                data1=databasefile.SelectQuery1("addOns",column,whereCondition)
 
-            output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
-            return output
-
-
-               
-            
+                output= {"result":"User Added Successfully","ambulance Details":data,"status":"true"}
+                return output 
+            else:
+                output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
+                return output 
         else:
-            output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
-            return output 
+            return msg
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
