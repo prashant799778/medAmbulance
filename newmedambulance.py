@@ -1028,6 +1028,7 @@ def finalPayment():
             column="userId,paymentTypeId,totalAmount"
             values=  " '"+str(userId)+"','"+str(paymentmodeId)+"','"+str(totalAmount)+ "'"
             insertdata=databasefile.InsertQuery("finalPayment",column,values)
+            column=''
             column="*"
             WhereCondition= "userId='"+str(userId)+ "' "
             data2=databasefile.SelectQuery1("finalPayment",column,values)
