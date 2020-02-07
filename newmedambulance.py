@@ -1145,7 +1145,7 @@ def addpaymentType():
 
 
 
-@app.route('/allHospital', methods=['GET'])
+@app.route('/allHospital', methods=['POST'])
 def allHospital():
     try:
         msg="1"
