@@ -814,18 +814,16 @@ def addriderType():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ['ambulanceType','responderType']
+        keyarr = ['responderType']
         commonfile.writeLog("addriderType",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg=="1":
             responderType = inputdata["responderType"]
-            ambulanceType = inputdata["ambulanceType"]
-        
             column="*"
-            whereCondition="responderType='"+str(ambulanceType)+"'"
+            whereCondition="responderType='"+str(responderType)+"'"
             data= databasefile.SelectQuery("responderTypeMaster",column,whereCondition)
-            if data==None:
-                column=ambulanceType
+            if data==0:
+                column=responderType
                 values="'"+str(responderType)+"'"
                 insertdata=databasefile.InsertQuery("responderTypeMaster",column,values)
                 column="*"
