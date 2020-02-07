@@ -1176,12 +1176,34 @@ def allHospital():
 @app.route('/updateDriverMasterlocation', methods=['POST'])
 def updateDriverMasterlocation():
     try:
-        data=commonfile.DecodeInputdata(request.get_data())  
-        column= " currentLocation ='" + str(data["currentLocation"]) + "',currentLocationlatlong='" + str(data["currentLocationlatlong"]) + "' "
-        whereCondition= "driverId = '" + str(data["driverId"])+ "' and ambulanceId='" + str(data["ambulanceId"]) + "'"
-        databasefile.UpdateQuery("driverMaster",column,whereCondition)
-        output = {"result":"Updated Successfully","status":"true"}
-        return output  
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['currentLocation','currentLocationlatlong','driverId','ambulanceId']
+        commonfile.writeLog("updateDriverMasterlocation",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            currentLocation = inputdata["currentLocation"]
+            currentLocationlatlong = inputdata["currentLocationlatlong"]
+            driverId = inputdata["driverId"]
+            ambulanceId = inputdata["ambulanceId"]
+            column= " * "
+            whereCondition="driverId = '" + str(driverId)+ "' and ambulanceId='" + str(ambulanceId) + "'"
+            data1 = databasefile.SelectQuery("driverMaster",column,whereCondition)
+            print(data1,"data1")
+            if data1 != 0:
+                column = ""
+                whereCondition = ""
+                column= " currentLocation ='" + str(currentLocation) + "',currentLocationlatlong='" + str(currentLocationlatlong) + "' "
+                whereCondition= "driverId = '" + str(driverId)+ "' and ambulanceId='" + str(ambulanceId) + "'"
+                databasefile.UpdateQuery("driverMaster",column,whereCondition)
+                print(data,'===')
+                output = {"result":"Updated Successfully","status":"true"}
+                return output
+            else:
+                output = {"result":"Data Not Found","status":"true"}
+                return output
+        else:
+            return msg
     except KeyError :
         print("Key Exception---->")   
         output = {"result":"key error","status":"false"}
