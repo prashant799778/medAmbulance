@@ -922,14 +922,16 @@ def addOns():
             column="name"
             whereCondition= " name='"+str(name)+ "'"
             data=databasefile.SelectQuery("addOns",column,whereCondition)
+            print(data,'A')
             if data==0:
+                print('B')
                 column="name"
                 values="('"+str(name)+"' "
                 insertdata=databasefile.InsertQuery("addOns",column,values)
                 column="*"
                 whereCondition= " name='"+str(name)+ "'"
                 data1=databasefile.SelectQuery1("addOns",column,whereCondition)
-
+                print(data1,'C')
                 output= {"result":"User Added Successfully","addons Details":data1,"status":"true"}
                 return output 
             else:
