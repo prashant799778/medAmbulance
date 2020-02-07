@@ -722,15 +722,19 @@ def addRiderBooking():
 @app.route('/allresponder', methods=['GET'])
 def alldresponder():
     try:
-        column="*"
-        whereCondition="usertypeId='4' "
-        data=databasefile.SelectQuery1("userMaster",column,whereCondition)
-        if (data!=0):           
-            Data = {"result":data,"status":"true"}
-            return Data
+        msg="1"
+        if msg=="1":
+            column="*"
+            whereCondition="usertypeId='4' "
+            data=databasefile.SelectQuery1("userMaster",column,whereCondition)
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
         else:
-            output = {"result":"No Data Found","status":"false"}
-            return output
+            return msg
 
     except Exception as e :
         print("Exception---->" + str(e))    
