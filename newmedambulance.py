@@ -1112,27 +1112,31 @@ def paymentTypeMaster():
 @app.route('/addpaymentType', methods=['POST'])
 def addpaymentType():
     try:
-        data1=commonfile.DecodeInputdata(request.get_data())  
-        column="*"
-        whereCondition= "paymentType='"+str(data1["paymentType"])+ "'"
-        data=databasefile.SelectQuery("paymentTypeMaster",column,whereCondition)
-        if data==None:
-            column="paymentType"
-            values="('"+str(data1["paymentType"])+"' "
-            insertdata=databasefile.InsertQuery("paymentTypeMaster",column,values)
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['paymentType']
+        commonfile.writeLog("addpaymentType",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            paymentType = inputdata["paymentType"]
             column="*"
-            whereCondition= " paymentType='"+str(data1["paymentType"])+ "'"
-            data1=databasefile.SelectQuery1("paymentTypeMaster",column,whereCondition)
+            whereCondition= "paymentType='"+str(paymentType)+ "'"
+            data=databasefile.SelectQuery("paymentTypeMaster",column,whereCondition)
+            if data==0:
+                column="paymentType"
+                values="('"+str(paymentType)+"' "
+                insertdata=databasefile.InsertQuery("paymentTypeMaster",column,values)
+                column="*"
+                whereCondition= " paymentType='"+str(paymentType)+ "'"
+                data1=databasefile.SelectQuery1("paymentTypeMaster",column,whereCondition)
 
-            output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
-            return output
-
-
-               
-            
+                output= {"result":"User Added Successfully","ambulance Details":data1,"status":"true"}
+                return output
+            else:
+                output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
+                return output
         else:
-            output = {"result":"User Already Added Existed ","status":"true","ambulance Details":data}
-            return output 
+            return msg 
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
