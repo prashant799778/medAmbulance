@@ -483,34 +483,45 @@ def alldrivers():
 @app.route('/addhospital', methods=['POST'])
 def addhospital():
     try:
-        data1 = json.loads(data.decode("utf-8")) 
-        column=" * "
-        whereCondition= "hospitalName='"+str(data1["hospitalName"])+ "'"
-        data= databasefile.SelectQuery("hospitalMaster",column,whereCondition)
-        if data==None:
-            column="hospitalName,address"
-            values="'"+str(data1["hospitalName"])+"','"+str(data1["address"])+"'"
-            insertdata=databasefile.InsertQuery("hospitalMaster",column,values)
-            column=" id as hospitalId "
-            whereCondition="hospitalName= '"+str(data1["hospitalName"])+ "' and  address='"+str(data1["address"])+ "'"
-            data= databasefile.SelectQuery1("hospitalMaster",column,whereCondition)
-            yu=data[-1]
-            mainId=yu["hospitalId"]
-            ambulanceId = data1["ambulanceId"]
-            for i in ambulanceId:
-                column=" * "
-                whereCondition="ambulance_Id='"+str(i)+"'  and hospital_Id='"+str(mainId)+"'"
-                userHospitalMappingdata = databasefile.SelectQuery1("ambulanceHospitalMapping",column,whereCondition)
-                if userHospitalMappingdata==():
-                    column="hospital_Id,ambulance_Id"
-                    values="'"+str(mainId)+"','"+str(i)+"'"
-                    insertdata=databasefile.InsertQuery("ambulanceHospitalMapping",column,values)                
-            output = {"result":"data inserted successfully","status":"true"}
-            return output
-           
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['hospitalName','address','ambulanceId']
+        commonfile.writeLog("addhospital",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            hospitalName = inputdata["hospitalName"]
+            address = inputdata["address"]
+            ambulanceId = inputdata["ambulanceId"]
+
+            column=" * "
+            whereCondition= "hospitalName='"+str(hospitalName)+ "'"
+            data= databasefile.SelectQuery("hospitalMaster",column,whereCondition)
+            if data==None:
+                column="hospitalName,address"
+                values="'"+str(hospitalName)+"','"+str(address)+"'"
+                insertdata=databasefile.InsertQuery("hospitalMaster",column,values)
+                column=" id as hospitalId "
+                whereCondition="hospitalName= '"+str(hospitalName)+ "' and  address='"+str(address)+ "'"
+                data= databasefile.SelectQuery1("hospitalMaster",column,whereCondition)
+                yu=data[-1]
+                mainId=yu["hospitalId"]
+                ambulanceId = ambulanceId
+                for i in ambulanceId:
+                    column=" * "
+                    whereCondition="ambulance_Id='"+str(i)+"'  and hospital_Id='"+str(mainId)+"'"
+                    userHospitalMappingdata = databasefile.SelectQuery1("ambulanceHospitalMapping",column,whereCondition)
+                    if userHospitalMappingdata==():
+                        column="hospital_Id,ambulance_Id"
+                        values="'"+str(mainId)+"','"+str(i)+"'"
+                        insertdata=databasefile.InsertQuery("ambulanceHospitalMapping",column,values)                
+                output = {"result":"data inserted successfully","status":"true"}
+                return output
+            
+            else:
+                output = {"result":"Hospital Already  Existed ","status":"true"}
+                return output
         else:
-            output = {"result":"Hospital Already  Existed ","status":"true"}
-            return output 
+            return msg 
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
