@@ -972,12 +972,32 @@ def addsOn():
 @app.route('/updateaddOns', methods=['POST'])
 def updateaddOns():
     try:
-        data=commonfile.DecodeInputdata(request.get_data())  
-        column= " name='" + str(data["name"]) + "'"
-        whereCondition= "id = '" + str(data["id"])+ "'"
-        databasefile.UpdateQuery("addOns",column,whereCondition)
-        output = {"result":"Updated Successfully","status":"true"}
-        return output  
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['name','id']
+        commonfile.writeLog("updateaddOns",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            name = inputdata["name"]
+            id = inputdata["id"]
+            column= " * "
+            whereCondition="id = '" + str(id)+ "'"
+            data1 = databasefile.SelectQuery("addOns",column,whereCondition)
+            print(data1,"data1")
+            if data1 != 0:
+                column = ""
+                whereCondition = ""
+                column= " name='" + str(name) + "'"
+                whereCondition="id = '" + str(id)+ "'"
+                data = databasefile.UpdateQuery("addOns",column,whereCondition)
+                print(data,'===')
+                output = {"result":"Updated Successfully","status":"true"}
+                return output
+            else:
+                output = {"result":"Data Not Found","status":"true"}
+                return output
+        else:
+            return msg 
     except KeyError :
         print("Key Exception---->")   
         output = {"result":"key error","status":"false"}
