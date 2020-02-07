@@ -506,7 +506,7 @@ def addhospital():
                 whereCondition="hospitalName= '"+str(hospitalName)+ "' and  address='"+str(address)+ "'"
                 data= databasefile.SelectQuery1("hospitalMaster",column,whereCondition)
                 print(data[-1],'data1111')
-                yu=data[-1]
+                yu=str(data[-1])
                 mainId=yu["hospitalId"]
                 ambulanceId = ambulanceId
                 for i in ambulanceId:
