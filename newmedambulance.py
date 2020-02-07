@@ -872,12 +872,32 @@ def responderType():
 @app.route('/updateriderType', methods=['POST'])
 def updateriderType():
     try:
-        data=commonfile.DecodeInputdata(request.get_data())  
-        column= " responderType='" + str(data["responderType"]) + "'"
-        whereCondition= "id = '" + str(data["id"])+ "'"
-        databasefile.UpdateQuery("responderTypeMaster",column,whereCondition)
-        output = {"result":"Updated Successfully","status":"true"}
-        return output  
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['responderType','id']
+        commonfile.writeLog("updateriderType",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            responderType = inputdata["responderType"]
+            id = inputdata["id"]
+            column= " * "
+            whereCondition="id = '" + str(id)+ "'"
+            data1 = databasefile.SelectQuery("responderTypeMaster",column,whereCondition)
+            print(data1,"data1")
+            if data1 != 0:
+                column = ""
+                whereCondition = ""
+                column= " responderType='" + str(responderType) + "'"
+                whereCondition="id = '" + str(id)+ "'"
+                data = databasefile.UpdateQuery("responderTypeMaster",column,whereCondition)
+                print(data,'===')
+                output = {"result":"Updated Successfully","status":"true"}
+                return output
+            else:
+                output = {"result":"Data Not Found","status":"true"}
+                return output
+        else:
+            return msg 
     except KeyError :
         print("Key Exception---->")   
         output = {"result":"key error","status":"false"}
