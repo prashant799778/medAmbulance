@@ -513,13 +513,13 @@ def addhospital():
                 print(ambulanceId1,'ambulance')
                 print('B')
                 column=" * "
-                whereCondition="ambulance_Id='"+str(i)+"'  and hospital_Id='"+str(mainId)+"'"
+                whereCondition="ambulance_Id='"+str(ambulanceId1)+"'  and hospital_Id='"+str(mainId)+"'"
                 userHospitalMappingdata = databasefile.SelectQuery1("hospitalambulanceMapping",column,whereCondition)
                 print(userHospitalMappingdata,'lets see')
                 if userHospitalMappingdata==():
                     print('C')
                     column="hospital_Id,ambulance_Id"
-                    values="'"+str(mainId)+"','"+str(i)+"'"
+                    values="'"+str(mainId)+"','"+str(ambulanceId1)+"'"
                     insertdata=databasefile.InsertQuery("hospitalambulanceMapping",column,values)                
                     output = {"result":"data inserted successfully","status":"true"}
                     return output
