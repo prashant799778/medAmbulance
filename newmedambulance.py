@@ -1269,26 +1269,33 @@ def ResponderTraceUser():
         return output 
 
 
-@app.route('/trackResponder', methods=['GET'])
+@app.route('/trackResponder', methods=['POST'])
 def trackRider():
     try:
-        
-        data=commonfile.DecodeInputdata(request.get_data())
-        column="dm.name,dm.mobile,dbm.farDistance,dm.currentLocation"
-        whereCondition= "dbm.responderId=dm.responderId and dbm.bookingId='" + str(data["bookingId"]) + "'"
-        data=databasefile.SelectQuery1(" responderMaster as dm ,responderBookingMapping as dbm",column,whereCondition)
-        
-        query = "select dm.name,dm.mobile,dbm.farDistance,dm.currentLocation from responderMaster as dm ,responderBookingMapping as dbm where dbm.responderId=dm.responderId and dbm.bookingId='" + str(data["bookingId"]) + "'"
-        conn=Connection()
-        cursor = conn.cursor()
-        cursor.execute(query)
-        data = cursor.fetchone()
-        if (data!=0):           
-            Data = {"result":data,"status":"true"}
-            return Data
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['bookingId']
+        commonfile.writeLog("trackResponder",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            bookingId = inputdata["bookingId"]
+            column="dm.name,dm.mobile,dbm.farDistance,dm.currentLocation"
+            whereCondition= "dbm.responderId=dm.responderId and dbm.bookingId='" + str(bookingId) + "'"
+            data=databasefile.SelectQuery1(" responderMaster as dm ,responderBookingMapping as dbm",column,whereCondition)
+            
+            query = "select dm.name,dm.mobile,dbm.farDistance,dm.currentLocation from responderMaster as dm ,responderBookingMapping as dbm where dbm.responderId=dm.responderId and dbm.bookingId='" + str(data["bookingId"]) + "'"
+            conn=Connection()
+            cursor = conn.cursor()
+            cursor.execute(query)
+            data = cursor.fetchone()
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
         else:
-            output = {"result":"No Data Found","status":"false"}
-            return output
+            return msg
 
     except Exception as e :
         print("Exception---->" + str(e))    
