@@ -926,7 +926,7 @@ def addOns():
             if data==0:
                 print('B')
                 column="name"
-                values="('"+str(name)+"' "
+                values="'"+str(name)+"' "
                 insertdata=databasefile.InsertQuery("addOns",column,values)
                 column="*"
                 whereCondition= " name='"+str(name)+ "'"
