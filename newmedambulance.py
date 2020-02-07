@@ -1225,7 +1225,7 @@ def DriverTraceUser():
             driverId = inputdata["driverId"]
             column="um.name,um.mobile,dbm.farDistance,dbm.pickup,dbm.bookingId "
             whereCondition=" dbm.userId=dm.userId and dbm.driverId='" + str(driverId) + "'"
-            data=databasefile.SelectQuery(" driverBookingMapping as dbm,userMaster as  um")
+            data=databasefile.SelectQuery(" driverBookingMapping as dbm,userMaster as  um",column,whereCondition)
             if (data!=0):           
                 Data = {"result":data,"status":"true"}
                 return Data
