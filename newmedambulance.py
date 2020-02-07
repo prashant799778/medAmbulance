@@ -830,7 +830,7 @@ def addriderType():
                 whereCondition="responderType='"+str(responderType)+"'"
                 data1= databasefile.SelectQuery1("responderTypeMaster",column,whereCondition)
                 print(data1,'data1')
-                output= {"result":"User Added Successfully","responder Details":data1[-1],"status":"true"}
+                output= {"result":"User Added Successfully","responder Details":data1,"status":"true"}
                 return output
             else:
                 return msg
