@@ -1025,7 +1025,7 @@ def finalPayment():
             paymentmodeId = inputdata["paymentmodeId"]
             totalAmount = inputdata["totalAmount"]
         
-            column="userId,paymentmodeId,totalAmount"
+            column="userId,paymentTypeId,totalAmount"
             values=  " '"+str(userId)+"','"+str(paymentmodeId)+"','"+str(totalAmount)+ "'"
             insertdata=databasefile.InsertQuery("finalPayment",column,values)
             column="*"
