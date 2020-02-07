@@ -1024,19 +1024,19 @@ def finalPayment():
             userId = inputdata["userId"]
             paymentmodeId = inputdata["paymentmodeId"]
             totalAmount = inputdata["totalAmount"]
-        
             column="userId,paymentTypeId,totalAmount"
             values=  " '"+str(userId)+"','"+str(paymentmodeId)+"','"+str(totalAmount)+ "'"
             insertdata=databasefile.InsertQuery("finalPayment",column,values)
-            column=''
-            column="*"
+            column=""
+            column=" * "
             WhereCondition= "userId='"+str(userId)+ "' "
             data2=databasefile.SelectQuery1("finalPayment",column,values)
-            output= {"result":"Payment Successfull","patient Details":data2,"status":"true"}
-            return output         
             if data2 == 0:
                 output = {"result":"Payment Unsuccessfull","status":"false"}
-                return output 
+                return output
+            else:
+                output= {"result":"Payment Successfull","patient Details":data2,"status":"true"}
+                return output   
         else:
             return msg
     except Exception as e :
