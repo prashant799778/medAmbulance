@@ -516,7 +516,7 @@ def addhospital():
                 whereCondition="ambulance_Id='"+str(ambulanceId1)+"'  and hospital_Id='"+str(mainId)+"'"
                 userHospitalMappingdata = databasefile.SelectQuery1("hospitalambulanceMapping",column,whereCondition)
                 print(userHospitalMappingdata,'lets see')
-                if userHospitalMappingdata=0:
+                if userHospitalMappingdata==0:
                     print('C')
                     column="hospital_Id,ambulance_Id"
                     values="'"+str(mainId)+"','"+str(ambulanceId1)+"'"
