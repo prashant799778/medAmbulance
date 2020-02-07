@@ -1216,16 +1216,24 @@ def updateDriverMasterlocation():
 @app.route('/DriverTraceUser', methods=['POST'])
 def DriverTraceUser():
     try:
-        data=commonfile.DecodeInputdata(request.get_data())  
-        column="um.name,um.mobile,dbm.farDistance,dbm.pickup,dbm.bookingId "
-        whereCondition=" dbm.userId=dm.userId and dbm.driverId='" + str(data["driverId"]) + "'"
-        data=databasefile.SelectQuery(" driverBookingMapping as dbm,userMaster as  um")
-        if (data!=0):           
-            Data = {"result":data,"status":"true"}
-            return Data
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['driverId']
+        commonfile.writeLog("updateDriverMasterlocation",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            driverId = inputdata["driverId"]
+            column="um.name,um.mobile,dbm.farDistance,dbm.pickup,dbm.bookingId "
+            whereCondition=" dbm.userId=dm.userId and dbm.driverId='" + str(driverId) + "'"
+            data=databasefile.SelectQuery(" driverBookingMapping as dbm,userMaster as  um")
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
         else:
-            output = {"result":"No Data Found","status":"false"}
-            return output
+            return msg
 
     except Exception as e :
         print("Exception---->" + str(e))    
