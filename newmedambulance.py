@@ -1193,7 +1193,7 @@ def updateDriverMasterlocation():
             if data1 != 0:
                 column = ""
                 whereCondition = ""
-                column= " currentLocation ='" + str(currentLocation) + "',currentLocationlatlong='" + str(currentLocationlatlong) + "' "
+                column= " currentLocation ='" + str(currentLocation) + "',currentlatlong ='" + str(currentLocationlatlong) + "' "
                 whereCondition= "driverId = '" + str(driverId)+ "' and ambulanceId='" + str(ambulanceId) + "'"
                 databasefile.UpdateQuery("driverMaster",column,whereCondition)
                 print(data,'===')
