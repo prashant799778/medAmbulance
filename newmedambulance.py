@@ -1050,14 +1050,32 @@ def finalPayment():
 @app.route('/updatepaymentType', methods=['POST'])
 def updatepaymentType():
     try:
-        data=commonfile.DecodeInputdata(request.get_data())  
-        column= " paymentType='" + str(data["paymentType"]) + "'"
-        whereCondition= "id = '" + str(data["id"])+ "'"
-        databasefile.UpdateQuery("paymentTypeMaster",column,whereCondition)
-       
-
-        output = {"result":"Updated Successfully","status":"true"}
-        return output  
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['paymentType','id']
+        commonfile.writeLog("updatepaymentType",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            name = inputdata["paymentType"]
+            id = inputdata["id"]
+            column= " * "
+            whereCondition="id = '" + str(id)+ "'"
+            data1 = databasefile.SelectQuery("paymentTypeMaster",column,whereCondition)
+            print(data1,"data1")
+            if data1 != 0:
+                column = ""
+                whereCondition = ""
+                column= " paymentType='" + str(paymentType) + "'"
+                whereCondition="id = '" + str(id)+ "'"
+                data = databasefile.UpdateQuery("paymentTypeMaster",column,whereCondition)
+                print(data,'===')
+                output = {"result":"Updated Successfully","status":"true"}
+                return output
+            else:
+                output = {"result":"Data Not Found","status":"true"}
+                return output
+        else:
+            return msg
     except KeyError :
         print("Key Exception---->")   
         output = {"result":"key error","status":"false"}
