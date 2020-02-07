@@ -1281,11 +1281,7 @@ def trackRider():
             bookingId = inputdata["bookingId"]
             column="dm.name,dm.mobile,dbm.farDistance,dm.currentLocation"
             whereCondition= "dbm.responderId=dm.responderId and dbm.bookingId='" + str(bookingId) + "'"
-            data=databasefile.SelectQuery1(" responderMaster as dm ,responderBookingMapping as dbm",column,whereCondition)
-            conn=Connection()
-            cursor = conn.cursor()
-            cursor.execute(query)
-            data = cursor.fetchone()
+            data=databasefile.SelectQuery(" responderMaster as dm ,responderBookingMapping as dbm",column,whereCondition)
             if (data!=0):           
                 Data = {"result":data,"status":"true"}
                 return Data
