@@ -1015,30 +1015,30 @@ def updateaddOns():
 @app.route('/finalPayment', methods=['POST'])
 def finalPayment():
     try:
-        # inputdata =  commonfile.DecodeInputdata(request.get_data())
-        # startlimit,endlimit="",""
-        # keyarr = ['userId','paymentmodeId','totalAmount']
-        # commonfile.writeLog("finalPayment",inputdata,0)
-        # msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
-        # if msg=="1":
-        #     userId = inputdata["userId"]
-        #     paymentmodeId = inputdata["paymentmodeId"]
-        #     totalAmount = inputdata["totalAmount"]
-        #     column="userId,paymentTypeId,totalAmount"
-        #     values=  " '"+str(userId)+"','"+str(paymentmodeId)+"','"+str(totalAmount)+ "'"
-        #     insertdata=databasefile.InsertQuery("finalPayment",column,values)
-        #     column=""
-        #     column=" * "
-        #     WhereCondition= "userId='"+str(userId)+ "' "
-        #     data2=databasefile.SelectQuery1("finalPayment",column,values)
-        #     if data2 == 0:
-        #         output = {"result":"Payment Unsuccessfull","status":"false"}
-        #         return output
-        #     else:
-        #         output= {"result":"Payment Successfull","patient Details":data2,"status":"true"}
-        #         return output   
-        # else:
-        #     return msg
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['userId','paymentmodeId','totalAmount']
+        commonfile.writeLog("finalPayment",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            userId = inputdata["userId"]
+            paymentmodeId = inputdata["paymentmodeId"]
+            totalAmount = inputdata["totalAmount"]
+            column="userId,paymentTypeId,totalAmount"
+            values=  " '"+str(userId)+"','"+str(paymentmodeId)+"','"+str(totalAmount)+ "'"
+            insertdata=databasefile.InsertQuery("finalPayment",column,values)
+            column=" "
+            column=" * "
+            WhereCondition= "userId='"+str(userId)+ "' "
+            data2=databasefile.SelectQuery1("finalPayment",column,values)
+            if data2 == 0:
+                output = {"result":"Payment Unsuccessfull","status":"false"}
+                return output
+            else:
+                output= {"result":"Payment Successfull","patient Details":data2,"status":"true"}
+                return output   
+        else:
+            return msg
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
