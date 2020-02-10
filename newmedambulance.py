@@ -157,25 +157,33 @@ def addUser():
 @app.route('/addDriver', methods=['POST'])
 def addDriver():
     try:
-        data1 = commonfile.DecodeInputdata(request.get_data())
+        inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+        startlimit,endlimit="",""
+        keyarr = ['name','mobile','driverId','ambulanceModeId','ambulanceId','panCardNo','DlNo','currentLocation','currentLocationlatlong','vehicleNo']
+        commonfile.writeLog("addDriver",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+       
+        if msg == "1":
+            name = inputdata["name"]
+            mobile = inputdata["mobile"]
         
-        column = " * "
-        whereCondition= "mobile='"+str(data1["mobile"])+ "' and usertypeId='3'"
-        data= databasefile.SelectQuery("userMaster",column,whereCondition)
-        if data !=None:
-            column="name,mobile,driverId,ambulanceModeId,ambulanceId,panCardNo,DlNo,currentLocation,currentLocationlatlong,vehicleNo"
-            values=  "'"+str(data["name"])+"','"+str(data["mobile"])+"','"+str(data["userId"])+"','"+str(data1["ambulanceModeId"])+"','"
-            values=values +str(data1["ambulanceId"])+"','"+str(data1["panCardNo"])+"','"+str(data1["DlNo"])+"','"
-            values=values+str(data["currentLocation"])+"','"+str(data["currentLocationlatlong"])+"','"+str(data1["vehicleNo"])+"'"
-            insertdata=databasefile.InsertQuery("driverMaster",column,values)
             column = " * "
-            whereCondition= "mobile='"+str(data1["mobile"])+ "'"
-            data17= databasefile.SelectQuery1("driverMaster",column,whereCondition)
-            output= {"result":"Revert You Soon,After Verification","status":"true"}
-            return output
-        else:
-            output = {"result":"User Already Added Existed ","status":"false"}
-            return output
+            whereCondition= "mobile='"+str(data1["mobile"])+ "' and usertypeId='3'"
+            data= databasefile.SelectQuery("userMaster",column,whereCondition)
+            if data !=None:
+                column="name,mobile,driverId,ambulanceModeId,ambulanceId,panCardNo,DlNo,currentLocation,currentLocationlatlong,vehicleNo"
+                values=  "'"+str(data["name"])+"','"+str(data["mobile"])+"','"+str(data["userId"])+"','"+str(data1["ambulanceModeId"])+"','"
+                values=values +str(data1["ambulanceId"])+"','"+str(data1["panCardNo"])+"','"+str(data1["DlNo"])+"','"
+                values=values+str(data["currentLocation"])+"','"+str(data["currentLocationlatlong"])+"','"+str(data1["vehicleNo"])+"'"
+                insertdata=databasefile.InsertQuery("driverMaster",column,values)
+                column = " * "
+                whereCondition= "mobile='"+str(data1["mobile"])+ "'"
+                data17= databasefile.SelectQuery1("driverMaster",column,whereCondition)
+                output= {"result":"Revert You Soon,After Verification","status":"true"}
+                return output
+            else:
+                output = {"result":"User Already Added Existed ","status":"false"}
+                return output
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
@@ -539,85 +547,98 @@ def addhospital():
 @app.route('/addbookingambulance', methods=['POST'])
 def addbooking():
     try:
-        data1 = json.loads(data.decode("utf-8"))
-        pickup=str(data1["pickup"])
-        Drop=str(data1["dropoff"])
-        search = geocoder.get(pickup)
-        search2=geocoder.get(Drop)
-        search[0].geometry.location
-        search2[0].geometry.location
-        fromlatitude= search[0].geometry.location.lat
-        fromlongitude=search[0].geometry.location.lng
-        tolatitude= search2[0].geometry.location.lat
-        tolongitude= search2[0].geometry.location.lng
-        bookingId=uuid.uuid1()
-        bookingId=bookingId.hex
-        R = 6373.0
-        fromlongitude2= Decimal(fromlongitude)
-        fromlatitude2 = Decimal(fromlatitude)
-        # print(fromlongitude2,fromlatitude2)
-        distanceLongitude = tolongitude - fromlongitude
-        distanceLatitude = tolatitude - fromlatitude
-        a = sin(distanceLatitude / 2)**2 + cos(fromlatitude) * cos(tolatitude) * sin(distanceLongitude / 2)**2
-        c = 2 * atan2(sqrt(a), sqrt(1 - a))
-        distance = R * c
-        distance2=distance/100
-        Distance=distance2*1.85
-        d=round(Distance)
-        d2 =str(d) +' Km'
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['pickup','drop','userId','mobile','selectBookingDate','ambulanceId','bookingId']
+        commonfile.writeLog("addbookingambulance",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            pickup = inputdata["pickup"]
+            drop = inputdata["drop"]
+            userId = inputdata["userId"]
+            mobile = inputdata["mobile"]
+            selectBookingDate = inputdata["selectBookingDate"]
+            ambulanceId = inputdata["ambulanceId"]
+            bookingId = inputdata["bookingId"]
 
-        column=" * "
-        whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
-        data=databasefile.SelectQuery("bookAmbulance",column,whereCondition)
-        if data==None:
-            column="driverId,currentLocationlatlong,mobile"
-            whereCondition="verificationStatus<>'F'"
-            datavv= databasefile.SelectQuery1("driverMaster",column,whereCondition)
-            for da in datavv:
-                da.split(",")
-                driverlattitude=int(da[0])
-                driverlongitude=int(da[2])
-                distanceLongitude = tolongitude - driverlongitude
-                distanceLatitude = tolatitude - driverlattitude
-                a = sin(distanceLatitude / 2)**2 + cos(driverlattitude) * cos(tolatitude) * sin(driverlongitude/ 2)**2
-                c = 2 * atan2(sqrt(a), sqrt(1 - a))
-                distanceDriver = R * c
-                distance1=distanceDriver/100
-                distanceD=distance2*1.85
-                d1=round(distanceD)
-                d9 =str(d) +' Km'
-                if d1 <2:
-                    driverId=da['driverId']
-                    driverMobile=da['mobile']
-           
-            column="usermobile,pickup,pickupLongitudeLatitude,dropoff,dropoffLongitudeLatitude,selectBookingDate,bookingType,patientMedicalCondition,ambulanceId,userId,bookingId,finalAmount,totalDistance"
-            values="'"+str(data1["mobile"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["dropoff"])+"','"+str(tolatitude,tolongitude)+"','"+str(data1["selectBookingDate"])+"','"+str(data1["patientMedicalCondition"])+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d3)+"'"
-            insertdata=databasefile.InsertQuery("bookAmbulance",column,values)
+            # search = geocoder.get(pickup)
+            # search2=geocoder.get(drop)
+            # search[0].geometry.location
+            # search2[0].geometry.location
+            # fromlatitude= search[0].geometry.location.lat
+            # fromlongitude=search[0].geometry.location.lng
+            # tolatitude= search2[0].geometry.location.lat
+            # tolongitude= search2[0].geometry.location.lng
+            # bookingId=uuid.uuid1()
+            # bookingId=bookingId.hex
+            # R = 6373.0
+            # fromlongitude2= Decimal(fromlongitude)
+            # fromlatitude2 = Decimal(fromlatitude)
+            # # print(fromlongitude2,fromlatitude2)
+            # distanceLongitude = tolongitude - fromlongitude
+            # distanceLatitude = tolatitude - fromlatitude
+            # a = sin(distanceLatitude / 2)**2 + cos(fromlatitude) * cos(tolatitude) * sin(distanceLongitude / 2)**2
+            # c = 2 * atan2(sqrt(a), sqrt(1 - a))
+            # distance = R * c
+            # distance2=distance/100
+            # Distance=distance2*1.85
+            # d=round(Distance)
+            # d2 =str(d) +' Km'
+
             column=" * "
-            whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
-            data=databasefile.SelectQuery1("bookAmbulance",column,whereCondition)
-            yu=data[-1]
-            mainId=yu["bookingId"]
-            pickuplocation=yu["pickup"]
-            userid=yu["userId"]
-            column="bookingId,driverId,farDistance,pickup,userId"
-            values="'"+str(mainId)+"','"+str(driverId)+"','"+str(d9)+"','"+str(pickuplocation)+"','"+str(userid)+"'"
-            insertdata=databasefile.InsertQuery("driverBookingMapping",column,values)
-            ambulanceId = data1["addsOnId"]
-            for i in ambulanceId:
-                column=" * "
-                whereCondition="addsOnId='"+str(i)+"'  and bookingId='"+str(mainId)+"'"
-                userHospitalMappingdata=databasefile.SelectQuery1("addsOnbookambulanceMapping",column,whereCondition)
-                if userHospitalMappingdata==():
-                    column="addsOnId,bookingId"
-                    values="'"+str(mainId)+"','"+str(i)+"'"
-                    insertdata=databasefile.InsertQuery("addsOnbookambulanceMapping",column,values)
-            output = {"result":"data inserted successfully","status":"true","ride Details":data[-1]}
-            return output
-           
+            whereCondition="userId='"+str(userId)+ "' and status<>'2'"
+            data=databasefile.SelectQuery("bookAmbulance",column,whereCondition)
+            # if data==None:
+            #     column="driverId,userId,mobile,"
+            #     whereCondition="verificationStatus<>'F'"
+            #     datavv= databasefile.SelectQuery1("driverMaster",column,whereCondition)
+            #     for da in datavv:
+            #         da.split(",")
+            #         driverlattitude=int(da[0])
+            #         driverlongitude=int(da[2])
+            #         distanceLongitude = tolongitude - driverlongitude
+            #         distanceLatitude = tolatitude - driverlattitude
+            #         a = sin(distanceLatitude / 2)**2 + cos(driverlattitude) * cos(tolatitude) * sin(driverlongitude/ 2)**2
+            #         c = 2 * atan2(sqrt(a), sqrt(1 - a))
+            #         distanceDriver = R * c
+            #         distance1=distanceDriver/100
+            #         distanceD=distance2*1.85
+            #         d1=round(distanceD)
+            #         d9 =str(d) +' Km'
+            #         if d1 <2:
+            #             driverId=da['driverId']
+            #             driverMobile=da['mobile']
+            
+            #     column="usermobile,pickup,pickupLongitudeLatitude,dropoff,dropoffLongitudeLatitude,selectBookingDate,bookingType,patientMedicalCondition,ambulanceId,userId,bookingId,finalAmount,totalDistance"
+            #     values="'"+str(data1["mobile"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["dropoff"])+"','"+str(tolatitude,tolongitude)+"','"+str(data1["selectBookingDate"])+"','"+str(data1["patientMedicalCondition"])+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d3)+"'"
+            #     insertdata=databasefile.InsertQuery("bookAmbulance",column,values)
+            #     column=" * "
+            #     whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
+            #     data=databasefile.SelectQuery1("bookAmbulance",column,whereCondition)
+            #     yu=data[-1]
+            #     mainId=yu["bookingId"]
+            #     pickuplocation=yu["pickup"]
+            #     userid=yu["userId"]
+            #     column="bookingId,driverId,farDistance,pickup,userId"
+            #     values="'"+str(mainId)+"','"+str(driverId)+"','"+str(d9)+"','"+str(pickuplocation)+"','"+str(userid)+"'"
+            #     insertdata=databasefile.InsertQuery("driverBookingMapping",column,values)
+            #     ambulanceId = data1["addsOnId"]
+            #     for i in ambulanceId:
+            #         column=" * "
+            #         whereCondition="addsOnId='"+str(i)+"'  and bookingId='"+str(mainId)+"'"
+            #         userHospitalMappingdata=databasefile.SelectQuery1("addsOnbookambulanceMapping",column,whereCondition)
+            #         if userHospitalMappingdata==():
+            #             column="addsOnId,bookingId"
+            #             values="'"+str(mainId)+"','"+str(i)+"'"
+            #             insertdata=databasefile.InsertQuery("addsOnbookambulanceMapping",column,values)
+            #     output = {"result":"data inserted successfully","status":"true","ride Details":data[-1]}
+            #     return output
+            
+            # else:
+            #     output = {"result":"Hospital Already  Existed ","status":"false"}
+            #     return output 
         else:
-            output = {"result":"Hospital Already  Existed ","status":"false"}
-            return output 
+            return msg
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
