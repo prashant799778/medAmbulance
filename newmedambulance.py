@@ -171,6 +171,7 @@ def addDriver():
             data= databasefile.SelectQuery("userMaster",column,whereCondition)
             print(data)
             output={"Result":data}
+            return output
             # if data !=0:
             #     column="name,mobile,driverId,ambulanceModeId,ambulanceId,panCardNo,DlNo,currentLocation,currentLocationlatlong,vehicleNo"
             #     values=  "'"+str(data["name"])+"','"+str(data["mobile"])+"','"+str(data["userId"])+"','"+str(data1["ambulanceModeId"])+"','"
