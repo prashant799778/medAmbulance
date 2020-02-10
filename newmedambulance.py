@@ -588,6 +588,9 @@ def addbooking():
             column=" * "
             whereCondition="userId='"+str(userId)+ "' and status<>'2'"
             data=databasefile.SelectQuery("bookAmbulance",column,whereCondition)
+            print(data,'===data')
+            output = {"result":data,"status":"true"}
+            return output
             # if data==None:
             #     column="driverId,userId,mobile,"
             #     whereCondition="verificationStatus<>'F'"
