@@ -159,17 +159,18 @@ def addDriver():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
-        keyarr = ['name','mobile','id']
+        keyarr = ['name','mobile','key']
         commonfile.writeLog("addDriver",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
        
         if msg == "1":
             name = inputdata["name"]
             mobile = inputdata["mobile"]
-            id = inputdata["id"]
+            key = inputdata["key"]
             column = " * "
             whereCondition= "mobile='"+str(mobile)+ "' and usertypeId='3'"
             data= databasefile.SelectQuery("userMaster",column,whereCondition)
+            print(data,'data')
             
             DlNo,DlFrontfilename,DlFrontPicPath,DlBackfilename,DlBackPicPath,="","","","",""
 
@@ -178,12 +179,11 @@ def addDriver():
 
             if 'DlFrontImage' in request.files:
                     print("immmmmmmmmmmmmmmmm")
-                    file = request.files.get('DlFrontImage')
-                        
-                    DlFrontfilename = file.filename or ''                 
-                    DlFrontfilename = DlFrontfilename.replace("'","")
-                    print(DlFrontfilename,DlFrontfilename) 
-                    DlFrontFolderPath = ConstantData.GetPostImagePath(DlFrontfilename)
+                    file = request.files.get('DlFrontImage')        
+                    filename = file.filename or ''  
+                    print(filename)               
+                    dlFrontFilename= str(data["userId"])+".png"
+                    DlFrontFolderPath = ConstantData.GetdlImagePath(DlFrontfilename)
                     DlFrontfilepath = '/DlFrontImage/' + DlFrontfilename 
                     file.save(DlFrontFolderPath)
                     DlFrontPicPath = DlFrontfilepath
@@ -192,12 +192,11 @@ def addDriver():
 
             if 'DlBackImage' in request.files:
                     print("immmmmmmmmmmmmmmmm")
-                    file = request.files.get('DlBackImage')
-                        
-                    DlBackfilename = file.filename or ''                 
-                    DlBackfilename = DlBackfilename.replace("'","")
-                    print(DlFrontfilename,DlFrontfilename) 
-                    DlBackFolderPath = ConstantData.GetPostImagePath(DlFrontfilename)
+                    file = request.files.get('DlBackImage')        
+                    filename = file.filename or ''  
+                    print(filename)               
+                    dlBackFilename= str(data["userId"])+".png"
+                    DlBackFolderPath = ConstantData.GetdlImagePath(DlBackfilename)
                     DlBackfilepath = '/DlBackImage/' + DlBackfilename 
                     file.save(DlBackFolderPath)
                     DlBackPicPath = DlBackfilepath
@@ -206,7 +205,7 @@ def addDriver():
 
             if data !=0:
                 if flag == 'i':
-                    if id == 0:
+                    if key == "A":
                         columns = " name,mobile,dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath"          
                         values = " '" + str(name) + "','" + str(mobile) + "','" + str(DlNo) + "','" + str( DlFrontfilename) + "','" + str(DlFrontPicPath) + "','" + str(DlBackfilename) + "', "            
                         values = values + " '" + str(DlBackPicPath) + "'"
@@ -218,7 +217,7 @@ def addDriver():
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition,"",startlimit,endlimit)
                             return data11
                 if flag == 'u':
-                    if id == 0:
+                    if key == "A":
                         WhereCondition = " and postId = '" + str(postId1) + "' and  userTypeId = '" + str(userTypeId) + " '"
                         column = " postTitle = '" + str(postTitle) + "',postDescription = '" + str(postDescription) + "',postImage = '" + str(filename) + "', "
                         column = column +  " postImagePath = '" + str(PicPath) + "'"
@@ -229,20 +228,20 @@ def addDriver():
 
 
 
-                column="name,mobile,driverId,ambulanceModeId,ambulanceId,panCardNo,DlNo,currentLocation,currentLocationlatlong,vehicleNo"
-                values=  "'"+str(data["name"])+"','"+str(data["mobile"])+"','"+str(data["userId"])+"','"+str(data1["ambulanceModeId"])+"','"
-                values=values +str(data1["ambulanceId"])+"','"+str(data1["panCardNo"])+"','"+str(data1["DlNo"])+"','"
-                values=values+str(data["currentLocation"])+"','"+str(data["currentLocationlatlong"])+"','"+str(data1["vehicleNo"])+"'"
-                insertdata=databasefile.InsertQuery("driverMaster",column,values)
-                column = " * "
-                whereCondition= "mobile='"+str(data1["mobile"])+ "'"
-                data17= databasefile.SelectQuery1("driverMaster",column,whereCondition)
-                output= {"result":"Revert You Soon,After Verification","status":"true"}
-                return output
-            else:
-                output = {"result":"User Already Added Existed ","status":"false"}
-                return output
-        else:
+        #         column="name,mobile,driverId,ambulanceModeId,ambulanceId,panCardNo,DlNo,currentLocation,currentLocationlatlong,vehicleNo"
+        #         values=  "'"+str(data["name"])+"','"+str(data["mobile"])+"','"+str(data["userId"])+"','"+str(data1["ambulanceModeId"])+"','"
+        #         values=values +str(data1["ambulanceId"])+"','"+str(data1["panCardNo"])+"','"+str(data1["DlNo"])+"','"
+        #         values=values+str(data["currentLocation"])+"','"+str(data["currentLocationlatlong"])+"','"+str(data1["vehicleNo"])+"'"
+        #         insertdata=databasefile.InsertQuery("driverMaster",column,values)
+        #         column = " * "
+        #         whereCondition= "mobile='"+str(data1["mobile"])+ "'"
+        #         data17= databasefile.SelectQuery1("driverMaster",column,whereCondition)
+        #         output= {"result":"Revert You Soon,After Verification","status":"true"}
+        #         return output
+        #     else:
+        #         output = {"result":"User Already Added Existed ","status":"false"}
+        #         return output
+        # else:
             return msg
     except Exception as e :
         print("Exception---->" + str(e))    
