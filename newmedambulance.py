@@ -159,31 +159,34 @@ def addDriver():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
-        keyarr = ['name','mobile','driverId','ambulanceModeId','ambulanceId','panCardNo','DlNo','currentLocation','currentLocationlatlong','vehicleNo']
+        keyarr = ['name','mobile']
         commonfile.writeLog("addDriver",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
        
         if msg == "1":
             name = inputdata["name"]
             mobile = inputdata["mobile"]
-        
             column = " * "
             whereCondition= "mobile='"+str(data1["mobile"])+ "' and usertypeId='3'"
             data= databasefile.SelectQuery("userMaster",column,whereCondition)
-            if data !=None:
-                column="name,mobile,driverId,ambulanceModeId,ambulanceId,panCardNo,DlNo,currentLocation,currentLocationlatlong,vehicleNo"
-                values=  "'"+str(data["name"])+"','"+str(data["mobile"])+"','"+str(data["userId"])+"','"+str(data1["ambulanceModeId"])+"','"
-                values=values +str(data1["ambulanceId"])+"','"+str(data1["panCardNo"])+"','"+str(data1["DlNo"])+"','"
-                values=values+str(data["currentLocation"])+"','"+str(data["currentLocationlatlong"])+"','"+str(data1["vehicleNo"])+"'"
-                insertdata=databasefile.InsertQuery("driverMaster",column,values)
-                column = " * "
-                whereCondition= "mobile='"+str(data1["mobile"])+ "'"
-                data17= databasefile.SelectQuery1("driverMaster",column,whereCondition)
-                output= {"result":"Revert You Soon,After Verification","status":"true"}
-                return output
-            else:
-                output = {"result":"User Already Added Existed ","status":"false"}
-                return output
+            print(data)
+            output={"Result":data}
+            # if data !=0:
+            #     column="name,mobile,driverId,ambulanceModeId,ambulanceId,panCardNo,DlNo,currentLocation,currentLocationlatlong,vehicleNo"
+            #     values=  "'"+str(data["name"])+"','"+str(data["mobile"])+"','"+str(data["userId"])+"','"+str(data1["ambulanceModeId"])+"','"
+            #     values=values +str(data1["ambulanceId"])+"','"+str(data1["panCardNo"])+"','"+str(data1["DlNo"])+"','"
+            #     values=values+str(data["currentLocation"])+"','"+str(data["currentLocationlatlong"])+"','"+str(data1["vehicleNo"])+"'"
+            #     insertdata=databasefile.InsertQuery("driverMaster",column,values)
+            #     column = " * "
+            #     whereCondition= "mobile='"+str(data1["mobile"])+ "'"
+            #     data17= databasefile.SelectQuery1("driverMaster",column,whereCondition)
+            #     output= {"result":"Revert You Soon,After Verification","status":"true"}
+            #     return output
+            # else:
+            #     output = {"result":"User Already Added Existed ","status":"false"}
+            #     return output
+        else:
+            return msg
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
