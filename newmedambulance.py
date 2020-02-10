@@ -159,28 +159,76 @@ def addDriver():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
-        keyarr = ['name','mobile']
+        keyarr = ['name','mobile','id']
         commonfile.writeLog("addDriver",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
        
         if msg == "1":
             name = inputdata["name"]
             mobile = inputdata["mobile"]
+            id = inputdata["id"]
             column = " * "
             whereCondition= "mobile='"+str(mobile)+ "' and usertypeId='3'"
             data= databasefile.SelectQuery("userMaster",column,whereCondition)
             
+            DlNo,DlFrontfilename,DlFrontPicPath,DlBackfilename,DlBackPicPath,="","","","",""
+
             if 'DlNo' in inputdata:
                 DlNo=inputdata["DlNo"]
 
-            if 'DlFrontImage' in inputdata:
-                DlNo=inputdata["DlFrontImage"]
+            if 'DlFrontImage' in request.files:
+                    print("immmmmmmmmmmmmmmmm")
+                    file = request.files.get('DlFrontImage')
+                        
+                    DlFrontfilename = file.filename or ''                 
+                    DlFrontfilename = DlFrontfilename.replace("'","")
+                    print(DlFrontfilename,DlFrontfilename) 
+                    DlFrontFolderPath = ConstantData.GetPostImagePath(DlFrontfilename)
+                    DlFrontfilepath = '/DlFrontImage/' + DlFrontfilename 
+                    file.save(DlFrontFolderPath)
+                    DlFrontPicPath = DlFrontfilepath
+                    print(DlFrontPicPath)
+                    
 
-            if 'DlBackImage' in inputdata:
-                DlNo=inputdata["DlBackImage"]
-                       
+            if 'DlBackImage' in request.files:
+                    print("immmmmmmmmmmmmmmmm")
+                    file = request.files.get('DlBackImage')
+                        
+                    DlBackfilename = file.filename or ''                 
+                    DlBackfilename = DlBackfilename.replace("'","")
+                    print(DlFrontfilename,DlFrontfilename) 
+                    DlBackFolderPath = ConstantData.GetPostImagePath(DlFrontfilename)
+                    DlBackfilepath = '/DlBackImage/' + DlBackfilename 
+                    file.save(DlBackFolderPath)
+                    DlBackPicPath = DlBackfilepath
+                    print(DlBackPicPath)
+
 
             if data !=0:
+                if flag == 'i':
+                    if id == 0:
+                        columns = " name,mobile,dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath"          
+                        values = " '" + str(name) + "','" + str(mobile) + "','" + str(DlNo) + "','" + str( DlFrontfilename) + "','" + str(DlFrontPicPath) + "','" + str(DlBackfilename) + "', "            
+                        values = values + " '" + str(DlBackPicPath) + "'"
+                        data = databasefile.InsertQuery("driverMaster",columns,values)
+                        if data != "0":
+                            column = '*'
+                            WhereCondition = " and mobile = '" + str(mobile) +  "'"
+                            
+                            data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition,"",startlimit,endlimit)
+                            return data11
+                if flag == 'u':
+                    if id == 0:
+                        WhereCondition = " and postId = '" + str(postId1) + "' and  userTypeId = '" + str(userTypeId) + " '"
+                        column = " postTitle = '" + str(postTitle) + "',postDescription = '" + str(postDescription) + "',postImage = '" + str(filename) + "', "
+                        column = column +  " postImagePath = '" + str(PicPath) + "'"
+                        data = databasefile.UpdateQuery("userPost",column,WhereCondition)
+                        return data
+                else:
+                    return commonfile.Errormessage()
+
+
+
                 column="name,mobile,driverId,ambulanceModeId,ambulanceId,panCardNo,DlNo,currentLocation,currentLocationlatlong,vehicleNo"
                 values=  "'"+str(data["name"])+"','"+str(data["mobile"])+"','"+str(data["userId"])+"','"+str(data1["ambulanceModeId"])+"','"
                 values=values +str(data1["ambulanceId"])+"','"+str(data1["panCardNo"])+"','"+str(data1["DlNo"])+"','"
