@@ -157,11 +157,13 @@ def addUser():
 @app.route('/addDriver', methods=['POST'])
 def addDriver():
     try:
+        print('Hello')
         inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
         keyarr = ['name','mobile','key','flag']
         commonfile.writeLog("addDriver",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        print(msg,'msg')
        
         if msg == "1":
             name = inputdata["name"]
