@@ -158,11 +158,12 @@ def addUser():
 def addDriver():
     try:
         print('Hello')
-        inputdata=request.form.get()
-        inputdata=json.loads(inputdata)
-        inputdata =  commonfile.DecodeInputdata(request.get_data()) 
-        startlimit,endlimit="",""
+        inputdata=request.form.get('data')
         keyarr = ['name','mobile','key','flag']
+        inputdata=json.loads(inputdata)
+        # inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+        startlimit,endlimit="",""
+
         commonfile.writeLog("addDriver",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         print(msg,'msg')
