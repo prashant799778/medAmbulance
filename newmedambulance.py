@@ -159,6 +159,7 @@ def addDriver():
     try:
         print('Hello')
         inputdata=request.form.get('data')
+        print(inputdata,'inputdata')
         keyarr = ['name','mobile','key','flag']
         inputdata=json.loads(inputdata)
         # inputdata =  commonfile.DecodeInputdata(request.get_data()) 
