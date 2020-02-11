@@ -188,8 +188,10 @@ def addDriver():
                     file = request.files.get('DlFrontImage')        
                     filename = file.filename or ''  
                     print(filename)               
-                    dlFrontFilename= str(data["userId"])+".png"
-                    DlFrontFolderPath = ConstantData.GetdlImagePath(dlFrontfilename)
+                    # dlFrontFilename= str(data["userId"])+".png"
+                    dlFrontFilename= "a"+".png"
+                    print(dlFrontFilename,'Changed_filename')
+                    DlFrontFolderPath = ConstantData.GetdlImagePath(dlFrontFilename)
                     DlFrontfilepath = '/DLImage/' + dlFrontFilename 
                     file.save(DlFrontFolderPath)
                     DlFrontPicPath = DlFrontfilepath
@@ -201,8 +203,9 @@ def addDriver():
                     file = request.files.get('DlBackImage')        
                     filename = file.filename or ''  
                     print(filename)               
-                    dlBackFilename= str(data["userId"])+".png"
-                    DlBackFolderPath = ConstantData.GetdlImagePath(dlBackfilename)
+                    # dlBackFilename= str(data["userId"])+".png"
+                    dlBackFilename= "a"+".png"
+                    DlBackFolderPath = ConstantData.GetdlImagePath(dlBackFilename)
                     DlBackfilepath = '/DLImage/' + dlBackFilename 
                     file.save(DlBackFolderPath)
                     DlBackPicPath = DlBackfilepath
