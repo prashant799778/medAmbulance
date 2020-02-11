@@ -225,13 +225,13 @@ def addDriver():
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
                             return data11
-                # if flag == 'u':
-                #     if key == "A":
-                #         WhereCondition = " and postId = '" + str(postId1) + "' and  userTypeId = '" + str(userTypeId) + " '"
-                #         column = " postTitle = '" + str(postTitle) + "',postDescription = '" + str(postDescription) + "',postImage = '" + str(filename) + "', "
-                #         column = column +  " postImagePath = '" + str(PicPath) + "'"
-                #         data = databasefile.UpdateQuery("userPost",column,WhereCondition)
-                #         return data
+                if flag == 'u':
+                    if key == "A":
+                        WhereCondition = " and mobile = '" + str(mobile) + "'"
+                        column = " dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "', "
+                        column = column +  " dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "'"
+                        data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
+                        return data
                 else:
                     return commonfile.Errormessage()
 
