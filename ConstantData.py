@@ -62,6 +62,15 @@ def GetdlImagePath(filename):
 
     path = "/var/www/medambulance/backend/med_ambulance/DLImage/"+filename
     return path
+def GetPIDImagePath(filename):
+
+    path = "/var/www/medambulance/backend/med_ambulance/PIDImage/"+filename
+    return path
+
+def GetAmbulanceImagePath(filename):
+
+    path = "/var/www/medambulance/backend/med_ambulance/AmbulanceImage/"+filename
+    return path
 
 def getSecurityCampaignUpdatePath(filename):
 

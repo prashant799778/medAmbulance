@@ -179,7 +179,7 @@ def addDriver():
             data= databasefile.SelectQuery("userMaster",column,whereCondition)
             print(data,'data')
             
-            DlNo,dlFrontFilename,DlFrontPicPath,dlBackFilename,DlBackPicPath="","","","",""
+            DlNo,dlFrontFilename,DlFrontPicPath,dlBackFilename,DlBackPicPath,PIDType,PIDNo,PIDFrontFilename,PIDFrontPicPath,PIDBackFilename,PIDBackPicPath,TransportType,TransportModel,Color,AmbulanceRegistrationFuel,TypeNo,AIFilename,AIPicPath,AmbulanceModeId,AmbulanceId="","","","","","","","","","","","","","","","","","","",""
 
             if 'DlNo' in inputdata:
                 DlNo=inputdata["DlNo"]
@@ -212,6 +212,73 @@ def addDriver():
                     DlBackPicPath = DlBackfilepath
                     print(DlBackPicPath)
 
+            if 'PIDType' in inputdata:
+                PIDType=inputdata["PIDType"]
+
+            if 'PIDNo' in inputdata:
+                PIDNo=inputdata["PIDNo"]
+
+            if 'PIDFrontImage' in request.files:
+                    print("immmmmmmmmmmmmmmmm")
+                    file = request.files.get('PIDFrontImage')        
+                    filename = file.filename or ''  
+                    print(filename)               
+                    # dlFrontFilename= str(data["userId"])+".png"
+                    PIDFrontFilename= "a"+".png"
+                    print(PIDFrontFilename,'Changed_filename')
+                    PIDFrontFolderPath = ConstantData.GetPIDImagePath(PIDFrontFilename)
+                    PIDFrontfilepath = '/PIDImage/' + PIDFrontFilename 
+                    file.save(DlFrontFolderPath)
+                    PIDFrontPicPath = PIDFrontfilepath
+                    print(PIDFrontPicPath)
+                    
+
+            if 'PIDBackImage' in request.files:
+                    print("immmmmmmmmmmmmmmmm")
+                    file = request.files.get('PIDBackImage')        
+                    filename = file.filename or ''  
+                    print(filename)               
+                    # dlBackFilename= str(data["userId"])+".png"
+                    PIDBackFilename= "a"+".png"
+                    PIDBackFolderPath = ConstantData.GetPIDImagePath(PIDBackFilename)
+                    PIDBackfilepath = '/PIDImage/' + PIDBackFilename 
+                    file.save(PIDBackFolderPath)
+                    PIDBackPicPath = PIDBackfilepath
+                    print(PIDBackPicPath)
+
+            if 'TransportType' in inputdata:
+                TransportType=inputdata["TransportType"]
+            
+            if 'TransportModel' in inputdata:
+                TransportModel=inputdata["TransportModel"]
+
+            if 'Color' in inputdata:
+                Color=inputdata["Color"]
+
+            if 'AmbulanceRegistrationFuel' in inputdata:
+                AmbulanceRegistrationFuel=inputdata["AmbulanceRegistrationFuel"]
+            
+            if 'TypeNo' in inputdata:
+                TypeNo=inputdata["TypeNo"]
+
+            if 'AmbulanceModeId' in inputdata:
+                AmbulanceModeId=inputdata["AmbulanceModeId"]
+
+            if 'AmbulanceId' in inputdata:
+                AmbulanceId=inputdata["AmbulanceId"]
+
+            if 'AmbulanceImage' in request.files:
+                    print("immmmmmmmmmmmmmmmm")
+                    file = request.files.get('AmbulanceImage')        
+                    filename = file.filename or ''  
+                    print(filename)               
+                    # dlBackFilename= str(data["userId"])+".png"
+                    AIFilename= "a"+".png"
+                    AIFolderPath = ConstantData.GetAmbulanceImagePath(AIFilename)
+                    AIfilepath = '/AmbulanceImage/' + AIFilename 
+                    file.save(AIFolderPath)
+                    AIPicPath = AIfilepath
+                    print(AIPicPath)
 
             if data !=0:
                 if flag == 'i':
@@ -226,11 +293,49 @@ def addDriver():
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
                             return data11
+                    if key == "B":
+                        columns = " name,mobile,pIDType,pIDNo,pIDFrontFilename,pIDFrontFilepath,pIDBackFilename,pIDBackFilepath"          
+                        values = " '" + str(name) + "','" + str(mobile) + "','" + str(PIDType) + "','" + str(PIDNo) + "','" + str(PIDFrontFilename) + "','" + str(PIDFrontPicPath) + "','" + str(PIDBackFilename) + "', "            
+                        values = values + " '" + str(PIDBackPicPath) + "'"
+                        data = databasefile.InsertQuery("driverMaster",columns,values)
+                        if data != "0":
+                            column = '*'
+                            WhereCondition = " mobile = '" + str(mobile) +  "'"
+                            
+                            data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
+                            return data11
+                    if key == "C":
+                        columns = " name,mobile,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceId"          
+                        values = " '" + str(name) + "','" + str(mobile) + "','" + str(TransportType) + "','" + str(TransportModel) + "','" + str(Color) + "','" + str(AmbulanceRegistrationFuel) + "','" + str(TypeNo) + "','" + str(AIFilename) + "','" + str(AIPicPath) + "','" + str(AmbulanceModeId) + "', "            
+                        values = values + " '" + str(AmbulanceId) + "'"
+                        data = databasefile.InsertQuery("driverMaster",columns,values)
+                        if data != "0":
+                            column = '*'
+                            WhereCondition = " mobile = '" + str(mobile) +  "'"
+                            
+                            data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
+                            return data11
                 if flag == 'u':
                     if key == "A":
                         print('A')
                         WhereCondition = " mobile = '" + str(mobile) + "'"
                         column = " dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "',dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "'"
+                        print(column,'column')
+                        data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
+                        print(data,'updatedata')
+                        return data
+                    if key == "B":
+                        print('B')
+                        WhereCondition = " mobile = '" + str(mobile) + "'"
+                        column = " pIDType = '" + str(PIDType) + "',pIDNo = '" + str(PIDNo) + "',pIDFrontFilename = '" + str(PIDFrontFilename) + "',pIDFrontFilepath = '" + str(PIDFrontPicPath) + "',pIDBackFilename = '" + str(PIDBackFilename) + "',pIDBackFilepath = '" + str(PIDBackPicPath) + "'"
+                        print(column,'column')
+                        data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
+                        print(data,'updatedata')
+                        return data
+                    if key == "C":
+                        print('C')
+                        WhereCondition = " mobile = '" + str(mobile) + "'"
+                        column = " transportType = '" + str(TransportType) + "',transportModel = '" + str(TransportModel) + "',color = '" + str(Color) + "',ambulanceRegistrationFuel = '" + str(AmbulanceRegistrationFuel) + "',typeNo = '" + str(TypeNo) + "',ambulanceFilename = '" + str(AIFilename) + "',ambulanceFilepath = '" + str(AIPicPath) + "',ambulanceModeId = '" + str(AmbulanceModeId) + "',ambulanceId = '" + str(AmbulanceId) + "'"
                         print(column,'column')
                         data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
                         print(data,'updatedata')
