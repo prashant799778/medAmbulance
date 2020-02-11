@@ -230,6 +230,7 @@ def addDriver():
                         WhereCondition = " mobile = '" + str(mobile) + "'"
                         column = " dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "',dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "'"
                         data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
+                        print(data,'updatedata')
                         return data
                 else:
                     return commonfile.Errormessage()
