@@ -171,7 +171,7 @@ def addDriver():
             key = inputdata["key"]
             flag = inputdata["flag"]
             column = " * "
-            whereCondition= "mobile='"+str(mobile)+ "' and usertypeId='3'"
+            whereCondition= " and mobile='"+str(mobile)+ "' and usertypeId='3'"
             data= databasefile.SelectQuery("userMaster",column,whereCondition)
             print(data,'data')
             
