@@ -184,8 +184,8 @@ def addDriver():
                     filename = file.filename or ''  
                     print(filename)               
                     dlFrontFilename= str(data["userId"])+".png"
-                    DlFrontFolderPath = ConstantData.GetdlImagePath(DlFrontfilename)
-                    DlFrontfilepath = '/DlFrontImage/' + DlFrontfilename 
+                    DlFrontFolderPath = ConstantData.GetdlImagePath(dlFrontfilename)
+                    DlFrontfilepath = '/DLImage/' + dlFrontFilename 
                     file.save(DlFrontFolderPath)
                     DlFrontPicPath = DlFrontfilepath
                     print(DlFrontPicPath)
@@ -197,8 +197,8 @@ def addDriver():
                     filename = file.filename or ''  
                     print(filename)               
                     dlBackFilename= str(data["userId"])+".png"
-                    DlBackFolderPath = ConstantData.GetdlImagePath(DlBackfilename)
-                    DlBackfilepath = '/DlBackImage/' + DlBackfilename 
+                    DlBackFolderPath = ConstantData.GetdlImagePath(dlBackfilename)
+                    DlBackfilepath = '/DLImage/' + dlBackFilename 
                     file.save(DlBackFolderPath)
                     DlBackPicPath = DlBackfilepath
                     print(DlBackPicPath)
@@ -208,7 +208,7 @@ def addDriver():
                 if flag == 'i':
                     if key == "A":
                         columns = " name,mobile,dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath"          
-                        values = " '" + str(name) + "','" + str(mobile) + "','" + str(DlNo) + "','" + str( DlFrontfilename) + "','" + str(DlFrontPicPath) + "','" + str(DlBackfilename) + "', "            
+                        values = " '" + str(name) + "','" + str(mobile) + "','" + str(DlNo) + "','" + str( dlFrontFilename) + "','" + str(DlFrontPicPath) + "','" + str(dlBackFilename) + "', "            
                         values = values + " '" + str(DlBackPicPath) + "'"
                         data = databasefile.InsertQuery("driverMaster",columns,values)
                         if data != "0":
@@ -217,13 +217,13 @@ def addDriver():
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition,"",startlimit,endlimit)
                             return data11
-                if flag == 'u':
-                    if key == "A":
-                        WhereCondition = " and postId = '" + str(postId1) + "' and  userTypeId = '" + str(userTypeId) + " '"
-                        column = " postTitle = '" + str(postTitle) + "',postDescription = '" + str(postDescription) + "',postImage = '" + str(filename) + "', "
-                        column = column +  " postImagePath = '" + str(PicPath) + "'"
-                        data = databasefile.UpdateQuery("userPost",column,WhereCondition)
-                        return data
+                # if flag == 'u':
+                #     if key == "A":
+                #         WhereCondition = " and postId = '" + str(postId1) + "' and  userTypeId = '" + str(userTypeId) + " '"
+                #         column = " postTitle = '" + str(postTitle) + "',postDescription = '" + str(postDescription) + "',postImage = '" + str(filename) + "', "
+                #         column = column +  " postImagePath = '" + str(PicPath) + "'"
+                #         data = databasefile.UpdateQuery("userPost",column,WhereCondition)
+                #         return data
                 else:
                     return commonfile.Errormessage()
 
