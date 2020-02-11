@@ -221,7 +221,7 @@ def addDriver():
                         data = databasefile.InsertQuery("driverMaster",columns,values)
                         if data != "0":
                             column = '*'
-                            WhereCondition = " and mobile = '" + str(mobile) +  "'"
+                            WhereCondition = " mobile = '" + str(mobile) +  "'"
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
                             return data11
