@@ -223,7 +223,7 @@ def addDriver():
                             column = '*'
                             WhereCondition = " and mobile = '" + str(mobile) +  "'"
                             
-                            data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition,startlimit,endlimit)
+                            data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
                             return data11
                 # if flag == 'u':
                 #     if key == "A":
