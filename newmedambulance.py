@@ -228,8 +228,7 @@ def addDriver():
                 if flag == 'u':
                     if key == "A":
                         WhereCondition = " mobile = '" + str(mobile) + "'"
-                        column = " dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "', "
-                        column = column +  " dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "'"
+                        column = " dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "',dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "'"
                         data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
                         return data
                 else:
