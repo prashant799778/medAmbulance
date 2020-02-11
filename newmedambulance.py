@@ -159,7 +159,7 @@ def addDriver():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
-        keyarr = ['name','mobile','key']
+        keyarr = ['name','mobile','key','flag']
         commonfile.writeLog("addDriver",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
        
@@ -167,6 +167,7 @@ def addDriver():
             name = inputdata["name"]
             mobile = inputdata["mobile"]
             key = inputdata["key"]
+            flag = inputdata["flag"]
             column = " * "
             whereCondition= "mobile='"+str(mobile)+ "' and usertypeId='3'"
             data= databasefile.SelectQuery("userMaster",column,whereCondition)
