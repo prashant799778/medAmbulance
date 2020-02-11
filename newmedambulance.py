@@ -175,7 +175,7 @@ def addDriver():
             data= databasefile.SelectQuery("userMaster",column,whereCondition)
             print(data,'data')
             
-            DlNo,DlFrontfilename,DlFrontPicPath,DlBackfilename,DlBackPicPath,="","","","",""
+            DlNo,DlFrontfilename,DlFrontPicPath,DlBackfilename,DlBackPicPath="","","","",""
 
             if 'DlNo' in inputdata:
                 DlNo=inputdata["DlNo"]
