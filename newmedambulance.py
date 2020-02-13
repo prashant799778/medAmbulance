@@ -170,14 +170,18 @@ def addDriver():
         print(msg,'msg')
        
         if msg == "1":
-            name = inputdata["name"]
-            mobile = inputdata["mobile"]
+            mobile=inputdata['mobile']
+           
             key = inputdata["key"]
             flag = inputdata["flag"]
             column = " * "
             whereCondition= " and mobile='"+str(mobile)+ "' and usertypeId='3'"
             data= databasefile.SelectQuery("userMaster",column,whereCondition)
             print(data,'data')
+
+            name= data["name"]
+            mobile= data["mobile"]
+            driverId=data['userId']
             
             DlNo,dlFrontFilename,DlFrontPicPath,dlBackFilename,DlBackPicPath,PIDType,PIDNo,PIDFrontFilename,PIDFrontPicPath,PIDBackFilename,PIDBackPicPath,TransportType,TransportModel,Color,AmbulanceRegistrationFuel,TypeNo,AIFilename,AIPicPath,AmbulanceModeId,AmbulanceId="","","","","","","","","","","","","","","","","","","",""
 
@@ -189,8 +193,8 @@ def addDriver():
                     file = request.files.get('DlFrontImage')        
                     filename = file.filename or ''  
                     print(filename)               
-                    # dlFrontFilename= str(data["userId"])+".png"
-                    dlFrontFilename= "a"+".png"
+                    dlFrontFilename= str(str(data["userId"])+"Front"+".png")
+                    
                     print(dlFrontFilename,'Changed_filename')
                     DlFrontFolderPath = ConstantData.GetdlImagePath(dlFrontFilename)
                     DlFrontfilepath = '/DLImage/' + dlFrontFilename 
@@ -204,8 +208,8 @@ def addDriver():
                     file = request.files.get('DlBackImage')        
                     filename = file.filename or ''  
                     print(filename)               
-                    # dlBackFilename= str(data["userId"])+".png"
-                    dlBackFilename= "a"+".png"
+                    dlBackFilename=  str(str(data["userId"])+"Back"+".png")
+                  
                     DlBackFolderPath = ConstantData.GetdlImagePath(dlBackFilename)
                     DlBackfilepath = '/DLImage/' + dlBackFilename 
                     file.save(DlBackFolderPath)
@@ -223,8 +227,8 @@ def addDriver():
                     file = request.files.get('PIDFrontImage')        
                     filename = file.filename or ''  
                     print(filename)               
-                    # dlFrontFilename= str(data["userId"])+".png"
-                    PIDFrontFilename= "a"+".png"
+                    PIDFrontFilename= str(str(data["userId"])+"Front"+".png")
+                  
                     print(PIDFrontFilename,'Changed_filename')
                     PIDFrontFolderPath = ConstantData.GetPIDImagePath(PIDFrontFilename)
                     PIDFrontfilepath = '/PIDImage/' + PIDFrontFilename 
@@ -238,8 +242,8 @@ def addDriver():
                     file = request.files.get('PIDBackImage')        
                     filename = file.filename or ''  
                     print(filename)               
-                    # dlBackFilename= str(data["userId"])+".png"
-                    PIDBackFilename= "a"+".png"
+                    PIDBackFilename= str(str(data["userId"])+"Back"+".png")
+                  
                     PIDBackFolderPath = ConstantData.GetPIDImagePath(PIDBackFilename)
                     PIDBackfilepath = '/PIDImage/' + PIDBackFilename 
                     file.save(PIDBackFolderPath)
@@ -272,8 +276,8 @@ def addDriver():
                     file = request.files.get('AmbulanceImage')        
                     filename = file.filename or ''  
                     print(filename)               
-                    # dlBackFilename= str(data["userId"])+".png"
-                    AIFilename= "a"+".png"
+                    AIFilename=  str(str(data["userId"])+".png")
+                   
                     AIFolderPath = ConstantData.GetAmbulanceImagePath(AIFilename)
                     AIfilepath = '/AmbulanceImage/' + AIFilename 
                     file.save(AIFolderPath)
@@ -281,11 +285,12 @@ def addDriver():
                     print(AIPicPath)
 
             if data !=0:
+                
                 if flag == 'i':
                     if key == "A":
-                        columns = " name,mobile,dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath"          
+                        columns = " name,mobile,dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath,driverId"          
                         values = " '" + str(name) + "','" + str(mobile) + "','" + str(DlNo) + "','" + str( dlFrontFilename) + "','" + str(DlFrontPicPath) + "','" + str(dlBackFilename) + "', "            
-                        values = values + " '" + str(DlBackPicPath) + "'"
+                        values = values + " '" + str(DlBackPicPath) + "','" + str(driverId) + "'"
                         data = databasefile.InsertQuery("driverMaster",columns,values)
                         if data != "0":
                             column = '*'
@@ -294,9 +299,9 @@ def addDriver():
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
                             return data11
                     if key == "B":
-                        columns = " name,mobile,pIDType,pIDNo,pIDFrontFilename,pIDFrontFilepath,pIDBackFilename,pIDBackFilepath"          
+                        columns = " name,mobile,pIDType,pIDNo,pIDFrontFilename,pIDFrontFilepath,pIDBackFilename,pIDBackFilepath,driverId"          
                         values = " '" + str(name) + "','" + str(mobile) + "','" + str(PIDType) + "','" + str(PIDNo) + "','" + str(PIDFrontFilename) + "','" + str(PIDFrontPicPath) + "','" + str(PIDBackFilename) + "', "            
-                        values = values + " '" + str(PIDBackPicPath) + "'"
+                        values = values + " '" + str(PIDBackPicPath)+ "','" + str(driverId) + "'"
                         data = databasefile.InsertQuery("driverMaster",columns,values)
                         if data != "0":
                             column = '*'
@@ -305,9 +310,9 @@ def addDriver():
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
                             return data11
                     if key == "C":
-                        columns = " name,mobile,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceId"          
+                        columns = " name,mobile,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceId.driverId"          
                         values = " '" + str(name) + "','" + str(mobile) + "','" + str(TransportType) + "','" + str(TransportModel) + "','" + str(Color) + "','" + str(AmbulanceRegistrationFuel) + "','" + str(TypeNo) + "','" + str(AIFilename) + "','" + str(AIPicPath) + "','" + str(AmbulanceModeId) + "', "            
-                        values = values + " '" + str(AmbulanceId) + "'"
+                        values = values + " '" + str(AmbulanceId) + "','" + str(driverId) + "'"
                         data = databasefile.InsertQuery("driverMaster",columns,values)
                         if data != "0":
                             column = '*'
@@ -315,6 +320,7 @@ def addDriver():
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
                             return data11
+                
                 if flag == 'u':
                     if key == "A":
                         print('A')
@@ -719,7 +725,7 @@ def addbooking():
             mobile = inputdata["mobile"]
             selectBookingDate = inputdata["selectBookingDate"]
             ambulanceId = inputdata["ambulanceId"]
-            bookingId = inputdata["bookingId"]
+            bookingId =  commonfile.CreateHashKey(mobile,pickup)
 
             # search = geocoder.get(pickup)
             # search2=geocoder.get(drop)
@@ -745,57 +751,51 @@ def addbooking():
             # d=round(Distance)
             # d2 =str(d) +' Km'
 
-            column=" * "
-            whereCondition="userId='"+str(userId)+ "' and status<>'2'"
-            data=databasefile.SelectQuery("bookAmbulance",column,whereCondition)
-            print(data,'===data')
-            output = {"result":data,"status":"true"}
-            return output
-            # if data==None:
-            #     column="driverId,userId,mobile,"
-            #     whereCondition="verificationStatus<>'F'"
-            #     datavv= databasefile.SelectQuery1("driverMaster",column,whereCondition)
-            #     for da in datavv:
-            #         da.split(",")
-            #         driverlattitude=int(da[0])
-            #         driverlongitude=int(da[2])
-            #         distanceLongitude = tolongitude - driverlongitude
-            #         distanceLatitude = tolatitude - driverlattitude
-            #         a = sin(distanceLatitude / 2)**2 + cos(driverlattitude) * cos(tolatitude) * sin(driverlongitude/ 2)**2
-            #         c = 2 * atan2(sqrt(a), sqrt(1 - a))
-            #         distanceDriver = R * c
-            #         distance1=distanceDriver/100
-            #         distanceD=distance2*1.85
-            #         d1=round(distanceD)
-            #         d9 =str(d) +' Km'
-            #         if d1 <2:
-            #             driverId=da['driverId']
-            #             driverMobile=da['mobile']
-            
-            #     column="usermobile,pickup,pickupLongitudeLatitude,dropoff,dropoffLongitudeLatitude,selectBookingDate,bookingType,patientMedicalCondition,ambulanceId,userId,bookingId,finalAmount,totalDistance"
-            #     values="'"+str(data1["mobile"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["dropoff"])+"','"+str(tolatitude,tolongitude)+"','"+str(data1["selectBookingDate"])+"','"+str(data1["patientMedicalCondition"])+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d3)+"'"
-            #     insertdata=databasefile.InsertQuery("bookAmbulance",column,values)
-            #     column=" * "
-            #     whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
-            #     data=databasefile.SelectQuery1("bookAmbulance",column,whereCondition)
-            #     yu=data[-1]
-            #     mainId=yu["bookingId"]
-            #     pickuplocation=yu["pickup"]
-            #     userid=yu["userId"]
-            #     column="bookingId,driverId,farDistance,pickup,userId"
-            #     values="'"+str(mainId)+"','"+str(driverId)+"','"+str(d9)+"','"+str(pickuplocation)+"','"+str(userid)+"'"
-            #     insertdata=databasefile.InsertQuery("driverBookingMapping",column,values)
-            #     ambulanceId = data1["addsOnId"]
-            #     for i in ambulanceId:
-            #         column=" * "
-            #         whereCondition="addsOnId='"+str(i)+"'  and bookingId='"+str(mainId)+"'"
-            #         userHospitalMappingdata=databasefile.SelectQuery1("addsOnbookambulanceMapping",column,whereCondition)
-            #         if userHospitalMappingdata==():
-            #             column="addsOnId,bookingId"
-            #             values="'"+str(mainId)+"','"+str(i)+"'"
-            #             insertdata=databasefile.InsertQuery("addsOnbookambulanceMapping",column,values)
-            #     output = {"result":"data inserted successfully","status":"true","ride Details":data[-1]}
-            #     return output
+           
+        #     column="driverId,userId,mobile,"
+        #     whereCondition="verificationStatus<>'F'"
+        #     datavv= databasefile.SelectQuery1("driverMaster",column,whereCondition)
+        #     for da in datavv:
+        #         da.split(",")
+        #         driverlattitude=int(da[0])
+        #         driverlongitude=int(da[2])
+        #         distanceLongitude = tolongitude - driverlongitude
+        #         distanceLatitude = tolatitude - driverlattitude
+        #         a = sin(distanceLatitude / 2)**2 + cos(driverlattitude) * cos(tolatitude) * sin(driverlongitude/ 2)**2
+        #         c = 2 * atan2(sqrt(a), sqrt(1 - a))
+        #         distanceDriver = R * c
+        #         distance1=distanceDriver/100
+        #         distanceD=distance2*1.85
+        #         d1=round(distanceD)
+        #         d9 =str(d) +' Km'
+        #         if d1 <2:
+        #             driverId=da['driverId']
+        #             driverMobile=da['mobile']
+        
+        #     column="usermobile,pickup,pickupLongitudeLatitude,dropoff,dropoffLongitudeLatitude,selectBookingDate,bookingType,patientMedicalCondition,ambulanceId,userId,bookingId,finalAmount,totalDistance"
+        #     values="'"+str(data1["mobile"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["dropoff"])+"','"+str(tolatitude,tolongitude)+"','"+str(data1["selectBookingDate"])+"','"+str(data1["patientMedicalCondition"])+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d3)+"'"
+        #     insertdata=databasefile.InsertQuery("bookAmbulance",column,values)
+        #     column=" * "
+        #     whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
+        #     data=databasefile.SelectQuery1("bookAmbulance",column,whereCondition)
+        #     yu=data[-1]
+        #     mainId=yu["bookingId"]
+        #     pickuplocation=yu["pickup"]
+        #     userid=yu["userId"]
+        #     column="bookingId,driverId,farDistance,pickup,userId"
+        #     values="'"+str(mainId)+"','"+str(driverId)+"','"+str(d9)+"','"+str(pickuplocation)+"','"+str(userid)+"'"
+        #     insertdata=databasefile.InsertQuery("driverBookingMapping",column,values)
+        #     ambulanceId = data1["addsOnId"]
+        #     for i in ambulanceId:
+        #         column=" * "
+        #         whereCondition="addsOnId='"+str(i)+"'  and bookingId='"+str(mainId)+"'"
+        #         userHospitalMappingdata=databasefile.SelectQuery1("addsOnbookambulanceMapping",column,whereCondition)
+        #         if userHospitalMappingdata==():
+        #             column="addsOnId,bookingId"
+        #             values="'"+str(mainId)+"','"+str(i)+"'"
+        #             insertdata=databasefile.InsertQuery("addsOnbookambulanceMapping",column,values)
+        #     output = {"result":"data inserted successfully","status":"true","ride Details":data[-1]}
+        #     return output
             
             # else:
             #     output = {"result":"Hospital Already  Existed ","status":"false"}
