@@ -893,8 +893,8 @@ def addbooking():
             whereCondition="verificationStatus<>'F'"
             datavv= databasefile.SelectQuery1("driverMaster",column,whereCondition)
             print(datavv,'data')
-            distanceLongitude = tolongitude - driverlongitude
-            distanceLatitude = tolatitude - driverlattitude
+            distanceLongitude = fromlongitude - driverlongitude
+            distanceLatitude = fromlatitude - driverlattitude
             a = sin(distanceLatitude / 2)**2 + cos(driverlattitude) * cos(tolatitude) * sin(driverlongitude/ 2)**2
             c = 2 * atan2(sqrt(a), sqrt(1 - a))
             distanceDriver = R * c
