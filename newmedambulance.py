@@ -757,7 +757,7 @@ def addbooking():
             whereCondition="verificationStatus<>'F'"
             datavv= databasefile.SelectQuery1("driverMaster",column,whereCondition)
             print(datavv,'data')
-            return datavv
+            return 'ok'
             # for da in datavv:
             #     print('A')
             #     da.split(",")
