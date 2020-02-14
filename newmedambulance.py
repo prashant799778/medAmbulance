@@ -758,7 +758,7 @@ def addbooking():
             datavv= databasefile.SelectQuery1("driverMaster",column,whereCondition)
             print(datavv,'data')
             for da in datavv:
-                print('A')
+                print('A',da)
                 da.split(",")
                 driverlattitude=int(da[0])
                 driverlongitude=int(da[2])
