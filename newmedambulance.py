@@ -851,9 +851,9 @@ def addbooking():
             search3 = geocoder.get(driverlocation)
             search3[0].geometry.location
             driverlattitude= search3[0].geometry.location.lat
-            print(fromlatitude,'driverfromlat')
+            print(driverlattitude,'driverfromlat')
             driverlongitude=search3[0].geometry.location.lng
-            print(fromlongitude,'driverfromlng')
+            print(driverlongitude,'driverfromlng')
 
             search[0].geometry.location
             search2[0].geometry.location
