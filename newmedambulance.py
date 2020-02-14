@@ -753,7 +753,7 @@ def addbooking():
             d2 =str(d) +' Km'
 
            
-            column="driverId,userId,mobile"
+            column="driverId,mobile"
             whereCondition="verificationStatus<>'F'"
             datavv= databasefile.SelectQuery1("driverMaster",column,whereCondition)
             print(datavv,'data')
