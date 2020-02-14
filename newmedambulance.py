@@ -729,28 +729,41 @@ def addbooking():
             #bookingId =  commonfile.CreateHashKey(mobile,pickup)
 
             search = geocoder.get(pickup)
+            print(search,'searchpickup')
             search2=geocoder.get(drop)
+            print(search2,'searchdrop')
             search[0].geometry.location
             search2[0].geometry.location
             fromlatitude= search[0].geometry.location.lat
+            print(fromlatitude,'fromlat')
             fromlongitude=search[0].geometry.location.lng
+            print(fromlongitude,'fromlng')
             tolatitude= search2[0].geometry.location.lat
+            print(tolatitude,'tolat')
             tolongitude= search2[0].geometry.location.lng
+            print(tolongitude,'tolng')
             bookingId=uuid.uuid1()
             bookingId=bookingId.hex
             R = 6373.0
             fromlongitude2= Decimal(fromlongitude)
+            print(fromlongitude2,'fromlng2')
             fromlatitude2 = Decimal(fromlatitude)
+            print(fromlatitude2,'fromlat')
             # print(fromlongitude2,fromlatitude2)
             distanceLongitude = tolongitude - fromlongitude
+            print(distanceLongitude,'distancelng')
             distanceLatitude = tolatitude - fromlatitude
+            print(distanceLongitude,'distancelat')
             a = sin(distanceLatitude / 2)**2 + cos(fromlatitude) * cos(tolatitude) * sin(distanceLongitude / 2)**2
             c = 2 * atan2(sqrt(a), sqrt(1 - a))
             distance = R * c
             distance2=distance/100
             Distance=distance2*1.85
+            print(Distance,'distance')
             d=round(Distance)
+            print(d,'d')
             d2 =str(d) +' Km'
+            print(d2,'d2')
 
            
             column="id,mobile"
