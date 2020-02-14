@@ -59,6 +59,7 @@ def addUser():
         if msg == "1":
             imeiNo,country,city,deviceName,deviceId,deviceType="","","","","",""
             os,appVersion,notificationToken,ipAddress,userAgent="","","","",""
+            currentLocation,currentLocation="",""
             
             Name = inputdata["name"]
             userTypeId = inputdata["userTypeId"]
