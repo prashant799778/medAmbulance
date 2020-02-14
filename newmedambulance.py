@@ -65,8 +65,8 @@ def addUser():
             Mobile=inputdata["mobile"]
             Email = inputdata["email"]
             password = inputdata["password"]
-            currentLocation=inputdata["currentLocation"]
-            currentLocationlatlong=inputdata["currentLocationlatlong"]
+            # currentLocation=inputdata["currentLocation"]
+            # currentLocationlatlong=inputdata["currentLocationlatlong"]
 
             
            
