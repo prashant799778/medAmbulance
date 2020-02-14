@@ -716,7 +716,7 @@ def addbooking():
         print('Entered')
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ['pickup','drop','userId','mobile','selectBookingDate','ambulanceId','bookingId']
+        keyarr = ['pickup','drop','userId','mobile','selectBookingDate','ambulanceId']
         commonfile.writeLog("addbookingambulance",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg=="1":
@@ -726,7 +726,7 @@ def addbooking():
             mobile = inputdata["mobile"]
             selectBookingDate = inputdata["selectBookingDate"]
             ambulanceId = inputdata["ambulanceId"]
-            bookingId =  commonfile.CreateHashKey(mobile,pickup)
+            #bookingId =  commonfile.CreateHashKey(mobile,pickup)
 
             search = geocoder.get(pickup)
             search2=geocoder.get(drop)
