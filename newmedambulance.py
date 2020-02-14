@@ -52,7 +52,7 @@ def addUser():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
-        keyarr = ['name','mobile','userTypeId','email','password','currentLocation','currentLocationlatlong']
+        keyarr = ['name','mobile','userTypeId','email','password']
         commonfile.writeLog("addUser",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
        
