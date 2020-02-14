@@ -122,7 +122,7 @@ def addUser():
 
 
  
-
+                currentLocationlatlong=""
 
                 column="name,password,mobile,userId,imeiNo,deviceName,currentLocation,currentLocationlatlong,usertypeId,email,country,city, "
                 column=column+ "ipAddress,userAgent,deviceId,os,deviceType,appVersion,notificationToken"
