@@ -867,6 +867,7 @@ def addbooking():
             print(tolongitude,'tolng')
             bookingId=uuid.uuid1()
             bookingId=bookingId.hex
+            print(bookingId,'bookingId')
             R = 6373.0
             fromlongitude2= Decimal(fromlongitude)
             print(fromlongitude2,'fromlng2')
