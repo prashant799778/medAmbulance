@@ -713,6 +713,7 @@ def addhospital():
 @app.route('/addbookingambulance', methods=['POST'])
 def addbooking():
     try:
+        print('Entered')
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
         keyarr = ['pickup','drop','userId','mobile','selectBookingDate','ambulanceId','bookingId']
@@ -757,6 +758,7 @@ def addbooking():
             datavv= databasefile.SelectQuery1("driverMaster",column,whereCondition)
             print(datavv,'data')
             for da in datavv:
+                print('A')
                 da.split(",")
                 driverlattitude=int(da[0])
                 driverlongitude=int(da[2])
@@ -770,6 +772,7 @@ def addbooking():
                 d1=round(distanceD)
                 d9 =str(d) +' Km'
                 if d1 <2:
+                    print('B')
                     driverId=da['driverId']
                     driverMobile=da['mobile']
         
