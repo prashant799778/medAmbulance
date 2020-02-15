@@ -250,6 +250,10 @@ def userSignup():
                     column=column+" ,appVersion"
                     values=values+"','"+str(deviceName)
 
+                if 'email' in inputdata:
+                    email=inputdata["email"]
+                    column=column+" ,email"
+                    values=values+"','"+str(email)
 
 
  
