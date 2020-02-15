@@ -184,7 +184,7 @@ def userSignup():
             otp=int(totp.now()[0:4])
 
             UserId = commonfile.CreateHashKey(mobileNo,userTypeId)
-            UserId=UserId.hex()
+            #UserId=UserId.hex()
             WhereCondition = " and mobileNo = '" + str(mobileNo) + "'"
             count = databasefile.SelectCountQuery("userMaster",WhereCondition,"")
             
