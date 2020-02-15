@@ -1805,7 +1805,7 @@ def adminLogin():
             email = inputdata["email"]
             password = inputdata["password"]
             column=  "us.mobileNo,us.name,us.userTypeId,um.usertype,us.userId"
-            whereCondition= " us.email = '" + str(email) + "' and us.password = '" + str(password) + "'  and  us.usertypeId=um.id"
+            whereCondition= " us.email = '" + str(email) + "' and us.password = '" + str(password) + "'  and  us.userTpeId=um.id"
             loginuser=databasefile.SelectQuery("userMaster as us,usertypeMaster as um",column,whereCondition)
             if (loginuser!=0):   
                                
