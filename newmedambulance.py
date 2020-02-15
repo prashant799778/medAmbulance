@@ -24,7 +24,7 @@ import ConstantData
 
 from flask import Flask, render_template
 from flask_socketio import SocketIO
-
+import pyotp
 import socketio
 
 # standard Python
@@ -47,36 +47,145 @@ geocoder = GoogleGeocoder("AIzaSyB0Pz6VjrQmWPCCbDbWDuyjo79GhDJPOlI")
 
 
 
-@app.route('/addUser', methods=['POST'])
-def addUser():
+# @app.route('/addUser', methods=['POST'])
+# def addUser():
+#     try:
+#         inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+#         startlimit,endlimit="",""
+#         keyarr = ['name','mobileNo','userTypeId','email','password']
+#         commonfile.writeLog("addUser",inputdata,0)
+#         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+       
+#         if msg == "1":
+#             imeiNo,country,city,deviceName,deviceId,deviceType="","","","","",""
+#             os,appVersion,notificationToken,ipAddress,userAgent="","","","",""
+#             currentLocation,currentLocation="",""
+            
+#             Name = inputdata["name"]
+#             userTypeId = inputdata["userTypeId"]
+#             mobileNo=inputdata["mobileNo"]
+#             Email = inputdata["email"]
+#             password = inputdata["password"]
+#             # currentLocation=inputdata["currentLocation"]
+#             # currentLocationlatlong=inputdata["currentLocationlatlong"]
+
+            
+           
+
+           
+
+#             UserId = commonfile.CreateHashKey(mobileNo,Name)
+            
+#             WhereCondition = " and mobileNo = '" + str(mobileNo) + "' and password = '" + str(password) + "'"
+#             count = databasefile.SelectCountQuery("userMaster",WhereCondition,"")
+            
+#             if int(count) > 0:
+#                 return commonfile.EmailMobileAlreadyExistMsg()
+#             else:
+#                 if 'imeiNo' in inputdata:
+#                     imeiNo=inputdata["imeiNo"] 
+
+#                 if 'deviceName' in inputdata:
+#                     deviceName=inputdata["deviceName"]
+
+#                 if 'country' in inputdata:
+#                     country=inputdata["country"]
+
+#                 if 'city' in inputdata:
+#                     city=inputdata["city"]
+
+#                 if 'ipAddress' in inputdata:
+#                     ipAddress=inputdata["ipAddress"]
+
+#                 if 'userAgent' in inputdata:
+#                     userAgent=inputdata["userAgent"]
+
+
+#                 if 'deviceId' in inputdata:
+#                     deviceId=inputdata["deviceId"]
+
+                
+#                 if 'os' in inputdata:
+#                     os=inputdata["os"]
+
+                
+#                 if 'deviceType' in inputdata:
+#                     deviceType=inputdata["deviceType"]
+
+#                 if 'appVersion' in inputdata:
+#                     appVersion=inputdata["appVersion"] 
+
+
+#                 if 'notificationToken' in inputdata:
+#                     notificationToken=inputdata["notificationToken"]
+
+
+
+ 
+#                 currentLocationlatlong=""
+
+#                 column="name,password,mobileNo,userId,imeiNo,deviceName,currentLocation,currentLocationlatlong,usertypeId,email,country,city, "
+#                 column=column+ "ipAddress,userAgent,deviceId,os,deviceType,appVersion,notificationToken"
+
+#                 values =  "'"+str(Name)+"','"+str(password)+"','"
+#                 values= values +str(mobileNo)+"','"+str(UserId)+"','"+str(imeiNo)+"','"+str(deviceName)+"','"
+#                 values= values+str(currentLocation)+"','"+str(currentLocationlatlong)+"','"+str(userTypeId)+"','"
+#                 values= values+str(Email)+"','"+str(country)+"','"+str(city)+"','"
+#                 values= values+str(ipAddress)+"','"+str(userAgent)+"','"+str(deviceId)+"','"
+#                 values= values+str(os)+"','"+str(deviceType)+"','"+str(appVersion)+ "','"+str(notificationToken)+ "'"
+#                 data=databasefile.InsertQuery("userMaster",column,values)
+             
+
+#                 if data != "0":
+#                     column = '*'
+                    
+#                     data = databasefile.SelectQuery2("userMaster",column,WhereCondition,"",startlimit,endlimit)
+#                     print(data)
+#                     Data = {"status":"true","message":"","result":data["result"]}                  
+#                     return Data
+#                 else:
+#                     return commonfile.Errormessage()
+                        
+#         else:
+#             return msg 
+#     except Exception as e :
+#         print("Exception---->" +str(e))           
+#         output = {"status":"false","message":"something went wrong","result":""}
+#         return output
+
+@app.route('/userSignup', methods=['POST'])
+def userSignup():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
-        keyarr = ['name','mobile','userTypeId','email','password']
-        commonfile.writeLog("addUser",inputdata,0)
+        keyarr = ['mobileNo','userTypeId']
+        commonfile.writeLog("userSignup",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
        
         if msg == "1":
             imeiNo,country,city,deviceName,deviceId,deviceType="","","","","",""
             os,appVersion,notificationToken,ipAddress,userAgent="","","","",""
             currentLocation,currentLocation="",""
+            column,values="",""
             
-            Name = inputdata["name"]
+           
             userTypeId = inputdata["userTypeId"]
-            Mobile=inputdata["mobile"]
-            Email = inputdata["email"]
-            password = inputdata["password"]
+            mobileNo=inputdata["mobileNo"]
+            
             # currentLocation=inputdata["currentLocation"]
             # currentLocationlatlong=inputdata["currentLocationlatlong"]
 
             
            
 
-           
-
-            UserId = commonfile.CreateHashKey(Mobile,Name)
             
-            WhereCondition = " and mobile = '" + str(Mobile) + "' and password = '" + str(password) + "'"
+            totp = pyotp.TOTP('base32secret3232')
+            print("Current OTP:", totp.now()[0:4])
+            otp=int(totp.now()[0:4])
+
+            UserId = commonfile.CreateHashKey(mobileNo,userTypeId)
+            
+            WhereCondition = " and mobileNo = '" + str(mobileNo) + "'"
             count = databasefile.SelectCountQuery("userMaster",WhereCondition,"")
             
             if int(count) > 0:
@@ -84,55 +193,72 @@ def addUser():
             else:
                 if 'imeiNo' in inputdata:
                     imeiNo=inputdata["imeiNo"] 
+                    column=column+",imeiNo "
+                    values=values+"','"+str(deviceName)
 
                 if 'deviceName' in inputdata:
                     deviceName=inputdata["deviceName"]
-
+                    column=column+" ,deviceName "
+                    values=values+"','"+str(deviceName)
+                
                 if 'country' in inputdata:
                     country=inputdata["country"]
-
+                    column=column+" ,country "
+                    values=values+"','"+str(deviceName)
+                
                 if 'city' in inputdata:
                     city=inputdata["city"]
+                    column=column+" ,city"
+                    values=values+"','"+str(deviceName)
 
                 if 'ipAddress' in inputdata:
                     ipAddress=inputdata["ipAddress"]
+                    column=column+" ,ipAddress"
+                    values=values+"','"+str(deviceName)
 
                 if 'userAgent' in inputdata:
                     userAgent=inputdata["userAgent"]
+                    column=column+" ,userAgent"
+                    values=values+"','"+str(deviceName)
 
 
                 if 'deviceId' in inputdata:
                     deviceId=inputdata["deviceId"]
+                    column=column+" ,deviceId"
+                    values=values+"','"+str(deviceName)
 
                 
                 if 'os' in inputdata:
                     os=inputdata["os"]
+                    column=column+" ,os"
+                    values=values+"','"+str(deviceName)
 
                 
                 if 'deviceType' in inputdata:
                     deviceType=inputdata["deviceType"]
+                    column=column+" ,deviceType"
+                    values=values+"','"+str(deviceName)
 
                 if 'appVersion' in inputdata:
                     appVersion=inputdata["appVersion"] 
+                    column=column+" ,city"
+                    values=values+"','"+str(deviceName)
 
 
                 if 'notificationToken' in inputdata:
                     notificationToken=inputdata["notificationToken"]
+                    column=column+" ,appVersion"
+                    values=values+"','"+str(deviceName)
 
 
 
  
                 currentLocationlatlong=""
 
-                column="name,password,mobile,userId,imeiNo,deviceName,currentLocation,currentLocationlatlong,usertypeId,email,country,city, "
-                column=column+ "ipAddress,userAgent,deviceId,os,deviceType,appVersion,notificationToken"
-
-                values =  "'"+str(Name)+"','"+str(password)+"','"
-                values= values +str(Mobile)+"','"+str(UserId)+"','"+str(imeiNo)+"','"+str(deviceName)+"','"
-                values= values+str(currentLocation)+"','"+str(currentLocationlatlong)+"','"+str(userTypeId)+"','"
-                values= values+str(Email)+"','"+str(country)+"','"+str(city)+"','"
-                values= values+str(ipAddress)+"','"+str(userAgent)+"','"+str(deviceId)+"','"
-                values= values+str(os)+"','"+str(deviceType)+"','"+str(appVersion)+ "','"+str(notificationToken)+ "'"
+                column="mobileNo,userId,userTypeId,otp"+column
+                
+                
+                values=  "'"+str(mobileNo)+"','"+str(UserId)+"','"+str(userTypeId)+"','"+str(otp)+values+ "'"
                 data=databasefile.InsertQuery("userMaster",column,values)
              
 
@@ -154,6 +280,43 @@ def addUser():
         return output
 
 
+@app.route('/verifyOtp', methods=['POST'])
+def verifyOtp():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['otp','mobileNo']
+        print(inputdata,"B")
+        commonfile.writeLog("verifyOtp",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg =="1":
+            otp=str(inputdata['otp'])
+            mobileNo=str(inputdata['mobileNo'])
+
+            column="mobileNo,otp"
+            whereCondition= "  otp='" + otp+ "' and mobileNo='" + mobileNo+"'"
+            data1=databasefile.SelectQuery(" userMaster ",column,whereCondition)
+            print("data1======",data1)
+            if  (data1["status"]!="false") or data1!=None: 
+                print("11111111111111")  
+                Data = {"status":"true","message":"","result":data1["result"]}                  
+                return Data
+            else:
+                data = {"status":"false","message":"Invalid OTP","result":""}
+                return data      
+        else:
+            return msg         
+ 
+    except KeyError :
+        print("Key Exception---->")   
+        output = {"result":"key error","status":"false"}
+        return output  
+
+    except Exception as e :
+        print("Exceptio`121QWAaUJIHUJG n---->" +str(e))    
+        output = {"result":"somthing went wrong","status":"false"}
+        return output  
+
 
 @app.route('/addDriver', methods=['POST'])
 def addDriver():
@@ -161,7 +324,7 @@ def addDriver():
         print('Hello')
         inputdata=request.form.get('data')
         print(inputdata,'inputdata')
-        keyarr = ['name','mobile','key','flag']
+        keyarr = ['name','mobileNo','key','flag']
         inputdata=json.loads(inputdata)
         # inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
@@ -171,17 +334,17 @@ def addDriver():
         print(msg,'msg')
        
         if msg == "1":
-            mobile=inputdata['mobile']
+            mobileNo=inputdata['mobileNo']
            
             key = inputdata["key"]
             flag = inputdata["flag"]
             column = " * "
-            whereCondition= " and mobile='"+str(mobile)+ "' and usertypeId='3'"
+            whereCondition= " and mobileNo='"+str(mobileNo)+ "' and usertypeId='3'"
             data= databasefile.SelectQuery("userMaster",column,whereCondition)
             print(data,'data')
 
             name= data["name"]
-            mobile= data["mobile"]
+            mobileNo= data["mobileNo"]
             driverId=data['userId']
             
             DlNo,dlFrontFilename,DlFrontPicPath,dlBackFilename,DlBackPicPath,PIDType,PIDNo,PIDFrontFilename,PIDFrontPicPath,PIDBackFilename,PIDBackPicPath,TransportType,TransportModel,Color,AmbulanceRegistrationFuel,TypeNo,AIFilename,AIPicPath,AmbulanceModeId,AmbulanceId="","","","","","","","","","","","","","","","","","","",""
@@ -289,35 +452,35 @@ def addDriver():
                 
                 if flag == 'i':
                     if key == "A":
-                        columns = " name,mobile,dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath,driverId"          
-                        values = " '" + str(name) + "','" + str(mobile) + "','" + str(DlNo) + "','" + str( dlFrontFilename) + "','" + str(DlFrontPicPath) + "','" + str(dlBackFilename) + "', "            
+                        columns = " name,mobileNo,dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath,driverId"          
+                        values = " '" + str(name) + "','" + str(mobileNo) + "','" + str(DlNo) + "','" + str( dlFrontFilename) + "','" + str(DlFrontPicPath) + "','" + str(dlBackFilename) + "', "            
                         values = values + " '" + str(DlBackPicPath) + "','" + str(driverId) + "'"
                         data = databasefile.InsertQuery("driverMaster",columns,values)
                         if data != "0":
                             column = '*'
-                            WhereCondition = " mobile = '" + str(mobile) +  "'"
+                            WhereCondition = " mobileNo = '" + str(mobileNo) +  "'"
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
                             return data11
                     if key == "B":
-                        columns = " name,mobile,pIDType,pIDNo,pIDFrontFilename,pIDFrontFilepath,pIDBackFilename,pIDBackFilepath,driverId"          
-                        values = " '" + str(name) + "','" + str(mobile) + "','" + str(PIDType) + "','" + str(PIDNo) + "','" + str(PIDFrontFilename) + "','" + str(PIDFrontPicPath) + "','" + str(PIDBackFilename) + "', "            
+                        columns = " name,mobileNo,pIDType,pIDNo,pIDFrontFilename,pIDFrontFilepath,pIDBackFilename,pIDBackFilepath,driverId"          
+                        values = " '" + str(name) + "','" + str(mobileNo) + "','" + str(PIDType) + "','" + str(PIDNo) + "','" + str(PIDFrontFilename) + "','" + str(PIDFrontPicPath) + "','" + str(PIDBackFilename) + "', "            
                         values = values + " '" + str(PIDBackPicPath)+ "','" + str(driverId) + "'"
                         data = databasefile.InsertQuery("driverMaster",columns,values)
                         if data != "0":
                             column = '*'
-                            WhereCondition = " mobile = '" + str(mobile) +  "'"
+                            WhereCondition = " mobileNo = '" + str(mobileNo) +  "'"
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
                             return data11
                     if key == "C":
-                        columns = " name,mobile,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceId.driverId"          
-                        values = " '" + str(name) + "','" + str(mobile) + "','" + str(TransportType) + "','" + str(TransportModel) + "','" + str(Color) + "','" + str(AmbulanceRegistrationFuel) + "','" + str(TypeNo) + "','" + str(AIFilename) + "','" + str(AIPicPath) + "','" + str(AmbulanceModeId) + "', "            
+                        columns = " name,mobileNo,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceId.driverId"          
+                        values = " '" + str(name) + "','" + str(mobileNo) + "','" + str(TransportType) + "','" + str(TransportModel) + "','" + str(Color) + "','" + str(AmbulanceRegistrationFuel) + "','" + str(TypeNo) + "','" + str(AIFilename) + "','" + str(AIPicPath) + "','" + str(AmbulanceModeId) + "', "            
                         values = values + " '" + str(AmbulanceId) + "','" + str(driverId) + "'"
                         data = databasefile.InsertQuery("driverMaster",columns,values)
                         if data != "0":
                             column = '*'
-                            WhereCondition = " mobile = '" + str(mobile) +  "'"
+                            WhereCondition = " mobileNo = '" + str(mobileNo) +  "'"
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
                             return data11
@@ -325,7 +488,7 @@ def addDriver():
                 if flag == 'u':
                     if key == "A":
                         print('A')
-                        WhereCondition = " mobile = '" + str(mobile) + "'"
+                        WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
                         column = " dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "',dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "'"
                         print(column,'column')
                         data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
@@ -333,7 +496,7 @@ def addDriver():
                         return data
                     if key == "B":
                         print('B')
-                        WhereCondition = " mobile = '" + str(mobile) + "'"
+                        WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
                         column = " pIDType = '" + str(PIDType) + "',pIDNo = '" + str(PIDNo) + "',pIDFrontFilename = '" + str(PIDFrontFilename) + "',pIDFrontFilepath = '" + str(PIDFrontPicPath) + "',pIDBackFilename = '" + str(PIDBackFilename) + "',pIDBackFilepath = '" + str(PIDBackPicPath) + "'"
                         print(column,'column')
                         data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
@@ -341,7 +504,7 @@ def addDriver():
                         return data
                     if key == "C":
                         print('C')
-                        WhereCondition = " mobile = '" + str(mobile) + "'"
+                        WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
                         column = " transportType = '" + str(TransportType) + "',transportModel = '" + str(TransportModel) + "',color = '" + str(Color) + "',ambulanceRegistrationFuel = '" + str(AmbulanceRegistrationFuel) + "',typeNo = '" + str(TypeNo) + "',ambulanceFilename = '" + str(AIFilename) + "',ambulanceFilepath = '" + str(AIPicPath) + "',ambulanceModeId = '" + str(AmbulanceModeId) + "',ambulanceId = '" + str(AmbulanceId) + "'"
                         print(column,'column')
                         data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
@@ -393,14 +556,14 @@ def login():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ['password','mobile']
+        keyarr = ['password','mobileNo']
         commonfile.writeLog("Login",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
-            mobile = inputdata["mobile"]
+            mobileNo = inputdata["mobileNo"]
             password = inputdata["password"]
-            column=  "us.mobile,us.name,um.usertype,us.userId"
-            whereCondition= "us.mobile = '" + str(mobile) + "' and us.password = '" + password + "'  and  us.usertypeId=um.Id"
+            column=  "us.mobileNo,us.name,um.usertype,us.userId"
+            whereCondition= "us.mobileNo = '" + str(mobileNo) + "' and us.password = '" + password + "'  and  us.usertypeId=um.Id"
             loginuser=databasefile.SelectQuery1("userMaster as us,usertypeMaster as um",column,whereCondition)
             if (loginuser!=0):   
                 Data = {"result":loginuser,"status":"true"}                  
@@ -747,17 +910,17 @@ def addhospital():
 #         print('Entered')
 #         inputdata =  commonfile.DecodeInputdata(request.get_data())
 #         startlimit,endlimit="",""
-#         keyarr = ['pickup','drop','userId','mobile','selectBookingDate','ambulanceId']
+#         keyarr = ['pickup','drop','userId','mobileNo','selectBookingDate','ambulanceId']
 #         commonfile.writeLog("addbookingambulance",inputdata,0)
 #         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
 #         if msg=="1":
 #             pickup = inputdata["pickup"]
 #             drop = inputdata["drop"]
 #             userId = inputdata["userId"]
-#             mobile = inputdata["mobile"]
+#             mobileNo = inputdata["mobileNo"]
 #             selectBookingDate = inputdata["selectBookingDate"]
 #             ambulanceId = inputdata["ambulanceId"]
-#             #bookingId =  commonfile.CreateHashKey(mobile,pickup)
+#             #bookingId =  commonfile.CreateHashKey(mobileNo,pickup)
 
 #             search = geocoder.get(pickup)
 #             print(search,'searchpickup')
@@ -797,7 +960,7 @@ def addhospital():
 #             print(d2,'d2')
 
            
-#             column="id,mobile"
+#             column="id,mobileNo"
 #             whereCondition="verificationStatus<>'F'"
 #             datavv= databasefile.SelectQuery1("driverMaster",column,whereCondition)
 #             print(datavv,'data')
@@ -818,10 +981,10 @@ def addhospital():
 #                 if d1 <2:
 #                     print('B')
 #                     driverId=da['driverId']
-#                     driverMobile=da['mobile']
+#                     driverMobile=da['mobileNo']
         
 #                 column="usermobile,pickup,pickupLongitudeLatitude,dropoff,dropoffLongitudeLatitude,selectBookingDate,bookingType,patientMedicalCondition,ambulanceId,userId,bookingId,finalAmount,totalDistance"
-#                 values="'"+str(data1["mobile"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["dropoff"])+"','"+str(tolatitude,tolongitude)+"','"+str(data1["selectBookingDate"])+"','"+str(data1["patientMedicalCondition"])+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d3)+"'"
+#                 values="'"+str(data1["mobileNo"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["dropoff"])+"','"+str(tolatitude,tolongitude)+"','"+str(data1["selectBookingDate"])+"','"+str(data1["patientMedicalCondition"])+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d3)+"'"
 #                 insertdata=databasefile.InsertQuery("bookAmbulance",column,values)
 #                 column=" * "
 #                 whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
@@ -861,18 +1024,18 @@ def addbooking():
         print('Entered')
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ['pickup','drop','userId','mobile','selectBookingDate','ambulanceId','driverlocation']
+        keyarr = ['pickup','drop','userId','mobileNo','selectBookingDate','ambulanceId','driverlocation']
         commonfile.writeLog("addbookingambulance",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg=="1":
             pickup = inputdata["pickup"]
             drop = inputdata["drop"]
             userId = inputdata["userId"]
-            mobile = inputdata["mobile"]
+            mobileNo = inputdata["mobileNo"]
             selectBookingDate = inputdata["selectBookingDate"]
             ambulanceId = inputdata["ambulanceId"]
             driverlocation = inputdata["driverlocation"]
-            #bookingId =  commonfile.CreateHashKey(mobile,pickup)
+            #bookingId =  commonfile.CreateHashKey(mobileNo,pickup)
 
             search = geocoder.get(pickup)
             print(search,'searchpickup')
@@ -921,7 +1084,7 @@ def addbooking():
             print(d2,'d2')
 
            
-            column="id,mobile"
+            column="id,mobileNo"
             whereCondition="verificationStatus<>'F'"
             datavv= databasefile.SelectQuery1("driverMaster",column,whereCondition)
             print(datavv,'data')
@@ -939,10 +1102,10 @@ def addbooking():
             if d1 <2:
                 print('B')
                 driverId=datavv['id']
-                driverMobile=datavv['mobile']
+                driverMobile=datavv['mobileNo']
         
             column="usermobile,pickup,pickupLongitudeLatitude,dropoff,dropoffLongitudeLatitude,selectBookingDate,bookingType,patientMedicalCondition,ambulanceId,userId,bookingId,finalAmount,totalDistance"
-            values="'"+str(data1["mobile"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["dropoff"])+"','"+str(tolatitude,tolongitude)+"','"+str(data1["selectBookingDate"])+"','"+str(data1["patientMedicalCondition"])+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d3)+"'"
+            values="'"+str(data1["mobileNo"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["dropoff"])+"','"+str(tolatitude,tolongitude)+"','"+str(data1["selectBookingDate"])+"','"+str(data1["patientMedicalCondition"])+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d3)+"'"
             insertdata=databasefile.InsertQuery("bookAmbulance",column,values)
             column=" * "
             whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
@@ -988,7 +1151,7 @@ def trackAmbulance():
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg=="1":
             bookingId = inputdata["bookingId"]       
-            column="dm.name,dm.mobile,dbm.farDistance,dm.currentLocation"
+            column="dm.name,dm.mobileNo,dbm.farDistance,dm.currentLocation"
             whereCondition="dbm.driverId=dm.driverId and dbm.bookingId='" + str(bookingId) + "'"
             data=databasefile.SelectQuery1("driverMaster as dm ,driverBookingMapping as dbm",column,whereCondition)
             print(data,'==data')
@@ -1023,7 +1186,7 @@ def addRiderBooking():
         whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
         data=databasefile.SelectQuery("responderBooking",column,whereCondition)
         if data==None:
-            column="responderId,currentLocationlatlong,mobile"
+            column="responderId,currentLocationlatlong,mobileNo"
             whereCondition="verificationStatus<>'F'"
             datavv=databasefile.SelectQuery1("responderMaster",column,whereCondition)
             for da in datavv:
@@ -1041,10 +1204,10 @@ def addRiderBooking():
                 d9 =str(d) +' Km'
                 if d1 <2:
                     riderId=da['responderId']
-                    driverMobile=da['mobile']
+                    driverMobile=da['mobileNo']
            
             column="usermobile,pickup,pickupLongitudeLatitude,selectBookingDate,bookingType,patientMedicalCondition,ambulanceId,userId,bookingId,finalAmount,totalDistance"
-            values="'"+str(data1["mobile"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["selectBookingDate"])+"','"+str(data1["patientMedicalCondition"])+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d9)+"'"
+            values="'"+str(data1["mobileNo"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["selectBookingDate"])+"','"+str(data1["patientMedicalCondition"])+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d9)+"'"
             insertdata=databasefile.InsertQuery("responderBooking",column,values)
             column=" * "
             whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
@@ -1576,7 +1739,7 @@ def DriverTraceUser():
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg=="1":
             driverId = inputdata["driverId"]
-            column="um.name,um.mobile,dbm.farDistance,dbm.pickup,dbm.bookingId "
+            column="um.name,um.mobileNo,dbm.farDistance,dbm.pickup,dbm.bookingId "
             whereCondition=" dbm.userId=um.userId and dbm.driverId='" + str(driverId) + "'"
             data=databasefile.SelectQuery(" driverBookingMapping as dbm,userMaster as  um",column,whereCondition)
             if (data!=0):           
@@ -1604,7 +1767,7 @@ def ResponderTraceUser():
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg=="1":
             responderId = inputdata["responderId"]
-            column="um.name,um.mobile,dbm.farDistance,dbm.pickup,dbm.bookingId "
+            column="um.name,um.mobileNo,dbm.farDistance,dbm.pickup,dbm.bookingId "
             whereCondition="dbm.userId=um.userId and dbm.responderId='" + str(responderId) + "'"
             data=databasefile.SelectQuery1("responderBookingMapping as dbm,userMaster as  um",column,whereCondition)
             if (data!=0):           
@@ -1632,7 +1795,7 @@ def trackRider():
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg=="1":
             bookingId = inputdata["bookingId"]
-            column="dm.name,dm.mobile,dbm.farDistance,dm.currentLocation"
+            column="dm.name,dm.mobileNo,dbm.farDistance,dm.currentLocation"
             whereCondition= "dbm.responderId=dm.responderId and dbm.bookingId='" + str(bookingId) + "'"
             data=databasefile.SelectQuery(" responderMaster as dm ,responderBookingMapping as dbm",column,whereCondition)
             if (data!=0):           
