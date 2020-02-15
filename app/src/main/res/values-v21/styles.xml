@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:color">@color/red</item>
+        <item name="android:checkMarkTint">@color/red</item>
+    </style>
+
+    <style name="googleMap" parent="Theme.AppCompat.DayNight">
+        <item name="android:statusBarColor">@color/white</item>
+
+    </style>
+</resources>

@@ -1,0 +1,175 @@
+<resources>
+    <string name="app_name">Med Ambulance</string>
+    <string name="Login">Login</string>
+    <string name="signup">SignUp</string>
+    <string name="welcome">Welcome !!</string>
+    <string name="appversion">Version 0.0.1</string>
+    <string name="Verification">Verification</string>
+    <string name="email">Email ID</string>
+    <string name="save">Save</string>
+    <string name="Done">Done</string>
+    <string name="Enterotp2">Enter 4 digit number that was sent to your email ID</string>
+    <string name="user">User</string>
+    <string name="verifyText">Please check your message
+and enter the verification code we just sent you.
++919910484407</string>
+    <string name="Driver">Driver</string>
+    <string name="Didntgetacode">Didn\'t get a code ? </string>
+    <string name="DriverRegistration">Driver Registration</string>
+    <string name="forgotPassword">Forgot Password</string>
+    <string name="rememberME">Remember me</string>
+    <string name="PersonalId">Personal ID Card</string>
+    <string name="personalIdLAble">Personal ID</string>
+    <string name="manufacture_Date">Manufacture Date</string>
+    <string name="registrationDate">Registration Date</string>
+    <string name="mobile">Mobile No</string>
+    <string name="passeword">Password</string>
+    <string name="userName">Username</string>
+    <string name="confirmpassword">Confirm Password</string>
+    <string name="continuie">Continue</string>
+    <string name="verify">Verify</string>
+    <string name="LoginNow">Login Now</string>
+    <string name="DriverLicence">Driver Licence</string>
+    <string name="DricerLicenceNumber">Driver Licence Number</string>
+    <string name="AmbulanceRegistration">Ambulance Registration</string>
+    <string name="Front">Upload Front Image</string>
+    <string name="Ambulance_Image">Ambulance Image</string>
+    <string name="back">Upload Back Image</string>
+    <string name="personalIDType">Personal Id Type</string>
+    <string name="personalIdNumber">Personal ID Number</string>
+    <string name="TransportType">Transport Type</string>
+    <string name="FuelType">Fuel Type</string>
+    <string name="doneText">You have successfully submitted  the documents.
+You will be contacted soon after your
+document  verification.</string>
+    <string name="enterLicenceNumber">Enter Licence Number</string>
+    <string name="transportModle">Transport Model</string>
+    <string name="Ambulance_Category">Ambulance Category</string>
+    <string name="color">Color</string>
+    <string name="Ambulance_Details">Ambulance Details</string>
+    <string name="Continue_as">Continue as</string>
+    <string name="Responder">Responder</string>
+    <string name="Ambulance_Type">Ambulance Type</string>
+    <string name="Ambulance_Model">Ambulance Model</string>
+    <string name="Registration_No">Registration No.</string>
+    <string name="ok">ok</string>
+    <string name="cancel">cancel</string>
+    <string name="ambulanceRegistrationNumber">Ambulance Registration Number</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="policy">By signing up you have agreed to our,Terms of Use &amp; Privacy Policy</string>
+    <string name="title_activity_current__location_">Map</string>
+    <string name="title_activity_booking_">Map</string>
+    <string name="pickup">Pickup From</string>
+    <string name="enterPick"> enter pickup location</string>
+    <string name="drop">Enter drop location </string>
+    <string name="ALS">ALS</string>
+    <string name="BLS">BLS</string>
+    <string name="DBT">DBT</string>
+    <string name="PVT">PVT</string>
+    <string name="AIR">AIR</string>
+    <string name="Book">Book Now</string>
+    <string name="booking">Booking Confirmed</string>
+    <string name="id"> Booking ID : </string>
+    <string name="CONTINUE">CONTINUE</string>
+    <string name="TrackAmbulance">Track Ambulance</string>
+    <string name="title_activity_booking_ambulance_">Map</string>
+    <string name="title_activity_book_ambulance">Map</string>
+    <string name="title_activity_booking_ambulance">Map</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="Verification2">You will receive an SMS for verification</string>
+    <string name="agreed">By signing up you have agreed to our</string>
+    <string name="terms">Terms of Use and Privacy Policy</string>
+
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+</resources>
