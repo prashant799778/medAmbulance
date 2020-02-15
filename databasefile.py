@@ -19,7 +19,7 @@ def InsertQuery(table,columns,values):
         cursor.close()   
 
         message = commonfile.Successmessage('insert')
-        data = {"status":"true","message":message,"result":""}       
+        data = {"status":"true","message":message,"result":[]}       
         return data
 
     except Exception as e:
@@ -113,7 +113,7 @@ def SelectQuery2(table,columns,whereCondition,groupby,startlimit,endlimit):
         if data:
             data = {"status":"true","message":"","result":data}
         else:
-            data = {"status":"false","message":"No Data Found","result":""}
+            data = {"status":"false","message":"No Data Found","result":[]}
 
         return data
 
@@ -149,7 +149,7 @@ def SelectQueryOrderbyAsc(table,columns,whereCondition,groupby,orderby,startlimi
         if data:
             data = {"status":"true","message":"","result":data}
         else:
-            data = {"status":"true","message":"No Data Found","result":""}
+            data = {"status":"true","message":"No Data Found","result":[]}
 
         return data
 
@@ -209,7 +209,7 @@ def UpdateQuery(table,columns,whereCondition):
             cursor.close()
               
             message = commonfile.Successmessage('update')
-            data = {"status":"true","message":message,"result":""}
+            data = {"status":"true","message":message,"result":[]}
             return data
         else:
             return "0"
@@ -233,7 +233,7 @@ def DeleteQuery(table,whereCondition):
             cursor.close()
 
             message = commonfile.Successmessage('delete')
-            data = {"status":"true","message":message,"result":""}
+            data = {"status":"true","message":message,"result":[]}
             return data
 
         else :
