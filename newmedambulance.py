@@ -296,7 +296,7 @@ def verifyOtp():
             column="mobileNo,otp"
             whereCondition= "  otp=" + otp+ " and mobileNo=" + mobileNo
             data1=databasefile.SelectQuery("userMaster",column,whereCondition)
-            print("data1",data1)
+            print("data1======",data1)
             if  (data1["status"]!="false"): 
                 print("11111111111111")  
                 Data = {"status":"true","message":"","result":data1["result"]}                  

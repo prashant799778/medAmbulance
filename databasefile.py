@@ -47,10 +47,10 @@ def SelectQuery(table,columns,whereCondition):
         cursor.close()
       
         if data:
-            return data
+            data = {"status":"true","message":"","result":data}
         else:
-            data=0
-            return data
+            data = {"status":"false","message":"No Data Found","result":[]}
+
 
     except Exception as e:
         print("Error--->" + str(e))            
@@ -149,7 +149,7 @@ def SelectQueryOrderbyAsc(table,columns,whereCondition,groupby,orderby,startlimi
         if data:
             data = {"status":"true","message":"","result":data}
         else:
-            data = {"status":"true","message":"No Data Found","result":[]}
+            data = {"status":"false","message":"No Data Found","result":[]}
 
         return data
 
