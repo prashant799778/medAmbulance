@@ -10,6 +10,7 @@ import json
 import numpy as np
 import pymysql
 import requests
+import math, random
 import databasefile
 import commonfile
 import json
@@ -176,12 +177,15 @@ def userSignup():
             # currentLocationlatlong=inputdata["currentLocationlatlong"]
 
             
-           
+            digits = "0123456789"
+            otp = ""
+            for i in range(4):
+                otp += digits[math.floor(random.random() * 10)]
 
             
-            totp = pyotp.TOTP('base32secret3232')
-            print("Current OTP:", totp.now()[0:4])
-            otp=int(totp.now()[0:4])
+            # totp = pyotp.TOTP('base32secret3232')
+            # print("Current OTP:", totp.now()[0:4])
+            # otp=int(totp.now()[0:4])
 
             UserId = (commonfile.CreateHashKey(mobileNo,userTypeId)).hex
             
