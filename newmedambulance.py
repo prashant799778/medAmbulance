@@ -1804,11 +1804,11 @@ def adminLogin():
             whereCondition= " us.email = '" + str(email) + "' and us.password = '" + str(password) + "'  and  us.usertypeId=um.id"
             loginuser=databasefile.SelectQuery("userMaster as us,usertypeMaster as um",column,whereCondition)
             if (loginuser!=0):   
-                Data = {"result":loginuser,"status":"true"}                  
-                return Data
+                               
+                return loginuser
             else:
-                data={"status":"Failed","result":"Login Failed"}
-                return data
+                
+                return loginuser
         else:
             return msg 
     except KeyError as e:
