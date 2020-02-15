@@ -1,0 +1,46 @@
+<!-- <app-trip-shared [tableHeading]="tableHeading" [heading]="heading"></app-trip-shared> -->
+<div class="row" *ngIf="!loader">
+        <div class="col-sm-12 col-md-12 col-lg-12 margin-tp">
+            <div class="record-box neu-shadow table-responsive bg-white-fff border-round">
+                 <div class="upper-wrap">
+                    <h2 class="main-hading mr-bottom mr-remove">{{heading}}</h2>   
+                </div>
+                <table class="table">                               
+                    <thead>
+                        <tr>
+                            <th *ngFor="let tableHeading of tableHeading">{{tableHeading}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngIf="userData && userData.length > 0">
+                              <tr *ngFor="let userData of userData ; let i =  index">
+                                    <td>{{i+1}}</td>  
+                                    <td>{{userData.name}}</td>
+                                    <td>{{userData.mobileNo}}</td>
+                                    <td>{{userData.email}}</td>
+                                    <td>{{userData.currentLocation}}</td>
+                                    <td>1000</td>
+                                    <td>20</td>
+                                    <td>{{getStatus(userData.status)}}</td>
+                                    
+                                      <!-- <td>{{userData.DateCreate | date}}</td> -->
+                                      <!-- <td>{{userData.postTitle}}</td> -->
+                                      <!-- <td class="txt-color-r text-uppercase"> -->
+                                              <!-- <button *ngIf="postStatus[i] == 0" type="button" class="btn ab-btn dc-bg-color-panding border-round-rem">Pending</button> -->
+                                              <!-- <button *ngIf="postStatus[i] == 1" type="button" class="btn ab-btn dc-bg-color-active border-round-rem">Approved</button> -->
+                                              <!-- <button *ngIf="postStatus[i] == 2" type="button" class="btn ab-btn dc-bg-color-inactive border-round-rem">Rejected</button> -->
+                                      <!-- </td> -->
+                                      <td>
+                                          <button type="button" class="acton-btn" (click)="policyDetail(userData.postId, userData.userTypeId)">
+                                              <img src="../../assets/images/view.svg" class="action-view">
+                                          </button>
+                                      </td>
+                                  </tr>
+                        </ng-container>
+                       
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2{fill:#707070}
+        </style>
+    </defs>
+    <g id="search" transform="translate(-450 -37)">
+        <path id="Rectangle_16" d="M0 0h30v30H0z" class="cls-1" data-name="Rectangle 16" transform="translate(450 37)"/>
+        <g id="magnifying-glass" transform="translate(456.868 42.966)">
+            <path id="Path_24" d="M16.966 16.2l-4.148-4.148a7.283 7.283 0 1 0-.719.719l4.148 4.148a.514.514 0 0 0 .36.151.5.5 0 0 0 .36-.151.512.512 0 0 0-.001-.719zm-15.9-8.92a6.255 6.255 0 1 1 6.255 6.259 6.262 6.262 0 0 1-6.253-6.262z" class="cls-2" data-name="Path 24"/>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,182 @@
+<div class="app-component-box" *ngIf="!loginSuccess">
+    <div class="main-box-container" >
+        <div class="wrap-container-box">
+            <!-- <img src="../../assets/images/watermark.svg" class="water-mrk"> -->
+            <div class="right-side">
+                <img src="../../assets/images/bck-banner.png" class="rt-banner">
+                <div class="logo-sng-box text-center">
+                    <img src="../../assets/images/logo-sgn.svg">
+                    <h2>MEDAMBULANCE</h2>                
+                </div>
+                <div class="blok-sign-c">
+                    <p class="botom-text">An Initiative Of</p>
+                    <img src="../../assets/images/medachiever.png">
+                </div>
+            </div>
+        <div class="left-side bg-white-fff same-padding pos-rel small-pading">
+           
+            <div class="wrap-outer-wrap">
+                <img src="../../assets/images/logo-right.svg" class="logo-right-side">
+            </div>
+            <div class="wrap-wrap-box">
+              
+                <h2 class="sign-in-heading">Sign In</h2>
+                <p class="lets">Let's get started</p>
+                <span *ngIf="errors" class="errorss">{{errors}}</span>
+                <form [formGroup]="loginForm" class="login-form-class"  autocomplete="off" >
+                    <div  formGroupName="login" class="form-group input-box">
+                        <div class="input-box-wrap d-flex">
+                            <svg class="lock-sg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 512 512" xml:space="preserve">
+                       <g>
+                           <g>
+                               <g>
+                                   <path d="M486.4,59.733H25.6c-14.138,0-25.6,11.461-25.6,25.6v341.333c0,14.138,11.461,25.6,25.6,25.6h460.8
+                                       c14.138,0,25.6-11.461,25.6-25.6V85.333C512,71.195,500.539,59.733,486.4,59.733z M494.933,426.667
+                                       c0,4.713-3.82,8.533-8.533,8.533H25.6c-4.713,0-8.533-3.82-8.533-8.533V85.333c0-4.713,3.82-8.533,8.533-8.533h460.8
+                                       c4.713,0,8.533,3.82,8.533,8.533V426.667z"/>
+                                   <path d="M470.076,93.898c-2.255-0.197-4.496,0.51-6.229,1.966L266.982,261.239c-6.349,5.337-15.616,5.337-21.965,0L48.154,95.863
+                                       c-2.335-1.96-5.539-2.526-8.404-1.484c-2.865,1.042-4.957,3.534-5.487,6.537s0.582,6.06,2.917,8.02l196.864,165.367
+                                       c12.688,10.683,31.224,10.683,43.913,0L474.82,108.937c1.734-1.455,2.818-3.539,3.015-5.794c0.197-2.255-0.51-4.496-1.966-6.229
+                                       C474.415,95.179,472.331,94.095,470.076,93.898z"/>
+                                   <path d="M164.124,273.13c-3.021-0.674-6.169,0.34-8.229,2.65l-119.467,128c-2.162,2.214-2.956,5.426-2.074,8.392
+                                       c0.882,2.967,3.301,5.223,6.321,5.897c3.021,0.674,6.169-0.34,8.229-2.65l119.467-128c2.162-2.214,2.956-5.426,2.074-8.392
+                                       C169.563,276.061,167.145,273.804,164.124,273.13z"/>
+                                   <path d="M356.105,275.78c-2.059-2.31-5.208-3.324-8.229-2.65c-3.021,0.674-5.439,2.931-6.321,5.897
+                                       c-0.882,2.967-0.088,6.178,2.074,8.392l119.467,128c3.24,3.318,8.536,3.442,11.927,0.278c3.391-3.164,3.635-8.456,0.549-11.918
+                                       L356.105,275.78z"/>
+                               </g>
+                           </g>
+                       </g>
+                       <g>
+                       </g>
+                       <g>
+                       </g>
+                       <g>
+                       </g>
+                       <g>
+                       </g>
+                       <g>
+                       </g>
+                       <g>
+                       </g>
+                       <g>
+                       </g>
+                       <g>
+                       </g>
+                       <g>
+                       </g>
+                       <g>
+                       </g>
+                       <g>
+                       </g>
+                       <g>
+                       </g>
+                       <g>
+                       </g>
+                       <g>
+                       </g>
+                       <g>
+                       </g>
+                       </svg>
+                        <input type="email" class="form-control  wdt-s" formControlName="email" placeholder="Email Id" autocomplete="off" writeOnly>
+                    </div>
+                        <div class="errors" *ngIf="loginForm.get('login').get('email').errors && (loginForm.get('login').get('email').touched || loginForm.get('login').get('email').dirty)">
+                            <p *ngIf="loginForm.get('login').get('email').errors && loginForm.get('login').get('email').errors.required" class="alert-msg"> Please Enter  Email</p>  
+                            <p *ngIf="loginForm.get('login').get('email').errors && loginForm.get('login').get('email').errors.pattern" class="alert-msg"> Enter Correct Email</p>
+                        </div>
+                    </div>
+                    <div  formGroupName="login" class="form-group pos-rel input-box">
+                        <div class="input-box-wrap d-flex">
+                            <svg class="lock-sg" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+    <g>
+        <g>
+            <path d="M384,213.333H128c-29.419,0-53.333,23.936-53.333,53.333v192C74.667,488.064,98.581,512,128,512h256
+                c29.419,0,53.333-23.936,53.333-53.333v-192C437.333,237.269,413.419,213.333,384,213.333z M416,458.667c0,17.643-14.357,32-32,32
+                H128c-17.643,0-32-14.357-32-32v-192c0-17.643,14.357-32,32-32h256c17.643,0,32,14.357,32,32V458.667z"/>
+        </g>
+    </g>
+    <g>
+        <g>
+            <path d="M256,0c-76.459,0-138.667,62.208-138.667,138.667V224c0,5.888,4.779,10.667,10.667,10.667h256
+                c5.888,0,10.667-4.779,10.667-10.667v-85.333C394.667,62.208,332.459,0,256,0z M373.333,213.333H138.667v-74.667
+                c0-64.704,52.651-117.333,117.333-117.333s117.333,52.629,117.333,117.333V213.333z"/>
+        </g>
+    </g>
+    <g>
+        <g>
+            <path d="M256,362.667c-5.888,0-10.667,4.779-10.667,10.667v64c0,5.888,4.779,10.667,10.667,10.667s10.667-4.779,10.667-10.667v-64
+                C266.667,367.445,261.888,362.667,256,362.667z"/>
+        </g>
+    </g>
+    <g>
+        <g>
+            <path d="M256,277.333c-29.419,0-53.333,23.936-53.333,53.333S226.581,384,256,384c29.419,0,53.333-23.936,53.333-53.333
+                S285.419,277.333,256,277.333z M256,362.667c-17.643,0-32-14.357-32-32c0-17.643,14.357-32,32-32c17.643,0,32,14.357,32,32
+                C288,348.309,273.643,362.667,256,362.667z"/>
+        </g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+    </g>
+    </svg>
+            <input type="password" class="form-control wdt-s" formControlName="password" id="signInPass" placeholder="Password" autocomplete="off" writeOnly>
+            <img src="../../assets/images/eye.svg" *ngIf="showPasswords" class="pos-abs" (click)="showPassword('signInPass')">
+            <img src="../../assets/images/close-eye.svg" *ngIf="!showPasswords" class="pos-abs" (click)="showPassword('signInPass')">            
+        </div>
+                        <div class="errors" *ngIf="loginForm.get('login').get('password').errors && (loginForm.get('login').get('password').touched || loginForm.get('login').get('password').dirty)">
+                            <p *ngIf="loginForm.get('login').get('password').errors && loginForm.get('login').get('password').errors.required" class="alert-msg"> Please Enter  Password</p>  
+                            <p *ngIf="loginForm.get('login').get('password').errors && loginForm.get('login').get('password').errors.pattern" class="alert-msg"> Enter Correct Password</p>
+                        </div>
+                    </div>
+                    <div  formGroupName="login" class="form-group pos-rel input-box">
+                        <div class="form-check">
+                            <input class="form-check-input form-control" type="checkbox" value="" id="defaultCheck1" formControlName="terms">
+                            <label class="form-check-label" for="defaultCheck1">
+                                I read and agree to the <span class="trm">Terms of Use.</span> 
+                            </label>
+                          </div>
+                    </div>
+    
+                    
+                    <div class="bottom-section up-spc admin-action">
+                        <button (click)="getLogin()" type="submit" id="signInLogin" class="sign-btn-bg-color">Sign In</button>
+                      </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+
+

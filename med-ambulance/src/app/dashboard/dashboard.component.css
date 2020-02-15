@@ -1,0 +1,29 @@
+.gr-t {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr !important;
+    grid-gap: 2rem;
+}
+.gr-t .card-st {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+.gr-t .inner-image-set {
+    margin: 0;
+    width: 60px;
+    height: 60px;
+}
+.gr-t .inner-box-card {
+    padding: 2rem;
+}
+.record-box .table thead tr th {
+    padding: 10px !important;
+}
+@media screen and (max-width:982px){
+    .gr-t {
+        display: grid;
+        grid-template-columns: 1fr !important;
+        grid-gap: 2rem;
+    }
+}

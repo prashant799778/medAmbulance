@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2{fill:#707070}
+        </style>
+    </defs>
+    <g id="home" transform="translate(-302 -261)">
+        <path id="Rectangle_5" d="M0 0h22v22H0z" class="cls-1" data-name="Rectangle 5" transform="translate(302 261)"/>
+        <g id="home-silhouette" transform="translate(304 262.917)">
+            <path id="Path_1" d="M17.812 6.59L9.283.178a.47.47 0 0 0-.565 0L.188 6.59a.47.47 0 0 0 .283.846h1.285v10.146a.47.47 0 0 0 .47.47h4.093a.47.47 0 0 0 .47-.47v-5.065h4.422v5.064a.47.47 0 0 0 .47.47h4.092a.47.47 0 0 0 .47-.47V7.437h1.287a.47.47 0 0 0 .283-.846z" class="cls-2" data-name="Path 1"/>
+        </g>
+    </g>
+</svg>

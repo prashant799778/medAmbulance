@@ -1,0 +1,42 @@
+<div class="row" >
+        <div class="col-sm-12 col-md-12 col-lg-12 margin-tp">
+            <div class="record-box neu-shadow table-responsive bg-white-fff border-round">
+                 <div class="upper-wrap">
+                    <h2 class="main-hading mr-bottom mr-remove">{{heading}}</h2>   
+                </div>
+                <table class="table">                               
+                    <thead>
+                        <tr>
+                            <th *ngFor="let tableHeading of tableHeading">{{tableHeading}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngIf="driverData && driverData.length > 0">
+                              <tr *ngFor="let driver of driverData ; let i =  index">
+                                    <td>{{i+1}}</td>  
+                                    <td>{{driver.name}}</td>
+                                    <td>{{driver.mobileNo}}</td>
+                                    <td>{{driver.email}}</td>
+                                    <td>{{driver.currentLocation}}</td>
+                                      <td>{{driver.dateCreate | date}}</td>
+                                      <td>{{driver.postTitle}}</td>
+                                      <td>{{getStatus(driver.status)}}</td>
+                                      <!-- <td class="txt-color-r text-uppercase"> -->
+                                              <!-- <button *ngIf="postStatus[i] == 0" type="button" class="btn ab-btn dc-bg-color-panding border-round-rem">Pending</button> -->
+                                              <!-- <button *ngIf="postStatus[i] == 1" type="button" class="btn ab-btn dc-bg-color-active border-round-rem">Approved</button> -->
+                                              <!-- <button *ngIf="postStatus[i] == 2" type="button" class="btn ab-btn dc-bg-color-inactive border-round-rem">Rejected</button> -->
+                                      <!-- </td> -->
+                                      <td>
+                                          <button type="button" class="acton-btn" (click)="policyDetail(driver.postId, driver.userTypeId)">
+                                              <img src="../../assets/images/view.svg" class="action-view">
+                                          </button>
+                                      </td>
+                                  </tr>
+                        </ng-container>
+                       
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

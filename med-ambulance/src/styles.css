@@ -1,1 +1,239 @@
-/* You can add global styles to this file, and also import other style files */
+*{margin: 0;padding: 0;list-style: none;text-decoration: none;font-weight: var(--f-family)}
+:root{
+	--body-bg-color:#eaeef3;
+	--f-family:'Poppins', sans-serif;
+	--space:235px;
+	--bar-color:#545454;
+	--border-clr:#bdbdbd;
+	--hight:60px;
+	--heading-sz:24px;
+	--h-color:#666666;
+	--info-card-bg1: linear-gradient(45deg, #a52dd8, #e29bf1);
+	--info-card-bg2: linear-gradient(45deg,#2ed8b6,#59e0c5);
+	--info-card-bg3: linear-gradient(45deg, #708090, #7c8ea0);
+	--info-card-bg4: linear-gradient(45deg, #f30c41, #eb66dd);
+}
+
+
+/* For ALL Css*/
+	.bg1{
+		background: var(--info-card-bg1)
+	}
+	.bg2{
+		background: var(--info-card-bg2)
+	}
+	.bg3{
+		background: var(--info-card-bg3)
+	}
+	.bg4{
+		background: var(--info-card-bg4)
+	}
+/* For All End Css*/
+
+body{
+	background-color: var(--body-bg-color);
+}
+.wrapper-container{
+	width: 100%;
+	position: relative;
+	height: 100vh;
+}
+
+/* Left Sidebar Section Css*/
+	.top-logo-side{
+		height: var(--hight);
+		background-color: var(--white);
+		text-decoration: none;
+		padding: 0px 10px;
+	}
+	.top-logo-side:hover{
+		text-decoration: none;
+	}
+
+	.logo-image > svg {
+	    width: 32px;
+	    height: 32px;
+	    object-fit: cover;
+	    object-position: center;
+	    fill: var(--red);
+	    margin-right:5px;
+	}
+
+	.logo-title {
+	    font-size: 25px;
+	    line-height: 43px;
+	    font-weight: 500;
+	    color: #000;
+	}
+
+	.left-sidebar{
+		width: var(--space);
+    	height: 100%;
+    	position: fixed;
+    	left: 0;
+    	top: 0;
+	}
+	.left-profile{
+	    padding: 20px 10px;
+	}
+	.p-img-box {
+	    width: 72px;
+	    height: 72px;
+	    overflow: hidden;
+	    border-radius: 50%;
+	    margin-right: 10px;
+	    border: 2px solid #fff;
+    	box-shadow: 0px 5px 25px 0px rgba(0,0,0,0.2);
+	}
+	.p-img-box > img {
+	    width: 100%;
+	    height: 100%;
+	    object-fit: cover;
+	    object-position: center;
+	}
+	.p-oprion ul {
+	    width: 100%;
+	    margin: 0;
+	}
+	.p-oprion ul li {
+	    display: block;
+	    margin-right: 10px;
+	}
+	.p-oprion h2 {
+	    font-size: 20px;
+	    line-height: 24px;
+	    font-weight: 400;
+	    color: #444444;
+	}
+	.p-oprion ul li img {
+	    width: 16px;
+	}
+
+	.sid-icon {
+	    display: inline-block;
+	    width: 14px;
+	    height: 14px;
+	    margin-right: 10px; 
+	}
+	.title {
+	    font-size: 14px;
+	    line-height: 24px;
+	    font-weight: 400;
+	    color: #17191c;
+	    display: inline-block;
+	}
+	.left-menu > li > a {
+	    padding: 17px 15px;
+	    display: block;
+	}
+	.left-menu > li > a:hover {
+		text-decoration: none;
+	}
+	.left-menu li.active > a{
+		background: #f1f1f1;
+
+	}
+	.left-menu li.active .menu-dropdown{
+		display: block !important;
+	}
+	.menu-dropdown {
+	    background: #e3e6e8;
+	    display: none;
+	}
+	.menu-dropdown > li > a {
+	    display: block;
+	    padding: 8px 15px 8px 44px;
+	    font-size: 14px;
+	    line-height: 24px;
+   		font-weight: 300;
+   		color: #444444;
+   		font-family: var(--f-family);
+	}
+	.menu-dropdown > li > a:hover {
+		text-decoration: none;
+	}
+/* Left Sidebar Section Css End*/
+
+/* Topbar Section Css */
+	.top-bar{
+		width: 100%;
+		margin-left: var(--space);
+	}
+	.inner-topbar {
+	    padding: 5px 0px;
+	}
+	.toggle{
+		height: 100%;
+		padding: 15px 17px;
+		border-top-left-radius: 20px;
+		cursor: pointer;
+	}
+	.toggle > div{
+		width: 20px;
+	    height: 3px;
+	    background-color: var(--bar-color);
+	    margin: 3px 0;
+	    border-radius: 5px;
+	}
+	.search-bar{
+	    background: var(--white);
+	    border: 1px solid var(--border-clr);
+	    padding:6px;
+	    border-radius: 20px; 
+	}
+	.search-bar > svg {
+	    width: 14px;
+	    position: relative;
+    	right: 10px;
+	}
+	.search-bar > input {
+	    border: 0px;padding: 0px 4px;
+	}
+	.search-bar > input:focus {
+	    outline:  0px;
+	}
+	.inner-topbar {
+	    height: var(--hight);
+	}
+/* Topbar Section Css End*/
+
+
+/* Main Container Css*/
+
+	.main-heading{
+		font-size: var(--heading-sz);
+		font-weight: 400;
+		color: var(--h-color);
+	}
+
+/* Main Container Css End*/
+
+
+.edit-btn {
+    border-radius: 50%;
+    padding: 0px;
+    background-color: #888 !important;
+    height: 30px;
+    width: 30px;
+    margin: 2px;
+    color: #fff;
+    box-shadow:0px 7px 7px -4px gray!important;
+}
+.delet-btn{
+    border-radius: 50%;
+    padding: 0px;
+    background-color: #f75353 !important;
+    height: 30px;
+    width: 30px;
+    margin: 2px;
+    color: #fff;
+    box-shadow: 0px 7px 7px -4px gray!important;
+}
+.edit-btn img, .delet-btn img{
+    width: 15px;
+}
+
+.edit-btn {
+    border: 0;
+    background: transparent;
+}

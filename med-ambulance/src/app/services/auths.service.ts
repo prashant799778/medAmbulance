@@ -23,7 +23,7 @@ export class AuthsService {
     // port = (this.window.location.port) ? ':' + this.window.location.port : '';
     // baseUrl = `${this.window.location.protocol}//${this.window.location.hostname}${this.port}`;
     // authUrl = this.baseUrl + '/api/auth';
-    baseUrl= 'http://134.209.153.34:5031/';
+    baseUrl= 'http://134.209.153.34:5077/';
     // baseUrl = `http://139.59.78.54:5021/`;
     isAuthenticated = false;
     loginSuccess: number;
@@ -34,6 +34,7 @@ export class AuthsService {
     online: number;
     isCheckedLogin: any;
     superAdminLogin: boolean;
+    loginEvent = new EventEmitter<any>();
     logoutEvent = new EventEmitter<any>();
     private onSubject = new Subject<{ key: string, value: any }>();
     public changes = this.onSubject.asObservable().pipe(share());
@@ -96,7 +97,7 @@ export class AuthsService {
   
   login(userLogin): Observable<boolean> {
     console.log(userLogin);
-    return this.http.get<boolean>(this.baseUrl + 'Login'+'?email='+userLogin.email+'&password='+userLogin.password )
+    return this.http.post<boolean>(this.baseUrl + 'adminLogin',userLogin )
         .pipe(
             map(loggedIn => {
                 let resp;
@@ -111,6 +112,7 @@ export class AuthsService {
                     console.log('hello super login false')
                     this.superAdminLogin = false;
                   }
+                  this.loginEvent.emit()
                   // this.userService.setSuperLogin(this.superAdminLogin)
                 
 
@@ -121,7 +123,7 @@ export class AuthsService {
                   // this.userAuthChanged(resp.status);
                 }
 
-               
+                
                 return loggedIn;
             }),
             catchError(this.handleError)
@@ -145,7 +147,8 @@ export class AuthsService {
     this.userAuthChanged(false);
     this.href = this.router.url;
     jQuery("#logout-pop").modal('hide')
-    this.router.navigateByUrl('/dashboard')
+    // this.router.navigateByUrl('/dashboard')
+    // this.
     this.logoutEvent.emit()
     
     

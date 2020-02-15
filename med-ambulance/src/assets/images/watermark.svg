@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1251" height="731" viewBox="0 0 1251 731">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2{clip-path:url(#clip-path)}.cls-3{opacity:.05}.cls-4{fill:#c99734}.cls-5{filter:url(#Path_2153)}.cls-6{filter:url(#Path_2152)}.cls-7{filter:url(#Path_2150)}.cls-8{filter:url(#Path_2147)}.cls-9{filter:url(#Path_2149)}.cls-10{filter:url(#Exclusion_1)}.cls-11{filter:url(#Path_2146)}.cls-12{filter:url(#Path_2145)}
+        </style>
+        <clipPath id="clip-path">
+            <path id="Rectangle_1935" d="M0 0h1251v731H0z" class="cls-1" data-name="Rectangle 1935" transform="translate(335.001 175)"/>
+        </clipPath>
+        <filter id="Path_2145" width="227.449" height="578.834" x="890.609" y="-9.346" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur result="blur" stdDeviation=".5"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="Path_2146" width="233.766" height="465.871" x="1290.257" y="-9.346" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur result="blur-2" stdDeviation=".5"/>
+            <feFlood flood-opacity=".278"/>
+            <feComposite in2="blur-2" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="Exclusion_1" width="175.137" height="175.637" x="1493.318" y="312.755" filterUnits="userSpaceOnUse">
+            <feOffset dy="2"/>
+            <feGaussianBlur result="blur-3" stdDeviation=".5"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-3" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="Path_2149" width="412.889" height="235.105" x="1067.614" y="498.395" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur result="blur-4" stdDeviation=".5"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-4" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="Path_2147" width="759.893" height="220.737" x="767.499" y="413.172" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur result="blur-5" stdDeviation=".5"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-5" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="Path_2150" width="274.337" height="164.317" x="1087.35" y="389.515" filterUnits="userSpaceOnUse">
+            <feOffset dy="1"/>
+            <feGaussianBlur result="blur-6"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-6" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="Path_2152" width="240.396" height="171.099" x="1107.253" y="115.011" filterUnits="userSpaceOnUse">
+            <feOffset dy="1"/>
+            <feGaussianBlur result="blur-7"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-7" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="Path_2153" width="349.645" height="126.724" x="1055.075" y="282.516" filterUnits="userSpaceOnUse">
+            <feOffset dy="1"/>
+            <feGaussianBlur result="blur-8"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur-8" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g id="Mask_Group_20" class="cls-2" data-name="Mask Group 20" transform="translate(-335.001 -175)">
+        <g id="Group_185" class="cls-3" data-name="Group 185" transform="translate(1104 165.654)">
+            <g id="Group_176" data-name="Group 176">
+                <g id="Group_172" class="cls-12" data-name="Group 172" transform="translate(-769 9.35)">
+                    <path id="Path_2145-2" d="M857.453 113.092c-44.7 18.666-86.338 35.61-108.443 43.518 0 27.918 2.689 106.615 29.531 202.311 19.366 69.068 54.163 156.211 116.677 240.4-11.567 2.69-23.026 5.272-34.32 7.638-60.357-84.668-94.46-171.273-113.773-240.5-34.586-124.159-30.337-218.402-30.176-222.329l.592-11.511 11.134-3.174c13.878-3.98 61.108-23.076 116.3-46.1-.056-.861-.056-1.775-.056-2.636a48.105 48.105 0 0 1 96.13-2.8c.052.915.106 1.883.106 2.8a48.13 48.13 0 0 1-83.7 32.383z" class="cls-4" data-name="Path 2145" transform="translate(175.4 -41.97)"/>
+                </g>
+                <g class="cls-11" transform="translate(-769 9.35)">
+                    <path id="Path_2146-2" d="M1021.766 138.267l-.861 11.888c-9.792 136.039-36.58 242.708-69.339 325.332q-20.011 9.2-42.872 18.5C945 412.928 976.2 303.945 987.822 159.622c-20.494-8.069-66-25.981-116.035-46.1-8.761 9.413-20.059 15.277-33.881 15.277C811.334 128.8 791 107.283 791 80.71v-1.076c0-11.35 3.225-21.732 10.005-29.8a2.235 2.235 0 0 1 .32-.377c8.875-10.328 21.3-16.837 35.984-16.837 26.523 0 47.448 21.516 47.448 48.09 0 1.076-.054 2.152-.11 3.174 66.434 26.734 124.854 49.6 126.036 50.08z" class="cls-4" data-name="Path 2146" transform="translate(500.76 -41.97)"/>
+                </g>
+                <g id="Group_174" class="cls-10" data-name="Group 174" transform="translate(-769.001 9.35)">
+                    <path id="Exclusion_1-2" d="M86.069 172.137a86.069 86.069 0 1 1 86.069-86.066 86.165 86.165 0 0 1-86.069 86.066zM60.584 38.675h-.009a106.826 106.826 0 0 0-18.748 23.613c-7.512 13.03-14.474 32.863-5 53.331 14.382 31.05 48.813 34.4 62.947 34.4 3.5 0 5.821-.21 6.224-.25-.022 0-.055 0-.092-.009a114.908 114.908 0 0 1-23.958-6.658c-11.931-4.783-27.925-13.8-36.36-29.574s-3.91-35.302 1.374-48.888a134.659 134.659 0 0 1 13.624-25.965zm44.176-6.395a53.79 53.79 0 1 0 53.79 53.79 53.851 53.851 0 0 0-53.79-53.79z" class="cls-4" data-name="Exclusion 1" transform="translate(1494.82 312.75)"/>
+                </g>
+                <g id="Group_175" class="cls-9" data-name="Group 175" transform="translate(-768.995 9.351)">
+                    <path id="Path_2149-2" d="M1158.8 255.733c-5.378 30.285-39.536 73.48-272.833 99.515l-6.406 2.367-7.038-5.218A708.372 708.372 0 0 1 749.61 236.261a2321.86 2321.86 0 0 0 35.339-8.338 674.1 674.1 0 0 0 99.3 92.9c19.2-9.359 71.168-39 125.332-106.346a561.6 561.6 0 0 0 47.449-69.445c16.183-6.025 31.738-12.049 46.525-18.02-23.286 45.884-47.873 81.925-70.52 109.789-27.535 33.887-54.435 58.739-77.455 76.705 151.582-23.722 169.765-53.792 171.426-63.42 2.588-14.523-24.789-34.749-40.014-42.334l14.361-28.886c6.724 3.334 65.141 33.727 57.447 76.867z" class="cls-4" data-name="Path 2149" transform="translate(319.5 371.38)"/>
+                </g>
+                <g id="Group_173" class="cls-8" data-name="Group 173" transform="translate(-769 9.348)">
+                    <path id="Path_2147-2" d="M785.746 327.4c-28.969 0-52.9-3.524-68.024-12.162-20.751-11.856-24.418-27.111-23.85-37.822 2.748-51.463 123.06-108 159.868-124.108l12.939 29.564C799.7 212.2 727.232 257.884 726.1 279.142c-.156 2.98 4.07 6.035 7.635 8.074 74.118 42.34 546.905-85.255 700.56-176.049l16.418 27.788c-72.441 42.808-227.651 99.365-386.22 140.741-77.252 20.151-197.702 47.704-278.747 47.704z" class="cls-4" data-name="Path 2147" transform="translate(75.18 302.01)"/>
+                </g>
+            </g>
+            <g id="Group_180" data-name="Group 180" transform="translate(286.076 53.331)">
+                <g id="Group_178" data-name="Group 178" transform="translate(32.275)">
+                    <g class="cls-7" transform="translate(-1087.35 -43.98)">
+                        <path id="Path_2150-2" d="M1027.337 125.494v61.215a1926.66 1926.66 0 0 1-21.519 7.423v-36.794c0-8.176-7.9-14.846-16.135-14.846-8.177 0-16.139 6.67-16.139 14.846v47.552l-16.137 5.164v-56.965c0-8.176-5.279-14.846-13.448-14.846-8.23 0-13.449 6.67-13.449 14.846V218.5c-9.037 2.851-12.639 5.594-21.518 8.284V140.34c0-8.176-7.964-14.846-16.138-14.846s-16.136 6.67-16.136 14.846v92.9c-7.315 2.206-9.093 4.3-16.137 6.4v-86.551c0-8.176-7.97-14.846-16.139-14.846s-16.136 6.67-16.136 14.846V249a682.58 682.58 0 0 1-10.76 3.066v-94.728c0-8.176-10.656-14.846-18.825-14.846s-18.832 6.67-18.832 14.846v105.325c-10.7 3.013-19.793 5.487-26.892 7.423V126.031s118.342-42.979 274.34-.537z" class="cls-4" data-name="Path 2150" transform="translate(334.35 282.75)"/>
+                    </g>
+                    <g id="Group_177" data-name="Group 177" transform="translate(19.903)">
+                        <path id="Union_1" d="M0 72.187c2.3-12.425 9.186-22.425 25.321-24.23V24.473h-.094a12.226 12.226 0 1 1 2.225-.2v23.684c16.14 0 27.927 10.95 30.084 25.213A92.178 92.178 0 0 0 0 72.187z" class="cls-4" data-name="Union 1" transform="translate(88.762)"/>
+                        <g class="cls-6" transform="translate(-1107.25 -43.98)">
+                            <path id="Path_2152-2" d="M908.93 107.5V65.108a.913.913 0 0 0 .324.161l.375-2.959c-37.223-14.739-68.851-.107-69.181.054l.221 2.851c.053 0 3.712-.807 3.712-1.829v45.293C763.693 129.228 756.7 225.837 756.7 225.837s138.515-34.48 240.4 0c0 0-2.1-100.644-88.17-118.337zm-43.03-1.941h-16.139V73.284H865.9zm10.76 0h-5.378V73.284h5.378zm26.892 0h-16.138V73.284h16.136z" class="cls-4" data-name="Path 2152" transform="translate(350.55 59.27)"/>
+                        </g>
+                    </g>
+                </g>
+                <g class="cls-5" transform="translate(-1055.07 -43.98)">
+                    <path id="Path_2153-2" d="M1053.613 176.507v-76.438c-69.983-19.311-160.458-13.5-215.167-7.047a546.889 546.889 0 0 0-16.137 2.044c-3.74.49-7.349 1.07-10.759 1.651v-.01s-5.709.623-16.137 2.41V99.1c-3.5.591-5.38.968-5.38.968v76.438s-26.9 7.961-43.034 13.824v21.732s162.668-61 349.645.538v-23.344zM811.55 165.534l-13.077 2.582v-61.592l13.077-2.85zm21.408-8.069h-10.649V103.34l10.649-2.582zm10.866 0v-56.707l10.429-2.463.329 59.171zm32.276-5.379h-10.757v-55.47l10.757-.506zm21.52 0h-10.763V98.127L897.62 95.6zm21.514 0h-10.758V96.11l11 .334zm16.138 0h-10.758v-54.97l10.758-4.2zm21.517 0h-10.76V92.914l10.76 2.018zm21.516 5.379h-10.759V92.914l10.754 2.018zm21.083.538l-13.229-2.313.549-59.08 13.6 2.012zm9.913 2.023l-.732-60.892 11.758 3.866-.166 59.338zm35.869 8.09l-14.15-2.959.572-61.484h14.057z" class="cls-4" data-name="Path 2153" transform="translate(308.08 195.64)"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
