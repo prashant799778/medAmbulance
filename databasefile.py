@@ -50,7 +50,7 @@ def SelectQuery(table,columns,whereCondition):
             data = {"status":"true","message":"","result":data}
         else:
             data = {"status":"false","message":"No Data Found","result":[]}
-
+        return data
 
     except Exception as e:
         print("Error--->" + str(e))            
