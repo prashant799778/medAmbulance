@@ -180,7 +180,7 @@ def userSignup():
 
            
 
-            UserId = commonfile.CreateHashKey(Mobile)
+            UserId = commonfile.CreateHashKey(Mobile,userTypeId)
             
             WhereCondition = " and mobile = '" + str(Mobile) + "'"
             count = databasefile.SelectCountQuery("userMaster",WhereCondition,"")
