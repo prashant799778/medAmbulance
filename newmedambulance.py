@@ -241,7 +241,7 @@ def userSignup():
 
                 if 'appVersion' in inputdata:
                     appVersion=inputdata["appVersion"] 
-                    column=column+" ,city"
+                    column=column+" ,appVersion"
                     values=values+"','"+str(deviceName)
 
 
