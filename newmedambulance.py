@@ -254,6 +254,10 @@ def userSignup():
                     email=inputdata["email"]
                     column=column+" ,email"
                     values=values+"','"+str(email)
+                if 'password' in inputdata:
+                    password=inputdata["password"]
+                    column=column+" ,password"
+                    values=values+"','"+str(password)
 
 
  
