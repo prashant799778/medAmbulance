@@ -24,7 +24,7 @@ import ConstantData
 
 from flask import Flask, render_template
 from flask_socketio import SocketIO
-
+import pyotp
 import socketio
 
 # standard Python
@@ -178,7 +178,10 @@ def userSignup():
             
            
 
-           
+            
+            totp = pyotp.TOTP('base32secret3232')
+            print("Current OTP:", totp.now()[0:4])
+            otp=int(totp.now()[0:4])
 
             UserId = commonfile.CreateHashKey(Mobile,userTypeId)
             
@@ -252,10 +255,10 @@ def userSignup():
  
                 currentLocationlatlong=""
 
-                column="mobile,userId,userTypeId"+column
+                column="mobile,userId,userTypeId,otp"+column
                 
                 
-                values=  "'"+str(Mobile)+"','"+str(UserId)+"','"+str(userTypeId)+values+ "'"
+                values=  "'"+str(Mobile)+"','"+str(UserId)+"','"+str(userTypeId)+"','"+str(otp)+values+ "'"
                 data=databasefile.InsertQuery("userMaster",column,values)
              
 
