@@ -519,6 +519,36 @@ def addDriver():
         output = {"result":"something went wrong","status":"false"}
         return output
 
+@app.route('/adminLogin', methods=['POST'])
+def adminLogin():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['email','mobile']
+        commonfile.writeLog("adminLogin",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            email = inputdata["email"]
+            password = inputdata["password"]
+            column=  "us.mobileNo,us.name,um.usertype,us.userId"
+            whereCondition= "us.email = '" + str(email) + "' and us.password = '" + password + "'  and  us.usertypeId=um.Id"
+            loginuser=databasefile.SelectQuery1("userMaster as us,usertypeMaster as um",column,whereCondition)
+            if (loginuser!=0):   
+                Data = {"result":loginuser,"status":"true"}                  
+                return Data
+            else:
+                data={"status":"Failed","result":"Login Failed"}
+                return data
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
 
 #Login
 @app.route('/Login', methods=['POST'])
