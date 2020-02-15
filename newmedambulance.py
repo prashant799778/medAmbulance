@@ -295,15 +295,12 @@ def verifyOtp():
 
             column="mobileNo,otp"
             whereCondition= "  otp='" + otp+ "' and mobileNo='" + mobileNo+"'"
-            data1=databasefile.SelectQuery(" userMaster ",column,whereCondition)
-            print("data1======",data1)
-            if  (data1["status"]!="false") or data1!=None: 
-                print("11111111111111")  
-                Data = {"status":"true","message":"","result":data1["result"]}                  
-                return Data
+            verifyOtp=databasefile.SelectQuery(" userMaster ",column,whereCondition)
+            print("verifyOtp======",verifyOtp)
+            if  (verifyOtp["status"]!="false") or verifyOtp!=None: 
+                return verifyOtp
             else:
-                data = {"status":"false","message":"Invalid OTP","result":""}
-                return data      
+                return verifyOtp 
         else:
             return msg         
  
@@ -519,38 +516,9 @@ def addDriver():
         output = {"result":"something went wrong","status":"false"}
         return output
 
-@app.route('/adminLogin', methods=['POST'])
-def adminLogin():
-    try:
-        inputdata =  commonfile.DecodeInputdata(request.get_data())
-        startlimit,endlimit="",""
-        keyarr = ['email','mobile']
-        commonfile.writeLog("adminLogin",inputdata,0)
-        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
-        if msg == "1":
-            email = inputdata["email"]
-            password = inputdata["password"]
-            column=  "us.mobileNo,us.name,um.usertype,us.userId"
-            whereCondition= "us.email = '" + str(email) + "' and us.password = '" + password + "'  and  us.usertypeId=um.Id"
-            loginuser=databasefile.SelectQuery1("userMaster as us,usertypeMaster as um",column,whereCondition)
-            if (loginuser!=0):   
-                Data = {"result":loginuser,"status":"true"}                  
-                return Data
-            else:
-                data={"status":"Failed","result":"Login Failed"}
-                return data
-        else:
-            return msg 
-    except KeyError as e:
-        print("Exception---->" +str(e))        
-        output = {"result":"Input Keys are not Found","status":"false"}
-        return output    
-    except Exception as e :
-        print("Exception---->" +str(e))           
-        output = {"result":"something went wrong","status":"false"}
-        return output
 
-#Login
+
+#user Login
 @app.route('/Login', methods=['POST'])
 def login():
     try:
@@ -1818,6 +1786,41 @@ def trackRider():
 
 
 
+
+#==========================================admin==================================================
+
+@app.route('/adminLogin', methods=['POST'])
+def adminLogin():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['email','password']
+        commonfile.writeLog("adminLogin",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            email = inputdata["email"]
+            password = inputdata["password"]
+            column=  "us.mobileNo,us.name,us.userTypeId,um.usertype,us.userId"
+            whereCondition= " us.email = '" + str(email) + "' and us.password = '" + password + "'  and  us.usertypeId=um.id"
+            loginuser=databasefile.SelectQuery("userMaster as us,usertypeMaster as um",column,whereCondition)
+            if (loginuser!=0):   
+                Data = {"result":loginuser,"status":"true"}                  
+                return Data
+            else:
+                data={"status":"Failed","result":"Login Failed"}
+                return data
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+#==========================================admin==================================================
 
 
 
