@@ -159,7 +159,7 @@ def userSignup():
         inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
         keyarr = ['mobile','userTypeId']
-        commonfile.writeLog("addUser",inputdata,0)
+        commonfile.writeLog("userSignup",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
        
         if msg == "1":
@@ -180,7 +180,7 @@ def userSignup():
 
            
 
-            UserId = commonfile.CreateHashKey(Mobile,Name)
+            UserId = commonfile.CreateHashKey(Mobile)
             
             WhereCondition = " and mobile = '" + str(Mobile) + "'"
             count = databasefile.SelectCountQuery("userMaster",WhereCondition,"")
