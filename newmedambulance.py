@@ -47,12 +47,118 @@ geocoder = GoogleGeocoder("AIzaSyB0Pz6VjrQmWPCCbDbWDuyjo79GhDJPOlI")
 
 
 
+# @app.route('/addUser', methods=['POST'])
+# def addUser():
+#     try:
+#         inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+#         startlimit,endlimit="",""
+#         keyarr = ['name','mobile','userTypeId','email','password']
+#         commonfile.writeLog("addUser",inputdata,0)
+#         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+       
+#         if msg == "1":
+#             imeiNo,country,city,deviceName,deviceId,deviceType="","","","","",""
+#             os,appVersion,notificationToken,ipAddress,userAgent="","","","",""
+#             currentLocation,currentLocation="",""
+            
+#             Name = inputdata["name"]
+#             userTypeId = inputdata["userTypeId"]
+#             Mobile=inputdata["mobile"]
+#             Email = inputdata["email"]
+#             password = inputdata["password"]
+#             # currentLocation=inputdata["currentLocation"]
+#             # currentLocationlatlong=inputdata["currentLocationlatlong"]
+
+            
+           
+
+           
+
+#             UserId = commonfile.CreateHashKey(Mobile,Name)
+            
+#             WhereCondition = " and mobile = '" + str(Mobile) + "' and password = '" + str(password) + "'"
+#             count = databasefile.SelectCountQuery("userMaster",WhereCondition,"")
+            
+#             if int(count) > 0:
+#                 return commonfile.EmailMobileAlreadyExistMsg()
+#             else:
+#                 if 'imeiNo' in inputdata:
+#                     imeiNo=inputdata["imeiNo"] 
+
+#                 if 'deviceName' in inputdata:
+#                     deviceName=inputdata["deviceName"]
+
+#                 if 'country' in inputdata:
+#                     country=inputdata["country"]
+
+#                 if 'city' in inputdata:
+#                     city=inputdata["city"]
+
+#                 if 'ipAddress' in inputdata:
+#                     ipAddress=inputdata["ipAddress"]
+
+#                 if 'userAgent' in inputdata:
+#                     userAgent=inputdata["userAgent"]
+
+
+#                 if 'deviceId' in inputdata:
+#                     deviceId=inputdata["deviceId"]
+
+                
+#                 if 'os' in inputdata:
+#                     os=inputdata["os"]
+
+                
+#                 if 'deviceType' in inputdata:
+#                     deviceType=inputdata["deviceType"]
+
+#                 if 'appVersion' in inputdata:
+#                     appVersion=inputdata["appVersion"] 
+
+
+#                 if 'notificationToken' in inputdata:
+#                     notificationToken=inputdata["notificationToken"]
+
+
+
+ 
+#                 currentLocationlatlong=""
+
+#                 column="name,password,mobile,userId,imeiNo,deviceName,currentLocation,currentLocationlatlong,usertypeId,email,country,city, "
+#                 column=column+ "ipAddress,userAgent,deviceId,os,deviceType,appVersion,notificationToken"
+
+#                 values =  "'"+str(Name)+"','"+str(password)+"','"
+#                 values= values +str(Mobile)+"','"+str(UserId)+"','"+str(imeiNo)+"','"+str(deviceName)+"','"
+#                 values= values+str(currentLocation)+"','"+str(currentLocationlatlong)+"','"+str(userTypeId)+"','"
+#                 values= values+str(Email)+"','"+str(country)+"','"+str(city)+"','"
+#                 values= values+str(ipAddress)+"','"+str(userAgent)+"','"+str(deviceId)+"','"
+#                 values= values+str(os)+"','"+str(deviceType)+"','"+str(appVersion)+ "','"+str(notificationToken)+ "'"
+#                 data=databasefile.InsertQuery("userMaster",column,values)
+             
+
+#                 if data != "0":
+#                     column = '*'
+                    
+#                     data = databasefile.SelectQuery2("userMaster",column,WhereCondition,"",startlimit,endlimit)
+#                     print(data)
+#                     Data = {"status":"true","message":"","result":data["result"]}                  
+#                     return Data
+#                 else:
+#                     return commonfile.Errormessage()
+                        
+#         else:
+#             return msg 
+#     except Exception as e :
+#         print("Exception---->" +str(e))           
+#         output = {"status":"false","message":"something went wrong","result":""}
+#         return output
+
 @app.route('/addUser', methods=['POST'])
 def addUser():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
-        keyarr = ['name','mobile','userTypeId','email','password']
+        keyarr = ['mobile','userTypeId']
         commonfile.writeLog("addUser",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
        
@@ -60,12 +166,12 @@ def addUser():
             imeiNo,country,city,deviceName,deviceId,deviceType="","","","","",""
             os,appVersion,notificationToken,ipAddress,userAgent="","","","",""
             currentLocation,currentLocation="",""
+            column,values="",""
             
-            Name = inputdata["name"]
+           
             userTypeId = inputdata["userTypeId"]
             Mobile=inputdata["mobile"]
-            Email = inputdata["email"]
-            password = inputdata["password"]
+            
             # currentLocation=inputdata["currentLocation"]
             # currentLocationlatlong=inputdata["currentLocationlatlong"]
 
@@ -76,7 +182,7 @@ def addUser():
 
             UserId = commonfile.CreateHashKey(Mobile,Name)
             
-            WhereCondition = " and mobile = '" + str(Mobile) + "' and password = '" + str(password) + "'"
+            WhereCondition = " and mobile = '" + str(Mobile) + "'"
             count = databasefile.SelectCountQuery("userMaster",WhereCondition,"")
             
             if int(count) > 0:
@@ -84,55 +190,72 @@ def addUser():
             else:
                 if 'imeiNo' in inputdata:
                     imeiNo=inputdata["imeiNo"] 
+                    column=column+",imeiNo "
+                    values=values+"','"+str(deviceName)
 
                 if 'deviceName' in inputdata:
                     deviceName=inputdata["deviceName"]
-
+                    column=column+" ,deviceName "
+                    values=values+"','"+str(deviceName)
+                
                 if 'country' in inputdata:
                     country=inputdata["country"]
-
+                    column=column+" ,country "
+                    values=values+"','"+str(deviceName)
+                
                 if 'city' in inputdata:
                     city=inputdata["city"]
+                    column=column+" ,city"
+                    values=values+"','"+str(deviceName)
 
                 if 'ipAddress' in inputdata:
                     ipAddress=inputdata["ipAddress"]
+                    column=column+" ,ipAddress"
+                    values=values+"','"+str(deviceName)
 
                 if 'userAgent' in inputdata:
                     userAgent=inputdata["userAgent"]
+                    column=column+" ,userAgent"
+                    values=values+"','"+str(deviceName)
 
 
                 if 'deviceId' in inputdata:
                     deviceId=inputdata["deviceId"]
+                    column=column+" ,deviceId"
+                    values=values+"','"+str(deviceName)
 
                 
                 if 'os' in inputdata:
                     os=inputdata["os"]
+                    column=column+" ,os"
+                    values=values+"','"+str(deviceName)
 
                 
                 if 'deviceType' in inputdata:
                     deviceType=inputdata["deviceType"]
+                    column=column+" ,deviceType"
+                    values=values+"','"+str(deviceName)
 
                 if 'appVersion' in inputdata:
                     appVersion=inputdata["appVersion"] 
+                    column=column+" ,city"
+                    values=values+"','"+str(deviceName)
 
 
                 if 'notificationToken' in inputdata:
                     notificationToken=inputdata["notificationToken"]
+                    column=column+" ,appVersion"
+                    values=values+"','"+str(deviceName)
 
 
 
  
                 currentLocationlatlong=""
 
-                column="name,password,mobile,userId,imeiNo,deviceName,currentLocation,currentLocationlatlong,usertypeId,email,country,city, "
-                column=column+ "ipAddress,userAgent,deviceId,os,deviceType,appVersion,notificationToken"
-
-                values =  "'"+str(Name)+"','"+str(password)+"','"
-                values= values +str(Mobile)+"','"+str(UserId)+"','"+str(imeiNo)+"','"+str(deviceName)+"','"
-                values= values+str(currentLocation)+"','"+str(currentLocationlatlong)+"','"+str(userTypeId)+"','"
-                values= values+str(Email)+"','"+str(country)+"','"+str(city)+"','"
-                values= values+str(ipAddress)+"','"+str(userAgent)+"','"+str(deviceId)+"','"
-                values= values+str(os)+"','"+str(deviceType)+"','"+str(appVersion)+ "','"+str(notificationToken)+ "'"
+                column="mobile,userId,userTypeId"+column
+                
+                
+                values=  "'"+str(Mobile)+"','"+str(UserId)+"','"+str(userTypeId)+values+ "'"
                 data=databasefile.InsertQuery("userMaster",column,values)
              
 
@@ -152,6 +275,8 @@ def addUser():
         print("Exception---->" +str(e))           
         output = {"status":"false","message":"something went wrong","result":""}
         return output
+
+
 
 
 
