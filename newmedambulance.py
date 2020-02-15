@@ -190,7 +190,17 @@ def userSignup():
             count = databasefile.SelectCountQuery("userMaster",WhereCondition,"")
             
             if int(count) > 0:
-                return commonfile.EmailMobileAlreadyExistMsg()
+                WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
+                column = " otp = '" + str(otp)  + "'"
+                updateOtp = databasefile.UpdateQuery("userMaster",column,WhereCondition)
+                print(updateOtp,'updatedata')
+                if updateOtp != "0":
+                    column = '*'
+                    data = databasefile.SelectQuery("userMaster",column,WhereCondition)                  
+                    return data
+                else:
+                    return commonfile.Errormessage()
+                
             else:
                 if 'imeiNo' in inputdata:
                     imeiNo=inputdata["imeiNo"] 
