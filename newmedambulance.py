@@ -153,8 +153,8 @@ geocoder = GoogleGeocoder("AIzaSyB0Pz6VjrQmWPCCbDbWDuyjo79GhDJPOlI")
 #         output = {"status":"false","message":"something went wrong","result":""}
 #         return output
 
-@app.route('/addUser', methods=['POST'])
-def addUser():
+@app.route('/userSignup', methods=['POST'])
+def userSignup():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
