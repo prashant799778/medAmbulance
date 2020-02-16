@@ -1816,7 +1816,7 @@ def getNearAmbulance():
         if msg == "1":
             userLat ,userLng= inputdata["lat"],inputdata["lng"]
             column=  " d.name, d.mobileNo, d.ambulanceId, a.ambulanceNo, a.lat, a.lng "
-            whereCondition= " a.onTrip=0 and a.onDuty=1 and a.ambulanceId=d.ambulanceId"
+            whereCondition= " and a.onTrip=0 and a.onDuty=1 and a.ambulanceId=d.ambulanceId"
             
             #=" ((45.11-"+str(userLat)+") + (45.11-"+str(userLng)+")) limit 1"
             loginuser=databasefile.SelectQueryOrderbyAsc("ambulance a, driverMaster d",column,whereCondition,"","","","")
