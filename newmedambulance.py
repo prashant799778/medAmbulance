@@ -1816,10 +1816,10 @@ def getNearAmbulance():
         if msg == "1":
             userLat ,userLng= inputdata["lat"],inputdata["lng"]
             column=  " d.name, d.mobileNo, d.ambulanceId, a.ambulanceNo, a.lat, a.lng "
-            whereCondition= " and a.onTrip=0 and a.onDuty=1 and a.ambulanceId=d.ambulanceId"
-            
-            #=" ((45.11-"+str(userLat)+") + (45.11-"+str(userLng)+")) limit 1"
-            loginuser=databasefile.SelectQueryOrderbyAsc("ambulance a, driverMaster d",column,whereCondition,"","","","")
+            whereCondition= " a.onTrip=0 and a.onDuty=1 and a.ambulanceId=d.ambulanceId"
+            print("1111111111111")
+            orderby=" ((a.lat-"+str(userLat)+") + (a.lng-"+str(userLng)+")) limit 1"
+            loginuser=databasefile.SelectQuery("ambulance a, driverMaster d",column,whereCondition)
             if (loginuser!=0):   
                                
                 return loginuser
