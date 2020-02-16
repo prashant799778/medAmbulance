@@ -1015,7 +1015,8 @@ def addbooking():
         print('Entered')
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ['pickup','drop','userId','mobileNo','selectBookingDate','ambulanceId','driverlocation']
+        #keyarr = ['pickup','drop','userId','mobileNo','selectBookingDate','ambulanceId','driverlocation']
+        keyarr = ['pickup','drop','userId','mobileNo','ambulanceId']
         commonfile.writeLog("addbookingambulance",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg=="1":
@@ -1023,9 +1024,9 @@ def addbooking():
             drop = inputdata["drop"]
             userId = inputdata["userId"]
             mobileNo = inputdata["mobileNo"]
-            selectBookingDate = inputdata["selectBookingDate"]
+            ##selectBookingDate = inputdata["selectBookingDate"]
             ambulanceId = inputdata["ambulanceId"]
-            driverlocation = inputdata["driverlocation"]
+            ###driverlocation = inputdata["driverlocation"]
             #bookingId =  commonfile.CreateHashKey(mobileNo,pickup)
 
             search = geocoder.get(pickup)
@@ -1033,12 +1034,12 @@ def addbooking():
             search2=geocoder.get(drop)
             print(search2,'searchdrop')
             
-            search3 = geocoder.get(driverlocation)
-            search3[0].geometry.location
-            driverlattitude= search3[0].geometry.location.lat
-            print(driverlattitude,'driverfromlat')
-            driverlongitude=search3[0].geometry.location.lng
-            print(driverlongitude,'driverfromlng')
+            # search3 = geocoder.get(driverlocation)
+            # search3[0].geometry.location
+            # driverlattitude= search3[0].geometry.location.lat
+            # print(driverlattitude,'driverfromlat')
+            # driverlongitude=search3[0].geometry.location.lng
+            # print(driverlongitude,'driverfromlng')
 
             search[0].geometry.location
             search2[0].geometry.location
@@ -1804,7 +1805,37 @@ def trackRider():
         return output
 
 
-
+@app.route('/getNearAmbulance', methods=['POST'])
+def getNearAmbulance():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['lat','lng']
+        commonfile.writeLog("getNearAmbulance",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            userLat = inputdata["lat"]
+            userLng = inputdata["lng"]
+            column=  " d.name, d.mobileNo, d.ambulanceId, a.ambulanceNo, a.lat, a.lng "
+            whereCondition= " a.on_trip=0 and a.on_duty=1 and a.ambulanceId=d.ambulanceId"
+            orderby=" ((a.lat-"+userLat+") + (a.lng-"+userLng+")) limit 1"
+            loginuser=databasefile.SelectQuery("ambulance a, driverMaster d",column,whereCondition)
+            if (loginuser!=0):   
+                               
+                return loginuser
+            else:
+                
+                return loginuser
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
 
 
 
