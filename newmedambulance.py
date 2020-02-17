@@ -1009,6 +1009,7 @@ def addhospital():
 #         output = {"result":"something went wrong","status":"false"}
 #         return output
 
+#changed
 @app.route('/addbookingambulance', methods=['POST'])
 def addbooking():
     try:
@@ -1076,8 +1077,8 @@ def addbooking():
             print(d2,'d2')
 
            
-            column="id,mobileNo"
-            whereCondition="verificationStatus<>'F'"
+            column="id,mobileNo,currentlatlong,currentLocation"
+            whereCondition="drivingStatus<>'1'"
             datavv= databasefile.SelectQuery1("driverMaster",column,whereCondition)
             print(datavv,'data')
             distanceLongitude = fromlongitude - driverlongitude
@@ -1803,6 +1804,7 @@ def trackRider():
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
         return output
+
 
 
 @app.route('/getNearAmbulance', methods=['POST'])
