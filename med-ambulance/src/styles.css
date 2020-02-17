@@ -3,6 +3,7 @@
 	--body-bg-color:#eaeef3;
 	--f-family:'Poppins', sans-serif;
 	--space:235px;
+	--tg-space:70px;
 	--bar-color:#545454;
 	--border-clr:#bdbdbd;
 	--hight:60px;
@@ -12,6 +13,10 @@
 	--info-card-bg2: linear-gradient(45deg,#2ed8b6,#59e0c5);
 	--info-card-bg3: linear-gradient(45deg, #708090, #7c8ea0);
 	--info-card-bg4: linear-gradient(45deg, #f30c41, #eb66dd);
+	--card-bg1:#9440b3;
+	--card-bg2:#2faf96;
+	--card-bg3:#5c6a77;
+	--card-bg4:#c11e59;
 }
 
 
@@ -27,6 +32,24 @@
 	}
 	.bg4{
 		background: var(--info-card-bg4)
+	}
+	.card-img-bg1{
+		background-color: var(--card-bg1);
+	}
+	.card-img-bg2{
+		background-color: var(--card-bg2);
+	}
+	.card-img-bg3{
+		background-color: var(--card-bg3);
+	}
+	.card-img-bg4{
+		background-color: var(--card-bg4);
+	}
+	.border-rad{
+		border-radius: 25px;
+	}
+	.shadow-box{
+		box-shadow: 0 5px 20px rgba(0, 0, 0, .1);
 	}
 /* For All End Css*/
 
@@ -125,12 +148,14 @@ body{
 	.left-menu > li > a {
 	    padding: 17px 15px;
 	    display: block;
+	    transition: 0.5s
 	}
 	.left-menu > li > a:hover {
 		text-decoration: none;
 	}
 	.left-menu li.active > a{
 		background: #f1f1f1;
+		white-space: nowrap;
 
 	}
 	.left-menu li.active .menu-dropdown{
@@ -151,6 +176,31 @@ body{
 	}
 	.menu-dropdown > li > a:hover {
 		text-decoration: none;
+	}
+	.wrapper-container.collapse > .left-sidebar {
+   	 	width: var(--tg-space);
+   	     transition: 0.5s;
+	}
+	.wrapper-container.collapse > .left-sidebar > .top-logo-side > .logo-title{
+		display: none !important;
+	}
+	.wrapper-container.collapse > .left-sidebar > .left-profile{
+		display: none !important;
+	}
+	.wrapper-container.collapse > .top-bar{
+		width: calc(100% - 70px);
+		margin-left: 70px;
+	}
+	.wrapper-container.collapse > .left-sidebar > .left-menu li a{
+		text-align: center;
+		transition: 0.5s;
+	}
+	.wrapper-container.collapse > .left-sidebar > .left-menu li a > .sid-icon{
+		margin: 0px;
+	}
+	.wrapper-container.collapse > .left-sidebar > .left-menu li a > .title{
+		display: none;
+		transition: 0.5s;
 	}
 /* Left Sidebar Section Css End*/
 
@@ -205,35 +255,29 @@ body{
 		font-weight: 400;
 		color: var(--h-color);
 	}
-
+	.info-card-box {
+	    display: grid;
+	    grid-template-columns: 1fr 1fr 1fr 1fr;
+	    grid-gap: 1rem;
+	    margin: 16px 0;
+	}
+	.inner-img-section svg {
+	    width: 24px;
+	    height: 24px;
+	    object-fit: cover;
+	    object-position: center;
+	    fill: var(--white);
+	}
+	.info-title, .percent-sect{
+		display: block;
+	    font-size: 16px;
+	    white-space: nowrap;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    font-weight: 400;
+	}
+	.count {
+	    font-weight: 300;
+	    font-size: 21px;
+	}
 /* Main Container Css End*/
-
-
-.edit-btn {
-    border-radius: 50%;
-    padding: 0px;
-    background-color: #888 !important;
-    height: 30px;
-    width: 30px;
-    margin: 2px;
-    color: #fff;
-    box-shadow:0px 7px 7px -4px gray!important;
-}
-.delet-btn{
-    border-radius: 50%;
-    padding: 0px;
-    background-color: #f75353 !important;
-    height: 30px;
-    width: 30px;
-    margin: 2px;
-    color: #fff;
-    box-shadow: 0px 7px 7px -4px gray!important;
-}
-.edit-btn img, .delet-btn img{
-    width: 15px;
-}
-
-.edit-btn {
-    border: 0;
-    background: transparent;
-}
