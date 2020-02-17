@@ -1849,7 +1849,7 @@ def bookRide():
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
             ambulanceId= inputdata["ambulanceId"]
-            whereCondition=" and  ambulanceId= '"+ str(Id)+"'"
+            whereCondition=" and  ambulanceId= '"+ str(ambulanceId)+"'"
             column=" onTrip=1 "
             data=databasefile.UpdateQuery("ambulance",column,whereCondition)
             if (loginuser!=0):   
