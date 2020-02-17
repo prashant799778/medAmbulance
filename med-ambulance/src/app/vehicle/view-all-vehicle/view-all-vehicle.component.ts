@@ -38,7 +38,7 @@ export class ViewAllVehicleComponent implements OnInit {
 				'tripCount': 10,
 				'status': 1
 			},
-			{	'image': 'http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/dp.jpg',
+			{	'image': 'http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/user/usrbig5.jpg',
 				'name':'Vijay Pal',
 				'mobileNo': 8888517655,
 				'email': 'vijay@gmail.com',
@@ -47,7 +47,7 @@ export class ViewAllVehicleComponent implements OnInit {
 				'tripCount': 10,
 				'status': 1
 			},
-			{	'image': 'http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/dp.jpg',
+			{	'image': 'http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/user/usrbig7.jpg',
 				'name':'Vijay Pal',
 				'mobileNo': 8888517655,
 				'email': 'vijay@gmail.com',
