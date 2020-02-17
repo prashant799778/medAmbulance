@@ -1853,7 +1853,7 @@ def bookRide():
             column=" onTrip=1 "
             bookRide=databasefile.UpdateQuery("ambulance",column,whereCondition)
             if (bookRide!=0):   
-                               
+                bookRide["message"]="ride booked Successfully"             
                 return bookRide
             else:
                 
