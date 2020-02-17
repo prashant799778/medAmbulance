@@ -190,9 +190,9 @@
                     android:padding="5dp"
                     android:layout_marginLeft="19dp"
                     android:textSize="12dp"
-                    android:layout_marginRight="14dp"
+                    android:layout_marginRight="14dp">
 
-></EditText>
+                </EditText>
 
 
 

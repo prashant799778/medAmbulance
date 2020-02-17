@@ -34,7 +34,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import com.MedAmbulance.Api_Calling.MyResult;
+import com.MedAmbulance.Comman.Api_Calling;
+import com.MedAmbulance.Comman.URLS;
 import com.MedAmbulance.R;
+import com.MedAmbulance.Widget.Atami_Regular;
 import com.MedAmbulance.util.DirectionsJSONParser;
 import com.MedAmbulance.util.PlaceJSONParserTemp;
 import com.google.android.gms.common.ConnectionResult;
@@ -59,6 +63,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -80,7 +85,7 @@ import java.util.Timer;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+        LocationListener, MyResult {
 
     int flag = 0;
     boolean isSourceSet = false, tripStarted = false;
@@ -89,6 +94,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     String TAG = "LocationSelect";
     int AUTOCOMPLETE_SOURCE = 1, AUTOCOMPLETE_DESTINATITON = 2;
     GoogleMap mMap;
+
+    //textView
+    Atami_Regular  text_als,text_bls,text_dbt,text_pvt;
+
+    MyResult myResult;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     Marker mCurrLocationMarker, source_location_marker, destination_location_marker;
@@ -110,6 +120,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        text_als= findViewById(R.id.text_als);
+        text_bls= findViewById(R.id.text_bls);
+        text_dbt= findViewById(R.id.text_dbt);
+        text_pvt= findViewById(R.id.text_pvt);
+
+
+        this.myResult=this;
+
+        Api_Calling.getMethodCall(MapsActivity.this, URLS.selectambulanceMaster, getWindow().getDecorView().getRootView(),myResult,"show text",showText());
+
 
         handler = new Handler();
 
@@ -165,7 +186,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 try {
 
-                    String api_url = "https://nearcabs.000webhostapp.com/api/book_cab.php";
+                    String api_url = "book_cab";
 
                     double src_lat = source_location_marker.getPosition().latitude;
                     double src_lng = source_location_marker.getPosition().longitude;
@@ -245,7 +266,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             @Override
                             public void onClick(View view) {
                                 try {
-                                    String cancel_api_url = "https://nearcabs.000webhostapp.com/api/cancel_book_cab.php";
+                                    String cancel_api_url = "cancel_book_cab";
                                     String cancel_book_now_request = "ride_id=" + URLEncoder.encode(ride_id, "UTF-8") + "&cab_id=" + URLEncoder.encode(cab_id, "UTF-8");
 
                                     JSONObject cancel_response_data = call_api(cancel_api_url, cancel_book_now_request);
@@ -387,6 +408,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    private Object showText() {
+
+        JSONObject jsonObject=new JSONObject();
+
+        return jsonObject;
+    }
+
 
     public Runnable runnable = new Runnable() {
         @Override
@@ -394,7 +422,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             MarkerOptions markerOptions1;
             try {
 
-                String api_url = "https://nearcabs.000webhostapp.com/api/get_cab_location.php";
+                String api_url = "get_cab_location";
 
                 String get_cab_location_request = "cab_id=" + URLEncoder.encode(cab_id, "UTF-8") + "&ride_id=" + URLEncoder.encode(ride_id, "UTF-8");
 
@@ -500,11 +528,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 markerOptions.position(latLng);
                 markerOptions.title("Source");
 
-//                BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.car);
-//                Bitmap b = bitmapDrawable.getBitmap();
-//                Bitmap smallCar = Bitmap.createScaledBitmap(b, 150, 81, false);
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.);
+                Bitmap b = bitmapDrawable.getBitmap();
+                Bitmap smallCar = Bitmap.createScaledBitmap(b, 150, 81, false);
 
-//                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallCar));
+                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallCar));
 //                markerOptions.rotation(location.getBearing());
                 source_location_marker = mMap.addMarker(markerOptions);
 
@@ -572,7 +600,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void setNearbyCabsOnMap(LatLng latLng) {
         try {
-//            String api_url = "https://nearcabs.000webhostapp.com/api/get_near_cabs.php";
+//            String api_url = "nearbycab";
 //
 //            double user_lat = latLng.latitude;
 //            double user_lng = latLng.longitude;
@@ -697,6 +725,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return data;
     }
 
+    @Override
+    public void onResult(JSONObject object, Boolean status) {
+
+
+        Log.d("asd",object.toString());
+        if(status){
+
+            try {
+            JSONArray jsonArray= null;
+
+            jsonArray = object.getJSONArray("result");
+
+            for(int j=0;j<jsonArray.length();j++){
+                JSONObject jsonObject= jsonArray.getJSONObject(j);
+                switch (j){
+                    case 0:
+                        text_als.setText(jsonObject.getString("ambulanceType"));
+                        break;
+                    case 1:
+                        text_bls.setText(jsonObject.getString("ambulanceType"));
+                        break;
+                    case 2:
+                        text_dbt.setText(jsonObject.getString("ambulanceType"));
+                        break;
+                    case 3:
+                        text_pvt.setText(jsonObject.getString("ambulanceType"));
+                        break;
+
+                }
+
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        }
+
+
+    }
+
     // Fetches data from url passed
     private class DownloadTask extends AsyncTask<String, Void, String> {
 
@@ -789,8 +858,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 // Adding all the points in the route to LineOptions
                 lineOptions.addAll(points);
-                lineOptions.width(6);
-                lineOptions.color(Color.BLUE);
+                lineOptions.width(12);
+                lineOptions.color(Color.YELLOW);
             }
 
             try {
@@ -815,8 +884,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                  pointss.add(destination_location_marker.getPosition());
 
                 polyLineOptions.addAll(pointss);
-                polyLineOptions.width(10);
-                polyLineOptions.color(Color.BLUE);
+                polyLineOptions.width(20);
+                polyLineOptions.color(R.color.colorPrimary);
 
 
                 mMap.addPolyline(polyLineOptions);
