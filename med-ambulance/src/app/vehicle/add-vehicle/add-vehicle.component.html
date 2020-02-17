@@ -3,8 +3,9 @@
 
         <div class="row">
             <div class="col-sm-12 col-md-12">
+                <h2 class="box-heading-tp">Add Vehicle</h2>
                 <div class="top-heading bg-white">
-                    <h2 class="heading-bx">Add Vehicle</h2>
+                    <h2 class="heading-bx anim">Add Vehicle</h2>
                     <div class="form-section  p-4">
                         <div class="inner-f-section">
                             <div class="form-box">
@@ -22,6 +23,10 @@
                             <div class="form-box">
                                 <label>Modal</label>
                                 <input type="text" formControlName="category">
+                            </div>
+                            <div class="form-box">
+                                <label>Date</label>
+                                <my-date-picker class="dpk-lk" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required formControlName="registrationDate"></my-date-picker>
                             </div>
                         </div>
                         <div class="inner-f-section">
@@ -48,12 +53,20 @@
                             </div>
                         </div>
                     </div>
+                    <div class="up-box">
+                        <h2 class="up-box-heading">Upload Vehicle Photos</h2>
+                        <div class="up-inner-content-box text-center border-dot position-relative">
+                            <input type="file" class="upload-fil position-absolute">
+                            <img src="../../../assets/images/data.svg">
+                            <h3>Drop files here or click to upload.</h3>
+                            <em>(This is just a demo. Selected files are <strong>not</strong>)</em>
+                        </div>
+                        <div class="btnn-group text-center mt-3 mb-3">
+                            <button type="button" class="sub-btn gp-btn-clr text-white">submit</button>
+                            <button type="button" class="sub-btn gp-btn-clr2 text-white">cancel</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <my-date-picker class="dpk-lk" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required formControlName="registrationDate"></my-date-picker>
             </div>
         </div>
     </form>
