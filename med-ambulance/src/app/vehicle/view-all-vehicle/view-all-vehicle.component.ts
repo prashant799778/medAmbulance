@@ -30,31 +30,31 @@ export class ViewAllVehicleComponent implements OnInit {
 		// })
 		this.vehicleData = [
 			{	'image': 'http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/dp.jpg',
-				'name':'Vijay Pal',
-				'mobileNo': 8888517655,
-				'email': 'vijay@gmail.com',
-				'address': 'Noida UP-87',
-				'wallet': 100,
-				'tripCount': 10,
-				'status': 1
+				'fuelType':'CNG',
+				'purchaseDate': 2020,
+				'regNumber': 'UP87H9315',
+				'category': 'GOV',
+				'type': 'ALS',
+				'modal': 'Car',
+				
 			},
 			{	'image': 'http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/user/usrbig5.jpg',
-				'name':'Vijay Pal',
-				'mobileNo': 8888517655,
-				'email': 'vijay@gmail.com',
-				'address': 'Noida UP-87',
-				'wallet': 100,
-				'tripCount': 10,
-				'status': 1
+				'fuelType':'CNG',
+				'purchaseDate': 2020,
+				'regNumber': 'UP87H9315',
+				'category': 'GOV',
+				'type': 'ALS',
+				'modal': 'Car',
+				
 			},
 			{	'image': 'http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/user/usrbig7.jpg',
-				'name':'Vijay Pal',
-				'mobileNo': 8888517655,
-				'email': 'vijay@gmail.com',
-				'address': 'Noida UP-87',
-				'wallet': 100,
-				'tripCount': 10,
-				'status': 1
+				'fuelType':'CNG',
+				'purchaseDate': 2020,
+				'regNumber': 'UP87H9315',
+				'category': 'GOV',
+				'type': 'ALS',
+				'modal': 'Car',
+				
 			}
 		]
 	}

@@ -11,11 +11,11 @@
                         <tr>
                                 <th>No</th>
                                 <th>Image</th>
-                                <th>Fuel</th>
+                                <th>Fuel Type</th>
                                 <th>Purchase</th>
-                                <th>Seating Capacity</th>
+                                <th>Category</th>
                                 <th>Type</th>
-                                <th>Driver Name</th>
+                                <th>Register Number</th>
                                 <th>Action</th>
                                 
                         </tr>
@@ -25,10 +25,11 @@
                               <tr *ngFor="let driver of vehicleData ; let i =  index">
                                     <td>{{i+1}}</td>  
                                     <td><img [src]="driver.image" class="al-img"></td>
-                                    <td>{{driver.name}}</td>
-                                    <td>{{driver.mobileNo}}</td>
-                                    <td>{{driver.email}}</td>
-                                    <td>{{driver.currentLocation}}</td>
+                                    <td>{{driver.fuelType}}</td>
+                                    <td>{{driver.purchaseDate}}</td>
+                                    <td>{{driver.category}}</td>
+                                    <td>{{driver.type}}</td>
+                                    <td>{{driver.regNumber}}</td>
                                       <td>
                                             <div class="btn-edit-group">
                                                     <button type="button" class="edit-btn" (click)="editNews(news.id)" >  <img src="../../../assets/images/edit-im.svg"></button>
