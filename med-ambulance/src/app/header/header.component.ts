@@ -17,6 +17,13 @@ export class HeaderComponent implements OnInit {
               }
 
   ngOnInit() {
+   jQuery(document).ready(function(){
+     
+     jQuery(".toggle").click(function(){
+       
+       jQuery(".wrapper-container").toggleClass("collapse");
+      })
+    })
     if(this.local.get('userData1') && this.local.get('userData1')[0] && this.local.get('userData1')[0].userName){
       console.log(this.local.get('userData1')[0].userName)
       this.userName = this.local.get('userData1')[0].userName

@@ -181,24 +181,24 @@ body{
    	 	width: var(--tg-space);
    	     transition: 0.5s;
 	}
-	.wrapper-container.collapse > .left-sidebar > .top-logo-side > .logo-title{
+	.wrapper-container.collapse > .left-sidebar > app-side-bar .top-logo-side > .logo-title{
 		display: none !important;
 	}
-	.wrapper-container.collapse > .left-sidebar > .left-profile{
+	.wrapper-container.collapse > .left-sidebar > app-side-bar > .left-profile{
 		display: none !important;
 	}
 	.wrapper-container.collapse > .top-bar{
 		width: calc(100% - 70px);
 		margin-left: 70px;
 	}
-	.wrapper-container.collapse > .left-sidebar > .left-menu li a{
+	.wrapper-container.collapse > .left-sidebar > app-side-bar .left-menu li a{
 		text-align: center;
 		transition: 0.5s;
 	}
-	.wrapper-container.collapse > .left-sidebar > .left-menu li a > .sid-icon{
+	.wrapper-container.collapse > .left-sidebar > app-side-bar .left-menu li a > .sid-icon{
 		margin: 0px;
 	}
-	.wrapper-container.collapse > .left-sidebar > .left-menu li a > .title{
+	.wrapper-container.collapse > .left-sidebar > app-side-bar .left-menu li a > .title{
 		display: none;
 		transition: 0.5s;
 	}

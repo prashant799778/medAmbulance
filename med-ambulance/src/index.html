@@ -16,15 +16,18 @@
 
     <script type="text/javascript">
       $(document).on('click','.left-menu li',function(){
+        alert("check toggle 0")
         $(this).addClass('active').siblings().removeClass('active');
       })
     </script>
     <script type="text/javascript">
-      $(document).ready(function(){
-        $(".toggle").click(function(){
-          $(".wrapper-container").toggleClass("collapse");
-        })
+       jQuery(document).ready(function(){
+     
+     jQuery(".toggle").click(function(){
+       
+       jQuery(".wrapper-container").toggleClass("collapse");
       })
+    })
     </script>
 </body>
 </html>
