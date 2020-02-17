@@ -1180,7 +1180,7 @@ def addRiderBooking():
         data=databasefile.SelectQuery("responderBooking",column,whereCondition)
         if data==None:
             column="responderId,currentLocationlatlong,mobileNo,currentLocation"
-            whereCondition="drivingStatus<>'F'"
+            whereCondition="drivingStatus<>'1'"
             datavv=databasefile.SelectQuery1("responderMaster",column,whereCondition)
             for da in datavv:
                 da.split(",")
@@ -1199,8 +1199,8 @@ def addRiderBooking():
                     riderId=da['responderId']
                     driverMobile=da['mobileNo']
            
-            column="usermobile,pickup,pickupLongitudeLatitude,selectBookingDate,bookingType,patientMedicalCondition,ambulanceId,userId,bookingId,finalAmount,totalDistance"
-            values="'"+str(data1["mobileNo"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["selectBookingDate"])+"','"+str(data1["patientMedicalCondition"])+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d9)+"'"
+            column="usermobile,pickup,pickupLongitudeLatitude,userId,bookingId,finalAmount,totalDistance"
+            values="'"+str(data1["mobileNo"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d9)+"'"
             insertdata=databasefile.InsertQuery("responderBooking",column,values)
             column=" * "
             whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
