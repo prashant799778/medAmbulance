@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -18,7 +20,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.TermsConditions"></activity>
+        <activity android:name=".Activity.MapsActivity"></activity>
+        <activity android:name=".Activity.TLTBaseActivity" />
+        <activity android:name=".Activity.UserMapActivity" />
+        <activity android:name=".Activity.TermsConditions" />
         <activity android:name=".Activity.UserPhoneLogin" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -40,7 +45,6 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity android:name=".Activity.BookAmbulance" />
-
         <activity
             android:name=".Activity.Track_Abulance_Activity"
             android:theme="@style/googleMap" />

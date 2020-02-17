@@ -19,7 +19,7 @@ public class SplaceActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplaceActivity.this,Countinue_As_Acrtivity.class));
+                startActivity(new Intent(SplaceActivity.this,MapsActivity.class));
             }
         },3000);
     }
