@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MyDatePickerModule } from 'mydatepicker';
 
 
 import { AppComponent } from './app.component';
@@ -54,7 +55,7 @@ import { FailListComponent } from './fare-management/fail-list/fail-list.compone
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    
+    MyDatePickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

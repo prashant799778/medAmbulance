@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import {IMyDpOptions} from 'mydatepicker';
 
 @Component({
   selector: 'app-add-vehicle',
@@ -9,6 +10,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class AddVehicleComponent implements OnInit {
 	vehicleForm: FormGroup;
+	public myDatePickerOptions: IMyDpOptions = {
+		dateFormat: 'dd.mm.yyyy',
+	};
 	
 	constructor(public userService: UserService,
 				public fb: FormBuilder) { 
