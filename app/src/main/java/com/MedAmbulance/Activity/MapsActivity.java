@@ -500,11 +500,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 markerOptions.position(latLng);
                 markerOptions.title("Source");
 
-//                BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.car);
-//                Bitmap b = bitmapDrawable.getBitmap();
-//                Bitmap smallCar = Bitmap.createScaledBitmap(b, 150, 81, false);
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.marker);
+                Bitmap b = bitmapDrawable.getBitmap();
+                Bitmap smallCar = Bitmap.createScaledBitmap(b, 150, 81, false);
 
-//                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallCar));
+                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallCar));
 //                markerOptions.rotation(location.getBearing());
                 source_location_marker = mMap.addMarker(markerOptions);
 
