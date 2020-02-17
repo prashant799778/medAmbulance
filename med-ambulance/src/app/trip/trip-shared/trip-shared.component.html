@@ -1,9 +1,47 @@
+<div class="container-fluid">
+    <div class="row" >
+
+        <div class="col-sm-12 col-md-12">
+            <h2 class="box-heading-tp">Active Trip</h2>
+            <div class="top-heading bg-white">
+                <h2 class="heading-bx anim">{{heading}}</h2>
+                <div class="record-box table-responsive">
+                    <table class="table m-0">                               
+                        <thead>
+                            <tr>
+                                <th *ngFor="let tableHeading of tableHeading">{{tableHeading}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngIf="data && data.length > 0">
+                                  <tr *ngFor="let subAdmin of data ; let i =  index">
+                                        <td>{{i+1}}</td>  
+                                        <td>{{subAdmin.name}}</td>
+                                        <td>{{subAdmin.mobileNo}}</td>
+                                        <td>{{subAdmin.email}}</td>
+                                          
+                                          <td>{{subAdmin.DateCreate | date}}</td>
+                                          <td>{{subAdmin.postTitle}}</td>
+                                          <td>
+                                              <button type="button" class="acton-btn" (click)="policyDetail(subAdmin.postId, subAdmin.userTypeId)">
+                                                  <img src="../../assets/images/view.svg" class="action-view">
+                                              </button>
+                                          </td>
+                                      </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+<template>
 <div class="row" >
         <div class="col-sm-12 col-md-12 col-lg-12 margin-tp">
-            <div class="record-box neu-shadow table-responsive bg-white-fff border-round">
-                 <div class="upper-wrap">
-                    <h2 class="main-hading mr-bottom mr-remove">{{heading}}</h2>   
-                </div>
+            <h2 class="box-heading-tp">{{heading}}</h2>
+           
+            <div class="record-box table-responsive">
                 <table class="table">                               
                     <thead>
                         <tr>
@@ -20,11 +58,6 @@
                                       
                                       <td>{{subAdmin.DateCreate | date}}</td>
                                       <td>{{subAdmin.postTitle}}</td>
-                                      <!-- <td class="txt-color-r text-uppercase"> -->
-                                              <!-- <button *ngIf="postStatus[i] == 0" type="button" class="btn ab-btn dc-bg-color-panding border-round-rem">Pending</button> -->
-                                              <!-- <button *ngIf="postStatus[i] == 1" type="button" class="btn ab-btn dc-bg-color-active border-round-rem">Approved</button> -->
-                                              <!-- <button *ngIf="postStatus[i] == 2" type="button" class="btn ab-btn dc-bg-color-inactive border-round-rem">Rejected</button> -->
-                                      <!-- </td> -->
                                       <td>
                                           <button type="button" class="acton-btn" (click)="policyDetail(subAdmin.postId, subAdmin.userTypeId)">
                                               <img src="../../assets/images/view.svg" class="action-view">
@@ -39,3 +72,5 @@
             </div>
         </div>
     </div>
+</template>
+</div>

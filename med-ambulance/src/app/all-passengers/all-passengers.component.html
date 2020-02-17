@@ -1,10 +1,12 @@
 <!-- <app-trip-shared [tableHeading]="tableHeading" [heading]="heading"></app-trip-shared> -->
+<div class="container-fluid">
 <div class="row" *ngIf="!loader">
         <div class="col-sm-12 col-md-12 col-lg-12 margin-tp">
+            <h2 class="box-heading-tp">{{heading}}</h2>
             <div class="record-box neu-shadow table-responsive bg-white-fff border-round">
-                 <div class="upper-wrap">
+                 <!-- <div class="upper-wrap">
                     <h2 class="main-hading mr-bottom mr-remove">{{heading}}</h2>   
-                </div>
+                </div> -->
                 <table class="table">                               
                     <thead>
                         <tr>
@@ -44,3 +46,4 @@
             </div>
         </div>
     </div>
+</div>
