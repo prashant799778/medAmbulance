@@ -1851,13 +1851,13 @@ def bookRide():
             ambulanceId= inputdata["ambulanceId"]
             whereCondition=" and  ambulanceId= '"+ str(ambulanceId)+"'"
             column=" onTrip=1 "
-            data=databasefile.UpdateQuery("ambulance",column,whereCondition)
-            if (loginuser!=0):   
+            bookRide=databasefile.UpdateQuery("ambulance",column,whereCondition)
+            if (bookRide!=0):   
                                
-                return loginuser
+                return bookRide
             else:
                 
-                return loginuser
+                return bookRide
         else:
             return msg 
     except KeyError as e:
