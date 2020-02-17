@@ -14,20 +14,19 @@
                         </thead>
                         <tbody>
                             <ng-container *ngIf="data && data.length > 0">
-                                  <tr *ngFor="let subAdmin of data ; let i =  index">
-                                        <td>{{i+1}}</td>  
-                                        <td>{{subAdmin.name}}</td>
-                                        <td>{{subAdmin.mobileNo}}</td>
-                                        <td>{{subAdmin.email}}</td>
-                                          
-                                          <td>{{subAdmin.DateCreate | date}}</td>
-                                          <td>{{subAdmin.postTitle}}</td>
-                                          <td>
-                                              <button type="button" class="acton-btn" (click)="policyDetail(subAdmin.postId, subAdmin.userTypeId)">
-                                                  <img src="../../assets/images/view.svg" class="action-view">
-                                              </button>
-                                          </td>
-                                      </tr>
+                                <tr *ngFor="let data of data ; let i =  index">
+                                    <td>{{i+1}}</td>  
+                                    <td *ngIf="data && data.name">{{data.name}}</td>
+                                    <td *ngIf="data && data.mobileNo">{{data.mobileNo}}</td>
+                                    <td *ngIf="data && data.email">{{data.email}}</td>
+                                    <td *ngIf="data && data.DateCreate">{{data.DateCreate | date}}</td>
+                                    <td *ngIf="data && data.postTitle">{{data.postTitle}}</td>
+                                    <td>
+                                        <button type="button" class="acton-btn" (click)="policyDetail(subAdmin.postId, subAdmin.userTypeId)">
+                                            <img src="../../assets/images/view.svg" class="action-view">
+                                        </button>
+                                    </td>
+                                </tr>
                             </ng-container>
                         </tbody>
                     </table>
