@@ -711,15 +711,15 @@ def addambulance():
             ambulanceType = inputdata["ambulanceType"]
             column="*"
             whereCondition="ambulanceType='"+str(ambulanceType)+"'"
-            data= databasefile.SelectQuery("ambulanceMaster",column,whereCondition)
+            data= databasefile.SelectQuery("ambulanceTypeMaster",column,whereCondition)
             print(data,"==data")
             if data==0:
                 column="ambulanceType"
                 values="'"+str(ambulanceType)+"'"
-                insertdata=databasefile.InsertQuery("ambulanceMaster",column,values)
+                insertdata=databasefile.InsertQuery("ambulanceTypeMaster",column,values)
                 column="*"
                 whereCondition="ambulanceType='"+str(ambulanceType)+"'"
-                data1= databasefile.SelectQuery1("ambulanceMaster",column,whereCondition)
+                data1= databasefile.SelectQuery1("ambulanceTypeMaster",column,whereCondition)
                 output= {"result":"User Added Successfully","ambulance Details":data1[-1],"status":"true"}
                 return output
             else:
@@ -733,14 +733,14 @@ def addambulance():
         return output
  
 
-@app.route('/selectambulanceMaster', methods=['GET'])
-def ambulanceMaster():
+@app.route('/selectambulanceTypeMaster', methods=['GET'])
+def ambulanceTypeMaster():
     try:
         msg = "1"
         if msg=="1":
             column="id ,ambulanceType"
             whereCondition=""
-            data=databasefile.SelectQuery1("ambulanceMaster",column,whereCondition)
+            data=databasefile.SelectQuery1("ambulanceTypeMaster",column,whereCondition)
             if (data!=0):           
                 Data = {"result":data,"status":"true"}
                 return Data
@@ -755,27 +755,27 @@ def ambulanceMaster():
         return output  
 
 
-@app.route('/updateambulanceMaster', methods=['POST'])
-def updateambulanceMaster():
+@app.route('/updateambulanceTypeMaster', methods=['POST'])
+def updateambulanceTypeMaster():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
         keyarr = ['ambulanceType','id']
-        commonfile.writeLog("updateambulanceMaster",inputdata,0)
+        commonfile.writeLog("updateambulanceTypeMaster",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg=="1":
             ambulanceType = inputdata["ambulanceType"]
             id = inputdata["id"]
             column= " * "
             whereCondition="id = '" + str(id)+ "'"
-            data1 = databasefile.SelectQuery("ambulanceMaster",column,whereCondition)
+            data1 = databasefile.SelectQuery("ambulanceTypeMaster",column,whereCondition)
             print(data1,"data1")
             if data1 != 0:
                 column = ""
                 whereCondition = ""
                 column= " ambulanceType='" + str(ambulanceType) + "'"
                 whereCondition="id = '" + str(id)+ "'"
-                data = databasefile.UpdateQuery("ambulanceMaster",column,whereCondition)
+                data = databasefile.UpdateQuery("ambulanceTypeMaster",column,whereCondition)
                 print(data,'===')
                 output = {"result":"Updated Successfully","status":"true"}
                 return output
@@ -1664,7 +1664,7 @@ def allHospital():
                 ambulanceType=request.args["ambulanceType"]
             column= "hosp.id,hosp.hospitalName,hosp.address,am.ambulanceType "   
             WhereCondition=  " hosp.id=ahm.hospital_Id and am.id=ahm.ambulance_Id and  ambulanceType   = '" + ambulanceType + "'  "
-            data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalambulanceMapping as ahm,ambulanceMaster as am",column,WhereCondition)
+            data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalambulanceMapping as ahm,ambulanceTypeMaster as am",column,WhereCondition)
             print(data)
             if (data!=0): 
                 print(data)          
