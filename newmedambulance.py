@@ -1844,15 +1844,14 @@ def bookRide():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ['lat','lng']
-        commonfile.writeLog("getNearAmbulance",inputdata,0)
+        keyarr = ["ambulanceId"]
+        commonfile.writeLog("bookRide",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
-            startlat ,startlng= inputdata["lat"],inputdata["lng"]
-            column=  " d.name, d.mobileNo, d.ambulanceId, a.ambulanceNo, a.lat, a.lng,SQRT(POW(69.1 * (a.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - a.lng) * COS(a.lat / 57.3), 2)) AS distance "
-            whereCondition= " and a.onTrip=0 and a.onDuty=1 and a.ambulanceId=d.ambulanceId HAVING distance > 25 "
-            orderby="  distance limit 1"
-            loginuser=databasefile.SelectQueryOrderbyAsc("ambulance a, driverMaster d",column,whereCondition,"",orderby,"","")
+            ambulanceId= inputdata["ambulanceId"]
+            whereCondition=" and  ambulanceId= '"+ str(Id)+"'"
+            column=" onTrip=1 "
+            data=databasefile.UpdateQuery("ambulance",column,whereCondition)
             if (loginuser!=0):   
                                
                 return loginuser
