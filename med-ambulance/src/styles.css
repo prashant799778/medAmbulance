@@ -235,6 +235,15 @@ body{
 	.pd-3 {
 		padding: 10px;
 	}
+	.al-img {
+		width: 40px;
+		height: 40px;
+		border: 2px solid #fff;
+		box-shadow: 0 10px 18px 0 rgba(62,57,107,.2);
+		border-radius: 7px;
+		object-fit: cover;
+		object-position: center;
+	}
 /* Left Sidebar Section Css End*/
 
 /* Topbar Section Css */
@@ -365,7 +374,9 @@ body{
 }
 
 .edit-btn img, .delet-btn img{
-    width: 15px;
+	width: 15px;
+	position: relative;
+    top: -2px;
 }
 
 .edit-btn {
@@ -384,7 +395,9 @@ body{
     transform: translateY(1px);
     box-shadow: 0 5px 3px -4px #d60f0f;
 }
-
+.btn-edit-group button:focus {
+    outline: 0;
+}
 
 
 /* All sect- section */
