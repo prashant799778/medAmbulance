@@ -24,13 +24,39 @@ export class AllPassengersComponent implements OnInit {
 	}
 
 	getPassengerDetails(){
-		this.userService.getApiData(AppSettings.allusers).then(resp=>{
-			if(resp['status'] == 'true'){
-				this.userData = resp['result']
-				this.loader = false
-			}
+		// this.userService.getApiData(AppSettings.allusers).then(resp=>{
+		// 	if(resp['status'] == 'true'){
+		// 		this.userData = resp['result']
+		// 		this.loader = false
+		// 	}
 			
-		})
+		// })
+		this.userData = [
+							{	'name':'Vijay Pal',
+								'mobileNo': 8888517655,
+								'email': 'vijay@gmail.com',
+								'address': 'Noida UP-87',
+								'wallet': 100,
+								'tripCount': 10,
+								'status': 1
+							},
+							{	'name':'Vijay Pal',
+								'mobileNo': 8888517655,
+								'email': 'vijay@gmail.com',
+								'address': 'Noida UP-87',
+								'wallet': 100,
+								'tripCount': 10,
+								'status': 1
+							},
+							{	'name':'Vijay Pal',
+								'mobileNo': 8888517655,
+								'email': 'vijay@gmail.com',
+								'address': 'Noida UP-87',
+								'wallet': 100,
+								'tripCount': 10,
+								'status': 1
+							}
+						]
 	}
 	getStatus(status){
 		if(status == 0){

@@ -1,1 +1,84 @@
-<app-trip-shared [tableHeading]="tableHeading" [heading]="heading" [data]="userData"></app-trip-shared>
+<!-- <app-trip-shared [tableHeading]="tableHeading" [heading]="heading" [data]="userData"></app-trip-shared> -->
+<div class="container-fluid">
+        <div class="row" >
+    
+            <div class="col-sm-12 col-md-12">
+                <h2 class="box-heading-tp">{{heading}}</h2>
+                <div class="top-heading bg-white">
+                    <h2 class="heading-bx anim">{{heading}}</h2>
+                    <div class="record-box table-responsive">
+                        <table class="table m-0">                               
+                            <thead>
+                                <tr>
+                                    <th *ngFor="let tableHeading of tableHeading">{{tableHeading}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <ng-container *ngIf="userData && userData.length > 0">
+                                        <tr *ngFor="let userData of userData ; let i =  index">
+                                            <td>{{i+1}}</td>  
+                                            <td>{{userData.name}}</td>
+                                            <td>{{userData.mobileNo}}</td>
+                                            <td>{{userData.email}}</td>
+                                            <td>{{userData.address}}</td>
+                                            <td>{{userData.wallet}}</td>
+                                            <td>{{userData.tripCount}}</td>
+                                            <td>{{userData.status}}</td>
+                                            
+                                            
+                                            <td>
+                                                <button type="button" class="acton-btn" (click)="policyDetail(userData.postId, userData.userTypeId)">
+                                                    <img src="../../assets/images/view.svg" class="action-view">
+                                                </button>
+                                            </td>
+                                        </tr>
+                                      </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    <template>
+    <div class="row" >
+            <div class="col-sm-12 col-md-12 col-lg-12 margin-tp">
+                <h2 class="box-heading-tp">{{heading}}</h2>
+               
+                <div class="record-box table-responsive">
+                    <table class="table">                               
+                        <thead>
+                            <tr>
+                                <th *ngFor="let tableHeading of tableHeading">{{tableHeading}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngIf="userData && userData.length > 0">
+                                  <tr *ngFor="let userData of userData ; let i =  index">
+                                        <td>{{i+1}}</td>  
+                                        <td>{{userData.name}}</td>
+                                        <td>{{userData.mobileNo}}</td>
+                                        <td>{{userData.email}}</td>
+                                        <td>{{userData.address}}</td>
+                                        <td>{{userData.wallet}}</td>
+                                        <td>{{userData.tripCount}}</td>
+                                        <td>{{userData.status}}</td>
+                                        
+                                        
+                                        <td>
+                                            <button type="button" class="acton-btn" (click)="policyDetail(userData.postId, userData.userTypeId)">
+                                                <img src="../../assets/images/view.svg" class="action-view">
+                                            </button>
+                                        </td>
+                                      </tr>
+                            </ng-container>
+                           
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </template>
+    </div>
+    
