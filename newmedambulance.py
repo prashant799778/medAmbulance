@@ -1816,11 +1816,11 @@ def getNearAmbulance():
         commonfile.writeLog("getNearAmbulance",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
-            startlat ,startlng= inputdata["lat"],inputdata["lng"]
+            startlat ,startlng,userId= inputdata["lat"],inputdata["lng"],inputdata["userId"]
             column=  " d.name, d.mobileNo, d.ambulanceId, a.ambulanceNo, a.lat, a.lng,SQRT(POW(69.1 * (a.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - a.lng) * COS(a.lat / 57.3), 2)) AS distance "
             whereCondition= " and a.onTrip=0 and a.onDuty=1 and a.ambulanceId=d.ambulanceId HAVING distance > 25 "
             orderby="  distance limit 1"
-            nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulance a, driverMaster d",column,whereCondition,"",orderby,"","")
+            nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d",column,whereCondition,"",orderby,"","")
             if (nearByAmbulance!=0):   
                                
                 return nearByAmbulance
@@ -1851,7 +1851,7 @@ def bookRide():
             ambulanceId= inputdata["ambulanceId"]
             whereCondition=" ambulanceId= '"+ str(ambulanceId)+"'"
             column=" onTrip=1 "
-            bookRide=databasefile.UpdateQuery("ambulance",column,whereCondition)
+            bookRide=databasefile.UpdateQuery("ambulanceMaster",column,whereCondition)
             if (bookRide!=0):   
                 bookRide["message"]="ride booked Successfully"             
                 return bookRide
@@ -1875,79 +1875,7 @@ def bookRide():
 
 
 
-def calculateDistance(fromLatitude,fromLongitude,toLatitude,toLongitude):
 
-    if fromLatitude != "" or fromLongitude != "" or toLatitude != "" or toLongitude != "" :
-        
-        # approximate radius of earth in km
-        R = 6373.0
-        
-        fromLongitude = Decimal(fromLongitude)
-        fromLatitude = Decimal(fromLatitude)
-
-        distanceLongitude = toLongitude - fromLongitude
-        distanceLatitude = toLatitude - fromLatitude
-
-        a = sin(distanceLatitude / 2)**2 + cos(fromLatitude) * cos(toLatitude) * sin(distanceLongitude / 2)**2
-        c = 2 * atan2(sqrt(a), sqrt(1 - a))
-
-        distance = R * c
-
-        data = {"status":1,"result":distance}
-        return data
-    else:
-        data = {"status":0,"result":0}
-        return data
-
-
-
-
-def createDistancedetails(dealId,fromLatitude,fromLonitude):
-   
-  if fromLatitude != "" and fromLonitude != "":
-    
-    query = " delete from drfNearestproperty where DealId = '" + str(dealId) + "';"
-            
-    mysqlconn=mysqlcon()
-    cursor=mysqlconn.cursor()
-    cursor.execute(query)
-    mysqlconn.commit()
-    cursor.close()
-
-    query = "select Id,Code,Name,Cluster,Status,Rooms,Type,Latitude,Longitude,Revpar,ARR,Occ from propertyLocationMaster"
-            
-    mysqlconn=mysqlcon()
-    cursor = mysqlconn.cursor()     
-    cursor.execute(query)
-    propertylist = cursor.fetchall()
-    cursor.close()
-
-    for i in propertylist:
-            
-      latitude = i["Latitude"]
-      longitude = i["Longitude"]
-      selectedRowid = i["Id"]
-      
-      output = calculateDistance(fromLatitude,fromLonitude,latitude,longitude)
-
-      status = output["status"]
-  
-      if str(status) == "1":
-        distanceKm = output["result"]
-        distanceMeter = distanceKm * 1000
-                
-        if distanceKm <= 500:
-
-          query = "insert into drfNearestproperty (DealId,Code,PropertyName,Cluster,Status,Rooms,Type,Latitude,Longitude,"
-          query = query + " Revpar,ARR,Occ,DistanceKm,DistanceMeter) "
-          query = query + " select '" + str(dealId) + "',Code,Name,Cluster,Status,Rooms,Type,Latitude,Longitude,Revpar,ARR,Occ," 
-          query = query + str(distanceKm) + "," + str(distanceMeter) + " from  propertyLocationMaster where id = " + str(selectedRowid) + ";"
-                    
-          mysqlconn = mysqlcon()
-          cursor = mysqlconn.cursor()
-          cursor.execute(query)        
-          mysqlconn.commit()
-          cursor.close()
 
 #==========================================admin==================================================
 
