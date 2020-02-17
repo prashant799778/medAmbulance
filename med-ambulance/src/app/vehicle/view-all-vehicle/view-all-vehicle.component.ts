@@ -22,12 +22,41 @@ export class ViewAllVehicleComponent implements OnInit {
 	}
 
 	getVehicleData(){
-		this.userService.getApiData(AppSettings.selectambulanceMaster).then(resp=>{
-			if(resp['status'] == 'true'){
-				this.vehicleData = resp['result']
+		// this.userService.getApiData(AppSettings.selectambulanceMaster).then(resp=>{
+		// 	if(resp['status'] == 'true'){
+		// 		this.vehicleData = resp['result']
 				this.loader = false;
+		// 	}
+		// })
+		this.vehicleData = [
+			{	'image': 'http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/dp.jpg',
+				'name':'Vijay Pal',
+				'mobileNo': 8888517655,
+				'email': 'vijay@gmail.com',
+				'address': 'Noida UP-87',
+				'wallet': 100,
+				'tripCount': 10,
+				'status': 1
+			},
+			{	'image': 'http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/dp.jpg',
+				'name':'Vijay Pal',
+				'mobileNo': 8888517655,
+				'email': 'vijay@gmail.com',
+				'address': 'Noida UP-87',
+				'wallet': 100,
+				'tripCount': 10,
+				'status': 1
+			},
+			{	'image': 'http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/dp.jpg',
+				'name':'Vijay Pal',
+				'mobileNo': 8888517655,
+				'email': 'vijay@gmail.com',
+				'address': 'Noida UP-87',
+				'wallet': 100,
+				'tripCount': 10,
+				'status': 1
 			}
-		})
+		]
 	}
 
 	pageChanged(event){

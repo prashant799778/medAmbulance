@@ -22,12 +22,13 @@
                         <ng-container *ngIf="vehicleData && vehicleData.length > 0">
                               <tr *ngFor="let driver of vehicleData ; let i =  index">
                                     <td>{{i+1}}</td>  
+                                    <td><img [src]="driver.image"></td>
                                     <td>{{driver.name}}</td>
                                     <td>{{driver.mobileNo}}</td>
                                     <td>{{driver.email}}</td>
                                     <td>{{driver.currentLocation}}</td>
-                                      <td>{{driver.dateCreate | date}}</td>
-                                      <td>{{driver.postTitle}}</td>
+                                      <!-- <td>{{driver.dateCreate | date}}</td> -->
+                                      <!-- <td>{{driver.postTitle}}</td> -->
                                       <!-- <td>{{getStatus(driver.status)}}</td> -->
                                       <!-- <td class="txt-color-r text-uppercase"> -->
                                               <!-- <button *ngIf="postStatus[i] == 0" type="button" class="btn ab-btn dc-bg-color-panding border-round-rem">Pending</button> -->

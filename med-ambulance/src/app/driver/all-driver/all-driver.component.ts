@@ -25,6 +25,32 @@ export class AllDriverComponent implements OnInit {
 				this.driverData = resp['result']
 			}
 		})
+		// this.driverData = [
+		// 	{	'name':'Vijay Pal',
+		// 		'mobileNo': 8888517655,
+		// 		'email': 'vijay@gmail.com',
+		// 		'address': 'Noida UP-87',
+		// 		'wallet': 100,
+		// 		'tripCount': 10,
+		// 		'status': 1
+		// 	},
+		// 	{	'name':'Vijay Pal',
+		// 		'mobileNo': 8888517655,
+		// 		'email': 'vijay@gmail.com',
+		// 		'address': 'Noida UP-87',
+		// 		'wallet': 100,
+		// 		'tripCount': 10,
+		// 		'status': 1
+		// 	},
+		// 	{	'name':'Vijay Pal',
+		// 		'mobileNo': 8888517655,
+		// 		'email': 'vijay@gmail.com',
+		// 		'address': 'Noida UP-87',
+		// 		'wallet': 100,
+		// 		'tripCount': 10,
+		// 		'status': 1
+		// 	}
+		// ]
 	}
 
 	getStatus(status){
