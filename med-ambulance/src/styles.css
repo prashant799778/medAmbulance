@@ -232,6 +232,9 @@ body{
 		right: 0;
 		transition: 0.5s;
 	}
+	.pd-3 {
+		padding: 10px;
+	}
 /* Left Sidebar Section Css End*/
 
 /* Topbar Section Css */
