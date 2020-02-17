@@ -13,9 +13,13 @@ export class AddVehicleComponent implements OnInit {
 	public myDatePickerOptions: IMyDpOptions = {
 		dateFormat: 'dd.mm.yyyy',
 	};
+	file: any;
+	imageShow: any;
+	showBanner: number;
 	
 	constructor(public userService: UserService,
 				public fb: FormBuilder) { 
+		this.showBanner = 0;			
 		this.createTable()
 	}
 
@@ -25,7 +29,7 @@ export class AddVehicleComponent implements OnInit {
 	createTable(){
 		this.vehicleForm = this.fb.group({
 			regNumber: [''],
-			image: [''],
+			vehicleImage: [''],
 			registrationDate: [''],
 			manufacture: [''],
 			fuelType: [''],
@@ -34,6 +38,26 @@ export class AddVehicleComponent implements OnInit {
 			category: ['']
 		})
 	}
+
+	onFileSelect(event) {
+		console.log(event)
+		if(event.type === "change"){
+			if (event.target.files.length > 0) {
+				this.file = event.target.files[0];
+				var reader = new FileReader();
+				reader.readAsDataURL(event.target.files[0]);
+				reader.onload = (event) => {
+					this.imageShow = (<FileReader>event.target).result;
+					this.vehicleForm.get('vehicleImage').setValue(this.file);
+					this.showBanner = 1;
+				}
+			}
+		  
+		}
+		
+		
+	 
+	  }
 	
 
 }
