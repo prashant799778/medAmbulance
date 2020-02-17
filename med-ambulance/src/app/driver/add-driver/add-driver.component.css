@@ -44,3 +44,16 @@ my-date-picker.dpk-lk{
     position: unset;
     width: 50%;
 }
+
+.sub-btn {
+    padding: 7px 23px;
+    border: 0;
+    text-transform: capitalize;
+    margin-right: 10px;
+}
+.mb-3 {
+    padding-bottom: 1rem;
+}
+.sub-btn:focus {
+    outline: 0;
+}
