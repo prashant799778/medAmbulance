@@ -61,7 +61,17 @@
 		box-shadow: 0 5px 20px rgba(0, 0, 0, .1);
 	}
 	.top-shadow{
-		box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+		/* box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12); */
+		box-shadow: 0px 9px 19px -15px grey;
+	}
+	.mt-7{
+		margin-top: 5rem;
+	}
+	.box-heading-tp {
+		font-size: 25px;
+		font-weight: 400;
+		color: #666;
+		margin-bottom: 15px;
 	}
 /* For All End Css*/
 
@@ -202,6 +212,7 @@ body{
 	.wrapper-container.collapse > .top-bar{
 		width: calc(100% - 70px);
 		margin-left: 70px;
+		transition: 0.5s;
 	}
 	.wrapper-container.collapse > .left-sidebar > app-side-bar .left-menu li a{
 		text-align: center;
@@ -214,15 +225,48 @@ body{
 		display: none;
 		transition: 0.5s;
 	}
+	.wrapper-container.collapse > .top-bar >  app-header > .inner-topbar {
+		padding: 5px 0px;
+		position: fixed;
+		width: calc(100% - 70px);
+		right: 0;
+		transition: 0.5s;
+	}
 /* Left Sidebar Section Css End*/
 
 /* Topbar Section Css */
 	.top-bar{
 		width: 100%;
 		margin-left: var(--space);
+		transition: 0.5s;
 	}
 	.inner-topbar {
-	    padding: 5px 0px;
+		padding: 5px 0px;
+		position: fixed;
+		width: calc(100% - 235px);
+		right: 0;
+		transition: 0.5s;
+		z-index: 2;
+	}
+	.right-side-potion > li img {
+		width: 20px;
+		height: 20px;
+	}
+	.top-right-profile {
+		border: 1px solid var(--line-clr);
+		overflow: hidden;
+		width: 30px;
+		height: 30px;
+	}
+	.top-right-profile > img {
+		width: 100% !important;
+		height: 100% !important;
+		object-fit: cover;
+		object-position: center;
+	}
+	.right-side-potion > li {
+		display: block;
+		margin-right: 15px;
 	}
 	.toggle{
 		height: 100%;
@@ -336,3 +380,129 @@ body{
     transform: translateY(1px);
     box-shadow: 0 5px 3px -4px #d60f0f;
 }
+
+
+
+/* All sect- section */
+
+.form-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    grid-gap: 1rem;
+}
+.anim{
+    transition: 0.5s;
+}
+.box-heading-tp{
+    font-size: 25px;
+    font-weight: 400;
+    color: #666;
+    margin-bottom: 15px;
+}
+.top-heading:hover {
+    box-shadow: 0 0 25px -5px #9e9c9e;
+    transition: 0.5s;
+}
+.form-box {
+    margin-bottom: 1rem;
+}
+.form-box > label {
+    color: #AAAAAA !important;
+    font-size: 13px !important;
+    display: block;
+}
+.form-box > input {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--line-clr);
+    background-color: transparent;
+}
+.form-box > input:focus {
+    outline: 0;
+}
+.form-box select {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--line-clr);
+}
+.form-box select:focus {
+    outline: 0;
+}
+.heading-bx{
+    display: inline-block;
+    vertical-align: middle;
+    padding: 11px 16px;
+    line-height: 17px;
+    font-size: 20px;
+    color: #17191c;
+    border-bottom: 1px dotted var(--line-clr);
+    width: 100%;
+}
+my-date-picker.dpk-lk{
+    position: unset;
+    width: 50%;
+}
+.up-box-heading{
+    font-size: 15px;
+    line-height:26px;
+    Color:rgba(0, 0, 0, 0.87);
+    font-weight: 400;
+    margin: 0px 2rem;
+    margin-bottom: 1rem;
+}
+.up-inner-content-box img {
+    width: 75px;
+    margin: 2rem 0;
+}
+.up-inner-content-box > h3 {
+    font-size: 23px !important;
+    font-weight: 300;
+    margin: 24px 0;
+}
+.up-inner-content-box > em{
+    margin: 2em 0;
+    font-size: 20px;
+    display: block;
+}
+.border-dot{
+    min-height: 150px;
+    border: 2px dashed rgba(0, 0, 0, 0.3);
+    padding: 20px 20px;
+    margin: 0 1.5rem;
+}
+.sub-btn {
+    padding: 7px 23px;
+    border: 0;
+    text-transform: capitalize;
+    margin-right: 10px;
+}
+.mb-3 {
+    padding-bottom: 1rem;
+}
+.sub-btn:focus {
+    outline: 0;
+}
+.upload-fil {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2;
+}
+input.upload-fil:focus {
+    outline: 0;
+}
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 0px !important;
+}
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 0;
+}
+/* End All Sect- Section */
