@@ -56,6 +56,5 @@ export class ViewAllVehicleComponent implements OnInit {
 			this.loader = false;
 			
 		});
-	}
-
+	} 
 }
