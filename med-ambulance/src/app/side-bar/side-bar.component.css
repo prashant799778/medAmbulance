@@ -1,0 +1,3 @@
+.wrapper-container.collapse > .left-sidebar > .left-profile {
+    display: none !important;
+}
