@@ -1,48 +1,54 @@
-<div>
+<div class="container-fluid">
     <form [formGroup]="vehicleForm">
+
         <div class="row">
-            <div class="col">
-                <label>Registration Number</label>
-                <input type="text" formControlName="regNumber">
-            </div>
-            <div class="col">
-                <label>Category</label>
-                <input type="text" formControlName="category">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label>Type</label>
-                <input type="text" formControlName="regNumber">
-            </div>
-            <div class="col">
-                <label>Modal</label>
-                <input type="text" formControlName="category">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label>Fuel Type</label>
-                <select formControlName="fuelType">
-                    <option value="cng">CNG</option>
-                    <option value="petrol">Petrol</option>
-                    <option value="diesel">Diesel</option>
-                </select>
-                <!-- <input type="text" formControlName="regNumber"> -->
-            </div>
-            <div class="col">
-                <label>Category</label>
-                <input type="text" formControlName="category">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label>Registration Number</label>
-                <input type="text" formControlName="regNumber">
-            </div>
-            <div class="col">
-                <label>Category</label>
-                <input type="text" formControlName="category">
+            <div class="col-sm-12 col-md-12">
+                <div class="top-heading bg-white">
+                    <h2 class="heading-bx">Add Vehicle</h2>
+                    <div class="form-section  p-4">
+                        <div class="inner-f-section">
+                            <div class="form-box">
+                                <label>Registration Number</label>
+                                <input type="text" formControlName="regNumber">
+                            </div>
+                            <div class="form-box">
+                                <label>Category</label>
+                                <input type="text" formControlName="category">
+                            </div>
+                            <div class="form-box">
+                                <label>Type</label>
+                                <input type="text" formControlName="regNumber">
+                            </div>
+                            <div class="form-box">
+                                <label>Modal</label>
+                                <input type="text" formControlName="category">
+                            </div>
+                        </div>
+                        <div class="inner-f-section">
+                            <div class="form-box">
+                                <label>Fuel Type</label>
+                                <select formControlName="fuelType">
+                                    <option value="cng">CNG</option>
+                                    <option value="petrol">Petrol</option>
+                                    <option value="diesel">Diesel</option>
+                                </select>
+                                <!-- <input type="text" formControlName="regNumber"> -->
+                            </div>
+                            <div class="form-box">
+                                <label>Category</label>
+                                <input type="text" formControlName="category">
+                            </div>
+                            <div class="form-box">
+                                <label>Registration Number</label>
+                                <input type="text" formControlName="regNumber">
+                            </div>
+                            <div class="form-box">
+                                <label>Category</label>
+                                <input type="text" formControlName="category">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
