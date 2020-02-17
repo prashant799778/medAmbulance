@@ -1,7 +1,7 @@
-*{margin: 0;padding: 0;list-style: none;text-decoration: none;font-weight: var(--f-family)}
+*{margin: 0;padding: 0;list-style: none;text-decoration: none;font-family: var(--f-family) !important}
 :root{
 	--body-bg-color:#eaeef3;
-	--f-family:'Poppins', sans-serif;
+	--f-family: Poppins, sans-serif;
 	--space:235px;
 	--tg-space:70px;
 	--bar-color:#545454;
@@ -399,7 +399,14 @@ body{
     outline: 0;
 }
 
+button.acton-btn:focus {
+    outline: 0;
+}
 
+button.acton-btn {
+    border: 0;
+    background: transparent;
+}
 /* All sect- section */
 
 .form-section {
@@ -520,7 +527,9 @@ input.upload-fil:focus {
 }
 .table thead th {
     vertical-align: bottom;
-    border-bottom: 0;
+	border-bottom: 0;
+	font-size: 14px;
+    font-weight: 600;
 }
 /* End All Sect- Section */
 @media screen and (max-width:480px){
