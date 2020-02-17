@@ -18,10 +18,18 @@
 	--card-bg3:#5c6a77;
 	--card-bg4:#c11e59;
 	--line-clr:#00000033;
+	--gp-btn-clr:#ff4081;
+	--gp-btn-clr2:#888888;
 }
 
 
 /* For ALL Css*/
+	.gp-btn-clr{
+		background-color: var(--gp-btn-clr);
+	}
+	.gp-btn-clr2{
+		background-color: var(--gp-btn-clr2);
+	}
 	.bg1{
 		background: var(--info-card-bg1)
 	}
@@ -51,6 +59,9 @@
 	}
 	.shadow-box{
 		box-shadow: 0 5px 20px rgba(0, 0, 0, .1);
+	}
+	.top-shadow{
+		box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
 	}
 /* For All End Css*/
 
