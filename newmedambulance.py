@@ -1831,7 +1831,7 @@ def getNearAmbulance():
             whereCondition= " a.onTrip=0 and a.onDuty=1 and a.ambulanceId=d.ambulanceId"
             print("1111111111111")
             orderby=" HAVING distance < 25 ORDER BY distance "
-            loginuser=databasefile.SelectQuery("ambulance a, driverMaster d",column,whereCondition)
+            loginuser=databasefile.SelectQueryOrderbyAsc("ambulance a, driverMaster d",column,whereCondition,"",orderby,"","")
             if (loginuser!=0):   
                                
                 return loginuser
