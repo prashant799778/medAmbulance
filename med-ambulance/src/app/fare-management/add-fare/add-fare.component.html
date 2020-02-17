@@ -1,1 +1,57 @@
-<p>add-fare works!</p>
+<div class="container-fluid">
+    <form [formGroup]="vehicleForm">
+
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="top-heading bg-white">
+                    <h2 class="heading-bx">Add Fare</h2>
+                    <div class="form-section  p-4">
+                        <div class="inner-f-section">
+                            
+                            <div class="form-box">
+                                <div class="form-box">
+                                    <label>Ambulance Type</label>
+                                    <select formControlName="ambType">
+                                        <option value="cng">Gov</option>
+                                        <option value="petrol">Private</option>
+                                        <option value="diesel">Other</option>
+                                    </select>
+                                    <!-- <input type="text" formControlName="regNumber"> -->
+                                </div>
+                            </div>
+                            <div class="form-box">
+                                <label>Fare per KM</label>
+                                <input type="text" formControlName="farePerKM">
+                            </div>
+                            <div class="form-box">
+                                <label>Minimum Fare</label>
+                                <input type="text" formControlName="minfare">
+                            </div>
+                            <div class="form-box">
+                                <label>Minimum Distance</label>
+                                <input type="text" formControlName="minDistance">
+                            </div>
+                            <div class="form-box">
+                                <label>Waiting fare</label>
+                                <input type="text" formControlName="waitFare">
+                            </div>
+                        </div>
+                        <!-- <div class="inner-f-section"> -->
+                           
+                            
+                            <!-- <div class="form-box">
+                                <label>Category</label>
+                                <input type="text" formControlName="category">
+                            </div> -->
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="col">
+                <my-date-picker class="dpk-lk" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required formControlName="registrationDate"></my-date-picker>
+            </div>
+        </div> -->
+    </form>
+</div>
