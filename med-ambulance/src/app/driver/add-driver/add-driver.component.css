@@ -1,0 +1,46 @@
+.form-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    grid-gap: 1rem;
+}
+.form-box {
+    margin-bottom: 1rem;
+}
+.form-box > label {
+    color: #AAAAAA !important;
+    font-size: 13px !important;
+    display: block;
+}
+.form-box > input {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--line-clr);
+    background-color: transparent;
+}
+.form-box > input:focus {
+    outline: 0;
+}
+.form-box select {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--line-clr);
+}
+.form-box select:focus {
+    outline: 0;
+}
+.heading-bx{
+    display: inline-block;
+    vertical-align: middle;
+    padding: 11px 16px;
+    line-height: 17px;
+    font-size: 20px;
+    color: #17191c;
+    border-bottom: 1px dotted var(--line-clr);
+    width: 100%;
+}
+my-date-picker.dpk-lk{
+    position: unset;
+    width: 50%;
+}
