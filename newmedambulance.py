@@ -1179,8 +1179,8 @@ def addRiderBooking():
         whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
         data=databasefile.SelectQuery("responderBooking",column,whereCondition)
         if data==None:
-            column="responderId,currentLocationlatlong,mobileNo"
-            whereCondition="verificationStatus<>'F'"
+            column="responderId,currentLocationlatlong,mobileNo,currentLocation"
+            whereCondition="drivingStatus<>'F'"
             datavv=databasefile.SelectQuery1("responderMaster",column,whereCondition)
             for da in datavv:
                 da.split(",")
