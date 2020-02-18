@@ -2106,8 +2106,8 @@ def bookRide():
             drivermobile=data11['result']['mobileNo']
             
             R = 6373.0
-            fromlongitude2= Decimal(startLocationLong)
-            fromlatitude2 = Decimal(startLocationLat)
+            fromlongitude2= startLocationLong
+            fromlatitude2 = startLocationLat
             # print(fromlongitude2,fromlatitude2)
             distanceLongitude = dropLocationLong - fromlongitude2
             distanceLatitude = dropLocationLat - fromlatitude2
