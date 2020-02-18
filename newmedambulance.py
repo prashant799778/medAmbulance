@@ -2240,7 +2240,7 @@ def cancelRide():
         if msg == "1":
             ambulanceId= inputdata["ambulanceId"]
             bookingId=inputdata['bookingId']
-            userId=insertdata['userId']
+            userId=inputdata['userId']
             whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"' and  canceledUserId='"+ str(userId)+"'"
             column=" status=3"
             bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
