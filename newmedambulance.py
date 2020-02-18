@@ -1954,6 +1954,41 @@ def getNearAmbulance():
 
 
 
+@app.route('/getNearAmbulancetest', methods=['POST'])
+def getNearAmbulancetest():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['startLocationLat','startLocationLong']
+        commonfile.writeLog("getNearAmbulance",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
+            column=  " d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, b.lat, b.lng,SQRT(POW(69.1 * (b.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - b.lng) * COS(b.lat / 57.3), 2)) AS distance "
+            whereCondition= " and b.onTrip=0 and b.onDuty=1 and a.driverId=d.id  and b.ambulanceId=a.ambulanceId HAVING distance < 25 "
+            orderby="  distance "
+            nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d,ambulanceRideStatus as b",column,whereCondition,"",orderby,"","")
+            
+            if (nearByAmbulance!=0):   
+                               
+                return nearByAmbulance
+            else:
+                nearByAmbulance["message"]="No Ambulance Found"
+                return nearByAmbulance
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+
 
 
 @app.route('/getNearAmbulance1', methods=['POST'])
