@@ -2054,9 +2054,10 @@ def bookRide():
         startlimit,endlimit="",""
         inputdata={"ambulanceId":3,"id":1,'startLocationLat':28.583962,'startLocationLong':77.314345,"pickupLocationAddress":" Noida se 15",'dropLocationLat':28.535517,'dropLocationLong':77.391029,"dropLocationAddress":"","userId":1}
         #id is driverid
+        print("1111")
         keyarr = ["ambulanceId","id",'startLocationLat','startLocationLong',"pickupLocationAddress",'dropLocationLat','dropLocationLong',"dropLocationAddress","userId"]
         
-
+        print("2")
         if "ambulanceId" in inputdata:
                 if inputdata['ambulanceId'] != "":
                     ambulanceId =str(inputdata["ambulanceId"])
@@ -2086,7 +2087,7 @@ def bookRide():
             if inputdata['userId'] != "":
                 userId =str(inputdata["userId"])
 
-
+        print("3")
         bookingId = (commonfile.CreateHashKey(driverId,userId)).hex
 
 
