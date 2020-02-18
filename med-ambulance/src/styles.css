@@ -57,6 +57,15 @@
 	.border-rad{
 		border-radius: 25px;
 	}
+	.lab-success {
+		background: linear-gradient(45deg,#2ed8b6,#59e0c5) !important;
+	}
+	.lab-warning {
+		background: linear-gradient(45deg,#FFB64D,#ffcb80) !important;
+	}
+	.lab-danger {
+		background: linear-gradient(45deg,#FF5370,#ff869a) !important;
+	}
 	.shadow-box{
 		box-shadow: 0 5px 20px rgba(0, 0, 0, .1);
 	}
@@ -72,6 +81,16 @@
 		font-weight: 400;
 		color: #666;
 		margin-bottom: 15px;
+	}
+	.stus {
+		background: red;
+		display: block;
+		text-align: center;
+		padding: 10px 0;
+		width: 100px;
+		margin-left: auto;
+		margin-right: auto;
+		color: #fff;
 	}
 /* For All End Css*/
 
