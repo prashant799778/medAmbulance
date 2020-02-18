@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LocalStorageService } from 'angular-web-storage';
 import { AuthsService } from './services/auths.service';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { AuthsService } from './services/auths.service';
 export class AppComponent {
 	title = 'med-ambulance';
 	loginSuccessfull: boolean;
-	constructor(public local: LocalStorageService,public authsService: AuthsService){
+	constructor(public local: LocalStorageService,public authsService: AuthsService,public userService: UserService){
 		// this.local.get('userData1')
 		setTimeout(()=>{
 			if(this.local.get('userData1') && this.local.get('userData1').userTypeId){
