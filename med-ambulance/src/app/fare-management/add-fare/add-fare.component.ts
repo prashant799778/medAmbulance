@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { IMyDpOptions } from 'mydatepicker';
 import { UserService } from 'src/app/services/user.service';
+declare var jQuery: any;
 
 @Component({
   selector: 'app-add-fare',
@@ -30,6 +31,17 @@ export class AddFareComponent implements OnInit {
 			waitFare: [''],
 			farePerKM: [''],
 		})
+	}
+
+	resetForm(){
+		this.vehicleForm.reset();
+	}
+
+	submitData(){
+		// if(resp['status'] == 'true'){
+				jQuery('#mainModal').modal('show')
+				this.userService.messageValue('Fare Inserted successfully')
+		// }
 	}
 
 }

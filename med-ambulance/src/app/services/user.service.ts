@@ -10,6 +10,7 @@ export class UserService {
 	user: any;
 	KEY = 'value';
 	superLogin: boolean;
+	messageResult: any;
 
 	constructor(private http: HttpClient,
 				public local: LocalStorageService,
@@ -104,5 +105,9 @@ export class UserService {
 				this.superLogin = false;
 			}
 	  }	
+
+		messageValue(data){
+			this.messageResult = data	
+		}
 }
 
