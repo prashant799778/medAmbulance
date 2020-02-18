@@ -2248,7 +2248,7 @@ def cancelRide():
             columns= "onTrip=0 and onDuty=1"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
-                bookRide["message"]="ride Canceled Successfully"             
+                bookRide["message"]="ride Cancelled Successfully"             
                 return bookRide
             else:
                 
