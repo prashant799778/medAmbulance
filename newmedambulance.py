@@ -2014,6 +2014,7 @@ def getNearAmbulance1():
 @app.route('/bookRide', methods=['POST'])
 def bookRide():
     try:
+        print('A')
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
         #id is driverid
@@ -2057,14 +2058,17 @@ def bookRide():
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         
         if msg == "1":
+            print('B')
             columns="mobileNo,name"
             whereCondition22=" and userId= '"+str(userId)+"' and userTypeId='2' "
             data1= databasefile.SelectQuery("userMaster",columns,whereCondition22)
+            print(data1,'data1')
             usermobile=data1['result']['mobileNo']
 
 
             whereCondition222=" and driverId= '"+str(driverId)+"' "
             data11= databasefile.SelectQuery("driverMaster",columns,whereCondition222)
+            print(data11,'--data')
             drivermobile=data11['result']['mobileNo']
             
             R = 6373.0
@@ -2092,9 +2096,11 @@ def bookRide():
             values111 = " '"+ str(usermobile) +"','" + str(drivermobile)+"','" + str(pickupLocationAddress)+"','" + str(startLocationLat) +"','" + str(startLocationLong) + "','" + str(dropLocationAddress) + "','" + str(dropLocationLat) + "'"
             values111=values111+"','" + str(dropLocationLong)+"','" + str(ambulanceId)+"','" + str(userId) +"','" + str(driverId) + "','" + str(bookingId)+ "','" + str(d2) + "','" + str(finalAmount)+"'"
             data111=databasefile.InsertQuery('bookAmbulance',columnqq,values111)
+            print(data111,'==data')
           
 
-            if (data111!='0'):   
+            if (data111!='0'):  
+                print('Entered') 
                 bookRide["message"]="ride booked Successfully" 
 
                 data={"result":{"userdata":data1['result'],"driverdata":data11['result']},"status":"true","message":"" }            
