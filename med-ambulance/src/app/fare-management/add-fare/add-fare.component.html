@@ -39,6 +39,17 @@
                                 <label>Waiting fare</label>
                                 <input type="text" formControlName="waitFare">
                             </div>
+                            <div class="form-box">
+                                <div class="inputfile-box">
+                                    <input type="file" id="file" class="inputfile" onchange='uploadFile(this)'>
+                                    <label for="file" class="file-lab ">
+                                      <span id="file-name" class="file-box"></span>
+                                      <span class="file-button">
+                                       <img src="../../../assets/images/upload.svg" class="file-up-img">
+                                      </span>
+                                    </label>
+                                  </div>
+                            </div>
                         </div>
                         <div class="btnn-group text-center mt-3 mb-3">
                                 <button (click)="submitData()" type="button" class="sub-btn gp-btn-clr text-white">submit</button>

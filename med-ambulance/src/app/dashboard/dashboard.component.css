@@ -17,16 +17,13 @@
 .gr-t .inner-box-card {
     padding: 2rem;
 }
-.record-box .table thead tr th {
+/* .record-box .table thead tr th {
     padding: 10px !important;
-}
+} */
 @media screen and (max-width:982px){
     .gr-t {
         display: grid;
         grid-template-columns: 1fr !important;
         grid-gap: 2rem;
     }
-}
-.record-box thead tr th:nth-child(8) {
-    text-align: center;
 }

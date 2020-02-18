@@ -24,6 +24,9 @@
 
 
 /* For ALL Css*/
+	.main-container {
+		padding: 25px 20px 10px;
+	}
 	.gp-btn-clr{
 		background-color: var(--gp-btn-clr);
 	}
@@ -84,20 +87,26 @@
 		margin-bottom: 15px;
 	}
 	.stus {
-		
 		display: block;
 		text-align: center;
-		padding: 10px 0;
-		width: 100px;
-		margin-left: auto;
-		margin-right: auto;
+		padding: 7px 0px;
+		width: calc(100% - 30%);
 		color: #fff;
 	}
-	.record-box tbody tr td:nth-child(8) {
+	/* .record-box tbody tr td:nth-child(8) {
 		width: 126px;
-	}
+	} */
 	.record-box {
 		padding: 0px 5px;
+	}
+	.menu-dropdown > li.active > a {
+		border: 1px solid #ffffff;
+	}
+	.menu-dropdown > li > a {
+		border: 1px solid transparent;
+	}
+	.p-oprion > ul > li {
+		cursor: pointer;
 	}
 /* For All End Css*/
 
@@ -556,8 +565,8 @@ input.upload-fil:focus {
     outline: 0;
 }
 .table td, .table th {
-    padding: .75rem;
-    vertical-align: top;
+	padding: 10px 8px;
+    vertical-align: middle;
     border-top: 0px !important;
 }
 .table thead th {
@@ -567,10 +576,8 @@ input.upload-fil:focus {
     font-weight: 600;
 }
 .record-box tbody tr td {
-    padding: 10px 9px;
     font-size: 13px;
 	font-weight: 500 !important;
-	vertical-align: middle;
 }
 /* End All Sect- Section */
 
@@ -596,6 +603,46 @@ input.up-load-file {
 
 /* Upload End Css */
 
+
+
+
+/* img upload Css */
+
+.inputfile-box {
+	position: relative;
+  }
+  
+  .inputfile {
+	display: none;
+  }
+  
+  .file-box {
+	  display: inline-block;
+	  width: 100%;
+	  border-bottom: 1px solid #cccccc;
+	  padding: 5px 0px 5px 5px;
+	  box-sizing: border-box;
+	  height: calc(2rem - 2px);
+  }
+  
+  .file-button {
+	padding: 3px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+  }
+  .file-lab {
+	  display: inline-block;
+	  margin-bottom: .5rem;
+	  width: 100%;
+  }
+  .file-up-img{
+	  width: 20px;
+	  height:20px;
+  }
+
+
+/* img upload Css End */
 
 
 
