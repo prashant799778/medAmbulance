@@ -534,6 +534,34 @@ input.upload-fil:focus {
     font-weight: 600;
 }
 /* End All Sect- Section */
+
+
+/* Upload Css */
+
+.iput-w-img > img {
+	width: 20px;
+    height: 20px;
+	top: 0;
+    left: 0;
+}
+input.up-load-txt {
+	width: calc(100% - 40px);
+	border-bottom: 1px solid #cccccc !important;
+}
+input.up-load-txt:focus{
+	outline: 0;
+}
+input.up-load-file {
+    width: 20px;
+    opacity: 0;
+    position: relative;
+    z-index: 2;
+}
+/* Upload End Css */
+
+
+
+
 @media screen and (max-width:642px){
 	.info-card-box {
 		display: block !important;
@@ -542,6 +570,12 @@ input.upload-fil:focus {
 	}
 	.srch-option li:last-child{
 		display: none !important;
+	}
+	.form-section {
+		display: grid;
+		grid-template-columns: 1fr !important;
+		width: 100%;
+		grid-gap: 1rem;
 	}
 }
 
