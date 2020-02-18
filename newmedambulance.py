@@ -1749,7 +1749,7 @@ def allHospital():
             column= "hosp.id,hosp.hospitalName,hosp.address,am.ambulanceType,hosp.longitude,hosp.latitude"   
             WhereCondition=  " hosp.id=ahm.hospital_Id and am.id=ahm.ambulance_Id and  ambulanceType   = '" + ambulanceType + "'  "
             data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalambulanceMapping as ahm,ambulanceTypeMaster as am",column,WhereCondition)
-            print(data)
+            print(data,'data')
             if (data!=0): 
                 print(data)          
                 Data = {"result":data,"status":"true"}
