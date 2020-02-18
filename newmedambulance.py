@@ -2107,11 +2107,13 @@ def bookRide():
             
             R = 6373.0
             fromlongitude2= startLocationLong
+            print(fromlongitude2,'fromlong')
             fromlatitude2 = startLocationLat
+            print(fromlongitude2,'fromlong')
             # print(fromlongitude2,fromlatitude2)
             distanceLongitude = dropLocationLong - fromlongitude2
             distanceLatitude = dropLocationLat - fromlatitude2
-            a = sin(distanceLatitude / 2)**2 + cos(fromlatitude) * cos(dropLocationLat) * sin(distanceLongitude / 2)**2
+            a = sin(distanceLatitude / 2)**2 + cos(fromlatitude2) * cos(dropLocationLat) * sin(distanceLongitude / 2)**2
             c = 2 * atan2(sqrt(a), sqrt(1 - a))
             distance = R * c
             distance2=distance/100
