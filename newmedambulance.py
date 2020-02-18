@@ -784,7 +784,7 @@ def allAmbulance():
             column=" AM.ambulanceId,AM.lat,AM.lng,atm.ambulanceType,am.ambulanceType,AM.transportType,AM.transportModel,AM.color,AM.ambulanceRegistrationFuel,AM.typeNo,AM.ambulanceFilename,AM.ambulanceFilepath,AM.ambulanceModeId,AM.ambulanceTypeId "
             whereCondition=" AM.ambulanceTypeId=atm.id and AM.ambulanceModeId=am.id"
             data=databasefile.SelectQuery2("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am",column,whereCondition,startlimit,endlimit)
-            if (data!=0):           
+            if (data['status']!='false'):           
                 Data = {"result":data,"status":"true"}
                 return Data
             else:
