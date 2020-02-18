@@ -93,4 +93,107 @@
                 </div>
             </div>
         </div>
+
+        <div class="row" >
+                <div class="col-sm-12 col-md-12 col-lg-12 margin-tp">
+                   
+                    <div class="top-heading bg-white">
+                        <h2 class="heading-bx anim">Driver Details</h2>  
+                    <div class="record-box table-responsive">
+                        <table class="table m-0">                               
+                            <thead>
+                                <tr>
+                                        
+                                        <th>No</th>
+                                        <th>Name</th>
+                                        <th>Mobile</th>
+                                        <th>Email</th>
+                                        <th>Address</th>
+                                        <th>Joining Date</th>
+                                        <th>Trip</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                        
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <ng-container *ngIf="driverData && driverData.length > 0">
+                                            <tr *ngFor="let driver of driverData ; let i =  index">
+                                                  <td>{{i+1}}</td>  
+                                                  <td>{{driver.name}}</td>
+                                                  <td>{{driver.mobileNo}}</td>
+                                                  <td>{{driver.email}}</td>
+                                                  <td>{{driver.currentLocation}}</td>
+                                                    <td>{{driver.dateCreate | date}}</td>
+                                                    <td>{{driver.postTitle}}</td>
+                                                    <td>{{getStatus(driver.status)}}</td>
+                                                    <td>
+                                                        <button type="button" class="acton-btn" (click)="policyDetail(driver.postId, driver.userTypeId)">
+                                                            <img src="../../assets/images/view.svg" class="action-view">
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                      </ng-container>
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="row" >
+                <div class="col-sm-12 col-md-12 col-lg-12 mt-3">
+                   
+                    <div class="top-heading bg-white">
+                        <h2 class="heading-bx anim">User Reviews</h2>  
+                    <div class="record-box table-responsive">
+                        <table class="table m-0">                               
+                            <thead>
+                                <tr>
+                                        
+                                        <th>No</th>
+                                        <th>Name</th>
+                                        <th>Mobile</th>
+                                        <th>Email</th>
+                                        <th>Address</th>
+                                        <th>Joining Date</th>
+                                        <th>Trip</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                        
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <ng-container *ngIf="driverData && driverData.length > 0">
+                                            <tr *ngFor="let driver of driverData ; let i =  index">
+                                                  <td>{{i+1}}</td>  
+                                                  <td>{{driver.name}}</td>
+                                                  <td>{{driver.mobileNo}}</td>
+                                                  <td>{{driver.email}}</td>
+                                                  <td>{{driver.currentLocation}}</td>
+                                                    <td>{{driver.dateCreate | date}}</td>
+                                                    <td>{{driver.postTitle}}</td>
+                                                    <td>{{getStatus(driver.status)}}</td>
+                                                    <td>
+                                                        <button type="button" class="acton-btn" (click)="policyDetail(driver.postId, driver.userTypeId)">
+                                                            <img src="../../assets/images/view.svg" class="action-view">
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                      </ng-container>
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+            </div>
     </div>
+
+
+
+
+
+
+    

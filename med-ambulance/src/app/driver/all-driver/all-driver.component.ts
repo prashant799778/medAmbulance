@@ -20,7 +20,7 @@ export class AllDriverComponent implements OnInit {
 	}
 
 	getDriverData(){
-		this.userService.getApiData(AppSettings.alldriver).then(resp=>{
+		this.userService.dataPostApi(null,AppSettings.alldriver).then(resp=>{
 			if(resp['status'] == 'true'){
 				this.driverData = resp['result']
 			}
