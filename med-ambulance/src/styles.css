@@ -92,6 +92,9 @@
 		margin-right: auto;
 		color: #fff;
 	}
+	.record-box tbody tr td:nth-child(8) {
+		width: 126px;
+	}
 /* For All End Css*/
 
 body{
