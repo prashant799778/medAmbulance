@@ -911,14 +911,12 @@ def alldrivers():
 @app.route('/addhospital', methods=['POST'])
 def addhospital():
     try:
-        print('A')
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
         keyarr = ['hospitalName','address','ambulanceId','latitude','longitude']
         commonfile.writeLog("addhospital",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg=="1":
-            print('B')
             hospitalName = inputdata["hospitalName"]
             address = inputdata["address"]
             ambulanceId = inputdata["ambulanceId"]
@@ -1896,7 +1894,7 @@ def getNearAmbulance():
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
             startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
-            column=  " d.driverId,d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, a.lat, a.lng,SQRT(POW(69.1 * (a.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - a.lng) * COS(a.lat / 57.3), 2)) AS distance "
+            column=  " d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, a.lat, a.lng,SQRT(POW(69.1 * (a.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - a.lng) * COS(a.lat / 57.3), 2)) AS distance "
             whereCondition= " and a.onTrip=0 and a.onDuty=1 and a.driverId=d.id HAVING distance < 1200 "
             orderby="  distance "
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d",column,whereCondition,"",orderby,"","")
@@ -1974,13 +1972,28 @@ def bookRide():
             whereCondition222=" and userId= '"+str(userId)+"'  "
             data11= databasefile.SelectQuery("driverMaster",columns,whereCondition22)
             drivermobile=data11['mobileNo']
+            
+            R = 6373.0
+            fromlongitude2= Decimal(startLocationLong)
+            fromlatitude2 = Decimal(startLocationLat)
+            # print(fromlongitude2,fromlatitude2)
+            distanceLongitude = tolongitude - fromlongitude
+            distanceLatitude = tolatitude - fromlatitude
+            a = sin(distanceLatitude / 2)**2 + cos(fromlatitude) * cos(tolatitude) * sin(distanceLongitude / 2)**2
+            c = 2 * atan2(sqrt(a), sqrt(1 - a))
+            distance = R * c
+            distance2=distance/100
+            Distance=distance2*1.85
+            d=round(Distance)
+            d2 =str(d) +' Km'
 
 
 
 
             #insertdata
-            column='userMobile,driverMobile,pickup,pickupLongitudeLatitude,pickupLongitude,dropoff,dropOffLatitude,ambulanceId,userId,driverId,bookingId'
-            alues = " '"+ str(eventTitle) +"','" + str(userTypeId)+"','" + str(ImagePath)+"','" + str(eventSummary) +"','" + str(eventLocation) + "','" + str(eventDate) + "','" + str(UserId) + "'"
+            column='userMobile,driverMobile,pickup,pickupLongitude,pickupLongitude,dropoff,dropOffLatitude,dropOffLongitude,ambulanceId,userId,driverId,bookingId'
+            values = " '"+ str(usermobile) +"','" + str(drivermobile)+"','" + str(pickupLocationAddress)+"','" + str(startLocationLat) +"','" + str(startLocationLong) + "','" + str(dropLocationAddress) + "','" + str(dropLocationLat) + "'"
+            values=values+"','" + str(dropLocationLong)+"','" + str(ambulanceId)+"','" + str(userId) +"','" + str(driverId) + "','" + str(bookingId) + "'"
 
 
 
