@@ -767,14 +767,23 @@ def ambulanceTypeMaster():
 
 
 
-@app.route('/allAmbulance', methods=['GET'])
+@app.route('/allAmbulance', methods=['POST'])
 def allAmbulance():
     try:
         msg = "1"
         if msg=="1":
+            startlimit,endlimit="",""
+            inputdata =  commonfile.DecodeInputdata(request.get_data())  
+            if "startlimit" in inputdata:
+                if inputdata['startlimit'] != "":
+                    startlimit =str(inputdata["startlimit"])
+                
+            if "endlimit" in inputdata:
+                if inputdata['endlimit'] != "":
+                    endlimit =str(inputdata["endlimit"])
             column=" AM.ambulanceId,AM.lat,AM.lng,atm.ambulanceType,am.ambulanceType,AM.transportType,AM.transportModel,AM.color,AM.ambulanceRegistrationFuel,AM.typeNo,AM.ambulanceFilename,AM.ambulanceFilepath,AM.ambulanceModeId,AM.ambulanceTypeId "
             whereCondition=" AM.ambulanceTypeId=atm.id and AM.ambulanceModeId=am.id"
-            data=databasefile.SelectQuery1("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am",column,whereCondition)
+            data=databasefile.SelectQuery2("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am",column,whereCondition,startlimit,endlimit)
             if (data!=0):           
                 Data = {"result":data,"status":"true"}
                 return Data
