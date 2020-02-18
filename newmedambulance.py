@@ -1510,7 +1510,7 @@ def addOns():
             whereCondition= " name='"+str(name)+ "'"
             data=databasefile.SelectQuery("addOns",column,whereCondition)
             print(data,'A')
-            if data==0:
+            if data['status']=='false':
                 print('B')
                 column="name"
                 values="'"+str(name)+"' "
