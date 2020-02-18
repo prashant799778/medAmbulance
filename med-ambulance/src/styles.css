@@ -229,8 +229,8 @@ body{
 		padding: 5px 0px;
 		position: fixed;
 		width: calc(100% - var(--tg-space));
-		margin-left: var(--tg-space);
-		left: 0;
+		/* margin-left: var(--tg-space);
+		left: 0; */
 		transition: 0.5s;
 	}
 	.pd-3 {
@@ -257,8 +257,8 @@ body{
 		padding: 5px 0px;
 		position: fixed;
 		width: calc(100% - var(--space));
-		margin-left: var(--space);
-		left: 0;
+		/* margin-left: var(--space);
+		left: 0; */
 		transition: 0.5s;
 		z-index: 2;
 	}
@@ -541,6 +541,12 @@ input.upload-fil:focus {
 	font-size: 14px;
     font-weight: 600;
 }
+.record-box tbody tr td {
+    padding: 10px 9px;
+    font-size: 13px;
+	font-weight: 500 !important;
+	vertical-align: middle;
+}
 /* End All Sect- Section */
 
 
@@ -560,11 +566,9 @@ input.up-load-txt:focus{
 	outline: 0;
 }
 input.up-load-file {
-    width: 20px;
-    opacity: 0;
-    position: relative;
-    z-index: 2;
+	width: 100%;
 }
+
 /* Upload End Css */
 
 
