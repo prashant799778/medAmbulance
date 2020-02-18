@@ -924,11 +924,11 @@ def addhospital():
             address = inputdata["address"]
             ambulanceId = inputdata["ambulanceId"]
             
-            latitude=inputdata['latitude']
+            latitude=inputdata['lat']
 
-            longitude=inputdata['longitude']
+            longitude=inputdata['lng']
 
-            column=" * "
+            column=" id "
             whereCondition= "hospitalName='"+str(hospitalName)+ "'"
             data= databasefile.SelectQuery("hospitalMaster",column,whereCondition)
 
@@ -938,18 +938,32 @@ def addhospital():
                 
                 print('AA')
                 column="hospitalName,address,latitude,longitude"
-                values="'"+str(hospitalName)+"','"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"'"
+                values="'"+str(hospitalName)+"'"
                 insertdata=databasefile.InsertQuery("hospitalMaster",column,values)
 
                 column=" id as hospitalId "
-                whereCondition="hospitalName= '"+str(hospitalName)+ "' and  address='"+str(address)+ "'"
+                whereCondition="hospitalName= '"+str(hospitalName)+ "' '"
                 data= databasefile.SelectQuery1("hospitalMaster",column,whereCondition)
+
                 print(data[-1],'data1111')
                 yu=data[-1]
                 mainId=yu["hospitalId"]
+
+                
                 print(mainId,'mainId')
                 ambulanceId1 = ambulanceId
                 print(ambulanceId1,'ambulance')
+
+
+                column='address,lat,lng,hospitalId'
+                values="'"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"','"+str(mainId)+"'"
+                insertdata=databasefile.InsertQuery("hospitalLocationMaster",column,values)
+
+
+
+
+
+
                 print('BB')
                 column=" * "
                 whereCondition="ambulance_Id='"+str(ambulanceId1)+"'  and hospital_Id='"+str(mainId)+"'"
@@ -966,8 +980,20 @@ def addhospital():
                     output = {"result":"Data already existed in mapping table","status":"true"}
                     return output
             else:
-                output = {"result":"Hospital Already  Existed ","status":"true"}
-                return output
+                hospitalId=data['result']['id']
+                column="*"
+                whereCondition222=" hospitalId='"+str(hospitalId)+"' and address='"+str(address)+"' and lat='"+str(latitude)+"' and lng= '"+str(longitude)+"'  "
+                data=databasefile.SelectQuery('hospitalambulanceMapping',column,whereCondition222)
+                if data['status'] == 'false':
+                    column='address,lat,lng,hospitalId'
+                    values="'"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"','"+str(hospitalId)+"'"
+                    insertdata=databasefile.InsertQuery("hospitalLocationMaster",column,values)
+
+
+
+                else:    
+                    output = {"result":"Hospital  address Already  Existed ","status":"true"}
+                    return output
         else:
             return msg 
     except Exception as e :
