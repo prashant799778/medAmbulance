@@ -2141,7 +2141,7 @@ def bookRide():
             
             columns=" * "
             whereCondition22="  bookingId= '"+str(bookingId)+"'"
-            bookingDetails= databasefile.SelectQuery("userMaster",columns,whereCondition22)
+            bookingDetails= databasefile.SelectQuery("bookAmbulance",columns,whereCondition22)
 
             if (bookingDetails!='0'):  
                 print('Entered') 
