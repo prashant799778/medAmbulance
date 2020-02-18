@@ -2142,8 +2142,10 @@ def bookRide():
             
             columns=" bm.ambulanceId,bm.bookingId,bm.driverId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
             columns=columns+",bm.finalAmount,bm.pickup,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
+            columns=columns+",bm.driverMobile"
             whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
             bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am",columns,whereCondition22)
+            print(bookingDetails,"================")
             bookingDetails["result"][0]["driverName"]=driverName
             if (bookingDetails!='0'):  
                 print('Entered') 
