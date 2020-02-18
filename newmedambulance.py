@@ -27,14 +27,26 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO
 import pyotp
 import socketio
-
+import paho.mqtt.client as mqtt
+from flask import Flask, render_template
 # standard Python
-sio = socketio.Client()
+#sio = socketio.Client()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app, cors_allowed_origins="*")
+#socketio = SocketIO(app, cors_allowed_origins="*")
 # sio = socketio.Client()
+
+
+
+
+
+
+
+client = mqtt.Client()
+client.connect("159.65.146.25",1883,60)
+
+
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, o):
@@ -924,11 +936,11 @@ def addhospital():
             address = inputdata["address"]
             ambulanceId = inputdata["ambulanceId"]
             
-            latitude=inputdata['latitude']
+            latitude=inputdata['lat']
 
-            longitude=inputdata['longitude']
+            longitude=inputdata['lng']
 
-            column=" * "
+            column=" id "
             whereCondition= "hospitalName='"+str(hospitalName)+ "'"
             data= databasefile.SelectQuery("hospitalMaster",column,whereCondition)
 
@@ -938,18 +950,32 @@ def addhospital():
                 
                 print('AA')
                 column="hospitalName,address,latitude,longitude"
-                values="'"+str(hospitalName)+"','"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"'"
+                values="'"+str(hospitalName)+"'"
                 insertdata=databasefile.InsertQuery("hospitalMaster",column,values)
 
                 column=" id as hospitalId "
-                whereCondition="hospitalName= '"+str(hospitalName)+ "' and  address='"+str(address)+ "'"
+                whereCondition="hospitalName= '"+str(hospitalName)+ "' '"
                 data= databasefile.SelectQuery1("hospitalMaster",column,whereCondition)
+
                 print(data[-1],'data1111')
                 yu=data[-1]
                 mainId=yu["hospitalId"]
+
+                
                 print(mainId,'mainId')
                 ambulanceId1 = ambulanceId
                 print(ambulanceId1,'ambulance')
+
+
+                column='address,lat,lng,hospitalId'
+                values="'"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"','"+str(mainId)+"'"
+                insertdata=databasefile.InsertQuery("hospitalLocationMaster",column,values)
+
+
+
+
+
+
                 print('BB')
                 column=" * "
                 whereCondition="ambulance_Id='"+str(ambulanceId1)+"'  and hospital_Id='"+str(mainId)+"'"
@@ -966,8 +992,20 @@ def addhospital():
                     output = {"result":"Data already existed in mapping table","status":"true"}
                     return output
             else:
-                output = {"result":"Hospital Already  Existed ","status":"true"}
-                return output
+                hospitalId=data['result']['id']
+                column="*"
+                whereCondition222=" hospitalId='"+str(hospitalId)+"' and address='"+str(address)+"' and lat='"+str(latitude)+"' and lng= '"+str(longitude)+"'  "
+                data=databasefile.SelectQuery('hospitalambulanceMapping',column,whereCondition222)
+                if data['status'] == 'false':
+                    column='address,lat,lng,hospitalId'
+                    values="'"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"','"+str(hospitalId)+"'"
+                    insertdata=databasefile.InsertQuery("hospitalLocationMaster",column,values)
+
+
+
+                else:    
+                    output = {"result":"Hospital  address Already  Existed ","status":"true"}
+                    return output
         else:
             return msg 
     except Exception as e :
@@ -1905,12 +1943,18 @@ def getNearAmbulance():
         if msg == "1":
             startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
             column=  " d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, a.lat, a.lng,SQRT(POW(69.1 * (a.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - a.lng) * COS(a.lat / 57.3), 2)) AS distance "
-            whereCondition= " and a.onTrip=0 and a.onDuty=1 and a.driverId=d.id HAVING distance > 25 "
+            whereCondition= " and a.onTrip=0 and a.onDuty=1 and a.driverId=d.id HAVING distance < 25 "
             orderby="  distance "
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d",column,whereCondition,"",orderby,"","")
             
-            if (nearByAmbulance!=0):   
-                               
+            if (nearByAmbulance!=0): 
+                print(nearByAmbulance)  
+                for i in range(0,len(nearByAmbulance["result"])): 
+                    topic=nearByAmbulance["result"][i]["ambulanceId"]
+                    print(nearByAmbulance["result"][i]["ambulanceId"]) 
+                    client.publish(topic, "Hello world11111111111111111")
+                    print("2222222222222")  
+
                 return nearByAmbulance
             else:
                 nearByAmbulance["message"]="No Ambulance Found"
@@ -1945,8 +1989,12 @@ def getNearAmbulance1():
             orderby="  distance "
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d",column,whereCondition,"",orderby,"","")
             
-            if (nearByAmbulance!=0):   
-                               
+            if (nearByAmbulance!=0): 
+                for i in nearByAmbulance["result"]: 
+                    topic=nearByAmbulance["result"][i]["ambulanceId"]
+                    print(nearByAmbulance["result"][i]["ambulanceId"]) 
+                    client.publish(topic, "Hello world11111111111111111")
+                    print("2222222222222")             
                 return nearByAmbulance
             else:
                 
