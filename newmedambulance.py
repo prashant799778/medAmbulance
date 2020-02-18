@@ -2103,7 +2103,7 @@ def bookRide():
             usermobile=data1['result']['mobileNo']
 
 
-            whereCondition222="  driverId= '"+str(driverId)+"' "
+            whereCondition222="  id= '"+str(driverId)+"' "
             data11= databasefile.SelectQuery("driverMaster",columns,whereCondition222)
             print(data11,'--data')
             drivermobile=data11['result']['mobileNo']
