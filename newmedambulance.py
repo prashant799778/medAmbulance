@@ -2050,8 +2050,8 @@ def getNearAmbulance1():
 def bookRide():
     try:
         print('A')
-        inputdata =  commonfile.DecodeInputdata(request.get_data())
-        startlimit,endlimit="",""
+        # inputdata =  commonfile.DecodeInputdata(request.get_data())
+        # startlimit,endlimit="",""
         inputdata={"ambulanceId":3,"id":1,'startLocationLat':28.583962,'startLocationLong':77.314345,"pickupLocationAddress":" Noida se 15",'dropLocationLat':28.535517,'dropLocationLong':77.391029,"dropLocationAddress":"fortis noida","userId":1}
         #id is driverid
         print("1111")
