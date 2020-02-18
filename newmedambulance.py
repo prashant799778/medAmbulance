@@ -27,14 +27,26 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO
 import pyotp
 import socketio
-
+import paho.mqtt.client as mqtt
+from flask import Flask, render_template
 # standard Python
-sio = socketio.Client()
+#sio = socketio.Client()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app, cors_allowed_origins="*")
+#socketio = SocketIO(app, cors_allowed_origins="*")
 # sio = socketio.Client()
+
+
+
+
+
+
+
+client = mqtt.Client()
+client.connect("159.65.146.25",1883,60)
+
+
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, o):
@@ -1268,66 +1280,66 @@ def trackAmbulance():
         
 
 
-@app.route('/addRiderBooking', methods=['POST'])
-def addRiderBooking():
-    try:
-        data1 = commonfile.DecodeInputdata(request.get_data())
-        pickup=str(data1["pickup"])
-        search = geocoder.get(pickup)
-        search[0].geometry.location
-        fromlatitude= search[0].geometry.location.lat
-        fromlongitude=search[0].geometry.location.lng
+# @app.route('/addRiderBooking', methods=['POST'])
+# def addRiderBooking():
+#     try:
+#         data1 = commonfile.DecodeInputdata(request.get_data())
+#         pickup=str(data1["pickup"])
+#         search = geocoder.get(pickup)
+#         search[0].geometry.location
+#         fromlatitude= search[0].geometry.location.lat
+#         fromlongitude=search[0].geometry.location.lng
         
-        bookingId=uuid.uuid1()
-        bookingId=bookingId.hex
-        R = 6373.0
-        column=" * "
-        whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
-        data=databasefile.SelectQuery("responderBooking",column,whereCondition)
-        if data==None:
-            column="responderId,currentLocationlatlong,mobileNo,currentLocation"
-            whereCondition="drivingStatus<>'1'"
-            datavv=databasefile.SelectQuery1("responderMaster",column,whereCondition)
-            for da in datavv:
-                da.split(",")
-                driverlattitude=int(da[0])
-                driverlongitude=int(da[2])
-                distanceLongitude = driverlongitude-fromlongitude
-                distanceLatitude = driverlattitude-fromlattitude
-                a = sin(distanceLatitude / 2)**2 + cos(driverlattitude) * cos(fromlatitude) * sin(driverlongitude/ 2)**2
-                c = 2 * atan2(sqrt(a), sqrt(1 - a))
-                distanceDriver = R * c
-                distance1=distanceDriver/100
-                distanceD=distance2*1.85
-                d1=round(distanceD)
-                d9 =str(d) +' Km'
-                if d1 <2:
-                    riderId=da['responderId']
-                    driverMobile=da['mobileNo']
+#         bookingId=uuid.uuid1()
+#         bookingId=bookingId.hex
+#         R = 6373.0
+#         column=" * "
+#         whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
+#         data=databasefile.SelectQuery("responderBooking",column,whereCondition)
+#         if data==None:
+#             column="responderId,currentLocationlatlong,mobileNo,currentLocation"
+#             whereCondition="drivingStatus<>'1'"
+#             datavv=databasefile.SelectQuery1("responderMaster",column,whereCondition)
+#             for da in datavv:
+#                 da.split(",")
+#                 driverlattitude=int(da[0])
+#                 driverlongitude=int(da[2])
+#                 distanceLongitude = driverlongitude-fromlongitude
+#                 distanceLatitude = driverlattitude-fromlattitude
+#                 a = sin(distanceLatitude / 2)**2 + cos(driverlattitude) * cos(fromlatitude) * sin(driverlongitude/ 2)**2
+#                 c = 2 * atan2(sqrt(a), sqrt(1 - a))
+#                 distanceDriver = R * c
+#                 distance1=distanceDriver/100
+#                 distanceD=distance2*1.85
+#                 d1=round(distanceD)
+#                 d9 =str(d) +' Km'
+#                 if d1 <2:
+#                     riderId=da['responderId']
+#                     driverMobile=da['mobileNo']
            
-            column="usermobile,pickup,pickupLongitudeLatitude,userId,bookingId,finalAmount,totalDistance"
-            values="'"+str(data1["mobileNo"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d9)+"'"
-            insertdata=databasefile.InsertQuery("responderBooking",column,values)
-            column=" * "
-            whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
-            data=databasefile.SelectQuery1("responderBooking",column,whereCondition)
-            yu=data[-1]
-            mainId=yu["bookingId"]
-            pickuplocation=yu["pickup"]
-            userid=yu["userId"]
-            column="bookingId,responderId,farDistance,pickup,userId"
-            values="'"+str(mainId)+"','"+str(riderId)+"','"+str(d9)+"','"+str(pickuplocation)+"','"+str(userid)+"'"
-            insertdata=databasefile.InsertQuery("responderBookingMapping",column,values)              
-            output = {"result":"data inserted successfully","status":"true","ride Details":data[-1]}
-            return output
+#             column="usermobile,pickup,pickupLongitudeLatitude,userId,bookingId,finalAmount,totalDistance"
+#             values="'"+str(data1["mobileNo"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d9)+"'"
+#             insertdata=databasefile.InsertQuery("responderBooking",column,values)
+#             column=" * "
+#             whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
+#             data=databasefile.SelectQuery1("responderBooking",column,whereCondition)
+#             yu=data[-1]
+#             mainId=yu["bookingId"]
+#             pickuplocation=yu["pickup"]
+#             userid=yu["userId"]
+#             column="bookingId,responderId,farDistance,pickup,userId"
+#             values="'"+str(mainId)+"','"+str(riderId)+"','"+str(d9)+"','"+str(pickuplocation)+"','"+str(userid)+"'"
+#             insertdata=databasefile.InsertQuery("responderBookingMapping",column,values)              
+#             output = {"result":"data inserted successfully","status":"true","ride Details":data[-1]}
+#             return output
            
-        else:
-            output = {"result":"Hospital Already  Existed ","status":"false"}
-            return output 
-    except Exception as e :
-        print("Exception---->" + str(e))    
-        output = {"result":"something went wrong","status":"false"}
-        return output
+#         else:
+#             output = {"result":"Hospital Already  Existed ","status":"false"}
+#             return output 
+#     except Exception as e :
+#         print("Exception---->" + str(e))    
+#         output = {"result":"something went wrong","status":"false"}
+#         return output
 
 
 
@@ -1935,8 +1947,13 @@ def getNearAmbulance():
             orderby="  distance "
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d",column,whereCondition,"",orderby,"","")
             
-            if (nearByAmbulance!=0):   
-                               
+            if (nearByAmbulance!=0): 
+                
+                for i in range(0,len(nearByAmbulance["result"])):
+                    topic=nearByAmbulance["result"][i]["ambulanceId"]
+                    client.publish(str(topic), "Hello world11111111111111111")
+                     
+
                 return nearByAmbulance
             else:
                 nearByAmbulance["message"]="No Ambulance Found"
@@ -2006,8 +2023,12 @@ def getNearAmbulance1():
             orderby="  distance "
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d",column,whereCondition,"",orderby,"","")
             
-            if (nearByAmbulance!=0):   
-                               
+            if (nearByAmbulance!=0): 
+                for i in nearByAmbulance["result"]: 
+                    topic=nearByAmbulance["result"][i]["ambulanceId"]
+                    print(nearByAmbulance["result"][i]["ambulanceId"]) 
+                    client.publish(topic, "Hello world11111111111111111")
+                    print("2222222222222")             
                 return nearByAmbulance
             else:
                 
@@ -2027,6 +2048,7 @@ def getNearAmbulance1():
 @app.route('/bookRide', methods=['POST'])
 def bookRide():
     try:
+        print('A')
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
         #id is driverid
@@ -2070,14 +2092,17 @@ def bookRide():
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         
         if msg == "1":
+            print('B')
             columns="mobileNo,name"
             whereCondition22=" and userId= '"+str(userId)+"' and userTypeId='2' "
             data1= databasefile.SelectQuery("userMaster",columns,whereCondition22)
+            print(data1,'data1')
             usermobile=data1['result']['mobileNo']
 
 
-            whereCondition222=" and userId= '"+str(userId)+"' "
-            data11= databasefile.SelectQuery("driverMaster",columns,whereCondition22)
+            whereCondition222=" and driverId= '"+str(driverId)+"' "
+            data11= databasefile.SelectQuery("driverMaster",columns,whereCondition222)
+            print(data11,'--data')
             drivermobile=data11['result']['mobileNo']
             
             R = 6373.0
@@ -2105,9 +2130,11 @@ def bookRide():
             values111 = " '"+ str(usermobile) +"','" + str(drivermobile)+"','" + str(pickupLocationAddress)+"','" + str(startLocationLat) +"','" + str(startLocationLong) + "','" + str(dropLocationAddress) + "','" + str(dropLocationLat) + "'"
             values111=values111+"','" + str(dropLocationLong)+"','" + str(ambulanceId)+"','" + str(userId) +"','" + str(driverId) + "','" + str(bookingId)+ "','" + str(d2) + "','" + str(finalAmount)+"'"
             data111=databasefile.InsertQuery('bookAmbulance',columnqq,values111)
+            print(data111,'==data')
           
 
-            if (data111!='0'):   
+            if (data111!='0'):  
+                print('Entered') 
                 bookRide["message"]="ride booked Successfully" 
 
                 data={"result":{"userdata":data1['result'],"driverdata":data11['result']},"status":"true","message":"" }            
