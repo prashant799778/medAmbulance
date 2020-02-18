@@ -2175,7 +2175,7 @@ def startRide():
             columns= "onTrip=1 and onDuty=1"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
-                bookRide["message"]="ride Ended Successfully"             
+                bookRide["message"]="ride started Successfully"             
                 return bookRide
             else:
                 
