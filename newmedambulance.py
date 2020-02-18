@@ -1954,7 +1954,7 @@ def getNearAmbulance():
                     print("1111111111") 
                     topic=nearByAmbulance["result"][i]["ambulanceId"]
                     print(nearByAmbulance["result"][i]["ambulanceId"]) 
-                    client.publish(topic, "Hello world11111111111111111")
+                    client.publish(str(topic), "Hello world11111111111111111")
                     print("2222222222222")  
 
                 return nearByAmbulance
