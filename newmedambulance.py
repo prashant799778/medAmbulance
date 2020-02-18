@@ -912,12 +912,14 @@ def alldrivers():
 @app.route('/addhospital', methods=['POST'])
 def addhospital():
     try:
+        print('A')
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
         keyarr = ['hospitalName','address','ambulanceId','latitude','longitude']
         commonfile.writeLog("addhospital",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg=="1":
+            print('B')
             hospitalName = inputdata["hospitalName"]
             address = inputdata["address"]
             ambulanceId = inputdata["ambulanceId"]
