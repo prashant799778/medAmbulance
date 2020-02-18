@@ -1987,36 +1987,18 @@ def bookRide():
             d=round(Distance)
             d2 =str(d) +' Km'
 
-
-
-
             #insertdata
             column='userMobile,driverMobile,pickup,pickupLongitude,pickupLongitude,dropoff,dropOffLatitude,dropOffLongitude,ambulanceId,userId,driverId,bookingId'
             values = " '"+ str(usermobile) +"','" + str(drivermobile)+"','" + str(pickupLocationAddress)+"','" + str(startLocationLat) +"','" + str(startLocationLong) + "','" + str(dropLocationAddress) + "','" + str(dropLocationLat) + "'"
-            values=values+"','" + str(dropLocationLong)+"','" + str(ambulanceId)+"','" + str(userId) +"','" + str(driverId) + "','" + str(bookingId) +\
-
-            
-
-
-
-
+            values=values+"','" + str(dropLocationLong)+"','" + str(ambulanceId)+"','" + str(userId) +"','" + str(driverId) + "','" + str(bookingId) +"'"
 
             # column = "eventTitle,userTypeId,imagePath,eventSummary,eventLocation,eventDate,UserCreate"
             # values = " '"+ str(eventTitle) +"','" + str(userTypeId)+"','" + str(ImagePath)+"','" + str(eventSummary) +"','" + str(eventLocation) + "','" + str(eventDate) + "','" + str(UserId) + "'"
             # data = databasefile.InsertQuery("b",column,values)
 
-
-
-
-
-
-
             WhereCondition=" and   ambulanceId='"+str(ambulanceId)+"'"
             column = " ambulanceId,ambulanceNo,lat,lng,ambulanceTypeId,ambulanceModeId,driverId   "
             data = databasefile.SelectQueryOrderby(" ambulanceMaster ",column,WhereCondition,"","","","")
-
-
-
 
             ambulanceId= inputdata["ambulanceId"]
             whereCondition=" ambulanceId= '"+ str(ambulanceId)+"'"
