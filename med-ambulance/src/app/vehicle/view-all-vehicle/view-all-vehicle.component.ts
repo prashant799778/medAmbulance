@@ -22,41 +22,45 @@ export class ViewAllVehicleComponent implements OnInit {
 	}
 
 	getVehicleData(){
-		// this.userService.getApiData(AppSettings.selectambulanceMaster).then(resp=>{
-		// 	if(resp['status'] == 'true'){
-		// 		this.vehicleData = resp['result']
+		let data = {
+			'endlimit': 10,
+			'startlimit': 0
+		}
+		this.userService.dataPostApi(data,AppSettings.allAmbulance).then(resp=>{
+			if(resp['status'] == 'true'){
+				this.vehicleData = resp['result']
 				this.loader = false;
-		// 	}
-		// })
-		this.vehicleData = [
-			{	'image': 'http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/dp.jpg',
-				'fuelType':'CNG',
-				'purchaseDate': 2020,
-				'regNumber': 'UP87H9315',
-				'category': 'GOV',
-				'type': 'ALS',
-				'modal': 'Car',
-				
-			},
-			{	'image': 'http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/user/usrbig5.jpg',
-				'fuelType':'CNG',
-				'purchaseDate': 2020,
-				'regNumber': 'UP87H9315',
-				'category': 'GOV',
-				'type': 'ALS',
-				'modal': 'Car',
-				
-			},
-			{	'image': 'http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/user/usrbig7.jpg',
-				'fuelType':'CNG',
-				'purchaseDate': 2020,
-				'regNumber': 'UP87H9315',
-				'category': 'GOV',
-				'type': 'ALS',
-				'modal': 'Car',
-				
 			}
-		]
+		})
+		// this.vehicleData = [
+		// 	{	'image': 'http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/dp.jpg',
+		// 		'fuelType':'CNG',
+		// 		'purchaseDate': 2020,
+		// 		'regNumber': 'UP87H9315',
+		// 		'category': 'GOV',
+		// 		'type': 'ALS',
+		// 		'modal': 'Car',
+				
+		// 	},
+		// 	{	'image': 'http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/user/usrbig5.jpg',
+		// 		'fuelType':'CNG',
+		// 		'purchaseDate': 2020,
+		// 		'regNumber': 'UP87H9315',
+		// 		'category': 'GOV',
+		// 		'type': 'ALS',
+		// 		'modal': 'Car',
+				
+		// 	},
+		// 	{	'image': 'http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/user/usrbig7.jpg',
+		// 		'fuelType':'CNG',
+		// 		'purchaseDate': 2020,
+		// 		'regNumber': 'UP87H9315',
+		// 		'category': 'GOV',
+		// 		'type': 'ALS',
+		// 		'modal': 'Car',
+				
+		// 	}
+		// ]
 	}
 
 	pageChanged(event){
@@ -74,7 +78,7 @@ export class ViewAllVehicleComponent implements OnInit {
 			'endlimit': endlimit,
 			'startlimit': startlimit
 		}
-		this.userService.dataPostApi(data,AppSettings.selectambulanceMaster).then((data: any[]) => {
+		this.userService.dataPostApi(data,AppSettings.allAmbulance).then((data: any[]) => {
 			this.totalRecords = data['totalCount']
 			if(this.totalRecords > this.pageSize){
 				this.paginationDisplay = true;

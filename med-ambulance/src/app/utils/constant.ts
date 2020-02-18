@@ -7,7 +7,7 @@ export class AppSettings {
     public static selectambulanceMode = 'selectambulanceMode';
     public static updateambulanceMode = 'updateambulanceMode';
     public static addambulance = 'addambulance';
-    public static selectambulanceMaster = 'selectambulanceMaster';
+    public static allAmbulance = 'allAmbulance';
     public static updateambulanceMaster = 'updateambulanceMaster';
     public static allusers = 'allusers';
     
