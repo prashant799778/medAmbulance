@@ -1950,7 +1950,8 @@ def getNearAmbulance():
             if (nearByAmbulance!=0): 
                 print(nearByAmbulance["result"],"---------------")  
                 print(len(nearByAmbulance["result"]),"=============")
-                for i in range(0,len(nearByAmbulance["result"])): 
+                for i in range(0,len(nearByAmbulance["result"])):
+                    print("1111111111") 
                     topic=nearByAmbulance["result"][i]["ambulanceId"]
                     print(nearByAmbulance["result"][i]["ambulanceId"]) 
                     client.publish(topic, "Hello world11111111111111111")
