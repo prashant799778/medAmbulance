@@ -1280,66 +1280,66 @@ def trackAmbulance():
         
 
 
-@app.route('/addRiderBooking', methods=['POST'])
-def addRiderBooking():
-    try:
-        data1 = commonfile.DecodeInputdata(request.get_data())
-        pickup=str(data1["pickup"])
-        search = geocoder.get(pickup)
-        search[0].geometry.location
-        fromlatitude= search[0].geometry.location.lat
-        fromlongitude=search[0].geometry.location.lng
+# @app.route('/addRiderBooking', methods=['POST'])
+# def addRiderBooking():
+#     try:
+#         data1 = commonfile.DecodeInputdata(request.get_data())
+#         pickup=str(data1["pickup"])
+#         search = geocoder.get(pickup)
+#         search[0].geometry.location
+#         fromlatitude= search[0].geometry.location.lat
+#         fromlongitude=search[0].geometry.location.lng
         
-        bookingId=uuid.uuid1()
-        bookingId=bookingId.hex
-        R = 6373.0
-        column=" * "
-        whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
-        data=databasefile.SelectQuery("responderBooking",column,whereCondition)
-        if data==None:
-            column="responderId,currentLocationlatlong,mobileNo,currentLocation"
-            whereCondition="drivingStatus<>'1'"
-            datavv=databasefile.SelectQuery1("responderMaster",column,whereCondition)
-            for da in datavv:
-                da.split(",")
-                driverlattitude=int(da[0])
-                driverlongitude=int(da[2])
-                distanceLongitude = driverlongitude-fromlongitude
-                distanceLatitude = driverlattitude-fromlattitude
-                a = sin(distanceLatitude / 2)**2 + cos(driverlattitude) * cos(fromlatitude) * sin(driverlongitude/ 2)**2
-                c = 2 * atan2(sqrt(a), sqrt(1 - a))
-                distanceDriver = R * c
-                distance1=distanceDriver/100
-                distanceD=distance2*1.85
-                d1=round(distanceD)
-                d9 =str(d) +' Km'
-                if d1 <2:
-                    riderId=da['responderId']
-                    driverMobile=da['mobileNo']
+#         bookingId=uuid.uuid1()
+#         bookingId=bookingId.hex
+#         R = 6373.0
+#         column=" * "
+#         whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
+#         data=databasefile.SelectQuery("responderBooking",column,whereCondition)
+#         if data==None:
+#             column="responderId,currentLocationlatlong,mobileNo,currentLocation"
+#             whereCondition="drivingStatus<>'1'"
+#             datavv=databasefile.SelectQuery1("responderMaster",column,whereCondition)
+#             for da in datavv:
+#                 da.split(",")
+#                 driverlattitude=int(da[0])
+#                 driverlongitude=int(da[2])
+#                 distanceLongitude = driverlongitude-fromlongitude
+#                 distanceLatitude = driverlattitude-fromlattitude
+#                 a = sin(distanceLatitude / 2)**2 + cos(driverlattitude) * cos(fromlatitude) * sin(driverlongitude/ 2)**2
+#                 c = 2 * atan2(sqrt(a), sqrt(1 - a))
+#                 distanceDriver = R * c
+#                 distance1=distanceDriver/100
+#                 distanceD=distance2*1.85
+#                 d1=round(distanceD)
+#                 d9 =str(d) +' Km'
+#                 if d1 <2:
+#                     riderId=da['responderId']
+#                     driverMobile=da['mobileNo']
            
-            column="usermobile,pickup,pickupLongitudeLatitude,userId,bookingId,finalAmount,totalDistance"
-            values="'"+str(data1["mobileNo"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d9)+"'"
-            insertdata=databasefile.InsertQuery("responderBooking",column,values)
-            column=" * "
-            whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
-            data=databasefile.SelectQuery1("responderBooking",column,whereCondition)
-            yu=data[-1]
-            mainId=yu["bookingId"]
-            pickuplocation=yu["pickup"]
-            userid=yu["userId"]
-            column="bookingId,responderId,farDistance,pickup,userId"
-            values="'"+str(mainId)+"','"+str(riderId)+"','"+str(d9)+"','"+str(pickuplocation)+"','"+str(userid)+"'"
-            insertdata=databasefile.InsertQuery("responderBookingMapping",column,values)              
-            output = {"result":"data inserted successfully","status":"true","ride Details":data[-1]}
-            return output
+#             column="usermobile,pickup,pickupLongitudeLatitude,userId,bookingId,finalAmount,totalDistance"
+#             values="'"+str(data1["mobileNo"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d9)+"'"
+#             insertdata=databasefile.InsertQuery("responderBooking",column,values)
+#             column=" * "
+#             whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
+#             data=databasefile.SelectQuery1("responderBooking",column,whereCondition)
+#             yu=data[-1]
+#             mainId=yu["bookingId"]
+#             pickuplocation=yu["pickup"]
+#             userid=yu["userId"]
+#             column="bookingId,responderId,farDistance,pickup,userId"
+#             values="'"+str(mainId)+"','"+str(riderId)+"','"+str(d9)+"','"+str(pickuplocation)+"','"+str(userid)+"'"
+#             insertdata=databasefile.InsertQuery("responderBookingMapping",column,values)              
+#             output = {"result":"data inserted successfully","status":"true","ride Details":data[-1]}
+#             return output
            
-        else:
-            output = {"result":"Hospital Already  Existed ","status":"false"}
-            return output 
-    except Exception as e :
-        print("Exception---->" + str(e))    
-        output = {"result":"something went wrong","status":"false"}
-        return output
+#         else:
+#             output = {"result":"Hospital Already  Existed ","status":"false"}
+#             return output 
+#     except Exception as e :
+#         print("Exception---->" + str(e))    
+#         output = {"result":"something went wrong","status":"false"}
+#         return output
 
 
 
@@ -2064,8 +2064,8 @@ def bookRide():
             usermobile=data1['result']['mobileNo']
 
 
-            whereCondition222=" and userId= '"+str(userId)+"' "
-            data11= databasefile.SelectQuery("driverMaster",columns,whereCondition22)
+            whereCondition222=" and driverId= '"+str(driverId)+"' "
+            data11= databasefile.SelectQuery("driverMaster",columns,whereCondition222)
             drivermobile=data11['result']['mobileNo']
             
             R = 6373.0
