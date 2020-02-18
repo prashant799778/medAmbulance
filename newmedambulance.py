@@ -1410,7 +1410,7 @@ def addriderType():
             whereCondition="responderType='"+str(responderType)+"'"
             data= databasefile.SelectQuery("responderTypeMaster",column,whereCondition)
             print(data,'printit')
-            if data==0:
+            if data['status']=='false':
                 column="responderType"
                 values="'"+str(responderType)+"'"
                 insertdata=databasefile.InsertQuery("responderTypeMaster",column,values)
