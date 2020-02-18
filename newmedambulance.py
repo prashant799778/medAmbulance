@@ -1471,7 +1471,7 @@ def updateriderType():
             whereCondition="id = '" + str(id)+ "'"
             data1 = databasefile.SelectQuery("responderTypeMaster",column,whereCondition)
             print(data1,"data1")
-            if data1 != 0:
+            if data1['status'] == 'false':
                 column = ""
                 whereCondition = ""
                 column= " responderType='" + str(responderType) + "'"
