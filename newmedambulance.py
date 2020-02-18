@@ -2121,6 +2121,7 @@ def bookRide():
 
 
             finalAmount= d * 11+11
+            print(finalAmount,'final')
 
 
 
