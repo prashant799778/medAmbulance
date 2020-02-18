@@ -2059,13 +2059,13 @@ def bookRide():
         if msg == "1":
             print('B')
             columns="mobileNo,name"
-            whereCondition22=" and userId= '"+str(userId)+"' and userTypeId='2' "
+            whereCondition22="  userId= '"+str(userId)+"' and userTypeId='2' "
             data1= databasefile.SelectQuery("userMaster",columns,whereCondition22)
             print(data1,'data1')
             usermobile=data1['result']['mobileNo']
 
 
-            whereCondition222=" and driverId= '"+str(driverId)+"' "
+            whereCondition222="  driverId= '"+str(driverId)+"' "
             data11= databasefile.SelectQuery("driverMaster",columns,whereCondition222)
             print(data11,'--data')
             drivermobile=data11['result']['mobileNo']
