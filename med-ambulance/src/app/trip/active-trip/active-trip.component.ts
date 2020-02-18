@@ -6,13 +6,47 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./active-trip.component.css']
 })
 export class ActiveTripComponent implements OnInit {
-  tableHeading = [
-    "No", "Trip Id", "Driver Name", "Passenger Name","Trip From", "Trip To","Start Time","View Route"
-  ]
-  heading='Active Trip'
-  constructor() { }
+	tableHeading = [
+		"No", "Trip Id", "Driver Name", "Passenger Name","Trip From", "Trip To","Start Time"
+	]
+	heading='Active Trip'
+	activeTripData = []
+	constructor() { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+		this.getActiveTripData()	
+	}
+
+	getActiveTripData(){
+		this.activeTripData = [
+			{
+				'tripId': 1765,
+				'driverName': 'Hemant Gusain',
+				'userName': 'Vijay Pal',
+				'tripFrom': 'Noida',
+				'tripTo': 'Agra',
+				'startTime': '02:00pm',
+				
+			},
+			{
+				'tripId': 1165,
+				'driverName': 'Hemant Gusain',
+				'userName': 'Vijay Pal',
+				'tripFrom': 'Noida',
+				'tripTo': 'Agra',
+				'startTime': '02:00pm',
+				
+			},
+			{
+				'tripId': 1865,
+				'driverName': 'Hemant Gusain',
+				'userName': 'Vijay Pal',
+				'tripFrom': 'Noida',
+				'tripTo': 'Agra',
+				'startTime': '02:00pm',
+				
+			}
+		]
+	}
 
 }
