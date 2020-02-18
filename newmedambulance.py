@@ -2280,12 +2280,12 @@ def driverLeave():
             columns= "onDuty=0"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             print(bookRide1,'bookride')
-            if (bookRide!=0):   
-                bookRide["message"]="Leave taken Successfully"             
-                return bookRide
+            if (bookRide1!='0'):   
+                bookRide1["message"]="Leave taken Successfully"             
+                return bookRide1
             else:
                 
-                return bookRide
+                return bookRide1
         else:
             return msg 
     except KeyError as e:
