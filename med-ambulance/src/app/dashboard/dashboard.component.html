@@ -126,7 +126,7 @@
                                                 <td>{{driver.currentLocation}}</td>
                                                 <td>{{driver.dateCreate | date}}</td>
                                                 <td>{{driver.tripCount}}</td>
-                                                <td>{{getStatus(driver.status)}}</td>
+                                                <td><span class="stus">{{getStatus(driver.status)}}</span></td>
                                                 <td>
                                                     <button type="button" class="acton-btn" (click)="policyDetail(driver.postId, driver.userTypeId)">
                                                         <img src="../../assets/images/view.svg" class="action-view">
