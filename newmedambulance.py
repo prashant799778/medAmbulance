@@ -452,8 +452,8 @@ def addDriver():
             if 'AmbulanceModeId' in inputdata:
                 AmbulanceModeId=inputdata["AmbulanceModeId"]
 
-            if 'AmbulanceId' in inputdata:
-                AmbulanceId=inputdata["AmbulanceId"]
+            if 'AmbulanceTypeId' in inputdata:
+                AmbulanceId=inputdata["AmbulanceTypeId"]
 
             if 'AmbulanceImage' in request.files:
                     print("immmmmmmmmmmmmmmmm")
@@ -752,6 +752,29 @@ def ambulanceTypeMaster():
             column="id ,ambulanceType"
             whereCondition=""
             data=databasefile.SelectQuery1("ambulanceTypeMaster",column,whereCondition)
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
+        else:
+            return msg
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output  
+
+
+
+@app.route('/allAmbulance', methods=['GET'])
+def allAmbulance():
+    try:
+        msg = "1"
+        if msg=="1":
+            column=" AM.ambulanceId,AM.lat,lng,AM.transportType,AM.transportModel,AM.color,AM.ambulanceRegistrationFuel,AM.typeNo,AM.ambulanceFilename,AM.ambulanceFilepath,AM.ambulanceModeId,AM.ambulanceTypeId "
+            whereCondition=" AM.ambulanceTypeId=atm.id and AM.ambulanceModeId=am.id"
+            data=databasefile.SelectQuery1("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am",column,whereCondition)
             if (data!=0):           
                 Data = {"result":data,"status":"true"}
                 return Data
@@ -1873,6 +1896,74 @@ def bookRide():
             bookRide=databasefile.UpdateQuery("ambulanceMaster",column,whereCondition)
             if (bookRide!=0):   
                 bookRide["message"]="ride booked Successfully"             
+                return bookRide
+            else:
+                
+                return bookRide
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+@app.route('/endRide', methods=['POST'])
+def endRide():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ["ambulanceId","bookingId"]
+        commonfile.writeLog("endRide",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            ambulanceId= inputdata["ambulanceId"]
+            bookingId=inputdata['bookingId']
+            whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"'"
+            column=" status=1 "
+            bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
+            if (bookRide!=0):   
+                bookRide["message"]="ride Ended Successfully"             
+                return bookRide
+            else:
+                
+                return bookRide
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+
+
+@app.route('/cancelRide', methods=['POST'])
+def cancelRide():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ["ambulanceId","bookingId"]
+        commonfile.writeLog("cancelRide",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            ambulanceId= inputdata["ambulanceId"]
+            bookingId=inputdata['bookingId']
+            whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"'"
+            column=" status=2 "
+            bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
+            if (bookRide!=0):   
+                bookRide["message"]="ride Canceled Successfully"             
                 return bookRide
             else:
                 
