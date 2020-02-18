@@ -2172,7 +2172,7 @@ def cancelRide():
         return output
 
 
-
+#driverLeave
 @app.route('/driverLeave', methods=['POST'])
 def driverLeave():
     try:
