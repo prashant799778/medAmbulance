@@ -1410,7 +1410,7 @@ def addriderType():
             whereCondition="responderType='"+str(responderType)+"'"
             data= databasefile.SelectQuery("responderTypeMaster",column,whereCondition)
             print(data,'printit')
-            if data==0:
+            if data['status']=='false':
                 column="responderType"
                 values="'"+str(responderType)+"'"
                 insertdata=databasefile.InsertQuery("responderTypeMaster",column,values)
@@ -1459,6 +1459,7 @@ def responderType():
 @app.route('/updateriderType', methods=['POST'])
 def updateriderType():
     try:
+        print('A')
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
         keyarr = ['responderType','id']
@@ -1471,7 +1472,8 @@ def updateriderType():
             whereCondition="id = '" + str(id)+ "'"
             data1 = databasefile.SelectQuery("responderTypeMaster",column,whereCondition)
             print(data1,"data1")
-            if data1 != 0:
+            if data1['status'] == 'false':
+                print('b')
                 column = ""
                 whereCondition = ""
                 column= " responderType='" + str(responderType) + "'"
