@@ -2138,14 +2138,15 @@ def bookRide():
             values111=values111+"','" + str(dropLocationLong)+"','" + str(ambulanceId)+"','" + str(userId) +"','" + str(driverId) + "','" + str(bookingId)+ "','" + str(d2) + "','" + str(finalAmount)+"'"
             data111=databasefile.InsertQuery('bookAmbulance',columnqq,values111)
             print(data111,'==data')
-          
+            
+            columns=" * "
+            whereCondition22="  bookingId= '"+str(bookingId)+"'"
+            bookingDetails= databasefile.SelectQuery("userMaster",columns,whereCondition22)
 
-            if (data111!='0'):  
+            if (bookingDetails!='0'):  
                 print('Entered') 
                 #bookRide["message"]="ride booked Successfully" 
-
-                data={"result":{"userdata":data1['result'],"driverdata":data11['result']},"status":"true","message":"ride booked Successfully" }            
-                return data
+                return bookingDetails
             else:
                 data={"result":"","message":"No data Found","status":"false"}
                 
