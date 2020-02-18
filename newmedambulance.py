@@ -646,12 +646,14 @@ def addambulanceMode():
             data = databasefile.SelectQuery("ambulanceMode",column,whereCondition)
             print(data,'==data===')
             if data['status'] == 'false':
+                print('entered')
                 column="ambulanceType"
                 values="'"+str(ambulanceType)+"'"
                 insertdata=databasefile.InsertQuery("ambulanceMode",column,values)
                 column="*"
                 whereCondition= "ambulanceType='"+str(ambulanceType)+ "'"
                 data8= databasefile.SelectQuery1("ambulanceMode",column,whereCondition)
+                print(data8,'8888888888888')
                 output= {"result":"User Added Successfully","ambulance Details":data8[-1],"status":"true"}
                 return output
             else:
