@@ -1510,7 +1510,7 @@ def addOns():
             whereCondition= " name='"+str(name)+ "'"
             data=databasefile.SelectQuery("addOns",column,whereCondition)
             print(data,'A')
-            if data['status']=='false':
+            if data==0:
                 print('B')
                 column="name"
                 values="'"+str(name)+"' "
@@ -2040,7 +2040,8 @@ def bookRide():
 
             if (data111!='0'):   
                 bookRide["message"]="ride booked Successfully" 
-                data={"result":{"userdata":data1['result'],"driverdata":data11['result']},"status":"true","message":" " }            
+
+                data={"result":{"userdata":data1['result'],"driverdata":data11['result']},"status":"true","message":"" }            
                 return data
             else:
                 data={"result":"","message":"No data Found","status":"false"}
