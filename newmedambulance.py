@@ -2277,7 +2277,7 @@ def driverLeave():
         if msg == "1":
             ambulanceId= inputdata["ambulanceId"]
            
-            driverId=insertdata['driverId']
+            driverId=inputdata['driverId']
             whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' and driverId='"+ str(driverId)+"'"
             columns= "onDuty=0"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
