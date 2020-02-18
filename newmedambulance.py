@@ -2106,6 +2106,7 @@ def bookRide():
             whereCondition222="  id= '"+str(driverId)+"' "
             data11= databasefile.SelectQuery("driverMaster",columns,whereCondition222)
             print(data11,'--data')
+            driverName=data11['result']['name']
             drivermobile=data11['result']['mobileNo']
             
             R = 6373.0
@@ -2139,10 +2140,11 @@ def bookRide():
             data111=databasefile.InsertQuery('bookAmbulance',columnqq,values111)
             print(data111,'==data')
             
-            columns=" * "
-            whereCondition22="  bookingId= '"+str(bookingId)+"'"
-            bookingDetails= databasefile.SelectQuery("bookAmbulance",columns,whereCondition22)
-
+            columns=" bm.ambulanceId,bm.bookingId,bm.driverId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
+            columns=columns+",bm.finalAmount,bm.pickup,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
+            whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
+            bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am",columns,whereCondition22)
+            bookingDetails["result"][0]["driverName"]=driverName
             if (bookingDetails!='0'):  
                 print('Entered') 
                 #bookRide["message"]="ride booked Successfully" 
