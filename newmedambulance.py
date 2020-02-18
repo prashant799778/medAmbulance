@@ -2142,9 +2142,9 @@ def bookRide():
 
             if (data111!='0'):  
                 print('Entered') 
-                bookRide["message"]="ride booked Successfully" 
+                #bookRide["message"]="ride booked Successfully" 
 
-                data={"result":{"userdata":data1['result'],"driverdata":data11['result']},"status":"true","message":"" }            
+                data={"result":{"userdata":data1['result'],"driverdata":data11['result']},"status":"true","message":"ride booked Successfully" }            
                 return data
             else:
                 data={"result":"","message":"No data Found","status":"false"}
