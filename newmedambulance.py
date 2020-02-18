@@ -27,14 +27,26 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO
 import pyotp
 import socketio
-
+import paho.mqtt.client as mqtt
+from flask import Flask, render_template
 # standard Python
-sio = socketio.Client()
+#sio = socketio.Client()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app, cors_allowed_origins="*")
+#socketio = SocketIO(app, cors_allowed_origins="*")
 # sio = socketio.Client()
+
+
+
+
+
+
+
+client = mqtt.Client()
+client.connect("159.65.146.25",1883,60)
+
+
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, o):
@@ -1936,7 +1948,8 @@ def getNearAmbulance():
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d",column,whereCondition,"",orderby,"","")
             
             if (nearByAmbulance!=0):   
-                               
+                for i in :
+
                 return nearByAmbulance
             else:
                 nearByAmbulance["message"]="No Ambulance Found"
@@ -1971,8 +1984,12 @@ def getNearAmbulance1():
             orderby="  distance "
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d",column,whereCondition,"",orderby,"","")
             
-            if (nearByAmbulance!=0):   
-                               
+            if (nearByAmbulance!=0): 
+                for i in nearByAmbulance["result"]: 
+                    topic=nearByAmbulance["result"][i]["ambulanceId"]
+                    print(nearByAmbulance["result"][i]["ambulanceId"]) 
+                    client.publish(topic, "Hello world11111111111111111")
+                    print("2222222222222")             
                 return nearByAmbulance
             else:
                 
