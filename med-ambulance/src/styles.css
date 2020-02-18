@@ -541,6 +541,9 @@ input.upload-fil:focus {
 		grid-gap: 1rem;
 		margin: 16px 0;
 	}
+	.srch-option li:last-child{
+		display: none !important;
+	}
 }
 
 @media screen and (max-width:1024px){
