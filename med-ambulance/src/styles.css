@@ -430,8 +430,16 @@ button.acton-btn {
     box-shadow: 0 0 25px -5px #9e9c9e;
     transition: 0.5s;
 }
+.file-input-typ {
+    margin-top: 4px;
+}
+.bd-b {
+    border-bottom: 1px solid var(--border-clr);
+}
 .form-box {
-    margin-bottom: 1rem;
+	margin-bottom: 1rem;
+	width: 100%;
+    overflow: hidden;
 }
 .form-box > label {
     color: #AAAAAA !important;
@@ -541,7 +549,7 @@ input.upload-fil:focus {
 .iput-w-img > img {
 	width: 20px;
     height: 20px;
-	top: 0;
+	bottom: 2px;
     left: 0;
 }
 input.up-load-txt {
