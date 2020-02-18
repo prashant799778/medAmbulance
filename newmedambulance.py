@@ -1904,7 +1904,7 @@ def getNearAmbulance():
                                
                 return nearByAmbulance
             else:
-                
+                nearByAmbulance["message"]="No Ambulance Found"
                 return nearByAmbulance
         else:
             return msg 
