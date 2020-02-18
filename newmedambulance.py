@@ -767,16 +767,29 @@ def ambulanceTypeMaster():
 
 
 
-@app.route('/allAmbulance', methods=['GET'])
+@app.route('/allAmbulance', methods=['POST'])
 def allAmbulance():
     try:
         msg = "1"
         if msg=="1":
-            column=" AM.ambulanceId,AM.lat,AM.lng,atm.ambulanceType,am.ambulanceType,AM.transportType,AM.transportModel,AM.color,AM.ambulanceRegistrationFuel,AM.typeNo,AM.ambulanceFilename,AM.ambulanceFilepath,AM.ambulanceModeId,AM.ambulanceTypeId "
-            whereCondition=" AM.ambulanceTypeId=atm.id and AM.ambulanceModeId=am.id"
-            data=databasefile.SelectQuery1("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am",column,whereCondition)
-            if (data!=0):           
-                Data = {"result":data,"status":"true"}
+            startlimit,endlimit="",""
+
+            inputdata =  commonfile.DecodeInputdata(request.get_data())  
+            if "startlimit" in inputdata:
+                if inputdata['startlimit'] != "":
+                    startlimit =str(inputdata["startlimit"])
+                
+            if "endlimit" in inputdata:
+                if inputdata['endlimit'] != "":
+                    endlimit =str(inputdata["endlimit"])
+
+            column=" AM.ambulanceId,AM.lat,AM.lng,atm.ambulanceType,am.ambulanceType as category,AM.transportType,AM.transportModel,AM.color,AM.ambulanceRegistrationFuel as fueltype,AM.typeNo,AM.ambulanceFilename,AM.ambulanceFilepath,AM.ambulanceModeId,AM.ambulanceTypeId "
+           
+            whereCondition=" and  AM.ambulanceTypeId=atm.id and AM.ambulanceModeId=am.id"
+            data=databasefile.SelectQuery2("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am",column,whereCondition,"",startlimit,endlimit)
+            print(data)
+            if (data['status']!='false'):           
+                Data = {"result":data['result'],'message':"","status":"true"}
                 return Data
             else:
                 output = {"result":"No Data Found","status":"false"}
