@@ -24,6 +24,9 @@
 
 
 /* For ALL Css*/
+	.main-container {
+		padding: 25px 20px 10px;
+	}
 	.gp-btn-clr{
 		background-color: var(--gp-btn-clr);
 	}
@@ -95,6 +98,15 @@
 	} */
 	.record-box {
 		padding: 0px 5px;
+	}
+	.menu-dropdown > li.active > a {
+		border: 1px solid #ffffff;
+	}
+	.menu-dropdown > li > a {
+		border: 1px solid transparent;
+	}
+	.p-oprion > ul > li {
+		cursor: pointer;
 	}
 /* For All End Css*/
 
