@@ -933,7 +933,7 @@ def addhospital():
 
             if data['status']!='false':
                 
-                print('A')
+                print('AA')
                 column="hospitalName,address,latitude,longitude"
                 values="'"+str(hospitalName)+"','"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"'"
                 insertdata=databasefile.InsertQuery("hospitalMaster",column,values)
@@ -947,13 +947,13 @@ def addhospital():
                 print(mainId,'mainId')
                 ambulanceId1 = ambulanceId
                 print(ambulanceId1,'ambulance')
-                print('B')
+                print('BB')
                 column=" * "
                 whereCondition="ambulance_Id='"+str(ambulanceId1)+"'  and hospital_Id='"+str(mainId)+"'"
                 userHospitalMappingdata = databasefile.SelectQuery1("hospitalambulanceMapping",column,whereCondition)
                 print(userHospitalMappingdata,'lets see')
                 if userHospitalMappingdata==0:
-                    print('C')
+                    print('CC')
                     column="hospital_Id,ambulance_Id"
                     values="'"+str(mainId)+"','"+str(ambulanceId1)+"'"
                     insertdata=databasefile.InsertQuery("hospitalambulanceMapping",column,values)                
