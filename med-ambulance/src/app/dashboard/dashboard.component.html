@@ -119,19 +119,19 @@
                             <tbody>
                                     <ng-container *ngIf="driverData && driverData.length > 0">
                                             <tr *ngFor="let driver of driverData ; let i =  index">
-                                                  <td>{{i+1}}</td>  
-                                                  <td>{{driver.name}}</td>
-                                                  <td>{{driver.mobileNo}}</td>
-                                                  <td>{{driver.email}}</td>
-                                                  <td>{{driver.currentLocation}}</td>
-                                                    <td>{{driver.dateCreate | date}}</td>
-                                                    <td>{{driver.postTitle}}</td>
-                                                    <td>{{getStatus(driver.status)}}</td>
-                                                    <td>
-                                                        <button type="button" class="acton-btn" (click)="policyDetail(driver.postId, driver.userTypeId)">
-                                                            <img src="../../assets/images/view.svg" class="action-view">
-                                                        </button>
-                                                    </td>
+                                                <td>{{i+1}}</td>  
+                                                <td>{{driver.name}}</td>
+                                                <td>{{driver.mobileNo}}</td>
+                                                <td>{{driver.email}}</td>
+                                                <td>{{driver.currentLocation}}</td>
+                                                <td>{{driver.dateCreate | date}}</td>
+                                                <td>{{driver.tripCount}}</td>
+                                                <td>{{getStatus(driver.status)}}</td>
+                                                <td>
+                                                    <button type="button" class="acton-btn" (click)="policyDetail(driver.postId, driver.userTypeId)">
+                                                        <img src="../../assets/images/view.svg" class="action-view">
+                                                    </button>
+                                                </td>
                                                 </tr>
                                       </ng-container>
                                
