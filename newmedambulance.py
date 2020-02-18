@@ -931,7 +931,7 @@ def addhospital():
 
             print(data,'===data')
 
-            if data==0:
+            if data['status']!='false':
                 
                 print('A')
                 column="hospitalName,address,latitude,longitude"
@@ -1977,9 +1977,9 @@ def bookRide():
             fromlongitude2= Decimal(startLocationLong)
             fromlatitude2 = Decimal(startLocationLat)
             # print(fromlongitude2,fromlatitude2)
-            distanceLongitude = tolongitude - fromlongitude
-            distanceLatitude = tolatitude - fromlatitude
-            a = sin(distanceLatitude / 2)**2 + cos(fromlatitude) * cos(tolatitude) * sin(distanceLongitude / 2)**2
+            distanceLongitude = dropLocationLong - fromlongitude2
+            distanceLatitude = dropLocationLat - fromlatitude2
+            a = sin(distanceLatitude / 2)**2 + cos(fromlatitude) * cos(dropLocationLat) * sin(distanceLongitude / 2)**2
             c = 2 * atan2(sqrt(a), sqrt(1 - a))
             distance = R * c
             distance2=distance/100
@@ -1993,7 +1993,10 @@ def bookRide():
             #insertdata
             column='userMobile,driverMobile,pickup,pickupLongitude,pickupLongitude,dropoff,dropOffLatitude,dropOffLongitude,ambulanceId,userId,driverId,bookingId'
             values = " '"+ str(usermobile) +"','" + str(drivermobile)+"','" + str(pickupLocationAddress)+"','" + str(startLocationLat) +"','" + str(startLocationLong) + "','" + str(dropLocationAddress) + "','" + str(dropLocationLat) + "'"
-            values=values+"','" + str(dropLocationLong)+"','" + str(ambulanceId)+"','" + str(userId) +"','" + str(driverId) + "','" + str(bookingId) + "'"
+            values=values+"','" + str(dropLocationLong)+"','" + str(ambulanceId)+"','" + str(userId) +"','" + str(driverId) + "','" + str(bookingId) +\
+
+            
+
 
 
 
