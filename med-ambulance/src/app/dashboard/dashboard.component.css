@@ -27,3 +27,6 @@
         grid-gap: 2rem;
     }
 }
+.record-box thead tr th:nth-child(8) {
+    text-align: center;
+}
