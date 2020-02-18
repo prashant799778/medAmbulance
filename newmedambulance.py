@@ -773,6 +773,7 @@ def allAmbulance():
         msg = "1"
         if msg=="1":
             startlimit,endlimit="",""
+
             inputdata =  commonfile.DecodeInputdata(request.get_data())  
             if "startlimit" in inputdata:
                 if inputdata['startlimit'] != "":
@@ -781,11 +782,13 @@ def allAmbulance():
             if "endlimit" in inputdata:
                 if inputdata['endlimit'] != "":
                     endlimit =str(inputdata["endlimit"])
+
             column=" AM.ambulanceId,AM.lat,AM.lng,atm.ambulanceType,am.ambulanceType,AM.transportType,AM.transportModel,AM.color,AM.ambulanceRegistrationFuel,AM.typeNo,AM.ambulanceFilename,AM.ambulanceFilepath,AM.ambulanceModeId,AM.ambulanceTypeId "
+           
             whereCondition=" and  AM.ambulanceTypeId=atm.id and AM.ambulanceModeId=am.id"
             data=databasefile.SelectQuery2("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am",column,whereCondition,"",startlimit,endlimit)
             if (data['status']!='false'):           
-                Data = {"result":data,"status":"true"}
+                Data = {"result":data['result'],'message':"","status":"true"}
                 return Data
             else:
                 output = {"result":"No Data Found","status":"false"}
