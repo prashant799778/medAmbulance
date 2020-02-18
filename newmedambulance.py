@@ -2279,6 +2279,7 @@ def driverLeave():
             whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"'"
             columns= "onDuty=0"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
+            print(bookRide1,'bookride')
             if (bookRide!=0):   
                 bookRide["message"]="Leave taken Successfully"             
                 return bookRide
