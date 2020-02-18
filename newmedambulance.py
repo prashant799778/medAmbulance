@@ -1831,15 +1831,16 @@ def getNearAmbulance():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ['lat','lng']
+        keyarr = ['startLocationLat','startLocationLong',"pickupLocationAddress",'dropLocationLat','dropLocationLong',"dropLocationAddress",]
         commonfile.writeLog("getNearAmbulance",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
-            startlat ,startlng,userId= inputdata["lat"],inputdata["lng"],""#,inputdata["userId"]
+            startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
             column=  " d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, a.lat, a.lng,SQRT(POW(69.1 * (a.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - a.lng) * COS(a.lat / 57.3), 2)) AS distance "
             whereCondition= " and a.onTrip=0 and a.onDuty=1 and a.driverId=d.id HAVING distance < 1200 "
             orderby="  distance "
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d",column,whereCondition,"",orderby,"","")
+            
             if (nearByAmbulance!=0):   
                                
                 return nearByAmbulance
@@ -1863,14 +1864,63 @@ def bookRide():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ["ambulanceId"]
+        #id is driverid
+        keyarr = ["ambulanceId","id",'startLocationLat','startLocationLong',"pickupLocationAddress",\
+        'dropLocationLat','dropLocationLong',"dropLocationAddress","userId"]
+        
+
+        if "ambulanceId" in inputdata:
+                if inputdata['ambulanceId'] != "":
+                    ambulanceId =str(inputdata["ambulanceId"])
+        if "id" in inputdata:
+                if inputdata['id'] != "":
+                    driverId =str(inputdata["id"])
+        if "startLocationLat" in inputdata:
+                if inputdata['startLocationLat'] != "":
+                    startLocationLat =str(inputdata["startLocationLat"])
+        if "startLocationLong" in inputdata:
+                if inputdata['startLocationLong'] != "":
+                    startLocationLong =str(inputdata["startLocationLong"])
+        if "pickupLocationAddress" in inputdata:
+                if inputdata['pickupLocationAddress'] != "":
+                    pickupLocationAddress =str(inputdata["pickupLocationAddress"])
+        if "dropLocationLat" in inputdata:
+                if inputdata['dropLocationLat'] != "":
+                    dropLocationLat =str(inputdata["dropLocationLat"])
+        if "dropLocationLong" in inputdata:
+                if inputdata['dropLocationLong'] != "":
+                    dropLocationLong =str(inputdata["dropLocationLong"])
+        if "dropLocationAddress" in dropLocationAddress:
+                if inputdata['dropLocationAddress'] != "":
+                    dropLocationAddress =str(inputdata["dropLocationAddress"])
+
+
         commonfile.writeLog("bookRide",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        
         if msg == "1":
+
+            column = "eventTitle,userTypeId,imagePath,eventSummary,eventLocation,eventDate,UserCreate"
+            values = " '"+ str(eventTitle) +"','" + str(userTypeId)+"','" + str(ImagePath)+"','" + str(eventSummary) +"','" + str(eventLocation) + "','" + str(eventDate) + "','" + str(UserId) + "'"
+            data = databasefile.InsertQuery("parliamentEvent",column,values)
+
+
+
+
+
+
+
+            WhereCondition=WhereCondition+" and   ambulanceId='"+str(ambulanceId)+"'"
+            column = " ambulanceId,ambulanceNo,lat,lng,ambulanceTypeId,ambulanceModeId,driverId   "
+            data = databasefile.SelectQueryOrderby(" ambulanceMaster ",column,WhereCondition,"","","","")
+
+
+
+
             ambulanceId= inputdata["ambulanceId"]
             whereCondition=" ambulanceId= '"+ str(ambulanceId)+"'"
             column=" onTrip=1 "
-            bookRide=databasefile.UpdateQuery("ambulanceMaster",column,whereCondition)
+            bookRide=databasefile.UpdateQuery(" ambulanceMaster ",column,whereCondition)
             if (bookRide!=0):   
                 bookRide["message"]="ride booked Successfully"             
                 return bookRide
