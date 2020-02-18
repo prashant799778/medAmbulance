@@ -2001,15 +2001,15 @@ def bookRide():
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         
         if msg == "1":
-            columns="mobileNo "
+            columns="mobileNo,name"
             whereCondition22=" and userId= '"+str(userId)+"' and userTypeId='2' "
             data1= databasefile.SelectQuery("userMaster",columns,whereCondition22)
-            usermobile=data1['mobileNo']
+            usermobile=data1['result']['mobileNo']
 
 
-            whereCondition222=" and userId= '"+str(userId)+"'  "
+            whereCondition222=" and userId= '"+str(userId)+"' "
             data11= databasefile.SelectQuery("driverMaster",columns,whereCondition22)
-            drivermobile=data11['mobileNo']
+            drivermobile=data11['result']['mobileNo']
             
             R = 6373.0
             fromlongitude2= Decimal(startLocationLong)
@@ -2025,29 +2025,27 @@ def bookRide():
             d=round(Distance)
             d2 =str(d) +' Km'
 
+
+            finalAmount= d * 11+11
+
+
+
+
             #insertdata
-            column='userMobile,driverMobile,pickup,pickupLongitude,pickupLongitude,dropoff,dropOffLatitude,dropOffLongitude,ambulanceId,userId,driverId,bookingId'
-            values = " '"+ str(usermobile) +"','" + str(drivermobile)+"','" + str(pickupLocationAddress)+"','" + str(startLocationLat) +"','" + str(startLocationLong) + "','" + str(dropLocationAddress) + "','" + str(dropLocationLat) + "'"
-            values=values+"','" + str(dropLocationLong)+"','" + str(ambulanceId)+"','" + str(userId) +"','" + str(driverId) + "','" + str(bookingId) +"'"
+            columnqq='userMobile,driverMobile,pickup,pickupLongitude,pickupLongitude,dropoff,dropOffLatitude,dropOffLongitude,ambulanceId,userId,driverId,bookingId,totalDistance,finalAmount'
+            values111 = " '"+ str(usermobile) +"','" + str(drivermobile)+"','" + str(pickupLocationAddress)+"','" + str(startLocationLat) +"','" + str(startLocationLong) + "','" + str(dropLocationAddress) + "','" + str(dropLocationLat) + "'"
+            values111=values111+"','" + str(dropLocationLong)+"','" + str(ambulanceId)+"','" + str(userId) +"','" + str(driverId) + "','" + str(bookingId)+ "','" + str(d2) + "','" + str(finalAmount)+"'"
+            data111=databasefile.InsertQuery('bookAmbulance',columnqq,values111)
+          
 
-            # column = "eventTitle,userTypeId,imagePath,eventSummary,eventLocation,eventDate,UserCreate"
-            # values = " '"+ str(eventTitle) +"','" + str(userTypeId)+"','" + str(ImagePath)+"','" + str(eventSummary) +"','" + str(eventLocation) + "','" + str(eventDate) + "','" + str(UserId) + "'"
-            # data = databasefile.InsertQuery("b",column,values)
-
-            WhereCondition=" and   ambulanceId='"+str(ambulanceId)+"'"
-            column = " ambulanceId,ambulanceNo,lat,lng,ambulanceTypeId,ambulanceModeId,driverId   "
-            data = databasefile.SelectQueryOrderby(" ambulanceMaster ",column,WhereCondition,"","","","")
-
-            ambulanceId= inputdata["ambulanceId"]
-            whereCondition=" ambulanceId= '"+ str(ambulanceId)+"'"
-            column=" onTrip=1 "
-            bookRide=databasefile.UpdateQuery(" ambulanceMaster ",column,whereCondition)
-            if (bookRide!=0):   
-                bookRide["message"]="ride booked Successfully"             
-                return bookRide
+            if (data111!='0'):   
+                bookRide["message"]="ride booked Successfully" 
+                data={"result":["userdata":data1['result'],"driverdata":data11['result']],"status":"true","message":"" }            
+                return data
             else:
+                data={"result":"","message":"No data Found","status":"false"}
                 
-                return bookRide
+                return data
         else:
             return msg 
     except KeyError as e:
