@@ -911,6 +911,7 @@ def alldrivers():
 @app.route('/addhospital', methods=['POST'])
 def addhospital():
     try:
+        print('A')
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
         keyarr = ['hospitalName','address','ambulanceId','latitude','longitude']
@@ -929,9 +930,9 @@ def addhospital():
             whereCondition= "hospitalName='"+str(hospitalName)+ "'"
             data= databasefile.SelectQuery("hospitalMaster",column,whereCondition)
 
-            print(data,'===data')
+            print(data['status'],'===data')
 
-            if data['status']!='false':
+            if data['status']!=false:
                 
                 print('AA')
                 column="hospitalName,address,latitude,longitude"
