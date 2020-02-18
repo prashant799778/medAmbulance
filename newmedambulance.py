@@ -1710,7 +1710,7 @@ def addpaymentType():
             whereCondition= "paymentType='"+str(paymentType)+ "'"
             data=databasefile.SelectQuery("paymentTypeMaster",column,whereCondition)
             print(data,'data')
-            if data==0:
+            if data['status']=='false':
                 column="paymentType"
                 values="'"+str(paymentType)+"' "
                 insertdata=databasefile.InsertQuery("paymentTypeMaster",column,values)
