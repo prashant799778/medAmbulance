@@ -2013,6 +2013,7 @@ def getNearAmbulance1():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
+
         keyarr = ['startLocationLat','startLocationLong',"pickupLocationAddress",'dropLocationLat','dropLocationLong',"dropLocationAddress",]
         commonfile.writeLog("getNearAmbulance",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
@@ -2051,6 +2052,7 @@ def bookRide():
         print('A')
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
+        inputdata={"ambulanceId":3,"id":1,'startLocationLat':28.583962,'startLocationLong':77.314345,"pickupLocationAddress":" Noida se 15",'dropLocationLat':28.535517,'dropLocationLong':77.391029,"dropLocationAddress":"","userId":1}
         #id is driverid
         keyarr = ["ambulanceId","id",'startLocationLat','startLocationLong',"pickupLocationAddress",'dropLocationLat','dropLocationLong',"dropLocationAddress","userId"]
         
