@@ -2066,19 +2066,19 @@ def bookRide():
                     driverId =str(inputdata["id"])
         if "startLocationLat" in inputdata:
                 if inputdata['startLocationLat'] != "":
-                    startLocationLat =str(inputdata["startLocationLat"])
+                    startLocationLat =(inputdata["startLocationLat"])
         if "startLocationLong" in inputdata:
                 if inputdata['startLocationLong'] != "":
-                    startLocationLong =str(inputdata["startLocationLong"])
+                    startLocationLong =(inputdata["startLocationLong"])
         if "pickupLocationAddress" in inputdata:
                 if inputdata['pickupLocationAddress'] != "":
                     pickupLocationAddress =str(inputdata["pickupLocationAddress"])
         if "dropLocationLat" in inputdata:
                 if inputdata['dropLocationLat'] != "":
-                    dropLocationLat =str(inputdata["dropLocationLat"])
+                    dropLocationLat =(inputdata["dropLocationLat"])
         if "dropLocationLong" in inputdata:
                 if inputdata['dropLocationLong'] != "":
-                    dropLocationLong =str(inputdata["dropLocationLong"])
+                    dropLocationLong =(inputdata["dropLocationLong"])
         if "dropLocationAddress" in inputdata:
                 if inputdata['dropLocationAddress'] != "":
                     dropLocationAddress =str(inputdata["dropLocationAddress"])
