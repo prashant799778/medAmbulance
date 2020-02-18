@@ -1948,7 +1948,11 @@ def getNearAmbulance():
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d",column,whereCondition,"",orderby,"","")
             
             if (nearByAmbulance!=0):   
-                for i in :
+                for i in nearByAmbulance["result"]: 
+                    topic=nearByAmbulance["result"][i]["ambulanceId"]
+                    print(nearByAmbulance["result"][i]["ambulanceId"]) 
+                    client.publish(topic, "Hello world11111111111111111")
+                    print("2222222222222")  
 
                 return nearByAmbulance
             else:
