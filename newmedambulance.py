@@ -2110,8 +2110,8 @@ def bookRide():
             
             R = 6373.0
             print(R,'R')
-            fromlongitude2= startLocationLong
-            print(fromlongitude2,'fromlong')
+            fromlongitude2= str(startLocationLong)
+            print(fromlongitude2,'fromlong',type(fromlongitude2))
             fromlatitude2 = startLocationLat
             # print(fromlongitude2,'fromlong')
             print('lat',fromlatitude2)
