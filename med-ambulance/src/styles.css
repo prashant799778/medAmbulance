@@ -269,7 +269,7 @@ body{
 		transition: 0.5s;
 	}
 	.pd-3 {
-		padding: 10px;
+		padding: 2rem;
 	}
 	.al-img {
 		width: 40px;
@@ -646,9 +646,10 @@ input.up-load-file {
 
 
 
-@media screen and (max-width:642px){
+@media screen and (max-width:780px){
 	.info-card-box {
-		display: block !important;
+		display: grid !important;
+		grid-template-columns: 1fr !important;
 		grid-gap: 1rem;
 		margin: 16px 0;
 	}
