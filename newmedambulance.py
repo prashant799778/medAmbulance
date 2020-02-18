@@ -452,8 +452,18 @@ def addDriver():
             if 'AmbulanceModeId' in inputdata:
                 AmbulanceModeId=inputdata["AmbulanceModeId"]
 
+            if 'AmbulanceNo' in inputdata:
+                AmbulanceNo=inputdata["AmbulanceNo"]
+
             if 'AmbulanceTypeId' in inputdata:
                 AmbulanceId=inputdata["AmbulanceTypeId"]
+
+            if 'lat' in inputdata:
+                lat=inputdata["lat"]
+
+            if 'lng' in inputdata:
+                lng=inputdata["lng"]
+
 
             if 'AmbulanceImage' in request.files:
                     print("immmmmmmmmmmmmmmmm")
@@ -500,19 +510,30 @@ def addDriver():
                         values = " '" + str(name) + "','" + str(mobileNo) + "','" + str(driverId) + "'"
                         
                         data = databasefile.InsertQuery("driverMaster",columns,values)
-                        columns2= "transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceTypeId,driverId"
-                        values2="'" + str(TransportModel) + "','" + str(Color) + "','" + str(AmbulanceRegistrationFuel) + "','" + str(TypeNo) + "','" + str(AIFilename) + "','" + str(AIPicPath) + "','" + str(AmbulanceModeId) + "', "            
+                        columns2= "ambulanceNo,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceTypeId,driverId"
+                        values2="'" + str(AmbulanceId) + "','" + str(TransportModel) + "','" + str(Color) + "','" + str(AmbulanceRegistrationFuel) + "','" + str(TypeNo) + "','" + str(AIFilename) + "','" + str(AIPicPath) + "','" + str(AmbulanceModeId) + "', "            
                         values2 = values2 + " '" + str(AmbulanceId) + "','" + str(driverId) + "'"
                         data=databasefile.InsertQuery("ambulanceMaster",columns2,values2)
                         if data != "0":
                             column = '*'
                             WhereCondition = " mobileNo = '" + str(mobileNo) +  "'"
                             whereCondition="   driverId='" + str(driverId) +  "' "
-                            columns22="transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceId"
+                            columns22="ambulanceId,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceId"
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
                             data12=databasefile.SelectQuery("ambulanceMaster",column22,whereCondition)
+                            ambulanceId=data12['ambulanceId']
+                            columns23='ambulanceId,lat,lng'
+                            values23 = " '" + str(ambulanceId) + "','" + str(lat) + "','" + str(lng) + "'"
+                            data122=databasefile.InsertQuery('ambulanceRideStatus',columns23,values23)
+                            whereCondition222= " ambulanceId=  '" + str(ambulanceId) +  "' "
+                            columns239="lat,lng,onDuty,onTrip"
+                            data12333=databasefile.SelectQuery('ambulanceRideStatus',columns239,whereCondition222)
+
+
+
                             data11.update(data12)
+                            data11.update(data12333)
 
                             return data11
                 
@@ -536,11 +557,12 @@ def addDriver():
                         return data
                     if key == "C":
                         print('C')
-                        WhereCondition = " driverId = '" + str(driverId) + "'"
-                        column = " transportType = '" + str(TransportType) + "',transportModel = '" + str(TransportModel) + "',color = '" + str(Color) + "',ambulanceRegistrationFuel = '" + str(AmbulanceRegistrationFuel) + "',typeNo = '" + str(TypeNo) + "',ambulanceFilename = '" + str(AIFilename) + "',ambulanceFilepath = '" + str(AIPicPath) + "',ambulanceModeId = '" + str(AmbulanceModeId) + "',ambulanceTypeId = '" + str(AmbulanceId) + "'"
-                        print(column,'column')
-                        data = databasefile.UpdateQuery("ambulanceMaster",column,WhereCondition)
-                        return data
+
+                        # WhereCondition = " driverId = '" + str(driverId) + "'"
+                        # column = " transportType = '" + str(TransportType) + "',transportModel = '" + str(TransportModel) + "',color = '" + str(Color) + "',ambulanceRegistrationFuel = '" + str(AmbulanceRegistrationFuel) + "',typeNo = '" + str(TypeNo) + "',ambulanceFilename = '" + str(AIFilename) + "',ambulanceFilepath = '" + str(AIPicPath) + "',ambulanceModeId = '" + str(AmbulanceModeId) + "',ambulanceTypeId = '" + str(AmbulanceId) + "'"
+                        # print(column,'column')
+                        # data = databasefile.UpdateQuery("ambulanceMaster",column,WhereCondition)
+                        # return data
                 else:
                     return commonfile.Errormessage()
         else:
@@ -797,7 +819,8 @@ def allAmbulance():
         else:
             return msg
     except Exception as e :
-        print("Exception---->" + str(e))    
+
+print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
         return output  
 
@@ -1926,8 +1949,9 @@ def bookRide():
 
 
 
-@app.route('/endRide', methods=['POST'])
-def endRide():
+
+@app.route('/startRide', methods=['POST'])
+def startRide():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
@@ -1957,6 +1981,37 @@ def endRide():
         output = {"result":"something went wrong","status":"false"}
         return output
 
+@app.route('/endRide', methods=['POST'])
+def endRide():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ["ambulanceId","bookingId"]
+        commonfile.writeLog("endRide",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            ambulanceId= inputdata["ambulanceId"]
+            bookingId=inputdata['bookingId']
+            whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"'"
+            column=" status=2 "
+            bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
+            if (bookRide!=0):   
+                bookRide["message"]="ride Ended Successfully"             
+                return bookRide
+            else:
+                
+                return bookRide
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
 
 
 
@@ -1966,14 +2021,15 @@ def cancelRide():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ["ambulanceId","bookingId"]
+        keyarr = ["ambulanceId","bookingId","userId"]
         commonfile.writeLog("cancelRide",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
             ambulanceId= inputdata["ambulanceId"]
             bookingId=inputdata['bookingId']
-            whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"'"
-            column=" status=2 "
+            userId=insertdata['userId']
+            whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"' and  canceledUserId='"+ str(userId)+"'"
+            column=" status=3"
             bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
             if (bookRide!=0):   
                 bookRide["message"]="ride Canceled Successfully"             
