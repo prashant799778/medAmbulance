@@ -644,7 +644,7 @@ def addambulanceMode():
             column = " * "
             whereCondition= "ambulanceType='"+str(ambulanceType)+ "'"
             data = databasefile.SelectQuery("ambulanceMode",column,whereCondition)
-            print(data,'==data')
+            print(data,'==data===')
             if data['status'] == 'false':
                 column="ambulanceType"
                 values="'"+str(ambulanceType)+"'"
