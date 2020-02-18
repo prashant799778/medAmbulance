@@ -819,8 +819,7 @@ def allAmbulance():
         else:
             return msg
     except Exception as e :
-
-print("Exception---->" + str(e))    
+        print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
         return output  
 
