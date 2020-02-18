@@ -2081,7 +2081,7 @@ def startRide():
             column=" status=1 "
             bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
             whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
-            columns= "onTrip=1"
+            columns= "onTrip=1 and onDuty=1"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
                 bookRide["message"]="ride Ended Successfully"             
@@ -2115,7 +2115,7 @@ def endRide():
             column=" status=2 "
             bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
             whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
-            columns= "onTrip=0"
+            columns= "onTrip=0 and onDuty=1"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
                 bookRide["message"]="ride Ended Successfully"             
@@ -2154,7 +2154,7 @@ def cancelRide():
             column=" status=3"
             bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
             whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
-            columns= "onTrip=0"
+            columns= "onTrip=0 and onDuty=1"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
                 bookRide["message"]="ride Canceled Successfully"             
@@ -2188,7 +2188,7 @@ def driverLeave():
            
             driverId=insertdata['driverId']
             whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' and driverId='"+ str(driverId)+"'"
-            columns= "ontrip=2 "
+            columns= "onDuty=0"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
                 bookRide["message"]="Leave taken Successfully"             
