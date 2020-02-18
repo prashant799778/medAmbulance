@@ -536,10 +536,12 @@ input.upload-fil:focus {
 /* End All Sect- Section */
 @media screen and (max-width:642px){
 	.info-card-box {
-		display: grid;
-		grid-template-columns: 1fr !important;
+		display: block !important;
 		grid-gap: 1rem;
 		margin: 16px 0;
+	}
+	.srch-option li:last-child{
+		display: none !important;
 	}
 }
 
