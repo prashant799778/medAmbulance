@@ -932,7 +932,7 @@ def addhospital():
 
             print(data['status'],'===data')
 
-            if data['status']!=false:
+            if data['status']!='false':
                 
                 print('AA')
                 column="hospitalName,address,latitude,longitude"
