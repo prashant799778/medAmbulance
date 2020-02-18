@@ -2169,6 +2169,42 @@ def cancelRide():
         return output
 
 
+
+@app.route('/driverLeave', methods=['POST'])
+def driverLeave():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ["ambulanceId","driverId"]
+        commonfile.writeLog("driverLeave",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            ambulanceId= inputdata["ambulanceId"]
+           
+            driverId=insertdata['driverId']
+            
+            bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
+            whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' and driverId='"+ str(driverId)+"'"
+            columns= "onDuty=1"
+            bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
+            if (bookRide!=0):   
+                bookRide["message"]="Leave taken Successfully"             
+                return bookRide
+            else:
+                
+                return bookRide
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
 # @app.route('/Dashboard', methods=['POST'])
 # def Dashboard():
 #     try:
