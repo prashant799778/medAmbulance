@@ -9,7 +9,7 @@ import { AppSettings } from 'src/app/utils/constant';
 })
 export class AllDriverComponent implements OnInit {
 	tableHeading = [
-		"No", "Name", "Mobile", "Email","Address", "Joining Date","Trip","Status","Action"
+		"No", "Name", "Mobile", "Email","Address", "Joining Date","Trip","Status"
 	]
 	heading='All Driver'
 	driverData= []

@@ -20,14 +20,18 @@
                                         <td>{{driver.mobileNo}}</td>
                                         <td>{{driver.email}}</td>
                                         <td>{{driver.currentLocation}}</td>
-                                          <td>{{driver.dateCreate | date}}</td>
-                                          <td>{{driver.tripCount}}</td>
-                                          <td>{{getStatus(driver.status)}}</td>
-                                          <td>
+                                        <td>{{driver.dateCreate | date}}</td>
+                                        <td>{{driver.tripCount}}</td>
+                                        <td>
+                                            <span *ngIf="driver.status == 0" class="stus lab-success">{{getStatus(driver.status)}}</span>
+                                            <span *ngIf="driver.status == 1" class="stus lab-warning">{{getStatus(driver.status)}}</span>
+                                            <span *ngIf="driver.status == 2" class="stus lab-danger">{{getStatus(driver.status)}}</span>
+                                        </td>
+                                          <!-- <td>
                                               <button type="button" class="acton-btn" (click)="policyDetail(driver.postId, driver.userTypeId)">
                                                   <img src="../../assets/images/view.svg" class="action-view">
                                               </button>
-                                          </td>
+                                          </td> -->
                                       </tr>
                             </ng-container>
                            
