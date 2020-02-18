@@ -748,7 +748,7 @@ def addambulance():
             whereCondition="ambulanceType='"+str(ambulanceType)+"'"
             data= databasefile.SelectQuery("ambulanceTypeMaster",column,whereCondition)
             print(data,"==data")
-            if data==0:
+            if data['status']=='false':
                 column="ambulanceType"
                 values="'"+str(ambulanceType)+"'"
                 insertdata=databasefile.InsertQuery("ambulanceTypeMaster",column,values)
