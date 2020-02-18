@@ -1087,128 +1087,128 @@ def addhospital():
 #         output = {"result":"something went wrong","status":"false"}
 #         return output
 
-#changed
-@app.route('/addbookingambulance', methods=['POST'])
-def addbooking():
-    try:
-        print('Entered')
-        inputdata =  commonfile.DecodeInputdata(request.get_data())
-        startlimit,endlimit="",""
-        #keyarr = ['pickup','drop','userId','mobileNo','selectBookingDate','ambulanceId','driverlocation']
-        keyarr = ['pickup','drop','userId','mobileNo','ambulanceId']
-        commonfile.writeLog("addbookingambulance",inputdata,0)
-        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
-        if msg=="1":
-            pickup = inputdata["pickup"]
-            drop = inputdata["drop"]
-            userId = inputdata["userId"]
-            mobileNo = inputdata["mobileNo"]
-            ##selectBookingDate = inputdata["selectBookingDate"]
-            ambulanceId = inputdata["ambulanceId"]
-            ###driverlocation = inputdata["driverlocation"]
-            #bookingId =  commonfile.CreateHashKey(mobileNo,pickup)
+# #changed
+# @app.route('/addbookingambulance', methods=['POST'])
+# def addbooking():
+#     try:
+#         print('Entered')
+#         inputdata =  commonfile.DecodeInputdata(request.get_data())
+#         startlimit,endlimit="",""
+#         #keyarr = ['pickup','drop','userId','mobileNo','selectBookingDate','ambulanceId','driverlocation']
+#         keyarr = ['pickup','drop','userId','mobileNo','ambulanceId']
+#         commonfile.writeLog("addbookingambulance",inputdata,0)
+#         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+#         if msg=="1":
+#             pickup = inputdata["pickup"]
+#             drop = inputdata["drop"]
+#             userId = inputdata["userId"]
+#             mobileNo = inputdata["mobileNo"]
+#             ##selectBookingDate = inputdata["selectBookingDate"]
+#             ambulanceId = inputdata["ambulanceId"]
+#             ###driverlocation = inputdata["driverlocation"]
+#             #bookingId =  commonfile.CreateHashKey(mobileNo,pickup)
 
-            search = geocoder.get(pickup)
-            print(search,'searchpickup')
-            search2=geocoder.get(drop)
-            print(search2,'searchdrop')
+#             search = geocoder.get(pickup)
+#             print(search,'searchpickup')
+#             search2=geocoder.get(drop)
+#             print(search2,'searchdrop')
             
-            # search3 = geocoder.get(driverlocation)
-            # search3[0].geometry.location
-            # driverlattitude= search3[0].geometry.location.lat
-            # print(driverlattitude,'driverfromlat')
-            # driverlongitude=search3[0].geometry.location.lng
-            # print(driverlongitude,'driverfromlng')
+#             # search3 = geocoder.get(driverlocation)
+#             # search3[0].geometry.location
+#             # driverlattitude= search3[0].geometry.location.lat
+#             # print(driverlattitude,'driverfromlat')
+#             # driverlongitude=search3[0].geometry.location.lng
+#             # print(driverlongitude,'driverfromlng')
 
-            search[0].geometry.location
-            search2[0].geometry.location
-            fromlatitude= search[0].geometry.location.lat
-            print(fromlatitude,'fromlat')
-            fromlongitude=search[0].geometry.location.lng
-            print(fromlongitude,'fromlng')
-            tolatitude= search2[0].geometry.location.lat
-            print(tolatitude,'tolat')
-            tolongitude= search2[0].geometry.location.lng
-            print(tolongitude,'tolng')
-            bookingId=uuid.uuid1()
-            bookingId=bookingId.hex
-            print(bookingId,'bookingId')
-            R = 6373.0
-            fromlongitude2= Decimal(fromlongitude)
-            print(fromlongitude2,'fromlng2')
-            fromlatitude2 = Decimal(fromlatitude)
-            print(fromlatitude2,'fromlat')
-            # print(fromlongitude2,fromlatitude2)
-            distanceLongitude = tolongitude - fromlongitude
-            print(distanceLongitude,'distancelng')
-            distanceLatitude = tolatitude - fromlatitude
-            print(distanceLongitude,'distancelat')
-            a = sin(distanceLatitude / 2)**2 + cos(fromlatitude) * cos(tolatitude) * sin(distanceLongitude / 2)**2
-            c = 2 * atan2(sqrt(a), sqrt(1 - a))
-            distance = R * c
-            distance2=distance/100
-            Distance=distance2*1.85
-            print(Distance,'distance')
-            d=round(Distance)
-            print(d,'d')
-            d2 =str(d) +' Km'
-            print(d2,'d2')
+#             search[0].geometry.location
+#             search2[0].geometry.location
+#             fromlatitude= search[0].geometry.location.lat
+#             print(fromlatitude,'fromlat')
+#             fromlongitude=search[0].geometry.location.lng
+#             print(fromlongitude,'fromlng')
+#             tolatitude= search2[0].geometry.location.lat
+#             print(tolatitude,'tolat')
+#             tolongitude= search2[0].geometry.location.lng
+#             print(tolongitude,'tolng')
+#             bookingId=uuid.uuid1()
+#             bookingId=bookingId.hex
+#             print(bookingId,'bookingId')
+#             R = 6373.0
+#             fromlongitude2= Decimal(fromlongitude)
+#             print(fromlongitude2,'fromlng2')
+#             fromlatitude2 = Decimal(fromlatitude)
+#             print(fromlatitude2,'fromlat')
+#             # print(fromlongitude2,fromlatitude2)
+#             distanceLongitude = tolongitude - fromlongitude
+#             print(distanceLongitude,'distancelng')
+#             distanceLatitude = tolatitude - fromlatitude
+#             print(distanceLongitude,'distancelat')
+#             a = sin(distanceLatitude / 2)**2 + cos(fromlatitude) * cos(tolatitude) * sin(distanceLongitude / 2)**2
+#             c = 2 * atan2(sqrt(a), sqrt(1 - a))
+#             distance = R * c
+#             distance2=distance/100
+#             Distance=distance2*1.85
+#             print(Distance,'distance')
+#             d=round(Distance)
+#             print(d,'d')
+#             d2 =str(d) +' Km'
+#             print(d2,'d2')
 
            
-            column="id,mobileNo,currentlatlong,currentLocation"
-            whereCondition="drivingStatus<>'1'"
-            datavv= databasefile.SelectQuery1("driverMaster",column,whereCondition)
-            print(datavv,'data')
-            distanceLongitude = fromlongitude - driverlongitude
-            distanceLatitude = fromlatitude - driverlattitude
-            a = sin(distanceLatitude / 2)**2 + cos(driverlattitude) * cos(tolatitude) * sin(driverlongitude/ 2)**2
-            c = 2 * atan2(sqrt(a), sqrt(1 - a))
-            distanceDriver = R * c
-            distance1=distanceDriver/100
-            distanceD=distance2*1.85
-            d1=round(distanceD)
-            print(d1,'d1')
-            d9 =str(d) +' Km'
-            print(d9,'d9')
-            if d1 <2:
-                print('B')
-                driverId=datavv['id']
-                driverMobile=datavv['mobileNo']
+#             column="id,mobileNo,currentlatlong,currentLocation"
+#             whereCondition="drivingStatus<>'1'"
+#             datavv= databasefile.SelectQuery1("driverMaster",column,whereCondition)
+#             print(datavv,'data')
+#             distanceLongitude = fromlongitude - driverlongitude
+#             distanceLatitude = fromlatitude - driverlattitude
+#             a = sin(distanceLatitude / 2)**2 + cos(driverlattitude) * cos(tolatitude) * sin(driverlongitude/ 2)**2
+#             c = 2 * atan2(sqrt(a), sqrt(1 - a))
+#             distanceDriver = R * c
+#             distance1=distanceDriver/100
+#             distanceD=distance2*1.85
+#             d1=round(distanceD)
+#             print(d1,'d1')
+#             d9 =str(d) +' Km'
+#             print(d9,'d9')
+#             if d1 <2:
+#                 print('B')
+#                 driverId=datavv['id']
+#                 driverMobile=datavv['mobileNo']
         
-            column="usermobile,pickup,pickupLongitudeLatitude,dropoff,dropoffLongitudeLatitude,selectBookingDate,bookingType,patientMedicalCondition,ambulanceId,userId,bookingId,finalAmount,totalDistance"
-            values="'"+str(data1["mobileNo"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["dropoff"])+"','"+str(tolatitude,tolongitude)+"','"+str(data1["selectBookingDate"])+"','"+str(data1["patientMedicalCondition"])+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d3)+"'"
-            insertdata=databasefile.InsertQuery("bookAmbulance",column,values)
-            column=" * "
-            whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
-            data=databasefile.SelectQuery1("bookAmbulance",column,whereCondition)
-            yu=data[-1]
-            mainId=yu["bookingId"]
-            pickuplocation=yu["pickup"]
-            userid=yu["userId"]
-            column="bookingId,driverId,farDistance,pickup,userId"
-            values="'"+str(mainId)+"','"+str(driverId)+"','"+str(d9)+"','"+str(pickuplocation)+"','"+str(userid)+"'"
-            insertdata=databasefile.InsertQuery("driverBookingMapping",column,values)
-            ambulanceId = data1["addsOnId"]
-            for i in ambulanceId:
-                column=" * "
-                whereCondition="addsOnId='"+str(i)+"'  and bookingId='"+str(mainId)+"'"
-                userHospitalMappingdata=databasefile.SelectQuery1("addsOnbookambulanceMapping",column,whereCondition)
-                if userHospitalMappingdata==():
-                    column="addsOnId,bookingId"
-                    values="'"+str(mainId)+"','"+str(i)+"'"
-                    insertdata=databasefile.InsertQuery("addsOnbookambulanceMapping",column,values)
-                    output = {"result":"data inserted successfully","status":"true","ride Details":data[-1]}
-                    return output
+#             column="usermobile,pickup,pickupLongitudeLatitude,dropoff,dropoffLongitudeLatitude,selectBookingDate,bookingType,patientMedicalCondition,ambulanceId,userId,bookingId,finalAmount,totalDistance"
+#             values="'"+str(data1["mobileNo"])+"','"+str(data1["pickup"])+"','"+str(fromlatitude,fromlongitude)+"','"+str(data1["dropoff"])+"','"+str(tolatitude,tolongitude)+"','"+str(data1["selectBookingDate"])+"','"+str(data1["patientMedicalCondition"])+"','"+str(data1["userId"])+"','"+str(bookingId)+"','"+str(data1["finalAmount"])+"','"+str(d3)+"'"
+#             insertdata=databasefile.InsertQuery("bookAmbulance",column,values)
+#             column=" * "
+#             whereCondition="userId='"+str(data1["userId"])+ "' and status<>'2'"
+#             data=databasefile.SelectQuery1("bookAmbulance",column,whereCondition)
+#             yu=data[-1]
+#             mainId=yu["bookingId"]
+#             pickuplocation=yu["pickup"]
+#             userid=yu["userId"]
+#             column="bookingId,driverId,farDistance,pickup,userId"
+#             values="'"+str(mainId)+"','"+str(driverId)+"','"+str(d9)+"','"+str(pickuplocation)+"','"+str(userid)+"'"
+#             insertdata=databasefile.InsertQuery("driverBookingMapping",column,values)
+#             ambulanceId = data1["addsOnId"]
+#             for i in ambulanceId:
+#                 column=" * "
+#                 whereCondition="addsOnId='"+str(i)+"'  and bookingId='"+str(mainId)+"'"
+#                 userHospitalMappingdata=databasefile.SelectQuery1("addsOnbookambulanceMapping",column,whereCondition)
+#                 if userHospitalMappingdata==():
+#                     column="addsOnId,bookingId"
+#                     values="'"+str(mainId)+"','"+str(i)+"'"
+#                     insertdata=databasefile.InsertQuery("addsOnbookambulanceMapping",column,values)
+#                     output = {"result":"data inserted successfully","status":"true","ride Details":data[-1]}
+#                     return output
         
-                else:
-                    output = {"result":"Hospital Already  Existed ","status":"false"}
-                    return output 
-        else:
-            return msg
-    except Exception as e :
-        print("Exception---->" + str(e))    
-        output = {"result":"something went wrong","status":"false"}
-        return output
+#                 else:
+#                     output = {"result":"Hospital Already  Existed ","status":"false"}
+#                     return output 
+#         else:
+#             return msg
+#     except Exception as e :
+#         print("Exception---->" + str(e))    
+#         output = {"result":"something went wrong","status":"false"}
+#         return output
 
 
 #track Ambulance
@@ -1895,7 +1895,7 @@ def getNearAmbulance():
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
             startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
-            column=  " d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, a.lat, a.lng,SQRT(POW(69.1 * (a.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - a.lng) * COS(a.lat / 57.3), 2)) AS distance "
+            column=  " d.driverId,d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, a.lat, a.lng,SQRT(POW(69.1 * (a.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - a.lng) * COS(a.lat / 57.3), 2)) AS distance "
             whereCondition= " and a.onTrip=0 and a.onDuty=1 and a.driverId=d.id HAVING distance < 1200 "
             orderby="  distance "
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d",column,whereCondition,"",orderby,"","")
@@ -1924,8 +1924,7 @@ def bookRide():
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
         #id is driverid
-        keyarr = ["ambulanceId","id",'startLocationLat','startLocationLong',"pickupLocationAddress",\
-        'dropLocationLat','dropLocationLong',"dropLocationAddress","userId"]
+        keyarr = ["ambulanceId","id",'startLocationLat','startLocationLong',"pickupLocationAddress",'dropLocationLat','dropLocationLong',"dropLocationAddress","userId"]
         
 
         if "ambulanceId" in inputdata:
@@ -1949,27 +1948,53 @@ def bookRide():
         if "dropLocationLong" in inputdata:
                 if inputdata['dropLocationLong'] != "":
                     dropLocationLong =str(inputdata["dropLocationLong"])
-        if "dropLocationAddress" in dropLocationAddress:
+        if "dropLocationAddress" in inputdata:
                 if inputdata['dropLocationAddress'] != "":
                     dropLocationAddress =str(inputdata["dropLocationAddress"])
+
+        if "userId" in inputdata:
+            if inputdata['userId'] != "":
+                userId =str(inputdata["userId"])
+
+
+        bookingId = (commonfile.CreateHashKey(driverId,userId)).hex
 
 
         commonfile.writeLog("bookRide",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         
         if msg == "1":
-
-            column = "eventTitle,userTypeId,imagePath,eventSummary,eventLocation,eventDate,UserCreate"
-            values = " '"+ str(eventTitle) +"','" + str(userTypeId)+"','" + str(ImagePath)+"','" + str(eventSummary) +"','" + str(eventLocation) + "','" + str(eventDate) + "','" + str(UserId) + "'"
-            data = databasefile.InsertQuery("parliamentEvent",column,values)
-
-
+            columns="mobileNo "
+            whereCondition22=" and userId= '"+str(userId)+"' and userTypeId='2' "
+            data1= databasefile.SelectQuery("userMaster",columns,whereCondition22)
+            usermobile=data1['mobileNo']
 
 
+            whereCondition222=" and userId= '"+str(userId)+"'  "
+            data11= databasefile.SelectQuery("driverMaster",columns,whereCondition22)
+            drivermobile=data11['mobileNo']
 
 
 
-            WhereCondition=WhereCondition+" and   ambulanceId='"+str(ambulanceId)+"'"
+
+            #insertdata
+            column='userMobile,driverMobile,pickup,pickupLongitudeLatitude,pickupLongitude,dropoff,dropOffLatitude,ambulanceId,userId,driverId,bookingId'
+            alues = " '"+ str(eventTitle) +"','" + str(userTypeId)+"','" + str(ImagePath)+"','" + str(eventSummary) +"','" + str(eventLocation) + "','" + str(eventDate) + "','" + str(UserId) + "'"
+
+
+
+
+            # column = "eventTitle,userTypeId,imagePath,eventSummary,eventLocation,eventDate,UserCreate"
+            # values = " '"+ str(eventTitle) +"','" + str(userTypeId)+"','" + str(ImagePath)+"','" + str(eventSummary) +"','" + str(eventLocation) + "','" + str(eventDate) + "','" + str(UserId) + "'"
+            # data = databasefile.InsertQuery("b",column,values)
+
+
+
+
+
+
+
+            WhereCondition=" and   ambulanceId='"+str(ambulanceId)+"'"
             column = " ambulanceId,ambulanceNo,lat,lng,ambulanceTypeId,ambulanceModeId,driverId   "
             data = databasefile.SelectQueryOrderby(" ambulanceMaster ",column,WhereCondition,"","","","")
 
@@ -2014,6 +2039,9 @@ def startRide():
             whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"'"
             column=" status=1 "
             bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
+            whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
+            columns= "onTrip=1"
+            bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
                 bookRide["message"]="ride Ended Successfully"             
                 return bookRide
@@ -2045,6 +2073,9 @@ def endRide():
             whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"'"
             column=" status=2 "
             bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
+            whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
+            columns= "onTrip=0"
+            bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
                 bookRide["message"]="ride Ended Successfully"             
                 return bookRide
@@ -2081,6 +2112,9 @@ def cancelRide():
             whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"' and  canceledUserId='"+ str(userId)+"'"
             column=" status=3"
             bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
+            whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
+            columns= "onTrip=0"
+            bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
                 bookRide["message"]="ride Canceled Successfully"             
                 return bookRide
