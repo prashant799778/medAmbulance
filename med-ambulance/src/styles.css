@@ -96,6 +96,9 @@
 	.record-box tbody tr td:nth-child(8) {
 		width: 126px;
 	}
+	.record-box {
+		padding: 0px 5px;
+	}
 /* For All End Css*/
 
 body{
@@ -462,7 +465,6 @@ button.acton-btn {
 .form-box {
 	margin-bottom: 1rem;
 	width: 100%;
-    overflow: hidden;
 }
 .form-box > label {
     color: #AAAAAA !important;
