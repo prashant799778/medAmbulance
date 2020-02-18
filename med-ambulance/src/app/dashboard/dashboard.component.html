@@ -128,9 +128,10 @@
                                                 <td>{{driver.tripCount}}</td>
                                                 <td>{{getStatus(driver.status)}}</td>
                                                 <td>
-                                                    <button type="button" class="acton-btn" (click)="policyDetail(driver.postId, driver.userTypeId)">
-                                                        <img src="../../assets/images/view.svg" class="action-view">
-                                                    </button>
+                                                    <div class="btn-edit-group">
+                                                        <button type="button" class="edit-btn" (click)="editNews(news.id)" >  <img src="../../../assets/images/edit-im.svg"></button>
+                                                        <button type="button" class="delet-btn" (click)="deleteNews(news.id)">  <img src="../../../assets/images/bin.svg"></button>
+                                                    </div>
                                                 </td>
                                                 </tr>
                                       </ng-container>
