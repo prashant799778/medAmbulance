@@ -1971,6 +1971,41 @@ def getNearAmbulance():
 
 
 
+@app.route('/getNearAmbulancetest', methods=['POST'])
+def getNearAmbulancetest():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['startLocationLat','startLocationLong']
+        commonfile.writeLog("getNearAmbulance",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
+            column=  " d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, b.lat, b.lng,SQRT(POW(69.1 * (b.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - b.lng) * COS(b.lat / 57.3), 2)) AS distance "
+            whereCondition= " and b.onTrip=0 and b.onDuty=1 and a.driverId=d.id  and b.ambulanceId=a.ambulanceId HAVING distance < 25 "
+            orderby="  distance "
+            nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d,ambulanceRideStatus as b",column,whereCondition,"",orderby,"","")
+            
+            if (nearByAmbulance!=0):   
+                               
+                return nearByAmbulance
+            else:
+                nearByAmbulance["message"]="No Ambulance Found"
+                return nearByAmbulance
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+
 
 
 @app.route('/getNearAmbulance1', methods=['POST'])
@@ -2014,6 +2049,7 @@ def getNearAmbulance1():
 @app.route('/bookRide', methods=['POST'])
 def bookRide():
     try:
+        print('A')
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
         inputdata={"ambulanceId":3,"id":1,'startLocationLat':28.583962,'startLocationLong':77.314345,"pickupLocationAddress":" Noida se 15",'dropLocationLat':28.535517,'dropLocationLong':77.391029,"dropLocationAddress":"","userId":1}
@@ -2058,19 +2094,22 @@ def bookRide():
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         
         if msg == "1":
+            print('B')
             columns="mobileNo,name"
-            whereCondition22=" and userId= '"+str(userId)+"' and userTypeId='2' "
+            whereCondition22="  userId= '"+str(userId)+"' and userTypeId='2' "
             data1= databasefile.SelectQuery("userMaster",columns,whereCondition22)
+            print(data1,'data1')
             usermobile=data1['result']['mobileNo']
 
 
-            whereCondition222=" and driverId= '"+str(driverId)+"' "
+            whereCondition222="  driverId= '"+str(driverId)+"' "
             data11= databasefile.SelectQuery("driverMaster",columns,whereCondition222)
+            print(data11,'--data')
             drivermobile=data11['result']['mobileNo']
             
             R = 6373.0
-            fromlongitude2= Decimal(startLocationLong)
-            fromlatitude2 = Decimal(startLocationLat)
+            fromlongitude2= startLocationLong
+            fromlatitude2 = startLocationLat
             # print(fromlongitude2,fromlatitude2)
             distanceLongitude = dropLocationLong - fromlongitude2
             distanceLatitude = dropLocationLat - fromlatitude2
@@ -2084,6 +2123,7 @@ def bookRide():
 
 
             finalAmount= d * 11+11
+            print(finalAmount,'final')
 
 
 
@@ -2093,9 +2133,11 @@ def bookRide():
             values111 = " '"+ str(usermobile) +"','" + str(drivermobile)+"','" + str(pickupLocationAddress)+"','" + str(startLocationLat) +"','" + str(startLocationLong) + "','" + str(dropLocationAddress) + "','" + str(dropLocationLat) + "'"
             values111=values111+"','" + str(dropLocationLong)+"','" + str(ambulanceId)+"','" + str(userId) +"','" + str(driverId) + "','" + str(bookingId)+ "','" + str(d2) + "','" + str(finalAmount)+"'"
             data111=databasefile.InsertQuery('bookAmbulance',columnqq,values111)
+            print(data111,'==data')
           
 
-            if (data111!='0'):   
+            if (data111!='0'):  
+                print('Entered') 
                 bookRide["message"]="ride booked Successfully" 
 
                 data={"result":{"userdata":data1['result'],"driverdata":data11['result']},"status":"true","message":"" }            
@@ -2136,7 +2178,7 @@ def startRide():
             columns= "onTrip=1 and onDuty=1"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
-                bookRide["message"]="ride Ended Successfully"             
+                bookRide["message"]="ride started Successfully"             
                 return bookRide
             else:
                 
@@ -2201,7 +2243,7 @@ def cancelRide():
         if msg == "1":
             ambulanceId= inputdata["ambulanceId"]
             bookingId=inputdata['bookingId']
-            userId=insertdata['userId']
+            userId=inputdata['userId']
             whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"' and  canceledUserId='"+ str(userId)+"'"
             column=" status=3"
             bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
@@ -2209,7 +2251,7 @@ def cancelRide():
             columns= "onTrip=0 and onDuty=1"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
-                bookRide["message"]="ride Canceled Successfully"             
+                bookRide["message"]="ride Cancelled Successfully"             
                 return bookRide
             else:
                 
@@ -2232,22 +2274,21 @@ def driverLeave():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ["ambulanceId","driverId"]
+        keyarr = ["ambulanceId"]
         commonfile.writeLog("driverLeave",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
             ambulanceId= inputdata["ambulanceId"]
-           
-            driverId=insertdata['driverId']
-            whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' and driverId='"+ str(driverId)+"'"
+            whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"'"
             columns= "onDuty=0"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
-            if (bookRide!=0):   
-                bookRide["message"]="Leave taken Successfully"             
-                return bookRide
+            print(bookRide1,'bookride')
+            if (bookRide1!="0"):   
+                bookRide1["message"]="Leave taken Successfully"             
+                return bookRide1
             else:
                 
-                return bookRide
+                return bookRide1
         else:
             return msg 
     except KeyError as e:
