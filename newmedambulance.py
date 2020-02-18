@@ -772,7 +772,7 @@ def allAmbulance():
     try:
         msg = "1"
         if msg=="1":
-            column=" AM.ambulanceId,AM.lat,lng,AM.transportType,AM.transportModel,AM.color,AM.ambulanceRegistrationFuel,AM.typeNo,AM.ambulanceFilename,AM.ambulanceFilepath,AM.ambulanceModeId,AM.ambulanceTypeId "
+            column=" AM.ambulanceId,AM.lat,AM.lng,atm.ambulanceType,am.ambulanceType,AM.transportType,AM.transportModel,AM.color,AM.ambulanceRegistrationFuel,AM.typeNo,AM.ambulanceFilename,AM.ambulanceFilepath,AM.ambulanceModeId,AM.ambulanceTypeId "
             whereCondition=" AM.ambulanceTypeId=atm.id and AM.ambulanceModeId=am.id"
             data=databasefile.SelectQuery1("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am",column,whereCondition)
             if (data!=0):           
