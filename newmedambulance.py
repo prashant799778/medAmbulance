@@ -1896,7 +1896,7 @@ def getNearAmbulance():
         if msg == "1":
             startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
             column=  " d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, a.lat, a.lng,SQRT(POW(69.1 * (a.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - a.lng) * COS(a.lat / 57.3), 2)) AS distance "
-            whereCondition= " and a.onTrip=0 and a.onDuty=1 and a.driverId=d.id HAVING distance < 1200 "
+            whereCondition= " and a.onTrip=0 and a.onDuty=1 and a.driverId=d.id HAVING distance > 25 "
             orderby="  distance "
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d",column,whereCondition,"",orderby,"","")
             
