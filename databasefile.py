@@ -96,7 +96,7 @@ def SelectQuery2(table,columns,whereCondition,groupby,startlimit,endlimit):
             whereCondition = " where 1=1 " + whereCondition
         if startlimit != "" and endlimit != "":
             limitCondition = "limit "+startlimit+","+endlimit
-            whereCondition = " where 1=1 and " + whereCondition
+           
         
         if groupby != "":
             groupby = " group by " + groupby
