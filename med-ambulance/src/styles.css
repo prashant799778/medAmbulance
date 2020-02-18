@@ -210,8 +210,8 @@ body{
 		display: none !important;
 	}
 	.wrapper-container.collapse > .top-bar{
-		width: calc(100% - 70px);
-		margin-left: 70px;
+		width: calc(100% - var(--tg-space));
+		margin-left: var(--tg-space);
 		transition: 0.5s;
 	}
 	.wrapper-container.collapse > .left-sidebar > app-side-bar .left-menu li a{
@@ -225,11 +225,12 @@ body{
 		display: none;
 		transition: 0.5s;
 	}
-	.wrapper-container.collapse > .top-bar >  app-header > .inner-topbar {
+	.wrapper-container.collapse > .top-bar >   .inner-topbar {
 		padding: 5px 0px;
 		position: fixed;
-		width: calc(100% - 70px);
-		right: 0;
+		width: calc(100% - var(--tg-space));
+		margin-left: var(--tg-space);
+		left: 0;
 		transition: 0.5s;
 	}
 	.pd-3 {
@@ -248,15 +249,16 @@ body{
 
 /* Topbar Section Css */
 	.top-bar{
-		width: 100%;
+		width: calc(100% - var(--space));
 		margin-left: var(--space);
 		transition: 0.5s;
 	}
 	.inner-topbar {
 		padding: 5px 0px;
 		position: fixed;
-		width: calc(100% - 235px);
-		right: 0;
+		width: calc(100% - var(--space));
+		margin-left: var(--space);
+		left: 0;
 		transition: 0.5s;
 		z-index: 2;
 	}
@@ -532,7 +534,7 @@ input.upload-fil:focus {
     font-weight: 600;
 }
 /* End All Sect- Section */
-@media screen and (max-width:480px){
+@media screen and (max-width:642px){
 	.info-card-box {
 		display: grid;
 		grid-template-columns: 1fr !important;
@@ -541,7 +543,7 @@ input.upload-fil:focus {
 	}
 }
 
-@media screen and (max-width:768px){
+@media screen and (max-width:1024px){
 	.info-card-box {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
