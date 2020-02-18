@@ -1314,7 +1314,7 @@ def alldresponder():
             column="*"
             whereCondition="usertypeId='4' "
             data=databasefile.SelectQuery1("userMaster",column,whereCondition)
-            if (data!=0):           
+            if (data['status']=='false'):           
                 Data = {"result":data,"status":"true"}
                 return Data
             else:
