@@ -644,14 +644,16 @@ def addambulanceMode():
             column = " * "
             whereCondition= "ambulanceType='"+str(ambulanceType)+ "'"
             data = databasefile.SelectQuery("ambulanceMode",column,whereCondition)
-            print(data,'==data')
-            if data == 0:
+            print(data,'==data===')
+            if data['status'] == 'false':
+                print('entered')
                 column="ambulanceType"
                 values="'"+str(ambulanceType)+"'"
                 insertdata=databasefile.InsertQuery("ambulanceMode",column,values)
                 column="*"
                 whereCondition= "ambulanceType='"+str(ambulanceType)+ "'"
                 data8= databasefile.SelectQuery1("ambulanceMode",column,whereCondition)
+                print(data8,'8888888888888')
                 output= {"result":"User Added Successfully","ambulance Details":data8[-1],"status":"true"}
                 return output
             else:
@@ -746,7 +748,7 @@ def addambulance():
             whereCondition="ambulanceType='"+str(ambulanceType)+"'"
             data= databasefile.SelectQuery("ambulanceTypeMaster",column,whereCondition)
             print(data,"==data")
-            if data==0:
+            if data['status']=='false':
                 column="ambulanceType"
                 values="'"+str(ambulanceType)+"'"
                 insertdata=databasefile.InsertQuery("ambulanceTypeMaster",column,values)
@@ -1314,6 +1316,7 @@ def alldresponder():
             column="*"
             whereCondition="usertypeId='4' "
             data=databasefile.SelectQuery1("userMaster",column,whereCondition)
+            print(data,'data')
             if (data!=0):           
                 Data = {"result":data,"status":"true"}
                 return Data
@@ -1410,7 +1413,7 @@ def addriderType():
             whereCondition="responderType='"+str(responderType)+"'"
             data= databasefile.SelectQuery("responderTypeMaster",column,whereCondition)
             print(data,'printit')
-            if data==0:
+            if data['status']=='false':
                 column="responderType"
                 values="'"+str(responderType)+"'"
                 insertdata=databasefile.InsertQuery("responderTypeMaster",column,values)
@@ -1459,6 +1462,7 @@ def responderType():
 @app.route('/updateriderType', methods=['POST'])
 def updateriderType():
     try:
+        print('A')
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
         keyarr = ['responderType','id']
@@ -1471,7 +1475,8 @@ def updateriderType():
             whereCondition="id = '" + str(id)+ "'"
             data1 = databasefile.SelectQuery("responderTypeMaster",column,whereCondition)
             print(data1,"data1")
-            if data1 != 0:
+            if data1['status'] == 'false':
+                print('b')
                 column = ""
                 whereCondition = ""
                 column= " responderType='" + str(responderType) + "'"
@@ -1709,7 +1714,8 @@ def addpaymentType():
             column="*"
             whereCondition= "paymentType='"+str(paymentType)+ "'"
             data=databasefile.SelectQuery("paymentTypeMaster",column,whereCondition)
-            if data==0:
+            print(data,'data')
+            if data['status']=='false':
                 column="paymentType"
                 values="'"+str(paymentType)+"' "
                 insertdata=databasefile.InsertQuery("paymentTypeMaster",column,values)
@@ -1743,7 +1749,7 @@ def allHospital():
             column= "hosp.id,hosp.hospitalName,hosp.address,am.ambulanceType,hosp.longitude,hosp.latitude"   
             WhereCondition=  " hosp.id=ahm.hospital_Id and am.id=ahm.ambulance_Id and  ambulanceType   = '" + ambulanceType + "'  "
             data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalambulanceMapping as ahm,ambulanceTypeMaster as am",column,WhereCondition)
-            print(data)
+            print(data,'data')
             if (data!=0): 
                 print(data)          
                 Data = {"result":data,"status":"true"}
@@ -1841,6 +1847,7 @@ def ResponderTraceUser():
             column="um.name,um.mobileNo,dbm.farDistance,dbm.pickup,dbm.bookingId "
             whereCondition="dbm.userId=um.userId and dbm.responderId='" + str(responderId) + "'"
             data=databasefile.SelectQuery1("responderBookingMapping as dbm,userMaster as  um",column,whereCondition)
+            print(data,'==data')
             if (data!=0):           
                 Data = {"result":data,"status":"true"}
                 return Data
@@ -1869,7 +1876,9 @@ def trackRider():
             column="dm.name,dm.mobileNo,dbm.farDistance,dm.currentLocation"
             whereCondition= "dbm.responderId=dm.responderId and dbm.bookingId='" + str(bookingId) + "'"
             data=databasefile.SelectQuery(" responderMaster as dm ,responderBookingMapping as dbm",column,whereCondition)
-            if (data!=0):           
+            print(data,'data')
+            if (data['status'] != 'false'):
+                print('A')           
                 Data = {"result":data,"status":"true"}
                 return Data
             else:
@@ -2000,15 +2009,15 @@ def bookRide():
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         
         if msg == "1":
-            columns="mobileNo "
+            columns="mobileNo,name"
             whereCondition22=" and userId= '"+str(userId)+"' and userTypeId='2' "
             data1= databasefile.SelectQuery("userMaster",columns,whereCondition22)
-            usermobile=data1['mobileNo']
+            usermobile=data1['result']['mobileNo']
 
 
-            whereCondition222=" and userId= '"+str(userId)+"'  "
+            whereCondition222=" and userId= '"+str(userId)+"' "
             data11= databasefile.SelectQuery("driverMaster",columns,whereCondition22)
-            drivermobile=data11['mobileNo']
+            drivermobile=data11['result']['mobileNo']
             
             R = 6373.0
             fromlongitude2= Decimal(startLocationLong)
@@ -2024,29 +2033,28 @@ def bookRide():
             d=round(Distance)
             d2 =str(d) +' Km'
 
+
+            finalAmount= d * 11+11
+
+
+
+
             #insertdata
-            column='userMobile,driverMobile,pickup,pickupLongitude,pickupLongitude,dropoff,dropOffLatitude,dropOffLongitude,ambulanceId,userId,driverId,bookingId'
-            values = " '"+ str(usermobile) +"','" + str(drivermobile)+"','" + str(pickupLocationAddress)+"','" + str(startLocationLat) +"','" + str(startLocationLong) + "','" + str(dropLocationAddress) + "','" + str(dropLocationLat) + "'"
-            values=values+"','" + str(dropLocationLong)+"','" + str(ambulanceId)+"','" + str(userId) +"','" + str(driverId) + "','" + str(bookingId) +"'"
+            columnqq='userMobile,driverMobile,pickup,pickupLongitude,pickupLongitude,dropoff,dropOffLatitude,dropOffLongitude,ambulanceId,userId,driverId,bookingId,totalDistance,finalAmount'
+            values111 = " '"+ str(usermobile) +"','" + str(drivermobile)+"','" + str(pickupLocationAddress)+"','" + str(startLocationLat) +"','" + str(startLocationLong) + "','" + str(dropLocationAddress) + "','" + str(dropLocationLat) + "'"
+            values111=values111+"','" + str(dropLocationLong)+"','" + str(ambulanceId)+"','" + str(userId) +"','" + str(driverId) + "','" + str(bookingId)+ "','" + str(d2) + "','" + str(finalAmount)+"'"
+            data111=databasefile.InsertQuery('bookAmbulance',columnqq,values111)
+          
 
-            # column = "eventTitle,userTypeId,imagePath,eventSummary,eventLocation,eventDate,UserCreate"
-            # values = " '"+ str(eventTitle) +"','" + str(userTypeId)+"','" + str(ImagePath)+"','" + str(eventSummary) +"','" + str(eventLocation) + "','" + str(eventDate) + "','" + str(UserId) + "'"
-            # data = databasefile.InsertQuery("b",column,values)
+            if (data111!='0'):   
+                bookRide["message"]="ride booked Successfully" 
 
-            WhereCondition=" and   ambulanceId='"+str(ambulanceId)+"'"
-            column = " ambulanceId,ambulanceNo,lat,lng,ambulanceTypeId,ambulanceModeId,driverId   "
-            data = databasefile.SelectQueryOrderby(" ambulanceMaster ",column,WhereCondition,"","","","")
-
-            ambulanceId= inputdata["ambulanceId"]
-            whereCondition=" ambulanceId= '"+ str(ambulanceId)+"'"
-            column=" onTrip=1 "
-            bookRide=databasefile.UpdateQuery(" ambulanceMaster ",column,whereCondition)
-            if (bookRide!=0):   
-                bookRide["message"]="ride booked Successfully"             
-                return bookRide
+                data={"result":{"userdata":data1['result'],"driverdata":data11['result']},"status":"true","message":"" }            
+                return data
             else:
+                data={"result":"","message":"No data Found","status":"false"}
                 
-                return bookRide
+                return data
         else:
             return msg 
     except KeyError as e:
@@ -2076,7 +2084,7 @@ def startRide():
             column=" status=1 "
             bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
             whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
-            columns= "onTrip=1"
+            columns= "onTrip=1 and onDuty=1"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
                 bookRide["message"]="ride Ended Successfully"             
@@ -2110,7 +2118,7 @@ def endRide():
             column=" status=2 "
             bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
             whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
-            columns= "onTrip=0"
+            columns= "onTrip=0 and onDuty=1"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
                 bookRide["message"]="ride Ended Successfully"             
@@ -2149,10 +2157,44 @@ def cancelRide():
             column=" status=3"
             bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
             whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
-            columns= "onTrip=0"
+            columns= "onTrip=0 and onDuty=1"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
                 bookRide["message"]="ride Canceled Successfully"             
+                return bookRide
+            else:
+                
+                return bookRide
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+#driverLeave
+@app.route('/driverLeave', methods=['POST'])
+def driverLeave():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ["ambulanceId","driverId"]
+        commonfile.writeLog("driverLeave",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            ambulanceId= inputdata["ambulanceId"]
+           
+            driverId=insertdata['driverId']
+            whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' and driverId='"+ str(driverId)+"'"
+            columns= "onDuty=0"
+            bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
+            if (bookRide!=0):   
+                bookRide["message"]="Leave taken Successfully"             
                 return bookRide
             else:
                 
