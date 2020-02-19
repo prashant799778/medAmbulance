@@ -633,8 +633,7 @@ def addDriver():
                             return data11
 
                         
-                else:
-                    return commonfile.Errormessage()
+               
         else:
             return msg
     except Exception as e :
