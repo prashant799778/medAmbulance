@@ -2340,6 +2340,7 @@ def ActiveTrip():
 
             column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.name"
             data=databasefile.SelectQuery("bookAmbulance as bm,userMaster as um,driverMaster",column,whereCondition)
+            print(data,"______________")
            
             if (data['status']!='false'): 
                 Data = {"result":data['result'],"status":"true","message":""}
@@ -2381,6 +2382,7 @@ def CompeltedTrip():
 
             column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.name"
             data=databasefile.SelectQuery("bookAmbulance as bm,userMaster as um,driverMaster",column,whereCondition)
+            print(data,"---------------------------------")
            
             if (data['status']!='false'): 
                 Data = {"result":data['result'],"status":"true","message":""}
@@ -2422,6 +2424,7 @@ def bookedTrip():
 
             column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.name"
             data=databasefile.SelectQuery("bookAmbulance as bm,userMaster as um,driverMaster",column,whereCondition)
+            print(data,"-------------------------------")
            
             if (data['status']!='false'): 
                 Data = {"result":data['result'],"status":"true","message":""}
@@ -2464,6 +2467,7 @@ def CancelledTrip():
 
             column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.name"
             data=databasefile.SelectQuery("bookAmbulance as bm,userMaster as um,driverMaster",column,whereCondition)
+            print(data,"--------------------------------------------------")
            
             if (data['status']!='false'): 
                 Data = {"result":data['result'],"status":"true","message":""}
