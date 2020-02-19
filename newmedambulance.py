@@ -2459,6 +2459,7 @@ def CancelledTrip():
             if "endLimit" in inputdata:
                 if inputdata['endLimit'] != "":
                     endlimit =str(inputdata["endLimit"])
+                    
 
             whereCondition="  and bm.status=3  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
