@@ -991,7 +991,7 @@ def alldrivers():
             
             if (data['status']!='false'):
                 y2=len(data['result'])
-                if y ==1:
+                if y2 ==1:
                     ambulanceId1=data['result']['ambulanceId']
                     columns2="am.ambulanceFilepath,am.ambulanceTypeId,am.ambulanceModeId,am.ambulanceFilename"
                     whereCondition222=" and am.ambulanceId=ars.ambulanceId "
