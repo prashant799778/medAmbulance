@@ -35,11 +35,12 @@ def on_message(client, userdata, msg):
     orderby=" id "
     ambulanceRideId = databasefile.SelectQueryOrderby("ambulanceRideStatus",column1,whereCondition1,"","0","1",orderby)
     print("=============================",ambulanceRideId)
-    if (ambulanceTripDetails[0]["onTrip"]==1) and (ambulanceTripDetails[0]["onDuty"]==1):
+    if ambulanceRideId!=0:
+      if (ambulanceTripDetails[0]["onTrip"]==1) and (ambulanceTripDetails[0]["onDuty"]==1):
 
-      column=" rideId,ambulanceId,driverId,lat,lng "
-      values="'"+str(ambulanceRideId["result"][0]["bookingId"])+"','"+str(ambulanceId)+"','"+str(driverId)+"','"+str(lat)+"','"+str(lng)+"'"
-      insertdata=databasefile.InsertQuery("ambulanceRideTracking",column,values)
+        column=" rideId,ambulanceId,driverId,lat,lng "
+        values="'"+str(ambulanceRideId["result"][0]["bookingId"])+"','"+str(ambulanceId)+"','"+str(driverId)+"','"+str(lat)+"','"+str(lng)+"'"
+        insertdata=databasefile.InsertQuery("ambulanceRideTracking",column,values)
 
     # whereCondition="ambulance_Id='"+str(ambulanceId1)+"'  and hospital_Id='"+str(mainId)+"'"
     # column=""
