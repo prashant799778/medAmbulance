@@ -41,7 +41,7 @@ def on_message(client, userdata, msg):
         column=" rideId,ambulanceId,driverId,lat,lng "
         values="'"+str(ambulanceRideId["result"][0]["bookingId"])+"','"+str(ambulanceId)+"','"+str(driverId)+"','"+str(lat)+"','"+str(lng)+"'"
         insertdata=databasefile.InsertQuery("ambulanceRideTracking",column,values)
-
+        print("[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",insertdata)
     # whereCondition="ambulance_Id='"+str(ambulanceId1)+"'  and hospital_Id='"+str(mainId)+"'"
     # column=""
     # values="'"+str(mainId)+"','"+str(ambulanceId1)+"'"
