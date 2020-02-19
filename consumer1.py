@@ -26,12 +26,12 @@ def on_message(client, userdata, msg):
     lng=data["lng"]
 
     column=" ambulanceId, onTrip,onDuty "
-    whereCondition=" ambulanceId='"+str(data["ambulanceId"])+"'"
+    whereCondition=" ambulanceId='"+str(ambulanceId)+"'"
     ambulanceTripDetails = databasefile.SelectQuery1("ambulanceRideStatus",column,whereCondition)
     
 
     column1=" id,bookingId "
-    whereCondition1=" and  ambulanceId='"+str(data["ambulanceId"])+"'"
+    whereCondition1=" and  ambulanceId='"+str(ambulanceId)+"'"
     orderby=" id "
     ambulanceRideId = databasefile.SelectQueryOrderby("ambulanceRideStatus",column1,whereCondition1,"","0","1",orderby)
     
