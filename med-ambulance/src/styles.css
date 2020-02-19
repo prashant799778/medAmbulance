@@ -86,8 +86,8 @@
 	.stus {
 		display: block;
 		text-align: center;
-		padding: 7px 0px;
-		width: calc(100% - 30%);
+		padding: 7px 10px;
+		width: calc(100% - 10%);
 		color: #fff;
 	}
 	/* .record-box tbody tr td:nth-child(8) {
@@ -390,6 +390,9 @@ body{
 	}
 	.inner-content-section {
 		margin-left: 10px;
+	}
+	.info-card-box-in {
+		display: flex;
 	}
 /* Main Container Css End*/
 
@@ -702,7 +705,7 @@ img.altr {
 }
 /* Modal Css End */
 
-@media screen and (max-width:780px){
+@media screen and (max-width:767px){
 	.srch-option li:last-child{
 		display: none !important;
 	}
@@ -712,10 +715,24 @@ img.altr {
 		width: 100%;
 		grid-gap: 1rem;
 	}
+	.col-md-3 {
+		-ms-flex: 0 0 100% !important;
+		flex: 0 0 100% !important;
+		max-width: 100% !important;
+	}
 }
-@media (min-width:768px) and (max-width:1096){
-	.flx-r {
+@media screen and (max-width:1096px){
+	.info-card-box-in{
 		display: block !important;
 		text-align: center;
+	}
+	.inner-content-section {
+		margin-left: 0px;
+		margin-top: 10px;
+	}
+	.col-md-3 {
+		-ms-flex: 0 0 50%;
+		flex: 0 0 50%;
+		max-width: 50%;
 	}
 }
