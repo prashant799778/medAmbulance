@@ -48,7 +48,7 @@ def on_message(client, userdata, msg):
     elif  (ambulanceTripDetails[0]["onTrip"]==0) and (ambulanceTripDetails[0]["onDuty"]==1):
       print("2222222222222222222")
       column= " lat='" + str(lat) +"',lng='"+ str(lng) + "'"
-      whereCondition=" and ambulanceId='" + str(ambulanceId)+   "' "
+      
       data = databasefile.UpdateQuery("ambulanceRideStatus",column,whereCondition)
 
     
