@@ -554,7 +554,7 @@ def addDriver():
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
 
 
-                            data12=databasefile.SelectQuery("ambulanceMaster",column22,whereCondition)
+                            data12=databasefile.SelectQuery("ambulanceMaster",columns22,whereCondition)
 
                             ambulanceId=data12['ambulanceId']
                             columns23='ambulanceId,lat,lng'
@@ -615,7 +615,7 @@ def addDriver():
                                 data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
 
 
-                                data12=databasefile.SelectQuery("ambulanceMaster",column22,whereCondition)
+                                data12=databasefile.SelectQuery("ambulanceMaster",columns22,whereCondition)
 
                                 ambulanceId=data12['ambulanceId']
                                 columns23='ambulanceId,lat,lng'
