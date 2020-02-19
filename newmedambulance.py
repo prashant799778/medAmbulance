@@ -356,7 +356,7 @@ def addDriver():
         print('Hello')
         inputdata=request.form.get('data')
         print(inputdata,'inputdata')
-        keyarr = ['mobileNo','key']
+        keyarr = ['mobileNo','key','name']
         inputdata=json.loads(inputdata)
         # inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
@@ -367,6 +367,7 @@ def addDriver():
        
         if msg == "1":
             mobileNo=inputdata['mobileNo']
+            name=inputdata['name']
            
             key = inputdata["key"]
             column = " * "
@@ -500,8 +501,8 @@ def addDriver():
                 if data1['status'] == 'false':
                     print('11')
                     if key == 1:
-                        columns = "mobileNo,dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath,driverId"          
-                        values = " '" + str(mobileNo) + "','" + str(DlNo) + "','" + str( dlFrontFilename) + "','" + str(DlFrontPicPath) + "','" + str(dlBackFilename) + "', "            
+                        columns = "name,mobileNo,dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath,driverId"          
+                        values = " '" + str(name) + "','" + str(mobileNo) + "','" + str(DlNo) + "','" + str( dlFrontFilename) + "','" + str(DlFrontPicPath) + "','" + str(dlBackFilename) + "', "            
                         values = values + " '" + str(DlBackPicPath) + "','" + str(driverId) + "'"
                         data = databasefile.InsertQuery("driverMaster",columns,values)
                         if data != "0":
