@@ -2338,7 +2338,7 @@ def ActiveTrip():
 
             whereCondition=" bm.status=1  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
-            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.n"
+            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.name"
             data=databasefile.SelectQuery("bookAmbulance as bm,userMaster as um,driverMaster",column,whereCondition)
            
             if (data['status']!='false'): 
@@ -2379,7 +2379,7 @@ def CompeltedTrip():
 
             whereCondition=" bm.status=2  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
-            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.n"
+            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.name"
             data=databasefile.SelectQuery("bookAmbulance as bm,userMaster as um,driverMaster",column,whereCondition)
            
             if (data['status']!='false'): 
@@ -2420,7 +2420,7 @@ def bookedTrip():
 
             whereCondition=" bm.status=0  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
-            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.n"
+            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.name"
             data=databasefile.SelectQuery("bookAmbulance as bm,userMaster as um,driverMaster",column,whereCondition)
            
             if (data['status']!='false'): 
@@ -2462,7 +2462,7 @@ def CancelledTrip():
 
             whereCondition=" bm.status=3  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
-            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.n"
+            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.name"
             data=databasefile.SelectQuery("bookAmbulance as bm,userMaster as um,driverMaster",column,whereCondition)
            
             if (data['status']!='false'): 
