@@ -352,7 +352,10 @@ body{
 
 
 /* Main Container Css*/
-
+.main-container {
+    position: relative;
+    height: calc(100% - 80px);
+}
 	.main-heading{
 		font-size: var(--heading-sz);
 		font-weight: 400;
