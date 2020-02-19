@@ -2450,7 +2450,7 @@ def CancelledTrip():
         startlimit,endlimit="",""
        
         commonfile.writeLog("endRide",inputdata,0)
-        msg=""
+        msg="1"
         if msg == "1":
             if "startLimit" in inputdata:
                 if inputdata['startLimit'] != "":
