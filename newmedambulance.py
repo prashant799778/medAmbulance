@@ -595,7 +595,7 @@ def addDriver():
                         columns="ambulanceId"
                         WhereCondition = " driverId = '" + str(driver_Id) + "'"
                         data111=databasefile.SelectQuery('ambulanceMaster',columns,WhereCondition)
-                        if data111['result'] == 'false':
+                        if data111['status'] == 'false':
                             
                             columns2= "ambulanceNo,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceTypeId,driverId"
 
