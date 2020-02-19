@@ -917,7 +917,7 @@ def alldrivers():
                     endlimit =str(inputdata["endlimit"])
 
             column="dm.name,dm.email,dm.mobileNo,am.ambulanceNo,am.ambulanceId,ars.lat,ars.lng,ars.onDuty,ars.onTrip"
-            whereCondition="dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId"
+            whereCondition=" and dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId"
             data=databasefile.SelectQuery2("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars",column,whereCondition,"",startlimit,endlimit)
             
             if (data!=0):           
