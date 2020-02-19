@@ -2328,13 +2328,13 @@ def ActiveTrip():
         commonfile.writeLog("endRide",inputdata,0)
         msg="1"
         if msg == "1":
-            if "startlimit" in inputdata:
-                if inputdata['startlimit'] != "":
-                    startlimit =str(inputdata["startlimit"])
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
                 
-            if "endlimit" in inputdata:
-                if inputdata['endlimit'] != "":
-                    endlimit =str(inputdata["endlimit"])
+            if "endLimit" in inputdata:
+                if inputdata['endLimit'] != "":
+                    endlimit =str(inputdata["endLimit"])
 
             whereCondition=" and  bm.status=1  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
@@ -2452,13 +2452,13 @@ def CancelledTrip():
         commonfile.writeLog("endRide",inputdata,0)
         msg=""
         if msg == "1":
-            if "startlimit" in inputdata:
-                if inputdata['startlimit'] != "":
-                    startlimit =str(inputdata["startlimit"])
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
                 
             if "endlimit" in inputdata:
                 if inputdata['endlimit'] != "":
-                    endlimit =str(inputdata["endlimit"])
+                    endlimit =str(inputdata["endLimit"])
 
             whereCondition=" bm.status=3  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
