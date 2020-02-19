@@ -2348,7 +2348,7 @@ def ActiveTrip():
                 return Data
             else:
                 
-                return bookRide
+                return data
         else:
             return msg 
     except KeyError as e:
