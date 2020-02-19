@@ -969,6 +969,7 @@ def alldrivers():
         msg = "1"
         if msg =="1":
             startlimit,endlimit="",""
+            WhereCondition=""
 
             inputdata =  commonfile.DecodeInputdata(request.get_data())  
             if "startlimit" in inputdata:
@@ -979,13 +980,30 @@ def alldrivers():
                 if inputdata['endlimit'] != "":
                     endlimit =str(inputdata["endlimit"])
 
-            column="dm.name,dm.mobileNo,am.ambulanceNo,am.ambulanceId,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status"
-            whereCondition=" and dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId"
+
+           if "driverId" in inputdata:
+                if inputdata['driverId'] != "":
+                    driverId =str(inputdata["driverId"])
+                    WhereCondition= " and dm.id='"+str(driverId)+ "'"
+
+            column="dm.name,dm.mobileNo,am.ambulanceNo,am.ambulanceId,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.id as driverId"
+            whereCondition=" and dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId " + WhereCondition
             data=databasefile.SelectQuery2("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars",column,whereCondition,"",startlimit,endlimit)
             
-            if (data!=0):           
-                Data = {"result":data['result'],"status":"true","message":""}
-                return Data
+            if (data['status']!='false'):
+                y2=len(data['result'])
+                if y ==1:
+                    ambulanceId1=data['result']['ambulanceId']
+                    columns2="am.ambulanceFilepath,am.ambulanceTypeId,am.ambulanceModeId,am.ambulanceFilename"
+                    whereCondition222=" and am.ambulanceId=ars.ambulanceId "
+                    data111=databasefile.SelectQuery('ambulanceMaster as am,ambulanceRideStatus as ars',columns2,whereCondition222)
+                    y2=data111['result']
+                    print(y2)
+                    data[-1]['result'].update('y2')
+
+                else:
+                    Data = {"result":data['result'],"status":"true","message":""}
+                    return Data
             else:
                 output = {"message":"No Data Found","status":"false","result":""}
                 return output
