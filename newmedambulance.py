@@ -921,7 +921,7 @@ def alldrivers():
             data=databasefile.SelectQuery2("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars",column,whereCondition,"",startlimit,endlimit)
             
             if (data!=0):           
-                Data = {"result":data,"status":"true","message":""}
+                Data = {"result":data['result'],"status":"true","message":""}
                 return Data
             else:
                 output = {"message":"No Data Found","status":"false","result":""}
