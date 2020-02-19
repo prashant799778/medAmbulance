@@ -23,10 +23,10 @@ export class SideBarComponent implements OnInit {
 		this.authsService.logout()
 	}
 	logouts(){
-		jQuery('#logout-pop').modal('show')
+		jQuery('#logoutModal').modal('show')
 	}
 	closeModal(){
-		jQuery('#logout-pop').modal('hide')
+		jQuery('#logoutModal').modal('hide')
 	}
 
 }
