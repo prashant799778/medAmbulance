@@ -2413,18 +2413,18 @@ def bookedTrip():
         msg = commonfile.CheckKeyNameBlankValue("",inputdata)
         
         if msg == "1":
-            if "startlimit" in inputdata:
-                if inputdata['startlimit'] != "":
-                    startlimit =str(inputdata["startlimit"])
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
                 
-            if "endlimit" in inputdata:
-                if inputdata['endlimit'] != "":
-                    endlimit =str(inputdata["endlimit"])
+            if "endLimit" in inputdata:
+                if inputdata['endLimit'] != "":
+                    endlimit =str(inputdata["endLimit"])
 
             whereCondition="  bm.status=0  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
             column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.name"
-            data=databasefile.SelectQuery2("bookAmbulance as bm,userMaster as um,driverMaster dm",column,whereCondition)
+            data=databasefile.SelectQuery2("bookAmbulance as bm,userMaster as um,driverMaster dm",column,whereCondition,"",startlimit,endlimit)
             print(data,"-------------------------------")
            
             if (data['status']!='false'):
