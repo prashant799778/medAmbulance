@@ -15,6 +15,7 @@ import { ViewAllVehicleComponent } from './vehicle/view-all-vehicle/view-all-veh
 import { EditVehicleComponent } from './vehicle/edit-vehicle/edit-vehicle.component';
 import { AddFareComponent } from './fare-management/add-fare/add-fare.component';
 import { FailListComponent } from './fare-management/fail-list/fail-list.component';
+import { EditDriverComponent } from './driver/edit-driver/edit-driver.component';
 
 
 const routes: Routes = [
@@ -32,8 +33,9 @@ const routes: Routes = [
 	},
 	{ path: 'driver',
 		children: [                          //<---- child components declared here
-	  		{ path: '',redirectTo: '/driver/addDriver',pathMatch:'full'}, 
+	  		{ path: '',redirectTo: '/driver/allDriver',pathMatch:'full'}, 
 			{ path:'addDriver',component: AddDriverComponent,canActivate: [AuthGuard]},
+			{ path:'editDriver',component: EditDriverComponent,canActivate: [AuthGuard]},
 			{ path:'allDriver',component: AllDriverComponent,canActivate: [AuthGuard]},
 			{ path:'driverPayment',component: DriverPaymentComponent,canActivate: [AuthGuard]},
 		]

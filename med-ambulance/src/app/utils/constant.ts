@@ -13,7 +13,7 @@ export class AppSettings {
     
 
     // student
-    public static alldriver = 'alldriver';
+    public static alldriver = 'allDrivers';
     public static addhospital = 'addhospital';
     public static trackAmbulance = 'trackAmbulance';
     public static allresponder = 'allresponder';
