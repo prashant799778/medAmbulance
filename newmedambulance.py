@@ -2407,6 +2407,7 @@ def CompeltedTrip():
 def bookedTrip():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
+        print(inputdata)
         startlimit,endlimit="",""
        
         commonfile.writeLog("endRide",inputdata,0)
