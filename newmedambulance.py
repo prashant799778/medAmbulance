@@ -980,8 +980,7 @@ def alldrivers():
                 if inputdata['endlimit'] != "":
                     endlimit =str(inputdata["endlimit"])
 
-
-           if "driverId" in inputdata:
+            if "driverId" in inputdata:
                 if inputdata['driverId'] != "":
                     driverId =str(inputdata["driverId"])
                     WhereCondition= " and dm.id='"+str(driverId)+ "'"
