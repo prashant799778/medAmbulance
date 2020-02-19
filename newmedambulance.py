@@ -452,6 +452,8 @@ def addDriver():
                     PIDBackPicPath = PIDBackfilepath
                     print(PIDBackPicPath)
 
+
+
             if 'TransportType' in inputdata:
                 TransportType=inputdata["TransportType"]
             
@@ -600,6 +602,7 @@ def addDriver():
                             values2="'" + str(AmbulanceId) + "','" + str(TransportModel) + "','" + str(Color) + "','" + str(AmbulanceRegistrationFuel) + "','" + str(TypeNo) + "','" + str(AIFilename) + "','" + str(AIPicPath) + "','" + str(AmbulanceModeId) + "', "            
                             values2 = values2 + " '" + str(AmbulanceId) + "','" + str(driver_Id) + "'"
                             data122=databasefile.InsertQuery("ambulanceMaster",columns2,values2)
+                            print(data122,'+++++++++++++++++++')
                             
                             
 
