@@ -993,9 +993,9 @@ def alldrivers():
                 y2=len(data['result'])
                 if y2 ==1:
                     ambulanceId1=data['result']['ambulanceId']
-                    columns2="am.ambulanceFilepath,am.ambulanceTypeId,am.ambulanceModeId,am.ambulanceFilename"
-                    whereCondition222=" and am.ambulanceId=ars.ambulanceId "
-                    data111=databasefile.SelectQuery('ambulanceMaster as am,ambulanceRideStatus as ars',columns2,whereCondition222)
+                    columns2="am.ambulanceFilepath,am.ambulanceTypeId,am.ambulanceModeId,am.ambulanceFilename,atm.ambulanceType  as ambulanceType,AM.ambulanceType  as category"
+                    whereCondition222=" and am.ambulanceId=ars.ambulanceId and atm.id=am.ambulanceTypeId and AM.id=am.ambulanceModeId"
+                    data111=databasefile.SelectQuery('ambulanceMaster as am,ambulanceRideStatus as ars,ambulanceTypeMaster  as atm,ambulanceMode as AM',columns2,whereCondition222)
                     y2=data111['result']
                     print(y2)
                     data[-1]['result'].update('y2')
