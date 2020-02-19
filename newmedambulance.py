@@ -356,7 +356,7 @@ def addDriver():
         print('Hello')
         inputdata=request.form.get('data')
         print(inputdata,'inputdata')
-        keyarr = ['name','mobileNo','key']
+        keyarr = ['mobileNo','key']
         inputdata=json.loads(inputdata)
         # inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
@@ -394,7 +394,7 @@ def addDriver():
                     file = request.files.get('DlFrontImage')        
                     filename = file.filename or ''  
                     print(filename)               
-                    dlFrontFilename= str(str(data["userId"])+"Front"+".png")
+                    dlFrontFilename= str(str(data['result']["userId"])+"Front"+".png")
                     
                     print(dlFrontFilename,'Changed_filename')
                     DlFrontFolderPath = ConstantData.GetdlImagePath(dlFrontFilename)
@@ -409,7 +409,7 @@ def addDriver():
                     file = request.files.get('DlBackImage')        
                     filename = file.filename or ''  
                     print(filename)               
-                    dlBackFilename=  str(str(data["userId"])+"Back"+".png")
+                    dlBackFilename=  str(str(data['result']["userId"])+"Back"+".png")
                   
                     DlBackFolderPath = ConstantData.GetdlImagePath(dlBackFilename)
                     DlBackfilepath = '/DLImage/' + dlBackFilename 
