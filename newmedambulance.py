@@ -434,7 +434,7 @@ def addDriver():
                     print(PIDFrontFilename,'Changed_filename')
                     PIDFrontFolderPath = ConstantData.GetPIDImagePath(PIDFrontFilename)
                     PIDFrontfilepath = '/PIDImage/' + PIDFrontFilename 
-                    file.save(DlFrontFolderPath)
+                    file.save(PIDFrontfilepath)
                     PIDFrontPicPath = PIDFrontfilepath
                     print(PIDFrontPicPath)
                     
