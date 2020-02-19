@@ -969,7 +969,7 @@ def alldrivers():
         msg = "1"
         if msg =="1":
             startlimit,endlimit="",""
-            WhereCondition=""
+            WhereCondition=" and dm.driverId = um.userId"
 
             inputdata =  commonfile.DecodeInputdata(request.get_data())  
             if "startlimit" in inputdata:
@@ -983,11 +983,11 @@ def alldrivers():
             if "driverId" in inputdata:
                 if inputdata['driverId'] != "":
                     driverId =int(inputdata["driverId"])
-                    WhereCondition= " and dm.id= "+str(driverId)+ " "
+                    WhereCondition = WhereCondition + " and dm.id= "+str(driverId)+ " "
 
-            column="dm.name,dm.mobileNo,am.ambulanceNo,am.ambulanceId,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.id as driverId"
+            column="dm.name,dm.mobileNo,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.id as driverId"
             whereCondition=" and dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId " + WhereCondition
-            data=databasefile.SelectQuery2("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars",column,whereCondition,"",startlimit,endlimit)
+            data=databasefile.SelectQuery2("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit)
             
             if (data['status']!='false'):
                 y2=len(data['result'])
@@ -995,9 +995,9 @@ def alldrivers():
                     print('111111111111111')
                     ambulanceId1=data['result'][0]['ambulanceId']
                     print(ambulanceId1)
-                    columns2="am.ambulanceFilepath,am.ambulanceTypeId,am.ambulanceModeId,am.ambulanceFilename,atm.ambulanceType  as ambulanceType,AM.ambulanceType  as category,am.ambulanceRegistrationFuel,am.color,am.transportModel,am.transportType"
+                    columns2="am.ambulanceFilepath,am.ambulanceTypeId,um.email,am.ambulanceModeId,am.ambulanceFilename,atm.ambulanceType  as ambulanceType,AM.ambulanceType  as category,am.ambulanceRegistrationFuel as fuelType,am.color,am.transportModel,am.transportType"
                     whereCondition222="  am.ambulanceId=ars.ambulanceId and atm.id=am.ambulanceTypeId and AM.id=am.ambulanceModeId and am.ambulanceId="+str(ambulanceId1)+ ""
-                    data111=databasefile.SelectQuery('ambulanceMaster as am,ambulanceRideStatus as ars,ambulanceTypeMaster  as atm,ambulanceMode as AM',columns2,whereCondition222)
+                    data111=databasefile.SelectQuery('ambulanceMaster as am,ambulanceRideStatus as ars,ambulanceTypeMaster as atm,userMaster um,ambulanceMode as AM',columns2,whereCondition222)
                     y2=data111['result']
                     print(y2)
                     data['result'][0].update(y2)
