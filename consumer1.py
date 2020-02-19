@@ -33,7 +33,7 @@ def on_message(client, userdata, msg):
     column1=" id,bookingId "
     whereCondition1=" and  ambulanceId='"+str(ambulanceId)+"'"
     orderby=" id "
-    ambulanceRideId = databasefile.SelectQueryOrderby("ambulanceRideStatus",column1,whereCondition1,"","0","1",orderby)
+    ambulanceRideId = databasefile.SelectQueryOrderby("bookAmbulance",column1,whereCondition1,"","0","1",orderby)
     print("=============================",ambulanceRideId)
     if ambulanceRideId!=0:
       if (ambulanceTripDetails[0]["onTrip"]==1) and (ambulanceTripDetails[0]["onDuty"]==1):
