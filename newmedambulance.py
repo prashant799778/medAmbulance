@@ -983,7 +983,7 @@ def alldrivers():
             if "driverId" in inputdata:
                 if inputdata['driverId'] != "":
                     driverId =int(inputdata["driverId"])
-                    WhereCondition= " and dm.id='"+(driverId)+ "'"
+                    WhereCondition= " and dm.id= "+(driverId)+ " "
 
             column="dm.name,dm.mobileNo,am.ambulanceNo,am.ambulanceId,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.id as driverId"
             whereCondition=" and dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId " + WhereCondition
@@ -992,6 +992,7 @@ def alldrivers():
             if (data['status']!='false'):
                 y2=len(data['result'])
                 if y2 ==1:
+                    print('111111111111111')
                     ambulanceId1=data['result']['ambulanceId']
                     columns2="am.ambulanceFilepath,am.ambulanceTypeId,am.ambulanceModeId,am.ambulanceFilename,atm.ambulanceType  as ambulanceType,AM.ambulanceType  as category"
                     whereCondition222=" and am.ambulanceId=ars.ambulanceId and atm.id=am.ambulanceTypeId and AM.id=am.ambulanceModeId"
