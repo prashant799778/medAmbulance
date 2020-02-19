@@ -2424,16 +2424,12 @@ def bookedTrip():
             whereCondition="  bm.status=0  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
             column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.name"
-            data=databasefile.SelectQuery("bookAmbulance as bm,userMaster as um,driverMaster dm",column,whereCondition)
+            data=databasefile.SelectQuery2("bookAmbulance as bm,userMaster as um,driverMaster dm",column,whereCondition)
             print(data,"-------------------------------")
            
-            if (data['status']!='false'): 
-                Data = {"result":data['result'],"status":"true","message":""}
-
-                          
-                return Data
-            else:
-                
+            if (data['status']!='false'):
+                print("Data",data) 
+                # Data = {"result":data['result'],"status":"true","message":""}                          
                 return data
         else:
             return msg 
