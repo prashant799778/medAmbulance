@@ -1000,6 +1000,8 @@ def alldrivers():
                     y2=data111['result']
                     print(y2)
                     data[-1]['result'].update('y2')
+                    Data = {"result":data['result'],"status":"true","message":""}
+                    return Data
 
                 else:
                     Data = {"result":data['result'],"status":"true","message":""}
