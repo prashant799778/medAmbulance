@@ -634,7 +634,7 @@ def addDriver():
 
                             print('q')
                         else:
-                            data11={"result":"","message":"Invalid Data","status":"false"}
+                            data11={"result":"","message":"Already Existed","status":"false"}
                             return data11
 
 
