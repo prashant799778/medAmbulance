@@ -495,7 +495,7 @@ def addDriver():
                     AIPicPath = AIfilepath
                     print(AIPicPath)
 
-            if data['status']=='false':
+            if data['status']!='false':
                 
                 if data1['status'] == 'false':
                     if key == 1:
@@ -631,6 +631,7 @@ def addDriver():
                         else:
                             data11={"result":"","message":"Invalid Data","status":"false"}
                             return data11
+
 
                         
                
