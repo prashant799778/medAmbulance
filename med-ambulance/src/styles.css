@@ -696,6 +696,10 @@ input.up-load-file {
 img.altr {
     width: 100px;
 }
+.file-up-img.pos-tp {
+    position: relative;
+    top: 24px;
+}
 /* Modal Css End */
 
 @media screen and (max-width:780px){
