@@ -2326,7 +2326,7 @@ def ActiveTrip():
         startlimit,endlimit="",""
        
         commonfile.writeLog("endRide",inputdata,0)
-        msg=""
+        msg="1"
         if msg == "1":
             if "startlimit" in inputdata:
                 if inputdata['startlimit'] != "":
@@ -2336,10 +2336,10 @@ def ActiveTrip():
                 if inputdata['endlimit'] != "":
                     endlimit =str(inputdata["endlimit"])
 
-            whereCondition=" bm.status=1  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
+            whereCondition=" and  bm.status=1  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
-            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.name"
-            data=databasefile.SelectQuery("bookAmbulance as bm,userMaster as um,driverMaster",column,whereCondition)
+            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName"
+            data=databasefile.SelectQuery("bookAmbulance as bm,userMaster as um,driverMaster",column,whereCondition,"",startlimit,endlimit)
             print(data,"______________")
            
             if (data['status']!='false'): 
@@ -2378,9 +2378,9 @@ def CompeltedTrip():
                 if inputdata['endLimit'] != "":
                     endlimit =str(inputdata["endLimit"])
 
-            whereCondition=" bm.status=2  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
+            whereCondition=" and bm.status=2  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
-            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.name"
+            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName"
             data=databasefile.SelectQuery2("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit)
             print(data,"---------------------------------")
            
@@ -2423,7 +2423,7 @@ def bookedTrip():
 
             whereCondition=" and bm.status=0  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
-            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.name"
+            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName"
             data=databasefile.SelectQuery2("bookAmbulance as bm,userMaster as um,driverMaster dm",column,whereCondition,"",startlimit,endlimit)
             print(data,"-------------------------------")
            
@@ -2462,8 +2462,8 @@ def CancelledTrip():
 
             whereCondition=" bm.status=3  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
-            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.name"
-            data=databasefile.SelectQuery("bookAmbulance as bm,userMaster as um,driverMaster",column,whereCondition)
+            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName"
+            data=databasefile.SelectQuery("bookAmbulance as bm,userMaster as um,driverMaster",column,whereCondition,"",startlimit.endlimit)
             print(data,"--------------------------------------------------")
            
             if (data['status']!='false'): 
