@@ -1012,7 +1012,7 @@ def alldrivers():
                             i['tripCount']=0
                         else:
                             tripcount=data122['result']['count']
-                            i['tripcount']=tripcount
+                            i['tripCount']=tripcount
 
                     Data = {"result":data['result'],"status":"true","message":""}
                     return Data
