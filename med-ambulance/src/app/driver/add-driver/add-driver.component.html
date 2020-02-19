@@ -37,17 +37,15 @@
                                 <input type="text" formControlName="email">
                             </div>
                             <div class="form-box">
-                                <label class="invisible m-0">Email</label>
-                                <div class="file-input-typ">
-                                    <!-- <input type="text" placeholder="Upload Profile Photo" class="up-load-txt border-0"> -->
-                                <div class="iput-w-img position-relative">
-                                    <input type="file" class="up-load-file border-0 bd-b">
-                                    <img src="../../../assets/images/upload.svg" class="ul-load position-absolute">
-                                </div>
-                                </div>
-                            </div>
-                            <div class="form-box">
-
+                                <div class="inputfile-box">
+                                    <input type="file" id="file" class="inputfile" onchange='uploadFile(this)'>
+                                    <label for="file" class="file-lab ">
+                                      <span id="file-name" class="file-box"></span>
+                                      <span class="file-button">
+                                       <img src="../../../assets/images/upload.svg" class="file-up-img">
+                                      </span>
+                                    </label>
+                                  </div>
                             </div>
                         </div>
                     </div>
@@ -85,14 +83,15 @@
                                 <input type="text" formControlName="email">
                             </div>
                             <div class="form-box">
-                                <label class="invisible m-0">Email</label>
-                                <div class="file-input-typ d-flex align-items-center">
-                                    <input type="text" placeholder="Upload Profile Photo" class="up-load-txt border-0">
-                                <div class="iput-w-img position-relative">
-                                    <input type="file" class="up-load-file">
-                                    <img src="../../../assets/images/upload.svg" class="ul-load position-absolute">
-                                </div>
-                                </div>
+                                <div class="inputfile-box">
+                                    <input type="file" id="file" class="inputfile" onchange='uploadFile(this)'>
+                                    <label for="file" class="file-lab ">
+                                      <span id="file-name" class="file-box"></span>
+                                      <span class="file-button">
+                                       <img src="../../../assets/images/upload.svg" class="file-up-img">
+                                      </span>
+                                    </label>
+                                  </div>
                             </div>
                         </div>
                     </div>
