@@ -13,47 +13,62 @@ export class AllDriverComponent implements OnInit {
 	]
 	heading='All Driver'
 	driverData= []
-	constructor(public userService: UserService) { }
+	errorMessage: boolean
+	messageShow: any;
+	loader: boolean;
+	constructor(public userService: UserService) { 
+		this.errorMessage = false;
+		this.loader = true;
+	}
 
 	ngOnInit() {
 		this.getDriverData()
 	}
 
 	getDriverData(){
-		this.userService.dataPostApi(null,AppSettings.alldriver).then(resp=>{
+		let data = {
+			'startLimit': 0,
+			'endLimit': 10
+		}
+		this.userService.dataPostApi(data,AppSettings.alldriver).then(resp=>{
 			if(resp['status'] == 'true'){
+				this.errorMessage = false;
 				this.driverData = resp['result']
+			}else{
+					this.errorMessage = true;
+					this.messageShow = resp['message']
+				// 	this.driverData = [
+				// 	{	'name':'Vijay Pal',
+				// 		'mobileNo': 8888517655,
+				// 		'email': 'vijay@gmail.com',
+				// 		'currentLocation': 'Noida UP-87',
+				// 		'wallet': 100,
+				// 		'dateCreate': '02/10/2015',
+				// 		'tripCount': 10,
+				// 		'status': 1
+				// 	},
+				// 	{	'name':'Vijay Pal',
+				// 		'mobileNo': 8888517655,
+				// 		'email': 'vijay@gmail.com',
+				// 		'currentLocation': 'Noida UP-87',
+				// 		'wallet': 100,
+				// 		'dateCreate': '02/10/2015',
+				// 		'tripCount': 10,
+				// 		'status': 0
+				// 	},
+				// 	{	'name':'Vijay Pal',
+				// 		'mobileNo': 8888517655,
+				// 		'email': 'vijay@gmail.com',
+				// 		'currentLocation': 'Noida UP-87',
+				// 		'wallet': 100,
+				// 		'dateCreate': '02/10/2015',
+				// 		'tripCount': 10,
+				// 		'status': 2
+				// 	}
+				// ]
 			}
 		})
-		this.driverData = [
-			{	'name':'Vijay Pal',
-				'mobileNo': 8888517655,
-				'email': 'vijay@gmail.com',
-				'currentLocation': 'Noida UP-87',
-				'wallet': 100,
-				'dateCreate': '02/10/2015',
-				'tripCount': 10,
-				'status': 1
-			},
-			{	'name':'Vijay Pal',
-				'mobileNo': 8888517655,
-				'email': 'vijay@gmail.com',
-				'currentLocation': 'Noida UP-87',
-				'wallet': 100,
-				'dateCreate': '02/10/2015',
-				'tripCount': 10,
-				'status': 0
-			},
-			{	'name':'Vijay Pal',
-				'mobileNo': 8888517655,
-				'email': 'vijay@gmail.com',
-				'currentLocation': 'Noida UP-87',
-				'wallet': 100,
-				'dateCreate': '02/10/2015',
-				'tripCount': 10,
-				'status': 2
-			}
-		]
+		
 	}
 
 	getStatus(status){

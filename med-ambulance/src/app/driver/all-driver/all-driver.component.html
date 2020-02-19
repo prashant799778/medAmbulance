@@ -19,13 +19,13 @@
                                         <td>{{driver.name}}</td>
                                         <td>{{driver.mobileNo}}</td>
                                         <td>{{driver.email}}</td>
-                                        <td>{{driver.currentLocation}}</td>
-                                        <td>{{driver.dateCreate | date}}</td>
+                                        <td>{{driver.address}}</td>
+                                        <td>{{driver.joiningDate | date}}</td>
                                         <td>{{driver.tripCount}}</td>
                                         <td>
-                                            <span *ngIf="driver.status == 0" class="stus lab-success">{{getStatus(driver.status)}}</span>
-                                            <span *ngIf="driver.status == 1" class="stus lab-warning">{{getStatus(driver.status)}}</span>
-                                            <span *ngIf="driver.status == 2" class="stus lab-danger">{{getStatus(driver.status)}}</span>
+                                            <span *ngIf="driver.onDuty == 1 && driver.onTrip == 1" class="stus lab-success">On Duty</span>
+                                            <span *ngIf="driver.onDuty == 1 && driver.onTrip == 0" class="stus lab-warning">Available</span>
+                                            <span *ngIf="driver.onDuty == 0" class="stus lab-danger">Leave</span>
                                         </td>
                                           <!-- <td>
                                               <button type="button" class="acton-btn" (click)="policyDetail(driver.postId, driver.userTypeId)">
