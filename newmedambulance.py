@@ -381,8 +381,8 @@ def addDriver():
             print(data1,'data--------------------------')
 
            
-            mobileNo= data["mobileNo"]
-            driverId=data['userId']
+            mobileNo= inputdata["mobileNo"]
+            driverId=data['result']['userId']
             
             DlNo,dlFrontFilename,DlFrontPicPath,dlBackFilename,DlBackPicPath,PIDType,PIDNo,PIDFrontFilename,PIDFrontPicPath,PIDBackFilename,PIDBackPicPath,TransportType,TransportModel,Color,AmbulanceRegistrationFuel,TypeNo,AIFilename,AIPicPath,AmbulanceModeId,AmbulanceId="","","","","","","","","","","","","","","","","","","",""
 
@@ -498,6 +498,7 @@ def addDriver():
             if data['status']!='false':
                 
                 if data1['status'] == 'false':
+                    print('11')
                     if key == 1:
                         columns = "mobileNo,dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath,driverId"          
                         values = " '" + str(mobileNo) + "','" + str(DlNo) + "','" + str( dlFrontFilename) + "','" + str(DlFrontPicPath) + "','" + str(dlBackFilename) + "', "            
