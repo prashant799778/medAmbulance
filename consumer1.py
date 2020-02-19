@@ -24,7 +24,7 @@ def on_message(client, userdata, msg):
     column=" ambulanceId, onTrip,onDuty "
     whereCondition=" ambulanceId='"+str(data["ambulanceId"])+"'"
     ambulanceTripDetails = databasefile.SelectQuery1("ambulanceRideStatus",column,whereCondition)
-    print(ambulanceTripDetails["result"][0])
+    print(ambulanceTripDetails)
     return {"status":"ok"}
 
 
