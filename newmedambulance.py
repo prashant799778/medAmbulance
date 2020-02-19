@@ -370,12 +370,12 @@ def addDriver():
            
             key = inputdata["key"]
             column = " * "
-            whereCondition= " and mobileNo='"+str(mobileNo)+ "' and usertypeId='3'"
+            whereCondition= " mobileNo='"+str(mobileNo)+ "' and usertypeId='3'"
             data= databasefile.SelectQuery("userMaster",column,whereCondition)
 
             column11="id"
 
-            whereCondition1= " and mobileNo='"+str(mobileNo)+ "'"
+            whereCondition1= " mobileNo='"+str(mobileNo)+ "'"
             data1= databasefile.SelectQuery("driverMaster",column11,whereCondition1)
 
             print(data1,'data--------------------------')
