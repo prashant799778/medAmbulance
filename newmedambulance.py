@@ -998,7 +998,7 @@ def alldrivers():
                     data111=databasefile.SelectQuery('ambulanceMaster as am,ambulanceRideStatus as ars,ambulanceTypeMaster  as atm,ambulanceMode as AM',columns2,whereCondition222)
                     y2=data111['result']
                     print(y2)
-                    data[-1]['result'].update('y2')
+                    data[-1]['result'].update(y2)
                     Data = {"result":data['result'],"status":"true","message":""}
                     return Data
 
