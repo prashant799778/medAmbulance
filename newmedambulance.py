@@ -1003,6 +1003,17 @@ def alldrivers():
                     return Data
 
                 else:
+                    for i in data['result']:
+                        ambulanceId2= i['ambulanceId']
+                        columns99="count(*) as count"
+                        whereCondition88= " ambulanceId='"+str(ambulanceId2)+ "'"
+                        data122=databasefile.SelectQuery('bookAmbulance',columns99,whereCondition88)
+                        if data122['status']!='false':
+                            i['tripCount']=0
+                        else:
+                            tripcount=data122['result']['count']
+                            i['tripcount']=tripcount
+
                     Data = {"result":data['result'],"status":"true","message":""}
                     return Data
             else:
