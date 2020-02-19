@@ -11,13 +11,15 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):    
   data = msg.payload.decode('utf-8')
-  # data = json.loads(data) 
+  data = json.loads(data) 
   print(msg,"===============")
   print(data,"============",msg.topic)
   client.publish(str(msg.topic), "Hello world11111111111111111")
   print("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
   
   try:
+    data = json.loads(data)
+    print(data)
     column=" ambulanceId, onTrip,onDuty "
     whereCondition=" ambulanceId='"+str(ambulanceId)+"'"
     ambulanceTripDetails = databasefile.SelectQuery1("ambulanceRideStatus",column,whereCondition)
