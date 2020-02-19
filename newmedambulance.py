@@ -2459,12 +2459,12 @@ def CancelledTrip():
             if "endLimit" in inputdata:
                 if inputdata['endLimit'] != "":
                     endlimit =str(inputdata["endLimit"])
-                    
+
 
             whereCondition="  and bm.status=3  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
             column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName"
-            data=databasefile.SelectQuery2("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit.endlimit)
+            data=databasefile.SelectQuery2("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit)
             print(data,"--------------------------------------------------")
            
             if (data['status']!='false'): 
