@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { AppSettings } from 'src/app/utils/constant';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-driver',
@@ -9,14 +10,15 @@ import { AppSettings } from 'src/app/utils/constant';
 })
 export class AllDriverComponent implements OnInit {
 	tableHeading = [
-		"No", "Name", "Mobile", "Email","Address", "Joining Date","Trip","Status"
+		"No", 'Image',"Name", "Mobile", "Email","Address", "Joining Date","Trip","Status","Action"
 	]
 	heading='All Driver'
 	driverData= []
 	errorMessage: boolean
 	messageShow: any;
 	loader: boolean;
-	constructor(public userService: UserService) { 
+	constructor(public userService: UserService,
+				public router: Router) { 
 		this.errorMessage = false;
 		this.loader = true;
 	}
@@ -80,6 +82,13 @@ export class AllDriverComponent implements OnInit {
 			return 'LEAVE'
 		}
 
+	}
+
+	editDriver(id){
+		this.router.navigateByUrl('/driver/editDriver')
+	}
+	deleteDriver(){
+		this.driverData[3] = ''
 	}
 
 }

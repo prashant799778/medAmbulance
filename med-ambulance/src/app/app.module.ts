@@ -26,6 +26,7 @@ import { EditVehicleComponent } from './vehicle/edit-vehicle/edit-vehicle.compon
 import { ViewAllVehicleComponent } from './vehicle/view-all-vehicle/view-all-vehicle.component';
 import { AddFareComponent } from './fare-management/add-fare/add-fare.component';
 import { FailListComponent } from './fare-management/fail-list/fail-list.component';
+import { EditDriverComponent } from './driver/edit-driver/edit-driver.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { FailListComponent } from './fare-management/fail-list/fail-list.compone
     ViewAllVehicleComponent,
     AddFareComponent,
     FailListComponent,
+    EditDriverComponent,
   ],
   imports: [
     BrowserModule,
