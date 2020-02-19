@@ -380,7 +380,7 @@ def addDriver():
 
             print(data1,'data--------------------------')
 
-            name= data["name"]
+           
             mobileNo= data["mobileNo"]
             driverId=data['userId']
             
@@ -499,8 +499,8 @@ def addDriver():
                 
                 if data1['status'] == 'false':
                     if key == 1:
-                        columns = " name,mobileNo,dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath,driverId"          
-                        values = " '" + str(name) + "','" + str(mobileNo) + "','" + str(DlNo) + "','" + str( dlFrontFilename) + "','" + str(DlFrontPicPath) + "','" + str(dlBackFilename) + "', "            
+                        columns = "mobileNo,dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath,driverId"          
+                        values = " '" + str(mobileNo) + "','" + str(DlNo) + "','" + str( dlFrontFilename) + "','" + str(DlFrontPicPath) + "','" + str(dlBackFilename) + "', "            
                         values = values + " '" + str(DlBackPicPath) + "','" + str(driverId) + "'"
                         data = databasefile.InsertQuery("driverMaster",columns,values)
                         if data != "0":
