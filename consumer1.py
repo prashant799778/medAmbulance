@@ -49,7 +49,7 @@ def on_message(client, userdata, msg):
       print("2222222222222222222")
       column= " lat='" + str(lat) ++"',lng='"+ str(lng) + "'"
       whereCondition=" and ambulanceId='" + str(ambulanceId)+   "' "
-      data = databasefile.UpdateQuery("responderMode",column,whereCondition)
+      data = databasefile.UpdateQuery("ambulanceRideStatus",column,whereCondition)
 
     
   except Exception as e :
