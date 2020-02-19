@@ -900,19 +900,31 @@ def allusers():
         output = {"result":"something went wrong","status":"false"}
         return output
 
-@app.route('/alldriver', methods=['GET'])
+@app.route('/allDrivers', methods=['POST'])
 def alldrivers():
     try:
         msg = "1"
         if msg =="1":
-            column="*"
-            whereCondition="usertypeId='3' "
-            data=databasefile.SelectQuery1("userMaster",column,whereCondition)
+            startlimit,endlimit="",""
+
+            inputdata =  commonfile.DecodeInputdata(request.get_data())  
+            if "startlimit" in inputdata:
+                if inputdata['startlimit'] != "":
+                    startlimit =str(inputdata["startlimit"])
+                
+            if "endlimit" in inputdata:
+                if inputdata['endlimit'] != "":
+                    endlimit =str(inputdata["endlimit"])
+
+            column="dm.name,dm.email,dm.mobileNo,am.ambulanceNo,am.ambulanceId,ars.lat,ars.lng,ars.onDuty,ars.onTrip"
+            whereCondition="dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId"
+            data=databasefile.SelectQuery2("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars",column,whereCondition,"",startlimit,endlimit)
+            
             if (data!=0):           
-                Data = {"result":data,"status":"true"}
+                Data = {"result":data,"status":"true","message":""}
                 return Data
             else:
-                output = {"result":"No Data Found","status":"false"}
+                output = {"message":"No Data Found","status":"false","result":""}
                 return output
         else:
             return msg
