@@ -1,5 +1,6 @@
 import paho.mqtt.client as mqtt
 import json
+import databasefile
 
 
 def on_connect(client, userdata, flags, rc):
@@ -15,7 +16,29 @@ def on_message(client, userdata, msg):
   print(data,"============",msg.topic)
   client.publish(str(msg.topic), "Hello world11111111111111111")
   print("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-    
+  
+  try:
+    column=" ambulanceId, onTrip,onDuty "
+    whereCondition=" ambulanceId='"+str(ambulanceId)+"'"
+    ambulanceTripDetails = databasefile.SelectQuery1("ambulanceRideStatus",column,whereCondition)
+    print(ambulanceTripDetails["result"])
+    return {"status":"ok"}
+
+
+
+    # whereCondition="ambulance_Id='"+str(ambulanceId1)+"'  and hospital_Id='"+str(mainId)+"'"
+    # column=""
+    # values="'"+str(mainId)+"','"+str(ambulanceId1)+"'"
+    # insertdata=databasefile.InsertQuery("hospitalambulanceMapping",column,values)
+  except Exception as e :
+    print("Exception---->" + str(e))    
+    output = {"result":"something went wrong","status":"false"}
+     
+  
+
+
+
+
 client = mqtt.Client()
 client.connect("localhost",1883,60)
 
