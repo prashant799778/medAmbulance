@@ -969,7 +969,7 @@ def alldrivers():
         msg = "1"
         if msg =="1":
             startlimit,endlimit="",""
-            WhereCondition=""
+            WhereCondition=" and dm.driverId = um.userId"
 
             inputdata =  commonfile.DecodeInputdata(request.get_data())  
             if "startlimit" in inputdata:
@@ -983,11 +983,11 @@ def alldrivers():
             if "driverId" in inputdata:
                 if inputdata['driverId'] != "":
                     driverId =int(inputdata["driverId"])
-                    WhereCondition= " and dm.id= "+str(driverId)+ " "
+                    WhereCondition = WhereCondition + " and dm.id= "+str(driverId)+ " "
 
-            column="dm.name,dm.mobileNo,am.ambulanceNo,am.ambulanceId,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.id as driverId"
+            column="dm.name,dm.mobileNo,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.id as driverId"
             whereCondition=" and dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId " + WhereCondition
-            data=databasefile.SelectQuery2("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars",column,whereCondition,"",startlimit,endlimit)
+            data=databasefile.SelectQuery2("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit)
             
             if (data['status']!='false'):
                 y2=len(data['result'])
@@ -996,9 +996,9 @@ def alldrivers():
                     ambulanceId1=data['result'][0]['ambulanceId']
                     d1=data['result'][0]['driverId']
                     print(ambulanceId1)
-                    columns2="am.ambulanceFilepath,am.ambulanceTypeId,am.ambulanceModeId,am.ambulanceFilename,atm.ambulanceType  as ambulanceType,AM.ambulanceType  as category,am.ambulanceRegistrationFuel,am.color,am.transportModel,am.transportType"
+                    columns2="am.ambulanceFilepath,am.ambulanceTypeId,um.email,am.ambulanceModeId,am.ambulanceFilename,atm.ambulanceType  as ambulanceType,AM.ambulanceType  as category,am.ambulanceRegistrationFuel as fuelType,am.color,am.transportModel,am.transportType"
                     whereCondition222="  am.ambulanceId=ars.ambulanceId and atm.id=am.ambulanceTypeId and AM.id=am.ambulanceModeId and am.ambulanceId="+str(ambulanceId1)+ ""
-                    data111=databasefile.SelectQuery('ambulanceMaster as am,ambulanceRideStatus as ars,ambulanceTypeMaster  as atm,ambulanceMode as AM',columns2,whereCondition222)
+                    data111=databasefile.SelectQuery('ambulanceMaster as am,ambulanceRideStatus as ars,ambulanceTypeMaster as atm,userMaster um,ambulanceMode as AM',columns2,whereCondition222)
                     y2=data111['result']
                     print(y2)
                     column2222="dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath,pIDType,pIDNo,pIDFrontFilename,pIDFrontFilepath,pIDBackFilename,pIDBackFilepath"
@@ -2306,6 +2306,174 @@ def startRide():
             else:
                 
                 return bookRide
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+@app.route('/ActiveTrip', methods=['POST'])
+def ActiveTrip():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+       
+        commonfile.writeLog("endRide",inputdata,0)
+        msg="1"
+        if msg == "1":
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
+                
+            if "endLimit" in inputdata:
+                if inputdata['endLimit'] != "":
+                    endlimit =str(inputdata["endLimit"])
+
+            whereCondition=" and  bm.status=1  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
+
+            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName"
+            data=databasefile.SelectQuery2("bookAmbulance as bm,userMaster as um,driverMaster",column,whereCondition,"",startlimit,endlimit)
+            print(data,"______________")
+           
+            if (data['status']!='false'): 
+                Data = {"result":data['result'],"status":"true","message":""}
+
+                          
+                return Data
+            else:
+                
+                return data
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+@app.route('/CompeltedTrip', methods=['POST'])
+def CompeltedTrip():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+       
+        commonfile.writeLog("endRide",inputdata,0)
+        msg="1"
+        if msg == "1":
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
+                
+            if "endLimit" in inputdata:
+                if inputdata['endLimit'] != "":
+                    endlimit =str(inputdata["endLimit"])
+
+            whereCondition=" and bm.status=2  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
+
+            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName"
+            data=databasefile.SelectQuery2("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit)
+            print(data,"---------------------------------")
+           
+            if (data['status']!='false'): 
+                Data = {"result":data['result'],"status":"true","message":""}
+
+                          
+                return Data
+            else:
+                
+                return data
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+@app.route('/bookedTrip', methods=['POST'])
+def bookedTrip():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        print(inputdata)
+        startlimit,endlimit="",""
+
+        msg = commonfile.CheckKeyNameBlankValue("",inputdata)
+        
+        if msg == "1":
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
+                
+            if "endLimit" in inputdata:
+                if inputdata['endLimit'] != "":
+                    endlimit =str(inputdata["endLimit"])
+
+            whereCondition=" and bm.status=0  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
+
+            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName"
+            data=databasefile.SelectQuery2("bookAmbulance as bm,userMaster as um,driverMaster dm",column,whereCondition,"",startlimit,endlimit)
+            print(data,"-------------------------------")
+           
+            if (data['status']!='false'):
+                print("Data",data) 
+                # Data = {"result":data['result'],"status":"true","message":""}                          
+                return data
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+@app.route('/cancelledTrip', methods=['POST'])
+def CancelledTrip():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+       
+        commonfile.writeLog("endRide",inputdata,0)
+        msg="1"
+        if msg == "1":
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
+                
+            if "endLimit" in inputdata:
+                if inputdata['endLimit'] != "":
+                    endlimit =str(inputdata["endLimit"])
+
+            whereCondition="  and bm.status=3  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
+
+            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName"
+            data=databasefile.SelectQuery2("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit.endlimit)
+            print(data,"--------------------------------------------------")
+           
+            if (data['status']!='false'): 
+                Data = {"result":data['result'],"status":"true","message":""}
+
+                          
+                return Data
+            else:
+                
+                return data
         else:
             return msg 
     except KeyError as e:
