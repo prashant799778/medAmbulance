@@ -2410,7 +2410,8 @@ def bookedTrip():
         print(inputdata)
         startlimit,endlimit="",""
        
-        msg = commonfile.writeLog("endRide",inputdata,0)
+       
+        msg="1"
         
         if msg == "1":
             if "startlimit" in inputdata:
