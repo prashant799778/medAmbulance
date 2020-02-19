@@ -356,7 +356,7 @@ def addDriver():
         print('Hello')
         inputdata=request.form.get('data')
         print(inputdata,'inputdata')
-        keyarr = ['name','mobileNo','key','flag']
+        keyarr = ['name','mobileNo','key']
         inputdata=json.loads(inputdata)
         # inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
@@ -373,7 +373,13 @@ def addDriver():
             column = " * "
             whereCondition= " and mobileNo='"+str(mobileNo)+ "' and usertypeId='3'"
             data= databasefile.SelectQuery("userMaster",column,whereCondition)
-            print(data,'data')
+
+            column11="id"
+
+            whereCondition1= " and mobileNo='"+str(mobileNo)+ "'"
+            data1= databasefile.SelectQuery("driverMaster",column11,whereCondition1)
+
+            print(data1,'data--------------------------')
 
             name= data["name"]
             mobileNo= data["mobileNo"]
@@ -490,10 +496,10 @@ def addDriver():
                     AIPicPath = AIfilepath
                     print(AIPicPath)
 
-            if data !=0:
+            if data['status']=='false':
                 
-                if flag == 'i':
-                    if key == "A":
+                if data1['status'] == 'false':
+                    if key == 1:
                         columns = " name,mobileNo,dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath,driverId"          
                         values = " '" + str(name) + "','" + str(mobileNo) + "','" + str(DlNo) + "','" + str( dlFrontFilename) + "','" + str(DlFrontPicPath) + "','" + str(dlBackFilename) + "', "            
                         values = values + " '" + str(DlBackPicPath) + "','" + str(driverId) + "'"
@@ -504,7 +510,7 @@ def addDriver():
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
                             return data11
-                    if key == "B":
+                    if key == 2:
                         columns = " name,mobileNo,pIDType,pIDNo,pIDFrontFilename,pIDFrontFilepath,pIDBackFilename,pIDBackFilepath,driverId"          
                         values = " '" + str(name) + "','" + str(mobileNo) + "','" + str(PIDType) + "','" + str(PIDNo) + "','" + str(PIDFrontFilename) + "','" + str(PIDFrontPicPath) + "','" + str(PIDBackFilename) + "', "            
                         values = values + " '" + str(PIDBackPicPath)+ "','" + str(driverId) + "'"
@@ -516,24 +522,37 @@ def addDriver():
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
                             return data11
                     
-                    if key == "C":
+                    if key == 3:
 
                         columns = " name,mobileNo,driverId"          
                         values = " '" + str(name) + "','" + str(mobileNo) + "','" + str(driverId) + "'"
                         
                         data = databasefile.InsertQuery("driverMaster",columns,values)
+
+                        columns222="id"
+                        whereCondition2222=" "
+                        data99=databasefile.SelectQuery1('driverMaster',columns222,whereCondition2222)
+                        data111=data99[-1]
+                        driverid=data111["id"]
+
                         columns2= "ambulanceNo,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceTypeId,driverId"
-                        values2="'" + str(AmbulanceId) + "','" + str(TransportModel) + "','" + str(Color) + "','" + str(AmbulanceRegistrationFuel) + "','" + str(TypeNo) + "','" + str(AIFilename) + "','" + str(AIPicPath) + "','" + str(AmbulanceModeId) + "', "            
-                        values2 = values2 + " '" + str(AmbulanceId) + "','" + str(driverId) + "'"
-                        data=databasefile.InsertQuery("ambulanceMaster",columns2,values2)
-                        if data != "0":
+                        values2="'" + str(AmbulanceNo) + "','" + str(TransportModel) + "','" + str(Color) + "','" + str(AmbulanceRegistrationFuel) + "','" + str(TypeNo) + "','" + str(AIFilename) + "','" + str(AIPicPath) + "','" + str(AmbulanceModeId) + "', "            
+                        values2 = values2 + " '" + str(AmbulanceId) + "','" + str(driverid) + "'"
+                        data122=databasefile.InsertQuery("ambulanceMaster",columns2,values2)
+                        
+                        
+
+                        if data122 != "0":
                             column = '*'
                             WhereCondition = " mobileNo = '" + str(mobileNo) +  "'"
-                            whereCondition="   driverId='" + str(driverId) +  "' "
-                            columns22="ambulanceId,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceId"
+                            whereCondition="   driverId='" + str(driverid) +  "' "
+                            columns22="ambulanceId,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceTypeId,ambulanceNo"
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
+
+
                             data12=databasefile.SelectQuery("ambulanceMaster",column22,whereCondition)
+
                             ambulanceId=data12['ambulanceId']
                             columns23='ambulanceId,lat,lng'
                             values23 = " '" + str(ambulanceId) + "','" + str(lat) + "','" + str(lng) + "'"
@@ -550,8 +569,8 @@ def addDriver():
                             return data11
                 
                 
-                if flag == 'u':
-                    if key == "A":
+                else:
+                    if key == 1:
                         print('A')
                         WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
                         column = " dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "',dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "'"
@@ -559,7 +578,7 @@ def addDriver():
                         data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
                         print(data,'updatedata')
                         return data
-                    if key == "B":
+                    if key == 2:
                         print('B')
                         WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
                         column = " pIDType = '" + str(PIDType) + "',pIDNo = '" + str(PIDNo) + "',pIDFrontFilename = '" + str(PIDFrontFilename) + "',pIDFrontFilepath = '" + str(PIDFrontPicPath) + "',pIDBackFilename = '" + str(PIDBackFilename) + "',pIDBackFilepath = '" + str(PIDBackPicPath) + "'"
@@ -567,14 +586,54 @@ def addDriver():
                         data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
                         print(data,'updatedata')
                         return data
-                    if key == "C":
-                        print('C')
 
-                        # WhereCondition = " driverId = '" + str(driverId) + "'"
-                        # column = " transportType = '" + str(TransportType) + "',transportModel = '" + str(TransportModel) + "',color = '" + str(Color) + "',ambulanceRegistrationFuel = '" + str(AmbulanceRegistrationFuel) + "',typeNo = '" + str(TypeNo) + "',ambulanceFilename = '" + str(AIFilename) + "',ambulanceFilepath = '" + str(AIPicPath) + "',ambulanceModeId = '" + str(AmbulanceModeId) + "',ambulanceTypeId = '" + str(AmbulanceId) + "'"
-                        # print(column,'column')
-                        # data = databasefile.UpdateQuery("ambulanceMaster",column,WhereCondition)
-                        # return data
+                    if key == 3:
+                        driver_Id=data1['result']['id']
+                        columns="ambulanceId"
+                        WhereCondition = " driverId = '" + str(driver_Id) + "'"
+                        data111=databasefile.SelectQuery('ambulanceMaster',columns,WhereCondition)
+                        if data111['result'] == 'false':
+                            
+                            columns2= "ambulanceNo,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceTypeId,driverId"
+
+                            values2="'" + str(AmbulanceId) + "','" + str(TransportModel) + "','" + str(Color) + "','" + str(AmbulanceRegistrationFuel) + "','" + str(TypeNo) + "','" + str(AIFilename) + "','" + str(AIPicPath) + "','" + str(AmbulanceModeId) + "', "            
+                            values2 = values2 + " '" + str(AmbulanceId) + "','" + str(driver_Id) + "'"
+                            data122=databasefile.InsertQuery("ambulanceMaster",columns2,values2)
+                            
+                            
+
+                            if data122 != "0":
+                                column = '*'
+                                WhereCondition = " mobileNo = '" + str(mobileNo) +  "'"
+                                whereCondition="   driverId='" + str(driver_Id) +  "' "
+                                columns22="ambulanceId,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceTypeId,ambulanceNo"
+                                
+                                data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
+
+
+                                data12=databasefile.SelectQuery("ambulanceMaster",column22,whereCondition)
+
+                                ambulanceId=data12['ambulanceId']
+                                columns23='ambulanceId,lat,lng'
+                                values23 = " '" + str(ambulanceId) + "','" + str(lat) + "','" + str(lng) + "'"
+                                data122=databasefile.InsertQuery('ambulanceRideStatus',columns23,values23)
+                                whereCondition222= " ambulanceId=  '" + str(ambulanceId) +  "' "
+                                columns239="lat,lng,onDuty,onTrip"
+                                data12333=databasefile.SelectQuery('ambulanceRideStatus',columns239,whereCondition222)
+
+
+
+                                data11.update(data12)
+                                data11.update(data12333)
+
+                                return data11
+
+                            print('q')
+                        else:
+                            data11={"result":"","message":"Invalid Data","status":"false"}
+                            return data11
+
+                        
                 else:
                     return commonfile.Errormessage()
         else:
