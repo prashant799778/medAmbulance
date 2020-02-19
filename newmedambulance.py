@@ -993,7 +993,7 @@ def alldrivers():
                 y2=len(data['result'])
                 if y2 ==1:
                     print('111111111111111')
-                    ambulanceId1=data['result']['ambulanceId']
+                    ambulanceId1=data['result'][0]['ambulanceId']
                     print(ambulanceId1)
                     columns2="am.ambulanceFilepath,am.ambulanceTypeId,am.ambulanceModeId,am.ambulanceFilename,atm.ambulanceType  as ambulanceType,AM.ambulanceType  as category"
                     whereCondition222=" and am.ambulanceId=ars.ambulanceId and atm.id=am.ambulanceTypeId and AM.id=am.ambulanceModeId and am.ambulanceId="+str(ambulanceId1)+ ""
