@@ -2317,6 +2317,49 @@ def startRide():
         output = {"result":"something went wrong","status":"false"}
         return output
 
+
+
+@app.route('/ActiveTrip', methods=['POST'])
+def ActiveTrip():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+       
+        commonfile.writeLog("endRide",inputdata,0)
+        msg=""
+        if msg == "1":
+            if "startlimit" in inputdata:
+                if inputdata['startlimit'] != "":
+                    startlimit =str(inputdata["startlimit"])
+                
+            if "endlimit" in inputdata:
+                if inputdata['endlimit'] != "":
+                    endlimit =str(inputdata["endlimit"])
+
+            whereCondition="status=1  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
+
+            column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name,um.n"
+            data=databasefile.SelectQuery("bookAmbulance as bm,userMaster as um,driverMaster",column,whereCondition)
+           
+            if (bookRide['status']!='false'): 
+                Data = {"result":data['result'],"status":"true","message":""}
+
+                          
+                return bookRide
+            else:
+                
+                return bookRide
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
 @app.route('/endRide', methods=['POST'])
 def endRide():
     try:
