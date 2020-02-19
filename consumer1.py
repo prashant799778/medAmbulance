@@ -20,8 +20,9 @@ def on_message(client, userdata, msg):
   try:
     data = json.loads(data)
     print(data)
+
     column=" ambulanceId, onTrip,onDuty "
-    whereCondition=" ambulanceId='"+str(ambulanceId)+"'"
+    whereCondition=" ambulanceId='"+str(data["ambulanceId"])+"'"
     ambulanceTripDetails = databasefile.SelectQuery1("ambulanceRideStatus",column,whereCondition)
     print(ambulanceTripDetails["result"])
     return {"status":"ok"}
