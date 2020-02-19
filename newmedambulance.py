@@ -617,7 +617,7 @@ def addDriver():
 
                                 data12=databasefile.SelectQuery("ambulanceMaster",columns22,whereCondition)
 
-                                ambulanceId=data12['ambulanceId']
+                                ambulanceId=data12['result']['ambulanceId']
                                 columns23='ambulanceId,lat,lng'
                                 values23 = " '" + str(ambulanceId) + "','" + str(lat) + "','" + str(lng) + "'"
                                 data122=databasefile.InsertQuery('ambulanceRideStatus',columns23,values23)
