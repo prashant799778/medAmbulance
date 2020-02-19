@@ -429,7 +429,7 @@ def addDriver():
                     file = request.files.get('PIDFrontImage')        
                     filename = file.filename or ''  
                     print(filename)               
-                    PIDFrontFilename= str(str(data["userId"])+"Front"+".png")
+                    PIDFrontFilename= str(str(data['result']["userId"])+"Front"+".png")
                   
                     print(PIDFrontFilename,'Changed_filename')
                     PIDFrontFolderPath = ConstantData.GetPIDImagePath(PIDFrontFilename)
@@ -444,7 +444,7 @@ def addDriver():
                     file = request.files.get('PIDBackImage')        
                     filename = file.filename or ''  
                     print(filename)               
-                    PIDBackFilename= str(str(data["userId"])+"Back"+".png")
+                    PIDBackFilename= str(str(data['result']["userId"])+"Back"+".png")
                   
                     PIDBackFolderPath = ConstantData.GetPIDImagePath(PIDBackFilename)
                     PIDBackfilepath = '/PIDImage/' + PIDBackFilename 
@@ -488,7 +488,7 @@ def addDriver():
                     file = request.files.get('AmbulanceImage')        
                     filename = file.filename or ''  
                     print(filename)               
-                    AIFilename=  str(str(data["userId"])+".png")
+                    AIFilename=  str(str(data['result']["userId"])+".png")
                    
                     AIFolderPath = ConstantData.GetAmbulanceImagePath(AIFilename)
                     AIfilepath = '/AmbulanceImage/' + AIFilename 
