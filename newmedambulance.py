@@ -2443,7 +2443,7 @@ def bookedTrip():
         return output
 
 
-@app.route('/CancelledTrip', methods=['POST'])
+@app.route('/cancelledTrip', methods=['POST'])
 def CancelledTrip():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
