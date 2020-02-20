@@ -3123,7 +3123,6 @@ def notification2():
         column=  " deviceKey "
         whereCondition= " userId = '" + str(userId) + "' "
         deviceKey=databasefile.SelectQuery("userMaster",column,whereCondition)
-        print(deviceKey)
         deviceKey=deviceKey["result"]["deviceKey"]
         a = notification.notification(deviceKey)
         return a
