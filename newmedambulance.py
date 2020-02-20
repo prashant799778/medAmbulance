@@ -3122,7 +3122,9 @@ def notification2():
         userId = inputdata["userId"]
         column=  " deviceKey "
         whereCondition= " userId = '" + str(userId) + "' "
-        loginuser=databasefile.SelectQuery("userMaster",column,whereCondition)
+        deviceKey=databasefile.SelectQuery("userMaster",column,whereCondition)
+        print(deviceKey)
+        #deviceKey=deviceKey[]
         a = notification.notification(deviceKey)
         return a
     except Exception as e :
