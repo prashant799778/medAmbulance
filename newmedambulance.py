@@ -60,6 +60,27 @@ geocoder = GoogleGeocoder("AIzaSyB0Pz6VjrQmWPCCbDbWDuyjo79GhDJPOlI")
 
 
 
+@app.route("/DLImage/<image_name>")
+def DLImage(image_name):
+    try:
+        return send_from_directory('DLImage', filename=image_name, as_attachment=False)
+    except FileNotFoundError:
+        abort(404)
+
+
+
+@app.route("/AmbulanceImage/<image_name>")
+def AmbulanceImage(image_name):
+    try:
+        return send_from_directory('AmbulanceImage', filename=image_name, as_attachment=False)
+    except FileNotFoundError:
+        abort(404)
+
+
+
+
+
+
 # @app.route('/addUser', methods=['POST'])
 # def addUser():
 #     try:
