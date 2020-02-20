@@ -77,5 +77,80 @@
 			  </div>
 		</div>
 
+
+
+		<div class="modal fade" id="zoomImageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered mod-d" role="document">
+				  <div class="modal-content">
+					  <template>
+						<div class="modal-header border-remo paddign-remove">
+						<button type="button" class="close cl-img" data-dismiss="modal" aria-label="Close" (click)="closeMOdal()">
+							<img src="../../../assets/images/close-im.svg">
+						</button>
+						</div>
+					</template>
+					<div class="modal-body" >
+						<div class="inner-model-box same-margin" >
+							<div class="d-flex al-item">
+								
+								<img [src]="userService.imageZoomPath" class="alt">
+								
+							</div>
+							<div class="grp-btn text-center">
+								<button (click)="zoomOut()" class="mod-btn dc-bg-color-gray">Zoom Out</button>
+								<!-- <button   class="mod-btn fill-back">Zoomout Image</button> -->
+							</div>
+							</div>
+					</div>
+				</div>
+			  </div>
+		</div>
+
+		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+				  <div class="modal-content">
+					  <template>
+						<div class="modal-header border-remo">
+						<button type="button" class="close cl-img" data-dismiss="modal" aria-label="Close" (click)="closeMOdal()">
+							<!-- <span aria-hidden="true">&times;</span> -->
+							<img src="../../../assets/images/close-im.svg">
+						</button>
+						</div>
+					</template>
+					<div class="modal-body" *ngIf="!activatedds">
+						<div class="inner-model-box same-margin" >
+							<div class="d-flex al-item">
+								<img src="../../../assets/images/caution.svg" class="altr">
+								<div class="dc-act">
+									<h3>Delete {{userService.deleteDataName}}</h3>
+									<span >Are you sure you want to delete ?</span>
+								</div>
+							</div>
+							<div class="grp-btn text-center">
+								<button  (click)="clsoeModal()" class="mod-btn dc-bg-color-gray">Cancel</button>
+								<button  (click)="deleteData(userService.deleteDataName)" class="mod-btn fill-back">Delete</button>
+							</div>
+							</div>
+						
+						<!-- <h2>{{modalDescription}}</h2> -->
+					</div>
+					<div class="modal-body" *ngIf="activatedds">
+							<!-- <span *ngIf="userProfile && userProfile.status == 0">Are you what to sure Deactivated</span>
+							<span *ngIf="userProfile && userProfile.status == 1">Are you what to sure activated</span>
+							<button *ngIf="userProfile && userProfile.status == 0" (click)="ActiveStudent()">Deactivated</button>
+							<button *ngIf="userProfile && userProfile.status == 1" (click)="ActiveStudent()">Activated</button> -->
+							<div class="success-parent">
+									<div class="child-success"><img src="../../../assets/images/correct.svg"></div>
+			 
+									 
+									<div class="child-success"><h2>Deleted Successfully</h2></div> 
+								</div>
+						</div>
+				  </div>
+				</div>
+			  </div>
+
+
+
 </div>
 

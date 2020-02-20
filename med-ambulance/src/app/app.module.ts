@@ -27,6 +27,9 @@ import { ViewAllVehicleComponent } from './vehicle/view-all-vehicle/view-all-veh
 import { AddFareComponent } from './fare-management/add-fare/add-fare.component';
 import { FailListComponent } from './fare-management/fail-list/fail-list.component';
 import { EditDriverComponent } from './driver/edit-driver/edit-driver.component';
+import { AddHospitalComponent } from './hospital/add-hospital/add-hospital.component';
+import { EditHospitalComponent } from './hospital/edit-hospital/edit-hospital.component';
+import { AllHospitalComponent } from './hospital/all-hospital/all-hospital.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { EditDriverComponent } from './driver/edit-driver/edit-driver.component'
     AddFareComponent,
     FailListComponent,
     EditDriverComponent,
+    AddHospitalComponent,
+    EditHospitalComponent,
+    AllHospitalComponent,
   ],
   imports: [
     BrowserModule,

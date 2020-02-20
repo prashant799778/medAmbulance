@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { AppSettings } from 'src/app/utils/constant';
 import { Router } from '@angular/router';
-// import { driverEventEmit } from '../../app.component'
+import { AppSettings } from 'src/app/utils/constant';
 declare var jQuery: any;
 
 @Component({
-  selector: 'app-all-driver',
-  templateUrl: './all-driver.component.html',
-  styleUrls: ['./all-driver.component.css']
+  selector: 'app-add-hospital',
+  templateUrl: './add-hospital.component.html',
+  styleUrls: ['./add-hospital.component.css']
 })
-export class AllDriverComponent implements OnInit {
-	 
+export class AddHospitalComponent implements OnInit {
 	driverData= []
 	errorMessage: boolean
 	messageShow: any;
@@ -34,7 +32,7 @@ export class AllDriverComponent implements OnInit {
 			'startLimit': 0,
 			'endLimit': 10
 		}
-		this.userService.dataPostApi(data,AppSettings.alldriver).then(resp=>{
+		this.userService.dataPostApi(data,AppSettings.allHospital).then(resp=>{
 			if(resp['status'] == 'true'){
 				
 				this.errorMessage = false;

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { LocalStorageService } from 'angular-web-storage';
 import { AuthsService } from './services/auths.service';
 import { UserService } from './services/user.service';
+import { AppSettings } from './utils/constant';
 declare var jQuery: any;
 @Component({
   selector: 'app-root',
@@ -11,6 +12,8 @@ declare var jQuery: any;
 export class AppComponent {
 	title = 'med-ambulance';
 	loginSuccessfull: boolean;
+	activatedds: boolean;
+	
 	constructor(public local: LocalStorageService,public authsService: AuthsService,public userService: UserService){
 		// this.local.get('userData1')
 		setTimeout(()=>{
@@ -40,5 +43,26 @@ export class AppComponent {
 
 	closeModal(){
 		jQuery('#logoutModal').modal('hide')
+	}
+	zoomOut(){
+		jQuery('#zoomImageModal').modal('hide')
+	}
+	deleteData(dataName){
+		console.log(dataName)
+		if(dataName == 'Driver'){
+			let data = {
+				'driverId': this.userService.deletDataId
+			}
+			this.userService.dataPostApi(data,AppSettings.deleteDriver).then(resp=>{
+				if(resp['status'] == 'true'){
+					this.activatedds = true;
+					this.userService.EmitEvnt(dataName);
+					
+					setTimeout(()=>{
+						jQuery('#deleteModal').modal('hide')
+					},2000)
+				}
+			})
+		}
 	}
 }

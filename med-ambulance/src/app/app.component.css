@@ -11,3 +11,12 @@
     top: 5px;
     left:1rem;
 }
+
+.alt {
+    display: block;
+    width: 100%;
+}
+.modal-dialog.mod-d{
+    max-width: 800px;
+    margin: 1.75rem auto;
+}

@@ -3,7 +3,7 @@
     
             <div class="row">
                 <div class="col-sm-12 col-md-12">
-                    <h2 class="box-heading-tp">Edit Driver</h2>
+                    <h2 class="box-heading-tp">{{viewEdit}} Driver</h2>
                     <div class="top-heading bg-white">
                         <h2 class="heading-bx">Basic Infromation</h2>
                         <div class="form-section  p-4">
@@ -24,14 +24,7 @@
                                     <label>Address</label>
                                     <input type="text" formControlName="address">
                                 </div>
-                                <div class="form-box">
-                                    <label>pIDType</label>
-                                    <input type="text" formControlName="pIDType">
-                                </div>
-                                <div class="form-box">
-                                    <label>pIDNo</label>
-                                    <input type="text" formControlName="pIDNo">
-                                </div>
+                                
                                 
                                
     
@@ -47,11 +40,8 @@
                                     <label>Email</label>
                                     <input type="text" formControlName="email">
                                 </div>
-                                <div class="form-box">
-                                    <label>dlNo</label>
-                                    <input type="text" formControlName="dlNo">
-                                </div>
                                 
+
                                 <div class="form-box">
                                         <label class="invisible m-0">Email</label>
                                         <div class="inputfile-box">
@@ -68,24 +58,80 @@
     
                                 </div>
                             </div>
+                            <div class="thumb">
+                                <span>Driver Image</span>
+                                <ul class="d-flex">
+                                    <li ><img [src]="imageShowPIF"></li>
+                                </ul>
+                            </div>       
                         </div>
+                        
+                        <h2 class="heading-bx">Document Details </h2>
+                        <div class="form-section  p-4">
+                            <div class="inner-f-section">
+                               
+                                <div class="form-box">
+                                        <label>Proof of Identity Type</label>
+                                        <input type="text" formControlName="pIDType">
+                                    </div>
+                                    <div class="form-box">
+                                        <label>Proof of Identity No</label>
+                                        <input type="text" formControlName="pIDNo">
+                                    </div>
+                                
+                            </div>
+                            <div class="inner-f-section">
+                                    <div class="form-box">
+                                            <label>Driver Licence No</label>
+                                            <input type="text" formControlName="dlNo">
+                                        </div>
+                               
+                                
+                                
+                            </div>
+                            
+                                <div class="thumb">
+                                        <span>Proof Of Identity Image</span>
+                                        <ul class="d-flex">
+                                            <li (click)="zoomImage(imageShowPIF)">
+                                                <img [src]="imageShowPIF">
+                                            </li>
+                                            <li (click)="zoomImage(imageShowPIB)">
+                                                    <img [src]="imageShowPIB">
+                                            </li>
+                                        </ul>
+                                    </div>  
+                                    <div class="thumb">
+                                            <span>Driving Licenense Image</span>
+                                                <ul class="d-flex">
+                                                    <li (click)="zoomImage(imageShowDLF)">
+                                                        <img [src]="imageShowDLF">
+                                                    </li>
+                                                    <li (click)="zoomImage(imageShowDLB)">
+                                                            <img [src]="imageShowDLB">
+                                                    </li>
+                                                </ul>
+                                            </div>  
+                                  
+                        </div>
+
                         <h2 class="heading-bx">Vehicle Details </h2>
                         <div class="form-section  p-4">
                             <div class="inner-f-section">
                                 <div class="form-box">
-                                    <label>transportModel</label>
+                                    <label>Transport Model</label>
                                     <input type="text" formControlName="transportModel">
                                 </div>
                                 <div class="form-box">
                                     <div class="form-box">
-                                        <label>category</label>
+                                        <label>Category</label>
                                         <select formControlName="ambulanceModeId">
                                                 <option *ngFor="let category of ambCategory" [value]="category.id">{{category.ambulanceType}}</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-box">
-                                    <label>ambulanceNo</label>
+                                    <label>Ambulance No</label>
                                     <input type="text" formControlName="ambulanceNo">
                                 </div>
                                 
@@ -93,17 +139,17 @@
                             <div class="inner-f-section">
                                
                                 <div class="form-box">
-                                    <label>ambulanceType</label>
+                                    <label>Ambulance Type</label>
                                     <!-- <input type="text" formControlName="ambulanceType"> -->
                                     <select formControlName="ambulanceModeId">
                                             <option *ngFor="let type of ambType" [value]="type.id">{{type.ambulanceType}}</option>
                                         </select>
                                 </div>
                                 <div class="form-box">
-                                    <label>fuelType</label>
+                                    <label>Fuel Type</label>
                                     <input type="text" formControlName="fuelType">
                                 </div>
-                                <div class="form-box">
+                                <!-- <div class="form-box">
                                         <label class="invisible m-0">Email</label>
                                         <div class="inputfile-box">
                                             <input type="file" id="file" class="inputfile" onchange='uploadFile(this)'>
@@ -114,10 +160,19 @@
                                               </span>
                                             </label>
                                           </div>
-                                </div>
+                                </div> -->
+                                
                             </div>
+                            <div class="thumb">
+                                <span>Ambulance Image</span>
+                                <ul class="d-flex">
+                                    <li (click)="zoomImage(imageShowV)"><img [src]="imageShowV"></li>
+                                </ul>
+                            </div>       
+                                
                         </div>
-                        <div class="btnn-group text-center mb-3">
+                        
+                        <div class="btnn-group text-center mb-3" *ngIf="views">
                             <button type="button" class="sub-btn gp-btn-clr text-white">update</button>
                             <button type="button" class="sub-btn gp-btn-clr2 text-white">cancel</button>
                         </div>
@@ -130,3 +185,62 @@
             </div>
         </form>
     </div>
+
+
+    <div class="modal fade" id="verifiyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                  <template>
+                    <div class="modal-header border-remo">
+                    <button type="button" class="close cl-img" data-dismiss="modal" aria-label="Close" (click)="closeMOdal()">
+                        <!-- <span aria-hidden="true">&times;</span> -->
+                        <img src="../../../assets/images/close-im.svg">
+                    </button>
+                    </div>
+                </template>
+                <div class="modal-body" *ngIf="!activatedds">
+                    <div class="inner-model-box same-margin" *ngIf="driverForm.get('status').value == 0">
+                        <div class="d-flex al-item">
+                            <img src="../../../assets/images/caution.svg" class="altr">
+                            <div class="dc-act">
+                                <h3>Not Verify Account</h3>
+                                <span >Are you sure you want to Not Verify ?</span>
+                            </div>
+                        </div>
+                        <div class="grp-btn text-center">
+                            <button *ngIf="driverForm.get('status').value == 0" (click)="closeModal()" class="mod-btn dc-bg-color-gray">Cancel</button>
+                            <button *ngIf="driverForm.get('status').value == 0" (click)="VerifyDriver()" class="mod-btn fill-back">Not Verify</button>
+                        </div>
+                        </div>
+                    <div class="inner-model-box" *ngIf="driverForm.get('status').value == 1">
+                            <div class="d-flex al-item">
+                                    <img src="../../../assets/images/caution-ac.svg" class="altr">
+                                    <div class="dc-act">
+                                        <h3>Verify Account</h3>
+                                        <span >Are you sure you want to Verify ?</span>
+                                    </div>
+                                </div>
+
+                                <div class="grp-btn text-center">
+                                        <button *ngIf="driverForm.get('status').value == 1" (click)="closeModal()" class="mod-btn dc-bg-color-gray">Cancel</button>
+                                        <button *ngIf="driverForm.get('status').value == 1" (click)="VerifyDriver()" class="mod-btn fill-back-ac">Verify</button>
+                                </div>
+                        </div>
+                    <!-- <h2>{{modalDescription}}</h2> -->
+                </div>
+                <div class="modal-body" *ngIf="activatedds">
+                        <!-- <span *ngIf="driverForm.get('status').value == 0">Are you what to sure Deactivated</span>
+                        <span *ngIf="driverForm.get('status').value == 1">Are you what to sure activated</span>
+                        <button *ngIf="driverForm.get('status').value == 0" (click)="ActiveStudent()">Deactivated</button>
+                        <button *ngIf="driverForm.get('status').value == 1" (click)="ActiveStudent()">Activated</button> -->
+                        <div class="success-parent">
+                        <div class="child-success"><img src="../../../assets/images/correct.svg"></div>
+ 
+                         
+                        <div *ngIf="driverForm.get('status').value == 1" class="child-success"><h2> Verify Successfully</h2></div> 
+                        <div *ngIf="driverForm.get('status').value == 0" class="child-success"><h2> Not Verify Successfully</h2></div> 
+                    </div>
+                    </div>
+              </div>
+            </div>
+          </div>

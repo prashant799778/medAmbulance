@@ -1,0 +1,71 @@
+<div class="container-fluid">
+
+        <div class="row" >
+    
+            <div class="col-sm-12 col-md-12">
+    
+                    
+                    <ng-container *ngIf="!loader">
+                            <h2 class="box-heading-tp">All Hospital List</h2>
+                            <div class="top-heading bg-white">
+                                <h2 class="heading-bx anim">Hospital List</h2>
+                                <div class="record-box table-responsive">
+                                    <table class="table m-0">                               
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Name</th>
+                                                <th>Ambulance Type</th>
+                                                <th>Address</th>
+                                                <th>View</th>
+                                                <th>Action</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            <ng-container *ngIf="!loader">
+                                                <ng-container *ngIf="driverData && driverData.length > 0">
+                                                    <tr *ngFor="let driver of driverData ; let i =  index">
+                                                        <td>{{i+1}}</td>  
+                                                        <td>{{driver.hospitalName}}</td>
+                                                        <td>{{driver.ambulanceType}}</td>
+                                                        <td>{{driver.address}}</td>
+                                                       
+                                                        <td>
+                                                            <div class="btn-edit-group">
+                                                                <button type="button" class="edit-btn" (click)="editDriver(driver.driverId, 'view')" >  <img src="../../../assets/images/edit-im.svg"></button>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="btn-edit-group">
+                                                                <button type="button" class="edit-btn" (click)="editDriver(driver.driverId, null)" >  <img src="../../../assets/images/edit-im.svg"></button>
+                                                                <button type="button" class="delet-btn" (click)="deleteDriver(driver.driverId)">  <img src="../../../assets/images/bin.svg"></button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </ng-container>
+                                            </ng-container>
+                                           
+                                           
+                                           
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                    </ng-container>
+    
+                
+            </div>
+        
+        </div>
+    
+       
+    </div>
+    <ng-container *ngIf="loader">
+        <div class="container-loader text-center" >
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </ng-container>

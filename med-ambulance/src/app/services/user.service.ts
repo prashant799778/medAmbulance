@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SessionStorageService, LocalStorageService } from 'angular-web-storage';
 
@@ -11,7 +11,10 @@ export class UserService {
 	KEY = 'value';
 	superLogin: boolean;
 	messageResult: any;
-
+	imageZoomPath: any;
+	deleteDataName: any;
+	deletDataId: any;
+	driverEventEmit = new EventEmitter<any>();
 	constructor(private http: HttpClient,
 				public local: LocalStorageService,
 				public session: SessionStorageService) { }
@@ -109,5 +112,17 @@ export class UserService {
 		messageValue(data){
 			this.messageResult = data	
 		}
+	imagePath(path){
+		this.imageZoomPath = path
+	}	
+	deleteData(deletDataName, id){
+		this.deletDataId = id;
+		this.deleteDataName = deletDataName
+	}
+	EmitEvnt(dataName){
+		if(dataName == 'Driver'){
+			this.driverEventEmit.emit();
+		}
+	}
 }
 

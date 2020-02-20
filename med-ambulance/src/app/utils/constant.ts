@@ -40,8 +40,8 @@ export class AppSettings {
     public static CompeltedTrip = 'CompeltedTrip';
     public static cancelledTrip = 'cancelledTrip';
     public static selectambulanceTypeMaster = 'selectambulanceTypeMaster';
-    // public static getAnnouncement = 'getAnnouncement';
-    // public static getParliamentEvent = 'getParliamentEvent';
+    public static deleteDriver = 'deleteDriver';
+    public static updateDriverStatus = 'updateDriverStatus';
     // public static AccountVerification = 'AccountVerification';
     // public static promisingInitiatives = 'promisingInitiatives';
     // public static getpromisingInitiatives = 'getpromisingInitiativesAdmin';

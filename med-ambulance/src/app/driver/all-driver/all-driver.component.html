@@ -22,6 +22,7 @@
                                             <th>Joining Date</th>
                                             <th>Trip</th>
                                             <th>Status</th>
+                                            <th>View</th>
                                             <th>Action</th>
                                             
                                         </tr>
@@ -32,7 +33,7 @@
                                             <ng-container *ngIf="driverData && driverData.length > 0">
                                                 <tr *ngFor="let driver of driverData ; let i =  index">
                                                     <td>{{i+1}}</td>  
-                                                    <td><img src="http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/user/usrbig5.jpg" class="al-img"></td>
+                                                    <td><img [src]="driver.profilePic" class="al-img"></td>
                                                     <td>{{driver.name}}</td>
                                                     <td>{{driver.mobileNo}}</td>
                                                     <td>{{driver.email}}</td>
@@ -45,8 +46,13 @@
                                                     </td>
                                                     <td>
                                                         <div class="btn-edit-group">
-                                                            <button type="button" class="edit-btn" (click)="editDriver(driver.driverId)" >  <img src="../../../assets/images/edit-im.svg"></button>
-                                                            <button type="button" class="delet-btn" (click)="deleteDriver()">  <img src="../../../assets/images/bin.svg"></button>
+                                                            <button type="button" class="edit-btn" (click)="editDriver(driver.driverId, 'view')" >  <img src="../../../assets/images/eye.svg"></button>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="btn-edit-group">
+                                                            <button type="button" class="edit-btn" (click)="editDriver(driver.driverId, null)" >  <img src="../../../assets/images/edit-im.svg"></button>
+                                                            <button type="button" class="delet-btn" (click)="deleteDriver(driver.driverId)">  <img src="../../../assets/images/bin.svg"></button>
                                                         </div>
                                                     </td>
                                                 </tr>
