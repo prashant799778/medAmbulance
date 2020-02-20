@@ -1016,7 +1016,7 @@ def alldrivers():
                     driverId =int(inputdata["driverId"])
                     WhereCondition = WhereCondition + " and dm.id= "+str(driverId)+ " "
 
-            column="dm.name,dm.mobileNo,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.id as driverId"
+            column="dm.name,dm.mobileNo,dm.profilePic,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.id as driverId"
             whereCondition=" and dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " + WhereCondition
             data=databasefile.SelectQuery2("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit)
             
@@ -1024,6 +1024,8 @@ def alldrivers():
                 y2=len(data['result'])
                 if y2 ==1:
                     print('111111111111111')
+                    if data['result'][0]["profilePic"]=='NULL':
+                        data['result'][0]["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/profilePic.jpg" 
                     ambulanceId1=data['result'][0]['ambulanceId']
                     d1=data['result'][0]['driverId']
                     print(ambulanceId1)
@@ -1044,6 +1046,8 @@ def alldrivers():
 
                 else:
                     for i in data['result']:
+                        if i["profilePic"]=='NULL':
+                            i["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/profilePic.jpg"  
                         ambulanceId2= i['ambulanceId']
                         columns99="count(*) as count"
                         whereCondition88= " ambulanceId='"+str(ambulanceId2)+ "'"
