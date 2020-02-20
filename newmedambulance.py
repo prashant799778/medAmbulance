@@ -2593,36 +2593,86 @@ def driverLeave():
         return output
 
 
-# @app.route('/Dashboard', methods=['POST'])
-# def Dashboard():
-#     try:
-#         inputdata =  commonfile.DecodeInputdata(request.get_data())
-#         startlimit,endlimit="",""
-#         keyarr = [""]
-#         commonfile.writeLog("Dashboard",inputdata,0)
-#         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
-#         if msg == "1":
-#             column=  " d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, a.lat, a.lng,SQRT(POW(69.1 * (a.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - a.lng) * COS(a.lat / 57.3), 2)) AS distance "
-#             whereCondition= " and a.onTrip=0 and a.onDuty=1 and a.driverId=d.id HAVING distance < 1200 "
-#             orderby="  distance "
-#             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d",column,whereCondition,"",orderby,"","")
-#             if (nearByAmbulance!=0):   
-                               
-#                 return nearByAmbulance
-#             else:
-                
-#                 return nearByAmbulance
+@app.route('/dashboard', methods=['POST'])
+def dashboard():
+    try:
+        msg = "1"
+        if msg =="1":
+            startlimit,endlimit="0","5"
+            WhereCondition=" and dm.driverId = um.userId"
+            orderby=" driverId "
+
+            inputdata =  commonfile.DecodeInputdata(request.get_data())  
+           
+
+            if "driverId" in inputdata:
+                if inputdata['driverId'] != "":
+                    driverId =int(inputdata["driverId"])
+                    WhereCondition = WhereCondition + " and dm.id= "+str(driverId)+ " "
+
+            column="dm.name,dm.mobileNo,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.id as driverId"
+            whereCondition=" and dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId " + WhereCondition
+            data=databasefile.SelectQueryOrderby("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit,orderby)
+
+           
+
+            whereCondition2392="  and bm.status=3  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
+
+            column2392="count(*) as count"
+            cancelledTrip=databasefile.SelectQuery1("bookAmbulance as bm,userMaster as um,driverMaster as dm",columns2392,whereCondition2392)
+            if (cancelledTrip!=0):
+                y={'a':1}
+
+
+            else:
+                y={'cancelledTrip':0}
+
             
-#         else:
-#             return msg 
-#     except KeyError as e:
-#         print("Exception---->" +str(e))        
-#         output = {"result":"Input Keys are not Found","status":"false"}
-#         return output    
-#     except Exception as e :
-#         print("Exception---->" +str(e))           
-#         output = {"result":"something went wrong","status":"false"}
-#         return output
+            if (data!=0):
+                y2=len(data['result'])
+                if y2 ==1:
+                    print('111111111111111')
+                    ambulanceId1=data['result'][0]['ambulanceId']
+                    d1=data['result'][0]['driverId']
+                    print(ambulanceId1)
+                    columns2="am.ambulanceFilepath,am.ambulanceTypeId,um.email,am.ambulanceModeId,am.ambulanceFilename,atm.ambulanceType  as ambulanceType,AM.ambulanceType  as category,am.ambulanceRegistrationFuel as fuelType,am.color,am.transportModel,am.transportType"
+                    whereCondition222="  am.ambulanceId=ars.ambulanceId and atm.id=am.ambulanceTypeId and AM.id=am.ambulanceModeId and am.ambulanceId="+str(ambulanceId1)+ ""
+                    data111=databasefile.SelectQuery('ambulanceMaster as am,ambulanceRideStatus as ars,ambulanceTypeMaster as atm,userMaster um,ambulanceMode as AM',columns2,whereCondition222)
+                    y2=data111['result']
+                    print(y2)
+                    column2222="dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath,pIDType,pIDNo,pIDFrontFilename,pIDFrontFilepath,pIDBackFilename,pIDBackFilepath"
+                    whereCondition2222=" id = "+str(d1)+ " "
+                    data11111=databasefile.SelectQuery('driverMaster',column2222,whereCondition2222)
+                    y3=data11111['result']
+                    data['result'][0].update(y2)
+                    data['result'][0].update(y3)
+
+                    Data = {"result":{"driverDetails":data['result'],"dashboard":{},"userReviews":"No data Available"},"status":"true","message":""}
+                    return Data
+
+                else:
+                    for i in data['result']:
+                        ambulanceId2= i['ambulanceId']
+                        columns99="count(*) as count"
+                        whereCondition88= " ambulanceId='"+str(ambulanceId2)+ "'"
+                        data122=databasefile.SelectQuery('bookAmbulance',columns99,whereCondition88)
+                        if data122['status']!='false':
+                            i['tripCount']=0
+                        else:
+                            tripcount=data122['result']['count']
+                            i['tripCount']=tripcount
+
+                    Data = {"result":data['result'],"status":"true","message":""}
+                    return Data
+            else:
+                output = {"message":"No Data Found","status":"false","result":""}
+                return output
+        else:
+            return msg
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
 
 
 @app.route('/updateDriverStatus', methods=['POST'])
@@ -2632,7 +2682,7 @@ def updateStatus():
         startlimit,endlimit="",""
         keyarr = ['driverId']
         print(inputdata,"B")
-        commonfile.writeLog("updateStatus",inputdata,0)
+        commonfile.writeLog("updateDriverStatus",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg =="1":
           
