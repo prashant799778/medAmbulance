@@ -1,5 +1,6 @@
 from flask import Flask,request,abort
 from flask_socketio import SocketIO,emit
+from flask import Flask, send_from_directory, abort
 import uuid
 import json
 #import socketio
@@ -55,6 +56,36 @@ class JSONEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, o)
 
 geocoder = GoogleGeocoder("AIzaSyB0Pz6VjrQmWPCCbDbWDuyjo79GhDJPOlI")
+
+
+
+
+
+@app.route("/DLImage/<image_name>")
+def DLImage(image_name):
+    try:
+        return send_from_directory('DLImage', filename=image_name, as_attachment=False)
+    except FileNotFoundError:
+        abort(404)
+
+
+
+@app.route("/AmbulanceImage/<image_name>")
+def AmbulanceImage(image_name):
+    try:
+        return send_from_directory('AmbulanceImage', filename=image_name, as_attachment=False)
+    except FileNotFoundError:
+        abort(404)
+
+
+@app.route("/PIDImage/<image_name>")
+def PIDImage(image_name):
+    try:
+        return send_from_directory('PIDImage', filename=image_name, as_attachment=False)
+    except FileNotFoundError:
+        abort(404)
+
+
 
 
 
@@ -576,7 +607,7 @@ def addDriver():
                     if key == 1:
                         print('A')
                         WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
-                        column = " dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "',dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "'"
+                        column = " name='" + str(name) + "' ,dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "',dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "'"
                         print(column,'column')
                         data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
                         print(data,'updatedata')
@@ -584,7 +615,7 @@ def addDriver():
                     if key == 2:
                         print('B')
                         WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
-                        column = " pIDType = '" + str(PIDType) + "',pIDNo = '" + str(PIDNo) + "',pIDFrontFilename = '" + str(PIDFrontFilename) + "',pIDFrontFilepath = '" + str(PIDFrontPicPath) + "',pIDBackFilename = '" + str(PIDBackFilename) + "',pIDBackFilepath = '" + str(PIDBackPicPath) + "'"
+                        column = "name='" + str(name) + "', pIDType = '" + str(PIDType) + "',pIDNo = '" + str(PIDNo) + "',pIDFrontFilename = '" + str(PIDFrontFilename) + "',pIDFrontFilepath = '" + str(PIDFrontPicPath) + "',pIDBackFilename = '" + str(PIDBackFilename) + "',pIDBackFilepath = '" + str(PIDBackPicPath) + "'"
                         print(column,'column')
                         data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
                         print(data,'updatedata')
@@ -599,7 +630,7 @@ def addDriver():
                             
                             columns2= "ambulanceNo,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceTypeId,driverId"
 
-                            values2="'" + str(AmbulanceId) + "','" + str( TransportType) + "','" + str(TransportModel) + "','" + str(Color) + "','" + str(AmbulanceRegistrationFuel) + "','" + str(TypeNo) + "','" + str(AIFilename) + "','" + str(AIPicPath) + "','" + str(AmbulanceModeId) + "', "            
+                            values2="'" + str(AmbulanceNo) + "','" + str( TransportType) + "','" + str(TransportModel) + "','" + str(Color) + "','" + str(AmbulanceRegistrationFuel) + "','" + str(TypeNo) + "','" + str(AIFilename) + "','" + str(AIPicPath) + "','" + str(AmbulanceModeId) + "', "            
                             values2 = values2 + " '" + str(AmbulanceId) + "','" + str(driver_Id) + "'"
                             data122=databasefile.InsertQuery("ambulanceMaster",columns2,values2)
                             print(data122,'+++++++++++++++++++')
@@ -985,23 +1016,25 @@ def alldrivers():
                     driverId =int(inputdata["driverId"])
                     WhereCondition = WhereCondition + " and dm.id= "+str(driverId)+ " "
 
-            column="dm.name,dm.mobileNo,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.id as driverId"
-            whereCondition=" and dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId " + WhereCondition
+            column="dm.name,dm.mobileNo,dm.profilePic,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.id as driverId"
+            whereCondition=" and dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " + WhereCondition
             data=databasefile.SelectQuery2("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit)
             
             if (data['status']!='false'):
                 y2=len(data['result'])
                 if y2 ==1:
                     print('111111111111111')
+                    if data['result'][0]["profilePic"]=='null':
+                        data['result'][0]["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/profilePic.jpg" 
                     ambulanceId1=data['result'][0]['ambulanceId']
                     d1=data['result'][0]['driverId']
                     print(ambulanceId1)
-                    columns2="am.ambulanceFilepath,am.ambulanceTypeId,um.email,am.ambulanceModeId,am.ambulanceFilename,atm.ambulanceType  as ambulanceType,AM.ambulanceType  as category,am.ambulanceRegistrationFuel as fuelType,am.color,am.transportModel,am.transportType"
+                    columns2=" am.ambulanceTypeId,concat('"+ ConstantData.GetBaseURL() + "',am.ambulanceFilepath)ambulanceFilepath,um.email,am.ambulanceModeId,am.ambulanceFilename,atm.ambulanceType  as ambulanceType,AM.ambulanceType  as category,am.ambulanceRegistrationFuel as fuelType,am.color,am.transportModel,am.transportType"
                     whereCondition222="  am.ambulanceId=ars.ambulanceId and atm.id=am.ambulanceTypeId and AM.id=am.ambulanceModeId and am.ambulanceId="+str(ambulanceId1)+ ""
                     data111=databasefile.SelectQuery('ambulanceMaster as am,ambulanceRideStatus as ars,ambulanceTypeMaster as atm,userMaster um,ambulanceMode as AM',columns2,whereCondition222)
                     y2=data111['result']
                     print(y2)
-                    column2222="dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath,pIDType,pIDNo,pIDFrontFilename,pIDFrontFilepath,pIDBackFilename,pIDBackFilepath"
+                    column2222="dlNo,dlFrontFilename,concat('"+ ConstantData.GetBaseURL() + "',dlFrontFilepath)dlFrontFilepath,dlBackFilename,concat('"+ ConstantData.GetBaseURL() + "',dlBackFilepath)dlBackFilepath,pIDType,pIDNo,pIDFrontFilename,concat('"+ ConstantData.GetBaseURL() + "',pIDFrontFilepath)pIDFrontFilepath,pIDBackFilename,concat('"+ ConstantData.GetBaseURL() + "',pIDBackFilepath)pIDBackFilepath"
                     whereCondition2222=" id = "+str(d1)+ " "
                     data11111=databasefile.SelectQuery('driverMaster',column2222,whereCondition2222)
                     y3=data11111['result']
@@ -1013,6 +1046,9 @@ def alldrivers():
 
                 else:
                     for i in data['result']:
+                        if i["profilePic"]=='null':
+                            print('1111111111111111111')
+                            i["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/profilePic.jpg"  
                         ambulanceId2= i['ambulanceId']
                         columns99="count(*) as count"
                         whereCondition88= " ambulanceId='"+str(ambulanceId2)+ "'"
@@ -1896,10 +1932,12 @@ def allHospital():
         msg="1"
         if msg=="1":
             ambulanceType=""
+            whereCondition=""
             if 'ambulanceType' in request.args:
                 ambulanceType=request.args["ambulanceType"]
+                whereCondition=" and ambulanceType   = '" + ambulanceType + "'  "
             column= "hosp.id,hosp.hospitalName,hosp.address,am.ambulanceType,hosp.longitude,hosp.latitude"   
-            WhereCondition=  " hosp.id=ahm.hospital_Id and am.id=ahm.ambulance_Id and  ambulanceType   = '" + ambulanceType + "'  "
+            WhereCondition=  " hosp.id=ahm.hospital_Id and am.id=ahm.ambulance_Id"+whereCondition 
             data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalambulanceMapping as ahm,ambulanceTypeMaster as am",column,WhereCondition)
             print(data,'data')
             if (data!=0): 
@@ -2421,7 +2459,7 @@ def bookedTrip():
                 if inputdata['endLimit'] != "":
                     endlimit =str(inputdata["endLimit"])
 
-            whereCondition=" and bm.status=0  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
+            whereCondition=" and bm.status=0 and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
             column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName"
             data=databasefile.SelectQuery2("bookAmbulance as bm,userMaster as um,driverMaster dm",column,whereCondition,"",startlimit,endlimit)
@@ -2593,36 +2631,437 @@ def driverLeave():
         return output
 
 
-# @app.route('/Dashboard', methods=['POST'])
-# def Dashboard():
-#     try:
-#         inputdata =  commonfile.DecodeInputdata(request.get_data())
-#         startlimit,endlimit="",""
-#         keyarr = [""]
-#         commonfile.writeLog("Dashboard",inputdata,0)
-#         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
-#         if msg == "1":
-#             column=  " d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, a.lat, a.lng,SQRT(POW(69.1 * (a.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - a.lng) * COS(a.lat / 57.3), 2)) AS distance "
-#             whereCondition= " and a.onTrip=0 and a.onDuty=1 and a.driverId=d.id HAVING distance < 1200 "
-#             orderby="  distance "
-#             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d",column,whereCondition,"",orderby,"","")
-#             if (nearByAmbulance!=0):   
-                               
-#                 return nearByAmbulance
-#             else:
-                
-#                 return nearByAmbulance
+@app.route('/dashboard', methods=['POST'])
+def dashboard():
+    try:
+        msg = "1"
+        if msg =="1":
+            startlimit,endlimit="0","5"
+            WhereCondition=" and dm.driverId = um.userId"
+            orderby=" driverId "
+
+            inputdata =  commonfile.DecodeInputdata(request.get_data())  
+           
+
+            if "driverId" in inputdata:
+                if inputdata['driverId'] != "":
+                    driverId =int(inputdata["driverId"])
+                    WhereCondition = WhereCondition + " and dm.id= "+str(driverId)+ " "
+
+            column="dm.name,dm.mobileNo,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.id as driverId"
+            whereCondition=" and dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId " + WhereCondition
+            data=databasefile.SelectQueryOrderby("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit,orderby)
+
+           
+
+            whereCondition2392="  and bm.status=3  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
+
+            column2392="count(*) as count"
+            cancelledTrip=databasefile.SelectQuery1("bookAmbulance as bm,userMaster as um,driverMaster as dm",columns2392,whereCondition2392)
+            if (cancelledTrip!=0):
+                y={'a':1}
+
+
+            else:
+                y={'cancelledTrip':0}
+
             
-#         else:
-#             return msg 
-#     except KeyError as e:
-#         print("Exception---->" +str(e))        
-#         output = {"result":"Input Keys are not Found","status":"false"}
-#         return output    
-#     except Exception as e :
-#         print("Exception---->" +str(e))           
-#         output = {"result":"something went wrong","status":"false"}
-#         return output
+            if (data!=0):
+                y2=len(data['result'])
+                if y2 ==1:
+                    print('111111111111111')
+                    ambulanceId1=data['result'][0]['ambulanceId']
+                    d1=data['result'][0]['driverId']
+                    print(ambulanceId1)
+                    columns2="am.ambulanceFilepath,am.ambulanceTypeId,um.email,am.ambulanceModeId,am.ambulanceFilename,atm.ambulanceType  as ambulanceType,AM.ambulanceType  as category,am.ambulanceRegistrationFuel as fuelType,am.color,am.transportModel,am.transportType"
+                    whereCondition222="  am.ambulanceId=ars.ambulanceId and atm.id=am.ambulanceTypeId and AM.id=am.ambulanceModeId and am.ambulanceId="+str(ambulanceId1)+ ""
+                    data111=databasefile.SelectQuery('ambulanceMaster as am,ambulanceRideStatus as ars,ambulanceTypeMaster as atm,userMaster um,ambulanceMode as AM',columns2,whereCondition222)
+                    y2=data111['result']
+                    print(y2)
+                    column2222="dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath,pIDType,pIDNo,pIDFrontFilename,pIDFrontFilepath,pIDBackFilename,pIDBackFilepath"
+                    whereCondition2222=" id = "+str(d1)+ " "
+                    data11111=databasefile.SelectQuery('driverMaster',column2222,whereCondition2222)
+                    y3=data11111['result']
+                    data['result'][0].update(y2)
+                    data['result'][0].update(y3)
+
+                    Data = {"result":{"driverDetails":data['result'],"dashboard":{},"userReviews":"No data Available"},"status":"true","message":""}
+                    return Data
+
+                else:
+                    for i in data['result']:
+                        ambulanceId2= i['ambulanceId']
+                        columns99="count(*) as count"
+                        whereCondition88= " ambulanceId='"+str(ambulanceId2)+ "'"
+                        data122=databasefile.SelectQuery('bookAmbulance',columns99,whereCondition88)
+                        if data122['status']!='false':
+                            i['tripCount']=0
+                        else:
+                            tripcount=data122['result']['count']
+                            i['tripCount']=tripcount
+
+                    Data = {"result":data['result'],"status":"true","message":""}
+                    return Data
+            else:
+                output = {"message":"No Data Found","status":"false","result":""}
+                return output
+        else:
+            return msg
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+@app.route('/updateDriverStatus', methods=['POST'])
+def updateStatus():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['driverId']
+        print(inputdata,"B")
+        commonfile.writeLog("updateDriverStatus",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg =="1":
+          
+            userId = int(inputdata["driverId"])
+           
+            column="status"
+            whereCondition= "  and id = '" + str(userId)+ "' "
+            data=databasefile.SelectQuery1("driverMaster",column,whereCondition)
+            if (data !=0):
+                if data['result'][0]['status']==0:
+                    column="status='1'"
+                    whereCondition= " and id = '" + str(userId)+ "' "
+                    output1=databasefile.UpdateQuery("driverMaster",column,whereCondition)
+                    output=output1
+                    if output!='0':
+                        Data = {"status":"true","message":"","result":output["result"]}                  
+                        return Data
+                    else:
+                        return commonfile.Errormessage() 
+
+                else:
+                    column="status='0'"
+                    whereCondition= " and id = '" + str(userId)+ "' "
+                    output1=databasefile.UpdateQuery("driverMaster",column,whereCondition)
+                    output=output1    
+                    if output!='0':
+                        Data = {"status":"true","message":"","result":output["result"]}                  
+                        return Data
+                    else:
+                        return commonfile.Errormessage()
+            else:
+                data={"result":"","status":"false","message":"No Data Found"}
+                return data
+        else:
+            return msg         
+ 
+    except KeyError :
+        print("Key Exception---->")   
+        output = {"result":"key error","status":"false"}
+        return output  
+
+    except Exception as e :
+        print("Exceptio`121QWAaUJIHUJG n---->" +str(e))    
+        output = {"result":"somthing went wrong","status":"false"}
+        return output
+
+@app.route('/updateDriver', methods=['POST'])
+def updateDriver():
+    try:
+        print('Hello')
+        inputdata=request.form.get('data')
+        print(inputdata,'inputdata')
+        keyarr = ['driverId']
+        inputdata=json.loads(inputdata)
+        # inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+        startlimit,endlimit="",""
+
+        commonfile.writeLog("updateDriver",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        print(msg,'msg')
+       
+        if msg == "1":
+            name=inputdata['name']
+            print(name,'name')
+            mobileNo= inputdata["mobileNo"]
+            print(mobileNo,'mobileNo')
+
+            driverId=inputdata['driverId']
+            column = " userId "
+            whereCondition= " mobileNo='"+str(mobileNo)+ "' and usertypeId='3'"
+            data= databasefile.SelectQuery("userMaster",column,whereCondition)
+
+            # column2= " id as driverId,dlNo,dlFrontFilename,DlFrontPicPath,dlBackFilename,DlBackPicPath,PIDType,PIDNo,PIDFrontFilename,PIDFrontPicPath,PIDBackFilename,PIDBackPicPath"
+            columns1="driverId"
+            whereCondition2=" id='"+str(driverId)+ "' "
+
+            data2=databasefile.SelectQuery('driverMaster',columns1,whereCondition2)
+            address=""
+            # DlNo=str(data['result']["dlNo"])
+
+
+            DlNo,dlFrontFilename,DlFrontPicPath,dlBackFilename,DlBackPicPath,PIDType,PIDNo,PIDFrontFilename,PIDFrontPicPath,PIDBackFilename,PIDBackPicPath,TransportType,TransportModel,Color,AmbulanceRegistrationFuel,TypeNo,AIFilename,AIPicPath,AmbulanceModeId,AmbulanceId="","","","","","","","","","","","","","","","","","","",""
+
+            if 'DlNo' in inputdata:
+                DlNo=inputdata["DlNo"]
+
+            if 'DlFrontImage' in request.files:
+                    print("immmmmmmmmmmmmmmmm")
+                    file = request.files.get('DlFrontImage')        
+                    filename = file.filename or ''  
+                    print(filename)               
+                    dlFrontFilename= str(str(data['result']["userId"])+"Front"+".png")
+                    
+                    print(dlFrontFilename,'Changed_filename')
+                    DlFrontFolderPath = ConstantData.GetdlImagePath(dlFrontFilename)
+                    DlFrontfilepath = '/DLImage/' + dlFrontFilename 
+                    file.save(DlFrontFolderPath)
+                    DlFrontPicPath = DlFrontfilepath
+                    print(DlFrontPicPath)
+                    
+
+            if 'DlBackImage' in request.files:
+                    print("immmmmmmmmmmmmmmmm")
+                    file = request.files.get('DlBackImage')        
+                    filename = file.filename or ''  
+                    print(filename)               
+                    dlBackFilename=  str(str(data['result']["userId"])+"Back"+".png")
+                  
+                    DlBackFolderPath = ConstantData.GetdlImagePath(dlBackFilename)
+                    DlBackfilepath = '/DLImage/' + dlBackFilename 
+                    file.save(DlBackFolderPath)
+                    DlBackPicPath = DlBackfilepath
+                    print(DlBackPicPath)
+
+
+            if 'DlFrontImage' not  in request.files:
+                inputdata4 = request.form.get('DlFrontImage')
+                if inputdata5==ConstantData.GetBaseURL():
+                    DlFrontPicPath=""
+                else : 
+                    index=re.search("/DLImage", inputdata5).start()
+                    DlBackPicPath=""
+                    DlBackPicPath=inputdata5[index:]
+                        
+
+            
+
+            if 'DlBackImage' not  in request.files:
+                inputdata4 = request.form.get('DlBackImage')
+                if inputdata4==ConstantData.GetBaseURL():
+                    DlBackPicPath=""
+                else : 
+                    index=re.search("/DLImage", inputdata4).start()
+                    DlBackPicPath=""
+                    DlBackPicPath=inputdata4[index:]
+                        
+
+            if 'PIDType' in inputdata:
+                PIDType=inputdata["PIDType"]
+
+            if 'PIDNo' in inputdata:
+                PIDNo=inputdata["PIDNo"]
+
+            if 'PIDFrontImage' in request.files:
+                    print("immmmmmmmmmmmmmmmm")
+                    file = request.files.get('PIDFrontImage')        
+                    filename = file.filename or ''  
+                    print(filename)               
+                    PIDFrontFilename= str(str(data['result']["userId"])+"Front"+".png")
+                  
+                    print(PIDFrontFilename,'Changed_filename')
+                    PIDFrontFolderPath = ConstantData.GetPIDImagePath(PIDFrontFilename)
+                    PIDFrontfilepath = '/PIDImage/' + PIDFrontFilename 
+                    file.save(PIDFrontFolderPath)
+                    PIDFrontPicPath = PIDFrontfilepath
+                    print(PIDFrontPicPath)
+
+
+            if 'PIDFrontImage' not  in request.files:
+                inputdata3 = request.form.get('PIDFrontImage')
+                if inputdata3==ConstantData.GetBaseURL():
+                    PIDFrontPicPath=""
+                else : 
+                    index=re.search("/PIDImage", inputdata3).start()
+                    PIDFrontPicPath=""
+                    PIDFrontPicPath=inputdata3[index:]
+                    
+
+            if 'PIDBackImage' in request.files:
+                    print("immmmmmmmmmmmmmmmm")
+                    file = request.files.get('PIDBackImage')        
+                    filename = file.filename or ''  
+                    print(filename)               
+                    PIDBackFilename= str(str(data['result']["userId"])+"Back"+".png")
+                  
+                    PIDBackFolderPath = ConstantData.GetPIDImagePath(PIDBackFilename)
+                    PIDBackfilepath = '/PIDImage/' + PIDBackFilename 
+                    file.save(PIDBackFolderPath)
+                    PIDBackPicPath = PIDBackfilepath
+                    print(PIDBackPicPath)
+
+            
+            if 'PIDBackImage' not  in request.files:
+                inputdata2 = request.form.get('PIDBackImage')
+                if inputdata2==ConstantData.GetBaseURL():
+                    PIDBackPicPath=""
+                else : 
+                    index=re.search("/PIDImage", inputdata2).start()
+                    PIDBackPicPath=""
+                    PIDBackPicPath=inputdata2[index:]
+
+
+
+            if 'TransportType' in inputdata:
+                TransportType=inputdata["TransportType"]
+            
+            if 'TransportModel' in inputdata:
+                TransportModel=inputdata["TransportModel"]
+
+            if 'Color' in inputdata:
+                Color=inputdata["Color"]
+
+            if 'AmbulanceRegistrationFuel' in inputdata:
+                AmbulanceRegistrationFuel=inputdata["AmbulanceRegistrationFuel"]
+            
+            if 'TypeNo' in inputdata:
+                TypeNo=inputdata["TypeNo"]
+
+            if 'AmbulanceModeId' in inputdata:
+                AmbulanceModeId=inputdata["AmbulanceModeId"]
+
+            if 'AmbulanceNo' in inputdata:
+                AmbulanceNo=inputdata["AmbulanceNo"]
+
+            if 'AmbulanceTypeId' in inputdata:
+                AmbulanceId=inputdata["AmbulanceTypeId"]
+
+            if 'lat' in inputdata:
+                lat=inputdata["lat"]
+
+            if 'lng' in inputdata:
+                lng=inputdata["lng"]
+
+            if 'address' in inputdata:
+                address=inputdata["address"]
+
+            if 'status' in inputdata:
+                status=inputdata["status"]
+            
+
+
+
+            if 'AmbulanceImage' in request.files:
+                    print("immmmmmmmmmmmmmmmm")
+                    file = request.files.get('AmbulanceImage')        
+                    filename = file.filename or ''  
+                    print(filename)               
+                    AIFilename=  str(str(data['result']["userId"])+".png")
+                   
+                    AIFolderPath = ConstantData.GetAmbulanceImagePath(AIFilename)
+                    AIfilepath = '/AmbulanceImage/' + AIFilename 
+                    file.save(AIFolderPath)
+                    AIPicPath = AIfilepath
+                    print(AIPicPath)
+
+            if 'AmbulanceImage' not  in request.files:
+                inputdata1 = request.form.get('AmbulanceImage')
+                if inputdata1==ConstantData.GetBaseURL():
+                    AIPicPath=""
+                else : 
+                    index=re.search("/AmbulanceImage", inputdata1).start()
+                    AIPicPath=""
+                    AIPicPath=inputdata1[index:]
+
+            if data['status']!='false':
+                
+                
+                
+                
+                print('A')
+                WhereCondition = " id = '" + str(driverId) + "'"
+                column = " name='" + str(name) + "' ,mobileNo='" + str(mobileNo) + "' ,dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "',dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "'"
+                
+                column = column + " ,pIDType = '" + str(PIDType) + "',pIDNo = '" + str(PIDNo) + "',pIDFrontFilename = '" + str(PIDFrontFilename) + "',pIDFrontFilepath = '" + str(PIDFrontPicPath) + "',pIDBackFilename = '" + str(PIDBackFilename) + "',pIDBackFilepath = '" + str(PIDBackPicPath) + "',status='" + str(status) + "'"
+                print(column,'column')
+                data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
+
+
+                #ambulanceMaster update
+
+
+               
+                columns="ambulanceId"
+                WhereCondition = " driverId = '" + str(driverId) + "'"
+                data111=databasefile.SelectQuery('ambulanceMaster',columns,WhereCondition)
+                if data111['status'] == 'false':
+                    
+                    columns2= "ambulanceNo='" + str(AmbulanceNo) + ",transportType='" + str(TransportType) + "',transportModel='" + str(TransportModel) + "',color='" + str(Color) + "',ambulanceRegistrationFuel='" + str(AmbulanceRegistrationFuel) + "',typeNo='" + str(TypeNo) + "',ambulanceFilename='" + str(AIFilename) + "',ambulanceFilepath='" + str(AIPicPath) + "',ambulanceModeId='" + str(AmbulanceModeId) + "',ambulanceTypeId= '" + str(AmbulanceId) + "'"
+
+                  
+                    data122=databasefile.UpdateQuery("ambulanceMaster",columns2,whereCondition)
+                    print(data122,'+++++++++++++++++++')
+                    
+                    
+
+                    if data122 != "0":
+                        data11={"result":"","message":"Inserted successfully","status":"true"}
+                        return data11
+
+                        
+                        
+                    else:
+                        data11={"result":"","message":"Not existed  in data","status":"false"}
+                        return data11
+
+
+                        
+               
+        else:
+            return msg
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+
+
+@app.route('/deleteDriver', methods=['POST'])
+def deleteDriver():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['driverId']
+        print(inputdata,"B")
+        commonfile.writeLog("deleteDriver",inputdata,0)
+        print('C')
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg =="1":
+            
+            userId=inputdata["driverId"]
+            column="status=2"
+
+            WhereCondition = "  id = '" + str(userId) + "' "
+            data=databasefile.UpdateQuery("driverMaster",column,WhereCondition)
+           
+
+            if data != "0":
+                data= {"status":"true","message":"Deleted Successfully","result":""}
+                return data
+            else:
+                return commonfile.Errormessage()
+        else:
+            return msg
+
+    except Exception as e :
+        print("Exception--->" + str(e))                                  
+        return commonfile.Errormessage()
+
+
 
 
 
