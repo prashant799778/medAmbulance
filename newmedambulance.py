@@ -78,6 +78,15 @@ def AmbulanceImage(image_name):
         abort(404)
 
 
+@app.route("/PIDImage/<image_name>")
+def PIDImage(image_name):
+    try:
+        return send_from_directory('AmbulanceImage', filename=image_name, as_attachment=False)
+    except FileNotFoundError:
+        abort(404)
+        
+
+
 
 
 
