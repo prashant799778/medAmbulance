@@ -84,7 +84,7 @@ def PIDImage(image_name):
         return send_from_directory('AmbulanceImage', filename=image_name, as_attachment=False)
     except FileNotFoundError:
         abort(404)
-        
+
 
 
 
@@ -1017,7 +1017,7 @@ def alldrivers():
                     WhereCondition = WhereCondition + " and dm.id= "+str(driverId)+ " "
 
             column="dm.name,dm.mobileNo,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.id as driverId"
-            whereCondition=" and dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId " + WhereCondition
+            whereCondition=" and dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " + WhereCondition
             data=databasefile.SelectQuery2("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit)
             
             if (data['status']!='false'):
