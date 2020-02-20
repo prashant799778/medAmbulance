@@ -112,6 +112,7 @@ import config
 
 def notification(deviceKey):
     try:
+        print(deviceKey,"1222222222221111111111")
         r=requests.post(config.URL, headers=config.headers, data=json.dumps(config.data))
         response=json.loads(r.text) 
         if response:
