@@ -1046,7 +1046,7 @@ def alldrivers():
 
                 else:
                     for i in data['result']:
-                        if i["profilePic"]==null:
+                        if i["profilePic"]=='null':
                             print('1111111111111111111')
                             i["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/profilePic.jpg"  
                         ambulanceId2= i['ambulanceId']
