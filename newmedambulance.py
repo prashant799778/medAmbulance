@@ -3044,7 +3044,7 @@ def deleteDriver():
 
             if data != "0":
                 data= {"status":"true","message":"Deleted Successfully","result":""}
-               return data
+                return data
             else:
                 return commonfile.Errormessage()
         else:
