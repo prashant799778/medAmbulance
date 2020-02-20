@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LocalStorageService } from 'angular-web-storage';
 import { AuthsService } from './services/auths.service';
 import { UserService } from './services/user.service';
-
+declare var jQuery: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -31,5 +31,14 @@ export class AppComponent {
 			this.loginSuccessfull = true;
 		})
 		
+	}
+	logout(){
+   
+		this.authsService.logout()
+		jQuery('#logoutModal').modal('hide')
+	  }
+
+	closeModal(){
+		jQuery('#logoutModal').modal('hide')
 	}
 }

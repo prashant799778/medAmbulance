@@ -9,10 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./all-driver.component.css']
 })
 export class AllDriverComponent implements OnInit {
-	tableHeading = [
-		"No", 'Image',"Name", "Mobile", "Email","Address", "Joining Date","Trip","Status","Action"
-	]
-	heading='All Driver'
+	
 	driverData= []
 	errorMessage: boolean
 	messageShow: any;
@@ -34,11 +31,14 @@ export class AllDriverComponent implements OnInit {
 		}
 		this.userService.dataPostApi(data,AppSettings.alldriver).then(resp=>{
 			if(resp['status'] == 'true'){
+				
 				this.errorMessage = false;
 				this.driverData = resp['result']
+				this.loader = false;
 			}else{
 					this.errorMessage = true;
 					this.messageShow = resp['message']
+					this.loader = false;
 				// 	this.driverData = [
 				// 	{	'name':'Vijay Pal',
 				// 		'mobileNo': 8888517655,
@@ -85,7 +85,8 @@ export class AllDriverComponent implements OnInit {
 	}
 
 	editDriver(id){
-		this.router.navigateByUrl('/driver/editDriver')
+		console.log(id)
+		this.router.navigate(['/driver/editDriver'],{queryParams: {driverId : id}})
 	}
 	deleteDriver(){
 		this.driverData[3] = ''

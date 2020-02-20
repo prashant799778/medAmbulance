@@ -35,11 +35,11 @@ export class AppSettings {
     public static ResponderTraceUser = 'ResponderTraceUser';
     public static trackResponder = 'trackResponder';
     public static addDriver = 'addDriver';
-    // public static DELETE_ADMIN_NEWS = 'deleteNews';
-    // public static galleryImages = 'galleryImages1';
-    // public static parliamentEvent = 'parliamentEvent1';
-    // public static announcements1 = 'announcements1';
-    // public static getGalleryImages = 'getGalleryImages';
+    public static ActiveTrip = 'ActiveTrip';
+    public static bookedTrip = 'bookedTrip';
+    public static CompeltedTrip = 'CompeltedTrip';
+    public static cancelledTrip = 'cancelledTrip';
+    public static selectambulanceTypeMaster = 'selectambulanceTypeMaster';
     // public static getAnnouncement = 'getAnnouncement';
     // public static getParliamentEvent = 'getParliamentEvent';
     // public static AccountVerification = 'AccountVerification';

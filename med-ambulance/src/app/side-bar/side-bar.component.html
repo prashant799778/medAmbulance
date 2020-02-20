@@ -66,9 +66,9 @@
 				</a>
 					<ul class="menu-dropdown">
 						<li (click)="goToPage('trip/activeTrip')"><a href="javascript:void(0)">Active Trips</a></li>
-						<li><a href="javascript:void(0)">Completed Trips</a></li>
-						<li><a href="javascript:void(0)">Booked Trips</a></li>
-						<li><a href="javascript:void(0)">Route Map</a></li>
+						<li (click)="goToPage('trip/completeTrip')"><a href="javascript:void(0)">Completed Trips</a></li>
+						<li (click)="goToPage('trip/bookedTrip')"><a href="javascript:void(0)">Booked Trips</a></li>
+						<li (click)="goToPage('trip/cancelTrip')"><a href="javascript:void(0)">Cancel Trips</a></li>
 					</ul>
 				</li>
 				<li>
@@ -83,7 +83,7 @@
 							<circle cx="255.895" cy="89.906" r="89.906"/>
 						</svg>
 					</span>
-					<span class="title">driver</span>
+					<span class="title">Driver</span>
 				</a>
 				<ul class="menu-dropdown">
 					<li (click)="goToPage('driver/addDriver')"><a href="javascript:void(0)">Add New Driver</a></li>

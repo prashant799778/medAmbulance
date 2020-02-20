@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import { AppSettings } from 'src/app/utils/constant';
 
 @Component({
   selector: 'app-booked-trip',
@@ -7,12 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookedTripComponent implements OnInit {
 	tableHeading = [
-		"No", "Trip Id", "Driver Name", "Passenger Name","Trip From", "Trip To","Allocated Driver","Start Time","Action"
+		"No", "Trip Id", "Driver Name", "Passenger Name","Trip From", "Trip To","Start Time","Action"
 	]
 	heading='Booked Trip'
-	constructor() { }
+	bookTripData = []
+	constructor(public userService: UserService) { }
 
 	ngOnInit() {
+		this.getBookTrip()
+	}
+
+	getBookTrip(){
+		let data = {
+			'startLimit': 0,
+			'endLimit': 10
+		}
+		this.userService.dataPostApi(data,AppSettings.bookedTrip).then(resp=>{
+			this.bookTripData = resp['result']
+		})
 	}
 
 }

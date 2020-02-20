@@ -28,7 +28,7 @@ const routes: Routes = [
 			{ path:'activeTrip',component: ActiveTripComponent,canActivate: [AuthGuard]},
 			{ path:'bookedTrip',component: BookedTripComponent,canActivate: [AuthGuard]},
 			{ path:'completeTrip',component: CompleteTripComponent,canActivate: [AuthGuard]},
-			{ path:'routeMap',component: RouteMapComponent,canActivate: [AuthGuard]}
+			{ path:'cancelTrip',component: RouteMapComponent,canActivate: [AuthGuard]}
 		]
 	},
 	{ path: 'driver',

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import { AppSettings } from 'src/app/utils/constant';
 
 @Component({
   selector: 'app-active-trip',
@@ -11,42 +13,49 @@ export class ActiveTripComponent implements OnInit {
 	]
 	heading='Active Trip'
 	activeTripData = []
-	constructor() { }
+	constructor(public userService: UserService) { }
 
 	ngOnInit() {
 		this.getActiveTripData()	
 	}
 
 	getActiveTripData(){
-		this.activeTripData = [
-			{
-				'tripId': 1765,
-				'driverName': 'Hemant Gusain',
-				'userName': 'Vijay Pal',
-				'tripFrom': 'Noida',
-				'tripTo': 'Agra',
-				'startTime': '02:00pm',
+		let data = {
+			'startLimit': 0,
+			'endLimit': 10
+		}
+		this.userService.dataPostApi(data,AppSettings.ActiveTrip).then(resp=>{
+			console.log(resp)
+		})
+		// this.activeTripData = [
+		// 	{
+		// 		'tripId': 1765,
+		// 		'driverName': 'Hemant Gusain',
+		// 		'userName': 'Vijay Pal',
+		// 		'tripFrom': 'Noida',
+		// 		'tripTo': 'Agra',
+		// 		'startTime': '02:00pm',
 				
-			},
-			{
-				'tripId': 1165,
-				'driverName': 'Hemant Gusain',
-				'userName': 'Vijay Pal',
-				'tripFrom': 'Noida',
-				'tripTo': 'Agra',
-				'startTime': '02:00pm',
+		// 	},
+		// 	{
+		// 		'tripId': 1165,
+		// 		'driverName': 'Hemant Gusain',
+		// 		'userName': 'Vijay Pal',
+		// 		'tripFrom': 'Noida',
+		// 		'tripTo': 'Agra',
+		// 		'startTime': '02:00pm',
 				
-			},
-			{
-				'tripId': 1865,
-				'driverName': 'Hemant Gusain',
-				'userName': 'Vijay Pal',
-				'tripFrom': 'Noida',
-				'tripTo': 'Agra',
-				'startTime': '02:00pm',
+		// 	},
+		// 	{
+		// 		'tripId': 1865,
+		// 		'driverName': 'Hemant Gusain',
+		// 		'userName': 'Vijay Pal',
+		// 		'tripFrom': 'Noida',
+		// 		'tripTo': 'Agra',
+		// 		'startTime': '02:00pm',
 				
-			}
-		]
+		// 	}
+		// ]
 	}
 
 }
