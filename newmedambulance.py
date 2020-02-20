@@ -1024,7 +1024,7 @@ def alldrivers():
                 y2=len(data['result'])
                 if y2 ==1:
                     print('111111111111111')
-                    if data['result'][0]["profilePic"]=='NULL':
+                    if data['result'][0]["profilePic"]=='null':
                         data['result'][0]["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/profilePic.jpg" 
                     ambulanceId1=data['result'][0]['ambulanceId']
                     d1=data['result'][0]['driverId']
@@ -1046,7 +1046,8 @@ def alldrivers():
 
                 else:
                     for i in data['result']:
-                        if i["profilePic"]=='NULL':
+                        if i["profilePic"]==null:
+                            print('1111111111111111111')
                             i["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/profilePic.jpg"  
                         ambulanceId2= i['ambulanceId']
                         columns99="count(*) as count"
