@@ -112,8 +112,8 @@ import config
 
 def notification(deviceKey):
     try:
-        config.data["to"]=str(deviceKey)
-        print(config.data)
+        # config.data["to"]=str(deviceKey)
+        # print(config.data)
         r=requests.post(config.URL, headers=config.headers, data=json.dumps(config.data))
         response=json.loads(r.text) 
         if response:
