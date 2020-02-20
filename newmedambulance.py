@@ -3,6 +3,7 @@ from flask_socketio import SocketIO,emit
 from flask import Flask, send_from_directory, abort
 import uuid
 import json
+import notification
 #import socketio
 from googlegeocoder import GoogleGeocoder
 from math import sin,cos,sqrt,atan2,radians
@@ -3386,7 +3387,22 @@ def adminLogin():
 
 
 
-
+@app.route('/notification', methods=['POST'])
+def notification2():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['userId']
+        userId = inputdata["userId"]
+        column=  " deviceKey "
+        whereCondition= " userId = '" + str(userId) + "' "
+        deviceKey=databasefile.SelectQuery("userMaster",column,whereCondition)
+        deviceKey=deviceKey["result"]["deviceKey"]
+        a = notification.notification(deviceKey)
+        return a
+    except Exception as e :
+        print("Exception--->" + str(e))                                  
+        return commonfile.Errormessage()
 
 
 if __name__ == "__main__":
