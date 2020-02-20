@@ -2673,7 +2673,21 @@ def adminLogin():
 
 
 
-
+@app.route('/notification', methods=['POST'])
+def notification2():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['userId']
+        userId = inputdata["userId"]
+        column=  " deviceKey "
+        whereCondition= " userId = '" + str(userId) + "' "
+        loginuser=databasefile.SelectQuery("userMaster",column,whereCondition)
+        a = notification.notification(deviceKey)
+        return a
+    except Exception as e :
+        print("Exception--->" + str(e))                                  
+        return commonfile.Errormessage()
 
 
 if __name__ == "__main__":
