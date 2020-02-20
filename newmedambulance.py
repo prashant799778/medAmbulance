@@ -598,7 +598,7 @@ def addDriver():
                     if key == 1:
                         print('A')
                         WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
-                        column = " dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "',dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "'"
+                        column = " name='" + str(name) + "' ,dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "',dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "'"
                         print(column,'column')
                         data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
                         print(data,'updatedata')
@@ -606,7 +606,7 @@ def addDriver():
                     if key == 2:
                         print('B')
                         WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
-                        column = " pIDType = '" + str(PIDType) + "',pIDNo = '" + str(PIDNo) + "',pIDFrontFilename = '" + str(PIDFrontFilename) + "',pIDFrontFilepath = '" + str(PIDFrontPicPath) + "',pIDBackFilename = '" + str(PIDBackFilename) + "',pIDBackFilepath = '" + str(PIDBackPicPath) + "'"
+                        column = "name='" + str(name) + "', pIDType = '" + str(PIDType) + "',pIDNo = '" + str(PIDNo) + "',pIDFrontFilename = '" + str(PIDFrontFilename) + "',pIDFrontFilepath = '" + str(PIDFrontPicPath) + "',pIDBackFilename = '" + str(PIDBackFilename) + "',pIDBackFilepath = '" + str(PIDBackPicPath) + "'"
                         print(column,'column')
                         data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
                         print(data,'updatedata')
@@ -2762,7 +2762,7 @@ def updateDriver():
         # inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
 
-        commonfile.writeLog("addDriver",inputdata,0)
+        commonfile.writeLog("updateDriver",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         print(msg,'msg')
        
@@ -3009,6 +3009,41 @@ def updateDriver():
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
         return output
+
+
+
+
+
+@app.route('/deleteDriver', methods=['POST'])
+def deleteDriver():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['driverId']
+        print(inputdata,"B")
+        commonfile.writeLog("deleteDriver",inputdata,0)
+        print('C')
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg =="1":
+            
+            userId=inputdata["driverId"]
+            column="status=2"
+
+            WhereCondition = "  id = '" + str(userId) + "' "
+            data=databasefile.UpdateQuery("driverMaster",column,WhereCondition)
+           
+
+            if data != "0":
+                return data
+            else:
+                return commonfile.Errormessage()
+        else:
+            return msg
+
+    except Exception as e :
+        print("Exception--->" + str(e))                                  
+        return commonfile.Errormessage()
+
 
 
 
