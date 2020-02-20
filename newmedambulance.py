@@ -59,6 +59,14 @@ class JSONEncoder(json.JSONEncoder):
 geocoder = GoogleGeocoder("AIzaSyB0Pz6VjrQmWPCCbDbWDuyjo79GhDJPOlI")
 
 
+@app.route("/profilePic/<image_name>")
+def profilePic(image_name):
+    try:
+        return send_from_directory('profilePic', filename=image_name, as_attachment=False)
+    except FileNotFoundError:
+        abort(404)
+
+
 
 
 
