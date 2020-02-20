@@ -3043,6 +3043,7 @@ def deleteDriver():
            
 
             if data != "0":
+               {"status":"true","message":"Deleted Successfully","result":""}
                 return data
             else:
                 return commonfile.Errormessage()
