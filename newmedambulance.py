@@ -2747,8 +2747,9 @@ def updateStatus():
             print(data)
             if (data !=0):
                 if data[0]['status']==0:
+                    print('111111111111111111')
                     column="status='1'"
-                    whereCondition= "  id = " + (userId)+ " "
+                    whereCondition= "  id = " + str(userId)+ " "
                     output1=databasefile.UpdateQuery("driverMaster",column,whereCondition)
                     output=output1
                     if output!='0':
@@ -2759,7 +2760,7 @@ def updateStatus():
 
                 else:
                     column="status='0'"
-                    whereCondition= "  id = " + (userId)+ " "
+                    whereCondition= "  id = " + str(userId)+ " "
                     output1=databasefile.UpdateQuery("driverMaster",column,whereCondition)
                     output=output1    
                     if output!='0':
