@@ -2625,6 +2625,62 @@ def driverLeave():
 #         return output
 
 
+@app.route('/updateDriverStatus', methods=['POST'])
+def updateStatus():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['driverId']
+        print(inputdata,"B")
+        commonfile.writeLog("updateStatus",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg =="1":
+          
+            userId = int(inputdata["driverId"])
+           
+            column="status"
+            whereCondition= "  and id = '" + str(userId)+ "' "
+            data=databasefile.SelectQuery1("driverMaster",column,whereCondition)
+            if (data !=0):
+                if data['result'][0]['status']==0:
+                    column="status='1'"
+                    whereCondition= " and id = '" + str(userId)+ "' "
+                    output1=databasefile.UpdateQuery("driverMaster",column,whereCondition)
+                    output=output1
+                    if output!='0':
+                        Data = {"status":"true","message":"","result":output["result"]}                  
+                        return Data
+                    else:
+                        return commonfile.Errormessage() 
+
+                else:
+                    column="status='0'"
+                    whereCondition= " and id = '" + str(userId)+ "' "
+                    output1=databasefile.UpdateQuery("driverMaster",column,whereCondition)
+                    output=output1    
+                    if output!='0':
+                        Data = {"status":"true","message":"","result":output["result"]}                  
+                        return Data
+                    else:
+                        return commonfile.Errormessage()
+            else:
+                data={"result":"","status":"false","message":"No Data Found"}
+                return data
+        else:
+            return msg         
+ 
+    except KeyError :
+        print("Key Exception---->")   
+        output = {"result":"key error","status":"false"}
+        return output  
+
+    except Exception as e :
+        print("Exceptio`121QWAaUJIHUJG n---->" +str(e))    
+        output = {"result":"somthing went wrong","status":"false"}
+        return output
+
+
+
 
 
 
