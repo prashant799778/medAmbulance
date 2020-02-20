@@ -1017,7 +1017,7 @@ def alldrivers():
                     ambulanceId1=data['result'][0]['ambulanceId']
                     d1=data['result'][0]['driverId']
                     print(ambulanceId1)
-                    columns2="(concat('"+ ConstantData.GetBaseURL() + "',am.ambulanceFilepath)ambulanceFilepath,am.ambulanceTypeId,um.email,am.ambulanceModeId,am.ambulanceFilename,atm.ambulanceType  as ambulanceType,AM.ambulanceType  as category,am.ambulanceRegistrationFuel as fuelType,am.color,am.transportModel,am.transportType"
+                    columns2=" am.ambulanceTypeId,(concat('"+ ConstantData.GetBaseURL() + "',am.ambulanceFilepath)ambulanceFilepath,um.email,am.ambulanceModeId,am.ambulanceFilename,atm.ambulanceType  as ambulanceType,AM.ambulanceType  as category,am.ambulanceRegistrationFuel as fuelType,am.color,am.transportModel,am.transportType"
                     whereCondition222="  am.ambulanceId=ars.ambulanceId and atm.id=am.ambulanceTypeId and AM.id=am.ambulanceModeId and am.ambulanceId="+str(ambulanceId1)+ ""
                     data111=databasefile.SelectQuery('ambulanceMaster as am,ambulanceRideStatus as ars,ambulanceTypeMaster as atm,userMaster um,ambulanceMode as AM',columns2,whereCondition222)
                     y2=data111['result']
