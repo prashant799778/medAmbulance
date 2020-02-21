@@ -2109,15 +2109,17 @@ def allHospital1():
                 b=[]
                 for i in data:
                     hospital_Id=i['id']
-                    column="ambulance_Id as ambulanceId"
+                    column="ambulance_Id as ambulanceId,hospital_Id"
                     whereCondition=" hospital_Id=  '" + str(hospital_Id) + "' "
                     data1=databasefile.SelectQuery1('hospitalambulanceMapping',column,whereCondition)
+
                     print(data1,'aaaaaaaaaaaaaaaaaaa')
 
-                    # for j in data1:
-                    #     a_id=j['ambulanceId']
-                    #     a.append(a_id)
-                    #     i['ambulanceId']=a
+                    for j in data1:
+                        if j['hospital_Id'] == hospital_Id:
+                            a_id=j['ambulanceId']
+                            a.append(a_id)
+                            i['ambulanceId']=a
 
                     # print(data1)
 
