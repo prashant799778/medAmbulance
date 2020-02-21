@@ -2398,7 +2398,7 @@ def getNearAmbulancetest():
             orderby="  distance "
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d,ambulanceRideStatus as b",column,whereCondition,"",orderby,"","")
             print("nearByAmbulance================================",nearByAmbulance)
-            nearByAmbulance["ambulanceTypeId"]=list(set([i["ambulanceTypeId"] for i in a["result"]]))
+            nearByAmbulance["ambulanceTypeId"]=list(set([i["ambulanceTypeId"] for i in nearByAmbulance["result"]]))
             if (nearByAmbulance!=0):   
                 #for i in nearByAmbulance["result"]: 
                     # topic=str(nearByAmbulance["result"][i]["ambulanceId"])+"/booking"
