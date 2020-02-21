@@ -2117,11 +2117,15 @@ def allHospital1():
                     print(data1,'aaaaaaaaaaaaaaaaaaa')
 
                     for j in data1:
+                        d=""
                         if j['hospitalId'] == hospital_Id:
                             a_id=j['ambulanceId']
+                            a=[]
+                            d+=j['ambulanceType']+","
                             a.append(a_id)
                             j['ambulanceId']=a
-                    i['ambulanceId']=j['ambulanceId']        
+                    i['ambulanceId']=j['ambulanceId']
+                    i['ambulanceType']=d        
 
                     # print(data1)
 
