@@ -2129,7 +2129,8 @@ def allHospital1():
                             i['ambulanceId']=a
                             y=len(a)
                             if y != 1:
-                                d+=j['ambulanceType']+","
+                                j['ambulanceType']+=","
+                                d=j['ambulanceType']
                             else:
                                 d=j['ambulanceType']
                     # i['ambulanceId']=j['ambulanceId']
