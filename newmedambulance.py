@@ -2133,7 +2133,26 @@ def allHospital1():
                             else:
                                 d=j['ambulanceType']
                     # i['ambulanceId']=j['ambulanceId']
-                    i['ambulanceType']=d        
+                    i['ambulanceType']=d
+
+
+                    column=" hfm.hospitalId,hfm.facilityId as facilityId,fm.name as facilityName"
+                    whereCondition2="hfm.hospitalId= '" + str(hospital_Id) + "' and fm.id=hfm.facilityId"
+                    data2= databasefile.SelectQuery1('hospitalambulanceMapping as hma,ambulanceTypeMaster as am',column,whereCondition)
+                    g=[]
+                    h=""
+                    for k in data2:
+                        if k['hospitalId'] == hospital_Id:
+                            g.append(k['facilityId'])
+                            i['facilityId']=g
+                            y2=len(g)
+                            if y2!=1:
+                                h+=","+k['facilityName']
+                            else:
+                                h=k['facilityName']
+                    i['facilityName']= h           
+
+
 
                     # print(data1)
 
