@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { AppSettings } from '../utils/constant';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +15,11 @@ export class DashboardComponent implements OnInit {
 	cancelTrip: any
 	newUsers: any
 	totalEarning: any
-	constructor(public userService: UserService) { }
+	loader: boolean;
+	constructor(public userService: UserService,
+				public router: Router) {
+					this.loader = true;
+				}
 
 	ngOnInit() {
 		let data = {
@@ -30,6 +35,7 @@ export class DashboardComponent implements OnInit {
 				this.newUsers = resp['result']['dashboard'].newsUsers
 				this.totalEarning = resp['result']['dashboard'].totalEarning
 				console.log(this.driverData)
+				this.loader = false;
 			}
 		})
 		// this.driverData = [
@@ -96,5 +102,9 @@ export class DashboardComponent implements OnInit {
 	// 	}
 
 	// }
+	editDriver(id,view){
+		console.log(id)
+		this.router.navigate(['/driver/editDriver'],{queryParams: {driverId : id, view: view}})
+	}
 
 }
