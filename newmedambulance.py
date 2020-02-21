@@ -946,7 +946,30 @@ def facilityMaster():
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
-        return output                        
+        return output
+
+
+
+@app.route('/cityMaster', methods=['GET'])
+def cityMaster():
+    try:
+        msg = "1"
+        if msg=="1":
+            column="id ,name"
+            whereCondition=""
+            data=databasefile.SelectQuery1("cityMaster",column,whereCondition)
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
+        else:
+            return msg
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output                                  
 
 
 
@@ -1146,6 +1169,8 @@ def addhospital():
 
             longitude=inputdata['lng']
 
+            city=inputdata['cityId']
+
             column=" id "
             whereCondition= "hospitalName='"+str(hospitalName)+ "'"
             data= databasefile.SelectQuery("hospitalMaster",column,whereCondition)
@@ -1174,8 +1199,8 @@ def addhospital():
                 print(ambulanceId1,'ambulance')
 
 
-                column='address,lat,lng,hospitalId'
-                values="'"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"','"+str(mainId)+"'"
+                column='address,lat,lng,hospitalId,cityId'
+                values="'"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"','"+str(mainId)+"','"+str(city)+"'"
                 insertdata=databasefile.InsertQuery("hospitalLocationMaster",column,values)
                 for i in ambulanceId1:
 
@@ -1216,8 +1241,8 @@ def addhospital():
                 whereCondition222=" hospitalId='"+str(hospitalId)+"' and address='"+str(address)+"' and lat='"+str(latitude)+"' and lng= '"+str(longitude)+"'  "
                 data=databasefile.SelectQuery('hospitalLocationMaster',column,whereCondition222)
                 if data['status'] == 'false':
-                    column='address,lat,lng,hospitalId'
-                    values="'"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"','"+str(hospitalId)+"'"
+                    column='address,lat,lng,hospitalId,city'
+                    values="'"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"','"+str(hospitalId)+"','"+str(city)+"'"
                     insertdata=databasefile.InsertQuery("hospitalLocationMaster",column,values)
 
                 for i in ambulanceId:
