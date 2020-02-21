@@ -2397,7 +2397,7 @@ def getNearAmbulancetest():
             whereCondition= " and b.onTrip=0 and b.onDuty=1 and a.driverId=d.id  and b.ambulanceId=a.ambulanceId HAVING distance < 25 "
             orderby="  distance "
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d,ambulanceRideStatus as b",column,whereCondition,"",orderby,"","")
-            print(nearByAmbulance)
+            print("nearByAmbulance================================",nearByAmbulance)
             if (nearByAmbulance!=0):   
                 #for i in nearByAmbulance["result"]: 
                     # topic=str(nearByAmbulance["result"][i]["ambulanceId"])+"/booking"
