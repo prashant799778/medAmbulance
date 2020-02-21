@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { AppSettings } from '../utils/constant';
 import { Router } from '@angular/router';
+declare var jQuery: any;
 
 @Component({
   selector: 'app-dashboard',
@@ -11,11 +12,15 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
 	reviewData = []
 	driverData = []
+	driverID: any;
 	bookedTrip: any
 	cancelTrip: any
 	newUsers: any
 	totalEarning: any
 	loader: boolean;
+	activatedds: boolean;
+	errorMessage: any;
+	messageShow: any;
 	constructor(public userService: UserService,
 				public router: Router) {
 					this.loader = true;
@@ -105,6 +110,51 @@ export class DashboardComponent implements OnInit {
 	editDriver(id,view){
 		console.log(id)
 		this.router.navigate(['/driver/editDriver'],{queryParams: {driverId : id, view: view}})
+	}
+
+	verifiedDriver(id){
+		this.driverID = id;
+		jQuery('#verifiyModalD').modal('show')
+	}
+	closeModal(){
+		jQuery('#verifiyModalD').modal('hide')
+	}
+	VerifyDriver(){
+		this.loader = true;
+		let data = {
+			'driverId': this.driverID
+		}
+		this.userService.dataPostApi(data,AppSettings.updateDriverStatus).then(resp=>{
+			if(resp['status'] == 'true'){
+				let data = {
+					'startLimit': 0,
+					'endLimit': 10
+				}
+				this.userService.dataPostApi(data,AppSettings.dashboard).then(resp=>{
+					if(resp['status'] == 'true'){
+				
+						this.errorMessage = false;
+						this.driverData = resp['result']['driverDetails']
+				this.bookedTrip = resp['result']['dashboard'].bookedTripCount
+				this.cancelTrip = resp['result']['dashboard'].cancelledTripCount
+				this.newUsers = resp['result']['dashboard'].newsUsers
+				this.totalEarning = resp['result']['dashboard'].totalEarning
+						this.loader = false;
+					}else{
+							this.errorMessage = true;
+							this.messageShow = resp['message']
+							this.loader = false;
+					}		
+				})
+				this.activatedds = true;
+				setTimeout(() => {
+					jQuery('#verifiyModalD').modal('hide')
+					setTimeout(()=>{
+						this.activatedds = false;
+					},1000)
+				}, 2000);
+			}
+		})
 	}
 
 }

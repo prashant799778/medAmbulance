@@ -20,4 +20,19 @@
 /* .record-box .table thead tr th {
     padding: 10px !important;
 } */
-
+.child-success {
+    display: inline-block;
+}
+.child-success img {
+    width: 57px;
+}
+.child-success h2 {
+    font-size: 2rem;
+    margin-bottom: 0;
+    position: relative;
+    top: 5px;
+    left:1rem;
+}
+.verify-button{
+    cursor: pointer;
+}
