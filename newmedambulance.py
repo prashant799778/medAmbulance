@@ -2383,7 +2383,7 @@ def trackRider():
 
 
 
-@app.route('/getNearAmbulancetest', methods=['POST'])
+@app.route('/getNearAmbulance', methods=['POST'])
 def getNearAmbulancetest():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
