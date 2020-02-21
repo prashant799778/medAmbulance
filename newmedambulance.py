@@ -2672,22 +2672,64 @@ def dashboard():
                     driverId =int(inputdata["driverId"])
                     WhereCondition = WhereCondition + " and dm.id= "+str(driverId)+ " "
 
-            column="dm.name,dm.mobileNo,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.id as driverId"
-            whereCondition=" and dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId " + WhereCondition
-            data=databasefile.SelectQueryOrderby("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit,orderby)
+            column="dm.name,dm.mobileNo,dm.profilePic,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.id as driverId"
+            whereCondition=" and dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " + WhereCondition
+            data=databasefile.SelectQuery2("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit)
+            print(data)
 
-           
-
-            whereCondition2392="  and bm.status=3  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
+            whereCondition2392="   bm.status=3  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
             column2392="count(*) as count"
             cancelledTrip=databasefile.SelectQuery1("bookAmbulance as bm,userMaster as um,driverMaster as dm",columns2392,whereCondition2392)
             if (cancelledTrip!=0):
-                y={'a':1}
+                y=cancelledTrip[0]['count']
 
 
             else:
-                y={'cancelledTrip':0}
+                y=0
+
+            whereCondition23921="   bm.status=0  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
+
+            column23921="count(*) as count"
+            bookedTrip=databasefile.SelectQuery1("bookAmbulance as bm,userMaster as um,driverMaster as dm",columns23921,whereCondition23921)
+            if (bookedTrip!=0):
+                y2=bookedTrip[0]['count']
+
+
+            else:
+                y2=0  
+
+            
+
+            whereCondition239212="  "
+            y3=0
+
+            column239212="finalAmount"
+            bookedTrip1=databasefile.SelectQuery1("bookAmbulance ",columns239212,whereCondition239212)
+            if (bookedTrip1!=0):
+                for in bookedTrip1:
+                    y3+=i['finalAmount']
+
+
+            else:
+                y3=0  
+
+            
+
+            whereCondition239214="   usertypeId='2' "
+
+            column239214="count(*) as count"
+            bookedTrip2=databasefile.SelectQuery1("userMaster",columns239214,whereCondition239214)
+            if (bookedTrip2!=0):
+                y4=bookedTrip2[0]['count']
+
+
+            else:
+                y4=0       
+
+            
+            
+           
 
             
             if (data!=0):
@@ -2695,6 +2737,10 @@ def dashboard():
                 if y2 ==1:
                     print('111111111111111')
                     ambulanceId1=data['result'][0]['ambulanceId']
+
+                    if data['result'][0]["profilePic"]==None:
+                        data['result'][0]["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/profilePic.jpg" 
+
                     d1=data['result'][0]['driverId']
                     print(ambulanceId1)
                     columns2="am.ambulanceFilepath,am.ambulanceTypeId,um.email,am.ambulanceModeId,am.ambulanceFilename,atm.ambulanceType  as ambulanceType,AM.ambulanceType  as category,am.ambulanceRegistrationFuel as fuelType,am.color,am.transportModel,am.transportType"
@@ -2709,11 +2755,15 @@ def dashboard():
                     data['result'][0].update(y2)
                     data['result'][0].update(y3)
 
-                    Data = {"result":{"driverDetails":data['result'],"dashboard":{},"userReviews":"No data Available"},"status":"true","message":""}
+                    Data = {"result":data['result'],"status":"true","message":""}
                     return Data
 
                 else:
                     for i in data['result']:
+                        if i["profilePic"]==None:
+                            print('1111111111111111111')
+                            i["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/profilePic.jpg"  
+                        
                         ambulanceId2= i['ambulanceId']
                         columns99="count(*) as count"
                         whereCondition88= " ambulanceId='"+str(ambulanceId2)+ "'"
@@ -2724,7 +2774,7 @@ def dashboard():
                             tripcount=data122['result']['count']
                             i['tripCount']=tripcount
 
-                    Data = {"result":data['result'],"status":"true","message":""}
+                    Data = {"result":{"driverDetails":data['result'],"dashboard":{"cancelledTripCount":y,"bookedTripCount":y2,"totalEarning":y3,"newsUsers":y4},"userReviews":"No data Available"},"status":"true","message":""}
                     return Data
             else:
                 output = {"message":"No Data Found","status":"false","result":""}
