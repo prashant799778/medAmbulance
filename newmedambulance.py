@@ -2027,7 +2027,7 @@ def addpaymentType():
 
 
 
-@app.route('/allHospital', methods=['POST'])
+@app.route('/allHospital1', methods=['POST'])
 def allHospital():
     try:
         msg="1"
@@ -2078,7 +2078,7 @@ def allHospital():
 
 
 
-@app.route('/allHospital1', methods=['POST'])
+@app.route('/allHospital', methods=['POST'])
 def allHospital1():
     try:
         msg="1"
@@ -2087,13 +2087,13 @@ def allHospital1():
             whereCondition=""
             whereCondition2=""
             inputdata =  commonfile.DecodeInputdata(request.get_data())  
-            if "startlimit" in inputdata:
-                if inputdata['startlimit'] != "":
-                    startlimit =str(inputdata["startlimit"])
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
                 
-            if "endlimit" in inputdata:
-                if inputdata['endlimit'] != "":
-                    endlimit =str(inputdata["endlimit"])
+            if "endLimit" in inputdata:
+                if inputdata['endLimit'] != "":
+                    endlimit =str(inputdata["endLimit"])
             if 'ambulanceTypeId' in inputdata:
                 ambulanceType=int(inputdata["ambulanceTypeId"])
                 whereCondition=" and am.id   = '" + str(ambulanceType) + "'  "
@@ -2104,7 +2104,7 @@ def allHospital1():
 
             column= "hosp.id,hosp.hospitalName,hl.address,hl.lat,hl.lng"   
             WhereCondition=  " hl.hospitalId=hosp.id"
-            data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalLocationMaster as hl",column,WhereCondition)
+            data=databasefile.SelectQuery2("hospitalMaster as hosp,hospitalLocationMaster as hl",column,WhereCondition,"",startlimit,endlimit)
             if (data!=0): 
                 a=[]
                 b=[]
