@@ -64,5 +64,20 @@ export class AppComponent {
 				}
 			})
 		}
+		if(dataName == 'Hospital'){
+			let data = {
+				'id': this.userService.deletDataId
+			}
+			this.userService.dataPostApi(data,AppSettings.deleteHospital).then(resp=>{
+				if(resp['status'] == 'true'){
+					this.activatedds = true;
+					this.userService.EmitEvnt(dataName);
+					
+					setTimeout(()=>{
+						jQuery('#deleteModal').modal('hide')
+					},2000)
+				}
+			})
+		}
 	}
 }

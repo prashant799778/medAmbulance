@@ -44,7 +44,7 @@ export class AppSettings {
     public static updateDriverStatus = 'updateDriverStatus';
     public static dashboard = 'dashboard';
     public static facilityMaster = 'facilityMaster';
-    // public static getpromisingInitiatives = 'getpromisingInitiativesAdmin';
+    public static deleteHospital = 'deleteHospital';
     // public static getSignUpVideo = 'getSignUpVideoAdmin';
     // public static signUpVideo = 'signUpVideo';
     // public static deleteSignUpVideo = 'deleteSignUpVideo';

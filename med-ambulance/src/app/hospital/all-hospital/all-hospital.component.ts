@@ -21,7 +21,7 @@ export class AllHospitalComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.userService.driverEventEmit.subscribe(()=>{
+		this.userService.hospitalEventEmit.subscribe(()=>{
 			this.getDriverData()
 		})
 		this.getDriverData()
@@ -91,8 +91,8 @@ export class AllHospitalComponent implements OnInit {
 		console.log(id)
 		this.router.navigate(['/driver/editDriver'],{queryParams: {driverId : id, view: view}})
 	}
-	deleteDriver(id){
-		this.userService.deleteData('Driver',id)
+	deleteHospital(id){
+		this.userService.deleteData('Hospital',id)
 		
 		jQuery('#deleteModal').modal('show')
 	}

@@ -15,6 +15,7 @@ export class UserService {
 	deleteDataName: any;
 	deletDataId: any;
 	driverEventEmit = new EventEmitter<any>();
+	hospitalEventEmit = new EventEmitter<any>();
 	constructor(private http: HttpClient,
 				public local: LocalStorageService,
 				public session: SessionStorageService) { }
@@ -122,6 +123,8 @@ export class UserService {
 	EmitEvnt(dataName){
 		if(dataName == 'Driver'){
 			this.driverEventEmit.emit();
+		}else if(dataName == 'Hospital'){
+			this.hospitalEventEmit.emit();
 		}
 	}
 }

@@ -16,6 +16,7 @@
                                                 <th>No</th>
                                                 <th>Name</th>
                                                 <th>Ambulance Type</th>
+                                                <th>Facilities</th>
                                                 <th>Address</th>
                                                 <th>View</th>
                                                 <th>Action</th>
@@ -26,21 +27,22 @@
                                             
                                             <ng-container *ngIf="!loader">
                                                 <ng-container *ngIf="driverData && driverData.length > 0">
-                                                    <tr *ngFor="let driver of driverData ; let i =  index">
+                                                    <tr *ngFor="let hospital of driverData ; let i =  index">
                                                         <td>{{i+1}}</td>  
-                                                        <td>{{driver.hospitalName}}</td>
-                                                        <td>{{driver.ambulanceType}}</td>
-                                                        <td>{{driver.address}}</td>
+                                                        <td>{{hospital.hospitalName}}</td>
+                                                        <td>{{hospital.ambulanceType}}</td>
+                                                        <td>{{hospital.facilityName}}</td>
+                                                        <td>{{hospital.address}}</td>
                                                        
                                                         <td>
                                                             <div class="btn-edit-group">
-                                                                <button type="button" class="edit-btn" (click)="editDriver(driver.driverId, 'view')" >  <img src="../../../assets/images/edit-im.svg"></button>
+                                                                <button type="button" class="edit-btn" (click)="editDriver(hospital.driverId, 'view')" >  <img src="../../../assets/images/eye.svg"></button>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="btn-edit-group">
-                                                                <button type="button" class="edit-btn" (click)="editDriver(driver.driverId, null)" >  <img src="../../../assets/images/edit-im.svg"></button>
-                                                                <button type="button" class="delet-btn" (click)="deleteDriver(driver.driverId)">  <img src="../../../assets/images/bin.svg"></button>
+                                                                <button type="button" class="edit-btn" (click)="editDriver(hospital.driverId, null)" >  <img src="../../../assets/images/edit-im.svg"></button>
+                                                                <button type="button" class="delet-btn" (click)="deleteHospital(hospital.id)">  <img src="../../../assets/images/bin.svg"></button>
                                                             </div>
                                                         </td>
                                                     </tr>
