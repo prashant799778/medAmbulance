@@ -2119,7 +2119,8 @@ def allHospital1():
                         if j['hospital_Id'] == hospital_Id:
                             a_id=j['ambulanceId']
                             a.append(a_id)
-                            i['ambulanceId']=a
+                            j['ambulanceId']=a
+                    i['ambulanceId']=j['ambulanceId']        
 
                     # print(data1)
 
