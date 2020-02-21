@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { AppSettings } from 'src/app/utils/constant';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { IMyDpOptions } from 'mydatepicker';
 declare var jQuery: any;
 
 @Component({
@@ -10,91 +12,50 @@ declare var jQuery: any;
   styleUrls: ['./add-hospital.component.css']
 })
 export class AddHospitalComponent implements OnInit {
-	driverData= []
-	errorMessage: boolean
-	messageShow: any;
-	loader: boolean;
+	hospitalForm: FormGroup;
+	ambType = []
+	public myDatePickerOptions: IMyDpOptions = {
+		dateFormat: 'dd.mm.yyyy',
+	};
+	
 	constructor(public userService: UserService,
-				public router: Router) { 
-		this.errorMessage = false;
-		this.loader = true;
+				public fb: FormBuilder) { 
+		this.createTable()
+		this.getCategory()
 	}
 
 	ngOnInit() {
-		this.userService.driverEventEmit.subscribe(()=>{
-			this.getDriverData()
+
+	}
+	createTable(){
+		this.hospitalForm = this.fb.group({
+			ambType: [''],
+			name: [''],
+			address: ['']
+			
 		})
-		this.getDriverData()
 	}
 
-	getDriverData(){
-		let data = {
-			'startLimit': 0,
-			'endLimit': 10
-		}
-		this.userService.dataPostApi(data,AppSettings.allHospital).then(resp=>{
-			if(resp['status'] == 'true'){
-				
-				this.errorMessage = false;
-				this.driverData = resp['result']
-				this.loader = false;
-			}else{
-					this.errorMessage = true;
-					this.messageShow = resp['message']
-					this.loader = false;
-				// 	this.driverData = [
-				// 	{	'name':'Vijay Pal',
-				// 		'mobileNo': 8888517655,
-				// 		'email': 'vijay@gmail.com',
-				// 		'currentLocation': 'Noida UP-87',
-				// 		'wallet': 100,
-				// 		'dateCreate': '02/10/2015',
-				// 		'tripCount': 10,
-				// 		'status': 1
-				// 	},
-				// 	{	'name':'Vijay Pal',
-				// 		'mobileNo': 8888517655,
-				// 		'email': 'vijay@gmail.com',
-				// 		'currentLocation': 'Noida UP-87',
-				// 		'wallet': 100,
-				// 		'dateCreate': '02/10/2015',
-				// 		'tripCount': 10,
-				// 		'status': 0
-				// 	},
-				// 	{	'name':'Vijay Pal',
-				// 		'mobileNo': 8888517655,
-				// 		'email': 'vijay@gmail.com',
-				// 		'currentLocation': 'Noida UP-87',
-				// 		'wallet': 100,
-				// 		'dateCreate': '02/10/2015',
-				// 		'tripCount': 10,
-				// 		'status': 2
-				// 	}
-				// ]
-			}
+	resetForm(){
+		this.hospitalForm.reset();
+	}
+
+	submitData(){
+		// if(resp['status'] == 'true'){
+			console.log("modal")
+				jQuery('#mainModal').modal('show')
+				this.userService.messageValue('Hospital Inserted successfully')
+				setTimeout(() => {
+					jQuery('#mainModal').modal('hide')
+				}, 2000000000);
+		// }
+	}
+	getCategory(){
+		// this.userService.getApiData(AppSettings.selectambulanceMode).then(resp=>{
+		// 	this.ambCategory = resp['result'] 
+		// })
+		this.userService.getApiData(AppSettings.selectambulanceTypeMaster).then(resp=>{
+			this.ambType = resp['result']
 		})
-		
 	}
-
-	getStatus(status){
-		if(status == 0){
-			return 'ON TRIP'
-		}else if(status == 1){
-			return 'AVAILABLE'
-		}else if(status == 2){
-			return 'LEAVE'
-		}
-
-	}
-
-	editDriver(id,view){
-		console.log(id)
-		this.router.navigate(['/driver/editDriver'],{queryParams: {driverId : id, view: view}})
-	}
-	deleteDriver(id){
-		this.userService.deleteData('Driver',id)
-		
-		jQuery('#deleteModal').modal('show')
-	}
-
-}
+}	
