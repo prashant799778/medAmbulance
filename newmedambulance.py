@@ -2680,7 +2680,7 @@ def dashboard():
             whereCondition2392="   bm.status=3  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
             column2392="count(*) as count"
-            cancelledTrip=databasefile.SelectQuery1("bookAmbulance as bm,userMaster as um,driverMaster as dm",columns2392,whereCondition2392)
+            cancelledTrip=databasefile.SelectQuery1("bookAmbulance as bm,userMaster as um,driverMaster as dm",column2392,whereCondition2392)
             if (cancelledTrip!=0):
                 y=cancelledTrip[0]['count']
 
@@ -2691,7 +2691,7 @@ def dashboard():
             whereCondition23921="   bm.status=0  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
             column23921="count(*) as count"
-            bookedTrip=databasefile.SelectQuery1("bookAmbulance as bm,userMaster as um,driverMaster as dm",columns23921,whereCondition23921)
+            bookedTrip=databasefile.SelectQuery1("bookAmbulance as bm,userMaster as um,driverMaster as dm",column23921,whereCondition23921)
             if (bookedTrip!=0):
                 y2=bookedTrip[0]['count']
 
@@ -2705,7 +2705,7 @@ def dashboard():
             y3=0
 
             column239212="finalAmount"
-            bookedTrip1=databasefile.SelectQuery1("bookAmbulance ",columns239212,whereCondition239212)
+            bookedTrip1=databasefile.SelectQuery1("bookAmbulance ",column239212,whereCondition239212)
             if (bookedTrip1!=0):
                 for i in bookedTrip1:
                     y3+=i['finalAmount']
@@ -2719,7 +2719,7 @@ def dashboard():
             whereCondition239214="   usertypeId='2' "
 
             column239214="count(*) as count"
-            bookedTrip2=databasefile.SelectQuery1("userMaster",columns239214,whereCondition239214)
+            bookedTrip2=databasefile.SelectQuery1("userMaster",column239214,whereCondition239214)
             if (bookedTrip2!=0):
                 y4=bookedTrip2[0]['count']
 
