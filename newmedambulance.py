@@ -2388,7 +2388,7 @@ def getNearAmbulancetest():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ['startLocationLat','startLocationLong','userId','ambulanceTypeId']
+        keyarr = ['startLocationLat','startLocationLong']
         commonfile.writeLog("getNearAmbulance",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
