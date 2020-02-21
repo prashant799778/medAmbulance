@@ -1140,6 +1140,7 @@ def addhospital():
             address = commonfile.EscapeSpecialChar(inputdata["address"])
             ambulanceId = inputdata["ambulanceId"]
             facility=inputdata['facilityId']
+            print(facility,"++++++++++++++++++++++++++++++++++++++++++")
             
             latitude=inputdata['lat']
 
@@ -1169,7 +1170,7 @@ def addhospital():
                 
                 print(mainId,'mainId')
                 ambulanceId1 = ambulanceId
-                facilityId1=facilityId
+                facilityId1=facility
                 print(ambulanceId1,'ambulance')
 
 
