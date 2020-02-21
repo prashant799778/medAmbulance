@@ -2122,7 +2122,7 @@ def allHospital1():
 
 
 
-                Data = {"result":data,"status":"true"}
+                Data = {"result":a,"status":"true"}
                 return Data
             else:
                 print("ssssssssssss")
