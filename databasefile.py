@@ -88,6 +88,37 @@ def SelectQuery1(table,columns,whereCondition):
         return "0"
 
 
+
+def SelectQuery14(table,columns,whereCondition):
+    try:
+       
+        
+        if whereCondition != "":
+            whereCondition = " where 1=1  " + whereCondition
+        
+        
+       
+                
+        query = " select " + columns + " from " + table + " " + whereCondition  + "  ;"
+
+        print(query)
+        conn = Connection()      
+        cursor = conn.cursor()
+        cursor.execute(query)
+        data = cursor.fetchall()
+        cursor.close()
+      
+        if data:
+            return data
+        else:
+            data=0
+            return data
+
+    except Exception as e:
+        print("Error--->" + str(e))            
+        return "0"        
+
+
 def SelectQuery2(table,columns,whereCondition,groupby,startlimit,endlimit):
     try:
         limitCondition= ""

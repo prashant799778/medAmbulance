@@ -2705,7 +2705,7 @@ def dashboard():
             y3=0
 
             column239212="finalAmount"
-            bookedTrip1=databasefile.SelectQuery1("bookAmbulance ",column239212,whereCondition239212)
+            bookedTrip1=databasefile.SelectQuery4("bookAmbulance ",column239212,whereCondition239212)
             if (bookedTrip1!=0):
                 for i in bookedTrip1:
                     y3+=i['finalAmount']
