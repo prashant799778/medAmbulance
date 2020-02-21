@@ -1170,6 +1170,7 @@ def addhospital():
             longitude=inputdata['lng']
 
             city=inputdata['cityId']
+            print(city)
 
             column=" id "
             whereCondition= "hospitalName='"+str(hospitalName)+ "'"
