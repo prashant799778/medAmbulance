@@ -2110,10 +2110,9 @@ def allHospital1():
                 print(data,"------------------------------------------12222222222222")
                 for i in data:
                     print(i,"-----------------------------------------------")
-                    for i in a:
-                        if i['id'] not in a:
-                            a.append(i)
-                            print(a,"qqqqqqqqqqqqqqqqqqqqq")
+                    if i['id'] not in a:
+                        a.append(i)
+                        print(a,"qqqqqqqqqqqqqqqqqqqqq")
 
                     # c=i['aId']
                     # print(c)
