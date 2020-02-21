@@ -3604,6 +3604,41 @@ def deleteDriver():
 
 
 
+@app.route('/deleteHospital', methods=['POST'])
+def deleteHospital():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['id']
+        print(inputdata,"B")
+        commonfile.writeLog("deleteHospital",inputdata,0)
+        print('C')
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg =="1":
+            
+            userId=int(inputdata["id"])
+            column="status=2"
+
+            WhereCondition = "  id = " + str(userId) + " "
+            data=databasefile.UpdateQuery("hospitalMaster",column,WhereCondition)
+           
+
+            if data != "0":
+                data= {"status":"true","message":"Deleted Successfully","result":""}
+                return data
+            else:
+                return commonfile.Errormessage()
+        else:
+            return msg
+
+    except Exception as e :
+        print("Exception--->" + str(e))                                  
+        return commonfile.Errormessage()
+
+
+
+
+
 
 
 
