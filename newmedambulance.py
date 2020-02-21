@@ -2709,6 +2709,7 @@ def dashboard():
             if (bookedTrip1!=0):
                 for i in bookedTrip1:
                     y3+=i['finalAmount']
+                    print(i['finalAmount'])
 
 
             else:
