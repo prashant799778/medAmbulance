@@ -946,7 +946,30 @@ def facilityMaster():
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
-        return output                        
+        return output
+
+
+
+@app.route('/cityMaster', methods=['GET'])
+def cityMaster():
+    try:
+        msg = "1"
+        if msg=="1":
+            column="id ,name"
+            whereCondition=""
+            data=databasefile.SelectQuery1("cityMaster",column,whereCondition)
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
+        else:
+            return msg
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output                                  
 
 
 
@@ -1146,6 +1169,9 @@ def addhospital():
 
             longitude=inputdata['lng']
 
+            city=inputdata['cityId']
+            print(city)
+
             column=" id "
             whereCondition= "hospitalName='"+str(hospitalName)+ "'"
             data= databasefile.SelectQuery("hospitalMaster",column,whereCondition)
@@ -1174,8 +1200,8 @@ def addhospital():
                 print(ambulanceId1,'ambulance')
 
 
-                column='address,lat,lng,hospitalId'
-                values="'"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"','"+str(mainId)+"'"
+                column='address,lat,lng,hospitalId,cityId'
+                values="'"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"','"+str(mainId)+"','"+str(city)+"'"
                 insertdata=databasefile.InsertQuery("hospitalLocationMaster",column,values)
                 for i in ambulanceId1:
 
@@ -1216,8 +1242,8 @@ def addhospital():
                 whereCondition222=" hospitalId='"+str(hospitalId)+"' and address='"+str(address)+"' and lat='"+str(latitude)+"' and lng= '"+str(longitude)+"'  "
                 data=databasefile.SelectQuery('hospitalLocationMaster',column,whereCondition222)
                 if data['status'] == 'false':
-                    column='address,lat,lng,hospitalId'
-                    values="'"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"','"+str(hospitalId)+"'"
+                    column='address,lat,lng,hospitalId,city'
+                    values="'"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"','"+str(hospitalId)+"','"+str(city)+"'"
                     insertdata=databasefile.InsertQuery("hospitalLocationMaster",column,values)
 
                 for i in ambulanceId:
@@ -2087,6 +2113,7 @@ def allHospital1():
             ambulanceType=""
             whereCondition=""
             whereCondition2=""
+            whereCondition3=""
             inputdata =  commonfile.DecodeInputdata(request.get_data())  
             if "startLimit" in inputdata:
                 if inputdata['startLimit'] != "":
@@ -2101,11 +2128,15 @@ def allHospital1():
 
             if 'id' in inputdata:
                 Id=int(inputdata["id"])
-                whereCondition2=" and  hosp.id  = '" + str(Id) + "'  "    
+                whereCondition2=" and  hosp.id  = '" + str(Id) + "'  "
 
-            column= "hosp.id,hosp.hospitalName,hl.address,hl.lat,hl.lng"   
-            WhereCondition=  " hl.hospitalId=hosp.id and hosp.status<>'2' "+whereCondition2
-            data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalLocationMaster as hl",column,WhereCondition)
+            if 'city' in inputdata:
+                city=str(inputdata["id"])
+                whereCondition3=" and  cm.name  = '" + str(city) + "'  "            
+
+            column= "hosp.id,hosp.hospitalName,hl.address,hl.lat,hl.lng,cm.name as city"   
+            WhereCondition=  " hl.hospitalId=hosp.id and hosp.status<>'2' and hl.cityId=cm.id "+whereCondition2+whereCondition3
+            data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalLocationMaster as hl,cityMaster as cm",column,WhereCondition)
             if (data!=0): 
                 a=[]
                 b=[]
