@@ -2107,9 +2107,8 @@ def allHospital1():
             if (data!=0): 
                 a=[]
                 b=[]
-                print(data,"------------------------------------------12222222222222")
                 for i in data:
-                    print(i,"-----------------------------------------------")
+                    print(i['id'],"-----------------------------------------------")
                     if i['id'] not in a:
                         a.append(i)
                         print(a,"qqqqqqqqqqqqqqqqqqqqq")
