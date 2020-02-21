@@ -2708,7 +2708,7 @@ def dashboard():
             bookedTrip1=databasefile.SelectQuery4("bookAmbulance ",column239212,whereCondition239212)
             if (bookedTrip1!=0):
                 for i in bookedTrip1:
-                    y3+=i['finalAmount']
+                    y3+=int(i['finalAmount'])
                     print(i['finalAmount'])
 
 
