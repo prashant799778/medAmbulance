@@ -924,7 +924,29 @@ def proofIdentityMaster():
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
-        return output           
+        return output 
+
+
+@app.route('/facilityMaster', methods=['GET'])
+def facilityMaster():
+    try:
+        msg = "1"
+        if msg=="1":
+            column="id ,name"
+            whereCondition=""
+            data=databasefile.SelectQuery1("facilityMaster",column,whereCondition)
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
+        else:
+            return msg
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output                        
 
 
 
