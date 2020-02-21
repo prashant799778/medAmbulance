@@ -1200,7 +1200,7 @@ def addhospital():
                     userHospitalMappingdata = databasefile.SelectQuery1("hospitalFacilityMapping ",column,whereCondition)
                     print(userHospitalMappingdata,'lets see')
                     if userHospitalMappingdata==0:
-                        print('CC')
+                        print('CCcccccccccccccccccccccccccccccccccccccccc')
                         column="hospitalId,facilityId"
                         values="'"+str(mainId)+"','"+str(i)+"'"
                         insertdata=databasefile.InsertQuery("hospitalFacilityMapping",column,values)                
