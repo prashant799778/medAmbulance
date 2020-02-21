@@ -57,7 +57,7 @@ export class EditDriverComponent implements OnInit {
 			}else{
 				this.views = true;
 				this.viewEdit = 'Edit'
-				this.disableForms()
+				this.disableForm()
 			}
 			let data = {
 				'driverId': this.driverId
@@ -96,16 +96,20 @@ export class EditDriverComponent implements OnInit {
 			ambulanceFilepath: [''],
 			ambulanceFilename: [''],
 		})
-		this.driverForm.get('status').valueChanges.subscribe(value=>{
-			
-			if(value){
-				
-					jQuery('#verifiyModal').modal('show')
+		// this.driverForm.get('status').valueChanges.subscribe(value=>{
+		// 	console.log(value)
+		// 	if(value ){
+		// 		console.log(value)
+		// 		if(this.counter > 0){
+		// 			jQuery('#verifiyModal').modal('show')
+		// 		}
+		// 		this.counter++;	
 					
 				
-			}
+		// 	}
 			
-		})
+			
+		// })
 	}
 	setData(resp){
 		this.driverForm.get('name').setValue(resp['result'][0].name)
@@ -160,10 +164,7 @@ export class EditDriverComponent implements OnInit {
 	disableForm(){
 		this.driverForm.disable();
 	}
-	disableForms(){
-		this.driverForm.disable();
-		this.driverForm.get('status').enable()
-	}
+	
 	getCategory(){
 		this.userService.getApiData(AppSettings.selectambulanceMode).then(resp=>{
 			this.ambCategory = resp['result'] 
@@ -178,29 +179,32 @@ export class EditDriverComponent implements OnInit {
 		this.userService.imagePath(imgPath)
 		jQuery('#zoomImageModal').modal('show')
 	}
-	VerifyDriver(){
-		let data = {
-			'driverId': this.driverId
-		}
-		this.userService.dataPostApi(data,AppSettings.updateDriverStatus).then(resp=>{
-			if(resp['status'] == 'true'){
-				let data = {
-					'driverId': this.driverId
-				}
-				this.userService.dataPostApi(data,AppSettings.alldriver).then(resp=>{
-					this.setData(resp)
-				})
-				this.activatedds = true;
-				setTimeout(() => {
-					jQuery('#verifiyModal').modal('hide')
-					setTimeout(()=>{
-						this.activatedds = false;
-					},1000)
-				}, 2000);
-			}
-		})
-	}
-	closeModal(){
-		jQuery('#verifiyModal').modal('hide')
-	}
+	// VerifyDriver(){
+	// 	let data = {
+	// 		'driverId': this.driverId
+	// 	}
+	// 	this.userService.dataPostApi(data,AppSettings.updateDriverStatus).then(resp=>{
+	// 		if(resp['status'] == 'true'){
+	// 			let data = {
+	// 				'driverId': this.driverId
+	// 			}
+	// 			this.userService.dataPostApi(data,AppSettings.alldriver).then(resp=>{
+	// 				this.setData(resp)
+	// 			})
+	// 			this.activatedds = true;
+	// 			setTimeout(() => {
+	// 				jQuery('#verifiyModal').modal('hide')
+	// 				setTimeout(()=>{
+	// 					this.activatedds = false;
+	// 				},1000)
+	// 			}, 2000);
+	// 		}
+	// 	})
+	// }
+	// VerifiedDriver(){
+	// 	jQuery('#verifiyModal').modal('show')
+	// }
+	// closeModal(){
+	// 	jQuery('#verifiyModal').modal('hide')
+	// }
 }	

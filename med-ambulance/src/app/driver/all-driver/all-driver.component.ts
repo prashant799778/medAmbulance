@@ -16,10 +16,13 @@ export class AllDriverComponent implements OnInit {
 	errorMessage: boolean
 	messageShow: any;
 	loader: boolean;
+	activatedds: boolean;
+	driverID: any;
 	constructor(public userService: UserService,
 				public router: Router) { 
 		this.errorMessage = false;
 		this.loader = true;
+		this.activatedds
 	}
 
 	ngOnInit() {
@@ -97,6 +100,44 @@ export class AllDriverComponent implements OnInit {
 		this.userService.deleteData('Driver',id)
 		
 		jQuery('#deleteModal').modal('show')
+	}
+
+
+	VerifyDriver(){
+		let data = {
+			'driverId': this.driverID
+		}
+		this.userService.dataPostApi(data,AppSettings.updateDriverStatus).then(resp=>{
+			if(resp['status'] == 'true'){
+				let data = {
+					'startLimit': 0,
+					'endLimit': 10
+				}
+				this.userService.dataPostApi(data,AppSettings.alldriver).then(resp=>{
+					if(resp['status'] == 'true'){
+				
+						this.errorMessage = false;
+						this.driverData = resp['result']
+						this.loader = false;
+					}else{
+							this.errorMessage = true;
+							this.messageShow = resp['message']
+							this.loader = false;
+					}		
+				})
+				this.activatedds = true;
+				setTimeout(() => {
+					jQuery('#verifiyModal').modal('hide')
+					setTimeout(()=>{
+						this.activatedds = false;
+					},1000)
+				}, 2000);
+			}
+		})
+	}
+	verifiedDriver(id){
+		this.driverID = id;
+		jQuery('#verifiyModal').modal('show')
 	}
 
 }

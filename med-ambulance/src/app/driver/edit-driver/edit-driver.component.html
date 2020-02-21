@@ -172,10 +172,10 @@
                                 
                         </div>
                         
-                        <div class="btnn-group text-center mb-3" *ngIf="views">
+                        <!-- <div class="btnn-group text-center mb-3" *ngIf="views">
                             <button type="button" class="sub-btn gp-btn-clr text-white">update</button>
                             <button type="button" class="sub-btn gp-btn-clr2 text-white">cancel</button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-12">
@@ -187,60 +187,4 @@
     </div>
 
 
-    <div class="modal fade" id="verifiyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                  <template>
-                    <div class="modal-header border-remo">
-                    <button type="button" class="close cl-img" data-dismiss="modal" aria-label="Close" (click)="closeMOdal()">
-                        <!-- <span aria-hidden="true">&times;</span> -->
-                        <img src="../../../assets/images/close-im.svg">
-                    </button>
-                    </div>
-                </template>
-                <div class="modal-body" *ngIf="!activatedds">
-                    <div class="inner-model-box same-margin" *ngIf="driverForm.get('status').value == 0">
-                        <div class="d-flex al-item">
-                            <img src="../../../assets/images/caution.svg" class="altr">
-                            <div class="dc-act">
-                                <h3>Not Verify Account</h3>
-                                <span >Are you sure you want to Not Verify ?</span>
-                            </div>
-                        </div>
-                        <div class="grp-btn text-center">
-                            <button *ngIf="driverForm.get('status').value == 0" (click)="closeModal()" class="mod-btn dc-bg-color-gray">Cancel</button>
-                            <button *ngIf="driverForm.get('status').value == 0" (click)="VerifyDriver()" class="mod-btn fill-back">Not Verify</button>
-                        </div>
-                        </div>
-                    <div class="inner-model-box" *ngIf="driverForm.get('status').value == 1">
-                            <div class="d-flex al-item">
-                                    <img src="../../../assets/images/caution-ac.svg" class="altr">
-                                    <div class="dc-act">
-                                        <h3>Verify Account</h3>
-                                        <span >Are you sure you want to Verify ?</span>
-                                    </div>
-                                </div>
-
-                                <div class="grp-btn text-center">
-                                        <button *ngIf="driverForm.get('status').value == 1" (click)="closeModal()" class="mod-btn dc-bg-color-gray">Cancel</button>
-                                        <button *ngIf="driverForm.get('status').value == 1" (click)="VerifyDriver()" class="mod-btn fill-back-ac">Verify</button>
-                                </div>
-                        </div>
-                    <!-- <h2>{{modalDescription}}</h2> -->
-                </div>
-                <div class="modal-body" *ngIf="activatedds">
-                        <!-- <span *ngIf="driverForm.get('status').value == 0">Are you what to sure Deactivated</span>
-                        <span *ngIf="driverForm.get('status').value == 1">Are you what to sure activated</span>
-                        <button *ngIf="driverForm.get('status').value == 0" (click)="ActiveStudent()">Deactivated</button>
-                        <button *ngIf="driverForm.get('status').value == 1" (click)="ActiveStudent()">Activated</button> -->
-                        <div class="success-parent">
-                        <div class="child-success"><img src="../../../assets/images/correct.svg"></div>
- 
-                         
-                        <div *ngIf="driverForm.get('status').value == 1" class="child-success"><h2> Verify Successfully</h2></div> 
-                        <div *ngIf="driverForm.get('status').value == 0" class="child-success"><h2> Not Verify Successfully</h2></div> 
-                    </div>
-                    </div>
-              </div>
-            </div>
-          </div>
+   

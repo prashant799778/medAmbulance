@@ -27,7 +27,7 @@
                         </div>
                         <div class="inner-content-section w-100 text-white">
                             <h2 class="info-title">Booked Trips</h2>
-                            <h2 class="count">450</h2>
+                            <h2 class="count">{{bookedTrip}}</h2>
                             <!-- <h2 class="percent-sect">60% Increase in 28 Days</h2> -->
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         </div>
                         <div class="inner-content-section w-100 text-white">
                             <h2 class="info-title">Cancelled Trip</h2>
-                            <h2 class="count">155</h2>
+                            <h2 class="count">{{cancelTrip}}</h2>
                             <!-- <h2 class="percent-sect">40% Increase in 28 Days</h2> -->
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                         </div>
                         <div class="inner-content-section w-100 text-white">
                             <h2 class="info-title">New Users</h2>
-                            <h2 class="count">52</h2>
+                            <h2 class="count">{{newUsers}}</h2>
                             <!-- <h2 class="percent-sect">80% Increase in 28 Days</h2> -->
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="inner-content-section w-100 text-white">
                             <h2 class="info-title">Total Earning</h2>
-                            <h2 class="count">13,921$</h2>
+                            <h2 class="count">{{totalEarning}}</h2>
                             <!-- <h2 class="percent-sect">60% Increase in 28 Days</h2> -->
                         </div>
                     </div>
@@ -107,8 +107,8 @@
                         <table class="table m-0">                               
                             <thead>
                                 <tr>
-                                        
                                         <th>No</th>
+                                        <th>Image</th>
                                         <th>Name</th>
                                         <th>Mobile</th>
                                         <th>Email</th>
@@ -116,33 +116,38 @@
                                         <th>Joining Date</th>
                                         <th>Trip</th>
                                         <th>Status</th>
-                                        <th>Action</th>
-                                        
+                                        <th>View</th>
+                                        <th>Action</th>    
                                 </tr>
                             </thead>
                             <tbody>
                                     <ng-container *ngIf="driverData && driverData.length > 0">
                                             <tr *ngFor="let driver of driverData ; let i =  index">
                                                 <td>{{i+1}}</td>  
+                                                <td><img [src]="driver.profilePic" class="al-img"></td>
                                                 <td>{{driver.name}}</td>
                                                 <td>{{driver.mobileNo}}</td>
                                                 <td>{{driver.email}}</td>
-                                                <td>{{driver.currentLocation}}</td>
-                                                <td>{{driver.dateCreate | date}}</td>
+                                                <td>{{driver.address}}</td>
+                                                <td>{{driver.joiningDate | date}}</td>
                                                 <td>{{driver.tripCount}}</td>
                                                 <td>
-                                                    <span *ngIf="driver.status == 0" class="stus lab-success">{{getStatus(driver.status)}}</span>
-                                                    <span *ngIf="driver.status == 1" class="stus lab-warning">{{getStatus(driver.status)}}</span>
-                                                    <span *ngIf="driver.status == 2" class="stus lab-danger">{{getStatus(driver.status)}}</span>
+                                                    <span *ngIf="driver.status == 1 " class="stus lab-success">Verified</span>
+                                                    <span (click)="verifiedDriver(driver.driverId)" *ngIf="driver.status == 0" class="stus lab-danger">Not Verified</span>
                                                 </td>
                                                 <td>
                                                     <div class="btn-edit-group">
-                                                        <button type="button" class="edit-btn" (click)="editNews(news.id)" >  <img src="../../../assets/images/edit-im.svg"></button>
-                                                        <button type="button" class="delet-btn" (click)="deleteNews(news.id)">  <img src="../../../assets/images/bin.svg"></button>
+                                                        <button type="button" class="edit-btn" (click)="editDriver(driver.driverId, 'view')" >  <img src="../../../assets/images/eye.svg"></button>
                                                     </div>
                                                 </td>
-                                                </tr>
-                                      </ng-container>
+                                                <td>
+                                                    <div class="btn-edit-group">
+                                                        <button type="button" class="edit-btn" (click)="editDriver(driver.driverId, null)" >  <img src="../../../assets/images/edit-im.svg"></button>
+                                                        <button type="button" class="delet-btn" (click)="deleteDriver(driver.driverId)">  <img src="../../../assets/images/bin.svg"></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </ng-container>
                                
                             </tbody>
                         </table>

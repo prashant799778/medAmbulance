@@ -4,3 +4,16 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+.child-success {
+    display: inline-block;
+}
+.child-success img {
+    width: 57px;
+}
+.child-success h2 {
+    font-size: 2rem;
+    margin-bottom: 0;
+    position: relative;
+    top: 5px;
+    left:1rem;
+}

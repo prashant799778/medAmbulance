@@ -42,7 +42,7 @@ export class AppSettings {
     public static selectambulanceTypeMaster = 'selectambulanceTypeMaster';
     public static deleteDriver = 'deleteDriver';
     public static updateDriverStatus = 'updateDriverStatus';
-    // public static AccountVerification = 'AccountVerification';
+    public static dashboard = 'dashboard';
     // public static promisingInitiatives = 'promisingInitiatives';
     // public static getpromisingInitiatives = 'getpromisingInitiativesAdmin';
     // public static getSignUpVideo = 'getSignUpVideoAdmin';
