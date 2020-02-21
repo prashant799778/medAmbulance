@@ -350,7 +350,9 @@ body{
 	}
 /* Topbar Section Css End*/
 
-
+.form-box .ng-dropdown-panel {
+    position: unset !important;
+}
 /* Main Container Css*/
 .main-container {
     position: relative;
