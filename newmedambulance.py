@@ -2112,7 +2112,7 @@ def allHospital1():
                     column="ambulance_Id"
                     whereCondition=" hospital_Id=  '" + str(hospital_Id) + "' "
                     data1=databasefile.SelectQuery1('hospitalambulanceMapping',column,whereCondition)
-                    print(data)
+                    print(data1)
 
                    
                     # c=i['aId']
