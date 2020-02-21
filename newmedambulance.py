@@ -2123,9 +2123,9 @@ def allHospital1():
                             a_id=j['ambulanceId']
                             
                             d+=j['ambulanceType']+","
-                            a.append(a_id)
-                            j['ambulanceId']=a
-                    i['ambulanceId']=j['ambulanceId']
+                            a.append(j['ambulanceId'])
+                            i['ambulanceId']=a
+                    # i['ambulanceId']=j['ambulanceId']
                     i['ambulanceType']=d        
 
                     # print(data1)
