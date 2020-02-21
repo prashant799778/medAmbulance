@@ -1132,13 +1132,14 @@ def addhospital():
         print('A')
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ['hospitalName','address','ambulanceId','latitude','longitude']
+        keyarr = ['hospitalName','address','ambulanceId','lat','lng','facilityId']
         commonfile.writeLog("addhospital",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg=="1":
             hospitalName = inputdata["hospitalName"]
             address = inputdata["address"]
             ambulanceId = inputdata["ambulanceId"]
+            facility=inputdata['facilityId']
             
             latitude=inputdata['lat']
 
@@ -1168,33 +1169,46 @@ def addhospital():
                 
                 print(mainId,'mainId')
                 ambulanceId1 = ambulanceId
+                facilityId1=facilityId
                 print(ambulanceId1,'ambulance')
 
 
                 column='address,lat,lng,hospitalId'
                 values="'"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"','"+str(mainId)+"'"
                 insertdata=databasefile.InsertQuery("hospitalLocationMaster",column,values)
+                for i in ambulanceId1:
 
+                    column=" * "
+                    whereCondition="ambulance_Id='"+str(i)+"'  and hospital_Id='"+str(mainId)+"'"
+                    userHospitalMappingdata = databasefile.SelectQuery1("hospitalambulanceMapping",column,whereCondition)
+                    print(userHospitalMappingdata,'lets see')
+                    if userHospitalMappingdata==0:
+                        print('CC')
+                        column="hospital_Id,ambulance_Id"
+                        values="'"+str(mainId)+"','"+str(i)+"'"
+                        insertdata=databasefile.InsertQuery("hospitalambulanceMapping",column,values)                
+                        output = {"result":"data inserted successfully","status":"true"}
+                        return output
+                    else:
+                        output = {"result":"Data already existed in mapping table","status":"true"}
+                        return output
 
+                for i in facilityId1:
 
-
-
-
-                print('BB')
-                column=" * "
-                whereCondition="ambulance_Id='"+str(ambulanceId1)+"'  and hospital_Id='"+str(mainId)+"'"
-                userHospitalMappingdata = databasefile.SelectQuery1("hospitalambulanceMapping",column,whereCondition)
-                print(userHospitalMappingdata,'lets see')
-                if userHospitalMappingdata==0:
-                    print('CC')
-                    column="hospital_Id,ambulance_Id"
-                    values="'"+str(mainId)+"','"+str(ambulanceId1)+"'"
-                    insertdata=databasefile.InsertQuery("hospitalambulanceMapping",column,values)                
-                    output = {"result":"data inserted successfully","status":"true"}
-                    return output
-                else:
-                    output = {"result":"Data already existed in mapping table","status":"true"}
-                    return output
+                    column=" * "
+                    whereCondition="facilityId='"+str(i)+"'  and hospitalId='"+str(mainId)+"'"
+                    userHospitalMappingdata = databasefile.SelectQuery1("hospitalFacilityMapping ",column,whereCondition)
+                    print(userHospitalMappingdata,'lets see')
+                    if userHospitalMappingdata==0:
+                        print('CC')
+                        column="hospitalId,facilityId"
+                        values="'"+str(mainId)+"','"+str(i)+"'"
+                        insertdata=databasefile.InsertQuery("hospitalFacilityMapping",column,values)                
+                        output = {"result":"data inserted successfully","status":"true"}
+                        return output
+                    else:
+                        output = {"result":"Data already existed in mapping table","status":"true"}
+                        return output        
             else:
                 hospitalId=data['result']['id']
                 column="*"
@@ -1204,6 +1218,39 @@ def addhospital():
                     column='address,lat,lng,hospitalId'
                     values="'"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"','"+str(hospitalId)+"'"
                     insertdata=databasefile.InsertQuery("hospitalLocationMaster",column,values)
+
+                for i in ambulanceId:
+
+                    column=" * "
+                    whereCondition="ambulance_Id='"+str(i)+"'  and hospital_Id='"+str(hospitalId)+"'"
+                    userHospitalMappingdata = databasefile.SelectQuery1("hospitalambulanceMapping",column,whereCondition)
+                    print(userHospitalMappingdata,'lets see')
+                    if userHospitalMappingdata==0:
+                        print('CC')
+                        column="hospital_Id,ambulance_Id"
+                        values="'"+str(hospitalId)+"','"+str(i)+"'"
+                        insertdata=databasefile.InsertQuery("hospitalambulanceMapping",column,values)                
+                        output = {"result":"data inserted successfully","status":"true"}
+                        return output
+                    else:
+                        output = {"result":"Data already existed in mapping table","status":"true"}
+                        return output
+
+                for i in facilityId:
+                    column=" * "
+                    whereCondition="facilityId='"+str(i)+"'  and hospitalId='"+str(hospitalId)+"'"
+                    userHospitalMappingdata = databasefile.SelectQuery1("hospitalFacilityMapping ",column,whereCondition)
+                    print(userHospitalMappingdata,'lets see')
+                    if userHospitalMappingdata==0:
+                        print('CC')
+                        column="hospitalId,facilityId"
+                        values="'"+str(hospitalId)+"','"+str(i)+"'"
+                        insertdata=databasefile.InsertQuery("hospitalFacilityMapping",column,values)                
+                        output = {"result":"data inserted successfully","status":"true"}
+                        return output
+                    else:
+                        output = {"result":"Data already existed in mapping table","status":"true"}
+                        return output             
 
 
 
