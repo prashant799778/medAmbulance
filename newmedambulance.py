@@ -2111,10 +2111,10 @@ def allHospital1():
                 b=[]
                 for i in data:
                     b=i['aId']
-                    for j in a:
-                        if i['id'] not in data:
+                    for j in data:
+                        if i['id'] not in a:
                             a.append(i)
-                            i['ambulanceTypeId']=a
+                            i['ambulanceTypeId']=b
                             i['ambulanceType']+=i['at'] +","
 
 
