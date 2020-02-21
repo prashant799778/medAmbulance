@@ -2707,7 +2707,7 @@ def dashboard():
             column239212="finalAmount"
             bookedTrip1=databasefile.SelectQuery1("bookAmbulance ",columns239212,whereCondition239212)
             if (bookedTrip1!=0):
-                for in bookedTrip1:
+                for i in bookedTrip1:
                     y3+=i['finalAmount']
 
 
