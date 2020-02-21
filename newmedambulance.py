@@ -1159,7 +1159,7 @@ def addhospital():
                 insertdata=databasefile.InsertQuery("hospitalMaster",column,values)
 
                 column=" id as hospitalId "
-                whereCondition="hospitalName= '"+str(hospitalName)+ "' '"
+                whereCondition="hospitalName= '"+str(hospitalName)+ "' "
                 data= databasefile.SelectQuery1("hospitalMaster",column,whereCondition)
 
                 print(data[-1],'data1111')
