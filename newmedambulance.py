@@ -2052,7 +2052,7 @@ def allHospital():
                 whereCondition2=" and  hosp.id  = '" + str(Id) + "'  "    
 
             column= "hosp.id,hosp.hospitalName,hosp.address,am.ambulanceType,hosp.longitude,hosp.latitude,am.id as ambulanceTypeId,fm.name as facility"   
-            WhereCondition=  " hosp.id=ahm.hospital_Id and am.id=ahm.ambulance_Id and hosp.id=hFm.hospitalId and fm.id=hFm.facilityId"+whereCondition+whereCondition2
+            WhereCondition=  " hosp.id=ahm.hospital_Id and am.id=ahm.ambulance_Id and fm.id=hFm.facilityId"+whereCondition+whereCondition2
             data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalambulanceMapping as ahm,ambulanceTypeMaster as am,facilityMaster as fm,hospitalFacilityMapping as hFm",column,WhereCondition)
             print(data,'data')
             if (data!=0): 
