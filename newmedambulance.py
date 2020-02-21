@@ -1197,6 +1197,7 @@ def addhospital():
                 print(mainId,'mainId')
                 ambulanceId1 = ambulanceId
                 facilityId1=facility
+
                 print(ambulanceId1,'ambulance')
 
 
@@ -1220,7 +1221,7 @@ def addhospital():
                         output = {"result":"Data already existed in mapping table","status":"true"}
                         return output
 
-                for i in facilityId1:
+                for i in facility:
 
                     column=" * "
                     whereCondition="facilityId='"+str(i)+"'  and hospitalId='"+str(mainId)+"'"
