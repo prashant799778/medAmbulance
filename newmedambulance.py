@@ -2101,7 +2101,7 @@ def allHospital1():
                 Id=request.args["hospitalId"]
                 whereCondition2=" and  hosp.id  = '" + str(Id) + "'  "    
 
-            column= "hosp.id,hosp.hospitalName,hosp.address,am.ambulanceType as,hosp.longitude,hosp.latitude,am.id as aId"   
+            column= "hosp.id,hosp.hospitalName,hosp.address,am.ambulanceType as at,hosp.longitude,hosp.latitude,am.id as aId"   
             WhereCondition=  " hosp.id=ahm.hospital_Id and am.id=ahm.ambulance_Id"+whereCondition+whereCondition2
             data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalambulanceMapping as ahm,ambulanceTypeMaster as am",column,WhereCondition)
             print(data,'data')
@@ -2115,7 +2115,7 @@ def allHospital1():
                         if i['id'] not in data:
                             a.append(b)
                             i['ambulanceTypeId']=a
-                            i['ambulanceType']+=i['ambulanceType'] +","
+                            i['ambulanceType']+=i['at'] +","
 
 
                 
