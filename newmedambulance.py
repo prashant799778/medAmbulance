@@ -2115,10 +2115,11 @@ def allHospital1():
                     data1=databasefile.SelectQuery1('hospitalambulanceMapping as hma,ambulanceTypeMaster as am',column,whereCondition)
 
                     print(data1,'aaaaaaaaaaaaaaaaaaa')
+                    a=[]
 
                     for j in data1:
                         d=""
-                        a=[]
+                        
                         if j['hospitalId'] == hospital_Id:
                             a_id=j['ambulanceId']
                             
