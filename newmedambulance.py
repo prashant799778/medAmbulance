@@ -2098,8 +2098,8 @@ def allHospital1():
                 ambulanceType=int(inputdata["ambulanceTypeId"])
                 whereCondition=" and am.id   = '" + str(ambulanceType) + "'  "
 
-            if 'hospitalId' in request.args:
-                Id=request.args["hospitalId"]
+            if 'id' in request.args:
+                Id=request.args["id"]
                 whereCondition2=" and  hosp.id  = '" + str(Id) + "'  "    
 
             column= "hosp.id,hosp.hospitalName,hl.address,hl.lat,hl.lng"   
