@@ -1179,8 +1179,8 @@ def addhospital():
                 for i in ambulanceId1:
 
                     column=" * "
-                    whereCondition="ambulance_Id='"+str(i)+"'  and hospital_Id='"+str(mainId)+"'"
-                    userHospitalMappingdata = databasefile.SelectQuery1("hospitalambulanceMapping",column,whereCondition)
+                    whereCondition2="ambulance_Id='"+str(i)+"'  and hospital_Id='"+str(mainId)+"'"
+                    userHospitalMappingdata = databasefile.SelectQuery1("hospitalambulanceMapping",column,whereCondition2)
                     print(userHospitalMappingdata,'lets see')
                     if userHospitalMappingdata==0:
                         print('CC')
@@ -1213,7 +1213,7 @@ def addhospital():
                 hospitalId=data['result']['id']
                 column="*"
                 whereCondition222=" hospitalId='"+str(hospitalId)+"' and address='"+str(address)+"' and lat='"+str(latitude)+"' and lng= '"+str(longitude)+"'  "
-                data=databasefile.SelectQuery('hospitalambulanceMapping',column,whereCondition222)
+                data=databasefile.SelectQuery('hospitalLocationMaster',column,whereCondition222)
                 if data['status'] == 'false':
                     column='address,lat,lng,hospitalId'
                     values="'"+str(address)+"','"+str(latitude)+"','"+str(longitude)+"','"+str(hospitalId)+"'"
