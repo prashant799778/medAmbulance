@@ -1154,7 +1154,7 @@ def addhospital():
             if data['status'] =='false':
                 
                 print('AA')
-                column="hospitalName,address,latitude,longitude"
+                column="hospitalName"
                 values="'"+str(hospitalName)+"'"
                 insertdata=databasefile.InsertQuery("hospitalMaster",column,values)
 
