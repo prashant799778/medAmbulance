@@ -17,3 +17,6 @@
     top: 5px;
     left:1rem;
 }
+.verify-button{
+    cursor: pointer;
+}

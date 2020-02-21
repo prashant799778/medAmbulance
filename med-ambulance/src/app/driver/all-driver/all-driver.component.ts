@@ -139,5 +139,8 @@ export class AllDriverComponent implements OnInit {
 		this.driverID = id;
 		jQuery('#verifiyModal').modal('show')
 	}
+	closeModal(){
+		jQuery('#verifiyModal').modal('hide')
+	}
 
 }

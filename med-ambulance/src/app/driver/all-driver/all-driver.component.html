@@ -43,7 +43,7 @@
                                                     <td>{{driver.tripCount}}</td>
                                                     <td>
                                                         <span *ngIf="driver.status == 1 " class="stus lab-success">Verified</span>
-                                                        <span (click)="verifiedDriver(driver.driverId)" *ngIf="driver.status == 0" class="stus lab-danger">Not Verified</span>
+                                                        <span  (click)="verifiedDriver(driver.driverId)" *ngIf="driver.status == 0" class="stus lab-danger verify-button">Not Verified</span>
                                                     </td>
                                                     <td>
                                                         <div class="btn-edit-group">
@@ -121,7 +121,7 @@
 
                         <div class="grp-btn text-center">
                                 <button  (click)="closeModal()" class="mod-btn dc-bg-color-gray">Cancel</button>
-                                <button  (click)="VerifyDriver()" class="mod-btn fill-back-ac">Verify</button>
+                                <button  (click)="VerifyDriver()" class="mod-btn fill-back-ac ">Verify</button>
                         </div>
                 </div>
             <!-- <h2>{{modalDescription}}</h2> -->
