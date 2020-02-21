@@ -2202,7 +2202,7 @@ def getNearAmbulance1():
             
             if (nearByAmbulance!=0): 
                 for i in nearByAmbulance["result"]: 
-                    topic=nearByAmbulance["result"][i]["ambulanceId"]
+                    topic=str(nearByAmbulance["result"][i]["ambulanceId"])+"/booking"
                     print(nearByAmbulance["result"][i]["ambulanceId"]) 
                     client.publish(topic, "Hello world11111111111111111")
                     print("2222222222222")             
