@@ -89,7 +89,7 @@ def SelectQuery1(table,columns,whereCondition):
 
 
 
-def SelectQuery14(table,columns,whereCondition):
+def SelectQuery4(table,columns,whereCondition):
     try:
        
         
