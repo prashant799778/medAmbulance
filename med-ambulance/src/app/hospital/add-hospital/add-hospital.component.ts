@@ -30,8 +30,8 @@ export class AddHospitalComponent implements OnInit {
 	}
 	createTable(){
 		this.hospitalForm = this.fb.group({
-			ambType: [''],
-			name: [''],
+			ambulanceId: [''],
+			hospitalName: [''],
 			address: [''],
 			lat: [''],
 			lng: [''],
@@ -45,14 +45,19 @@ export class AddHospitalComponent implements OnInit {
 	}
 
 	submitData(){
-		// if(resp['status'] == 'true'){
-			console.log("modal")
-				jQuery('#mainModal').modal('show')
-				this.userService.messageValue('Hospital Inserted successfully')
-				setTimeout(() => {
-					jQuery('#mainModal').modal('hide')
-				}, 2000000000);
-		// }
+		let data = this.hospitalForm.getRawValue()
+		console.log(data)
+		this.userService.dataPostApi(data,AppSettings.addhospital).then(resp=>{
+			if(resp['status'] == 'true'){
+				console.log("modal")
+					jQuery('#mainModal').modal('show')
+					this.userService.messageValue('Hospital Inserted successfully')
+					setTimeout(() => {
+						jQuery('#mainModal').modal('hide')
+					}, 2000);
+			}
+		})
+		
 	}
 	getCategory(){
 		this.userService.getApiData(AppSettings.facilityMaster).then(resp=>{
