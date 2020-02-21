@@ -2112,6 +2112,7 @@ def allHospital1():
             ambulanceType=""
             whereCondition=""
             whereCondition2=""
+            whereCondition3=""
             inputdata =  commonfile.DecodeInputdata(request.get_data())  
             if "startLimit" in inputdata:
                 if inputdata['startLimit'] != "":
@@ -2126,11 +2127,15 @@ def allHospital1():
 
             if 'id' in inputdata:
                 Id=int(inputdata["id"])
-                whereCondition2=" and  hosp.id  = '" + str(Id) + "'  "    
+                whereCondition2=" and  hosp.id  = '" + str(Id) + "'  "
 
-            column= "hosp.id,hosp.hospitalName,hl.address,hl.lat,hl.lng"   
-            WhereCondition=  " hl.hospitalId=hosp.id and hosp.status<>'2' "+whereCondition2
-            data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalLocationMaster as hl",column,WhereCondition)
+            if 'city' in inputdata:
+                city=str(inputdata["id"])
+                whereCondition3=" and  cm.name  = '" + str(city) + "'  "            
+
+            column= "hosp.id,hosp.hospitalName,hl.address,hl.lat,hl.lng,cm.name"   
+            WhereCondition=  " hl.hospitalId=hosp.id and hosp.status<>'2' and hl.cityId=cm.id "+whereCondition2+whereCondition3
+            data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalLocationMaster as hl,cityMaster as cm",column,WhereCondition)
             if (data!=0): 
                 a=[]
                 b=[]
