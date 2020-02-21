@@ -2103,7 +2103,7 @@ def allHospital1():
                 whereCondition2=" and  hosp.id  = '" + str(Id) + "'  "    
 
             column= "hosp.id,hosp.hospitalName,hl.address,hl.lat,hl.lng"   
-            WhereCondition=  " hl.hospitalId=hosp.id"
+            WhereCondition=  " hl.hospitalId=hosp.id"+whereCondition2
             data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalLocationMaster as hl",column,WhereCondition)
             if (data!=0): 
                 a=[]
