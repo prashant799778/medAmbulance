@@ -2101,22 +2101,20 @@ def allHospital1():
                 Id=request.args["hospitalId"]
                 whereCondition2=" and  hosp.id  = '" + str(Id) + "'  "    
 
-            column= "hosp.id,hosp.hospitalName,hosp.address,am.ambulanceType as at,hosp.longitude,hosp.latitude,am.id as aId"   
-            WhereCondition=  " hosp.id=ahm.hospital_Id and am.id=ahm.ambulance_Id"+whereCondition+whereCondition2
-            data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalambulanceMapping as ahm,ambulanceTypeMaster as am",column,WhereCondition)
+            column= "hosp.id,hosp.hospitalName,hl.address,hl.lat,hl.lng"   
+            WhereCondition=  " and hl.hospitalId=hosp.id"
+            data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalLocationMaster as hl",column,WhereCondition)
             if (data!=0): 
                 a=[]
                 b=[]
                 for i in data:
-                    print(i['id'],"-----------------------------------------------")
-                    if i['id'] not in a:
-                        a.append(i)
-                print(a,"iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
-                for j in a:
-                    if j['id'] not in b:
-                        b.append(j)
-                      
+                    hospital_Id=i['id']
+                    column="ambulance_Id"
+                    whereCondition=" hospital_Id=  '" + str(hospital_Id) + "' "
+                    data1=databasefile.SelectQuery1('hospitalambulanceMapping',column,whereCondition)
+                    print(data)
 
+                   
                     # c=i['aId']
                     # print(c)
                     # if i['id'] not in a:
