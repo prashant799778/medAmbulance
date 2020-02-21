@@ -2118,9 +2118,10 @@ def allHospital1():
 
                     for j in data1:
                         d=""
+                        a=[]
                         if j['hospitalId'] == hospital_Id:
                             a_id=j['ambulanceId']
-                            a=[]
+                            
                             d+=j['ambulanceType']+","
                             a.append(a_id)
                             j['ambulanceId']=a
