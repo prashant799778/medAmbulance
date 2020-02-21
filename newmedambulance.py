@@ -1136,7 +1136,7 @@ def addhospital():
         commonfile.writeLog("addhospital",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg=="1":
-            hospitalName = inputdata["hospitalName"]
+            hospitalName = commonfile.EscapeSpecialChar(inputdata["hospitalName"])
             address = commonfile.EscapeSpecialChar(inputdata["address"])
             ambulanceId = inputdata["ambulanceId"]
             facility=inputdata['facilityId']
