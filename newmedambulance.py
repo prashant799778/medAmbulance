@@ -2356,7 +2356,7 @@ def getNearAmbulancetest():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ['startLocationLat','startLocationLong']
+        keyarr = ['startLocationLat','startLocationLong',"userId"]
         commonfile.writeLog("getNearAmbulance",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
@@ -2368,10 +2368,10 @@ def getNearAmbulancetest():
             
             if (nearByAmbulance!=0):   
                 for i in nearByAmbulance["result"]: 
-                    topic=str(nearByAmbulance["result"][i]["ambulanceId"])+"/booking"
-                    print(nearByAmbulance["result"][i]["ambulanceId"]) 
-                    client.publish(topic, "Hello world11111111111111111")
-                    print("2222222222222")             
+                    # topic=str(nearByAmbulance["result"][i]["ambulanceId"])+"/booking"
+                    # print(nearByAmbulance["result"][i]["ambulanceId"]) 
+                    # client.publish(topic, "Hello world11111111111111111")
+                    # print("2222222222222")             
                 return nearByAmbulance
             else:
                 nearByAmbulance["message"]="No Ambulance Found"
