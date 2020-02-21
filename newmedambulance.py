@@ -2398,7 +2398,7 @@ def getNearAmbulancetest():
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d,ambulanceRideStatus as b",column,whereCondition,"",orderby,"","")
             
             if (nearByAmbulance!=0):   
-                for i in nearByAmbulance["result"]: 
+                #for i in nearByAmbulance["result"]: 
                     # topic=str(nearByAmbulance["result"][i]["ambulanceId"])+"/booking"
                     # print(nearByAmbulance["result"][i]["ambulanceId"]) 
                     # client.publish(topic, "Hello world11111111111111111")
