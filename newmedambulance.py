@@ -2056,7 +2056,11 @@ def allHospital():
             data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalambulanceMapping as ahm,ambulanceTypeMaster as am",column,WhereCondition)
             print(data,'data')
             if (data!=0): 
-                print(data)          
+                print(data)
+
+
+
+
                 Data = {"result":data,"status":"true"}
                 return Data
             else:
@@ -2070,6 +2074,67 @@ def allHospital():
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
         return output
+
+
+
+@app.route('/allHospital1', methods=['POST'])
+def allHospital1():
+    try:
+        msg="1"
+        if msg=="1":
+            ambulanceType=""
+            whereCondition=""
+            whereCondition2=""
+            inputdata =  commonfile.DecodeInputdata(request.get_data())  
+            if "startlimit" in inputdata:
+                if inputdata['startlimit'] != "":
+                    startlimit =str(inputdata["startlimit"])
+                
+            if "endlimit" in inputdata:
+                if inputdata['endlimit'] != "":
+                    endlimit =str(inputdata["endlimit"])
+            if 'ambulanceTypeId' in inputdata:
+                ambulanceType=int(inputdata["ambulanceTypeId"])
+                whereCondition=" and am.id   = '" + str(ambulanceType) + "'  "
+
+            if 'hospitalId' in request.args:
+                Id=request.args["hospitalId"]
+                whereCondition2=" and  hosp.id  = '" + str(Id) + "'  "    
+
+            column= "hosp.id,hosp.hospitalName,hosp.address,am.ambulanceType as,hosp.longitude,hosp.latitude,am.id as aId"   
+            WhereCondition=  " hosp.id=ahm.hospital_Id and am.id=ahm.ambulance_Id"+whereCondition+whereCondition2
+            data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalambulanceMapping as ahm,ambulanceTypeMaster as am",column,WhereCondition)
+            print(data,'data')
+            if (data!=0): 
+                print(data)
+                a=[]
+                b=[]
+                for i in data:
+                    b=i['aId']
+                    for j in a:
+                        if i['id'] not in data:
+                            a.append(b)
+                            i['ambulanceTypeId']=a
+                            i['ambulanceType']+=i['ambulanceType'] +","
+
+
+                
+
+
+
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                print("ssssssssssss")
+                output = {"result":"No Data Found","status":"false"}
+                return output
+        else:
+            return msg
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output        
 
 @app.route('/updateDriverMasterlocation', methods=['POST'])
 def updateDriverMasterlocation():
