@@ -4,6 +4,7 @@ import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS }    from '@angular/com
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyDatePickerModule } from 'mydatepicker';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 import { AppComponent } from './app.component';
@@ -63,7 +64,8 @@ import { AllHospitalComponent } from './hospital/all-hospital/all-hospital.compo
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MyDatePickerModule
+    MyDatePickerModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

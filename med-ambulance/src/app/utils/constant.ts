@@ -43,7 +43,7 @@ export class AppSettings {
     public static deleteDriver = 'deleteDriver';
     public static updateDriverStatus = 'updateDriverStatus';
     public static dashboard = 'dashboard';
-    // public static promisingInitiatives = 'promisingInitiatives';
+    public static facilityMaster = 'facilityMaster';
     // public static getpromisingInitiatives = 'getpromisingInitiativesAdmin';
     // public static getSignUpVideo = 'getSignUpVideoAdmin';
     // public static signUpVideo = 'signUpVideo';

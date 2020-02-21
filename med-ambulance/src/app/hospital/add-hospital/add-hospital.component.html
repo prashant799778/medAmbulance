@@ -17,11 +17,39 @@
                                     <input type="text" formControlName="name">
                                 </div>
                             </div>
+                            
+                            <div class="form-box">
+                                    <label>Facility Type</label>
+                                    <ng-select 
+                                        [items]="facityId"
+                                        bindLabel="name"
+                                        bindValue="id"
+                                        labelForId="name"
+                                        multiple = "true"
+                                        placeholder="Please select News Category"
+                                        clearAllText="Clear"
+                                        formControlName="facilityId">
+                                    </ng-select>
+                                    <!-- <select formControlName="facilityId">
+                                        <option *ngFor="let type of facityId">{{type.name}}</option>
+                                    </select> -->
+                                   
+                                </div>
                             <div class="form-box">
                                 <label>Ambulance Type</label>
-                                <select formControlName="ambType">
+                                <ng-select 
+                                    [items]="ambType"
+                                    bindLabel="ambulanceType"
+                                    bindValue="id"
+                                    labelForId="ambulanceType"
+                                    multiple = "true"
+                                    placeholder="Please select News Category"
+                                    clearAllText="Clear"
+                                    formControlName="ambType">
+                                 </ng-select>
+                                <!-- <select formControlName="ambType">
                                     <option *ngFor="let type of ambType">{{type.ambulanceType}}</option>
-                                </select>
+                                </select> -->
                                
                             </div>
                             <div class="form-box">
@@ -29,6 +57,14 @@
                                 <input type="text" formControlName="address">
                             </div>
                             
+                            <div class="form-box">
+                                <label>Latitude</label>
+                                <input type="text" formControlName="lat">
+                            </div>
+                            <div class="form-box">
+                                <label>Longitude</label>
+                                <input type="text" formControlName="lng">
+                            </div>    
                         </div>
                         
                         <div class="btnn-group text-center mt-3 mb-3">

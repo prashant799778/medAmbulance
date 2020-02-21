@@ -14,6 +14,7 @@ declare var jQuery: any;
 export class AddHospitalComponent implements OnInit {
 	hospitalForm: FormGroup;
 	ambType = []
+	facityId = []
 	public myDatePickerOptions: IMyDpOptions = {
 		dateFormat: 'dd.mm.yyyy',
 	};
@@ -31,7 +32,10 @@ export class AddHospitalComponent implements OnInit {
 		this.hospitalForm = this.fb.group({
 			ambType: [''],
 			name: [''],
-			address: ['']
+			address: [''],
+			lat: [''],
+			lng: [''],
+			facilityId: ['']
 			
 		})
 	}
@@ -51,9 +55,9 @@ export class AddHospitalComponent implements OnInit {
 		// }
 	}
 	getCategory(){
-		// this.userService.getApiData(AppSettings.selectambulanceMode).then(resp=>{
-		// 	this.ambCategory = resp['result'] 
-		// })
+		this.userService.getApiData(AppSettings.facilityMaster).then(resp=>{
+			this.facityId = resp['result'] 
+		})
 		this.userService.getApiData(AppSettings.selectambulanceTypeMaster).then(resp=>{
 			this.ambType = resp['result']
 		})
