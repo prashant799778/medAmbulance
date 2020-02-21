@@ -2138,7 +2138,7 @@ def allHospital1():
 
                     column=" hfm.hospitalId,hfm.facilityId as facilityId,fm.name as facilityName"
                     whereCondition2="hfm.hospitalId= '" + str(hospital_Id) + "' and fm.id=hfm.facilityId"
-                    data2= databasefile.SelectQuery1('hospitalambulanceMapping as hma,ambulanceTypeMaster as am',column,whereCondition)
+                    data2= databasefile.SelectQuery1('hospitalFacilityMapping as hfm,facilityMaster as fm',column,whereCondition)
                     g=[]
                     h=""
                     for k in data2:
