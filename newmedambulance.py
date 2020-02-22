@@ -2588,7 +2588,7 @@ def bookRide():
             topic=str(i)+"/booking"
             client.publish(topic, str(inputdata1))
             print("2222222222222") 
-
+        return  {"result":"booking send","status":"True"}
     except KeyError as e:
         print("Exception---->" +str(e))        
         output = {"result":"Input Keys are not Found","status":"false"}
