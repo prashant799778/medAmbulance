@@ -14,7 +14,7 @@ def on_message(client, userdata, msg):
    
   print(msg,"===============")
   print(data,"============",msg.topic)
-  client.publish(str(msg.topic), "Hello world11111111111111111")
+  client.publish(str(msg.topic), data)
   print("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
   
   try:
