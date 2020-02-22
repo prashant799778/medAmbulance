@@ -1295,7 +1295,7 @@ def addhospital():
 
 
 @app.route('/updateHospital', methods=['POST'])
-def updateStatus():
+def updateStatus11():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
