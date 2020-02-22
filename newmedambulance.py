@@ -2695,11 +2695,11 @@ def acceptRide():
             data111=databasefile.InsertQuery('bookAmbulance',columnqq,values111)
             print(data111,'==data')
             
-            columns=" bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
+            columns="(ar.lat)ambulanceLat,(ar.lng)ambulanceLng, bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
             columns=columns+",bm.finalAmount,bm.pickup,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
             columns=columns+",bm.driverMobile"
             whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
-            bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am",columns,whereCondition22)
+            bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
             print(bookingDetails,"================")
             bookingDetails["result"]["driverName"]=driverName
             if (bookingDetails!='0'):  
