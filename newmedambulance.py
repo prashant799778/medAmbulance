@@ -2579,12 +2579,16 @@ def bookRide():
         print('A')
         # inputdata =  commonfile.DecodeInputdata(request.get_data())
         # startlimit,endlimit="",""
-        inputdata={"ambulanceId":[1,2,3,4],"id":17,'startLocationLat':28.583962,'startLocationLong':77.314345,"pickupLocationAddress":" Noida se 15",'dropLocationLat':28.535517,'dropLocationLong':77.391029,"dropLocationAddress":"fortis noida","userId":"8b0e338e522a11ea93d39ebd4d0189fc"}
-        #id is driverid
-        print("1111")
+        inputdata={"ambulanceId":[1,2,3,4],"driverId":[13,14,15,16,17],'startLocationLat':28.583962,'startLocationLong':77.314345,"pickupLocationAddress":" Noida se 15",'dropLocationLat':28.535517,'dropLocationLong':77.391029,"dropLocationAddress":"fortis noida","userId":"8b0e338e522a11ea93d39ebd4d0189fc"}
+        inputdata1={}
+        inputdata1["pickupLocationAddress"]=inputdata["pickupLocationAddress"]
+        inputdata1["dropLocationAddress"]=inputdata["dropLocationAddress"]
         keyarr = ["ambulanceId","id",'startLocationLat','startLocationLong',"pickupLocationAddress",'dropLocationLat','dropLocationLong',"dropLocationAddress","userId"]
-        
-        
+        for i in inputdata["driverId"]: 
+            topic=str(i)+"/booking"
+            client.publish(topic, str(inputdata1))
+            print("2222222222222") 
+
     except KeyError as e:
         print("Exception---->" +str(e))        
         output = {"result":"Input Keys are not Found","status":"false"}
