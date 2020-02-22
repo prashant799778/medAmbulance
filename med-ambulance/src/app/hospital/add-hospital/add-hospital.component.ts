@@ -15,6 +15,7 @@ export class AddHospitalComponent implements OnInit {
 	hospitalForm: FormGroup;
 	ambType = []
 	facityId = []
+	cityData = []
 	public myDatePickerOptions: IMyDpOptions = {
 		dateFormat: 'dd.mm.yyyy',
 	};
@@ -35,8 +36,8 @@ export class AddHospitalComponent implements OnInit {
 			address: [''],
 			lat: [''],
 			lng: [''],
-			facilityId: ['']
-			
+			facilityId: [''],
+			cityId: ['']
 		})
 	}
 
@@ -55,11 +56,15 @@ export class AddHospitalComponent implements OnInit {
 					setTimeout(() => {
 						jQuery('#mainModal').modal('hide')
 					}, 2000);
+					this.hospitalForm.reset();
 			}
 		})
 		
 	}
 	getCategory(){
+		this.userService.getApiData(AppSettings.cityMaster).then(resp=>{
+			this.cityData = resp['result'] 
+		})
 		this.userService.getApiData(AppSettings.facilityMaster).then(resp=>{
 			this.facityId = resp['result'] 
 		})

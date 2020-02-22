@@ -87,9 +87,9 @@ export class AllHospitalComponent implements OnInit {
 
 	}
 
-	editDriver(id,view){
+	editHospital(id,view){
 		console.log(id)
-		this.router.navigate(['/driver/editDriver'],{queryParams: {driverId : id, view: view}})
+		this.router.navigate(['/hospital/editHospital'],{queryParams: {id : id, view: view}})
 	}
 	deleteHospital(id){
 		this.userService.deleteData('Hospital',id)

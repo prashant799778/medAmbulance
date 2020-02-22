@@ -15,6 +15,7 @@ export class EditHospitalComponent implements OnInit {
   hospitalForm: FormGroup;
 	ambType = []
 	facityId = []
+	city = []
 	hospitalId: any;
 	viewEdit: any;
 	views: boolean
@@ -32,12 +33,12 @@ export class EditHospitalComponent implements OnInit {
 
 	ngOnInit() {
     this.route.queryParams.subscribe(params => {
-			this.hospitalId = params['hospitalId'];
+			this.hospitalId = params['id'];
 			// let vie = 
 			if( params['view'] == 'view'){
 				this.views= false;
 				this.viewEdit = 'View'
-				this.disableForm()
+				// this.disableForm()
 
 			}else{
 				this.views = true;
@@ -45,49 +46,70 @@ export class EditHospitalComponent implements OnInit {
 				this.disableForm()
 			}
 			let data = {
-				'hospitalId': this.hospitalId
+				'id': this.hospitalId
 			}
 			this.userService.dataPostApi(data,AppSettings.allHospital).then(resp=>{
-				// this.setData(resp)
+				this.setData(resp)
 			})
 		})	
 	}
 	createTable(){
 		this.hospitalForm = this.fb.group({
-			ambType: [''],
-			name: [''],
+			ambulanceId: [''],
+			hospitalName: [''],
 			address: [''],
 			lat: [''],
 			lng: [''],
-			facilityId: ['']
-			
+			facilityId: [''],
+			city: ['']
 		})
+	}
+	initializeForm(){
+		//  this.fb.group(
+		// facilityIds: [''],	
+		// )
 	}
   
 	disableForm(){
 		this.hospitalForm.disable()
 	}
 
-	resetForm(){
-		this.hospitalForm.reset();
-	}
+	// resetForm(){
+	// 	this.hospitalForm.reset();
+	// }
 
-	submitData(){
-		// if(resp['status'] == 'true'){
-			console.log("modal")
-				jQuery('#mainModal').modal('show')
-				this.userService.messageValue('Hospital Inserted successfully')
-				setTimeout(() => {
-					jQuery('#mainModal').modal('hide')
-				}, 2000000000);
-		// }
-	}
+	// submitData(){
+	// 	// if(resp['status'] == 'true'){
+	// 		console.log("modal")
+	// 			jQuery('#mainModal').modal('show')
+	// 			this.userService.messageValue('Hospital Inserted successfully')
+	// 			setTimeout(() => {
+	// 				jQuery('#mainModal').modal('hide')
+	// 			}, 2000000000);
+	// 	// }
+	// }
 	getCategory(){
+		
+		this.userService.getApiData(AppSettings.cityMaster).then(resp=>{
+			this.city = resp['result'] 
+		})
 		this.userService.getApiData(AppSettings.facilityMaster).then(resp=>{
 			this.facityId = resp['result'] 
 		})
 		this.userService.getApiData(AppSettings.selectambulanceTypeMaster).then(resp=>{
 			this.ambType = resp['result']
 		})
+	}
+	setData(resp){
+		console.log(resp['result'][0].hospitalName)
+		this.hospitalForm.get('hospitalName').setValue(resp['result'][0].hospitalName)
+		this.hospitalForm.get('facilityId').setValue(resp['result'][0].facilityId)
+		this.hospitalForm.get('ambulanceId').setValue(resp['result'][0].ambulanceId)
+		this.hospitalForm.get('lat').setValue(resp['result'][0].lat)
+		this.hospitalForm.get('lng').setValue(resp['result'][0].lng)
+		this.hospitalForm.get('address').setValue(resp['result'][0].address)
+		
+
+		
 	}
 }	

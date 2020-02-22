@@ -18,6 +18,7 @@
                                                 <th>Ambulance Type</th>
                                                 <th>Facilities</th>
                                                 <th>Address</th>
+                                                <th>City</th>
                                                 <th>View</th>
                                                 <th>Action</th>
                                                 
@@ -33,15 +34,15 @@
                                                         <td>{{hospital.ambulanceType}}</td>
                                                         <td>{{hospital.facilityName}}</td>
                                                         <td>{{hospital.address}}</td>
-                                                       
+                                                       <td>{{hospital.city}}</td>
                                                         <td>
                                                             <div class="btn-edit-group">
-                                                                <button type="button" class="edit-btn" (click)="editDriver(hospital.driverId, 'view')" >  <img src="../../../assets/images/eye.svg"></button>
+                                                                <button type="button" class="edit-btn" (click)="editHospital(hospital.id, 'view')" >  <img src="../../../assets/images/eye.svg"></button>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="btn-edit-group">
-                                                                <button type="button" class="edit-btn" (click)="editDriver(hospital.driverId, null)" >  <img src="../../../assets/images/edit-im.svg"></button>
+                                                                <button type="button" class="edit-btn" (click)="editHospital(hospital.id, null)" >  <img src="../../../assets/images/edit-im.svg"></button>
                                                                 <button type="button" class="delet-btn" (click)="deleteHospital(hospital.id)">  <img src="../../../assets/images/bin.svg"></button>
                                                             </div>
                                                         </td>
