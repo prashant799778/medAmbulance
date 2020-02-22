@@ -1264,7 +1264,7 @@ def addhospital():
                         output = {"result":"Data already existed in mapping table","status":"true"}
                         return output
 
-                for i in facilityId:
+                for i in facility:
                     column=" * "
                     whereCondition="facilityId='"+str(i)+"'  and hospitalId='"+str(hospitalId)+"'"
                     userHospitalMappingdata = databasefile.SelectQuery1("hospitalFacilityMapping ",column,whereCondition)
@@ -1309,8 +1309,8 @@ def updateStatus11():
             hospitalName = commonfile.EscapeSpecialChar(inputdata["hospitalName"])
             address = commonfile.EscapeSpecialChar(inputdata["address"])
             ambulanceId = inputdata["ambulanceId"]
-            facility=inputdata['facilityId']
-            print(facility,"++++++++++++++++++++++++++++++++++++++++++")
+            facilityId=inputdata['facilityId']
+            print(facilityId,"++++++++++++++++++++++++++++++++++++++++++")
             
             latitude=inputdata['lat']
 
