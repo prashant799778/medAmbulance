@@ -1182,7 +1182,7 @@ def addhospital():
                 
                 print('AA')
                 column="hospitalName"
-                values="'"+str(hospitalName)+"'"
+                values=" '"+str(hospitalName)+"' "
                 insertdata=databasefile.InsertQuery("hospitalMaster",column,values)
 
                 column=" id as hospitalId "
@@ -1264,7 +1264,7 @@ def addhospital():
                         output = {"result":"Data already existed in mapping table","status":"true"}
                         return output
 
-                for i in facilityId:
+                for i in facility:
                     column=" * "
                     whereCondition="facilityId='"+str(i)+"'  and hospitalId='"+str(hospitalId)+"'"
                     userHospitalMappingdata = databasefile.SelectQuery1("hospitalFacilityMapping ",column,whereCondition)
@@ -1291,6 +1291,112 @@ def addhospital():
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
         return output
+
+
+
+@app.route('/updateHospital', methods=['POST'])
+def updateStatus11():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['id','address','ambulanceId','lat','lng','facilityId']
+        print(inputdata,"B")
+        commonfile.writeLog("updateHospital",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg =="1":
+          
+            userId = int(inputdata["id"])
+            hospitalName = commonfile.EscapeSpecialChar(inputdata["hospitalName"])
+            address = commonfile.EscapeSpecialChar(inputdata["address"])
+            ambulanceId = inputdata["ambulanceId"]
+            facilityId=inputdata['facilityId']
+            print(facilityId,"++++++++++++++++++++++++++++++++++++++++++")
+            
+            latitude=inputdata['lat']
+
+            longitude=inputdata['lng']
+
+            city=inputdata['cityId']
+           
+            column="hospitalName"
+            whereCondition= "   id = " + str(userId)+ " "
+            data=databasefile.SelectQuery1("hospitalMaster",column,whereCondition)
+            print(data)
+            if (data !=0):
+                column=" hospitalName= '"+str(hospitalName)+"' "
+                whereCondition="   id = " + str(userId)+ " "
+                data1=databasefile.UpdateQuery('hospitalMaster',column,whereCondition)
+
+                column2="address='"+str(address)+"' ,lat='"+str(lat)+"' ,lng='"+str(lng)+"' ,cityId='"+str(city)+"' "
+                whereCondition3=" hospitalId=' " + str(userId)+ " ' "
+                data2=databasefile.UpdateQuery('hospitalLocationMaster',column2,whereCondition3)
+
+                whereCondition2=" hospital_Id= ' " + str(userId)+ " ' "
+                data3=databasefile.DeleteQuery('hospitalambulanceMapping',whereCondition2)
+
+                whereCondition4= "hospitalId = ' " + str(userId)+ " ' "
+                data4=databasefile.DeleteQuery('hospitalFacilityMapping',whereCondition4)
+
+
+                for i in ambulanceId:
+
+                    column=" * "
+                    whereCondition="ambulance_Id='"+str(i)+"'  and hospital_Id='"+str(userId)+"'"
+                    userHospitalMappingdata = databasefile.SelectQuery1("hospitalambulanceMapping",column,whereCondition)
+                    print(userHospitalMappingdata,'lets see')
+                    if userHospitalMappingdata==0:
+                        print('CC')
+                        column="hospital_Id,ambulance_Id"
+                        values="'"+str(userId)+"','"+str(i)+"'"
+                        insertdata=databasefile.InsertQuery("hospitalambulanceMapping",column,values)                
+                        output = {"result":"data Updated  successfully","status":"true"}
+                        return output
+                    else:
+                        output = {"result":"Data already existed in mapping table","status":"true"}
+                        return output
+
+                for i in facilityId:
+                    column=" * "
+                    whereCondition="facilityId='"+str(i)+"'  and hospitalId='"+str(userId)+"'"
+                    userHospitalMappingdata = databasefile.SelectQuery1("hospitalFacilityMapping ",column,whereCondition)
+                    print(userHospitalMappingdata,'lets see')
+                    if userHospitalMappingdata==0:
+                        print('CC')
+                        column="hospitalId,facilityId"
+                        values="'"+str(userId)+"','"+str(i)+"'"
+                        insertdata=databasefile.InsertQuery("hospitalFacilityMapping",column,values)                
+                        output = {"result":"data updated successfully","status":"true"}
+                        return output
+                    else:
+                        output = {"result":"Data already existed in mapping table","status":"true"}
+                        return output
+                
+                output = {"result":"data updated successfully","status":"true","message":"Updated Successfully"}
+                return output                     
+
+
+
+
+
+
+
+
+
+            else:
+                data={"result":"","status":"false","message":"No Data Found"}
+                return data
+        else:
+            return msg         
+ 
+    except KeyError :
+        print("Key Exception---->")   
+        output = {"result":"key error","status":"false"}
+        return output  
+
+    except Exception as e :
+        print("Exceptio`121QWAaUJIHUJG n---->" +str(e))    
+        output = {"result":"somthing went wrong","status":"false"}
+        return output        
 
 # @app.route('/addbookingambulance', methods=['POST'])
 # def addbooking():
@@ -2115,6 +2221,7 @@ def allHospital1():
             whereCondition=""
             whereCondition2=""
             whereCondition3=""
+            whereCondition4=""
             inputdata =  commonfile.DecodeInputdata(request.get_data())  
             if "startLimit" in inputdata:
                 if inputdata['startLimit'] != "":
@@ -2132,11 +2239,15 @@ def allHospital1():
                 whereCondition2=" and  hosp.id  = '" + str(Id) + "'  "
 
             if 'city' in inputdata:
-                city=str(inputdata["id"])
-                whereCondition3=" and  cm.name  = '" + str(city) + "'  "            
+                city=str(inputdata["city"])
+                whereCondition3=" and  cm.name  = '" + str(city) + "'  "
 
-            column= "hosp.id,hosp.hospitalName,hl.address,hl.lat,hl.lng,cm.name as city"   
-            WhereCondition=  " hl.hospitalId=hosp.id and hosp.status<>'2' and hl.cityId=cm.id "+whereCondition2+whereCondition3
+            if 'cityId' in inputdata:
+                cityId=str(inputdata["cityId"])
+                whereCondition4=" and  cm.id  = '" + str(cityId) + "'  "                   
+
+            column= "hosp.id,hosp.hospitalName,hl.address,hl.lat,hl.lng,cm.name as city,cm.id as cityId"   
+            WhereCondition=  " hl.hospitalId=hosp.id and hosp.status<>'2' and hl.cityId=cm.id "+whereCondition2+whereCondition3+whereCondition4
             data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalLocationMaster as hl,cityMaster as cm",column,WhereCondition)
             if (data!=0): 
                 a=[]
