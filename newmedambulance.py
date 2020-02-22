@@ -2577,9 +2577,9 @@ def getNearAmbulancetest():
 def bookRide():
     try:
         print('A')
-        # inputdata =  commonfile.DecodeInputdata(request.get_data())
-        # startlimit,endlimit="",""
-        inputdata={"ambulanceId":[1,2,3,4],"driverId":[13,14,15,16,17],'startLocationLat':28.583962,'startLocationLong':77.314345,"pickupLocationAddress":" Noida se 15",'dropLocationLat':28.535517,'dropLocationLong':77.391029,"dropLocationAddress":"fortis noida","userId":"8b0e338e522a11ea93d39ebd4d0189fc"}
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        #inputdata={"ambulanceId":[1,2,3,4],"driverId":[13,14,15,16,17],'startLocationLat':28.583962,'startLocationLong':77.314345,"pickupLocationAddress":" Noida se 15",'dropLocationLat':28.535517,'dropLocationLong':77.391029,"dropLocationAddress":"fortis noida","userId":"8b0e338e522a11ea93d39ebd4d0189fc"}
         inputdata1={}
         inputdata1["pickupLocationAddress"]=inputdata["pickupLocationAddress"]
         inputdata1["dropLocationAddress"]=inputdata["dropLocationAddress"]
@@ -2703,7 +2703,9 @@ def acceptRide():
             print(bookingDetails,"================")
             bookingDetails["result"]["driverName"]=driverName
             if (bookingDetails!='0'):  
-                print('Entered') 
+                print('Entered')
+                topic=str(userId)+"/booking"
+                client.publish(topic, str(bookingDetails)) 
                 #bookRide["message"]="ride booked Successfully" 
                 return bookingDetails
             else:
