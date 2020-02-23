@@ -2467,7 +2467,7 @@ def nearbyHospital():
         #bookingId = inputdata["bookingId"]
         column="*"
         #whereCondition= "dbm.responderId=dm.responderId and dbm.bookingId='" + str(bookingId) + "'"
-        nearbyHospital=databasefile.SelectQuery(" hospitalMaster",column,whereCondition)
+        nearbyHospital=databasefile.SelectQuery(" hospitalMaster",column,"")
         
         if nearbyHospital:
             return nearbyHospital
