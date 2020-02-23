@@ -2620,9 +2620,15 @@ def acceptRide():
         keyarr = ["driverId",'startLocationLat','startLocationLong',"pickupLocationAddress",'dropLocationLat','dropLocationLong',"dropLocationAddress","userId"]
         
         print("2")
-        # if "ambulanceId" in inputdata:
-        #         if inputdata['ambulanceId'] != "":
-        #             ambulanceId =str(inputdata["ambulanceId"])
+        if "ambulanceId" in inputdata:
+                if inputdata['ambulanceId'] != "":
+                    ambulanceId =str(inputdata["ambulanceId"])
+        else:
+            columns=" ambulanceId "
+            whereCondition22=" driverId= '"+str(inputdata["driverId"])+"'"
+            ambulanceId= databasefile.SelectQuery(" ambulanceMaster ",columns,whereCondition22)
+            peint(ambulanceId,"ambulanceId==========================")
+            ambulanceId=ambulanceId["result"][0]["ambulanceId"]
         if "driverId" in inputdata:
                 if inputdata['driverId'] != "":
                     driverId =str(inputdata["driverId"])
