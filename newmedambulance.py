@@ -2587,6 +2587,7 @@ def bookRide():
         keyarr = ["ambulanceId","id",'startLocationLat','startLocationLong',"pickupLocationAddress",'dropLocationLat','dropLocationLong',"dropLocationAddress","userId"]
         for i in inputdata["driverId"]: 
             inputdata["driverId"]=str(i)
+            print(inputdata)
             topic=str(i)+"/booking"
             print("=================",topic)
             client.publish(topic, str(inputdata))
