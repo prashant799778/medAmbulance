@@ -2455,6 +2455,34 @@ def trackRider():
 
 
 
+@app.route('/nearbyHospital', methods=['POST'])
+def nearbyHospital():
+    try:
+        # inputdata =  commonfile.DecodeInputdata(request.get_data())
+        # startlimit,endlimit="",""
+        # keyarr = ['bookingId']
+        # commonfile.writeLog("trackResponder",inputdata,0)
+        # msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        #if msg=="1":
+        #bookingId = inputdata["bookingId"]
+        column="*"
+        #whereCondition= "dbm.responderId=dm.responderId and dbm.bookingId='" + str(bookingId) + "'"
+        nearbyHospital=databasefile.SelectQuery(" hospitalMaster",column,whereCondition)
+        
+        if nearbyHospital:
+            return nearbyHospital
+        else:
+            output = {"result":"No Data Found","status":"false"}
+            return output
+        # else:
+        #     return msg
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
 # @app.route('/getNearAmbulance', methods=['POST'])
 # def getNearAmbulance():
 #     try:
