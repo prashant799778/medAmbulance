@@ -343,7 +343,7 @@ def userSignup():
                     
                     data = databasefile.SelectQuery2("userMaster",column,WhereCondition,"",startlimit,endlimit)
                     print(data)
-                    Data = {"status":"true","message":"","result":data["result"]}                  
+                    Data = {"status":"true","message":"","result":data["result"][0]}                  
                     return Data
                 else:
                     return commonfile.Errormessage()
