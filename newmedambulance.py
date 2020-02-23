@@ -253,6 +253,7 @@ def userSignup():
                 if updateOtp != "0":
                     column = '*'
                     data = databasefile.SelectQuery("userMaster",column,WhereCondition)                  
+                    print(data,"===================")
                     return data
                 else:
                     return commonfile.Errormessage()
