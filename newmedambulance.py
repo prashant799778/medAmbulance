@@ -1090,11 +1090,11 @@ def alldrivers():
 
             if "driverId" in inputdata:
                 if inputdata['driverId'] != "":
-                    driverId =int(inputdata["driverId"])
-                    WhereCondition = WhereCondition + " and dm.id= "+str(driverId)+ " "
+                    driverId = str(inputdata["driverId"])
+                    WhereCondition = WhereCondition + " and dm.driverId= "+str(driverId)+ " "
 
-            column="dm.name,dm.mobileNo,dm.profilePic,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.id as driverId"
-            whereCondition=" and dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " + WhereCondition
+            column="dm.name,dm.mobileNo,dm.profilePic,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.driverId as driverId"
+            whereCondition=" and dm.driverId=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " + WhereCondition
             data=databasefile.SelectQuery2("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit)
             print(data)
             
@@ -3150,11 +3150,11 @@ def dashboard():
 
             if "driverId" in inputdata:
                 if inputdata['driverId'] != "":
-                    driverId =int(inputdata["driverId"])
+                    driverId =str(inputdata["driverId"])
                     WhereCondition = WhereCondition + " and dm.id= "+str(driverId)+ " "
 
-            column="dm.name,dm.mobileNo,dm.profilePic,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.id as driverId"
-            whereCondition=" and dm.id=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " + WhereCondition
+            column="dm.name,dm.mobileNo,dm.profilePic,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.driverId as driverId"
+            whereCondition=" and dm.driverId=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " + WhereCondition
             data=databasefile.SelectQuery2("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit)
             print(data)
 
