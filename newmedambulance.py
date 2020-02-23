@@ -2627,7 +2627,7 @@ def acceptRide():
             columns=" ambulanceId "
             whereCondition22=" driverId= '"+str(inputdata["driverId"])+"'"
             ambulanceId= databasefile.SelectQuery(" ambulanceMaster ",columns,whereCondition22)
-            peint(ambulanceId,"ambulanceId==========================")
+            print(ambulanceId,"ambulanceId==========================")
             ambulanceId=ambulanceId["result"][0]["ambulanceId"]
         if "driverId" in inputdata:
                 if inputdata['driverId'] != "":
