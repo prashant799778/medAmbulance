@@ -415,7 +415,7 @@ def addDriver():
             whereCondition= " mobileNo='"+str(mobileNo)+ "' and usertypeId='3'"
             data= databasefile.SelectQuery("userMaster",column,whereCondition)
 
-            column11="id"
+            column11="id,driverId"
 
             whereCondition1= " mobileNo='"+str(mobileNo)+ "'"
             data1= databasefile.SelectQuery("driverMaster",column11,whereCondition1)
@@ -573,11 +573,11 @@ def addDriver():
                         
                         data = databasefile.InsertQuery("driverMaster",columns,values)
 
-                        columns222="id"
+                        columns222="driverId"
                         whereCondition2222=" "
                         data99=databasefile.SelectQuery1('driverMaster',columns222,whereCondition2222)
                         data111=data99[-1]
-                        driverid=data111["id"]
+                        driverid=data111["driverId"]
 
                         columns2= "ambulanceNo,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceTypeId,driverId"
                         values2="'" + str(AmbulanceNo) + "','" + str( TransportType)  + "','" + str(TransportModel) + "','" + str(Color) + "','" + str(AmbulanceRegistrationFuel) + "','" + str(TypeNo) + "','" + str(AIFilename) + "','" + str(AIPicPath) + "','" + str(AmbulanceModeId) + "', "            
@@ -632,7 +632,7 @@ def addDriver():
                         return data
 
                     if key == 3:
-                        driver_Id=data1['result']['id']
+                        driver_Id=data1['result']['driverId']
                         columns="ambulanceId"
                         WhereCondition = " driverId = '" + str(driver_Id) + "'"
                         data111=databasefile.SelectQuery('ambulanceMaster',columns,WhereCondition)
