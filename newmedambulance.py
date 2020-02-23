@@ -2581,14 +2581,15 @@ def bookRide():
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
         #inputdata={"ambulanceId":[1,2,3,4],"driverId":[13,14,15,16,17],'startLocationLat':28.583962,'startLocationLong':77.314345,"pickupLocationAddress":" Noida se 15",'dropLocationLat':28.535517,'dropLocationLong':77.391029,"dropLocationAddress":"fortis noida","userId":"8b0e338e522a11ea93d39ebd4d0189fc"}
-        inputdata1={}
-        inputdata1["pickupLocationAddress"]=inputdata["pickupLocationAddress"]
-        inputdata1["dropLocationAddress"]=inputdata["dropLocationAddress"]
+        # inputdata1={}
+        # inputdata1["pickupLocationAddress"]=inputdata["pickupLocationAddress"]
+        # inputdata1["dropLocationAddress"]=inputdata["dropLocationAddress"]
         keyarr = ["ambulanceId","id",'startLocationLat','startLocationLong',"pickupLocationAddress",'dropLocationLat','dropLocationLong',"dropLocationAddress","userId"]
         for i in inputdata["driverId"]: 
+            inputdata["driverId"]=str(i)
             topic=str(i)+"/booking"
             print("=================",topic)
-            client.publish(topic, str(inputdata1))
+            client.publish(topic, str(inputdata))
             print("2222222222222") 
         return  {"result":"booking send","status":"True"}
     except KeyError as e:
@@ -2612,15 +2613,15 @@ def acceptRide():
         #inputdata={"ambulanceId":3,"id":17,'startLocationLat':28.583962,'startLocationLong':77.314345,"pickupLocationAddress":" Noida se 15",'dropLocationLat':28.535517,'dropLocationLong':77.391029,"dropLocationAddress":"fortis noida","userId":"7795051055a111ea93d39ebd4d0189fc"}
         #id is driverid
         print("1111")
-        keyarr = ["ambulanceId","id",'startLocationLat','startLocationLong',"pickupLocationAddress",'dropLocationLat','dropLocationLong',"dropLocationAddress","userId"]
+        keyarr = ["ambulanceId","driverId",'startLocationLat','startLocationLong',"pickupLocationAddress",'dropLocationLat','dropLocationLong',"dropLocationAddress","userId"]
         
         print("2")
         if "ambulanceId" in inputdata:
                 if inputdata['ambulanceId'] != "":
                     ambulanceId =str(inputdata["ambulanceId"])
-        if "id" in inputdata:
-                if inputdata['id'] != "":
-                    driverId =str(inputdata["id"])
+        if "driverId" in inputdata:
+                if inputdata['driverId'] != "":
+                    driverId =str(inputdata["driverId"])
         if "startLocationLat" in inputdata:
                 if inputdata['startLocationLat'] != "":
                     startLocationLat =(inputdata["startLocationLat"])
