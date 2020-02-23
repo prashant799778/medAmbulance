@@ -2588,6 +2588,9 @@ def bookRide():
         for i in inputdata["driverId"]: 
             inputdata["driverId"]=str(i)
             print(inputdata)
+            
+            client = mqtt.Client()
+            client.connect("localhost",1883,60)
             topic=str(i)+"/booking"
             print("=================",topic)
             client.publish(topic, str(inputdata))
