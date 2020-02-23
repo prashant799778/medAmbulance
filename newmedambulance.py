@@ -2458,6 +2458,7 @@ def trackRider():
 @app.route('/nearbyHospital', methods=['POST'])
 def nearbyHospital():
     try:
+        whereCondition,groupby,startlimit,endlimit="","","",""
         # inputdata =  commonfile.DecodeInputdata(request.get_data())
         # startlimit,endlimit="",""
         # keyarr = ['bookingId']
@@ -2467,7 +2468,7 @@ def nearbyHospital():
         #bookingId = inputdata["bookingId"]
         column="*"
         #whereCondition= "dbm.responderId=dm.responderId and dbm.bookingId='" + str(bookingId) + "'"
-        nearbyHospital=databasefile.SelectQuery(" hospitalMaster",column,"")
+        nearbyHospital=databasefile.SelectQuery2(" hospitalMaster",column,whereCondition,groupby,startlimit,endlimit)
         
         if nearbyHospital:
             return nearbyHospital
