@@ -2665,7 +2665,7 @@ def acceptRide():
             usermobile=data1['result']['mobileNo']
 
 
-            whereCondition222="  id= '"+str(driverId)+"' "
+            whereCondition222="  driverId= '"+str(driverId)+"' "
             data11= databasefile.SelectQuery("driverMaster",columns,whereCondition222)
             print(data11,'--data')
             driverName=data11['result']['name']
