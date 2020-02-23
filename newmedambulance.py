@@ -2711,6 +2711,8 @@ def acceptRide():
             bookingDetails["result"]["driverName"]=driverName
             if (bookingDetails!='0'):  
                 print('Entered')
+                client = mqtt.Client()
+                client.connect("localhost",1883,60)
                 topic=str(userId)+"/booking"
                 client.publish(topic, str(bookingDetails)) 
                 #bookRide["message"]="ride booked Successfully" 
