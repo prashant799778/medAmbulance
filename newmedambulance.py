@@ -2302,7 +2302,7 @@ def allHospital1():
                             else:
                                 h=k['facilityName']
                     i['facilityName']= h 
-                    count=len(data)          
+                    count=len(data['result'])          
 
 
 
@@ -2321,7 +2321,7 @@ def allHospital1():
 
 
 
-                Data = {"result":data,"status":"true","totalCount":count}
+                Data = {"result":data['result'],"status":"true","totalCount":count}
                 return Data
             else:
                 print("ssssssssssss")
