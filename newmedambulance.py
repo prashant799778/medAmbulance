@@ -1260,8 +1260,7 @@ def addhospital():
                         column="hospital_Id,ambulance_Id"
                         values="'"+str(hospitalId)+"','"+str(i)+"'"
                         insertdata=databasefile.InsertQuery("hospitalambulanceMapping",column,values)                
-                        output = {"result":"data inserted successfully","status":"true"}
-                        return output
+                       
                     else:
                         output = {"result":"Data already existed in mapping table","status":"true"}
                         return output
@@ -1276,8 +1275,7 @@ def addhospital():
                         column="hospitalId,facilityId"
                         values="'"+str(hospitalId)+"','"+str(i)+"'"
                         insertdata=databasefile.InsertQuery("hospitalFacilityMapping",column,values)                
-                        output = {"result":"data inserted successfully","status":"true"}
-                        return output
+                       
                     else:
                         output = {"result":"Data already existed in mapping table","status":"true"}
                         return output             
@@ -1359,7 +1357,7 @@ def updateStatus11():
                     else:
                         output = {"result":"Data already existed in mapping table","status":"true"}
                         return output
-                        
+
                 print(facilityId,"+++555++++++++++++++++++++++++++++++++++++++") 
                 print(facilityId,"11111111111111111++++++++++++++++++++++++++++++++++++++++++")        
 
