@@ -741,3 +741,11 @@ img.altr {
 		max-width: 50%;
 	}
 }
+
+.error p{
+    
+	margin-top: 5px;
+	color: red;
+	font-size: 12px;
+
+}

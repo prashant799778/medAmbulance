@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { AppSettings } from 'src/app/utils/constant';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IMyDpOptions } from 'mydatepicker';
 declare var jQuery: any;
 
@@ -31,34 +31,43 @@ export class AddHospitalComponent implements OnInit {
 	}
 	createTable(){
 		this.hospitalForm = this.fb.group({
-			ambulanceId: [''],
-			hospitalName: [''],
-			address: [''],
-			lat: [''],
-			lng: [''],
-			facilityId: [''],
-			cityId: ['']
+			ambulanceId: ['',Validators.required],
+			hospitalName: ['',Validators.required],
+			address: ['',Validators.required],
+			lat: ['',Validators.required],
+			lng: ['',Validators.required],
+			facilityId: ['',Validators.required],
+			cityId: ['',Validators.required]
 		})
 	}
 
 	resetForm(){
 		this.hospitalForm.reset();
+		this.getCategory()
 	}
 
 	submitData(){
-		let data = this.hospitalForm.getRawValue()
-		console.log(data)
-		this.userService.dataPostApi(data,AppSettings.addhospital).then(resp=>{
-			if(resp['status'] == 'true'){
-				console.log("modal")
+		if(this.hospitalForm.valid){
+			let data = this.hospitalForm.getRawValue()
+			this.userService.dataPostApi(data,AppSettings.addhospital).then(resp=>{
+				if(resp['status'] == 'true'){
 					jQuery('#mainModal').modal('show')
 					this.userService.messageValue('Hospital Inserted successfully')
 					setTimeout(() => {
 						jQuery('#mainModal').modal('hide')
 					}, 2000);
 					this.hospitalForm.reset();
-			}
-		})
+					this.getCategory()
+				}
+			})
+		}else{
+			const controls = this.hospitalForm.controls;
+			Object.keys(controls).forEach(controlName => {
+				controls[controlName].markAsTouched()
+			} );
+			return false;
+		}
+		
 		
 	}
 	getCategory(){

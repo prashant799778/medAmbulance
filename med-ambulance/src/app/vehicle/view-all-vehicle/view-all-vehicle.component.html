@@ -12,11 +12,11 @@
                                 <th>No</th>
                                 <th>Image</th>
                                 <th>Fuel Type</th>
-                                <th>Purchase</th>
+                                <th>Color</th>
                                 <th>Category</th>
                                 <th>Type</th>
                                 <th>Register Number</th>
-                                <th>Action</th>
+                                <!-- <th>Action</th> -->
                                 
                         </tr>
                     </thead>
@@ -24,18 +24,18 @@
                         <ng-container *ngIf="vehicleData && vehicleData.length > 0">
                               <tr *ngFor="let driver of vehicleData ; let i =  index">
                                     <td>{{i+1}}</td>  
-                                    <td><img [src]="driver.image" class="al-img"></td>
-                                    <td>{{driver.fuelType}}</td>
-                                    <td>{{driver.purchaseDate}}</td>
+                                    <td><img [src]="driver.ambulanceFilepath" class="al-img"></td>
+                                    <td>{{driver.fueltype}}</td>
+                                    <td>{{driver.color}}</td>
                                     <td>{{driver.category}}</td>
                                     <td>{{driver.ambulanceType}}</td>
-                                    <td>{{driver.regNumber}}</td>
-                                      <td>
+                                    <td>{{driver.ambulanceNo}}</td>
+                                      <!-- <td>
                                             <div class="btn-edit-group">
                                                     <button type="button" class="edit-btn" (click)="editNews(news.id)" >  <img src="../../../assets/images/edit-im.svg"></button>
                                                     <button type="button" class="delet-btn" (click)="deleteNews(news.id)">  <img src="../../../assets/images/bin.svg"></button>
                                                 </div>
-                                      </td>
+                                      </td> -->
                                   </tr>
                         </ng-container>
                        

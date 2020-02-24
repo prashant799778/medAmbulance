@@ -9,10 +9,41 @@ declare var jQuery: any;
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent implements OnInit {
+	locations: any;
+	secondLocation: any;
 
 	constructor(public router:Router,public authsService: AuthsService) { }
 
 	ngOnInit() {
+		this.locations = window.location.href
+		this.secondLocation = this.locations.substring(0, this.locations.lastIndexOf("/") + 1)
+		this.locations = this.locations.substring(this.locations.lastIndexOf("/") + 1, this.locations.length );
+		this.secondLocation = this.secondLocation.substring(this.secondLocation.lastIndexOf("/") + 1, this.secondLocation.length - 5 );
+		console.log(this.locations)
+		console.log(this.secondLocation)
+		if(this.locations == 'allHospital'){
+			setTimeout(()=>{
+				jQuery(".left-menu li").removeClass('active');
+				var elem = document.getElementById('hospital');
+				elem.click()
+				jQuery("#allHospital").addClass("active")
+			},100)
+		}
+		if(this.locations == 'addHospital'){
+			setTimeout(()=>{
+				jQuery(".left-menu li").removeClass('active');
+				var elem = document.getElementById('hospital');
+				elem.click()
+				jQuery("#addHospital").addClass("active")
+			},100)
+		}
+		if(this.locations == 'allPassengers'){
+			setTimeout(()=>{
+				jQuery(".left-menu li").removeClass('active');
+				
+				jQuery("#allPassengers").addClass("active")
+			},100)
+		}
 	}
 
 	goToPage(routes){

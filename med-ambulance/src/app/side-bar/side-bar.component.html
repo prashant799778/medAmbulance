@@ -91,7 +91,7 @@
 					<li><a href="javascript:void(0)">Driver Payment</a></li>
 				</ul>
 				</li>
-				<li>
+				<li id="hospital">
 						<a href="javascript:void(0)">
 						<span class="sid-icon">
 							<svg x="0px" y="0px" viewBox="0 0 511.79 511.79"  xml:space="preserve">
@@ -107,11 +107,11 @@
 					</a>
 					<ul class="menu-dropdown">
 						<li (click)="goToPage('hospital/addHospital')"><a href="javascript:void(0)">Add New Hospital</a></li>
-						<li (click)="goToPage('hospital/allHospital')"><a href="javascript:void(0)">All Hospital</a></li>
+						<li id="allHospital" (click)="goToPage('hospital/allHospital')"><a href="javascript:void(0)">All Hospital</a></li>
 						
 					</ul>
 					</li>
-				<li (click)="goToPage('allPassengers')">
+				<li (click)="goToPage('allPassengers')" id="allPassengers">
 					<a href="javascript:void(0)">
 					<span class="sid-icon">
 						<svg  viewBox="-26 0 512 512">
@@ -158,7 +158,7 @@
 					<!-- <li><a href="javascript:void(0)">Edit Ambulance Details</a></li> -->
 				</ul>
 				</li>
-				<li>
+				<!-- <li>
 					<a href="javascript:void(0)">
 					<span class="sid-icon">
 						<svg viewBox="0 0 512 512">
@@ -176,7 +176,7 @@
 						<li (click)="goToPage('fare/addFare')"><a href="javascript:void(0)">Add Fare</a></li>
 						<li (click)="goToPage('fare/fareList')"><a href="javascript:void(0)">Fare List</a></li>
 					</ul>
-				</li>
+				</li> -->
 			</ul>
 
 

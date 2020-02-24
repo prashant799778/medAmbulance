@@ -8,7 +8,11 @@ import { AppSettings } from 'src/app/utils/constant';
   styleUrls: ['./route-map.component.css']
 })
 export class RouteMapComponent implements OnInit {
-
+	tableHeading = [
+		"No", "Trip Id", "Driver Name", "Passenger Name","Trip From", "Trip To","Start Time"
+	]
+	heading='Cancel Trip'
+	cancelTripData = []
   	constructor(public userService: UserService) { }
 
 	ngOnInit() {
@@ -20,9 +24,38 @@ export class RouteMapComponent implements OnInit {
 			'startLimit': 0,
 			'endLimit': 10
 		}
-		this.userService.dataPostApi(data,AppSettings.cancelledTrip).then(resp=>{
-			console.log(resp)
-		})
+		// this.userService.dataPostApi(data,AppSettings.cancelledTrip).then(resp=>{
+		// 	console.log(resp)
+		// })
+		this.cancelTripData = [
+			{
+				'tripId': 1765,
+				'driverName': 'Hemant Gusain',
+				'userName': 'Vijay Pal',
+				'tripFrom': 'Noida',
+				'tripTo': 'Agra',
+				'startTime': '02:00pm',
+				
+			},
+			{
+				'tripId': 1165,
+				'driverName': 'Hemant Gusain',
+				'userName': 'Vijay Pal',
+				'tripFrom': 'Noida',
+				'tripTo': 'Agra',
+				'startTime': '02:00pm',
+				
+			},
+			{
+				'tripId': 1865,
+				'driverName': 'Hemant Gusain',
+				'userName': 'Vijay Pal',
+				'tripFrom': 'Noida',
+				'tripTo': 'Agra',
+				'startTime': '02:00pm',
+				
+			}
+		]
 	}
 
 }

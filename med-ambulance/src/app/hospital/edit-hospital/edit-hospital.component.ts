@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IMyDpOptions } from 'mydatepicker';
 import { UserService } from 'src/app/services/user.service';
 import { AppSettings } from 'src/app/utils/constant';
@@ -55,19 +55,19 @@ export class EditHospitalComponent implements OnInit {
 	}
 	createTable(){
 		this.hospitalForm = this.fb.group({
-			ambulanceId: [''],
-			hospitalName: [''],
-			address: [''],
-			lat: [''],
-			lng: [''],
-			facilityId: [''],
-			cityId: [''],
-			id: ['']
+			ambulanceId: ['',Validators.required],
+			hospitalName: ['',Validators.required],
+			address: ['',Validators.required],
+			lat: ['',Validators.required],
+			lng: ['',Validators.required],
+			facilityId: ['',Validators.required],
+			cityId: ['',Validators.required],
+			id: ['',Validators.required]
 		})
 	}
 	initializeForm(){
 		//  this.fb.group(
-		// facilityIds: [''],	
+		// facilityIds: ['',Validators.required],	
 		// )
 	}
   
@@ -80,18 +80,27 @@ export class EditHospitalComponent implements OnInit {
 	// }
 
 	updateData(){
-		this.hospitalForm.get('id').setValue(this.hospitalId)
-		let data = this.hospitalForm.getRawValue();
-		this.userService.dataPostApi(data,AppSettings.updateHospital).then(resp=>{
-			if(resp['status'] == 'true'){
-				console.log("modal")
-					jQuery('#mainModal').modal('show')
-					this.userService.messageValue('Hospital Update successfully')
-					setTimeout(() => {
-						jQuery('#mainModal').modal('hide')
-					}, 2000);
-			}
-		})
+		if(this.hospitalForm.valid){
+			this.hospitalForm.get('id').setValue(this.hospitalId)
+			let data = this.hospitalForm.getRawValue();
+			this.userService.dataPostApi(data,AppSettings.updateHospital).then(resp=>{
+				if(resp['status'] == 'true'){
+					console.log("modal")
+						jQuery('#mainModal').modal('show')
+						this.userService.messageValue('Hospital Update successfully')
+						setTimeout(() => {
+							jQuery('#mainModal').modal('hide')
+						}, 2000);
+				}
+			})
+		}else{
+			const controls = this.hospitalForm.controls;
+			Object.keys(controls).forEach(controlName => {
+				controls[controlName].markAsTouched()
+			} );
+			return false;
+		}
+		
 	}
 	getCategory(){
 		

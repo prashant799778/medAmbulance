@@ -24,38 +24,38 @@ export class ActiveTripComponent implements OnInit {
 			'startLimit': 0,
 			'endLimit': 10
 		}
-		this.userService.dataPostApi(data,AppSettings.ActiveTrip).then(resp=>{
-			console.log(resp)
-		})
-		// this.activeTripData = [
-		// 	{
-		// 		'tripId': 1765,
-		// 		'driverName': 'Hemant Gusain',
-		// 		'userName': 'Vijay Pal',
-		// 		'tripFrom': 'Noida',
-		// 		'tripTo': 'Agra',
-		// 		'startTime': '02:00pm',
+		// this.userService.dataPostApi(data,AppSettings.ActiveTrip).then(resp=>{
+		// 	console.log(resp)
+		// })
+		this.activeTripData = [
+			{
+				'tripId': 1765,
+				'driverName': 'Hemant Gusain',
+				'userName': 'Vijay Pal',
+				'tripFrom': 'Noida',
+				'tripTo': 'Agra',
+				'startTime': '02:00pm',
 				
-		// 	},
-		// 	{
-		// 		'tripId': 1165,
-		// 		'driverName': 'Hemant Gusain',
-		// 		'userName': 'Vijay Pal',
-		// 		'tripFrom': 'Noida',
-		// 		'tripTo': 'Agra',
-		// 		'startTime': '02:00pm',
+			},
+			{
+				'tripId': 1165,
+				'driverName': 'Hemant Gusain',
+				'userName': 'Vijay Pal',
+				'tripFrom': 'Noida',
+				'tripTo': 'Agra',
+				'startTime': '02:00pm',
 				
-		// 	},
-		// 	{
-		// 		'tripId': 1865,
-		// 		'driverName': 'Hemant Gusain',
-		// 		'userName': 'Vijay Pal',
-		// 		'tripFrom': 'Noida',
-		// 		'tripTo': 'Agra',
-		// 		'startTime': '02:00pm',
+			},
+			{
+				'tripId': 1865,
+				'driverName': 'Hemant Gusain',
+				'userName': 'Vijay Pal',
+				'tripFrom': 'Noida',
+				'tripTo': 'Agra',
+				'startTime': '02:00pm',
 				
-		// 	}
-		// ]
+			}
+		]
 	}
 
 }
