@@ -3328,8 +3328,8 @@ def updateStatus():
         output = {"result":"somthing went wrong","status":"false"}
         return output
 
-@app.route('/updateDriver', methods=['POST'])
-def updateDriver():
+@app.route('/updateDriverLatLong', methods=['POST'])
+def updateDriverLatLong():
     try:
         print('Hello')
         inputdata=request.form.get('data')
@@ -3344,160 +3344,16 @@ def updateDriver():
         print(msg,'msg')
        
         if msg == "1":
-            name=inputdata['name']
-            print(name,'name')
-            mobileNo= inputdata["mobileNo"]
-            print(mobileNo,'mobileNo')
-
+           
             driverId=inputdata['driverId']
-            column = " userId "
-            whereCondition= " mobileNo='"+str(mobileNo)+ "' and usertypeId='3'"
-            data= databasefile.SelectQuery("userMaster",column,whereCondition)
-
-            # column2= " id as driverId,dlNo,dlFrontFilename,DlFrontPicPath,dlBackFilename,DlBackPicPath,PIDType,PIDNo,PIDFrontFilename,PIDFrontPicPath,PIDBackFilename,PIDBackPicPath"
-            columns1="driverId"
-            whereCondition2=" id='"+str(driverId)+ "' "
-
-            data2=databasefile.SelectQuery('driverMaster',columns1,whereCondition2)
-            address=""
+            column="name"
+            WhereCondition = " driverId = '" + str(driverId) + "'"
+            data=databasefile.SelectQuery('ambulanceMaster',columns,WhereCondition)
+           
             # DlNo=str(data['result']["dlNo"])
 
 
-            DlNo,dlFrontFilename,DlFrontPicPath,dlBackFilename,DlBackPicPath,PIDType,PIDNo,PIDFrontFilename,PIDFrontPicPath,PIDBackFilename,PIDBackPicPath,TransportType,TransportModel,Color,AmbulanceRegistrationFuel,TypeNo,AIFilename,AIPicPath,AmbulanceModeId,AmbulanceId="","","","","","","","","","","","","","","","","","","",""
-
-            if 'DlNo' in inputdata:
-                DlNo=inputdata["DlNo"]
-
-            if 'DlFrontImage' in request.files:
-                    print("immmmmmmmmmmmmmmmm")
-                    file = request.files.get('DlFrontImage')        
-                    filename = file.filename or ''  
-                    print(filename)               
-                    dlFrontFilename= str(str(data['result']["userId"])+"Front"+".png")
-                    
-                    print(dlFrontFilename,'Changed_filename')
-                    DlFrontFolderPath = ConstantData.GetdlImagePath(dlFrontFilename)
-                    DlFrontfilepath = '/DLImage/' + dlFrontFilename 
-                    file.save(DlFrontFolderPath)
-                    DlFrontPicPath = DlFrontfilepath
-                    print(DlFrontPicPath)
-                    
-
-            if 'DlBackImage' in request.files:
-                    print("immmmmmmmmmmmmmmmm")
-                    file = request.files.get('DlBackImage')        
-                    filename = file.filename or ''  
-                    print(filename)               
-                    dlBackFilename=  str(str(data['result']["userId"])+"Back"+".png")
-                  
-                    DlBackFolderPath = ConstantData.GetdlImagePath(dlBackFilename)
-                    DlBackfilepath = '/DLImage/' + dlBackFilename 
-                    file.save(DlBackFolderPath)
-                    DlBackPicPath = DlBackfilepath
-                    print(DlBackPicPath)
-
-
-            if 'DlFrontImage' not  in request.files:
-                inputdata4 = request.form.get('DlFrontImage')
-                if inputdata5==ConstantData.GetBaseURL():
-                    DlFrontPicPath=""
-                else : 
-                    index=re.search("/DLImage", inputdata5).start()
-                    DlBackPicPath=""
-                    DlBackPicPath=inputdata5[index:]
-                        
-
-            
-
-            if 'DlBackImage' not  in request.files:
-                inputdata4 = request.form.get('DlBackImage')
-                if inputdata4==ConstantData.GetBaseURL():
-                    DlBackPicPath=""
-                else : 
-                    index=re.search("/DLImage", inputdata4).start()
-                    DlBackPicPath=""
-                    DlBackPicPath=inputdata4[index:]
-                        
-
-            if 'PIDType' in inputdata:
-                PIDType=inputdata["PIDType"]
-
-            if 'PIDNo' in inputdata:
-                PIDNo=inputdata["PIDNo"]
-
-            if 'PIDFrontImage' in request.files:
-                    print("immmmmmmmmmmmmmmmm")
-                    file = request.files.get('PIDFrontImage')        
-                    filename = file.filename or ''  
-                    print(filename)               
-                    PIDFrontFilename= str(str(data['result']["userId"])+"Front"+".png")
-                  
-                    print(PIDFrontFilename,'Changed_filename')
-                    PIDFrontFolderPath = ConstantData.GetPIDImagePath(PIDFrontFilename)
-                    PIDFrontfilepath = '/PIDImage/' + PIDFrontFilename 
-                    file.save(PIDFrontFolderPath)
-                    PIDFrontPicPath = PIDFrontfilepath
-                    print(PIDFrontPicPath)
-
-
-            if 'PIDFrontImage' not  in request.files:
-                inputdata3 = request.form.get('PIDFrontImage')
-                if inputdata3==ConstantData.GetBaseURL():
-                    PIDFrontPicPath=""
-                else : 
-                    index=re.search("/PIDImage", inputdata3).start()
-                    PIDFrontPicPath=""
-                    PIDFrontPicPath=inputdata3[index:]
-                    
-
-            if 'PIDBackImage' in request.files:
-                    print("immmmmmmmmmmmmmmmm")
-                    file = request.files.get('PIDBackImage')        
-                    filename = file.filename or ''  
-                    print(filename)               
-                    PIDBackFilename= str(str(data['result']["userId"])+"Back"+".png")
-                  
-                    PIDBackFolderPath = ConstantData.GetPIDImagePath(PIDBackFilename)
-                    PIDBackfilepath = '/PIDImage/' + PIDBackFilename 
-                    file.save(PIDBackFolderPath)
-                    PIDBackPicPath = PIDBackfilepath
-                    print(PIDBackPicPath)
-
-            
-            if 'PIDBackImage' not  in request.files:
-                inputdata2 = request.form.get('PIDBackImage')
-                if inputdata2==ConstantData.GetBaseURL():
-                    PIDBackPicPath=""
-                else : 
-                    index=re.search("/PIDImage", inputdata2).start()
-                    PIDBackPicPath=""
-                    PIDBackPicPath=inputdata2[index:]
-
-
-
-            if 'TransportType' in inputdata:
-                TransportType=inputdata["TransportType"]
-            
-            if 'TransportModel' in inputdata:
-                TransportModel=inputdata["TransportModel"]
-
-            if 'Color' in inputdata:
-                Color=inputdata["Color"]
-
-            if 'AmbulanceRegistrationFuel' in inputdata:
-                AmbulanceRegistrationFuel=inputdata["AmbulanceRegistrationFuel"]
-            
-            if 'TypeNo' in inputdata:
-                TypeNo=inputdata["TypeNo"]
-
-            if 'AmbulanceModeId' in inputdata:
-                AmbulanceModeId=inputdata["AmbulanceModeId"]
-
-            if 'AmbulanceNo' in inputdata:
-                AmbulanceNo=inputdata["AmbulanceNo"]
-
-            if 'AmbulanceTypeId' in inputdata:
-                AmbulanceId=inputdata["AmbulanceTypeId"]
+           
 
             if 'lat' in inputdata:
                 lat=inputdata["lat"]
@@ -3505,70 +3361,31 @@ def updateDriver():
             if 'lng' in inputdata:
                 lng=inputdata["lng"]
 
-            if 'address' in inputdata:
-                address=inputdata["address"]
-
-            if 'status' in inputdata:
-                status=inputdata["status"]
             
-
-
-
-            if 'AmbulanceImage' in request.files:
-                    print("immmmmmmmmmmmmmmmm")
-                    file = request.files.get('AmbulanceImage')        
-                    filename = file.filename or ''  
-                    print(filename)               
-                    AIFilename=  str(str(data['result']["userId"])+".png")
-                   
-                    AIFolderPath = ConstantData.GetAmbulanceImagePath(AIFilename)
-                    AIfilepath = '/AmbulanceImage/' + AIFilename 
-                    file.save(AIFolderPath)
-                    AIPicPath = AIfilepath
-                    print(AIPicPath)
-
-            if 'AmbulanceImage' not  in request.files:
-                inputdata1 = request.form.get('AmbulanceImage')
-                if inputdata1==ConstantData.GetBaseURL():
-                    AIPicPath=""
-                else : 
-                    index=re.search("/AmbulanceImage", inputdata1).start()
-                    AIPicPath=""
-                    AIPicPath=inputdata1[index:]
 
             if data['status']!='false':
                 
                 
                 
                 
-                print('A')
-                WhereCondition = " id = '" + str(driverId) + "'"
-                column = " name='" + str(name) + "' ,mobileNo='" + str(mobileNo) + "' ,dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "',dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "'"
                 
-                column = column + " ,pIDType = '" + str(PIDType) + "',pIDNo = '" + str(PIDNo) + "',pIDFrontFilename = '" + str(PIDFrontFilename) + "',pIDFrontFilepath = '" + str(PIDFrontPicPath) + "',pIDBackFilename = '" + str(PIDBackFilename) + "',pIDBackFilepath = '" + str(PIDBackPicPath) + "',status='" + str(status) + "'"
-                print(column,'column')
-                data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
-
-
-                #ambulanceMaster update
-
 
                
                 columns="ambulanceId"
                 WhereCondition = " driverId = '" + str(driverId) + "'"
                 data111=databasefile.SelectQuery('ambulanceMaster',columns,WhereCondition)
-                if data111['status'] == 'false':
+                if data111['status'] != 'false':
                     
-                    columns2= "ambulanceNo='" + str(AmbulanceNo) + ",transportType='" + str(TransportType) + "',transportModel='" + str(TransportModel) + "',color='" + str(Color) + "',ambulanceRegistrationFuel='" + str(AmbulanceRegistrationFuel) + "',typeNo='" + str(TypeNo) + "',ambulanceFilename='" + str(AIFilename) + "',ambulanceFilepath='" + str(AIPicPath) + "',ambulanceModeId='" + str(AmbulanceModeId) + "',ambulanceTypeId= '" + str(AmbulanceId) + "'"
-
-                  
-                    data122=databasefile.UpdateQuery("ambulanceMaster",columns2,whereCondition)
-                    print(data122,'+++++++++++++++++++')
+                    ambulanceId=data11['result']['ambulanceId']
+                    WhereCondition2=" ambulanceId= '" + str(ambulanceId) + "'"
+                    columns23="lat='" + str(lat) + "',lng='" + str(lng) + "'"
+                    data122=databasefile.UpdateQuery('ambulanceRideStatus',columns23,WhereCondition2)
                     
+                   
                     
 
                     if data122 != "0":
-                        data11={"result":"","message":"Inserted successfully","status":"true"}
+                        data11={"result":"","message":"Updated successfully","status":"true"}
                         return data11
 
                         
