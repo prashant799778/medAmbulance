@@ -19,7 +19,7 @@ def on_message(client, userdata, msg):
   print(topic,"topic==================")
   
 
-  client.publish(topic, data)
+  client.publish(topic+"/ambulanceLiveLocation", data)
   print("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
   
   try:
