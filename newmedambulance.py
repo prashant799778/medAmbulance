@@ -2264,7 +2264,7 @@ def allHospital1():
             WhereCondition=  " and  hl.hospitalId=hosp.id and hosp.status<>'2' and hl.cityId=cm.id "+whereCondition2+whereCondition3+whereCondition4
             WhereCondition999=  " hl.hospitalId=hosp.id and hosp.status<>'2' and hl.cityId=cm.id "+whereCondition2+whereCondition3+whereCondition4
             data=databasefile.SelectQuery2("hospitalMaster as hosp,hospitalLocationMaster as hl,cityMaster as cm",column,WhereCondition,"",startlimit,endlimit)
-            countdata=databasefile.SelectQuery1('hospitalMaster as hosp,hospitalLocationMaster as hl,cityMaster as cm',column,WhereCondition)
+            countdata=databasefile.SelectQuery1('hospitalMaster as hosp,hospitalLocationMaster as hl,cityMaster as cm',column,WhereCondition999)
             print(countdata) 
             if (data!=0): 
                 a=[]
