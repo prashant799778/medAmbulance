@@ -1239,7 +1239,11 @@ def addhospital():
                        
                     else:
                         output = {"result":"Data already existed in mapping table","status":"true"}
-                        return output        
+                        return output
+                output = {"result":"Data Inserted Successfully","status":"true"}
+                return output        
+
+                                
             else:
                 hospitalId=data['result']['id']
                 column="*"
@@ -1286,6 +1290,9 @@ def addhospital():
                 else:    
                     output = {"result":"Hospital  address Already  Existed ","status":"true"}
                     return output
+                    
+                output = {"result":"Data Inserted Successfully","status":"true"}
+                return output      
         else:
             return msg 
     except Exception as e :
