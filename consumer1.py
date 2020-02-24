@@ -14,12 +14,12 @@ def on_message(client, userdata, msg):
    
   print(msg,"===============")
   print(data,"============",msg.topic)
-  topic=(msg.topic)+"/ambulanceLiveLocation"
+  topic=str(msg.topic)+"/ambulanceLiveLocation"
 
   print(topic,"topic==================")
   
 
-  client.publish(str(msg.topic), data)
+  client.publish(topic, data)
   print("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
   
   try:
