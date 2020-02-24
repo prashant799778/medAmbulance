@@ -3351,8 +3351,8 @@ def updateDriverLatLong():
             if 'lng' in inputdata:
                 lng=inputdata["lng"]
 
-            if 'cityId' in inputdata:
-                cityId=inputdata["cityId"]    
+            if 'driverId' in inputdata:
+                driverId=inputdata["driverId"]
 
             columns="ambulanceId"
             WhereCondition = " driverId = '" + str(driverId) + "'"
