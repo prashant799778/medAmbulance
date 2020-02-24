@@ -16,6 +16,7 @@
                                 <th>Category</th>
                                 <th>Type</th>
                                 <th>Register Number</th>
+                                <th>Driver Name</th>
                                 <!-- <th>Action</th> -->
                                 
                         </tr>
@@ -30,12 +31,13 @@
                                     <td>{{driver.category}}</td>
                                     <td>{{driver.ambulanceType}}</td>
                                     <td>{{driver.ambulanceNo}}</td>
-                                      <!-- <td>
-                                            <div class="btn-edit-group">
-                                                    <button type="button" class="edit-btn" (click)="editNews(news.id)" >  <img src="../../../assets/images/edit-im.svg"></button>
-                                                    <button type="button" class="delet-btn" (click)="deleteNews(news.id)">  <img src="../../../assets/images/bin.svg"></button>
-                                                </div>
-                                      </td> -->
+                                    <td>{{driver.driverName}}</td>
+                                    <!-- <td>
+                                        <div class="btn-edit-group">
+                                            <button type="button" class="edit-btn" (click)="editNews(news.id)" >  <img src="../../../assets/images/edit-im.svg"></button>
+                                            <button type="button" class="delet-btn" (click)="deleteAmbulance(driver.id)">  <img src="../../../assets/images/bin.svg"></button>
+                                        </div>
+                                    </td> -->
                                   </tr>
                         </ng-container>
                        

@@ -9,7 +9,7 @@ import { AppSettings } from 'src/app/utils/constant';
 })
 export class CompleteTripComponent implements OnInit {
 	tableHeading = [
-		"No", "Trip Id", "Driver Name", "Passenger Name","Trip From", "Trip To","Start Time","End Time","Distance","Fare","View Route"
+		"No", "Trip Id", "Driver Name", "Passenger Name","Trip From", "Trip To","Start Time","End Time","Distance","Fare"
 	]
 	heading='Complete Trip'
 	completeTripData = []
@@ -35,7 +35,9 @@ export class CompleteTripComponent implements OnInit {
 				'tripFrom': 'Noida',
 				'tripTo': 'Agra',
 				'startTime': '02:00pm',
-				
+				'endTime': '04:30pm',
+				'distance': '250',
+				'fare': '500'
 			},
 			{
 				'tripId': 1165,
@@ -44,7 +46,9 @@ export class CompleteTripComponent implements OnInit {
 				'tripFrom': 'Noida',
 				'tripTo': 'Agra',
 				'startTime': '02:00pm',
-				
+				'endTime': '04:30pm',
+				'distance': '250',
+				'fare': '500'
 			},
 			{
 				'tripId': 1865,
@@ -53,7 +57,9 @@ export class CompleteTripComponent implements OnInit {
 				'tripFrom': 'Noida',
 				'tripTo': 'Agra',
 				'startTime': '02:00pm',
-				
+				'endTime': '04:30pm',
+				'distance': '250',
+				'fare': '500'
 			}
 		]
 	}
