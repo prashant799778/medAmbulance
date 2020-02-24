@@ -995,8 +995,9 @@ def allAmbulance():
             whereCondition=" and  AM.ambulanceTypeId=atm.id and AM.ambulanceModeId=am.id"
             data=databasefile.SelectQuery2("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am",column,whereCondition,"",startlimit,endlimit)
             print(data)
-            if (data['status']!='false'):           
-                Data = {"result":data['result'],'message':"","status":"true"}
+            if (data['status']!='false'):
+                count=len(data['result'])
+                Data = {"result":data['result'],'message':"","status":"true","totalCount":count}
                 return Data
             else:
                 output = {"result":"No Data Found","status":"false"}
