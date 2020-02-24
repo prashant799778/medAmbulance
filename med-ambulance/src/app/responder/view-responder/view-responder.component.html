@@ -1,0 +1,190 @@
+<div class="container-fluid">
+        <form [formGroup]="driverForm">
+    
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <h2 class="box-heading-tp">View Responder</h2>
+                    <div class="top-heading bg-white">
+                        <h2 class="heading-bx">Basic Infromation</h2>
+                        <div class="form-section  p-4">
+                            <div class="inner-f-section">
+                                <div class="form-box">
+                                    
+                                    <label>Name</label>
+                                    <input type="text" formControlName="name">
+                                </div>
+                                <div class="form-box">
+                                    <label>status</label>
+                                    <select formControlName="status">
+                                        <option value="1">Verified</option>
+                                        <option value="0">Not Verified</option>
+                                    </select>
+                                </div>
+                                <div class="form-box">
+                                    <label>Address</label>
+                                    <input type="text" formControlName="address">
+                                </div>
+                                
+                                
+                               
+    
+                            </div>
+                            <div class="inner-f-section">
+                               
+                                <div class="form-box">
+                                    <label>Mobile Number</label>
+                                    <input type="text" formControlName="mobileNo">
+                                </div>
+
+                                <div class="form-box">
+                                    <label>Email</label>
+                                    <input type="text" formControlName="email">
+                                </div>
+                                
+
+                                <!-- <div class="form-box">
+                                        <label class="invisible m-0">Email</label>
+                                        <div class="inputfile-box">
+                                            <input type="file" id="file" class="inputfile" onchange='uploadFile(this)'>
+                                            <label for="file" class="file-lab ">
+                                              <span id="file-name" class="file-box"></span>
+                                              <span class="file-button">
+                                               <img src="../../../assets/images/upload.svg" class="file-up-img">
+                                              </span>
+                                            </label>
+                                          </div>
+                                </div> -->
+                                <div class="form-box">
+    
+                                </div>
+                            </div>
+                            <div class="thumb">
+                                <span>Responder Image</span>
+                                <ul class="d-flex">
+                                    <li ><img [src]="imageShowPIF"></li>
+                                </ul>
+                            </div>       
+                        </div>
+                        
+                        <h2 class="heading-bx">Document Details </h2>
+                        <div class="form-section  p-4">
+                            <div class="inner-f-section">
+                               
+                                <div class="form-box">
+                                        <label>Proof of Identity Type</label>
+                                        <input type="text" formControlName="pIDType">
+                                    </div>
+                                    <div class="form-box">
+                                        <label>Proof of Identity No</label>
+                                        <input type="text" formControlName="pIDNo">
+                                    </div>
+                                
+                            </div>
+                            <div class="inner-f-section">
+                                    <div class="form-box">
+                                            <label>Driver Licence No</label>
+                                            <input type="text" formControlName="dlNo">
+                                        </div>
+                               
+                                
+                                
+                            </div>
+                            
+                                <div class="thumb">
+                                        <span>Proof Of Identity Image</span>
+                                        <ul class="d-flex">
+                                            <li (click)="zoomImage(imageShowPIF)">
+                                                <img [src]="imageShowPIF">
+                                            </li>
+                                            <li (click)="zoomImage(imageShowPIB)">
+                                                    <img [src]="imageShowPIB">
+                                            </li>
+                                        </ul>
+                                    </div>  
+                                    <div class="thumb">
+                                            <span>Driving Licenense Image</span>
+                                                <ul class="d-flex">
+                                                    <li (click)="zoomImage(imageShowDLF)">
+                                                        <img [src]="imageShowDLF">
+                                                    </li>
+                                                    <li (click)="zoomImage(imageShowDLB)">
+                                                            <img [src]="imageShowDLB">
+                                                    </li>
+                                                </ul>
+                                            </div>  
+                                  
+                        </div>
+
+                        <h2 class="heading-bx">Vehicle Details </h2>
+                        <div class="form-section  p-4">
+                            <div class="inner-f-section">
+                                <div class="form-box">
+                                    <label>Transport Model</label>
+                                    <input type="text" formControlName="transportModel">
+                                </div>
+                                <div class="form-box">
+                                    <div class="form-box">
+                                        <label>Category</label>
+                                        <select formControlName="ambulanceModeId">
+                                                <option *ngFor="let category of ambCategory" [value]="category.id">{{category.ambulanceType}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-box">
+                                    <label>Ambulance No</label>
+                                    <input type="text" formControlName="ambulanceNo">
+                                </div>
+                                
+                            </div>
+                            <div class="inner-f-section">
+                               
+                                <div class="form-box">
+                                    <label>Ambulance Type</label>
+                                    <!-- <input type="text" formControlName="ambulanceType"> -->
+                                    <select formControlName="ambulanceModeId">
+                                            <option *ngFor="let type of ambType" [value]="type.id">{{type.ambulanceType}}</option>
+                                        </select>
+                                </div>
+                                <div class="form-box">
+                                    <label>Fuel Type</label>
+                                    <input type="text" formControlName="fuelType">
+                                </div>
+                                <!-- <div class="form-box">
+                                        <label class="invisible m-0">Email</label>
+                                        <div class="inputfile-box">
+                                            <input type="file" id="file" class="inputfile" onchange='uploadFile(this)'>
+                                            <label for="file" class="file-lab ">
+                                              <span id="file-name" class="file-box"></span>
+                                              <span class="file-button">
+                                               <img src="../../../assets/images/upload.svg" class="file-up-img">
+                                              </span>
+                                            </label>
+                                          </div>
+                                </div> -->
+                                
+                            </div>
+                            <div class="thumb">
+                                <span>Ambulance Image</span>
+                                <ul class="d-flex">
+                                    <li (click)="zoomImage(imageShowV)"><img [src]="imageShowV"></li>
+                                </ul>
+                            </div>       
+                                
+                        </div>
+                        
+                        <!-- <div class="btnn-group text-center mb-3" *ngIf="views">
+                            <button type="button" class="sub-btn gp-btn-clr text-white">update</button>
+                            <button type="button" class="sub-btn gp-btn-clr2 text-white">cancel</button>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <div class="top-heading bg-white">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+   

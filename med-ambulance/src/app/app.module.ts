@@ -32,6 +32,8 @@ import { EditDriverComponent } from './driver/edit-driver/edit-driver.component'
 import { AddHospitalComponent } from './hospital/add-hospital/add-hospital.component';
 import { EditHospitalComponent } from './hospital/edit-hospital/edit-hospital.component';
 import { AllHospitalComponent } from './hospital/all-hospital/all-hospital.component';
+import { AllResponderComponent } from './responder/all-responder/all-responder.component';
+import { ViewResponderComponent } from './responder/view-responder/view-responder.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { AllHospitalComponent } from './hospital/all-hospital/all-hospital.compo
     AddHospitalComponent,
     EditHospitalComponent,
     AllHospitalComponent,
+    AllResponderComponent,
+    ViewResponderComponent,
   ],
   imports: [
     BrowserModule,

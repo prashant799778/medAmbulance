@@ -19,6 +19,8 @@ import { EditDriverComponent } from './driver/edit-driver/edit-driver.component'
 import { AllHospitalComponent } from './hospital/all-hospital/all-hospital.component';
 import { EditHospitalComponent } from './hospital/edit-hospital/edit-hospital.component';
 import { AddHospitalComponent } from './hospital/add-hospital/add-hospital.component';
+import { AllResponderComponent } from './responder/all-responder/all-responder.component';
+import { ViewResponderComponent } from './responder/view-responder/view-responder.component';
 
 
 const routes: Routes = [
@@ -41,6 +43,13 @@ const routes: Routes = [
 			{ path:'editDriver',component: EditDriverComponent,canActivate: [AuthGuard]},
 			{ path:'allDriver',component: AllDriverComponent,canActivate: [AuthGuard]},
 			{ path:'driverPayment',component: DriverPaymentComponent,canActivate: [AuthGuard]},
+		]
+	},
+	{ path: 'responder',
+		children: [                          //<---- child components declared here
+	  		{ path: '',redirectTo: '/responder/allResponder',pathMatch:'full'}, 
+			{ path:'viewResponder',component: ViewResponderComponent,canActivate: [AuthGuard]},
+			{ path:'allResponder',component: AllResponderComponent,canActivate: [AuthGuard]},
 		]
 	},
 	{ path: 'hospital',
