@@ -1,0 +1,6 @@
+.record-box tbody tr td:nth-child(8) {
+    width: 100px;
+}
+.btn-edit-group {
+    display: flex;
+}
