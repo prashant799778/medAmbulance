@@ -26,7 +26,7 @@
                                         bindValue="id"
                                         labelForId="name"
                                         multiple = "true"
-                                        clearAllText="Clear"
+                                        [clearable]="false"
                                         formControlName="facilityId">
                                     </ng-select>
                                    
@@ -39,10 +39,13 @@
                                     bindValue="id"
                                     labelForId="ambulanceType"
                                     multiple = "true"
-                                    
-                                    clearAllText="Clear"
+                                    placeholder="select value"
+                                    [clearable]="false"
                                     formControlName="ambulanceId">
                                  </ng-select>
+                                 <!-- <ng-select class="select" formControlName="ambulanceId" [clearable]="false"
+    [items]="ambType" bindLabel="text" multiple="true" bindValue="id" placeholder="Select Country" >
+  </ng-select> -->
                                 <!-- <select formControlName="ambType">
                                     <option *ngFor="let type of ambType">{{type.ambulanceType}}</option>
                                 </select> -->

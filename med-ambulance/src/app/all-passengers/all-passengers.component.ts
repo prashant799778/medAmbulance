@@ -9,7 +9,7 @@ import { AppSettings } from '../utils/constant';
 })
 export class AllPassengersComponent implements OnInit {
 	tableHeading = [
-		"No", "Name", "Mobile", "Email","Address", "Wallet Balance","Trip","Status","Action"
+		"No", "Name", "Mobile", "Email","Address", "Wallet Balance","Trip",
 	]
 	heading='All Passenger';
 	loader: boolean;
@@ -35,7 +35,7 @@ export class AllPassengersComponent implements OnInit {
 							{	'name':'Vijay Pal',
 								'mobileNo': 8888517655,
 								'email': 'vijay@gmail.com',
-								'address': 'Noida UP-87',
+								'currentLocation': 'Noida UP-87',
 								'wallet': 100,
 								'tripCount': 10,
 								'status': 1
@@ -43,7 +43,7 @@ export class AllPassengersComponent implements OnInit {
 							{	'name':'Vijay Pal',
 								'mobileNo': 8888517655,
 								'email': 'vijay@gmail.com',
-								'address': 'Noida UP-87',
+								'currentLocation': 'Noida UP-87',
 								'wallet': 100,
 								'tripCount': 10,
 								'status': 1
@@ -51,7 +51,7 @@ export class AllPassengersComponent implements OnInit {
 							{	'name':'Vijay Pal',
 								'mobileNo': 8888517655,
 								'email': 'vijay@gmail.com',
-								'address': 'Noida UP-87',
+								'currentLocation': 'Noida UP-87',
 								'wallet': 100,
 								'tripCount': 10,
 								'status': 1

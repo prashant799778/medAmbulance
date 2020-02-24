@@ -46,7 +46,7 @@ export class AppSettings {
     public static facilityMaster = 'facilityMaster';
     public static deleteHospital = 'deleteHospital';
     public static cityMaster = 'cityMaster';
-    // public static signUpVideo = 'signUpVideo';
+    public static updateHospital = 'updateHospital';
     // public static deleteSignUpVideo = 'deleteSignUpVideo';
     // public static deletePromisingInitiatives = 'deletePromisingInitiatives';
     // public static deleteGallery = 'deleteGallery';

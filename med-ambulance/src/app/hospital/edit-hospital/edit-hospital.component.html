@@ -58,7 +58,7 @@
                                                 
                                         <div class="form-box">
                                             <label>City</label>
-                                            <select formControlName="city">
+                                            <select formControlName="cityId">
                                                     <option *ngFor="let city of city" [value]="city.id">{{city.name}}</option>
                                             </select>
                                         </div>
@@ -76,7 +76,7 @@
                             </div>
                             
                             <div class="btnn-group text-center mt-3 mb-3" *ngIf="views">
-                                    <button (click)="submitData()" type="button" class="sub-btn gp-btn-clr text-white">Update</button>
+                                    <button (click)="updateData()" type="button" class="sub-btn gp-btn-clr text-white">Update</button>
                                     <!-- <button (click)="resetForm()" type="button" class="sub-btn gp-btn-clr2 text-white">cancel</button> -->
                                 </div>
                             <!-- <div class="inner-f-section"> -->
