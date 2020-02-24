@@ -51,10 +51,14 @@ def on_message(client, userdata, msg):
       ambulanceLatLong = databasefile.SelectQueryOrderby("ambulanceRideTracking",column1,whereCondition1,"","0","1",orderby)
 
       print(ambulanceLatLong,"ambulanceLatLong==================")
-      column=" rideId,ambulanceId,driverId,lat,lng "
-      values="'"+str(ambulanceRideId["result"][0]["bookingId"])+"','"+str(ambulanceId)+"','"+str(driverId)+"','"+str(lat)+"','"+str(lng)+"'"
-      insertdata=databasefile.InsertQuery("ambulanceRideTracking",column,values)
-      
+      if (data["lat"]==ambulanceLatLong["result"][0]["lat"]) and data["lng"]==ambulanceLatLong["result"][0]["lng"]:
+        pass
+
+      else:
+        column=" rideId,ambulanceId,driverId,lat,lng "
+        values="'"+str(ambulanceRideId["result"][0]["bookingId"])+"','"+str(ambulanceId)+"','"+str(driverId)+"','"+str(lat)+"','"+str(lng)+"'"
+        insertdata=databasefile.InsertQuery("ambulanceRideTracking",column,values)
+        
     
     elif  (ambulanceTripDetails[0]["onTrip"]==0) and (ambulanceTripDetails[0]["onDuty"]==1):
       print("2222222222222222222")
