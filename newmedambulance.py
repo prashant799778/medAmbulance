@@ -2259,7 +2259,7 @@ def allHospital1():
             if (data!=0): 
                 a=[]
                 b=[]
-                for i in data:
+                for i in data['result']:
                     hospital_Id=i['id']
                     column="hma.ambulance_Id as ambulanceId,hma.hospital_Id as hospitalId,am.ambulanceType"
                     whereCondition=" hma.hospital_Id=  '" + str(hospital_Id) + "' and am.id=hma.ambulance_Id"
