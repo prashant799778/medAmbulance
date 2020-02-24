@@ -1114,7 +1114,7 @@ def alldrivers():
                     y2=data111['result']
                     print(y2)
                     column2222="dlNo,dlFrontFilename,concat('"+ ConstantData.GetBaseURL() + "',dlFrontFilepath)dlFrontFilepath,dlBackFilename,concat('"+ ConstantData.GetBaseURL() + "',dlBackFilepath)dlBackFilepath,pIDType,pIDNo,pIDFrontFilename,concat('"+ ConstantData.GetBaseURL() + "',pIDFrontFilepath)pIDFrontFilepath,pIDBackFilename,concat('"+ ConstantData.GetBaseURL() + "',pIDBackFilepath)pIDBackFilepath"
-                    whereCondition2222=" driverId = "+str(d1)+ " "
+                    whereCondition2222=" driverId = '"+str(d1)+"' "
                     data11111=databasefile.SelectQuery('driverMaster',column2222,whereCondition2222)
                     y3=data11111['result']
                     data['result'][0].update(y2)
