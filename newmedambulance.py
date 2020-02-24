@@ -2598,6 +2598,8 @@ def getNearByAmbulanceAndResponder():
         commonfile.writeLog("getNearAmbulance",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
+            
+            #============NearByAmbulance========
             startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
             column=  "d.driverId, a.ambulanceTypeId,a.ambulanceModeId,d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, b.lat, b.lng,SQRT(POW(69.1 * (b.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - b.lng) * COS(b.lat / 57.3), 2)) AS distance "
             whereCondition= "and a.driverTypeId=1 and  d.status=1 and b.onTrip=0 and b.onDuty=1 and a.driverId=d.driverId  and b.ambulanceId=a.ambulanceId HAVING distance < 25 "
@@ -2605,6 +2607,8 @@ def getNearByAmbulanceAndResponder():
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d,ambulanceRideStatus as b",column,whereCondition,"",orderby,"","")
             print("nearByAmbulance================================",nearByAmbulance)
             nearByAmbulance["ambulanceTypeId"]=list(set([i["ambulanceTypeId"] for i in nearByAmbulance["result"]]))
+            #============NearByAmbulance========
+
             
             #============NearByResponder========
             startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
@@ -2613,7 +2617,7 @@ def getNearByAmbulanceAndResponder():
             orderby="  distance "
             nearByResponder=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d,ambulanceRideStatus as b",column,whereCondition,"",orderby,"","")
             print("nearByAmbulance================================",nearByResponder)
-            #nearByAmbulance["ambulanceTypeId"]=list(set([i["ambulanceTypeId"] for i in nearByAmbulance["result"]]))
+            #============NearByResponder========
 
             if (nearByAmbulance!=0):   
                 #for i in nearByAmbulance["result"]: 
