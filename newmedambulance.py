@@ -1328,7 +1328,7 @@ def updateStatus11():
                 whereCondition="   id = " + str(userId)+ " "
                 data1=databasefile.UpdateQuery('hospitalMaster',column,whereCondition)
 
-                column2="address='"+str(address)+"' ,lat='"+str(lat)+"' ,lng='"+str(lng)+"' ,cityId='"+str(city)+"' "
+                column2="address='"+str(address)+"' ,lat='"+str(latitude)+"' ,lng='"+str(longitude)+"' ,cityId='"+str(city)+"' "
                 whereCondition3=" hospitalId=' " + str(userId)+ " ' "
                 data2=databasefile.UpdateQuery('hospitalLocationMaster',column2,whereCondition3)
 
