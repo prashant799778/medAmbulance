@@ -3676,7 +3676,7 @@ def deleteDriver():
             userId=inputdata["driverId"]
             column="status=2"
 
-            WhereCondition = "  id = '" + str(userId) + "' "
+            WhereCondition = "  driverId = '" + str(userId) + "' "
             data=databasefile.UpdateQuery("driverMaster",column,WhereCondition)
            
 
