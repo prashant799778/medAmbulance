@@ -44,7 +44,12 @@ def on_message(client, userdata, msg):
       ambulanceRideId = databasefile.SelectQueryOrderby("bookAmbulance",column1,whereCondition1,"","0","1",orderby)
 
 
+      column1=" lat,lng "
+      whereCondition1=" and  bookingId='"+str(ambulanceRideId["result"][0]["bookingId"])+"'"
+      orderby=" id "
+      ambulanceLatLong = databasefile.SelectQueryOrderby("ambulanceRideTracking",column1,whereCondition1,"","0","1",orderby)
 
+      print(ambulanceLatLong,"ambulanceLatLong==================")
       column=" rideId,ambulanceId,driverId,lat,lng "
       values="'"+str(ambulanceRideId["result"][0]["bookingId"])+"','"+str(ambulanceId)+"','"+str(driverId)+"','"+str(lat)+"','"+str(lng)+"'"
       insertdata=databasefile.InsertQuery("ambulanceRideTracking",column,values)
