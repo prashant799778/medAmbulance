@@ -2255,7 +2255,7 @@ def allHospital1():
 
             column= "hosp.id,hosp.hospitalName,hl.address,hl.lat,hl.lng,cm.name as city,cm.id as cityId"   
             WhereCondition=  " and  hl.hospitalId=hosp.id and hosp.status<>'2' and hl.cityId=cm.id "+whereCondition2+whereCondition3+whereCondition4
-            data=databasefile.SelectQuery2("hospitalMaster as hosp,hospitalLocationMaster as hl,cityMaster as cm",column,WhereCondition,startlimit,endlimit)
+            data=databasefile.SelectQuery2("hospitalMaster as hosp,hospitalLocationMaster as hl,cityMaster as cm",column,WhereCondition,"",startlimit,endlimit)
             if (data!=0): 
                 a=[]
                 b=[]
@@ -3264,7 +3264,7 @@ def dashboard():
                             i['tripCount']=tripcount
                     count=len(data['result'])        
 
-                    Data = {"result":{"driverDetails":data['result'],"dashboard":{"cancelledTripCount":y,"bookedTripCount":y2,"totalEarning":y3,"newsUsers":y4},"userReviews":"No data Available"},"status":"true","message":""}
+                    Data = {"result":{"driverDetails":data['result'],"","dashboard":{"cancelledTripCount":y,"bookedTripCount":y2,"totalEarning":y3,"newsUsers":y4},"userReviews":"No data Available"},"status":"true","message":""}
                     return Data
             else:
                 output = {"message":"No Data Found","status":"false","result":""}
