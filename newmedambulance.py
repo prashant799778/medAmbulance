@@ -3016,42 +3016,56 @@ def getNearAmbulancetest():
 
 
 
-# @app.route('/getNearAmbulance1', methods=['POST'])
-# def getNearAmbulance1():
-#     try:
-#         inputdata =  commonfile.DecodeInputdata(request.get_data())
-#         startlimit,endlimit="",""
-
-#         keyarr = ['startLocationLat','startLocationLong',"pickupLocationAddress",'dropLocationLat','dropLocationLong',"dropLocationAddress",]
-#         commonfile.writeLog("getNearAmbulance",inputdata,0)
-#         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
-#         if msg == "1":
-#             startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
-#             column=  " d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, a.lat, a.lng,SQRT(POW(69.1 * (a.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - a.lng) * COS(a.lat / 57.3), 2)) AS distance "
-#             whereCondition= " and a.onTrip=0 and a.onDuty=1 and a.driverId=d.id HAVING distance < 1200 "
-#             orderby="  distance "
-#             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d",column,whereCondition,"",orderby,"","")
+@app.route('/getNearByAmbulanceAndResponder', methods=['POST'])
+def getNearByAmbulanceAndResponder():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['startLocationLat','startLocationLong']
+        commonfile.writeLog("getNearAmbulance",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
             
-#             if (nearByAmbulance!=0): 
-#                 for i in nearByAmbulance["result"]: 
-#                     topic=str(nearByAmbulance["result"][i]["ambulanceId"])+"/booking"
-#                     print(nearByAmbulance["result"][i]["ambulanceId"]) 
-#                     client.publish(topic, "Hello world11111111111111111")
-#                     print("2222222222222")             
-#                 return nearByAmbulance
-#             else:
-                
-#                 return nearByAmbulance
-#         else:
-#             return msg 
-#     except KeyError as e:
-#         print("Exception---->" +str(e))        
-#         output = {"result":"Input Keys are not Found","status":"false"}
-#         return output    
-#     except Exception as e :
-#         print("Exception---->" +str(e))           
-#         output = {"result":"something went wrong","status":"false"}
-#         return output
+            #============NearByAmbulance========
+            startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
+            column=  "d.driverId, a.ambulanceTypeId,a.ambulanceModeId,d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, b.lat, b.lng,SQRT(POW(69.1 * (b.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - b.lng) * COS(b.lat / 57.3), 2)) AS distance "
+            whereCondition= "and a.driverTypeId=1 and  d.status=1 and b.onTrip=0 and b.onDuty=1 and a.driverId=d.driverId  and b.ambulanceId=a.ambulanceId HAVING distance < 25 "
+            orderby="  distance "
+            nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d,ambulanceRideStatus as b",column,whereCondition,"",orderby,"","")
+            print("nearByAmbulance================================",nearByAmbulance)
+            nearByAmbulance["ambulanceTypeId"]=list(set([i["ambulanceTypeId"] for i in nearByAmbulance["result"]]))
+            #============NearByAmbulance========
+
+            
+            #============NearByResponder========
+            startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
+            column=  "d.driverId, a.ambulanceTypeId,a.ambulanceModeId,d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, b.lat, b.lng,SQRT(POW(69.1 * (b.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - b.lng) * COS(b.lat / 57.3), 2)) AS distance "
+            whereCondition= "and a.driverTypeId=2 and  d.status=1 and b.onTrip=0 and b.onDuty=1 and a.driverId=d.driverId  and b.ambulanceId=a.ambulanceId HAVING distance < 25 "
+            orderby="  distance "
+            nearByResponder=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d,ambulanceRideStatus as b",column,whereCondition,"",orderby,"","")
+            print("nearByAmbulance================================",nearByResponder)
+            #============NearByResponder========
+
+            if (nearByAmbulance!=0):   
+                #for i in nearByAmbulance["result"]: 
+                    # topic=str(nearByAmbulance["result"][i]["ambulanceId"])+"/booking"
+                    # print(nearByAmbulance["result"][i]["ambulanceId"]) 
+                    # client.publish(topic, "Hello world11111111111111111")
+                    # print("2222222222222")             
+                return {"nearByAmbulance":nearByAmbulance,"nearByResponder":nearByResponder}
+            else:
+                nearByAmbulance["message"]="No Ambulance Found"
+                return nearByAmbulance
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
 
 
 @app.route('/bookRide', methods=['POST'])
@@ -4193,6 +4207,10 @@ def deleteHospital():
     except Exception as e :
         print("Exception--->" + str(e))                                  
         return commonfile.Errormessage()
+
+
+
+
 
 
 
