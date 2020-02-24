@@ -3344,16 +3344,6 @@ def updateDriverLatLong():
         print(msg,'msg')
        
         if msg == "1":
-           
-            driverId=inputdata['driverId']
-            column="id"
-            WhereCondition = " driverId = '" + str(driverId) + "'"
-            data=databasefile.SelectQuery('driverMaster',column,WhereCondition)
-           
-            # DlNo=str(data['result']["dlNo"])
-
-
-           
 
             if 'lat' in inputdata:
                 lat=inputdata["lat"]
@@ -3364,38 +3354,23 @@ def updateDriverLatLong():
             if 'cityId' in inputdata:
                 cityId=inputdata["cityId"]    
 
-            
+            columns="ambulanceId"
+            WhereCondition = " driverId = '" + str(driverId) + "'"
+            data111=databasefile.SelectQuery('ambulanceMaster',columns,WhereCondition)
+            if data111['status'] != 'false':
+                
+                ambulanceId=data111['result']['ambulanceId']
+                WhereCondition2=" ambulanceId= '" + str(ambulanceId) + "'"
+                columns23="lat='" + str(lat) + "',lng='" + str(lng) + "'"
+                data122=databasefile.UpdateQuery('ambulanceRideStatus',columns23,WhereCondition2)
+                
+                if data122 != "0":
+                    data11={"result":"","message":"Updated successfully","status":"true"}
+                    return data11
 
-            if data['status']!='false':
-                
-                
-                
-                
-                
-
-               
-                columns="ambulanceId"
-                WhereCondition = " driverId = '" + str(driverId) + "'"
-                data111=databasefile.SelectQuery('ambulanceMaster',columns,WhereCondition)
-                if data111['status'] != 'false':
-                    
-                    ambulanceId=data111['result']['ambulanceId']
-                    WhereCondition2=" ambulanceId= '" + str(ambulanceId) + "'"
-                    columns23="lat='" + str(lat) + "',lng='" + str(lng) + "'"
-                    data122=databasefile.UpdateQuery('ambulanceRideStatus',columns23,WhereCondition2)
-                    
-                   
-                    
-
-                    if data122 != "0":
-                        data11={"result":"","message":"Updated successfully","status":"true"}
-                        return data11
-
-                        
-                        
-                    else:
-                        data11={"result":"","message":"Not existed  in data","status":"false"}
-                        return data11
+                else:
+                    data11={"result":"","message":"Not existed  in data","status":"false"}
+                    return data11
 
 
                         
