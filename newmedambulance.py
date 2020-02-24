@@ -1337,6 +1337,7 @@ def updateStatus11():
 
                 whereCondition4= "hospitalId = ' " + str(userId)+ " ' "
                 data4=databasefile.DeleteQuery('hospitalFacilityMapping',whereCondition4)
+                print("aaaa1111111111111111111111111111")
 
 
                 for i in ambulanceId:
