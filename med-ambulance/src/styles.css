@@ -749,3 +749,70 @@ img.altr {
 	font-size: 12px;
 
 }
+.ant-pagination {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+    
+ul.ant-pagination li {
+    margin: 0 10px;
+    list-style: none !important;
+    border: 1px solid #cccccc;
+    padding: 4px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle !important;
+    }
+    .anticon-double-right {
+        display: none;
+    }
+    .ant-pagination-item-container:hover .anticon-double-right {
+        display: inline-block !important;
+    }
+    .anticon-double-left {
+        display: none;
+    }
+    .ant-pagination-item-container:hover .anticon-double-left {
+        display: inline-block !important;
+    }
+    .ant-pagination-item-container:hover span.ant-pagination-item-ellipsis {
+        display: none;
+    }
+    li.ant-pagination-item.ant-pagination-item-active {
+        color: #4dbd74;
+        border: 1px solid #4dbd74;
+    }
+
+    .ant-pagination-next .ant-pagination-item-link, .ant-pagination-prev .ant-pagination-item-link{
+        border:0px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        background: transparent !important;
+    }
+    .ant-pagination-jump-next, .ant-pagination-jump-prev, .ant-pagination-next, .ant-pagination-prev {
+        display: inline-block;
+        min-width: unset !important;
+    }
+    .ant-pagination-item {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    span.ant-pagination-item-ellipsis {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    i.anticon.ant-pagination-item-link-icon.anticon-double-right {
+        position: relative;
+        top: -3px;
+    }
+    i.anticon.ant-pagination-item-link-icon.anticon-double-left {
+        position: relative;
+        top: -3px;
+    }

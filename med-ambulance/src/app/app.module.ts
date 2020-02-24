@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyDatePickerModule } from 'mydatepicker';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 
 import { AppComponent } from './app.component';
@@ -65,7 +66,8 @@ import { AllHospitalComponent } from './hospital/all-hospital/all-hospital.compo
     FormsModule,
     ReactiveFormsModule,
     MyDatePickerModule,
-    NgSelectModule
+    NgSelectModule,
+    NgZorroAntdModule
   ],
   providers: [],
   bootstrap: [AppComponent]
