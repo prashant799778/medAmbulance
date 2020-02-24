@@ -3348,7 +3348,7 @@ def updateDriverLatLong():
             driverId=inputdata['driverId']
             column="name"
             WhereCondition = " driverId = '" + str(driverId) + "'"
-            data=databasefile.SelectQuery('ambulanceMaster',columns,WhereCondition)
+            data=databasefile.SelectQuery('ambulanceMaster',column,WhereCondition)
            
             # DlNo=str(data['result']["dlNo"])
 
