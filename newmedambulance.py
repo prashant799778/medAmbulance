@@ -1342,7 +1342,7 @@ def updateStatus11():
                 data4=databasefile.DeleteQuery('hospitalFacilityMapping',whereCondition4)
                 print("aaaa1111111111111111111111111111")
 
-
+                print(facilityId,"+++2222222222222++++++++++++++++++++++++++++++++++++++")   
                 for i in ambulanceId:
                     print('a1111111')
 
