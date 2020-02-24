@@ -1137,7 +1137,9 @@ def alldrivers():
                             tripcount=data122['result']['count']
                             i['tripCount']=tripcount
 
-                    Data = {"result":data['result'],"status":"true","message":""}
+                    count=len(data['result'])        
+
+                    Data = {"result":data['result'],"status":"true","message":"","totalCount":count}
                     return Data
             else:
                 output = {"message":"No Data Found","status":"false","result":""}
@@ -2251,8 +2253,8 @@ def allHospital1():
                 whereCondition4=" and  cm.id  = '" + str(cityId) + "'  "                   
 
             column= "hosp.id,hosp.hospitalName,hl.address,hl.lat,hl.lng,cm.name as city,cm.id as cityId"   
-            WhereCondition=  " hl.hospitalId=hosp.id and hosp.status<>'2' and hl.cityId=cm.id "+whereCondition2+whereCondition3+whereCondition4
-            data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalLocationMaster as hl,cityMaster as cm",column,WhereCondition)
+            WhereCondition=  " and  hl.hospitalId=hosp.id and hosp.status<>'2' and hl.cityId=cm.id "+whereCondition2+whereCondition3+whereCondition4
+            data=databasefile.SelectQuery2("hospitalMaster as hosp,hospitalLocationMaster as hl,cityMaster as cm",column,WhereCondition,startlimit,endlimit)
             if (data!=0): 
                 a=[]
                 b=[]
@@ -2298,7 +2300,8 @@ def allHospital1():
                                 h+=","+k['facilityName']
                             else:
                                 h=k['facilityName']
-                    i['facilityName']= h           
+                    i['facilityName']= h 
+                    count=len(data)          
 
 
 
@@ -2317,7 +2320,7 @@ def allHospital1():
 
 
 
-                Data = {"result":data,"status":"true"}
+                Data = {"result":data,"status":"true","totalCount":count}
                 return Data
             else:
                 print("ssssssssssss")
