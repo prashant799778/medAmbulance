@@ -1222,16 +1222,17 @@ def addhospital():
                         output = {"result":"Data already existed in mapping table","status":"true"}
                         return output
 
-                for i in facility:
+                for j in facility:
+                    print('qqqqqqqqqqqqqqqqqqq')
 
                     column=" * "
-                    whereCondition="facilityId='"+str(i)+"'  and hospitalId='"+str(mainId)+"'"
+                    whereCondition="facilityId='"+str(j)+"'  and hospitalId='"+str(mainId)+"'"
                     userHospitalMappingdata = databasefile.SelectQuery1("hospitalFacilityMapping ",column,whereCondition)
                     print(userHospitalMappingdata,'lets see')
                     if userHospitalMappingdata==0:
                         print('CCcccccccccccccccccccccccccccccccccccccccc')
                         column="hospitalId,facilityId"
-                        values="'"+str(mainId)+"','"+str(i)+"'"
+                        values="'"+str(mainId)+"','"+str(j)+"'"
                         insertdata=databasefile.InsertQuery("hospitalFacilityMapping",column,values)                
                         output = {"result":"data inserted successfully","status":"true"}
                         return output
@@ -1358,16 +1359,16 @@ def updateStatus11():
                         output = {"result":"Data already existed in mapping table","status":"true"}
                         return output
 
-                for i in facilityId:
+                for j in facilityId:
                     print('aaaaaaaaaa')
                     column=" * "
-                    whereCondition="facilityId='"+str(i)+"'  and hospitalId='"+str(userId)+"'"
+                    whereCondition="facilityId='"+str(j)+"'  and hospitalId='"+str(userId)+"'"
                     userHospitalMappingdata = databasefile.SelectQuery1("hospitalFacilityMapping ",column,whereCondition)
                     print(userHospitalMappingdata,'lets see')
                     if userHospitalMappingdata==0:
                         print('CC')
                         column="hospitalId,facilityId"
-                        values="'"+str(userId)+"','"+str(i)+"'"
+                        values="'"+str(userId)+"','"+str(j)+"'"
                         insertdata=databasefile.InsertQuery("hospitalFacilityMapping",column,values)                
                         output = {"result":"data updated successfully","status":"true"}
                         return output
