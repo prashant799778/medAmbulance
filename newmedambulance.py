@@ -995,8 +995,9 @@ def allAmbulance():
             whereCondition=" and  AM.ambulanceTypeId=atm.id and AM.ambulanceModeId=am.id"
             data=databasefile.SelectQuery2("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am",column,whereCondition,"",startlimit,endlimit)
             print(data)
-            if (data['status']!='false'):           
-                Data = {"result":data['result'],'message':"","status":"true"}
+            if (data['status']!='false'):
+                count=len(data['result'])
+                Data = {"result":data['result'],'message':"","status":"true","totalCount":count}
                 return Data
             else:
                 output = {"result":"No Data Found","status":"false"}
@@ -1137,7 +1138,9 @@ def alldrivers():
                             tripcount=data122['result']['count']
                             i['tripCount']=tripcount
 
-                    Data = {"result":data['result'],"status":"true","message":""}
+                    count=len(data['result'])        
+
+                    Data = {"result":data['result'],"status":"true","message":"","totalCount":count}
                     return Data
             else:
                 output = {"message":"No Data Found","status":"false","result":""}
@@ -2251,12 +2254,12 @@ def allHospital1():
                 whereCondition4=" and  cm.id  = '" + str(cityId) + "'  "                   
 
             column= "hosp.id,hosp.hospitalName,hl.address,hl.lat,hl.lng,cm.name as city,cm.id as cityId"   
-            WhereCondition=  " hl.hospitalId=hosp.id and hosp.status<>'2' and hl.cityId=cm.id "+whereCondition2+whereCondition3+whereCondition4
-            data=databasefile.SelectQuery1("hospitalMaster as hosp,hospitalLocationMaster as hl,cityMaster as cm",column,WhereCondition)
+            WhereCondition=  " and  hl.hospitalId=hosp.id and hosp.status<>'2' and hl.cityId=cm.id "+whereCondition2+whereCondition3+whereCondition4
+            data=databasefile.SelectQuery2("hospitalMaster as hosp,hospitalLocationMaster as hl,cityMaster as cm",column,WhereCondition,"",startlimit,endlimit)
             if (data!=0): 
                 a=[]
                 b=[]
-                for i in data:
+                for i in data['result']:
                     hospital_Id=i['id']
                     column="hma.ambulance_Id as ambulanceId,hma.hospital_Id as hospitalId,am.ambulanceType"
                     whereCondition=" hma.hospital_Id=  '" + str(hospital_Id) + "' and am.id=hma.ambulance_Id"
@@ -2298,7 +2301,8 @@ def allHospital1():
                                 h+=","+k['facilityName']
                             else:
                                 h=k['facilityName']
-                    i['facilityName']= h           
+                    i['facilityName']= h 
+                    count=len(data)          
 
 
 
@@ -2317,7 +2321,7 @@ def allHospital1():
 
 
 
-                Data = {"result":data,"status":"true"}
+                Data = {"result":data,"status":"true","totalCount":count}
                 return Data
             else:
                 print("ssssssssssss")
@@ -3258,8 +3262,9 @@ def dashboard():
                         else:
                             tripcount=data122['result']['count']
                             i['tripCount']=tripcount
+                    count=len(data['result'])        
 
-                    Data = {"result":{"driverDetails":data['result'],"dashboard":{"cancelledTripCount":y,"bookedTripCount":y2,"totalEarning":y3,"newsUsers":y4},"userReviews":"No data Available"},"status":"true","message":""}
+                    Data = {"result":{"driverDetails":data['result'],"totalCount":count,"dashboard":{"cancelledTripCount":y,"bookedTripCount":y2,"totalEarning":y3,"newsUsers":y4},"userReviews":"No data Available"},"status":"true","message":""}
                     return Data
             else:
                 output = {"message":"No Data Found","status":"false","result":""}
