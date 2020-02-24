@@ -37,7 +37,7 @@ def on_message(client, userdata, msg):
     
 
     #if ambulanceRideId!=0:
-    if (ambulanceTripDetails[0]["onTrip"]==0) and (ambulanceTripDetails[0]["onDuty"]==1):
+    if (ambulanceTripDetails[0]["onTrip"]==1) and (ambulanceTripDetails[0]["onDuty"]==1):
 
       column1=" id,bookingId "
       whereCondition1=" and  ambulanceId='"+str(ambulanceId)+"'"
@@ -76,7 +76,7 @@ def on_message(client, userdata, msg):
 
 
 client = mqtt.Client()
-client.connect("localhost",1883,60)
+client.connect("localhost",1884,60)
 
 client.on_connect = on_connect
 client.on_message = on_message
