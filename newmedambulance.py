@@ -3332,14 +3332,14 @@ def updateStatus():
 def updateDriverLatLong():
     try:
         print('Hello')
-        inputdata=request.form.get('data')
+        inputdata=commonfile.DecodeInputdata(request.get_data())
         print(inputdata,'inputdata')
         keyarr = ['driverId']
-        inputdata=json.loads(inputdata)
+       
         # inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
 
-        commonfile.writeLog("updateDriver",inputdata,0)
+        commonfile.writeLog("updateDriverLatLong",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         print(msg,'msg')
        
