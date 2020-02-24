@@ -3183,7 +3183,7 @@ def dashboard():
             data=databasefile.SelectQueryOrderby("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit,orderby)
             
             print(data)
-            whereCondition2=" dm.driverId=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " 
+            whereCondition2=" dm.driverId=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " +WhereCondition
             countdata=databasefile.SelectQuery1("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition2)
 
 
