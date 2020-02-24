@@ -7,7 +7,7 @@ import time
 def on_connect(client, userdata, flags, rc):
 	print("-------Connected-------",rc)
 	client.subscribe("#")
-	client.publish("topic1","data111111")
+	#client.publish("topic1","data111111")
 	
 
 #def on_message(client, userdata, msg):    
