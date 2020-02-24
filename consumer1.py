@@ -11,19 +11,19 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):    
   data = msg.payload.decode('utf-8')
-   
-  print(msg,"===============")
-  print(data,"============",msg.topic)
-  topic=str(msg.topic)#+"/ambulanceLiveLocation"
-
+  data = json.loads(data)
+  # print(msg,"===============")
+  # print(data,"============",msg.topic)
+  #topic=str(msg.topic)#+"/ambulanceLiveLocation"
+  topic=data["userId"]
   print(topic,"topic==================")
   
 
-  client.publish(topic+"/ambulanceLiveLocation", data)
+  client.publish(topic, data)
   print("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
   
   try:
-    data = json.loads(data)
+    
     print(data)
     ambulanceId=data["ambulanceId"]
     driverId=data["driverId"]
