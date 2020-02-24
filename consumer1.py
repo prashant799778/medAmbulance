@@ -25,7 +25,7 @@ def on_message(client, userdata, msg):
   print("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
   
   try:
-    data = json.loads(data)
+    
     print(data)
     ambulanceId=data["ambulanceId"]
     driverId=data["driverId"]
