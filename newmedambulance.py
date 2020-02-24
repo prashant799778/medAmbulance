@@ -1084,13 +1084,13 @@ def alldrivers():
             WhereCondition=" and dm.driverId = um.userId"
 
             inputdata =  commonfile.DecodeInputdata(request.get_data())  
-            if "startlimit" in inputdata:
-                if inputdata['startlimit'] != "":
-                    startlimit =str(inputdata["startlimit"])
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
                 
-            if "endlimit" in inputdata:
-                if inputdata['endlimit'] != "":
-                    endlimit =str(inputdata["endlimit"])
+            if "endLimit" in inputdata:
+                if inputdata['endLimit'] != "":
+                    endlimit =str(inputdata["endLimit"])
 
             if "driverId" in inputdata:
                 if inputdata['driverId'] != "":
@@ -3166,8 +3166,6 @@ def dashboard():
         if msg =="1":
             startlimit,endlimit="0","5"
             WhereCondition=" and dm.driverId = um.userId"
-            orderby=" driverId "
-
             inputdata =  commonfile.DecodeInputdata(request.get_data())  
            
 
@@ -3188,6 +3186,7 @@ def dashboard():
 
 
             whereCondition2392="   bm.status=3  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
+
 
             column2392="count(*) as count"
             cancelledTrip=databasefile.SelectQuery1("bookAmbulance as bm,userMaster as um,driverMaster as dm",column2392,whereCondition2392)
