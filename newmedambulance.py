@@ -1340,6 +1340,7 @@ def updateStatus11():
 
 
                 for i in ambulanceId:
+                    print('a1111111')
 
                     column=" * "
                     whereCondition="ambulance_Id='"+str(i)+"'  and hospital_Id='"+str(userId)+"'"
@@ -1357,6 +1358,7 @@ def updateStatus11():
                         return output
 
                 for i in facilityId:
+                    print('aaaaaaaaaa')
                     column=" * "
                     whereCondition="facilityId='"+str(i)+"'  and hospitalId='"+str(userId)+"'"
                     userHospitalMappingdata = databasefile.SelectQuery1("hospitalFacilityMapping ",column,whereCondition)
