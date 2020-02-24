@@ -3693,6 +3693,38 @@ def deleteDriver():
         return commonfile.Errormessage()
 
 
+@app.route('/deleteAmbulance', methods=['POST'])
+def deleteAmbulance():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['driverId']
+        print(inputdata,"B")
+        commonfile.writeLog("deleteAmbulance",inputdata,0)
+        print('C')
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg =="1":
+            
+            userId=inputdata["driverId"]
+            column="status=1"
+
+            WhereCondition = "  driverId = '" + str(userId) + "' "
+            data=databasefile.UpdateQuery("ambulanceMaster",column,WhereCondition)
+           
+
+            if data != "0":
+                data= {"status":"true","message":"Deleted Successfully","result":""}
+                return data
+            else:
+                return commonfile.Errormessage()
+        else:
+            return msg
+
+    except Exception as e :
+        print("Exception--->" + str(e))                                  
+        return commonfile.Errormessage()        
+
+
 
 
 @app.route('/deleteHospital', methods=['POST'])
