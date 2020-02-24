@@ -3181,7 +3181,11 @@ def dashboard():
             column="dm.name,dm.id,dm.mobileNo,dm.profilePic,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.driverId as driverId"
             whereCondition=" and dm.driverId=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " + WhereCondition
             data=databasefile.SelectQueryOrderby("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit,orderby)
+            
             print(data)
+            whereCondition2=" dm.driverId=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " 
+            countdata=databasefile.SelectQuery1("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition2)
+
 
             whereCondition2392="   bm.status=3  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
 
@@ -3280,9 +3284,9 @@ def dashboard():
                         else:
                             tripcount=data122['result']['count']
                             i['tripCount']=tripcount
-                    count=len(data['result'])        
+                    count=len(countdata)        
 
-                    Data = {"result":{"driverDetails":data['result'],"totalCount":count,"dashboard":{"cancelledTripCount":y,"bookedTripCount":y2,"totalEarning":y3,"newsUsers":y4},"userReviews":"No data Available"},"status":"true","message":""}
+                    Data = {"result":{"driverDetails":data['result'],"totaldriverCount":count,"dashboard":{"cancelledTripCount":y,"bookedTripCount":y2,"totalEarning":y3,"newsUsers":y4},"userReviews":"No data Available"},"status":"true","message":""}
                     return Data
             else:
                 output = {"message":"No Data Found","status":"false","result":""}
