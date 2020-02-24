@@ -19,7 +19,7 @@ def on_message(client, userdata, msg):
   print(topic,"topic==================")
   
   print("11111111111111")
-  #client.publish(topic, data)
+  client.publish(topic, data)
   print("22222222222222")
   print("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
   
