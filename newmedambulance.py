@@ -989,11 +989,12 @@ def allAmbulance():
             if "endLimit" in inputdata:
                 if inputdata['endLimit'] != "":
                     endlimit =str(inputdata["endLimit"])
+            orderby="AM.ambulanceId"
 
             column=" AM.ambulanceId,AM.ambulanceNo,AM.lat,AM.lng,atm.ambulanceType,dm.name as driverName,am.ambulanceType as category,AM.transportType,AM.transportModel,AM.color,AM.ambulanceRegistrationFuel as fueltype,AM.typeNo,AM.ambulanceFilename,concat('"+ ConstantData.GetBaseURL() + "',AM.ambulanceFilepath)ambulanceFilepath,AM.ambulanceModeId,AM.ambulanceTypeId "
            
             whereCondition=" and  AM.ambulanceTypeId=atm.id and AM.ambulanceModeId=am.id and AM.driverId=dm.driverId"
-            data=databasefile.SelectQuery2("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am,driverMaster as dm",column,whereCondition,"",startlimit,endlimit)
+            data=databasefile.SelectQueryOrderby("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
             print(data)
             whereCondition9=" and  AM.ambulanceTypeId=atm.id and AM.ambulanceModeId=am.id and AM.driverId=dm.driverId"
             countdata =databasefile.SelectQuery1("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am,driverMaster as dm",column,whereCondition9)
@@ -1096,9 +1097,11 @@ def alldrivers():
                     driverId = str(inputdata["driverId"])
                     WhereCondition = WhereCondition + " and dm.driverId='"+str(driverId)+"'"
 
-            column="dm.name,dm.mobileNo,dm.profilePic,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.driverId as driverId"
+            orderby="dm.id"        
+
+            column="dm.name,dm.id,dm.mobileNo,dm.profilePic,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.driverId as driverId"
             whereCondition=" and dm.driverId=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " + WhereCondition
-            data=databasefile.SelectQuery2("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit)
+            data=databasefile.SelectQueryOrderby("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit,orderby)
             print(data)
             
             if (data['status']!='false'):
@@ -2260,12 +2263,13 @@ def allHospital1():
 
             if 'cityId' in inputdata:
                 cityId=str(inputdata["cityId"])
-                whereCondition4=" and  cm.id  = '" + str(cityId) + "'  "                   
+                whereCondition4=" and  cm.id  = '" + str(cityId) + "'  "
+            orderby="hosp.id"                       
 
             column= "hosp.id,hosp.hospitalName,hl.address,hl.lat,hl.lng,cm.name as city,cm.id as cityId"   
             WhereCondition=  " and  hl.hospitalId=hosp.id and hosp.status<>'2' and hl.cityId=cm.id "+whereCondition2+whereCondition3+whereCondition4
             WhereCondition999=  " hl.hospitalId=hosp.id and hosp.status<>'2' and hl.cityId=cm.id "+whereCondition2+whereCondition3+whereCondition4
-            data=databasefile.SelectQuery2("hospitalMaster as hosp,hospitalLocationMaster as hl,cityMaster as cm",column,WhereCondition,"",startlimit,endlimit)
+            data=databasefile.SelectQueryOrderby("hospitalMaster as hosp,hospitalLocationMaster as hl,cityMaster as cm",column,WhereCondition,"",startlimit,endlimit,orderby)
             countdata=databasefile.SelectQuery1('hospitalMaster as hosp,hospitalLocationMaster as hl,cityMaster as cm',column,WhereCondition999)
             print(countdata) 
             if (data!=0): 
@@ -3170,11 +3174,13 @@ def dashboard():
             if "driverId" in inputdata:
                 if inputdata['driverId'] != "":
                     driverId =str(inputdata["driverId"])
-                    WhereCondition = WhereCondition + " and dm.id= "+str(driverId)+ " "
+                    WhereCondition = WhereCondition + " and dm.driverId= '"+str(driverId)+ "' "
 
-            column="dm.name,dm.mobileNo,dm.profilePic,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.driverId as driverId"
+            orderby="dm.id"        
+
+            column="dm.name,dm.id,dm.mobileNo,dm.profilePic,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.driverId as driverId"
             whereCondition=" and dm.driverId=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " + WhereCondition
-            data=databasefile.SelectQuery2("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit)
+            data=databasefile.SelectQueryOrderby("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit,orderby)
             print(data)
 
             whereCondition2392="   bm.status=3  and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
@@ -3250,7 +3256,7 @@ def dashboard():
                     y2=data111['result']
                     print(y2)
                     column2222="dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath,pIDType,pIDNo,pIDFrontFilename,pIDFrontFilepath,pIDBackFilename,pIDBackFilepath"
-                    whereCondition2222=" id = "+str(d1)+ " "
+                    whereCondition2222=" driverId = '"+str(d1)+ "' "
                     data11111=databasefile.SelectQuery('driverMaster',column2222,whereCondition2222)
                     y3=data11111['result']
                     data['result'][0].update(y2)
