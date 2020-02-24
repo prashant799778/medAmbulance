@@ -11,15 +11,16 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):    
   data = msg.payload.decode('utf-8')
-   
-  print(msg,"===============")
-  print(data,"============",msg.topic)
-  topic=(msg.topic)+"/ambulanceLiveLocation"
-
+  data = json.loads(data)
+  # print(msg,"===============")
+  # print(data,"============",msg.topic)
+  #topic=str(msg.topic)#+"/ambulanceLiveLocation"
+  topic=data["userId"]+"/ambulanceLiveLocation"
   print(topic,"topic==================")
-  
-
-  client.publish(str(msg.topic), data)
+  data1 = json.dumps(data)
+  print("11111111111111")
+  client.publish(topic, data1)
+  print("22222222222222")
   print("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
   
   try:
@@ -36,7 +37,7 @@ def on_message(client, userdata, msg):
     
 
     #if ambulanceRideId!=0:
-    if (ambulanceTripDetails[0]["onTrip"]==1) and (ambulanceTripDetails[0]["onDuty"]==1):
+    if (ambulanceTripDetails[0]["onTrip"]==0) and (ambulanceTripDetails[0]["onDuty"]==1):
 
       column1=" id,bookingId "
       whereCondition1=" and  ambulanceId='"+str(ambulanceId)+"'"
@@ -44,11 +45,19 @@ def on_message(client, userdata, msg):
       ambulanceRideId = databasefile.SelectQueryOrderby("bookAmbulance",column1,whereCondition1,"","0","1",orderby)
 
 
+      column1=" lat,lng "
+      whereCondition1=" and  rideId='"+str(ambulanceRideId["result"][0]["bookingId"])+"'"
+      orderby=" id "
+      ambulanceLatLong = databasefile.SelectQueryOrderby("ambulanceRideTracking",column1,whereCondition1,"","0","1",orderby)
 
-      column=" rideId,ambulanceId,driverId,lat,lng "
-      values="'"+str(ambulanceRideId["result"][0]["bookingId"])+"','"+str(ambulanceId)+"','"+str(driverId)+"','"+str(lat)+"','"+str(lng)+"'"
-      insertdata=databasefile.InsertQuery("ambulanceRideTracking",column,values)
+      print(ambulanceLatLong,"ambulanceLatLong==================")
+      if (data["lat"]!=ambulanceLatLong["result"][0]["lat"]) or data["lng"]!=ambulanceLatLong["result"][0]["lng"]:
+        column=" rideId,ambulanceId,driverId,lat,lng "
+        values="'"+str(ambulanceRideId["result"][0]["bookingId"])+"','"+str(ambulanceId)+"','"+str(driverId)+"','"+str(lat)+"','"+str(lng)+"'"
+        insertdata=databasefile.InsertQuery("ambulanceRideTracking",column,values)
       
+      else:
+        pass
     
     elif  (ambulanceTripDetails[0]["onTrip"]==0) and (ambulanceTripDetails[0]["onDuty"]==1):
       print("2222222222222222222")
