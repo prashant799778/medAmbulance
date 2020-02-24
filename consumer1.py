@@ -17,14 +17,14 @@ def on_message(client, userdata, msg):
   #topic=str(msg.topic)#+"/ambulanceLiveLocation"
   topic=data["userId"]+"/ambulanceLiveLocation"
   print(topic,"topic==================")
-  
+  data1 = json.dumps(data)
   print("11111111111111")
-  client.publish(topic, data)
+  client.publish(topic, data1)
   print("22222222222222")
   print("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
   
   try:
-    
+    data = json.loads(data)
     print(data)
     ambulanceId=data["ambulanceId"]
     driverId=data["driverId"]
