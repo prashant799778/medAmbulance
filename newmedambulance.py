@@ -982,21 +982,23 @@ def allAmbulance():
             startlimit,endlimit="",""
 
             inputdata =  commonfile.DecodeInputdata(request.get_data())  
-            if "startlimit" in inputdata:
-                if inputdata['startlimit'] != "":
-                    startlimit =str(inputdata["startlimit"])
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
                 
-            if "endlimit" in inputdata:
-                if inputdata['endlimit'] != "":
-                    endlimit =str(inputdata["endlimit"])
+            if "endLimit" in inputdata:
+                if inputdata['endLimit'] != "":
+                    endlimit =str(inputdata["endLimit"])
 
-            column=" AM.ambulanceId,AM.ambulanceNo,AM.lat,AM.lng,atm.ambulanceType,am.ambulanceType as category,AM.transportType,AM.transportModel,AM.color,AM.ambulanceRegistrationFuel as fueltype,AM.typeNo,AM.ambulanceFilename,concat('"+ ConstantData.GetBaseURL() + "',AM.ambulanceFilepath)ambulanceFilepath,AM.ambulanceModeId,AM.ambulanceTypeId "
+            column=" AM.ambulanceId,AM.ambulanceNo,AM.lat,AM.lng,atm.ambulanceType,dm.name as driverName,am.ambulanceType as category,AM.transportType,AM.transportModel,AM.color,AM.ambulanceRegistrationFuel as fueltype,AM.typeNo,AM.ambulanceFilename,concat('"+ ConstantData.GetBaseURL() + "',AM.ambulanceFilepath)ambulanceFilepath,AM.ambulanceModeId,AM.ambulanceTypeId "
            
-            whereCondition=" and  AM.ambulanceTypeId=atm.id and AM.ambulanceModeId=am.id"
-            data=databasefile.SelectQuery2("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am",column,whereCondition,"",startlimit,endlimit)
+            whereCondition=" and  AM.ambulanceTypeId=atm.id and AM.ambulanceModeId=am.id and AM.driverId=dm.driverId"
+            data=databasefile.SelectQuery2("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am,driverMaster as dm",column,whereCondition,"",startlimit,endlimit)
             print(data)
+            whereCondition9=" and  AM.ambulanceTypeId=atm.id and AM.ambulanceModeId=am.id and AM.driverId=dm.driverId"
+            countdata= =databasefile.SelectQuery2("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am,driverMaster as dm",column,whereCondition9)
             if (data['status']!='false'):
-                count=len(data['result'])
+                count=len(countdata)
                 Data = {"result":data['result'],'message':"","status":"true","totalCount":count}
                 return Data
             else:
