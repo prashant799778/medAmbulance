@@ -18,8 +18,9 @@ def on_message(client, userdata, msg):
   topic=data["userId"]+"/ambulanceLiveLocation"
   print(topic,"topic==================")
   
-
+  print("11111111111111")
   client.publish(topic, data)
+  print("22222222222222")
   print("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
   
   try:
