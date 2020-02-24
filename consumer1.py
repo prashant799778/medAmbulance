@@ -37,7 +37,7 @@ def on_message(client, userdata, msg):
     
 
     #if ambulanceRideId!=0:
-    if (ambulanceTripDetails[0]["onTrip"]==1) and (ambulanceTripDetails[0]["onDuty"]==1):
+    if (ambulanceTripDetails[0]["onTrip"]==0) and (ambulanceTripDetails[0]["onDuty"]==1):
 
       column1=" id,bookingId "
       whereCondition1=" and  ambulanceId='"+str(ambulanceId)+"'"
