@@ -38,12 +38,12 @@ export class EditHospitalComponent implements OnInit {
 			if( params['view'] == 'view'){
 				this.views= false;
 				this.viewEdit = 'View'
-				// this.disableForm()
+				this.disableForm()
 
 			}else{
 				this.views = true;
 				this.viewEdit = 'Edit'
-				this.disableForm()
+				// this.disableForm()
 			}
 			let data = {
 				'id': this.hospitalId
@@ -61,7 +61,8 @@ export class EditHospitalComponent implements OnInit {
 			lat: [''],
 			lng: [''],
 			facilityId: [''],
-			city: ['']
+			cityId: [''],
+			id: ['']
 		})
 	}
 	initializeForm(){
@@ -78,16 +79,20 @@ export class EditHospitalComponent implements OnInit {
 	// 	this.hospitalForm.reset();
 	// }
 
-	// submitData(){
-	// 	// if(resp['status'] == 'true'){
-	// 		console.log("modal")
-	// 			jQuery('#mainModal').modal('show')
-	// 			this.userService.messageValue('Hospital Inserted successfully')
-	// 			setTimeout(() => {
-	// 				jQuery('#mainModal').modal('hide')
-	// 			}, 2000000000);
-	// 	// }
-	// }
+	updateData(){
+		this.hospitalForm.get('id').setValue(this.hospitalId)
+		let data = this.hospitalForm.getRawValue();
+		this.userService.dataPostApi(data,AppSettings.updateHospital).then(resp=>{
+			if(resp['status'] == 'true'){
+				console.log("modal")
+					jQuery('#mainModal').modal('show')
+					this.userService.messageValue('Hospital Update successfully')
+					setTimeout(() => {
+						jQuery('#mainModal').modal('hide')
+					}, 2000);
+			}
+		})
+	}
 	getCategory(){
 		
 		this.userService.getApiData(AppSettings.cityMaster).then(resp=>{
@@ -108,8 +113,6 @@ export class EditHospitalComponent implements OnInit {
 		this.hospitalForm.get('lat').setValue(resp['result'][0].lat)
 		this.hospitalForm.get('lng').setValue(resp['result'][0].lng)
 		this.hospitalForm.get('address').setValue(resp['result'][0].address)
-		
-
-		
+		this.hospitalForm.get('cityId').setValue(resp['result'][0].cityId)
 	}
 }	
