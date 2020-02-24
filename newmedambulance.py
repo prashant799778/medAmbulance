@@ -1092,7 +1092,7 @@ def alldrivers():
             if "driverId" in inputdata:
                 if inputdata['driverId'] != "":
                     driverId = str(inputdata["driverId"])
-                    WhereCondition = WhereCondition + " and dm.driverId=' "+str(driverId)+ " '"
+                    WhereCondition = WhereCondition + " and dm.driverId='"+str(driverId)+ "' "
 
             column="dm.name,dm.mobileNo,dm.profilePic,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.driverId as driverId"
             whereCondition=" and dm.driverId=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " + WhereCondition
