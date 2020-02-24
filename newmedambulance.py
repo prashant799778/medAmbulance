@@ -3264,7 +3264,7 @@ def dashboard():
                             i['tripCount']=tripcount
                     count=len(data['result'])        
 
-                    Data = {"result":{"driverDetails":data['result'],"","dashboard":{"cancelledTripCount":y,"bookedTripCount":y2,"totalEarning":y3,"newsUsers":y4},"userReviews":"No data Available"},"status":"true","message":""}
+                    Data = {"result":{"driverDetails":data['result'],"totalCount":count,"dashboard":{"cancelledTripCount":y,"bookedTripCount":y2,"totalEarning":y3,"newsUsers":y4},"userReviews":"No data Available"},"status":"true","message":""}
                     return Data
             else:
                 output = {"message":"No Data Found","status":"false","result":""}
