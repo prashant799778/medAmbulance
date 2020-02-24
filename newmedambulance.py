@@ -3361,6 +3361,9 @@ def updateDriverLatLong():
             if 'lng' in inputdata:
                 lng=inputdata["lng"]
 
+            if 'cityId' in inputdata:
+                cityId=inputdata["cityId"]    
+
             
 
             if data['status']!='false':
