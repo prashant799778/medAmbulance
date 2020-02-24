@@ -1359,6 +1359,8 @@ def updateStatus11():
                         output = {"result":"Data already existed in mapping table","status":"true"}
                         return output
 
+                print(facilityId,"11111111111111111++++++++++++++++++++++++++++++++++++++++++")        
+
                 for j in facilityId:
                     print('aaaaaaaaaa')
                     column=" * "
