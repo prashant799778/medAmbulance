@@ -1325,6 +1325,8 @@ def updateStatus11():
             data=databasefile.SelectQuery1("hospitalMaster",column,whereCondition)
             print(data)
             if (data !=0):
+                print(facilityId,"+++11+++++++++++++++++++++++++++++++++++++++")
+
                 column=" hospitalName= '"+str(hospitalName)+"' "
                 whereCondition="   id = " + str(userId)+ " "
                 data1=databasefile.UpdateQuery('hospitalMaster',column,whereCondition)
