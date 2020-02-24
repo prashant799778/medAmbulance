@@ -1355,12 +1355,12 @@ def updateStatus11():
                         column="hospital_Id,ambulance_Id"
                         values="'"+str(userId)+"','"+str(i)+"'"
                         insertdata=databasefile.InsertQuery("hospitalambulanceMapping",column,values)                
-                        output = {"result":"data Updated  successfully","status":"true"}
-                        return output
+                       
                     else:
                         output = {"result":"Data already existed in mapping table","status":"true"}
                         return output
-
+                        
+                print(facilityId,"+++555++++++++++++++++++++++++++++++++++++++") 
                 print(facilityId,"11111111111111111++++++++++++++++++++++++++++++++++++++++++")        
 
                 for j in facilityId:
@@ -1374,8 +1374,7 @@ def updateStatus11():
                         column="hospitalId,facilityId"
                         values="'"+str(userId)+"','"+str(j)+"'"
                         insertdata=databasefile.InsertQuery("hospitalFacilityMapping",column,values)                
-                        output = {"result":"data updated successfully","status":"true"}
-                        return output
+                       
                     else:
                         output = {"result":"Data already existed in mapping table","status":"true"}
                         return output
