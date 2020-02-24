@@ -15,7 +15,7 @@ def on_message(client, userdata, msg):
   # print(msg,"===============")
   # print(data,"============",msg.topic)
   #topic=str(msg.topic)#+"/ambulanceLiveLocation"
-  topic=data["userId"]
+  topic=data["userId"]+"/ambulanceLiveLocation"
   print(topic,"topic==================")
   
 
