@@ -3379,7 +3379,7 @@ def updateDriverLatLong():
                 data111=databasefile.SelectQuery('ambulanceMaster',columns,WhereCondition)
                 if data111['status'] != 'false':
                     
-                    ambulanceId=data11['result']['ambulanceId']
+                    ambulanceId=data111['result']['ambulanceId']
                     WhereCondition2=" ambulanceId= '" + str(ambulanceId) + "'"
                     columns23="lat='" + str(lat) + "',lng='" + str(lng) + "'"
                     data122=databasefile.UpdateQuery('ambulanceRideStatus',columns23,WhereCondition2)
