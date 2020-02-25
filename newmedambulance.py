@@ -4331,9 +4331,7 @@ def addHospitalAdmin():
             
             UserId = (commonfile.CreateHashKey(mobileNo,userTypeId)).hex
             
-            
-            WhereCondition = " and email = '" + str(email) + "'"
-            count = databasefile.SelectCountQuery("hospitalUserMaster",WhereCondition,"")
+           
             
             if 'email' in inputdata:
                 email=inputdata["email"]
@@ -4360,20 +4358,24 @@ def addHospitalAdmin():
                 hospitalId=inputdata["hospitalId"]
                 column=column+" ,hospitalId"
                 values=values+"','"+str(hospitalId)
-            
+            if 'gender' in inputdata:
+                gender=inputdata["gender"]
+                column=column+" ,gender"
+                values=values+"','"+str(gender)
             WhereCondition = " and email = '" + str(email) + "'"
-            count = databasefile.SelectCountQuery("hospitalUserMaster",WhereCondition,"")
+            count = int(databasefile.SelectCountQuery("hospitalUserMaster",WhereCondition,""))
             if count>0:
                 return {"status":"true","message":"Record Already Exist","result":[]}
 
             else:
-                column=column+" userId "
-                values=",'"+str(userId)+"'"
+                print("1111111111111")
+                column=" userId "+column
+                values="'"+str(UserId)+values+"'"
                 data=databasefile.InsertQuery("hospitalUserMaster",column,values)
              
 
                 if data != "0":
-                    Data = {"status":"true","message":"","result":[]}                  
+                    Data = {"status":"true","message":"","result":data}                  
                     return Data
                 else:
                     return commonfile.Errormessage()
