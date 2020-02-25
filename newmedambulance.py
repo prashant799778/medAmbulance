@@ -4321,12 +4321,12 @@ def addHospitalAdmin():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
-        keyarr = ["name","email","password",'userTypeId']
+        keyarr = ["name","email","password","userTypeId","gender"]
         commonfile.writeLog("hospitalAdminSignup",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
        
         if msg == "1":
-            name,email,password,userTypeId,mobileNo="","","","",""
+            name,email,password,userTypeId,mobileNo,gender="","","","","",""
             column,values="",""
             
             UserId = (commonfile.CreateHashKey(mobileNo,userTypeId)).hex
