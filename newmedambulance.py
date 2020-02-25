@@ -3824,9 +3824,9 @@ def updateStatus():
 @app.route('/updateDriverLatLong', methods=['POST'])
 def updateDriverLatLong():
     try:
-        print('Hello')
+        #print('Hello')
         inputdata=commonfile.DecodeInputdata(request.get_data())
-        print(inputdata,'inputdata')
+        #print(inputdata,'inputdata')
         keyarr = ['driverId']
        
         # inputdata =  commonfile.DecodeInputdata(request.get_data()) 
@@ -3834,7 +3834,7 @@ def updateDriverLatLong():
 
         commonfile.writeLog("updateDriverLatLong",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
-        print(msg,'msg')
+        #print(msg,'msg')
        
         if msg == "1":
 
