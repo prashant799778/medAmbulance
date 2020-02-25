@@ -4284,6 +4284,174 @@ def notification2():
         return commonfile.Errormessage()
 
 
+
+
+
+
+
+
+#==================================hospitaladmins==========================
+
+@app.route('/hospitalAdminSignup', methods=['POST'])
+def hospitalAdminSignup():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+        startlimit,endlimit="",""
+        keyarr = ["name","email","password",'mobileNo','userTypeId']
+        commonfile.writeLog("hospitalAdminSignup",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+       
+        if msg == "1":
+            imeiNo,country,city,deviceName,deviceId,deviceType="","","","","",""
+            os,appVersion,notificationToken,ipAddress,userAgent="","","","",""
+            currentLocation,currentLocation="",""
+            column,values="",""
+            
+           
+            userTypeId = inputdata["userTypeId"]
+            mobileNo=inputdata["mobileNo"]
+            
+            # currentLocation=inputdata["currentLocation"]
+            # currentLocationlatlong=inputdata["currentLocationlatlong"]
+
+            
+            digits = "0123456789"
+            otp = ""
+            for i in range(4):
+                otp += digits[math.floor(random.random() * 10)]
+
+            
+            # totp = pyotp.TOTP('base32secret3232')
+            # print("Current OTP:", totp.now()[0:4])
+            # otp=int(totp.now()[0:4])
+
+            UserId = (commonfile.CreateHashKey(mobileNo,userTypeId)).hex
+            
+            
+            WhereCondition = " and mobileNo = '" + str(mobileNo) + "'"
+            count = databasefile.SelectCountQuery("userMaster",WhereCondition,"")
+            
+            if int(count) > 0:
+                WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
+                column = " otp = '" + str(otp)  + "'"
+                updateOtp = databasefile.UpdateQuery("userMaster",column,WhereCondition)
+                print(updateOtp,'updatedata')
+                if updateOtp != "0":
+                    column = '*'
+                    data = databasefile.SelectQuery("userMaster",column,WhereCondition)                  
+                    print(data,"===================")
+                    return data
+                else:
+                    return commonfile.Errormessage()
+                
+            else:
+                if 'imeiNo' in inputdata:
+                    imeiNo=inputdata["imeiNo"] 
+                    column=column+",imeiNo "
+                    values=values+"','"+str(deviceName)
+
+                if 'deviceName' in inputdata:
+                    deviceName=inputdata["deviceName"]
+                    column=column+" ,deviceName "
+                    values=values+"','"+str(deviceName)
+                
+                if 'country' in inputdata:
+                    country=inputdata["country"]
+                    column=column+" ,country "
+                    values=values+"','"+str(deviceName)
+                
+                if 'city' in inputdata:
+                    city=inputdata["city"]
+                    column=column+" ,city"
+                    values=values+"','"+str(deviceName)
+
+                if 'ipAddress' in inputdata:
+                    ipAddress=inputdata["ipAddress"]
+                    column=column+" ,ipAddress"
+                    values=values+"','"+str(deviceName)
+
+                if 'userAgent' in inputdata:
+                    userAgent=inputdata["userAgent"]
+                    column=column+" ,userAgent"
+                    values=values+"','"+str(deviceName)
+
+
+                if 'deviceId' in inputdata:
+                    deviceId=inputdata["deviceId"]
+                    column=column+" ,deviceId"
+                    values=values+"','"+str(deviceName)
+
+                
+                if 'os' in inputdata:
+                    os=inputdata["os"]
+                    column=column+" ,os"
+                    values=values+"','"+str(deviceName)
+
+                
+                if 'deviceType' in inputdata:
+                    deviceType=inputdata["deviceType"]
+                    column=column+" ,deviceType"
+                    values=values+"','"+str(deviceName)
+
+                if 'appVersion' in inputdata:
+                    appVersion=inputdata["appVersion"] 
+                    column=column+" ,appVersion"
+                    values=values+"','"+str(deviceName)
+
+
+                if 'notificationToken' in inputdata:
+                    notificationToken=inputdata["notificationToken"]
+                    column=column+" ,appVersion"
+                    values=values+"','"+str(deviceName)
+
+                if 'email' in inputdata:
+                    email=inputdata["email"]
+                    column=column+" ,email"
+                    values=values+"','"+str(email)
+                if 'password' in inputdata:
+                    password=inputdata["password"]
+                    column=column+" ,password"
+                    values=values+"','"+str(password)
+
+
+ 
+                currentLocationlatlong=""
+
+                column="mobileNo,userId,userTypeId,otp"+column
+                
+                
+                values=  "'"+str(mobileNo)+"','"+str(UserId)+"','"+str(userTypeId)+"','"+str(otp)+values+ "'"
+                data=databasefile.InsertQuery("userMaster",column,values)
+             
+
+                if data != "0":
+                    column = '*'
+                    
+                    data = databasefile.SelectQuery2("userMaster",column,WhereCondition,"",startlimit,endlimit)
+                    print(data)
+                    Data = {"status":"true","message":"","result":data["result"][0]}                  
+                    return Data
+                else:
+                    return commonfile.Errormessage()
+                        
+        else:
+            return msg 
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"status":"false","message":"something went wrong","result":""}
+        return output
+
+#==================================hospitaladmins==========================
+
+
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
     CORS(app, support_credentials=True)
     app.run(host='0.0.0.0',port=5077,debug=True)
