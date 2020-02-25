@@ -4364,6 +4364,7 @@ def addHospitalAdmin():
                 gender=inputdata["gender"]
                 column=column+" ,gender"
                 values=values+"','"+str(gender)
+            
             WhereCondition = " and email = '" + str(email) + "'"
             count = int(databasefile.SelectCountQuery("hospitalUserMaster",WhereCondition,""))
             if count>0:
@@ -4466,17 +4467,17 @@ def deleteHospital1():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ['hospitalId']
+        keyarr = ['Id']
         print(inputdata,"B")
         commonfile.writeLog("deletehospitalAdmin",inputdata,0)
         print('C')
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg =="1":
             
-            userId=int(inputdata["hospitalId"])
+            userId=int(inputdata["Id"])
             column="status=2"
 
-            WhereCondition = "  hospitalId= " + str(userId) + " "
+            WhereCondition = "  id= " + str(userId) + " "
             data=databasefile.UpdateQuery("hospitalUserMaster",column,WhereCondition)
            
 
