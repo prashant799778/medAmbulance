@@ -4494,6 +4494,61 @@ def deleteHospital1():
         return commonfile.Errormessage()
 
 
+@app.route('/updateHospitalAdminStatus', methods=['POST'])
+def updateHospitalAdminStatus():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['Id']
+        print(inputdata,"B")
+        commonfile.writeLog("updateHospitalAdminStatus",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg =="1":
+          
+            driverId = str(inputdata["Id"])
+           
+            # column="status"
+            # whereCondition= "   driverId = " + str(userId)+ " "
+            # data=databasefile.SelectQuery1("driverMaster",column,whereCondition)
+            # print(data)
+            # if (data !=0):
+            #     if data[0]['status']==0:
+            #         print('111111111111111111')
+            column="status='1'"
+            whereCondition= "  id = '" + str(driverId)+ "' "
+            output1=databasefile.UpdateQuery("hospitalUserMaster",column,whereCondition)
+            output=output1
+            if output!='0':
+                Data = {"status":"true","message":"","result":output["result"]}                  
+                return Data
+            else:
+                return commonfile.Errormessage() 
+
+                # else:
+                #     column="status='0'"
+                #     whereCondition= "  driverId = " + str(userId)+ " "
+                #     output1=databasefile.UpdateQuery("driverMaster",column,whereCondition)
+                #     output=output1    
+                #     if output!='0':
+                #         Data = {"status":"true","message":"","result":output["result"]}                  
+                #         return Data
+                #     else:
+                #         return commonfile.Errormessage()
+            #
+        else:
+            return msg         
+ 
+    except KeyError :
+        print("Key Exception---->")   
+        output = {"result":"key error","status":"false"}
+        return output  
+
+    except Exception as e :
+        print("Exceptio`121QWAaUJIHUJG n---->" +str(e))    
+        output = {"result":"somthing went wrong","status":"false"}
+        return output        
+
+
 
 
 @app.route('/allhospitalUserMaster', methods=['post'])
@@ -4573,7 +4628,61 @@ def hospitalAdminLogin():
     except Exception as e :
         print("Exception---->" +str(e))           
         output = {"result":"something went wrong","status":"false"}
-        return output        
+        return output
+
+
+
+
+
+
+
+@app.route('/hospitalAdminDashboard', methods=['post'])
+def allhospitalUserMaster():
+    try:
+        msg = "1"
+        if msg=="1":
+            inputdata =  commonfile.DecodeInputdata(request.get_data())
+            startlimit,endlimit="",""
+            whereCondition3=""
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
+                
+            if "endLimit" in inputdata:
+                if inputdata['endLimit'] != "":
+                    endlimit =str(inputdata["endLimit"])
+
+
+            if "hospitalId" in inputdata:
+                if inputdata['hospitalId'] != "":
+                    hospitalId =int(inputdata["hospitalId"])
+                    whereCondition3=" and bkm.id = '"+str(Id)+"' " 
+
+
+            orderby="hum.id"
+
+
+
+            column="hum.name,hum.userId,hum.status,hum.hospitalId,hum.mobileNo,hum.password,hum.gender,hum.email,hum.usertypeId,hum.id as Id,hm.hospitalName as hospitalName"
+            whereCondition="  and hum.status<>'2'  and hum.hospitalId=hm.id"+whereCondition3
+            data=databasefile.SelectQueryOrderby("hospitalUserMaster as hum,hospitalMaster as hm",column,whereCondition,"",startlimit,endlimit,orderby)
+            
+            totalCount= databasefile.SelectQuery4("hospitalUserMaster as hum,hospitalMaster as hm",column,whereCondition)
+            if (data['status']!='false'):   
+                count=len(totalCount)
+
+                Data = {"result":data['result'],"status":"true","totalCount":count}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"true","message":"No Data Found"}
+                return output
+        else:
+            return msg
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
 
 
 
