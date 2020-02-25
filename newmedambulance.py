@@ -4353,6 +4353,38 @@ def hospitalAdminSignup():
         output = {"status":"false","message":"something went wrong","result":""}
         return output
 
+@app.route('/deletehospitalAdmin', methods=['POST'])
+def deleteHospital():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['hospitalId']
+        print(inputdata,"B")
+        commonfile.writeLog("deletehospitalAdmin",inputdata,0)
+        print('C')
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg =="1":
+            
+            userId=int(inputdata["hospitalId"])
+            column="status=2"
+
+            WhereCondition = "  hospitalId= " + str(userId) + " "
+            data=databasefile.UpdateQuery("hospitalUserMaster",column,WhereCondition)
+           
+
+            if data != "0":
+                data= {"status":"true","message":"Deleted Successfully","result":""}
+                return data
+            else:
+                return commonfile.Errormessage()
+        else:
+            return msg
+
+    except Exception as e :
+        print("Exception--->" + str(e))                                  
+        return commonfile.Errormessage()
+
+
 #==================================hospitaladmins==========================
 
 
