@@ -4439,11 +4439,11 @@ def updateHospitalAdmin():
 
 
               
-            if 'userId' in inputdata:
-                userId=inputdata["userId"]    
+            if 'Id' in inputdata:
+                userId=inputdata["Id"]    
                 
             
-            whereCondition= " userId= '"+str(userId)+"' "
+            whereCondition= " id= '"+str(userId)+"' "
           
             data=databasefile.UpdateQuery("hospitalUserMaster",column,whereCondition)
          
