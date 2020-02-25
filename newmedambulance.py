@@ -4358,7 +4358,10 @@ def addHospitalAdmin():
                 hospitalId=inputdata["hospitalId"]
                 column=column+" ,hospitalId"
                 values=values+"','"+str(hospitalId)
-            
+            if 'gender' in inputdata:
+                gender=inputdata["gender"]
+                column=column+" ,gender"
+                values=values+"','"+str(gender)
             WhereCondition = " and email = '" + str(email) + "'"
             count = int(databasefile.SelectCountQuery("hospitalUserMaster",WhereCondition,""))
             if count>0:
