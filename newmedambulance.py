@@ -4423,7 +4423,7 @@ def updateHospitalAdmin():
                
             if 'userTypeId' in inputdata:
                 userTypeId=inputdata["userTypeId"]
-                column=column+" ,userTypeId= '"+str(userTypeId) +"' " 
+                column=column+" ,usertypeId= '"+str(userTypeId) +"' " 
                
             
             if 'hospitalId' in inputdata:
@@ -4484,6 +4484,46 @@ def deleteHospital1():
     except Exception as e :
         print("Exception--->" + str(e))                                  
         return commonfile.Errormessage()
+
+
+
+
+@app.route('/allhospitalUserMaster', methods=['post'])
+def allhospitalUserMaster():
+    try:
+        msg = "1"
+        if msg=="1":
+            inputdata =  commonfile.DecodeInputdata(request.get_data())
+            startlimit,endlimit="",""
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
+                
+            if "endLimit" in inputdata:
+                if inputdata['endLimit'] != "":
+                    endlimit =str(inputdata["endLimit"])
+
+            orderby="id"        
+
+
+            column="name,userId,hospitalId,mobileNo,password,gender,email,usertypeId,id"
+            whereCondition="  and status<>'2' "
+            data=databasefile.SelectQuery2("hospitalUserMaster",column,whereCondition,"",startlimit,endlimit,orderby)
+            
+            totalCount= databasefile.SelectQuery4("hospitalUserMaster",column,whereCondition)
+            if (data!=0):           
+                Data = {"result":data,"status":"true","totalCount":totalCount}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
+        else:
+            return msg
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
 
 
 #==================================hospitaladmins==========================
