@@ -4304,7 +4304,7 @@ def addHospitalAdmin():
         if msg == "1":
             imeiNo,country,city,deviceName,deviceId,deviceType="","","","","",""
             os,appVersion,notificationToken,ipAddress,userAgent="","","","",""
-            currentLocation,currentLocation="",""
+            mobileNo=""
             column,values="",""
             
             UserId = (commonfile.CreateHashKey(mobileNo,userTypeId)).hex
