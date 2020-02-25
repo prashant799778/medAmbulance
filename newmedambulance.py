@@ -4361,16 +4361,22 @@ def addHospitalAdmin():
                 column=column+" ,hospitalId"
                 values=values+"','"+str(hospitalId)
             
-            column=column+" userId "
-            values=",'"+str(userId)+"'"
-            data=databasefile.InsertQuery("hospitalUserMaster",column,values)
-         
+            WhereCondition = " and email = '" + str(email) + "'"
+            count = databasefile.SelectCountQuery("hospitalUserMaster",WhereCondition,"")
+            if count>0:
+                return {"status":"true","message":"Record Already Exist","result":[]}
 
-            if data != "0":
-                Data = {"status":"true","message":"","result":[]}                  
-                return Data
             else:
-                return commonfile.Errormessage()
+                column=column+" userId "
+                values=",'"+str(userId)+"'"
+                data=databasefile.InsertQuery("hospitalUserMaster",column,values)
+             
+
+                if data != "0":
+                    Data = {"status":"true","message":"","result":[]}                  
+                    return Data
+                else:
+                    return commonfile.Errormessage()
                         
         else:
             return msg 
