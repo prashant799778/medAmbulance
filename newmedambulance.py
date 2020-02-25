@@ -1527,7 +1527,7 @@ def allResponder():
             whereCondition=" and dm.driverId=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " + WhereCondition
             data=databasefile.SelectQueryOrderby("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit,orderby)
             print(data,"+++++++++++++++++==")
-            WhereCondition999="  dm.driverId=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " + WhereCondition
+            WhereCondition999="  dm.driverId=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " 
             countdata=databasefile.SelectQuery1("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,WhereCondition999)
             
             if (data['status']!='false'):
