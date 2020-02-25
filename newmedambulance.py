@@ -4307,14 +4307,11 @@ def addHospitalAdmin():
             currentLocation,currentLocation="",""
             column,values="",""
             
-           
-            userTypeId = inputdata["userTypeId"]
-            mobileNo=inputdata["mobileNo"]
             UserId = (commonfile.CreateHashKey(mobileNo,userTypeId)).hex
             
             
             WhereCondition = " and email = '" + str(email) + "'"
-            count = databasefile.SelectCountQuery("userMaster",WhereCondition,"")
+            count = databasefile.SelectCountQuery("hospitalUserMaster",WhereCondition,"")
             
             if 'email' in inputdata:
                 email=inputdata["email"]
@@ -4342,6 +4339,8 @@ def addHospitalAdmin():
                 column=column+" ,hospitalId"
                 values=values+"','"+str(hospitalId)
             
+            column=column+" userId "
+            values=",'"+str(userId)+"'"
             data=databasefile.InsertQuery("hospitalUserMaster",column,values)
          
 
