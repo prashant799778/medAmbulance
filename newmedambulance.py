@@ -3115,6 +3115,7 @@ def bookRide():
             print("1")
             #print("=================",topic)
             client.publish(topic, str(inputdata))
+        client.disconnect()
             print("2")
             #print("2222222222222") 
         return  {"result":"booking send","status":"True"}
@@ -4505,36 +4506,37 @@ def updateHospitalAdminStatus():
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg =="1":
           
-            driverId = str(inputdata["Id"])
+            driverId = int(inputdata["Id"])
            
-            # column="status"
-            # whereCondition= "   driverId = " + str(userId)+ " "
-            # data=databasefile.SelectQuery1("driverMaster",column,whereCondition)
-            # print(data)
-            # if (data !=0):
-            #     if data[0]['status']==0:
+           
+            column="status"
+            whereCondition= "   id = " + str(userId)+ " "
+            data=databasefile.SelectQuery1("hospitalUserMaste",column,whereCondition)
+            print(data)
+            if (data !=0):
+                if data[0]['status']==0:
             #         print('111111111111111111')
-            column="status='1'"
-            whereCondition= "  id = '" + str(driverId)+ "' "
-            output1=databasefile.UpdateQuery("hospitalUserMaster",column,whereCondition)
-            output=output1
-            if output!='0':
-                Data = {"status":"true","message":"","result":output["result"]}                  
-                return Data
-            else:
-                return commonfile.Errormessage() 
+                    column="status='1'"
+                    whereCondition= "  id = '" + str(driverId)+ "' "
+                    output1=databasefile.UpdateQuery("hospitalUserMaster",column,whereCondition)
+                    output=output1
+                    if output!='0':
+                        Data = {"status":"true","message":"","result":output["result"]}                  
+                        return Data
+                    else:
+                        return commonfile.Errormessage() 
 
-                # else:
-                #     column="status='0'"
-                #     whereCondition= "  driverId = " + str(userId)+ " "
-                #     output1=databasefile.UpdateQuery("driverMaster",column,whereCondition)
-                #     output=output1    
-                #     if output!='0':
-                #         Data = {"status":"true","message":"","result":output["result"]}                  
-                #         return Data
-                #     else:
-                #         return commonfile.Errormessage()
-            #
+                else:
+                    column="status='0'"
+                    whereCondition= "  id = " + str(userId)+ " "
+                    output1=databasefile.UpdateQuery("hospitalUserMaster",column,whereCondition)
+                    output=output1    
+                    if output!='0':
+                        Data = {"status":"true","message":"","result":output["result"]}                  
+                        return Data
+                    else:
+                        return commonfile.Errormessage()
+            
         else:
             return msg         
  
