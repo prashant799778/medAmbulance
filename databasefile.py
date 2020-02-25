@@ -232,7 +232,7 @@ def UpdateQuery(table,columns,whereCondition):
 
         if columns != "":   
             query = " update " + table + " set " + columns  + " " + whereCondition  + ";"             
-            print(query)
+            #print(query)
             conn = Connection()
             cursor = conn.cursor()         
             cursor.execute(query)
