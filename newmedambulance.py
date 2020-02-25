@@ -4378,6 +4378,72 @@ def addHospitalAdmin():
         print("Exception---->" +str(e))           
         output = {"status":"false","message":"something went wrong","result":""}
         return output
+
+
+@app.route('/updateHospitalAdmin', methods=['POST'])
+def updateHospitalAdmin():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+        startlimit,endlimit="",""
+        keyarr = ["name","email","password",'userTypeId','hospitalId']
+        commonfile.writeLog("hospitalAdminSignup",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+       
+        if msg == "1":
+            name,email,password,userTypeId,mobileNo="","","","",""
+            column,values="",""
+            
+            # UserId = (commonfile.CreateHashKey(mobileNo,userTypeId)).hex
+            
+            
+            # WhereCondition = " and email = '" + str(email) + "'"
+            # count = databasefile.SelectCountQuery("hospitalUserMaster",WhereCondition,"")
+
+            
+            if 'email' in inputdata:
+                email=inputdata["email"]
+                column=" email='"+str(email)+"' " 
+            if 'name' in inputdata:
+                name=inputdata["name"]
+                column=column+" ,name='"+str(name)+"' "  
+            if 'password' in inputdata:
+                password=inputdata["password"]
+                column=column+" ,password= '"+str(password)+"' "                
+            if 'mobileNo' in inputdata:
+                mobileNo=inputdata["mobileNo"]
+                column=column+" ,mobileNo='"+str(mobileNo)+"' "  
+               
+            if 'userTypeId' in inputdata:
+                userTypeId=inputdata["userTypeId"]
+                column=column+" ,userTypeId= '"+str(userTypeId) +"' " 
+               
+            
+            if 'hospitalId' in inputdata:
+                hospitalId=inputdata["hospitalId"]
+                column=column+" ,hospitalId= '"+str(hospitalId) +"' " 
+
+              
+            if 'userId' in inputdata:
+                userId=inputdata["userId"]    
+                
+            
+            whereCondition= " userId= '"+str(userId)+"' "
+          
+            data=databasefile.UpdateQuery("hospitalUserMaster",column,whereCondition)
+         
+
+            if data != "0":
+                Data = {"status":"true","message":"data Updated Successfully","result":"data Updated Successfully"}                  
+                return Data
+            else:
+                return commonfile.Errormessage()
+                        
+        else:
+            return msg 
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"status":"false","message":"something went wrong","result":""}
+        return output        
    
 
 @app.route('/deletehospitalAdmin', methods=['POST'])
