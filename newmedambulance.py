@@ -4292,12 +4292,12 @@ def notification2():
 
 #==================================hospitaladmins==========================
 
-@app.route('/hospitalAdminSignup', methods=['POST'])
-def hospitalAdminSignup():
+@app.route('/addHospitalAdmin', methods=['POST'])
+def addHospitalAdmin():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
-        keyarr = ["name","email","password",'mobileNo','userTypeId']
+        keyarr = ["name","email","password",'userTypeId']
         commonfile.writeLog("hospitalAdminSignup",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
        
