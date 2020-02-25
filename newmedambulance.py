@@ -4637,7 +4637,7 @@ def hospitalAdminLogin():
 
 
 @app.route('/hospitalAdminDashboard', methods=['post'])
-def allhospitalUserMaster():
+def allhospitalUserMaster1():
     try:
         msg = "1"
         if msg=="1":
