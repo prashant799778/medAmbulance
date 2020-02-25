@@ -4375,7 +4375,7 @@ def addHospitalAdmin():
              
 
                 if data != "0":
-                    Data = {"status":"true","message":"","result":[]}                  
+                    Data = {"status":"true","message":"","result":data}                  
                     return Data
                 else:
                     return commonfile.Errormessage()
