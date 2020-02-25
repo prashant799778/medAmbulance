@@ -1574,7 +1574,7 @@ def allResponder():
                     Data = {"result":data['result'],"status":"true","message":"","totalCount":count}
                     return Data
             else:
-                output = {"message":"No Data Found","status":"false","result":""}
+                output = {"message":"No Data Found","status":"true","result":""}
                 return output
         else:
             return msg
