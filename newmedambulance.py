@@ -1320,7 +1320,7 @@ def allAmbulance():
             data=databasefile.SelectQueryOrderby("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am,driverMaster as dm,ambulanceRideStatus as ars",column,whereCondition,"",startlimit,endlimit,orderby)
             print(data)
             whereCondition9=" AM.ambulanceTypeId=atm.id and AM.ambulanceModeId=am.id and AM.driverId=dm.driverId  and AM.driverTypeId='1' "
-            countdata =databasefile.SelectQuery1("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am,driverMaster as dm",column,whereCondition9)
+            countdata =databasefile.SelectQuery1("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am,driverMaster as dm,ambulanceRideStatus as ars",column,whereCondition9)
             if (data['status']!='false'):
                 count=len(countdata)
                 Data = {"result":data['result'],'message':"","status":"true","totalCount":count}
