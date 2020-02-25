@@ -4284,6 +4284,86 @@ def notification2():
         return commonfile.Errormessage()
 
 
+
+
+
+
+
+
+#==================================hospitaladmins==========================
+
+@app.route('/hospitalAdminSignup', methods=['POST'])
+def hospitalAdminSignup():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+        startlimit,endlimit="",""
+        keyarr = ["name","email","password",'mobileNo','userTypeId']
+        commonfile.writeLog("hospitalAdminSignup",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+       
+        if msg == "1":
+            imeiNo,country,city,deviceName,deviceId,deviceType="","","","","",""
+            os,appVersion,notificationToken,ipAddress,userAgent="","","","",""
+            currentLocation,currentLocation="",""
+            column,values="",""
+            
+           
+            userTypeId = inputdata["userTypeId"]
+            mobileNo=inputdata["mobileNo"]
+            UserId = (commonfile.CreateHashKey(mobileNo,userTypeId)).hex
+            
+            
+            WhereCondition = " and email = '" + str(email) + "'"
+            count = databasefile.SelectCountQuery("userMaster",WhereCondition,"")
+            
+            if 'email' in inputdata:
+                email=inputdata["email"]
+                column=column+" ,email"
+                values=values+"','"+str(email)
+            if 'name' in inputdata:
+                name=inputdata["name"]
+                column=column+" ,name"
+                values=values+"','"+str(name)
+            if 'password' in inputdata:
+                password=inputdata["password"]
+                column=column+" ,password"
+                values=values+"','"+str(password)
+            if 'mobileNo' in inputdata:
+                mobileNo=inputdata["mobileNo"]
+                column=column+" ,mobileNo"
+                values=values+"','"+str(mobileNo)
+            if 'userTypeId' in inputdata:
+                userTypeId=inputdata["userTypeId"]
+                column=column+" ,userTypeId"
+                values=values+"','"+str(userTypeId)
+            
+            data=databasefile.InsertQuery("hospitalUserMaster",column,values)
+         
+
+            if data != "0":
+                Data = {"status":"true","message":"","result":[]}                  
+                return Data
+            else:
+                return commonfile.Errormessage()
+                        
+        else:
+            return msg 
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"status":"false","message":"something went wrong","result":""}
+        return output
+
+#==================================hospitaladmins==========================
+
+
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
     CORS(app, support_credentials=True)
     app.run(host='0.0.0.0',port=5077,debug=True)
