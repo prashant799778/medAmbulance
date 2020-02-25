@@ -4524,7 +4524,7 @@ def allhospitalUserMaster():
 
             column="hum.name,hum.userId,hum.hospitalId,hum.mobileNo,hum.password,hum.gender,hum.email,hum.usertypeId,hum.id as Id,hm.hospitalName as hospitalName"
             whereCondition="  and hum.status<>'2'  and hum.hospitalId=hm.id"+whereCondition3
-            data=databasefile.SelectQuery2("hospitalUserMaster as hum,hospitalMaster as hm",column,whereCondition,"",startlimit,endlimit,orderby)
+            data=databasefile.SelectQueryOrderby("hospitalUserMaster as hum,hospitalMaster as hm",column,whereCondition,"",startlimit,endlimit,orderby)
             
             totalCount= databasefile.SelectQuery4("hospitalUserMaster as hum,hospitalMaster as hm",column,whereCondition)
             if (data['status']!='false'):           
