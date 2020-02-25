@@ -62,7 +62,7 @@ export class ViewResponderComponent implements OnInit {
 			let data = {
 				'driverId': this.driverId
 			}
-			this.userService.dataPostApi(data,AppSettings.alldriver).then(resp=>{
+			this.userService.dataPostApi(data,AppSettings.allResponder).then(resp=>{
 				this.setData(resp)
 			})
 		})	

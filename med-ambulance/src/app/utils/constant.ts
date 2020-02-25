@@ -47,13 +47,13 @@ export class AppSettings {
     public static deleteHospital = 'deleteHospital';
     public static cityMaster = 'cityMaster';
     public static updateHospital = 'updateHospital';
-    // public static deleteSignUpVideo = 'deleteSignUpVideo';
-    // public static deletePromisingInitiatives = 'deletePromisingInitiatives';
-    // public static deleteGallery = 'deleteGallery';
-    // public static deleteEvent = 'deleteEvent';
-    // public static deleteAnnouncement = 'deleteAnnouncement';
-    // public static allaboutUs = 'allaboutUs';
-    // public static aboutUs = 'aboutUs';
+    public static allResponder = 'allResponder';
+    public static hospitalMaster = 'hospitalMaster';
+    public static allhospitalUserMaster = 'allhospitalUserMaster';
+    public static addHospitalAdmin = 'addHospitalAdmin';
+    public static updateHospitalAdmin = 'updateHospitalAdmin';
+    public static updateHospitalAdminStatus = 'updateHospitalAdminStatus';
+    public static deletehospitalAdmin = 'deletehospitalAdmin';
     // public static allDecisionMaker = 'allDecisionMaker';
     
     // public static getPromissingIntiatives = 'getPromissingIntiatives';

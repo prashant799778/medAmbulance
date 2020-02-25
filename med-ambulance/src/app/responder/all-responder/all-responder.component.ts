@@ -36,7 +36,7 @@ export class AllResponderComponent implements OnInit {
 			'startLimit': 0,
 			'endLimit': 10
 		}
-		this.userService.dataPostApi(data,AppSettings.alldriver).then(resp=>{
+		this.userService.dataPostApi(data,AppSettings.allResponder).then(resp=>{
 			if(resp['status'] == 'true'){
 				
 				this.errorMessage = false;
@@ -112,7 +112,7 @@ export class AllResponderComponent implements OnInit {
 					'startLimit': 0,
 					'endLimit': 10
 				}
-				this.userService.dataPostApi(data,AppSettings.alldriver).then(resp=>{
+				this.userService.dataPostApi(data,AppSettings.allResponder).then(resp=>{
 					if(resp['status'] == 'true'){
 				
 						this.errorMessage = false;

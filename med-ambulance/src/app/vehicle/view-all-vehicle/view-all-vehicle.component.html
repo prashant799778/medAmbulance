@@ -44,6 +44,9 @@
                        
                     </tbody>
                 </table>
+                <div class="page-table pb-0 pt-3" *ngIf = "paginationDisplay" >
+                    <nz-pagination [nzPageIndex]="1" [nzTotal]="totalRecords" (nzPageIndexChange)="pageChanged($event)" [nzPageSize]="pageSize"></nz-pagination>
+                </div>
             </div>
             </div>
         </div>

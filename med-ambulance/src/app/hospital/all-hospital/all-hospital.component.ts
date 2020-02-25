@@ -104,7 +104,7 @@ export class AllHospitalComponent implements OnInit {
 		  this.driverData = data['result'];
 		  
 		});
-		}
+	}
 
 	editHospital(id,view){
 		console.log(id)
