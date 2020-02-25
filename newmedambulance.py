@@ -4527,8 +4527,10 @@ def allhospitalUserMaster():
             data=databasefile.SelectQueryOrderby("hospitalUserMaster as hum,hospitalMaster as hm",column,whereCondition,"",startlimit,endlimit,orderby)
             
             totalCount= databasefile.SelectQuery4("hospitalUserMaster as hum,hospitalMaster as hm",column,whereCondition)
-            if (data['status']!='false'):           
-                Data = {"result":data['result'],"status":"true","totalCount":totalCount}
+            if (data['status']!='false'):   
+                count=len(totalCount)
+
+                Data = {"result":data['result'],"status":"true","totalCount":count}
                 return Data
             else:
                 output = {"result":"No Data Found","status":"true","message":"No Data Found"}
