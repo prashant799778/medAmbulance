@@ -4528,7 +4528,7 @@ def updateHospitalAdminStatus():
 
                 else:
                     column="status='0'"
-                    whereCondition= "  id = " + str(userId)+ " "
+                    whereCondition= "  id = " + str(driverId)+ " "
                     output1=databasefile.UpdateQuery("hospitalUserMaster",column,whereCondition)
                     output=output1    
                     if output!='0':
