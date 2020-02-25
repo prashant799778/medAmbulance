@@ -4310,126 +4310,38 @@ def hospitalAdminSignup():
            
             userTypeId = inputdata["userTypeId"]
             mobileNo=inputdata["mobileNo"]
-            
-            # currentLocation=inputdata["currentLocation"]
-            # currentLocationlatlong=inputdata["currentLocationlatlong"]
-
-            
-            digits = "0123456789"
-            otp = ""
-            for i in range(4):
-                otp += digits[math.floor(random.random() * 10)]
-
-            
-            # totp = pyotp.TOTP('base32secret3232')
-            # print("Current OTP:", totp.now()[0:4])
-            # otp=int(totp.now()[0:4])
-
             UserId = (commonfile.CreateHashKey(mobileNo,userTypeId)).hex
             
             
-            WhereCondition = " and mobileNo = '" + str(mobileNo) + "'"
+            WhereCondition = " and email = '" + str(email) + "'"
             count = databasefile.SelectCountQuery("userMaster",WhereCondition,"")
             
-            if int(count) > 0:
-                WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
-                column = " otp = '" + str(otp)  + "'"
-                updateOtp = databasefile.UpdateQuery("userMaster",column,WhereCondition)
-                print(updateOtp,'updatedata')
-                if updateOtp != "0":
-                    column = '*'
-                    data = databasefile.SelectQuery("userMaster",column,WhereCondition)                  
-                    print(data,"===================")
-                    return data
-                else:
-                    return commonfile.Errormessage()
-                
-            else:
-                if 'imeiNo' in inputdata:
-                    imeiNo=inputdata["imeiNo"] 
-                    column=column+",imeiNo "
-                    values=values+"','"+str(deviceName)
-
-                if 'deviceName' in inputdata:
-                    deviceName=inputdata["deviceName"]
-                    column=column+" ,deviceName "
-                    values=values+"','"+str(deviceName)
-                
-                if 'country' in inputdata:
-                    country=inputdata["country"]
-                    column=column+" ,country "
-                    values=values+"','"+str(deviceName)
-                
-                if 'city' in inputdata:
-                    city=inputdata["city"]
-                    column=column+" ,city"
-                    values=values+"','"+str(deviceName)
-
-                if 'ipAddress' in inputdata:
-                    ipAddress=inputdata["ipAddress"]
-                    column=column+" ,ipAddress"
-                    values=values+"','"+str(deviceName)
-
-                if 'userAgent' in inputdata:
-                    userAgent=inputdata["userAgent"]
-                    column=column+" ,userAgent"
-                    values=values+"','"+str(deviceName)
-
-
-                if 'deviceId' in inputdata:
-                    deviceId=inputdata["deviceId"]
-                    column=column+" ,deviceId"
-                    values=values+"','"+str(deviceName)
-
-                
-                if 'os' in inputdata:
-                    os=inputdata["os"]
-                    column=column+" ,os"
-                    values=values+"','"+str(deviceName)
-
-                
-                if 'deviceType' in inputdata:
-                    deviceType=inputdata["deviceType"]
-                    column=column+" ,deviceType"
-                    values=values+"','"+str(deviceName)
-
-                if 'appVersion' in inputdata:
-                    appVersion=inputdata["appVersion"] 
-                    column=column+" ,appVersion"
-                    values=values+"','"+str(deviceName)
-
-
-                if 'notificationToken' in inputdata:
-                    notificationToken=inputdata["notificationToken"]
-                    column=column+" ,appVersion"
-                    values=values+"','"+str(deviceName)
-
                 if 'email' in inputdata:
                     email=inputdata["email"]
                     column=column+" ,email"
                     values=values+"','"+str(email)
+                if 'name' in inputdata:
+                    name=inputdata["name"]
+                    column=column+" ,name"
+                    values=values+"','"+str(name)"password",'mobileNo','userTypeId'
                 if 'password' in inputdata:
                     password=inputdata["password"]
                     column=column+" ,password"
                     values=values+"','"+str(password)
-
-
- 
-                currentLocationlatlong=""
-
-                column="mobileNo,userId,userTypeId,otp"+column
+                if 'mobileNo' in inputdata:
+                    mobileNo=inputdata["mobileNo"]
+                    column=column+" ,mobileNo"
+                    values=values+"','"+str(mobileNo)
+                if 'userTypeId' in inputdata:
+                    userTypeId=inputdata["userTypeId"]
+                    column=column+" ,userTypeId"
+                    values=values+"','"+str(userTypeId)
                 
-                
-                values=  "'"+str(mobileNo)+"','"+str(UserId)+"','"+str(userTypeId)+"','"+str(otp)+values+ "'"
-                data=databasefile.InsertQuery("userMaster",column,values)
+                data=databasefile.InsertQuery("hospitalUserMaster",column,values)
              
 
                 if data != "0":
-                    column = '*'
-                    
-                    data = databasefile.SelectQuery2("userMaster",column,WhereCondition,"",startlimit,endlimit)
-                    print(data)
-                    Data = {"status":"true","message":"","result":data["result"][0]}                  
+                    Data = {"status":"true","message":"","result":[]}                  
                     return Data
                 else:
                     return commonfile.Errormessage()
