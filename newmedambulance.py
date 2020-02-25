@@ -4367,6 +4367,7 @@ def addHospitalAdmin():
                 return {"status":"true","message":"Record Already Exist","result":[]}
 
             else:
+                print("1111111111111")
                 column=column+" userId "
                 values=",'"+str(userId)+"'"
                 data=databasefile.InsertQuery("hospitalUserMaster",column,values)
