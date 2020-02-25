@@ -695,7 +695,7 @@ def addDrivertest():
         print('Hello')
         inputdata=request.form.get('data')
         print(inputdata,'inputdata')
-        keyarr = ['mobileNo','key','name','usertypeId']
+        keyarr = ['mobileNo','key','name','userTypeId']
         inputdata=json.loads(inputdata)
         # inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
@@ -725,7 +725,7 @@ def addDrivertest():
             mobileNo= inputdata["mobileNo"]
             driverId=data['result']['userId']
             
-            DlNo,dlFrontFilename,DlFrontPicPath,dlBackFilename,DlBackPicPath,PIDType,PIDNo,PIDFrontFilename,PIDFrontPicPath,PIDBackFilename,PIDBackPicPath,TransportType,TransportModel,Color,AmbulanceRegistrationFuel,TypeNo,AIFilename,AIPicPath,AmbulanceModeId,AmbulanceId="","","","","","","","","","","","","","","","","","","",""
+            DlNo,dlFrontFilename,DlFrontPicPath,dlBackFilename,DlBackPicPath,PIDType,PIDNo,PIDFrontFilename,PIDFrontPicPath,PIDBackFilename,PIDBackPicPath,TransportType,TransportModel,Color,AmbulanceRegistrationFuel,TypeNo,AIFilename,AIPicPath,AmbulanceModeId,AmbulanceId="","","","","","","","","","","","","","","","","","","0","0"
 
             if 'DlNo' in inputdata:
                 DlNo=inputdata["DlNo"]
@@ -1526,8 +1526,8 @@ def allResponder():
             column="dm.name,dm.id,dm.mobileNo,dm.profilePic,am.ambulanceNo,am.ambulanceId,um.email,ars.lat,ars.lng,ars.onDuty,ars.onTrip,dm.currentLocation as address,date_format(dm.dateCreate,'%Y-%m-%d %H:%i:%s')joiningDate,dm.status as status,dm.driverId as driverId"
             whereCondition=" and dm.driverId=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " + WhereCondition
             data=databasefile.SelectQueryOrderby("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,whereCondition,"",startlimit,endlimit,orderby)
-            print(data)
-            WhereCondition999="  dm.driverId=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " + WhereCondition
+            print(data,"+++++++++++++++++==")
+            WhereCondition999="  dm.driverId=am.driverId  and am.ambulanceId=ars.ambulanceId  and dm.status<>'2' " 
             countdata=databasefile.SelectQuery1("driverMaster as dm,ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um",column,WhereCondition999)
             
             if (data['status']!='false'):
@@ -1535,12 +1535,14 @@ def allResponder():
                 if y2 ==1:
                     print('111111111111111')
                     if data['result'][0]["profilePic"]==None:
-                        data['result'][0]["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/profilePic.jpg" 
+                        data['result'][0]["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/profilePic.jpg"
+
+                    ambulanceId1=data['result'][0]['ambulanceId']     
                    
                     d1=data['result'][0]['driverId']
                     print(ambulanceId1)
-                    columns2=" am.ambulanceTypeId,concat('"+ ConstantData.GetBaseURL() + "',am.ambulanceFilepath)ambulanceFilepath,um.email,am.ambulanceModeId,am.ambulanceFilename,atm.ambulanceType  as ambulanceType,AM.ambulanceType  as category,am.ambulanceRegistrationFuel as fuelType,am.color,am.transportModel,am.transportType"
-                    whereCondition222="  am.ambulanceId=ars.ambulanceId "+WhereCondition
+                    columns2=" concat('"+ ConstantData.GetBaseURL() + "',am.ambulanceFilepath)ambulanceFilepath,um.email,am.ambulanceFilename,AM.ambulanceType  as category,am.ambulanceRegistrationFuel as fuelType,am.color,am.transportModel,am.transportType"
+                    whereCondition222="  am.ambulanceId=ars.ambulanceId  and am.ambulanceId="+str(ambulanceId1)+ ""
                     data111=databasefile.SelectQuery('ambulanceMaster as am,ambulanceRideStatus as ars,userMaster um',columns2,whereCondition222)
                     y2=data111['result']
                     print(y2)
