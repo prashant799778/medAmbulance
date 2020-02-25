@@ -4331,9 +4331,7 @@ def addHospitalAdmin():
             
             UserId = (commonfile.CreateHashKey(mobileNo,userTypeId)).hex
             
-            
-            WhereCondition = " and email = '" + str(email) + "'"
-            count = databasefile.SelectCountQuery("hospitalUserMaster",WhereCondition,"")
+           
             
             if 'email' in inputdata:
                 email=inputdata["email"]
