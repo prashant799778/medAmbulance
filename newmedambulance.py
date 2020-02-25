@@ -4543,6 +4543,38 @@ def allhospitalUserMaster():
         return output
 
 
+@app.route('/hospitalAdminLogin', methods=['POST'])
+def hospitalAdminLogin():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['email','password']
+        commonfile.writeLog("hospitalAdminLogin",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            email = inputdata["email"]
+            password = inputdata["password"]
+            column=  "us.mobileNo,us.name,us.userTypeId,um.usertype,us.userId,us.email,us.hospitalId"
+            whereCondition= " us.email = '" + str(email) + "' and us.password = '" + str(password) + "'  and  us.userTypeId=um.id"
+            loginuser=databasefile.SelectQuery("hospitalUserMaster as us,usertypeMaster as um",column,whereCondition)
+            if (loginuser!=0):   
+                               
+                return loginuser
+            else:
+                
+                return loginuser
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output        
+
+
 
 #==================================hospitaladmins==========================
 
