@@ -4528,7 +4528,7 @@ def allhospitalUserMaster():
             
             totalCount= databasefile.SelectQuery4("hospitalUserMaster as hum,hospitalMaster as hm",column,whereCondition)
             if (data['status']!='false'):           
-                Data = {"result":data,"status":"true","totalCount":totalCount}
+                Data = {"result":data['result'],"status":"true","totalCount":totalCount}
                 return Data
             else:
                 output = {"result":"No Data Found","status":"true","message":"No Data Found"}
