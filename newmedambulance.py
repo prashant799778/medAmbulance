@@ -4326,19 +4326,14 @@ def addHospitalAdmin():
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
        
         if msg == "1":
-            imeiNo,country,city,deviceName,deviceId,deviceType="","","","","",""
-            os,appVersion,notificationToken,ipAddress,userAgent="","","","",""
-            currentLocation,currentLocation="",""
+            name,email,password,userTypeId,mobileNo="","","","",""
             column,values="",""
             
-           
-            userTypeId = inputdata["userTypeId"]
-            mobileNo=inputdata["mobileNo"]
             UserId = (commonfile.CreateHashKey(mobileNo,userTypeId)).hex
             
             
             WhereCondition = " and email = '" + str(email) + "'"
-            count = databasefile.SelectCountQuery("userMaster",WhereCondition,"")
+            count = databasefile.SelectCountQuery("hospitalUserMaster",WhereCondition,"")
             
             if 'email' in inputdata:
                 email=inputdata["email"]
@@ -4361,6 +4356,13 @@ def addHospitalAdmin():
                 column=column+" ,userTypeId"
                 values=values+"','"+str(userTypeId)
             
+            if 'hospitalId' in inputdata:
+                hospitalId=inputdata["hospitalId"]
+                column=column+" ,hospitalId"
+                values=values+"','"+str(hospitalId)
+            
+            column=column+" userId "
+            values=",'"+str(userId)+"'"
             data=databasefile.InsertQuery("hospitalUserMaster",column,values)
          
 
