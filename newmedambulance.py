@@ -4323,7 +4323,7 @@ def hospitalAdminSignup():
             if 'name' in inputdata:
                 name=inputdata["name"]
                 column=column+" ,name"
-                values=values+"','"+str(name)"password",'mobileNo','userTypeId'
+                values=values+"','"+str(name)
             if 'password' in inputdata:
                 password=inputdata["password"]
                 column=column+" ,password"
