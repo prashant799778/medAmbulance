@@ -4316,35 +4316,35 @@ def hospitalAdminSignup():
             WhereCondition = " and email = '" + str(email) + "'"
             count = databasefile.SelectCountQuery("userMaster",WhereCondition,"")
             
-                if 'email' in inputdata:
-                    email=inputdata["email"]
-                    column=column+" ,email"
-                    values=values+"','"+str(email)
-                if 'name' in inputdata:
-                    name=inputdata["name"]
-                    column=column+" ,name"
-                    values=values+"','"+str(name)"password",'mobileNo','userTypeId'
-                if 'password' in inputdata:
-                    password=inputdata["password"]
-                    column=column+" ,password"
-                    values=values+"','"+str(password)
-                if 'mobileNo' in inputdata:
-                    mobileNo=inputdata["mobileNo"]
-                    column=column+" ,mobileNo"
-                    values=values+"','"+str(mobileNo)
-                if 'userTypeId' in inputdata:
-                    userTypeId=inputdata["userTypeId"]
-                    column=column+" ,userTypeId"
-                    values=values+"','"+str(userTypeId)
-                
-                data=databasefile.InsertQuery("hospitalUserMaster",column,values)
-             
+            if 'email' in inputdata:
+                email=inputdata["email"]
+                column=column+" ,email"
+                values=values+"','"+str(email)
+            if 'name' in inputdata:
+                name=inputdata["name"]
+                column=column+" ,name"
+                values=values+"','"+str(name)"password",'mobileNo','userTypeId'
+            if 'password' in inputdata:
+                password=inputdata["password"]
+                column=column+" ,password"
+                values=values+"','"+str(password)
+            if 'mobileNo' in inputdata:
+                mobileNo=inputdata["mobileNo"]
+                column=column+" ,mobileNo"
+                values=values+"','"+str(mobileNo)
+            if 'userTypeId' in inputdata:
+                userTypeId=inputdata["userTypeId"]
+                column=column+" ,userTypeId"
+                values=values+"','"+str(userTypeId)
+            
+            data=databasefile.InsertQuery("hospitalUserMaster",column,values)
+         
 
-                if data != "0":
-                    Data = {"status":"true","message":"","result":[]}                  
-                    return Data
-                else:
-                    return commonfile.Errormessage()
+            if data != "0":
+                Data = {"status":"true","message":"","result":[]}                  
+                return Data
+            else:
+                return commonfile.Errormessage()
                         
         else:
             return msg 
