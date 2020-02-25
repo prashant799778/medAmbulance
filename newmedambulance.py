@@ -4292,8 +4292,8 @@ def notification2():
 
 #==================================hospitaladmins==========================
 
-@app.route('/hospitalAdminSignup', methods=['POST'])
-def hospitalAdminSignup():
+@app.route('/addHospitalAdmin', methods=['POST'])
+def addHospitalAdmin():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
