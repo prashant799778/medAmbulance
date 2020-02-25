@@ -3115,9 +3115,9 @@ def bookRide():
             print("1")
             #print("=================",topic)
             client.publish(topic, str(inputdata))
-        client.disconnect()
             print("2")
-            #print("2222222222222") 
+        client.disconnect()    
+             
         return  {"result":"booking send","status":"True"}
     except KeyError as e:
         print("Exception---->" +str(e))        
