@@ -4366,8 +4366,8 @@ def addHospitalAdmin():
 
             else:
                 print("1111111111111")
-                column=column+" userId "
-                values=",'"+str(UserId)+"'"
+                column=" userId "+column
+                values="'"+str(UserId)+"'"+values
                 data=databasefile.InsertQuery("hospitalUserMaster",column,values)
              
 
