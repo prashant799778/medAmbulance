@@ -4360,7 +4360,7 @@ def addHospitalAdmin():
                 values=values+"','"+str(hospitalId)
             
             WhereCondition = " and email = '" + str(email) + "'"
-            count = databasefile.SelectCountQuery("hospitalUserMaster",WhereCondition,"")
+            count = int(databasefile.SelectCountQuery("hospitalUserMaster",WhereCondition,""))
             if count>0:
                 return {"status":"true","message":"Record Already Exist","result":[]}
 
