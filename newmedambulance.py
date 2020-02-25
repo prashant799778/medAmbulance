@@ -3014,7 +3014,7 @@ def getNearAmbulancetest():
             whereCondition= "and d.status=1 and b.onTrip=0 and b.onDuty=1 and a.driverId=d.driverId  and b.ambulanceId=a.ambulanceId HAVING distance < 25 "
             orderby="  distance "
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d,ambulanceRideStatus as b",column,whereCondition,"",orderby,"","")
-            print("nearByAmbulance================================",nearByAmbulance)
+            #print("nearByAmbulance================================",nearByAmbulance)
             nearByAmbulance["ambulanceTypeId"]=list(set([i["ambulanceTypeId"] for i in nearByAmbulance["result"]]))
             if (nearByAmbulance!=0):   
                 #for i in nearByAmbulance["result"]: 
@@ -3107,14 +3107,14 @@ def bookRide():
         keyarr = ["ambulanceId","id",'startLocationLat','startLocationLong',"pickupLocationAddress",'dropLocationLat','dropLocationLong',"dropLocationAddress","userId"]
         for i in inputdata["driverId"]: 
             inputdata["driverId"]=str(i)
-            print(inputdata)
+            #print(inputdata)
             
             client = mqtt.Client()
             client.connect("localhost",1883,60)
             topic=str(i)+"/booking"
-            print("=================",topic)
+            #print("=================",topic)
             client.publish(topic, str(inputdata))
-            print("2222222222222") 
+            #print("2222222222222") 
         return  {"result":"booking send","status":"True"}
     except KeyError as e:
         print("Exception---->" +str(e))        
