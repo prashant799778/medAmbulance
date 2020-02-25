@@ -4354,7 +4354,7 @@ def addHospitalAdmin():
         return output
 
 @app.route('/deletehospitalAdmin', methods=['POST'])
-def deleteHospital():
+def deleteHospital1():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
