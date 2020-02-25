@@ -4352,6 +4352,7 @@ def addHospitalAdmin():
         print("Exception---->" +str(e))           
         output = {"status":"false","message":"something went wrong","result":""}
         return output
+   
 
 @app.route('/deletehospitalAdmin', methods=['POST'])
 def deleteHospital1():
