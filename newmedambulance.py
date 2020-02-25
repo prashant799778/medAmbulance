@@ -4500,6 +4500,7 @@ def allhospitalUserMaster():
         if msg=="1":
             inputdata =  commonfile.DecodeInputdata(request.get_data())
             startlimit,endlimit="",""
+            whereCondition3=""
             if "startLimit" in inputdata:
                 if inputdata['startLimit'] != "":
                     startlimit =str(inputdata["startLimit"])
@@ -4508,19 +4509,27 @@ def allhospitalUserMaster():
                 if inputdata['endLimit'] != "":
                     endlimit =str(inputdata["endLimit"])
 
-            orderby="id"        
+
+            if "Id" in inputdata:
+                if inputdata['Id'] != "":
+                    Id =str(inputdata["Id"])
+                    whereCondition3=" and hum.id = "+str(Id)" " 
 
 
-            column="hum.name,hum.userId,hum.hospitalId,hum.mobileNo,hum.password,hum.gender,hum.email,hum.usertypeId,hum.id,hm.hospitalName as hospitalName"
-            whereCondition="  and hum.status<>'2'  and hum.hospitalId=hm.id"
+            orderby="hum.id"
+
+
+
+            column="hum.name,hum.userId,hum.hospitalId,hum.mobileNo,hum.password,hum.gender,hum.email,hum.usertypeId,hum.id as Id,hm.hospitalName as hospitalName"
+            whereCondition="  and hum.status<>'2'  and hum.hospitalId=hm.id"+whereCondition3
             data=databasefile.SelectQuery2("hospitalUserMaster as hum,hospitalMaster as hm",column,whereCondition,"",startlimit,endlimit,orderby)
             
             totalCount= databasefile.SelectQuery4("hospitalUserMaster as hum,hospitalMaster as hm",column,whereCondition)
-            if (data!=0):           
+            if (data['status']!='false'):           
                 Data = {"result":data,"status":"true","totalCount":totalCount}
                 return Data
             else:
-                output = {"result":"No Data Found","status":"false"}
+                output = {"result":"No Data Found","status":"true","message":"No Data Found"}
                 return output
         else:
             return msg
