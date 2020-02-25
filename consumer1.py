@@ -20,8 +20,9 @@ def on_message(client, userdata, msg):
   #print(topic,"topic==================")
   data1 = json.dumps(data)
   #print("11111111111111")
+  print("1")
   client.publish(topic, data1)
-  #print("1")
+  print("2")
   #print("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
   
   try:
