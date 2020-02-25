@@ -4511,11 +4511,11 @@ def allhospitalUserMaster():
             orderby="id"        
 
 
-            column="name,userId,hospitalId,mobileNo,password,gender,email,usertypeId,id"
-            whereCondition="  and status<>'2' "
-            data=databasefile.SelectQuery2("hospitalUserMaster",column,whereCondition,"",startlimit,endlimit,orderby)
+            column="hum.name,hum.userId,hum.hospitalId,hum.mobileNo,hum.password,hum.gender,hum.email,hum.usertypeId,hum.id,hm.hospitalName as hospitalName"
+            whereCondition="  and hum.status<>'2'  and hum.hospitalId=hm.id"
+            data=databasefile.SelectQuery2("hospitalUserMaster as hum,hospitalMaster as hm",column,whereCondition,"",startlimit,endlimit,orderby)
             
-            totalCount= databasefile.SelectQuery4("hospitalUserMaster",column,whereCondition)
+            totalCount= databasefile.SelectQuery4("hospitalUserMaster as hum,hospitalMaster as hm",column,whereCondition)
             if (data!=0):           
                 Data = {"result":data,"status":"true","totalCount":totalCount}
                 return Data
