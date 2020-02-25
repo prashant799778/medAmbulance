@@ -4511,7 +4511,7 @@ def updateHospitalAdminStatus():
            
             column="status"
             whereCondition= "   id = " + str(driverId)+ " "
-            data=databasefile.SelectQuery1("hospitalUserMaste",column,whereCondition)
+            data=databasefile.SelectQuery1("hospitalUserMaster",column,whereCondition)
             print(data)
             if (data !=0):
                 if data[0]['status']==0:
