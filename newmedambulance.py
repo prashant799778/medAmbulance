@@ -4514,8 +4514,8 @@ def allhospitalUserMaster():
 
             if "Id" in inputdata:
                 if inputdata['Id'] != "":
-                    Id =str(inputdata["Id"])
-                    whereCondition3=" and hum.id = "+str(Id)" " 
+                    Id =int(inputdata["Id"])
+                    whereCondition3=" and hum.id = '"+str(Id)+"' " 
 
 
             orderby="hum.id"
