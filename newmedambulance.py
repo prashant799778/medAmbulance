@@ -3112,8 +3112,10 @@ def bookRide():
             client = mqtt.Client()
             client.connect("localhost",1883,60)
             topic=str(i)+"/booking"
+            print("1")
             #print("=================",topic)
             client.publish(topic, str(inputdata))
+            print("2")
             #print("2222222222222") 
         return  {"result":"booking send","status":"True"}
     except KeyError as e:
