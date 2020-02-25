@@ -21,7 +21,7 @@ def on_message(client, userdata, msg):
   data1 = json.dumps(data)
   #print("11111111111111")
   client.publish(topic, data1)
-  #print("22222222222222")
+  print("1")
   #print("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
   
   try:
@@ -51,7 +51,7 @@ def on_message(client, userdata, msg):
       orderby=" id "
       ambulanceLatLong = databasefile.SelectQueryOrderby("ambulanceRideTracking",column1,whereCondition1,"","0","1",orderby)
 
-      print(ambulanceLatLong,"ambulanceLatLong==================")
+      #print(ambulanceLatLong,"ambulanceLatLong==================")
       if (lat!=ambulanceLatLong["result"][0]["lat"]) or lng!=ambulanceLatLong["result"][0]["lng"]:
         column=" rideId,ambulanceId,driverId,lat,lng "
         values="'"+str(ambulanceRideId["result"][0]["bookingId"])+"','"+str(ambulanceId)+"','"+str(driverId)+"','"+str(lat)+"','"+str(lng)+"'"
@@ -68,7 +68,7 @@ def on_message(client, userdata, msg):
 
     
   except Exception as e :
-    print("Exception---->" + str(e))    
+    #print("Exception---->" + str(e))    
     output = {"result":"something went wrong","status":"false"}
      
   
