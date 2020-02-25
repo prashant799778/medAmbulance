@@ -4302,9 +4302,7 @@ def addHospitalAdmin():
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
        
         if msg == "1":
-            imeiNo,country,city,deviceName,deviceId,deviceType="","","","","",""
-            os,appVersion,notificationToken,ipAddress,userAgent="","","","",""
-            mobileNo=""
+            name,email,password,userTypeId,mobileNo="","","","",""
             column,values="",""
             
             UserId = (commonfile.CreateHashKey(mobileNo,userTypeId)).hex
