@@ -4398,7 +4398,7 @@ def updateHospitalAdmin():
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
        
         if msg == "1":
-            name,email,password,userTypeId,mobileNo="","","","",""
+            name,email,password,userTypeId,mobileNo,gender="","","","","",""
             column,values="",""
             
             # UserId = (commonfile.CreateHashKey(mobileNo,userTypeId)).hex
@@ -4429,6 +4429,11 @@ def updateHospitalAdmin():
             if 'hospitalId' in inputdata:
                 hospitalId=inputdata["hospitalId"]
                 column=column+" ,hospitalId= '"+str(hospitalId) +"' " 
+
+            if 'gender' in inputdata:
+                gender=inputdata["gender"] 
+                column=column+" ,gender= '"+str(gender) +"' " 
+
 
               
             if 'userId' in inputdata:
