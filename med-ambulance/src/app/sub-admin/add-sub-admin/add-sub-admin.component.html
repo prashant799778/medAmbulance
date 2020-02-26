@@ -1,0 +1,56 @@
+<div class="container-fluid">
+        <form [formGroup]="hospitalForm">
+    
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <h2 class="box-heading-tp">Add Hospital Admin</h2>
+                    <div class="top-heading bg-white">
+                        <h2 class="heading-bx">Add Hospital Admin</h2>
+                        <div class="form-sectionn  p-4">
+                            <div class="inner-f-section">
+                                <div class="form-box">
+                                    <label>Name</label>
+                                    <input type="text" formControlName="name">
+                                </div>
+                                <div class="form-box">
+                                    <label>Gender</label>
+                                    <select formControlName="gender">
+                                        <option value="0">Male</option>
+                                        <option value="1">Female</option>
+                                    </select> 
+                                </div>
+                                <div class="form-box">
+                                    <label>Email ID</label>
+                                    <input type="text" formControlName="email">
+                                </div>
+                                <div class="form-box">
+                                    <label>Password</label>
+                                    <input type="text" formControlName="password">
+                                </div>
+                                <div class="form-box">
+                                    <label>Mobile No</label>
+                                    <input type="text" formControlName="mobileNo">
+                                </div>
+                                <div class="form-box">
+                                    <label>Hospital</label>
+                                    <select formControlName="hospitalId">
+                                        <option *ngFor="let hosp of hospitalList" [value]="hosp.hospitalId">{{hosp.hospitalName}}</option>
+                                        
+                                    </select> 
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="btnn-group text-center mt-3 mb-3" *ngIf="addhosp == 1">
+                                <button *ngIf="views" (click)="updateData()" type="button" class="sub-btn gp-btn-clr text-white">Update</button>
+                                <button *ngIf="!views" (click)="submitData()" type="button" class="sub-btn gp-btn-clr text-white">submit</button>
+                                <button (click)="resetForm()" type="button" class="sub-btn gp-btn-clr2 text-white">cancel</button>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </form>
+    </div>

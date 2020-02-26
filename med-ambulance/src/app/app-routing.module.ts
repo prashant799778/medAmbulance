@@ -19,6 +19,11 @@ import { EditDriverComponent } from './driver/edit-driver/edit-driver.component'
 import { AllHospitalComponent } from './hospital/all-hospital/all-hospital.component';
 import { EditHospitalComponent } from './hospital/edit-hospital/edit-hospital.component';
 import { AddHospitalComponent } from './hospital/add-hospital/add-hospital.component';
+import { AllResponderComponent } from './responder/all-responder/all-responder.component';
+import { ViewResponderComponent } from './responder/view-responder/view-responder.component';
+import { AddSubAdminComponent } from './sub-admin/add-sub-admin/add-sub-admin.component';
+import { AdminDashboardComponent } from './sub-admin/admin-dashboard/admin-dashboard.component';
+import { AllSubAdminComponent } from './sub-admin/all-sub-admin/all-sub-admin.component';
 
 
 const routes: Routes = [
@@ -43,6 +48,13 @@ const routes: Routes = [
 			{ path:'driverPayment',component: DriverPaymentComponent,canActivate: [AuthGuard]},
 		]
 	},
+	{ path: 'responder',
+		children: [                          //<---- child components declared here
+	  		{ path: '',redirectTo: '/responder/allResponder',pathMatch:'full'}, 
+			{ path:'viewResponder',component: ViewResponderComponent,canActivate: [AuthGuard]},
+			{ path:'allResponder',component: AllResponderComponent,canActivate: [AuthGuard]},
+		]
+	},
 	{ path: 'hospital',
 		children: [                          //<---- child components declared here
 	  		{ path: '',redirectTo: '/hospital/allHospital',pathMatch:'full'}, 
@@ -64,6 +76,14 @@ const routes: Routes = [
 	  		{ path: '',redirectTo: '/fare/addFare',pathMatch:'full'}, 
 			{ path:'addFare',component: AddFareComponent,canActivate: [AuthGuard]},
 			{ path:'fareList',component: FailListComponent,canActivate: [AuthGuard]},
+		]
+	},
+	{ path: 'admin',
+		children: [                          //<---- child components declared here
+	  		{ path: '',redirectTo: '/admin/addAdmin',pathMatch:'full'}, 
+			{ path:'addAdmin',component: AddSubAdminComponent,canActivate: [AuthGuard]},
+			{ path:'adminDashboard',component: AdminDashboardComponent,canActivate: [AuthGuard]},
+			{ path:'allAdmin',component: AllSubAdminComponent,canActivate: [AuthGuard]},
 		]
 	},
 ];

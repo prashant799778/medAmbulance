@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
 	ngOnInit() {
 		let data = {
 			'startLimit': 0,
-			'endLimit': 10
+			'endLimit': 5
 		}
 		this.userService.dataPostApi(data,AppSettings.dashboard).then(resp=>{
 			if(resp['status'] == 'true'){
@@ -40,38 +40,11 @@ export class DashboardComponent implements OnInit {
 				this.newUsers = resp['result']['dashboard'].newsUsers
 				this.totalEarning = resp['result']['dashboard'].totalEarning
 				console.log(this.driverData)
+				
 				this.loader = false;
 			}
 		})
-		// this.driverData = [
-		// 	{	'name':'Vijay Pal',
-		// 		'mobileNo': 8888517655,
-		// 		'email': 'vijay@gmail.com',
-		// 		'currentLocation': 'Noida UP-87',
-		// 		'wallet': 100,
-		// 		'dateCreate': '02/10/2015',
-		// 		'tripCount': 10,
-		// 		'status': 1
-		// 	},
-		// 	{	'name':'Vijay Pal',
-		// 		'mobileNo': 8888517655,
-		// 		'email': 'vijay@gmail.com',
-		// 		'currentLocation': 'Noida UP-87',
-		// 		'wallet': 100,
-		// 		'dateCreate': '02/10/2015',
-		// 		'tripCount': 10,
-		// 		'status': 0
-		// 	},
-		// 	{	'name':'Vijay Pal',
-		// 		'mobileNo': 8888517655,
-		// 		'email': 'vijay@gmail.com',
-		// 		'currentLocation': 'Noida UP-87',
-		// 		'wallet': 100,
-		// 		'dateCreate': '02/10/2015',
-		// 		'tripCount': 10,
-		// 		'status': 2
-		// 	}
-		// ] 
+		
 		this.reviewData = 	[ 
 			{
 				'userImage': 'http://radixtouch.in/templates/templatemonster/ecab/source/assets/img/user/usrbig1.jpg',
@@ -124,11 +97,11 @@ export class DashboardComponent implements OnInit {
 		let data = {
 			'driverId': this.driverID
 		}
-		this.userService.dataPostApi(data,AppSettings.updateDriverStatus).then(resp=>{
+		this.userService.dataPostApi(data,AppSettings.dashboard).then(resp=>{
 			if(resp['status'] == 'true'){
 				let data = {
 					'startLimit': 0,
-					'endLimit': 10
+					'endLimit': 5
 				}
 				this.userService.dataPostApi(data,AppSettings.dashboard).then(resp=>{
 					if(resp['status'] == 'true'){
@@ -156,5 +129,6 @@ export class DashboardComponent implements OnInit {
 			}
 		})
 	}
+	
 
 }

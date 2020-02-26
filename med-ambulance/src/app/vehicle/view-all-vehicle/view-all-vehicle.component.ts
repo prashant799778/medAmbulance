@@ -11,7 +11,7 @@ export class ViewAllVehicleComponent implements OnInit {
 	vehicleData = []
 	loader: boolean;
 	totalRecords: any;
-	pageSize: any;
+	pageSize: any = 10;
 	paginationDisplay: boolean;
 	constructor(public userService: UserService) {
 		this.loader = true;
@@ -28,8 +28,14 @@ export class ViewAllVehicleComponent implements OnInit {
 		}
 		this.userService.dataPostApi(data,AppSettings.allAmbulance).then(resp=>{
 			if(resp['status'] == 'true'){
+				this.totalRecords = resp['totalCount']
 				this.vehicleData = resp['result']
 				this.loader = false;
+				if(this.totalRecords > this.pageSize){
+					this.paginationDisplay = true;
+				}else{
+					this.paginationDisplay = false;
+				}
 			}
 		})
 		// this.vehicleData = [
@@ -90,4 +96,5 @@ export class ViewAllVehicleComponent implements OnInit {
 			
 		});
 	} 
+	
 }

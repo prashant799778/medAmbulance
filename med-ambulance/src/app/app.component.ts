@@ -13,6 +13,7 @@ export class AppComponent {
 	title = 'med-ambulance';
 	loginSuccessfull: boolean;
 	activatedds: boolean;
+	superAdmin: boolean;
 	
 	constructor(public local: LocalStorageService,public authsService: AuthsService,public userService: UserService){
 		// this.local.get('userData1')
@@ -20,11 +21,17 @@ export class AppComponent {
 			if(this.local.get('userData1') && this.local.get('userData1').userTypeId){
 				console.log("if lougout")
 				this.loginSuccessfull = true;
+				if(this.local.get('userData1').userTypeId == 1){
+					this.superAdmin = true;
+				}else{
+					this.superAdmin = false;
+				}
 			}else{
 				console.log("else lougout",this.local.get('userData1'))
 				this.loginSuccessfull = false;
 			}
 		},500)
+		
 		
 		this.authsService.logoutEvent.subscribe(()=>{
 			console.log()
@@ -79,5 +86,21 @@ export class AppComponent {
 				}
 			})
 		}
+		if(dataName == 'Hospital Admin'){
+			let data = {
+				'Id': this.userService.deletDataId
+			}
+			this.userService.dataPostApi(data,AppSettings.deletehospitalAdmin).then(resp=>{
+				if(resp['status'] == 'true'){
+					this.activatedds = true;
+					this.userService.EmitEvnt(dataName);
+					
+					setTimeout(()=>{
+						jQuery('#deleteModal').modal('hide')
+					},2000)
+				}
+			})
+		}
+		
 	}
 }

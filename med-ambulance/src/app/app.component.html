@@ -3,6 +3,7 @@
 		<app-account></app-account>
 	</div>
 	<div *ngIf="loginSuccessfull">
+
 		<div class="wrapper-container d-flex">
 			<div class="left-sidebar">
 				<app-side-bar></app-side-bar>
@@ -13,8 +14,8 @@
 					<app-header></app-header>
 				</div>
 				<div class="main-container mt-7 w-100">
-						<router-outlet></router-outlet>
-
+						<app-admin-dashboard *ngIf="!superAdmin"></app-admin-dashboard>
+						<router-outlet *ngIf="superAdmin"></router-outlet>
 				</div>
 			</div>
 				<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
@@ -150,7 +151,7 @@
 					  </div>
 					</div>
 			</div>
-	</div>
+		</div>
 	
 	
 	</div>

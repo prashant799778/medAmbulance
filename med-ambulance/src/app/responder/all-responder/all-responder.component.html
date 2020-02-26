@@ -1,0 +1,144 @@
+<div class="container-fluid">
+
+        <div class="row" >
+    
+            <div class="col-sm-12 col-md-12">
+    
+                    
+                    <ng-container *ngIf="!loader">
+                            <h2 class="box-heading-tp">All Responder List</h2>
+                            <div class="top-heading bg-white">
+                                <h2 class="heading-bx anim">Responder List</h2>
+                                <div class="record-box table-responsive">
+                                    <table class="table m-0">                               
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Image</th>
+                                                <th>Name</th>
+                                                <th>Mobile</th>
+                                                <th>Email</th>
+                                                <th>Address</th>
+                                                <th>Joining Date</th>
+                                                <th>Trip</th>
+                                                <th>Status</th>
+                                                <th>View</th>
+                                                
+                                                <th>Action</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            <ng-container *ngIf="!loader">
+                                                <ng-container *ngIf="driverData && driverData.length > 0">
+                                                    <tr *ngFor="let driver of driverData ; let i =  index">
+                                                        <td>{{i+1}}</td>  
+                                                        <td><img [src]="driver.profilePic" class="al-img"></td>
+                                                        <td>{{driver.name}}</td>
+                                                        <td>{{driver.mobileNo}}</td>
+                                                        <td>{{driver.email}}</td>
+                                                        <td>{{driver.address}}</td>
+                                                        <td>{{driver.joiningDate | date}}</td>
+                                                        <td>{{driver.tripCount}}</td>
+                                                        <td>
+                                                            <span *ngIf="driver.status == 1 " class="stus lab-success">Verified</span>
+                                                            <span  (click)="verifiedDriver(driver.driverId)" *ngIf="driver.status == 0" class="stus lab-danger verify-button">Not Verified</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="btn-edit-group">
+                                                                <button type="button" class="edit-btn" (click)="editDriver(driver.driverId, 'view')" >  <img src="../../../assets/images/eye.svg"></button>
+                                                            </div>
+                                                        </td>
+                                                        
+                                                        <td>
+                                                            <div class="btn-edit-group">
+                                                                <!-- <button type="button" class="edit-btn" (click)="editDriver(driver.driverId, null)" >  <img src="../../../assets/images/edit-im.svg"></button> -->
+                                                                <button type="button" class="delet-btn" (click)="deleteDriver(driver.driverId)">  <img src="../../../assets/images/bin.svg"></button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </ng-container>
+                                            </ng-container>
+                                           
+                                           
+                                           
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                    </ng-container>
+    
+                
+            </div>
+        
+        </div>
+    
+       
+    </div>
+    <ng-container *ngIf="loader">
+        <div class="container-loader text-center" >
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </ng-container>
+    
+    
+    <div class="modal fade" id="verifiyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <template>
+                <div class="modal-header border-remo">
+                <button type="button" class="close cl-img" data-dismiss="modal" aria-label="Close" (click)="closeMOdal()">
+                    <!-- <span aria-hidden="true">&times;</span> -->
+                    <img src="../../../assets/images/close-im.svg">
+                </button>
+                </div>
+            </template>
+            <div class="modal-body" *ngIf="!activatedds">
+                <!-- <div class="inner-model-box same-margin" >
+                    <div class="d-flex al-item">
+                        <img src="../../../assets/images/caution.svg" class="altr">
+                        <div class="dc-act">
+                            <h3>Not Verify Account</h3>
+                            <span >Are you sure you want to Not Verify ?</span>
+                        </div>
+                    </div>
+                    <div class="grp-btn text-center">
+                        <button  (click)="closeModal()" class="mod-btn dc-bg-color-gray">Cancel</button>
+                        <button  (click)="VerifyDriver()" class="mod-btn fill-back">Not Verify</button>
+                    </div>
+                    </div> -->
+                <div class="inner-model-box" >
+                        <div class="d-flex al-item">
+                                <img src="../../../assets/images/caution-ac.svg" class="altr">
+                                <div class="dc-act">
+                                    <h3>Verify Account</h3>
+                                    <span >Are you sure you want to Verify ?</span>
+                                </div>
+                            </div>
+    
+                            <div class="grp-btn text-center">
+                                    <button  (click)="closeModal()" class="mod-btn dc-bg-color-gray">Cancel</button>
+                                    <button  (click)="VerifyDriver()" class="mod-btn fill-back-ac ">Verify</button>
+                            </div>
+                    </div>
+                <!-- <h2>{{modalDescription}}</h2> -->
+            </div>
+            <div class="modal-body" *ngIf="activatedds">
+                    <!-- <span >Are you what to sure Deactivated</span>
+                    <span >Are you what to sure activated</span>
+                    <button  (click)="ActiveStudent()">Deactivated</button>
+                    <button  (click)="ActiveStudent()">Activated</button> -->
+                    <div class="success-parent">
+                    <div class="child-success"><img src="../../../assets/images/correct.svg"></div>
+    
+                        
+                    <div  class="child-success"><h2> Verify Successfully</h2></div> 
+                    <!-- <div  class="child-success"><h2> Not Verify Successfully</h2></div>  -->
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>

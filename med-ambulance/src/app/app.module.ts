@@ -32,6 +32,11 @@ import { EditDriverComponent } from './driver/edit-driver/edit-driver.component'
 import { AddHospitalComponent } from './hospital/add-hospital/add-hospital.component';
 import { EditHospitalComponent } from './hospital/edit-hospital/edit-hospital.component';
 import { AllHospitalComponent } from './hospital/all-hospital/all-hospital.component';
+import { AllResponderComponent } from './responder/all-responder/all-responder.component';
+import { ViewResponderComponent } from './responder/view-responder/view-responder.component';
+import { AdminDashboardComponent } from './sub-admin/admin-dashboard/admin-dashboard.component';
+import { AddSubAdminComponent } from './sub-admin/add-sub-admin/add-sub-admin.component';
+import { AllSubAdminComponent } from './sub-admin/all-sub-admin/all-sub-admin.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +63,11 @@ import { AllHospitalComponent } from './hospital/all-hospital/all-hospital.compo
     AddHospitalComponent,
     EditHospitalComponent,
     AllHospitalComponent,
+    AllResponderComponent,
+    ViewResponderComponent,
+    AdminDashboardComponent,
+    AddSubAdminComponent,
+    AllSubAdminComponent,
   ],
   imports: [
     BrowserModule,
