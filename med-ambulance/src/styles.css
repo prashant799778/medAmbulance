@@ -84,11 +84,10 @@
 		margin-bottom: 15px;
 	}
 	.stus {
-		display: block;
 		text-align: center;
-		padding: 7px 10px;
-		width: calc(100% - 10%);
+		padding: 4px 7px;
 		color: #fff;
+		border-radius: 4px;
 	}
 	/* .record-box tbody tr td:nth-child(8) {
 		width: 126px;
@@ -586,7 +585,8 @@ input.upload-fil:focus {
     vertical-align: bottom;
 	border-bottom: 0;
 	font-size: 14px;
-    font-weight: 600;
+	font-weight: 600;
+	white-space: nowrap;
 }
 .record-box tbody tr td {
     font-size: 13px;
