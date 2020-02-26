@@ -4641,7 +4641,60 @@ def hospitalAdminLogin():
 
 
 
-@app.route('/hospitalAdminDashboard', methods=['post'])
+@app.route('/currentBooking', methods=['post'])
+def allhospitalUserMaster12():
+    try:
+        msg = "1"
+        if msg=="1":
+            inputdata =  commonfile.DecodeInputdata(request.get_data())
+            startlimit,endlimit="",""
+            whereCondition3=""
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
+                
+            if "endLimit" in inputdata:
+                if inputdata['endLimit'] != "":
+                    endlimit =str(inputdata["endLimit"])
+
+
+            if "hospitalId" in inputdata:
+                if inputdata['hospitalId'] != "":
+                    hospitalId =int(inputdata["hospitalId"])
+                    whereCondition3=" and hum.hospitalId = '"+str(hospitalId)+"' " 
+
+            if ("bookingId" in inputdata) and ("hospitalId" in inputdata):
+                if (inputdata['hospitalId'] != "") and (inputdata['bookingId'] != ""):
+                    hospitalId =int(inputdata["hospitalId"])
+                    bookingId =int(inputdata["bookingId"])
+                    whereCondition3=" and hum.hospitalId = '"+str(hospitalId)+"' and  hum.bookingId = '"+str(bookingId)+"'  " 
+
+
+            orderby="hum.id"
+
+
+
+            column="hum.userMobile,um.name,dm.name,hum.hospitalId,hum.driverMobile,hum.userId,hum.driverId,hum.pickup,hum.dropOff,hum.bookingId,hum.totalDistance,hum.finalAmount,date_format(hum.ateCreate,'%Y-%m-%d %H:%i:%s')rideDate,hum.ambulanceId"
+            whereCondition="  and  hum.status='1' and us.mobileNo=hum.userMobile and dm.mobileNo=hum.driverMobile "+whereCondition3
+            data=databasefile.SelectQueryOrderby("bookAmbulance as hum,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
+            
+            totalCount= databasefile.SelectQuery4("bookAmbulance as hum,userMaster as um,driverMaster as dm",column,whereCondition)
+            if (data['status']!='false'):   
+                count=len(totalCount)
+
+                Data = {"result":data['result'],"status":"true","totalCount":count}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"true","message":"No Data Found"}
+                return output
+        else:
+            return msg
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+@app.route('/pastBooking', methods=['post'])
 def allhospitalUserMaster1():
     try:
         msg = "1"
@@ -4675,7 +4728,7 @@ def allhospitalUserMaster1():
 
 
             column="hum.userMobile,um.name,dm.name,hum.hospitalId,hum.driverMobile,hum.userId,hum.driverId,hum.pickup,hum.dropOff,hum.bookingId,hum.totalDistance,hum.finalAmount,date_format(hum.ateCreate,'%Y-%m-%d %H:%i:%s')rideDate,hum.ambulanceId"
-            whereCondition="  and hum.status<>'0' or  hum.status<>'3' and us.mobileNo=hum.userMobile and dm.mobileNo=hum.driverMobile "+whereCondition3
+            whereCondition="  and  hum.status='2' and us.mobileNo=hum.userMobile and dm.mobileNo=hum.driverMobile "+whereCondition3
             data=databasefile.SelectQueryOrderby("bookAmbulance as hum,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
             
             totalCount= databasefile.SelectQuery4("bookAmbulance as hum,userMaster as um,driverMaster as dm",column,whereCondition)
@@ -4693,6 +4746,7 @@ def allhospitalUserMaster1():
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
         return output
+
 
 
 
