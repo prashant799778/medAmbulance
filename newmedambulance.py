@@ -4674,7 +4674,7 @@ def allhospitalUserMaster1():
 
 
 
-            column="hum.userMobile,um.name,dm.name,hum.hospitalId,hum.driverMobile,hum.userId,hum.driverId,hum.pickup,hum.dropOff,hum.bookingId,hum.totalDistance,hum.finalAmount,date_format(hum.ateCreate,'%Y-%m-%d %H:%i:%s')rideDate"
+            column="hum.userMobile,um.name,dm.name,hum.hospitalId,hum.driverMobile,hum.userId,hum.driverId,hum.pickup,hum.dropOff,hum.bookingId,hum.totalDistance,hum.finalAmount,date_format(hum.ateCreate,'%Y-%m-%d %H:%i:%s')rideDate,hum.ambulanceId"
             whereCondition="  and hum.status<>'0' or  hum.status<>'3' and us.mobileNo=hum.userMobile and dm.mobileNo=hum.driverMobile "+whereCondition3
             data=databasefile.SelectQueryOrderby("bookAmbulance as hum,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
             
