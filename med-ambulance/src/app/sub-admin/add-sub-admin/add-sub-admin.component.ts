@@ -26,6 +26,7 @@ export class AddSubAdminComponent implements OnInit {
 	ngOnInit() {
 		this.route.queryParams.subscribe(params => {
 			this.Id = params['Id'];
+			console.log(params['view'])
 			// let vie = 
 			if( params['view'] == 'view'){
 				this.views= false;
@@ -34,9 +35,10 @@ export class AddSubAdminComponent implements OnInit {
 				this.disableForm()
 
 			}else if(params['view'] == 'edit'){
+
 				this.views = true;
 				this.viewEdit = 'Edit'
-				this.addhosp = 0
+				this.addhosp = 1
 				// this.disableForm()
 			}else{
 				this.addhosp = 1

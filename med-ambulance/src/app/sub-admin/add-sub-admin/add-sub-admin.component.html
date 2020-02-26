@@ -41,11 +41,11 @@
                             </div>
                             
                             
-                            <div class="btnn-group text-center mt-3 mb-3" *ngIf="addhosp == 0">
-                                    <button *ngIf="views" (click)="updateData()" type="button" class="sub-btn gp-btn-clr text-white">Update</button>
-                                    <button *ngIf="!views" (click)="submitData()" type="button" class="sub-btn gp-btn-clr text-white">submit</button>
-                                    <button (click)="resetForm()" type="button" class="sub-btn gp-btn-clr2 text-white">cancel</button>
-                                </div>
+                            <div class="btnn-group text-center mt-3 mb-3" *ngIf="addhosp == 1">
+                                <button *ngIf="views" (click)="updateData()" type="button" class="sub-btn gp-btn-clr text-white">Update</button>
+                                <button *ngIf="!views" (click)="submitData()" type="button" class="sub-btn gp-btn-clr text-white">submit</button>
+                                <button (click)="resetForm()" type="button" class="sub-btn gp-btn-clr2 text-white">cancel</button>
+                            </div>
                            
                         </div>
                     </div>
