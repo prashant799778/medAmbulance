@@ -4674,7 +4674,7 @@ def allhospitalUserMaster12():
 
 
 
-            column="hum.userMobile,um.name,dm.name,hum.hospitalId,hum.driverMobile,hum.userId,hum.driverId,hum.pickup,hum.dropOff,hum.bookingId,hum.totalDistance,hum.finalAmount,date_format(hum.ateCreate,'%Y-%m-%d %H:%i:%s')rideDate,hum.ambulanceId"
+            column="hum.userMobile,um.name as userName,dm.name as driverName,hum.hospitalId,hum.driverMobile,hum.userId,hum.driverId,hum.pickup,hum.dropOff,hum.bookingId,hum.totalDistance,hum.finalAmount,date_format(hum.ateCreate,'%Y-%m-%d %H:%i:%s')rideDate,hum.ambulanceId"
             whereCondition="  and  hum.status='1' and  um.userId=hum.userId and dm.driverId=hum.driverId "+whereCondition3
             data=databasefile.SelectQueryOrderby("bookAmbulance as hum,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
             
@@ -4727,7 +4727,7 @@ def allhospitalUserMaster1():
 
 
 
-            column="hum.userMobile,um.name,dm.name,hum.hospitalId,hum.driverMobile,hum.userId,hum.driverId,hum.pickup,hum.dropOff,hum.bookingId,hum.totalDistance,hum.finalAmount,date_format(hum.ateCreate,'%Y-%m-%d %H:%i:%s')rideDate,hum.ambulanceId"
+            column="hum.userMobile,um.name as userName,dm.name as driverName,hum.hospitalId,hum.driverMobile,hum.userId,hum.driverId,hum.pickup,hum.dropOff,hum.bookingId,hum.totalDistance,hum.finalAmount,date_format(hum.ateCreate,'%Y-%m-%d %H:%i:%s')rideDate,hum.ambulanceId"
             whereCondition="  and  hum.status='2' and um.userId=hum.userId and dm.driverId=hum.driverId "+whereCondition3
             data=databasefile.SelectQueryOrderby("bookAmbulance as hum,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
             
