@@ -3105,12 +3105,14 @@ def bookRide():
         # inputdata1["pickupLocationAddress"]=inputdata["pickupLocationAddress"]
         # inputdata1["dropLocationAddress"]=inputdata["dropLocationAddress"]
         keyarr = ["ambulanceId","id",'startLocationLat','startLocationLong',"pickupLocationAddress",'dropLocationLat','dropLocationLong',"dropLocationAddress","userId"]
+        client = mqtt.Client()
+        client.connect("localhost",1883,60)
+
         for i in inputdata["driverId"]: 
             inputdata["driverId"]=str(i)
             #print(inputdata)
             
-            client = mqtt.Client()
-            client.connect("localhost",1883,60)
+            
             topic=str(i)+"/booking"
             print("1")
             #print("=================",topic)
