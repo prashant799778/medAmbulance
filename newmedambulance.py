@@ -45,8 +45,8 @@ app.config['SECRET_KEY'] = 'secret!'
 
 
 
-client = mqtt.Client()
-client.connect("localhost",1883,60)
+# client = mqtt.Client()
+# client.connect("localhost",1883,60)
 
 
 
