@@ -20,7 +20,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.MapsActivity"></activity>
+        <activity
+            android:name=".Activity.UserMainWorkActivity"
+            android:label="@string/title_activity_user_main_work"
+            android:theme="@style/AppTheme.Drawer">
+
+        </activity>
+        <activity android:name=".Activity.AboutActivity" />
+        <activity android:name=".Activity.SupportActivity" />
+        <activity android:name=".Activity.RateCard" />
+        <activity android:name=".Activity.YourRide" />
+        <activity android:name=".Activity.MyProfile" />
+        <activity android:name=".Activity.Test_Activity" />
+        <activity android:name=".Activity.MapsActivity" />
         <activity android:name=".Activity.TLTBaseActivity" />
         <activity android:name=".Activity.UserMapActivity" />
         <activity android:name=".Activity.TermsConditions" />

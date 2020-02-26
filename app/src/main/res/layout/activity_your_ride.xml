@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/profileback"
+    tools:context=".Activity.YourRide">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/tool_rel"
+                android:elevation="5dp"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="54dp">
+
+                <LinearLayout
+                    android:id="@+id/openDrawer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="21dp">
+
+                    <View
+                        android:layout_width="13dp"
+                        android:layout_height="2dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_line"/>
+                    <View
+                        android:layout_width="19dp"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_line"/>
+                    <View
+                        android:layout_width="16dp"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/menu_line"/>
+
+
+                </LinearLayout>
+
+                <com.MedAmbulance.Widget.Atami_Regular
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rides"
+                    android:textColor="@color/black2"
+                    android:textSize="18dp"/>
+
+
+                <ImageView
+                    android:layout_width="15.9dp"
+                    android:layout_height="17dp"
+                    android:id="@+id/turn_off"
+                    android:src="@drawable/turn_off"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:paddingTop="25dp">
+
+                <ImageView
+                    android:id="@+id/amb"
+                    android:layout_width="30dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/amb_car"/>
+                <RelativeLayout
+                    android:id="@+id/date_lay"
+                    android:layout_toRightOf="@id/amb"
+                    android:paddingLeft="8.8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:paddingRight="16dp"
+                    android:orientation="horizontal">
+
+                    <com.MedAmbulance.Widget.Atami_Regular
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="25 feb 2020"
+                        android:textSize="16dp"
+                        android:textColor="@color/black2"/>
+
+                    <com.MedAmbulance.Widget.Atami_Regular
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="14dp"
+                        android:layout_alignParentRight="true"
+                        android:text="300 Rs"
+                        android:textColor="@color/black2"
+                        />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_below="@+id/date_lay"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="53.8dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.MedAmbulance.Widget.Atami_Regular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black2"
+                            android:text="ALS Type,"/>
+
+                        <com.MedAmbulance.Widget.Atami_Regular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black2"
+                            android:text="Booking ID"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:id="@+id/green_dot"
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/green_dot"/>
+
+
+                        <com.MedAmbulance.Widget.Atami_Regular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:textColor="@color/terms"
+                            android:text="Start Address"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/red_dot"/>
+
+                        <com.MedAmbulance.Widget.Atami_Regular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/terms"
+                            android:layout_marginLeft="6dp"
+                            android:text="Hospital Address"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="17dp"
+                    android:src="@drawable/amb_car"
+                    android:layout_marginBottom="20dp"/>
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_marginLeft="16dp"
+                android:background="@color/agreed"/>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

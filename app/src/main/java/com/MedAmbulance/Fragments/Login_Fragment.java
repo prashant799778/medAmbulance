@@ -3,16 +3,14 @@ package com.MedAmbulance.Fragments;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.MedAmbulance.Activity.BookAmbulance;
-import com.MedAmbulance.Activity.Current_Location_Activity;
+import androidx.fragment.app.Fragment;
+
+import com.MedAmbulance.Activity.Driver_Registration;
 import com.MedAmbulance.Api_Calling.MyResult;
 import com.MedAmbulance.Comman.Api_Calling;
 import com.MedAmbulance.Comman.Constant;
@@ -82,7 +80,7 @@ public class Login_Fragment extends Fragment implements View.OnClickListener , M
             progressDialog.dismiss();
            if(object!=null && status)
            {
-            startActivity(new Intent(getContext(), BookAmbulance.class));
+            startActivity(new Intent(getContext(), Driver_Registration.class));
            }
 
 
@@ -91,7 +89,7 @@ public class Login_Fragment extends Fragment implements View.OnClickListener , M
         {
             JSONObject jsonObject=new JSONObject();
             try {
-                jsonObject.put("mobile",""+mobile.getText().toString()).put("password",""+pwd.getText().toString());
+                jsonObject.put("mobileNo",""+mobile.getText().toString()).put("password",""+pwd.getText().toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }

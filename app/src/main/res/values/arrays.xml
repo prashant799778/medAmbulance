@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="country_arrays">
+        <item>ALS</item>
+        <item>BLS </item>
+        <item>DBT</item>
+        <item>PVT</item>
+
+    </string-array>
+
+</resources>

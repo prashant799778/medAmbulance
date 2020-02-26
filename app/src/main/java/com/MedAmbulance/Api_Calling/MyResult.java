@@ -12,5 +12,5 @@ public interface MyResult  {
 
 
 
-    public void onResult(JSONObject object , Boolean status);
+    public void onResult(JSONObject object, Boolean status);
 }

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Med Ambulance</string>
     <string name="Login">Login</string>
     <string name="signup">SignUp</string>
@@ -61,6 +61,7 @@ document  verification.</string>
     <string name="title_activity_current__location_">Map</string>
     <string name="title_activity_booking_">Map</string>
     <string name="pickup">Pickup From</string>
+    <string name="pickup2">Pick Up</string>
     <string name="enterPick"> enter pickup location</string>
     <string name="drop">Enter drop location </string>
     <string name="ALS">ALS</string>
@@ -69,6 +70,7 @@ document  verification.</string>
     <string name="PVT">PVT</string>
     <string name="AIR">AIR</string>
     <string name="Book">Book Now</string>
+    <string name="Book2">Book Your Ride</string>
     <string name="booking">Booking Confirmed</string>
     <string name="id"> Booking ID : </string>
     <string name="CONTINUE">CONTINUE</string>
@@ -322,4 +324,63 @@ document  verification.</string>
     <string name="you_are_in">Yeah! You are in..</string>
     <string name="unlock_city_text">We need enough awesome folks like you to unlock your city \n\n\n get more skilled friend to unlock your city </string>
     <string name="unlock_city">Unlock City</string>
+    <string name="disc"> You have successfully submitted  the documents.
+You will be contacted soon after your
+document  verification.</string>
+    <string name="profile">My Profile</string>
+    <string name="phone">+91 8039392312</string>
+
+    <string name="accept">Accept Request</string>
+    <string name="accept3">Accept</string>
+    <string name="accept2">Please accept or decline the request.</string>
+
+    <string name="Request">New Request</string>
+    <string name="trip">Trip Fare</string>
+    <string name="Estimate">Estimate Price</string>
+    <string name="Estimate2">Estimated Time</string>
+    <string name="Distance">Distance</string>
+    <string name="Distance2">Distance from Customer</string>
+    <string name="Decline"> Decline </string>
+    <string name="end">End Ride</string>
+    <string name="enter">ENTER OTP</string>
+    <string name="start">START TRIP </string>
+    <string name="name">Name</string>
+    <string name="YourName">yourname</string>
+    <string name="setpws">Set Password</string>
+    <string name="rides">Your Rides</string>
+    <string name="help">Get help on your last booking</string>
+    <string name="PicAnother">PICK ANOTHER BOOKING</string>
+    <string name="help2">How can we help</string>
+    <string name="spt">Support</string>
+    <string name="hint">e.g fare information , ambulance type</string>
+    <string name="About">about</string>
+    <string name="rate">Rate Card</string>
+    <string name="selectcatgre">Select Category</string>
+    <string name="Totalfare">Total Fare</string>
+    <string name="plainText"> Lorem ipsum, or lipsum
+        as it is sometimes known, is dummy text used in laying out print,
+        graphic or web designs. The passage is attributed to an unknown
+        typesetter in the 15th century who is thought to have scrambled
+       </string>
+    <string name="extracharge">Extra Charges</string>
+    <string name="title_activity_user_work_place_">UserWorkPlace_Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="your_ride">Your Rides</string>
+    <string name="rate_card">Rate Card</string>
+    <string name="support">Support</string>
+    <string name="about">About</string>
+    <string name="logout">Logout</string>
+    <string name="home_second">home</string>
+    <string name="title_activity_user_main_work">UserMainWorkActivity</string>
+
+
 </resources>

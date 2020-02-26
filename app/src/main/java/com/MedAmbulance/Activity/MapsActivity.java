@@ -19,27 +19,35 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
-
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import com.MedAmbulance.Adapters.DrawerI_Adapter;
+import com.MedAmbulance.Adapters.DrawerModel;
 import com.MedAmbulance.Api_Calling.MyResult;
 import com.MedAmbulance.Comman.Api_Calling;
 import com.MedAmbulance.Comman.URLS;
+import com.MedAmbulance.Fragments.BookRides;
 import com.MedAmbulance.R;
 import com.MedAmbulance.Widget.Atami_Regular;
-import com.MedAmbulance.util.DirectionsJSONParser;
 import com.MedAmbulance.util.PlaceJSONParserTemp;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -89,7 +97,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     int flag = 0;
     boolean isSourceSet = false, tripStarted = false;
-    ;
+    ListView listView;
+     View v;
+
     EditText source_location, destination_location;
     String TAG = "LocationSelect";
     int AUTOCOMPLETE_SOURCE = 1, AUTOCOMPLETE_DESTINATITON = 2;
@@ -98,9 +108,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     //textView
     Atami_Regular  text_als,text_bls,text_dbt,text_pvt;
 
+    //DrawerLayout
+    DrawerLayout drawerLayout;
+
+    LinearLayout opernDrawer,openUserProfile;
+
+
     MyResult myResult;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
+
+    ActionBarDrawerToggle actionBarDrawerToggle;
     Marker mCurrLocationMarker, source_location_marker, destination_location_marker;
     Marker nearby_cab;
     LocationRequest mLocationRequest;
@@ -125,6 +143,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         text_bls= findViewById(R.id.text_bls);
         text_dbt= findViewById(R.id.text_dbt);
         text_pvt= findViewById(R.id.text_pvt);
+
+        listView = findViewById(R.id.left_drawer);
+
+
+        opernDrawer=findViewById(R.id.openDrawer);
+
+        opernDrawer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout = findViewById(R.id.drawerlayut);
+                // If navigation drawer is not open yet, open it else close it.
+                drawerLayout.addDrawerListener(actionBarDrawerToggle);
+                if(!drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.openDrawer(Gravity.LEFT);
+                else drawerLayout.closeDrawer(Gravity.LEFT);
+            }
+        });
+
+
+        DrawerModel[] drawerItem = new DrawerModel[6];
+        drawerItem[0] = new DrawerModel(R.drawable.taxi, "Book Your Ride");
+        drawerItem[1] = new DrawerModel(R.drawable.your_ride, "Your Ride");
+        drawerItem[2] = new DrawerModel(R.drawable.rate_card,"Rate Card");
+        drawerItem[3] = new DrawerModel(R.drawable.support, "Support");
+        drawerItem[4] = new DrawerModel(R.drawable.about, "About");
+        drawerItem[5] = new DrawerModel(R.drawable.logout, "Logout");
+
+
+
+        DrawerI_Adapter adapter = new DrawerI_Adapter(this, R.layout.drawer_list_view, drawerItem);
+        listView.setOnItemClickListener(new DrawerItemClickListener());
+
+        listView.setAdapter(adapter);
 
 
         this.myResult=this;
@@ -155,13 +205,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ride_driver_name = (TextView) findViewById(R.id.driver_name);
         ride_otp = (TextView) findViewById(R.id.ride_otp);
         ride_fare = (TextView) findViewById(R.id.ride_fare);
+
+        openUserProfile=findViewById(R.id.goto_profile);
+        openUserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MapsActivity.this,MyProfile.class));
+                drawerLayout.closeDrawers();
+            }
+        });
+
         btnBookNow_layout = (LinearLayout) findViewById(R.id.btnBookNow_layout);
         btnBookNow = (Button) findViewById(R.id.btnBookNow);
         btnBookNow.setVisibility(View.GONE);
         btnBookNow_layout.setVisibility(View.GONE);
 
 
-        cab = (ImageView) findViewById(R.id.cab);
+        cab = (ImageView) findViewById(R.id.ambulance);
         cab.setVisibility(View.GONE);
 
         timer = new Timer();
@@ -179,6 +239,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         destination_location = (EditText) findViewById(R.id.destination_location);
 
 
+        //Book Ambulance
         btnBookNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -528,12 +589,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 markerOptions.position(latLng);
                 markerOptions.title("Source");
 
-                BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.);
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.car);
                 Bitmap b = bitmapDrawable.getBitmap();
                 Bitmap smallCar = Bitmap.createScaledBitmap(b, 150, 81, false);
 
                 markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallCar));
-//                markerOptions.rotation(location.getBearing());
+                markerOptions.rotation(mLastLocation.getBearing());
                 source_location_marker = mMap.addMarker(markerOptions);
 
 
@@ -597,25 +658,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-
+//NearBy Ambulance
     public void setNearbyCabsOnMap(LatLng latLng) {
-        try {
-//            String api_url = "nearbycab";
-//
-//            double user_lat = latLng.latitude;
-//            double user_lng = latLng.longitude;
-//
-//            String pickup_location_cabs_request = "user_lat=" + URLEncoder.encode(String.valueOf(user_lat), "UTF-8") + "&user_lng=" + URLEncoder.encode(String.valueOf(user_lng), "UTF-8");
+         try {
+           String api_url = "http://134.209.153.34:5077/getNearAmbulance";
 
-          //  JSONObject response_data = call_api(api_url, pickup_location_cabs_request);
-            JSONObject response_data=new JSONObject();
-            JSONObject response_data_cab=new JSONObject();
-            response_data_cab.put("cab_lat",(latLng.latitude+0.0013)+"");
-            response_data_cab.put("cab_lng",(latLng.longitude)+"");
+       double user_lat = latLng.latitude;
+       double user_lng = latLng.longitude;
+            String pickup_location_cabs_request = "lat=" + URLEncoder.encode(String.valueOf(user_lat), "UTF-8") + "&lng=" + URLEncoder.encode(String.valueOf(user_lng), "UTF-8");
+
+            JSONObject response_data = call_api(api_url, pickup_location_cabs_request);
+             Log.d("myResponce", pickup_location_cabs_request);
+
+             JSONObject response_data_cab=new JSONObject();
+            response_data_cab.put("user_lat",(latLng.latitude+0.0013)+"");
+            response_data_cab.put("user_lng",(latLng.longitude)+"");
+
+
+
 
             response_data.put("status","1");
             response_data.put("data",response_data_cab);
-
             if (response_data.getString("status").equals("1")) {
                 if (nearby_cab != null) {
                     nearby_cab.remove();
@@ -623,27 +686,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 MarkerOptions markerOptions1 = new MarkerOptions();
                 JSONObject nearby_cab_position_data = response_data.getJSONObject("data");
-//
-//              cab_no=nearby_cab_position_data.getString("cab_no");
-//              cab_no_a.setText(cab_no.split(" ")[0]);
-//              cab_no_b.setText(cab_no.split(" ")[1]);
-//
-//              driver_name=nearby_cab_position_data.getString("driver_name");
-//              ride_driver_name.setText(driver_name);
-//
-//              driver_phone=nearby_cab_position_data.getString("driver_phone");
+
+              cab_no=nearby_cab_position_data.getString("cab_no");
+              cab_no_a.setText(cab_no.split(" ")[0]);
+              cab_no_b.setText(cab_no.split(" ")[1]);
+
+              driver_name=nearby_cab_position_data.getString("driver_name");
+              ride_driver_name.setText(driver_name);
+              driver_phone=nearby_cab_position_data.getString("driver_phone");
 
 
-                LatLng nearby_cab_position = new LatLng(Double.parseDouble(nearby_cab_position_data.getString("cab_lat")), Double.parseDouble(nearby_cab_position_data.getString("cab_lng")));
-                markerOptions1.position(nearby_cab_position);
 
-                BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.car);
-                Bitmap b = bitmapDrawable.getBitmap();
-                Bitmap smallCar = Bitmap.createScaledBitmap(b, 60, 72, false);
-                markerOptions1.icon(BitmapDescriptorFactory.fromBitmap(smallCar));
-                markerOptions1.rotation(mLastLocation.getBearing());
 
-                nearby_cab = mMap.addMarker(markerOptions1);
+                        LatLng nearby_cab_position = new LatLng(Double.parseDouble(nearby_cab_position_data.getString("cab_lat")), Double.parseDouble(nearby_cab_position_data.getString("cab_lng")));
+                   markerOptions1.position(nearby_cab_position);
+
+                   BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.car);
+                   Bitmap b = bitmapDrawable.getBitmap();
+                   Bitmap smallCar = Bitmap.createScaledBitmap(b, 60, 72, false);
+                   markerOptions1.icon(BitmapDescriptorFactory.fromBitmap(smallCar));
+                   markerOptions1.rotation(mLastLocation.getBearing());
+
+                   nearby_cab = mMap.addMarker(markerOptions1);
+
+
             } else {
                 Toast.makeText(getApplicationContext(), "No cabs nearby", Toast.LENGTH_LONG).show();
             }
@@ -653,7 +719,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //          Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_LONG).show();
         }
     }
-
 
     private String getDirectionsUrl(LatLng origin, LatLng dest) {
 
@@ -885,7 +950,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 polyLineOptions.addAll(pointss);
                 polyLineOptions.width(20);
-                polyLineOptions.color(R.color.colorPrimary);
+                polyLineOptions.color(R.color.color_primary);
 
 
                 mMap.addPolyline(polyLineOptions);
@@ -1101,6 +1166,61 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             // other 'case' lines to check for other permissions this app might request.
             // You can add here other case statements according to your requirement.
+        }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
+    }
+
+    private class DrawerItemClickListener implements android.widget.AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            selectItem(position);
+
+        }
+    }
+
+    private void selectItem(int position) {
+
+
+        Fragment fragment = null;
+        Class fragmentClass;
+
+        switch (position)
+        {   case 0:
+            fragmentClass = BookRides.class;
+            break;
+
+            case 1:
+                    startActivity(new Intent(MapsActivity.this, YourRide.class));
+                drawerLayout.closeDrawers();
+                break;
+
+            case 2:
+                    startActivity(new Intent(MapsActivity.this, RateCard.class));
+                drawerLayout.closeDrawers();
+                break;
+            case 3:
+                    startActivity(new Intent(MapsActivity.this, SupportActivity.class));
+                drawerLayout.closeDrawers();
+                break;
+            case 4:
+                startActivity(new Intent(MapsActivity.this, AboutActivity.class));
+                drawerLayout.closeDrawers();
+                break;
+            case 5:
+                drawerLayout.closeDrawers();
+                break;
+
+
+
         }
     }
 }

@@ -1,21 +1,27 @@
 
-<RelativeLayout
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusable="true"
+    android:id="@+id/drawerlayut"
     android:focusableInTouchMode="true"
      >
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <RelativeLayout
         android:id="@+id/tool_rel"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content">
 
 
         <LinearLayout
+            android:id="@+id/openDrawer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -69,7 +75,6 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:src="@drawable/ic_hospital"/>
 
             <LinearLayout
@@ -174,19 +179,12 @@
                 </LinearLayout>
                 <EditText
                     android:id="@+id/destination_location"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:background="#ffffff"
                     android:ems="10"
-
                     android:inputType="textPersonName"
-
-
                     android:textColor="#7e7e7f"
-
-
                     android:padding="5dp"
                     android:layout_marginLeft="19dp"
                     android:textSize="12dp"
@@ -224,7 +222,7 @@
         tools:context="com.anupkumarpanwar.maps.MapsActivity" />
 
     <ImageView
-        android:id="@+id/cab"
+        android:id="@+id/ambulance"
         android:layout_width="30dp"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
@@ -634,4 +632,103 @@
 </RelativeLayout>
 
 </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="250dp"
+        android:layout_gravity="start"
+        android:background="@color/white"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/top"
+            android:layout_marginTop="43dp"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:id="@+id/goto_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="11dp"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:padding="5dp"
+                    android:background="@drawable/circular_layout">
+
+                </de.hdodenhof.circleimageview.CircleImageView>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="11dp">
+
+                    <com.MedAmbulance.Widget.Atami_Bold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/profile"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <com.MedAmbulance.Widget.Atami_Regular
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/phone"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="14dp"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="24dp"
+                        android:src="@drawable/move">
+
+                    </ImageView>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:padding="12dp"
+                android:id="@+id/logout"
+                android:layout_marginLeft="20dp"
+                >
+            </ImageView>
+        </RelativeLayout>
+
+        <ListView
+            android:layout_below="@id/top"
+            android:id="@+id/left_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            android:paddingTop="30dp"
+            android:background="@color/profileback"
+            android:choiceMode="singleChoice"
+            android:dividerHeight=".5dp" />
+
+    </RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
 
