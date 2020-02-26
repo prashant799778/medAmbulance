@@ -594,7 +594,7 @@ input.upload-fil:focus {
 	white-space: nowrap;
 }
 .left-menu {
-    overflow-y: scroll;
+  	overflow-y: auto;
     height: calc(100% - 28%);
     scroll-behavior: smooth;
 }
