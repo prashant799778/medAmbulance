@@ -4675,7 +4675,7 @@ def allhospitalUserMaster12():
 
 
             column="hum.userMobile,um.name,dm.name,hum.hospitalId,hum.driverMobile,hum.userId,hum.driverId,hum.pickup,hum.dropOff,hum.bookingId,hum.totalDistance,hum.finalAmount,date_format(hum.ateCreate,'%Y-%m-%d %H:%i:%s')rideDate,hum.ambulanceId"
-            whereCondition="  and  hum.status='1' and us.mobileNo=hum.userMobile and dm.mobileNo=hum.driverMobile "+whereCondition3
+            whereCondition="  and  hum.status='1' and um.mobileNo=hum.userMobile and dm.mobileNo=hum.driverMobile "+whereCondition3
             data=databasefile.SelectQueryOrderby("bookAmbulance as hum,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
             
             totalCount= databasefile.SelectQuery4("bookAmbulance as hum,userMaster as um,driverMaster as dm",column,whereCondition)
@@ -4728,7 +4728,7 @@ def allhospitalUserMaster1():
 
 
             column="hum.userMobile,um.name,dm.name,hum.hospitalId,hum.driverMobile,hum.userId,hum.driverId,hum.pickup,hum.dropOff,hum.bookingId,hum.totalDistance,hum.finalAmount,date_format(hum.ateCreate,'%Y-%m-%d %H:%i:%s')rideDate,hum.ambulanceId"
-            whereCondition="  and  hum.status='2' and us.mobileNo=hum.userMobile and dm.mobileNo=hum.driverMobile "+whereCondition3
+            whereCondition="  and  hum.status='2' and um.mobileNo=hum.userMobile and dm.mobileNo=hum.driverMobile "+whereCondition3
             data=databasefile.SelectQueryOrderby("bookAmbulance as hum,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
             
             totalCount= databasefile.SelectQuery4("bookAmbulance as hum,userMaster as um,driverMaster as dm",column,whereCondition)
