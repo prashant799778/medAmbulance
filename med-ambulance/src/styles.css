@@ -591,6 +591,12 @@ input.upload-fil:focus {
 .record-box tbody tr td {
     font-size: 13px;
 	font-weight: 500 !important;
+	white-space: nowrap;
+}
+.left-menu {
+    overflow-y: scroll;
+    height: calc(100% - 28%);
+    scroll-behavior: smooth;
 }
 /* End All Sect- Section */
 
@@ -709,6 +715,13 @@ img.altr {
     top: 24px;
 }
 /* Modal Css End */
+
+
+.wrapper-container.collapse > .left-sidebar li .menu-dropdown {
+    display: none !important;
+}
+
+
 
 @media screen and (max-width:767px){
 	.srch-option li:last-child{
