@@ -23,6 +23,7 @@ def on_message(client, userdata, msg):
   #print("1")
   #print(data)
   client.publish(topic, data1)
+  client.disconnect()
   #print("2")
   #print("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
   
