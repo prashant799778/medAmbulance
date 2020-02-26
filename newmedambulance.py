@@ -3245,6 +3245,7 @@ def acceptRide():
                 topic=str(userId)+"/booking"
                 client.publish(topic, str(bookingDetails)) 
                 #bookRide["message"]="ride booked Successfully" 
+                client.disconnect()
                 return bookingDetails
             else:
                 data={"result":"","message":"No data Found","status":"false"}
