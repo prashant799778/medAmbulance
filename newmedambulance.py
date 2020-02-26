@@ -4658,14 +4658,20 @@ def allhospitalUserMaster1():
             if "hospitalId" in inputdata:
                 if inputdata['hospitalId'] != "":
                     hospitalId =int(inputdata["hospitalId"])
-                    whereCondition3=" and hum.hospitalId = '"+str(Id)+"' " 
+                    whereCondition3=" and hum.hospitalId = '"+str(hospitalId)+"' " 
+
+            if ("bookingId" in inputdata) and ("hospitalId" in inputdata):
+                if (inputdata['hospitalId'] != "") and (inputdata['bookingId'] != ""):
+                    hospitalId =int(inputdata["hospitalId"])
+                    bookingId =int(inputdata["bookingId"])
+                    whereCondition3=" and hum.hospitalId = '"+str(hospitalId)+"' and  hum.bookingId = '"+str(bookingId)+"'  " 
 
 
             orderby="hum.id"
 
 
 
-            column="hum.userMobile,um.name,dm.name,hum.hospitalId,hum.driverMobile,hum.userId,hum.driverId,hum.pickup,hum.dropOff,hum.bookingId,hum.totalDistance,hum.finalAmount"
+            column="hum.userMobile,um.name,dm.name,hum.hospitalId,hum.driverMobile,hum.userId,hum.driverId,hum.pickup,hum.dropOff,hum.bookingId,hum.totalDistance,hum.finalAmount,date_format(hum.ateCreate,'%Y-%m-%d %H:%i:%s')rideDate"
             whereCondition="  and hum.status<>'0' or  hum.status<>'3' and us.mobileNo=hum.userMobile and dm.mobileNo=hum.driverMobile "+whereCondition3
             data=databasefile.SelectQueryOrderby("bookAmbulance as hum,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
             
