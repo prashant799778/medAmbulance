@@ -1314,13 +1314,13 @@ def allAmbulance():
                     endlimit =str(inputdata["endLimit"])
             orderby="AM.ambulanceId"
 
-            column=" AM.ambulanceId,AM.ambulanceNo,ars.lat,ars.lng,atm.ambulanceType,dm.name as driverName,am.ambulanceType as category,AM.transportType,AM.transportModel,AM.color,AM.ambulanceRegistrationFuel as fueltype,AM.typeNo,AM.ambulanceFilename,concat('"+ ConstantData.GetBaseURL() + "',AM.ambulanceFilepath)ambulanceFilepath,AM.ambulanceModeId,AM.ambulanceTypeId "
+            column=" AM.ambulanceId,AM.ambulanceNo,atm.ambulanceType,dm.name as driverName,am.ambulanceType as category,AM.transportType,AM.transportModel,AM.color,AM.ambulanceRegistrationFuel as fueltype,AM.typeNo,AM.ambulanceFilename,concat('"+ ConstantData.GetBaseURL() + "',AM.ambulanceFilepath)ambulanceFilepath,AM.ambulanceModeId,AM.ambulanceTypeId "
            
             whereCondition=" and  AM.ambulanceTypeId=atm.id and AM.ambulanceModeId=am.id and AM.driverId=dm.driverId and AM.driverTypeId='1'"
-            data=databasefile.SelectQueryOrderby("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am,driverMaster as dm,ambulanceRideStatus as ars",column,whereCondition,"",startlimit,endlimit,orderby)
+            data=databasefile.SelectQueryOrderby("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
             print(data)
             whereCondition9=" AM.ambulanceTypeId=atm.id and AM.ambulanceModeId=am.id and AM.driverId=dm.driverId  and AM.driverTypeId='1' "
-            countdata =databasefile.SelectQuery1("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am,driverMaster as dm,ambulanceRideStatus as ars",column,whereCondition9)
+            countdata =databasefile.SelectQuery1("ambulanceMaster as AM, ambulanceTypeMaster  as atm,ambulanceMode as am,driverMaster as dm",column,whereCondition9)
             if (data['status']!='false'):
                 count=len(countdata)
                 Data = {"result":data['result'],'message':"","status":"true","totalCount":count}
