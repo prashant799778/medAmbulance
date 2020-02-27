@@ -182,7 +182,8 @@ document  verification.</string>
     <string name="cancel">cancel</string>
 
     <string name="facebook_app_id">799543843453787</string>
-    <string name="MAP_API_KEY">AIzaSyCen4d3ctoeEf6XuOjTodWXc7hEs4GL0Uo</string>
+    <string name="MAP_API_KEY">AIzaSyBg_Wqi5yW1c7-X4cZ3KQj74XWw3ddsI_c</string>
+    <!--    <string name="MAP_API_KEY">AIzaSyCen4d3ctoeEf6XuOjTodWXc7hEs4GL0Uo</string>-->
     <string name="MAP_SERVER_API_KEY">AIzaSyCBgliV5FRN8v8yNts926pdu0t4HsWC51U</string>
     <string name="title_activity_verify_mobile">Verify Phone Number</string>
     <string name="title_activity_phonebook_sync">Your friends have skills</string>
@@ -322,4 +323,7 @@ document  verification.</string>
     <string name="you_are_in">Yeah! You are in..</string>
     <string name="unlock_city_text">We need enough awesome folks like you to unlock your city \n\n\n get more skilled friend to unlock your city </string>
     <string name="unlock_city">Unlock City</string>
+    <string name="title_activity_drivers_maps">Map</string>
+    <string name="FIND">Find Rider</string>
+    <string name="all_request">All Requests</string>
 </resources>

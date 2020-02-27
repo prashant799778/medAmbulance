@@ -55,6 +55,21 @@ dependencies {
     implementation('com.github.shivpujan12:LocationPicker:v1.2') {
         exclude group: 'com.android.volley'
     }
- implementation  "com.google.android.gms:play-services-places:17.0.0"
+    implementation "com.google.android.gms:play-services-places:17.0.0"
+
+    implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.github.mohammadatif:Animatoo:master'
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    implementation 'com.crowdfire.cfalertdialog:cfalertdialog:1.1.0'
+
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0'
+    implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.2-SNAPSHOT'
+
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
+
 
 }

@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="@color/red"
     android:layout_height="110dp">
-    <com.MedAmbulance.Widget.Atami_Regular
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/message"
@@ -14,5 +14,5 @@
         android:textAlignment="gravity"
         android:gravity="center_horizontal|center_vertical">
 
-    </com.MedAmbulance.Widget.Atami_Regular>
+    </TextView>
 </RelativeLayout>

@@ -43,6 +43,10 @@ import com.MedAmbulance.R;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.sun.easysnackbar.EasySnackBar;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class AppUtil {
 	/** The typeface cache. */
@@ -393,7 +397,48 @@ public class AppUtil {
 	{
 		return context.getResources().getString(R.string.invite_default_msg) +" "+AppConstants.TLT_PLAYSTORE_WEB_URL;
 	}
-	
-	
 
+
+	@SuppressLint("WrongConstant")
+	public static void topSnakBar(Context context,View mView,String msg)
+	{
+		// Must create custom view in this way,so it can display normally
+		if(mView!=null){
+			View contentView = EasySnackBar.convertToContentView(mView, R.layout.top_snakbar);
+			TextView segow_ui_semi_font=contentView.findViewById(R.id.message);
+			if(msg!=null)
+				segow_ui_semi_font.setText(msg);
+			// true represent show at top,false at bottom
+			EasySnackBar.make(mView, contentView, EasySnackBar.LENGTH_INDEFINITE, true).setDuration(3000).show();}
+	}
+
+
+	@SuppressLint("WrongConstant")
+	public static void bottomSnakBar(Context context,View mView,String msg)
+	{
+		// Must create custom view in this way,so it can display normally
+		if(mView!=null){
+			View contentView = EasySnackBar.convertToContentView(mView, R.layout.top_snakbar);
+			TextView segow_ui_semi_font=contentView.findViewById(R.id.message);
+			if(msg!=null)
+				segow_ui_semi_font.setText(msg);
+			// true represent show at top,false at bottom
+			EasySnackBar.make(mView, contentView, EasySnackBar.LENGTH_INDEFINITE, false).setDuration(3000).show();}
+	}
+
+
+
+	public  static  String getDatafromJSonObject(JSONObject jsonObject,String key){
+
+		try {
+			if(jsonObject.has(key)){
+
+				return  jsonObject.getString(key);
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return "";
+		}
+        return "";
+	}
 }

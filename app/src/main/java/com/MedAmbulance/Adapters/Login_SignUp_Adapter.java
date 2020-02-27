@@ -13,7 +13,7 @@ import com.MedAmbulance.R;
 public   class Login_SignUp_Adapter extends FragmentPagerAdapter {
     private static int NUM_ITEMS = 2;
     private static  String title[]= null;
-    String userType="";
+    String userType="3";
 
     public Login_SignUp_Adapter(FragmentManager fragmentManager, Context context,String userType) {
         super(fragmentManager);
