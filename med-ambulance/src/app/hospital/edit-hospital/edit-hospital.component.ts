@@ -80,7 +80,7 @@ export class EditHospitalComponent implements OnInit {
 	// }
 
 	updateData(){
-		console.log(this.hospitalForm)
+		
 		if(this.hospitalForm.valid){
 			this.hospitalForm.get('id').setValue(this.hospitalId)
 			let data = this.hospitalForm.getRawValue();
@@ -101,7 +101,7 @@ export class EditHospitalComponent implements OnInit {
 			} );
 			return false;
 		}
-		console.log(this.hospitalForm)
+		
 		
 	}
 	getCategory(){
