@@ -62,7 +62,7 @@ export class EditHospitalComponent implements OnInit {
 			lng: ['',Validators.required],
 			facilityId: ['',Validators.required],
 			cityId: ['',Validators.required],
-			id: ['',Validators.required]
+			id: ['']
 		})
 	}
 	initializeForm(){
@@ -80,6 +80,7 @@ export class EditHospitalComponent implements OnInit {
 	// }
 
 	updateData(){
+		console.log(this.hospitalForm)
 		if(this.hospitalForm.valid){
 			this.hospitalForm.get('id').setValue(this.hospitalId)
 			let data = this.hospitalForm.getRawValue();
@@ -100,6 +101,7 @@ export class EditHospitalComponent implements OnInit {
 			} );
 			return false;
 		}
+		console.log(this.hospitalForm)
 		
 	}
 	getCategory(){
@@ -123,5 +125,6 @@ export class EditHospitalComponent implements OnInit {
 		this.hospitalForm.get('lng').setValue(resp['result'][0].lng)
 		this.hospitalForm.get('address').setValue(resp['result'][0].address)
 		this.hospitalForm.get('cityId').setValue(resp['result'][0].cityId)
+		this.hospitalForm.get('id').setValue(resp['result'][0].id)
 	}
 }	
