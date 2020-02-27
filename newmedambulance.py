@@ -1499,10 +1499,11 @@ def alldrivers():
                             print('1111111111111111111')
                             i["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/profilePic.jpg"  
                         ambulanceId2= i['ambulanceId']
+                        print(ambulanceId2)
                         columns99="count(*) as count"
                         whereCondition88= " ambulanceId='"+str(ambulanceId2)+ "'"
                         data122=databasefile.SelectQuery('bookAmbulance',columns99,whereCondition88)
-                        if data122['status']!='false':
+                        if data122['status']=='false':
                             i['tripCount']=0
                         else:
                             tripcount=data122['result']['count']
