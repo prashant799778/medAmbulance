@@ -3461,7 +3461,7 @@ def bookedTrip():
                 if inputdata['endLimit'] != "":
                     endlimit =str(inputdata["endLimit"])
 
-            whereCondition=" and bm.status=0 and bm.userMobile=um.mobileNo and bm.driverId=dm.id "
+            whereCondition=" and bm.status=0 and bm.userMobile=um.mobileNo and bm.driverId=dm.driverId "
 
             column="bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName"
             data=databasefile.SelectQuery2("bookAmbulance as bm,userMaster as um,driverMaster dm",column,whereCondition,"",startlimit,endlimit)
