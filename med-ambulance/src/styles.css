@@ -69,10 +69,14 @@
 	.shadow-box{
 		box-shadow: 0 5px 20px rgba(0, 0, 0, .1);
 	}
-	
+	.border-btm{
+		border-bottom: 1px solid var(--border-clr);
+	}
 	.top-shadow{
-		/* box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12); */
 		box-shadow: 0px 9px 19px -15px grey;
+	}
+	.pdi-lr{
+		padding: 11px 16px;
 	}
 	.mt-7{
 		margin-top: 5rem;
@@ -89,9 +93,6 @@
 		color: #fff;
 		border-radius: 4px;
 	}
-	/* .record-box tbody tr td:nth-child(8) {
-		width: 126px;
-	} */
 	.record-box {
 		padding: 0px 5px;
 	}
@@ -601,6 +602,19 @@ input.upload-fil:focus {
 .action-i{
 	fill: #fff !important;
 	width: 18px;
+}
+.add-new {
+    border: 1px solid transparent;
+    color: #fff;
+    font-size: 13px;
+    text-transform: capitalize;
+    font-weight: 600;
+    padding: 5px 15px;
+	border-radius: 4px;
+	margin-bottom: 15px;
+}
+.left-new-add h2{
+	width: unset !important;
 }
 /* End All Sect- Section */
 
