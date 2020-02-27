@@ -7,16 +7,14 @@ import { AppSettings } from 'src/app/utils/constant';
 import { Subscription } from 'rxjs';
 import { MqttService } from 'ngx-mqtt';
 import { IMqttMessage } from 'ngx-mqtt';
-import { google } from '@agm/core/services/google-maps-types';
-// import { google } from 'goo'
-// import { MqttService, ConnectionStatus } from 'ngx-mqtt-client';
+
 declare var jQuery: any;
 
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.css'],
-//   providers: [WebsocketService, ChatService]
+
 })
 export class AdminDashboardComponent implements OnInit , OnDestroy {
 	hospitalID: any;
@@ -28,7 +26,7 @@ export class AdminDashboardComponent implements OnInit , OnDestroy {
 	dir = undefined;
 	changelat: any = 24.799448;
 	changelng: any = 120.979021;
-	// directionDisplay = new google.maps.DirectionsRenderer();
+	
 	private subscription: Subscription;
 	public lat = 28.583980;
 public lng = 77.314567;
@@ -41,68 +39,16 @@ public destination: any;
 		// private chatService: ChatService,
 				private _mqttService: MqttService,
 				public local: LocalStorageService) {
-					var directionDisplay;
-//   var directionsService = new google.maps.DirectionsService();
-//   var map;
-
-//   function initialize() {
-//     // directionsDisplay = new google.maps.DirectionsRenderer();
-//     var myOptions = {
-//       mapTypeId: google.maps.MapTypeId.ROADMAP,
-//     }
-//     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-//     this.directionsDisplay.setMap(map);
-
-//     var start = '37.7683909618184, -122.51089453697205';
-//     var end = '41.850033, -87.6500523';
-//     var request = {
-//       origin:start, 
-//       destination:end,
-//       travelMode: google.maps.DirectionsTravelMode.DRIVING
-//     };
-//     directionsService.route(request, function(response, status) {
-//       if (status == google.maps.DirectionsStatus.OK) {
-//         this.directionsDisplay.setDirections(response);
-//         var myRoute = response.routes[0];
-//         var txtDir = '';
-//         for (var i=0; i<myRoute.legs[0].steps.length; i++) {
-//           txtDir += myRoute.legs[0].steps[i].instructions+"<br />";
-//         }
-//         document.getElementById('directions').innerHTML = txtDir;
-//       }
-//     });
-//   }
-
-
-
-
-					// this.origin = { lat: 24.799448, lng: 120.979021 };
-  					// this.destination = { lat: 24.799524, lng: 120.975017 };
 					
-					
+				
 					  this.subscription = this._mqttService.observe('91dbe288564e11ea93d39ebd4d0189fc/ambulanceLiveLocation').subscribe((message: IMqttMessage) => {
 						console.log("web sockettttttt",this.userService)
 						this.message = message.payload.toString();
 					  });
-					// this._mqttService.status().subscribe((s: ConnectionStatus) => {
-					// 	const status = s === ConnectionStatus.CONNECTED ? 'CONNECTED' : 'DISCONNECTED';
-					// 	this.status.push(`Mqtt client connection status: ${status}`);
-					// });
-					// chatService.messages.subscribe(msg => {
-					// 	console.log("Response from websocket: " + msg);
-					//   });
+					
 				 }
 
-				//  private message = {
-				// 	author: "tutorialedge",
-				// 	message: "this is a test message"
-				//   };
 				
-				//   sendMsg() {
-				// 	console.log("new message from client to websocket: ", this.message);
-				// 	this.chatService.messages.next(this.message);
-				// 	this.message.message = "";
-				//   }
 
 				public unsafePublish(topic: string, message: string): void {
 					this._mqttService.unsafePublish(topic, message, {qos: 1, retain: true});
@@ -116,23 +62,6 @@ public destination: any;
 			this.getHospitalDashboardData()
 
 
-// 			var mqtt = require('mqtt')
-// var client  = mqtt.connect('mqtt://test.mosquitto.org')
-// console.log("before connect")
-// client.on('connect', function () {
-// 	console.log("after connect")
-//   client.subscribe('presence', function (err) {
-//     if (!err) {
-//       client.publish('presence', 'Hello mqtt')
-//     }
-//   })
-// })
-
-// client.on('message', function (topic, message) {
-//   // message is Buffer
-//   console.log(message.toString())
-//   client.end()
-// })
 		}
 		
 	}
