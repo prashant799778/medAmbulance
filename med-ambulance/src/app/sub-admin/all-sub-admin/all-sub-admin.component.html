@@ -6,10 +6,12 @@
     
                     
                     <ng-container *ngIf="!loader">
+                        <div class="left-new-add d-flex justify-content-between align-items-center">
                             <h2 class="box-heading-tp">All Admin List</h2>
-                            <div class="top-heading bg-white">
-                                <h2 class="heading-bx anim">Admin List</h2>
-                                <button routerLink="/admin/addAdmin">Add new Admin</button>
+                            <button class="add-new lab-success" routerLink="/admin/addAdmin">Add new Admin</button>
+                        </div>
+                            <div class="top-heading bg-white">   
+                                    <h2 class="heading-bx anim">Admin List</h2>
                                 <div class="record-box table-responsive">
                                     <table class="table m-0">                               
                                         <thead>
