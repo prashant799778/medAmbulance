@@ -116,8 +116,8 @@ import { HospitalCurrentBookingComponent } from './hospital-admin/hospital-curre
     NgSelectModule,
     NgZorroAntdModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDvO4MiWWER38wQegvOy0VKk_WnNfBuf_Q',
-      // apiKey: 'AIzaSyAFgM81Qz-SwfTzUsr4F51AgDj0HdN88CQ',
+      // apiKey: 'AIzaSyDvO4MiWWER38wQegvOy0VKk_WnNfBuf_Q',
+      apiKey: 'AIzaSyDRVBkjjZkrZf-_blL06aGAeQ2uSCuJRn8',
       // libraries: ['geometry']
     }),
     AgmDirectionModule,

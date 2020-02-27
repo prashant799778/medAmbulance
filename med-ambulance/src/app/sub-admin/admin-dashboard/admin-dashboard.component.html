@@ -34,7 +34,10 @@
                                         <td>{{driver.driverMobile}}</td>
                                         <td>{{driver.finalAmount}}</td>
                                         <td>
-                                            <button (click)="openMapModal(driver.pickup,driver.dropOff)">view</button>
+                                                <div class="btn-edit-group">
+                                                    <button type="button" class="edit-btn" (click)="openMapModal(driver.pickup,driver.dropOff)" >  <img src="../../../assets/images/eye.svg"></button>
+                                                </div>
+                                            <!-- <button (click)="openMapModal(driver.pickup,driver.dropOff)">view</button> -->
                                         </td>
                                         
                                             
@@ -53,6 +56,11 @@
             </div>
         </div>
 </div>
+
+
+
+
+
 <!-- <button (click)="sendMsg()">Send Message</button> -->
 
 <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -67,12 +75,11 @@
             </div>
         </template>
         
-        <agm-map [latitude]="lat" [longitude]="lng" class="map-set-im">
-                <agm-direction [origin]="origin" [destination]="destination">
-                    </agm-direction>
+        <agm-map [latitude]="lat" [longitude]="lng" class="map-set-im" allowfullscreen="">
+                <agm-direction *ngIf="dir" [origin]="dir.origin" [destination]="dir.destination"></agm-direction>
             <!-- <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker> -->
           </agm-map>
-        <!-- <iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyDvO4MiWWER38wQegvOy0VKk_WnNfBuf_Q&origin='+pickUp+'&destination='+dropOff" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe> -->
+        <!-- <iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyDvO4MiWWER38wQegvOy0VKk_WnNfBuf_Q&origin='fourbrick&destination='sjm hospital'" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe> -->
       </div>
     </div>
 </div>
