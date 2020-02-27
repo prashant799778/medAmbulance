@@ -26,6 +26,8 @@ export class AdminDashboardComponent implements OnInit , OnDestroy {
 	status: Array<string> = [];
 	userId: any;
 	dir = undefined;
+	changelat: any = 24.799448;
+	changelng: any = 120.979021;
 	// directionDisplay = new google.maps.DirectionsRenderer();
 	private subscription: Subscription;
 	public lat = 28.583980;
@@ -151,16 +153,21 @@ public destination: any;
 		this.dropOff = dropOff
 		this.userId = userId
 		jQuery("#mapModal").modal('show')
-		this.getDirection()
+		setInterval(()=>{
+			this.getDirection()
+		},1000)
+		
 	}
 
 
 	
   public getDirection() {
     this.dir = {
-      origin: { lat: 24.799448, lng: 120.979021 },
+      origin: { lat: this.changelat, lng: this.changelng },
       destination: { lat: 24.799524, lng: 120.975017 }
-    }
+	}
+	this.changelat = this.changelat - 0.000111;
+	this.changelng = this.changelng - 0.000111;
   }
 
 }
