@@ -1,6 +1,7 @@
 package com.MedAmbulance.Comman;
 
 public class Constant {
+    public static final String REQUEST_SUCCESS ="Uploaded Successfully" ;
     public static String PLEASE_FILL_THIS_FIELD="Please Fill this Field";
     public static String PLEASE_FILL_10_Digit="Please Fill 10 Digit Number";
     public static final String NO_INTERNET="Please first connect to internet";
@@ -10,6 +11,8 @@ public class Constant {
     public static final String PASSWORD_NOT_MATCH="Password must be same !";
     public static final String INVALIDE_MAIL="invalid  email";
     public static final String MobileLength="Mobile no. should be 10 ";
+    public static final String Logout="You will be Logout";
+
 
 
 }

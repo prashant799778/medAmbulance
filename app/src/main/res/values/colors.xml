@@ -20,6 +20,9 @@
     <color name="tint">#484848</color>
     <color name="terms">#707070</color>
     <color name="agreed">#a1a1a1</color>
+    <color name="item">#111518</color>
+    <color name="black2">#202020</color>
+    <color name="accept">#131313</color>
 
     <color name="colorAccent1">#FF4081</color>
 <color name="colorPrimaryText">#FFFFFF</color>
@@ -28,6 +31,7 @@
 
     //map
 
+    <color name="blue_accept">#0c7dff</color>
     <color name="card_background">#ffffff</color>
     <color name="card_shadow">#10000000</color>
     <color name="lite_blue">#ff359ff2</color>
@@ -84,5 +88,6 @@
     <color name="rangebar_color">#1670C0</color>
     <color name="range_tick_color">#FFFFFF</color>
     <color name="skill_primary_color">#1075CD</color>
+    <color name="profileback">#f6f6f6</color>
 
 </resources>

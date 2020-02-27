@@ -7,14 +7,17 @@ import com.MedAmbulance.Api_Calling.MyResult;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.error.AuthFailureError;
 import com.android.volley.error.VolleyError;
 import com.android.volley.request.JsonObjectRequest;
+import com.android.volley.request.SimpleMultiPartRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.JsonObject;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public class Api_Calling {
 
@@ -51,6 +54,7 @@ public class Api_Calling {
              requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
                  @Override
                  public void onRequestFinished(Request<Object> request) {
+                     requestQueue.getCache().clear();
 
                  }
              });
@@ -96,6 +100,82 @@ public class Api_Calling {
 
                 }
             });
+        }
+    }
+
+    public static void multiPartCall(final Context context, final View view, String URL, final JSONObject jsonObject, final MyResult onResult, final String name) {
+        if (!Utility.isNetworkConnected(context)) {
+            Utility.topSnakBar(context, view, Constant.NO_INTERNET);
+        } else {
+            SimpleMultiPartRequest simpleMultiPartRequest = new SimpleMultiPartRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Utility.log(name,""+response);
+                    try {
+                        JSONObject jsonObject1=new JSONObject(response);
+                        if(Boolean.parseBoolean(jsonObject1.getString("status"))){
+                            onResult.onResult(jsonObject1,true);}else {
+                            onResult.onResult(null,false);
+                            Utility.topSnakBar(context,view, jsonObject1.getString("message"));
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Utility.topSnakBar(context,view, Constant.SOMETHING_WENT_WRONG);
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                }
+            });
+            simpleMultiPartRequest.addStringParam("data",""+jsonObject.toString());
+            simpleMultiPartRequest.addStringParam("postImage","");
+            try {
+                Utility.log("FinalData",""+simpleMultiPartRequest.getBody());
+            } catch (AuthFailureError authFailureError) {
+                authFailureError.printStackTrace();
+            }
+            RequestQueue requestQueue=Volley.newRequestQueue(context);
+            requestQueue.add(simpleMultiPartRequest);
+        }
+    }
+    public static void multiPartCall1(final Context context, final View view, String URL, final JSONObject jsonObject, final MyResult onResult, final String name,ArrayList<String>arrayList) {
+        if (!Utility.isNetworkConnected(context)) {
+            Utility.topSnakBar(context, view, Constant.NO_INTERNET);
+        } else {
+            Utility.log("Inside","Inside1");
+            SimpleMultiPartRequest simpleMultiPartRequest = new SimpleMultiPartRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Utility.log(name,""+response);
+                    try {
+                        Utility.log("Inside","Inside2");
+                        JSONObject jsonObject1=new JSONObject(response);
+                        if(Boolean.parseBoolean(jsonObject1.getString("status"))){
+                            onResult.onResult(jsonObject1,true);}else {
+                            onResult.onResult(null,false);
+                            Utility.topSnakBar(context,view, jsonObject1.getString("message"));
+                            Utility.log("Inside","Inside2");
+
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Utility.topSnakBar(context,view, Constant.SOMETHING_WENT_WRONG);
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Utility.log("Inside5","Inside3"+error.getMessage());
+                }
+            });
+            simpleMultiPartRequest.addStringParam("data",""+jsonObject.toString());
+            if(arrayList.size()>0)
+                simpleMultiPartRequest.addFile("postImage",""+new File(arrayList.get(0).trim()));
+            Utility.log("Inside3","Inside1");
+            RequestQueue requestQueue=Volley.newRequestQueue(context);
+            requestQueue.add(simpleMultiPartRequest);
         }
     }
 

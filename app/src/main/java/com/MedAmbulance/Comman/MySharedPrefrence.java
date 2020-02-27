@@ -53,6 +53,7 @@ public class MySharedPrefrence {
     }
 
     public void setUserTypeId(String id) {
+
         prefEditor.putString("typeid", id);
         prefEditor.commit();
     }
@@ -99,7 +100,14 @@ public class MySharedPrefrence {
         prefEditor.commit();
     }
 
+    public String getcity() {
+        return sharedPreferences.getString("city", "");
+    }
 
+    public void setcity(String country) {
+        prefEditor.putString("city", country);
+        prefEditor.commit();
+    }
     public String getDescription() {
         return sharedPreferences.getString("dis", "");
     }
@@ -135,10 +143,66 @@ public class MySharedPrefrence {
         return sharedPreferences.getString("mobile", "");
     }
 
-    public void setMobili(String mobile) {
+    public void setMobile(String mobile) {
         prefEditor.putString("mobile", mobile);
         prefEditor.commit();
     }
+
+
+    public String getotp() {
+        return sharedPreferences.getString("otp", "");
+    }
+
+    public void setotp(String mobile) {
+        prefEditor.putString("otp", mobile);
+        prefEditor.commit();
+    }
+
+    public String getAppVersion() {
+        return sharedPreferences.getString("appVersion", "");
+    }
+
+    public void setAppVersion(String apVersion) {
+        prefEditor.putString("appVersion", apVersion);
+        prefEditor.commit();
+    }
+
+    public String getcurrentLocation() {
+        return sharedPreferences.getString("currentLocation", "");
+    }
+
+    public void setcurrentLocation(String current) {
+        prefEditor.putString("currentLocation", current);
+        prefEditor.commit();
+    }
+
+    public String getcurrentLocationlatlong() {
+        return sharedPreferences.getString("currentLocationlatlong", "");
+    }
+
+    public void setcurrentLocationlatlong(String currentlatlong) {
+        prefEditor.putString("currentLocationlatlong", currentlatlong);
+        prefEditor.commit();
+    }
+
+    public String getnotificationToken() {
+        return sharedPreferences.getString("notificationToken", "");
+    }
+
+    public void setnotificationToken(String currentlatlong) {
+        prefEditor.putString("notificationToken", currentlatlong);
+        prefEditor.commit();
+    }
+
+    public String getdateCreate() {
+        return sharedPreferences.getString("dateCreate", "");
+    }
+
+    public void setdateCreate(String currentlatlong) {
+        prefEditor.putString("dateCreate", currentlatlong);
+        prefEditor.commit();
+    }
+
     public String getOrgatination() {
         return sharedPreferences.getString("org", "");
     }
@@ -159,6 +223,23 @@ public class MySharedPrefrence {
     }
 
 
+    public String getname() {
+        return sharedPreferences.getString("name", "");
+    }
+
+    public void setipAddress(String dsg) {
+        prefEditor.putString("ipAddress", dsg);
+        prefEditor.commit();
+    }
+
+    public String getipAddress() {
+        return sharedPreferences.getString("ipAddress", "");
+    }
+
+    public void setname(String dsg) {
+        prefEditor.putString("name", dsg);
+        prefEditor.commit();
+    }
 
 
     public String getProfileCategory() {
@@ -224,6 +305,8 @@ public class MySharedPrefrence {
         prefEditor.clear();
         prefEditor.commit();
     }
+
+
 }
 
 

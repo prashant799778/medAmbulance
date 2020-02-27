@@ -27,6 +27,7 @@ import android.os.StrictMode;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
@@ -35,12 +36,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -122,18 +128,33 @@ import java.util.Timer;
 public class MapsActivity extends FragmentActivity implements MyResult, OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+        LocationListener, MyResult {
 
     private static final int REQUEST_CHECK_SETTINGS = 93;
     int flag = 0;
     boolean isSourceSet = false, tripStarted = false;
-    ;
+    ListView listView;
+     View v;
+
     EditText source_location, destination_location;
     String TAG = "LocationSelect";
     int AUTOCOMPLETE_SOURCE = 1, AUTOCOMPLETE_DESTINATITON = 2;
     GoogleMap mMap;
+
+    //textView
+    Atami_Regular  text_als,text_bls,text_dbt,text_pvt;
+
+    //DrawerLayout
+    DrawerLayout drawerLayout;
+
+    LinearLayout opernDrawer,openUserProfile;
+
+
+    MyResult myResult;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
+
+    ActionBarDrawerToggle actionBarDrawerToggle;
     Marker mCurrLocationMarker, source_location_marker, destination_location_marker;
     Marker nearby_cab;
     ArrayList<Marker> markers= new ArrayList<Marker>();;
@@ -215,13 +236,23 @@ public class MapsActivity extends FragmentActivity implements MyResult, OnMapRea
         ride_driver_name = (TextView) findViewById(R.id.driver_name);
         ride_otp = (TextView) findViewById(R.id.ride_otp);
         ride_fare = (TextView) findViewById(R.id.ride_fare);
+
+        openUserProfile=findViewById(R.id.goto_profile);
+        openUserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MapsActivity.this,MyProfile.class));
+                drawerLayout.closeDrawers();
+            }
+        });
+
         btnBookNow_layout = (LinearLayout) findViewById(R.id.btnBookNow_layout);
         btnBookNow = (Button) findViewById(R.id.btnBookNow);
         btnBookNow.setVisibility(View.GONE);
         btnBookNow_layout.setVisibility(View.GONE);
 
 
-        cab = (ImageView) findViewById(R.id.cab);
+        cab = (ImageView) findViewById(R.id.ambulance);
         cab.setVisibility(View.GONE);
 
         timer = new Timer();
@@ -434,6 +465,13 @@ public class MapsActivity extends FragmentActivity implements MyResult, OnMapRea
 
     }
 
+    private Object showText() {
+
+        JSONObject jsonObject=new JSONObject();
+
+        return jsonObject;
+    }
+
 
     public Runnable runnable = new Runnable() {
         @Override
@@ -441,7 +479,7 @@ public class MapsActivity extends FragmentActivity implements MyResult, OnMapRea
             MarkerOptions markerOptions1;
             try {
 
-                String api_url = "https://nearcabs.000webhostapp.com/api/get_cab_location.php";
+                String api_url = "get_cab_location";
 
          String get_cab_location_request = "cab_id=" + URLEncoder.encode(cab_id, "UTF-8") + "&ride_id=" + URLEncoder.encode(ride_id, "UTF-8");
 
@@ -620,7 +658,7 @@ public class MapsActivity extends FragmentActivity implements MyResult, OnMapRea
         }
     }
 
-
+//NearBy Ambulance
     public void setNearbyCabsOnMap(LatLng latLng) {
         try {
             String api_url = base_url+"getNearAmbulance";
@@ -746,7 +784,6 @@ public class MapsActivity extends FragmentActivity implements MyResult, OnMapRea
             Log.d("near_cab",e.getMessage());
         }
     }
-
 
     private String getDirectionsUrl(LatLng origin, LatLng dest) {
 
@@ -966,8 +1003,8 @@ public class MapsActivity extends FragmentActivity implements MyResult, OnMapRea
 
                 // Adding all the points in the route to LineOptions
                 lineOptions.addAll(points);
-                lineOptions.width(6);
-                lineOptions.color(Color.BLUE);
+                lineOptions.width(12);
+                lineOptions.color(Color.YELLOW);
             }
 
             try {

@@ -12,6 +12,9 @@ import com.MedAmbulance.Widget.Atami_Bold;
 import com.MedAmbulance.Widget.Atami_Regular;
 import com.sun.easysnackbar.EasySnackBar;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Utility {
 
     public static Boolean isNetworkConnected(Context context)
@@ -28,6 +31,22 @@ public class Utility {
         return false;
     }
 
+    public static String getValueFromJsonObject(JSONObject jsonObject, String key) {
+        String s = "";
+        if (jsonObject.has(key)) {
+            try {
+                s = jsonObject.getString(key);
+                if (s.equalsIgnoreCase(null)) {
+                    s = "";
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } finally {
+                return s;
+            }
+        }
+        return s;
+    }
     @SuppressLint("WrongConstant")
     public static void topSnakBar(Context context, View mView, String msg)
     {

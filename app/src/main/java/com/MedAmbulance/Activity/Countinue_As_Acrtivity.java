@@ -1,12 +1,10 @@
 package com.MedAmbulance.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.MedAmbulance.R;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
@@ -31,7 +29,7 @@ public class Countinue_As_Acrtivity extends AppCompatActivity implements View.On
        switch (v
        .getId()){
            case R.id.responsder:
-              Intent i=new Intent(Countinue_As_Acrtivity.this, Login.class);
+              Intent i=new Intent(Countinue_As_Acrtivity.this, UserMainWorkActivity.class);
               i.putExtra("userType","1");
               startActivity(i);
                break;
@@ -41,7 +39,7 @@ public class Countinue_As_Acrtivity extends AppCompatActivity implements View.On
                startActivity(i1);
                break;
            case R.id.driver:
-               Intent i2=new Intent(Countinue_As_Acrtivity.this, Login.class);
+               Intent i2=new Intent(Countinue_As_Acrtivity.this, Test_Activity.class);
                i2.putExtra("userType","3");
                startActivity(i2);
                break;
