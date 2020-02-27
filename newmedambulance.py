@@ -3532,7 +3532,7 @@ def myrides():
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
        
-        commonfile.writeLog("endRide",inputdata,0)
+        commonfile.writeLog("myrides",inputdata,0)
         msg="1"
         if msg == "1":
             if "startLimit" in inputdata:
