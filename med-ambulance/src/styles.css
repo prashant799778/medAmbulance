@@ -598,6 +598,10 @@ input.upload-fil:focus {
     height: calc(100% - 28%);
     scroll-behavior: smooth;
 }
+.action-i{
+	fill: #fff !important;
+	width: 18px;
+}
 /* End All Sect- Section */
 
 
