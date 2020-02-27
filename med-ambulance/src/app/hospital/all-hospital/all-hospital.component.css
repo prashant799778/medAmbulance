@@ -4,3 +4,6 @@
 .btn-edit-group {
     display: flex;
 }
+.norap table td {
+    white-space: unset;
+}
