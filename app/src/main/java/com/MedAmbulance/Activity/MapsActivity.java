@@ -125,7 +125,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 
-public class MapsActivity extends FragmentActivity implements MyResult, OnMapReadyCallback,
+public class MapsActivity extends FragmentActivity implements, OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener, MyResult {
@@ -195,6 +195,7 @@ public class MapsActivity extends FragmentActivity implements MyResult, OnMapRea
     private LatLng prevlocationAmb;
     private  Marker ambMarker;
 
+    @android.support.annotation.RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
