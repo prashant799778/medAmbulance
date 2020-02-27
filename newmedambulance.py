@@ -2690,6 +2690,7 @@ def allHospital1():
     try:
         msg="1"
         if msg=="1":
+            startlimit,endlimit="",""
             ambulanceType=""
             whereCondition=""
             whereCondition2=""
