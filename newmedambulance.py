@@ -388,7 +388,65 @@ def verifyOtp():
     except Exception as e :
         print("Exceptio`121QWAaUJIHUJG n---->" +str(e))    
         output = {"result":"somthing went wrong","status":"false"}
-        return output  
+        return output
+
+
+
+@app.route('/updateuserProfile', methods=['POST'])
+def updateDriverProfile():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+        startlimit,endlimit="",""
+        keyarr = ["name","email","password",'userId']
+        commonfile.writeLog("updateuserProfile",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+       
+        if msg == "1":
+            name,email,password,userTypeId,mobileNo,gender="","","","","",""
+            column,values="",""
+            
+            # UserId = (commonfile.CreateHashKey(mobileNo,userTypeId)).hex
+            
+            
+            # WhereCondition = " and email = '" + str(email) + "'"
+            # count = databasefile.SelectCountQuery("hospitalUserMaster",WhereCondition,"")
+
+            
+            if 'email' in inputdata:
+                email=inputdata["email"]
+                column=" email='"+str(email)+"' " 
+            if 'name' in inputdata:
+                name=inputdata["name"]
+                column=column+" ,name='"+str(name)+"' "  
+            if 'password' in inputdata:
+                password=inputdata["password"]
+                column=column+" ,password= '"+str(password)+"' "                
+            if 'mobileNo' in inputdata:
+                mobileNo=inputdata["mobileNo"]
+                column=column+" ,mobileNo='"+str(mobileNo)+"' "  
+
+            if 'userId' in inputdata:
+                userId=inputdata["userId"]    
+                
+            
+            whereCondition= " userId= '"+str(userId)+"' and userTypeId='2' "
+          
+            data=databasefile.UpdateQuery("userMaster",column,whereCondition)
+         
+
+            if data != "0":
+                Data = {"status":"true","message":"data Updated Successfully","result":"data Updated Successfully"}                  
+                return Data
+            else:
+                return commonfile.Errormessage()
+                        
+        else:
+            return msg 
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"status":"false","message":"something went wrong","result":""}
+        return output        
+          
 
 
 @app.route('/addDriver', methods=['POST'])
