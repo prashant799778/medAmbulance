@@ -3807,7 +3807,7 @@ def dashboard():
                         columns99="count(*) as count"
                         whereCondition88= " ambulanceId='"+str(ambulanceId2)+ "'"
                         data122=databasefile.SelectQuery('bookAmbulance',columns99,whereCondition88)
-                        if data122['status']!='false':
+                        if data122['status']=='false':
                             i['tripCount']=0
                         else:
                             tripcount=data122['result']['count']
