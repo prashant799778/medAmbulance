@@ -2,7 +2,7 @@
         <div class="col-sm-12 col-md-12 col-lg-12 margin-tp">
            
             <div class="top-heading bg-white">
-                <h2 class="heading-bx anim">Current Ride Booking</h2>  
+                <h2 class="heading-bx anim">Past Ride Booking</h2>  
             <div class="record-box table-responsive">
                 <table class="table m-0">                               
                     <thead>
@@ -21,8 +21,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                            <ng-container *ngIf="currentRideData && currentRideData.length > 0">
-                                    <tr *ngFor="let driver of currentRideData ; let i =  index">
+                            <ng-container *ngIf="pastRideData && pastRideData.length > 0">
+                                    <tr *ngFor="let driver of pastRideData ; let i =  index">
                                         <td>{{i+1}}</td>  
                                         <td>{{driver.userName}}</td>
                                         <td>{{driver.userMobile}}</td>
@@ -33,9 +33,7 @@
                                         <td>{{driver.driverName}}</td>
                                         <td>{{driver.driverMobile}}</td>
                                         <td>{{driver.finalAmount}}</td>
-                                        <td>
-                                            <button (click)="openMapModal(driver.pickup,driver.dropOff)">view</button>
-                                        </td>
+                                        
                                         
                                             
                                         
@@ -53,35 +51,3 @@
             </div>
         </div>
 </div>
-<!-- <button (click)="sendMsg()">Send Message</button> -->
-
-<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered map-dialog" role="document">
-      <div class="modal-content">
-          <template>
-            <div class="modal-header border-remo">
-            <button type="button" class="close cl-img" data-dismiss="modal" aria-label="Close" (click)="closeMOdal()">
-                <!-- <span aria-hidden="true">&times;</span> -->
-                <img src="../../../assets/images/close-im.svg">
-            </button>
-            </div>
-        </template>
-        
-        <agm-map [latitude]="lat" [longitude]="lng" class="map-set-im">
-                <agm-direction [origin]="origin" [destination]="destination">
-                    </agm-direction>
-            <!-- <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker> -->
-          </agm-map>
-        <!-- <iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyDvO4MiWWER38wQegvOy0VKk_WnNfBuf_Q&origin='+pickUp+'&destination='+dropOff" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe> -->
-      </div>
-    </div>
-</div>
-
-
-
-<!-- 
-https://www.google.com/maps/embed/v1/directions
-  ?key=YOUR_API_KEY
-  &origin=Oslo+Norway
-  &destination=Telemark+Norway
-  &avoid=tolls|highways -->

@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder,Validators } from '@angular/forms';
-import { AuthsService } from '../services/auths.service';
-import { UserService } from '../services/user.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from 'angular-web-storage';
+import { AuthsService } from 'src/app/services/auths.service';
 declare var jQuery: any;
+
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css']
+  selector: 'app-admin-account',
+  templateUrl: './admin-account.component.html',
+  styleUrls: ['./admin-account.component.css']
 })
-export class AccountComponent implements OnInit {
+export class AdminAccountComponent implements OnInit {
   loginForm: FormGroup
   // fb: any;
   errors: string;
@@ -72,7 +73,7 @@ export class AccountComponent implements OnInit {
 			this.authsService.login(userData).subscribe(resp =>{
 
 				if(resp['status'] == 'true'){
-					if(resp['result'].userTypeId == 1 || resp['result'].userTypeId == 5){
+					if(resp['result'].userTypeId == 5){
 						this.loginSuccess= true;
 						this.getSaveCustomer(resp['result'])
 

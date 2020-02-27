@@ -33,7 +33,6 @@ export class AddSubAdminComponent implements OnInit {
 				this.viewEdit = 'View'
 				this.addhosp = 0
 				this.disableForm()
-
 			}else if(params['view'] == 'edit'){
 
 				this.views = true;

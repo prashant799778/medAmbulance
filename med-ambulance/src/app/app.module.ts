@@ -6,6 +6,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyDatePickerModule } from 'mydatepicker';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+// import { NgxMqttClientModule } from 'ngx-mqtt-client';
+// import { MqttModule, IMqttServiceOptions } from "ngx-mqtt";
+// import { Observable } from 'rxjs';
+import { AgmCoreModule } from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction';
+
+import { Observable } from 'rxjs';
+
+import {
+  IMqttMessage,
+  MqttModule,
+  IMqttServiceOptions
+} from 'ngx-mqtt';
+
+export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
+  hostname: '134.209.153.34',
+  port: 8083,
+  path: ''
+};
 
 
 import { AppComponent } from './app.component';
@@ -37,7 +56,19 @@ import { ViewResponderComponent } from './responder/view-responder/view-responde
 import { AdminDashboardComponent } from './sub-admin/admin-dashboard/admin-dashboard.component';
 import { AddSubAdminComponent } from './sub-admin/add-sub-admin/add-sub-admin.component';
 import { AllSubAdminComponent } from './sub-admin/all-sub-admin/all-sub-admin.component';
+import { AdminAccountComponent } from './sub-admin/admin-account/admin-account.component';
+import { SubSideBarComponent } from './sub-admin/sub-side-bar/sub-side-bar.component';
+import { SubHeaderComponent } from './sub-admin/sub-header/sub-header.component';
+import { HospitalAccountComponent } from './hospital-admin/hospital-account/hospital-account.component';
+import { HospitalPastBookingComponent } from './hospital-admin/hospital-past-booking/hospital-past-booking.component';
+import { HospitalCurrentBookingComponent } from './hospital-admin/hospital-current-booking/hospital-current-booking.component';
 
+
+// export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
+//   hostname: 'localhost',
+//   port: 4201,
+//   path: '/'
+// }
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +99,12 @@ import { AllSubAdminComponent } from './sub-admin/all-sub-admin/all-sub-admin.co
     AdminDashboardComponent,
     AddSubAdminComponent,
     AllSubAdminComponent,
+    AdminAccountComponent,
+    SubSideBarComponent,
+    SubHeaderComponent,
+    HospitalAccountComponent,
+    HospitalPastBookingComponent,
+    HospitalCurrentBookingComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,9 +114,28 @@ import { AllSubAdminComponent } from './sub-admin/all-sub-admin/all-sub-admin.co
     ReactiveFormsModule,
     MyDatePickerModule,
     NgSelectModule,
-    NgZorroAntdModule
+    NgZorroAntdModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDvO4MiWWER38wQegvOy0VKk_WnNfBuf_Q',
+      // apiKey: 'AIzaSyAFgM81Qz-SwfTzUsr4F51AgDj0HdN88CQ',
+      // libraries: ['geometry']
+    }),
+    AgmDirectionModule,
+    // NgxMqttClientModule
+    // Observable,
+  //   NgxMqttClientModule.withOptions({
+  //     // manageConnectionManually: true, //this flag will prevent the service to connection automatically
+  //     host: 'http://localhost:4201/',
+  //     // protocol: 'ws',
+  //     port: 4201,
+  //     path: '/'
+  // }),
+    // MqttModule.forRoot(MQTT_SERVICE_OPTIONS)
+    MqttModule.forRoot(MQTT_SERVICE_OPTIONS)
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

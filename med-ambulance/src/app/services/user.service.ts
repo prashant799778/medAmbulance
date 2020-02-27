@@ -17,6 +17,8 @@ export class UserService {
 	driverEventEmit = new EventEmitter<any>();
 	hospitalEventEmit = new EventEmitter<any>();
 	hospitalAdminEventEmit = new EventEmitter<any>();
+	pastBook = new EventEmitter<any>();
+	pastBooks = new EventEmitter<any>();
 	constructor(private http: HttpClient,
 				public local: LocalStorageService,
 				public session: SessionStorageService) { }
@@ -129,6 +131,12 @@ export class UserService {
 		}else if(dataName == 'Hospital Admin'){
 			this.hospitalAdminEventEmit.emit();
 		}
+	}
+	pastBookOpen(){
+		this.pastBook.emit()
+	}
+	pastBookOpens(){
+		this.pastBooks.emit()
 	}
 }
 

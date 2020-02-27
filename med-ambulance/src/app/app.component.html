@@ -1,4 +1,7 @@
 <ng-container *ngIf="!loader">
+	
+
+
 	<div *ngIf="!loginSuccessfull">
 		<app-account></app-account>
 	</div>
@@ -14,7 +17,10 @@
 					<app-header></app-header>
 				</div>
 				<div class="main-container mt-7 w-100">
-						<app-admin-dashboard *ngIf="!superAdmin"></app-admin-dashboard>
+						<app-admin-dashboard *ngIf="!superAdmin  && !pastbook"></app-admin-dashboard>
+						<app-hospital-past-booking *ngIf="!superAdmin && pastbook"></app-hospital-past-booking>
+						
+						<!-- <router-outlet  name=secondRouter></router-outlet> -->
 						<router-outlet *ngIf="superAdmin"></router-outlet>
 				</div>
 			</div>

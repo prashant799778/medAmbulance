@@ -54,9 +54,9 @@ export class AppSettings {
     public static updateHospitalAdmin = 'updateHospitalAdmin';
     public static updateHospitalAdminStatus = 'updateHospitalAdminStatus';
     public static deletehospitalAdmin = 'deletehospitalAdmin';
-    // public static allDecisionMaker = 'allDecisionMaker';
+    public static currentBooking = 'currentBooking';
     
-    // public static getPromissingIntiatives = 'getPromissingIntiatives';
+    public static pastBooking = 'pastBooking';
     // public static promissingIntiatives = 'promissingIntiatives';
     
     

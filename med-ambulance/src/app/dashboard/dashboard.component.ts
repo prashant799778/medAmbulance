@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
 				}
 
 	ngOnInit() {
+		
 		let data = {
 			'startLimit': 0,
 			'endLimit': 5

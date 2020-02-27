@@ -14,17 +14,30 @@ export class AppComponent {
 	loginSuccessfull: boolean;
 	activatedds: boolean;
 	superAdmin: boolean;
+	location
+	subAdmin: boolean;
+	pastbook: boolean;
 	
 	constructor(public local: LocalStorageService,public authsService: AuthsService,public userService: UserService){
 		// this.local.get('userData1')
+		this.location = window.location.origin
+		console.log(this.location)
+		// if(this.location == 'http://localhost:4201'){
+		// 	this.subAdmin = true;
+
+		// }else{
+		// 	this.subAdmin = false;
+		// }
 		setTimeout(()=>{
 			if(this.local.get('userData1') && this.local.get('userData1').userTypeId){
-				console.log("if lougout")
+				console.log("if lougout",this.local.get('userData1').userTypeId)
 				this.loginSuccessfull = true;
 				if(this.local.get('userData1').userTypeId == 1){
 					this.superAdmin = true;
+					console.log('checkkkkkkkk111111')
 				}else{
 					this.superAdmin = false;
+					console.log('checkkkkkkkk222222')
 				}
 			}else{
 				console.log("else lougout",this.local.get('userData1'))
@@ -38,7 +51,18 @@ export class AppComponent {
 			this.loginSuccessfull = false;
 		})
 		this.authsService.loginEvent.subscribe(()=>{
+			
 			this.loginSuccessfull = true;
+			
+		})
+
+		this.userService.pastBook.subscribe(()=>{
+			console.log('event true')
+			this.pastbook = true;
+		})
+		this.userService.pastBooks.subscribe(()=>{
+			console.log('event true')
+			this.pastbook = false;
 		})
 		
 	}

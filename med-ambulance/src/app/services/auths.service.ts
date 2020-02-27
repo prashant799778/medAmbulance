@@ -33,6 +33,7 @@ export class AuthsService {
     KEY = 'value';
     online: number;
     isCheckedLogin: any;
+    locations: any;
     superAdminLogin: boolean;
     loginEvent = new EventEmitter<any>();
     logoutEvent = new EventEmitter<any>();
@@ -97,7 +98,11 @@ export class AuthsService {
   
   login(userLogin): Observable<boolean> {
     console.log(userLogin);
-    return this.http.post<boolean>(this.baseUrl + 'adminLogin',userLogin )
+    this.locations = window.location.href
+    
+    this.locations  = this.locations = this.locations.substring(this.locations.lastIndexOf("/") + 1, this.locations.length );
+    if(this.locations == 'hospitalAdmin'){
+      return this.http.post<boolean>(this.baseUrl + 'hospitalAdminLogin',userLogin )
         .pipe(
             map(loggedIn => {
                 let resp;
@@ -128,7 +133,45 @@ export class AuthsService {
             }),
             catchError(this.handleError)
         );
+      
+    }else{
+      return this.http.post<boolean>(this.baseUrl + 'adminLogin',userLogin )
+      .pipe(
+          map(loggedIn => {
+              let resp;
+              resp = loggedIn;
+              if(resp.status == 'true'){
+                this.loginCondition(resp)
+                if(resp.result.userTypeId == 1){
+                  console.log('hello super login')
+                  this.superAdminLogin = true;
+                  
+                }else{
+                  console.log('hello super login false')
+                  this.superAdminLogin = false;
+                }
+                this.loginEvent.emit()
+                // this.userService.setSuperLogin(this.superAdminLogin)
+              
+
+              }
+              else{
+                this.loginSuccess = 0;
+                this.loginSuccesss = 0;
+                // this.userAuthChanged(resp.status);
+              }
+
+              
+              return loggedIn;
+          }),
+          catchError(this.handleError)
+      );
+    
+    }
+    
   }
+
+  
 
   logout(){
     console.log("logout step 1 --------")

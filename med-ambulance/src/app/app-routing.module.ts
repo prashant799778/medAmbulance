@@ -24,12 +24,17 @@ import { ViewResponderComponent } from './responder/view-responder/view-responde
 import { AddSubAdminComponent } from './sub-admin/add-sub-admin/add-sub-admin.component';
 import { AdminDashboardComponent } from './sub-admin/admin-dashboard/admin-dashboard.component';
 import { AllSubAdminComponent } from './sub-admin/all-sub-admin/all-sub-admin.component';
+import { HospitalAccountComponent } from './hospital-admin/hospital-account/hospital-account.component';
+import { HospitalPastBookingComponent } from './hospital-admin/hospital-past-booking/hospital-past-booking.component';
 
 
 const routes: Routes = [
+	
 	{ path: '',redirectTo: '/dashboard',pathMatch: 'full'},
 	{ path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
 	{ path: 'allPassengers', component: AllPassengersComponent, canActivate:[AuthGuard]},
+	{ path:'hospitalAdmin',component: HospitalAccountComponent,canActivate: [AuthGuard]},
+	{ path:'pastRide',component: HospitalPastBookingComponent,canActivate: [AuthGuard]},
 	{ path: 'trip',
 		children: [                          //<---- child components declared here
 	  		{ path: '',redirectTo: '/trip/activeTrip',pathMatch:'full'}, 
@@ -86,6 +91,7 @@ const routes: Routes = [
 			{ path:'allAdmin',component: AllSubAdminComponent,canActivate: [AuthGuard]},
 		]
 	},
+	
 ];
 
 @NgModule({
