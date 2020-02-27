@@ -22,12 +22,7 @@ export class AppComponent {
 		// this.local.get('userData1')
 		this.location = window.location.origin
 		console.log(this.location)
-		// if(this.location == 'http://localhost:4201'){
-		// 	this.subAdmin = true;
-
-		// }else{
-		// 	this.subAdmin = false;
-		// }
+		
 		setTimeout(()=>{
 			if(this.local.get('userData1') && this.local.get('userData1').userTypeId){
 				console.log("if lougout",this.local.get('userData1').userTypeId)
@@ -42,6 +37,7 @@ export class AppComponent {
 			}else{
 				console.log("else lougout",this.local.get('userData1'))
 				this.loginSuccessfull = false;
+				// this.superAdmin = true;
 			}
 		},500)
 		
@@ -53,6 +49,16 @@ export class AppComponent {
 		this.authsService.loginEvent.subscribe(()=>{
 			
 			this.loginSuccessfull = true;
+			setTimeout(()=>{
+				if(this.local.get('userData1') && this.local.get('userData1').userTypeId && this.local.get('userData1').userTypeId == 1){
+					this.superAdmin = true;
+					console.log('checkkkkkkkk111111')
+				}else{
+					this.superAdmin = false;
+					console.log('checkkkkkkkk222222')
+				}
+			},500)
+			
 			
 		})
 
