@@ -189,7 +189,7 @@
                                        <ng-container *ngIf="reviewData && reviewData.length > 0">
                                                <tr *ngFor="let data of reviewData ; let i =  index">
                                                        <td>{{i+1}}</td>  
-                                                       <td><img [src]="data.userImage" class="al-img"></td>
+                                                       <td><img [src]="userImage" class="al-img"></td>
                                                        <td>{{data.name}}</td>
                                                        <td>{{data.review}}</td>
                                                        <td>{{data.email}}</td>

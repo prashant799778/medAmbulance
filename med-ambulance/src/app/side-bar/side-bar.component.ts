@@ -48,16 +48,10 @@ export class SideBarComponent implements OnInit {
 			if(this.locations == 'allPassengers'){
 				setTimeout(()=>{
 					jQuery(".left-menu li").removeClass('active');
-					
 					jQuery("#allPassengers").addClass("active")
 				},100)
 			}
-		
 		}
-
-			
-		
-		
 	}
 
 	goToPage(routes){

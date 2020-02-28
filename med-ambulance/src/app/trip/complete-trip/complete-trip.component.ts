@@ -24,44 +24,45 @@ export class CompleteTripComponent implements OnInit {
 			'startLimit': 0,
 			'endLimit': 10
 		}
-		// this.userService.dataPostApi(data,AppSettings.CompeltedTrip).then(resp=>{
-		// 	console.log(resp)
-		// })
-		this.completeTripData = [
-			{
-				'tripId': 1765,
-				'driverName': 'Hemant Gusain',
-				'userName': 'Vijay Pal',
-				'tripFrom': 'Noida',
-				'tripTo': 'Agra',
-				'startTime': '02:00pm',
-				'endTime': '04:30pm',
-				'distance': '250',
-				'fare': '500'
-			},
-			{
-				'tripId': 1165,
-				'driverName': 'Hemant Gusain',
-				'userName': 'Vijay Pal',
-				'tripFrom': 'Noida',
-				'tripTo': 'Agra',
-				'startTime': '02:00pm',
-				'endTime': '04:30pm',
-				'distance': '250',
-				'fare': '500'
-			},
-			{
-				'tripId': 1865,
-				'driverName': 'Hemant Gusain',
-				'userName': 'Vijay Pal',
-				'tripFrom': 'Noida',
-				'tripTo': 'Agra',
-				'startTime': '02:00pm',
-				'endTime': '04:30pm',
-				'distance': '250',
-				'fare': '500'
-			}
-		]
+		this.userService.dataPostApi(data,AppSettings.CompeltedTrip).then(resp=>{
+			console.log(resp)
+			this.completeTripData = resp['result']
+		})
+		// this.completeTripData = [
+		// 	{
+		// 		'tripId': 1765,
+		// 		'driverName': 'Hemant Gusain',
+		// 		'userName': 'Vijay Pal',
+		// 		'tripFrom': 'Noida',
+		// 		'tripTo': 'Agra',
+		// 		'startTime': '02:00pm',
+		// 		'endTime': '04:30pm',
+		// 		'distance': '250',
+		// 		'fare': '500'
+		// 	},
+		// 	{
+		// 		'tripId': 1165,
+		// 		'driverName': 'Hemant Gusain',
+		// 		'userName': 'Vijay Pal',
+		// 		'tripFrom': 'Noida',
+		// 		'tripTo': 'Agra',
+		// 		'startTime': '02:00pm',
+		// 		'endTime': '04:30pm',
+		// 		'distance': '250',
+		// 		'fare': '500'
+		// 	},
+		// 	{
+		// 		'tripId': 1865,
+		// 		'driverName': 'Hemant Gusain',
+		// 		'userName': 'Vijay Pal',
+		// 		'tripFrom': 'Noida',
+		// 		'tripTo': 'Agra',
+		// 		'startTime': '02:00pm',
+		// 		'endTime': '04:30pm',
+		// 		'distance': '250',
+		// 		'fare': '500'
+		// 	}
+		// ]
 	}
 
 }

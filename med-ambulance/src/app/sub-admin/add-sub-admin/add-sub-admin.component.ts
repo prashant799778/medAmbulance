@@ -32,22 +32,30 @@ export class AddSubAdminComponent implements OnInit {
 				this.views= false;
 				this.viewEdit = 'View'
 				this.addhosp = 0
+				let data = {
+					'Id': this.Id
+				}
+				this.userService.dataPostApi(data,AppSettings.allhospitalUserMaster).then(resp=>{
+					this.setData(resp)
+				})
 				this.disableForm()
 			}else if(params['view'] == 'edit'){
 
 				this.views = true;
 				this.viewEdit = 'Edit'
 				this.addhosp = 1
+				let data = {
+					'Id': this.Id
+				}
+				this.userService.dataPostApi(data,AppSettings.allhospitalUserMaster).then(resp=>{
+					this.setData(resp)
+				})
 				// this.disableForm()
 			}else{
+				this.viewEdit = 'Add'
 				this.addhosp = 1
 			}
-			let data = {
-				'Id': this.Id
-			}
-			this.userService.dataPostApi(data,AppSettings.allhospitalUserMaster).then(resp=>{
-				this.setData(resp)
-			})
+			
 		})	
 		
 		this.getHospital()

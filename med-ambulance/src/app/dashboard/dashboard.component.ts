@@ -21,9 +21,11 @@ export class DashboardComponent implements OnInit {
 	activatedds: boolean;
 	errorMessage: any;
 	messageShow: any;
+	userImage: any;
 	constructor(public userService: UserService,
 				public router: Router) {
 					this.loader = true;
+					console.log(console.log("vijay"))
 				}
 
 	ngOnInit() {
@@ -41,6 +43,7 @@ export class DashboardComponent implements OnInit {
 				this.newUsers = resp['result']['dashboard'].newsUsers
 				this.totalEarning = resp['result']['dashboard'].totalEarning
 				console.log(this.driverData)
+				this.userImage = this.driverData[0].profilePic;
 				
 				this.loader = false;
 			}
