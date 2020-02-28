@@ -9,7 +9,7 @@ import { AppSettings } from 'src/app/utils/constant';
 })
 export class CompleteTripComponent implements OnInit {
 	tableHeading = [
-		"No", "Trip Id", "Driver Name", "Passenger Name","Trip From", "Trip To","Start Time","End Time","Distance","Fare"
+		"No", "Driver Name", "Passenger Name","Trip From", "Trip To","Start Time","End Time","Distance","Fare"
 	]
 	heading='Complete Trip'
 	completeTripData = []

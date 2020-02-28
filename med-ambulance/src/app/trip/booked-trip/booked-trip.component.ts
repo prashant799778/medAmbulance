@@ -9,7 +9,7 @@ import { AppSettings } from 'src/app/utils/constant';
 })
 export class BookedTripComponent implements OnInit {
 	tableHeading = [
-		"No", "Trip Id", "Driver Name", "Passenger Name","Trip From", "Trip To","Start Time"
+		"No", "Driver Name", "Passenger Name","Trip From", "Trip To","Start Time"
 	]
 	heading='Booked Trip'
 	bookTripData = []
