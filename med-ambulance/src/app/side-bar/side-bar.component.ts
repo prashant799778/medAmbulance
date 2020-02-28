@@ -77,9 +77,7 @@ export class SideBarComponent implements OnInit {
 					jQuery("#tripIdCa").addClass("active")
 				},150)
 			}
-
-
-		}
+ 		}
 	}
 
 	goToPage(routes){
