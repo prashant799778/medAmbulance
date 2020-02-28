@@ -1,4 +1,4 @@
-<div class="allrapper fadeInDown animated" *ngIf="!loginSuccess">
+<div class="allrapper " *ngIf="!loginSuccess">
         <div class="wrapper ">
             <div class="right-wrapper img">
                 <img src="../../assets/images/right-img.svg" class="img">
@@ -24,7 +24,7 @@
                             <div class="errors" *ngIf="loginForm.get('login').get('email').errors && (loginForm.get('login').get('email').touched || loginForm.get('login').get('email').dirty)">
                                     <p *ngIf="loginForm.get('login').get('email').errors && loginForm.get('login').get('email').errors.required" class="alert-msg"> Please Enter  Email</p>  
                                     <p *ngIf="loginForm.get('login').get('email').errors && loginForm.get('login').get('email').errors.pattern" class="alert-msg"> Enter Correct Email</p>
-                                </div>
+                             </div>
                             <!-- <input type="text" name="" class="input"> -->
                         </div>
     
@@ -68,7 +68,7 @@
 
 
 
-
+<template>
 
 <div class="app-component-box" *ngIf="lloginSuccess">
     <div class="main-box-container" >
@@ -251,4 +251,4 @@
     </div>
 
 
-
+</template>
