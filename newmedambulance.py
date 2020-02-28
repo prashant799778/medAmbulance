@@ -376,6 +376,7 @@ def verifyOtp():
             print("verifyOtp======",verifyOtp)
             if  (verifyOtp["status"]!="false") or verifyOtp!=None:
                 v=verifyOtp['result']['userId']
+                print(v)
                 v2=verifyOtp['result']['userTypeId']
                 if (v2 =='3' ) or (v2=='4'):
                     column='status'
@@ -385,7 +386,10 @@ def verifyOtp():
                     y=driverstatus['result']
                     verifyOtp['result'].update(y)
                     return verifyOtp
-                else:    
+                else:
+                    r={'status':0}
+                    verifyOtp['result'].update(r)
+
                     return verifyOtp
             else:
                 return verifyOtp 
