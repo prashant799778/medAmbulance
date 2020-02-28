@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
 	constructor(public userService: UserService,
 				public router: Router) {
 					this.loader = true;
+					console.log(console.log("vijay"))
 				}
 
 	ngOnInit() {

@@ -62,6 +62,7 @@ import { SubHeaderComponent } from './sub-admin/sub-header/sub-header.component'
 import { HospitalAccountComponent } from './hospital-admin/hospital-account/hospital-account.component';
 import { HospitalPastBookingComponent } from './hospital-admin/hospital-past-booking/hospital-past-booking.component';
 import { HospitalCurrentBookingComponent } from './hospital-admin/hospital-current-booking/hospital-current-booking.component';
+import { AllBikeComponent } from './bike/all-bike/all-bike.component';
 
 
 // export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
@@ -105,6 +106,7 @@ import { HospitalCurrentBookingComponent } from './hospital-admin/hospital-curre
     HospitalAccountComponent,
     HospitalPastBookingComponent,
     HospitalCurrentBookingComponent,
+    AllBikeComponent,
   ],
   imports: [
     BrowserModule,

@@ -26,6 +26,7 @@ import { AdminDashboardComponent } from './sub-admin/admin-dashboard/admin-dashb
 import { AllSubAdminComponent } from './sub-admin/all-sub-admin/all-sub-admin.component';
 import { HospitalAccountComponent } from './hospital-admin/hospital-account/hospital-account.component';
 import { HospitalPastBookingComponent } from './hospital-admin/hospital-past-booking/hospital-past-booking.component';
+import { AllBikeComponent } from './bike/all-bike/all-bike.component';
 
 
 const routes: Routes = [
@@ -74,6 +75,13 @@ const routes: Routes = [
 			{ path:'addVehicle',component: AddVehicleComponent,canActivate: [AuthGuard]},
 			{ path:'allVehicle',component: ViewAllVehicleComponent,canActivate: [AuthGuard]},
 			{ path:'editVehicle',component: EditVehicleComponent,canActivate: [AuthGuard]},
+		]
+	},
+	{ path: 'bike',
+		children: [                          //<---- child components declared here
+	  		{ path: '',redirectTo: '/bike/allBike',pathMatch:'full'}, 
+			{ path:'allBike',component: AllBikeComponent,canActivate: [AuthGuard]},
+			// { path:'fareList',component: FailListComponent,canActivate: [AuthGuard]},
 		]
 	},
 	{ path: 'fare',
