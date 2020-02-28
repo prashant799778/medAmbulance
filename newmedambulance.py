@@ -374,8 +374,19 @@ def verifyOtp():
             whereCondition= "  otp='" + otp+ "' and mobileNo='" + mobileNo+"'"
             verifyOtp=databasefile.SelectQuery(" userMaster ",column,whereCondition)
             print("verifyOtp======",verifyOtp)
-            if  (verifyOtp["status"]!="false") or verifyOtp!=None: 
-                return verifyOtp
+            if  (verifyOtp["status"]!="false") or verifyOtp!=None:
+                v=verifyOtp['result']['userId']
+                v2=verifyOtp['result']['userTypeId']
+                if (v2 ==3 ) or (v2==4):
+                    column='status'
+                    whereCondition2=" driverId='"+str(v)+"'"
+                    driverstatus=databasefile.SelectQuery('driverMaster',column,whereCondition2)
+                    print(driverstatus['result'])
+                    y=driverstatus['result']
+                    verifyOtp['result'].update(y)
+                    return verifyOtp
+                else:    
+                    return verifyOtp
             else:
                 return verifyOtp 
         else:
