@@ -382,11 +382,16 @@ def verifyOtp():
                     column='status'
                     whereCondition2=" driverId='"+str(v)+"'"
                     driverstatus=databasefile.SelectQuery('driverMaster',column,whereCondition2)
-                    print(driverstatus['result'])
-                    y=driverstatus['result']
-                    verifyOtp['result'].update(y)
-                    return verifyOtp
+                    if driverstatus['status']!='false':
+                        print(driverstatus['result'])
+                        y=driverstatus['result']
+                        verifyOtp['result'].update(y)
+                        return verifyOtp
+                    else:
+                        r={'status':0}
+                        verifyOtp['result'].update(r)    
                 else:
+                    print()
                     r={'status':0}
                     verifyOtp['result'].update(r)
 
