@@ -377,7 +377,7 @@ def verifyOtp():
             if  (verifyOtp["status"]!="false") or verifyOtp!=None:
                 v=verifyOtp['result']['userId']
                 v2=verifyOtp['result']['userTypeId']
-                if (v2 ==3 ) or (v2==4):
+                if (v2 =='3' ) or (v2=='4'):
                     column='status'
                     whereCondition2=" driverId='"+str(v)+"'"
                     driverstatus=databasefile.SelectQuery('driverMaster',column,whereCondition2)
