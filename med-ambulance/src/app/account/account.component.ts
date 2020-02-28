@@ -17,6 +17,7 @@ export class AccountComponent implements OnInit {
   showPasswords: boolean;
   // authsService: any;
   loginSuccess: boolean;
+  lloginSuccess: boolean;
   // local: any;
   constructor(public fb: FormBuilder,
     public userService: UserService,

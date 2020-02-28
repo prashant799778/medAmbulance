@@ -309,3 +309,275 @@ img.rt-banner {
             border-radius: 2px;
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+		html,body{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			box-sizing: border-box;
+			font-family: 'Poppins' ;
+		}
+		.allrapper {
+		    display: block;
+		    height: 100vh;
+		    width: 100%;
+		}
+		.wrapper {
+		    width: 800px;
+		    height: 450px;
+		    display: grid;
+		    grid-template-columns: 1fr 1fr;
+		    position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    transform: translate(-50%,-50%);
+		    padding: 1.3rem;
+		    box-shadow: -6px -6px 9px #fdfdfd, 6px 6px 5px #efefef;
+		    border-radius: 25px;
+		}
+
+		.right-wrapper img {
+		    width: 100%;
+		    height: 100%;
+		    object-fit: fill;
+		    object-position: center;
+		}
+		.avatar {
+		    width: 80px;
+		    object-fit: cover;
+		    object-position: center;
+		    margin: 0 auto;
+		    display: block;
+		}
+
+		form {
+		    width: 100%;
+		}
+
+
+
+/*		.img {
+		    display: flex;
+		    justify-content: flex-end;
+		    align-items: center;
+		}*/
+		.left-wrapper{
+			display: flex;
+		    justify-content: flex-end;
+		    align-items: center;
+		    width: 100%;
+		    height: 100%;
+		    padding: 0 18px;
+		}
+		form h2 {
+			font-size: 1rem;
+			text-transform: capitalize;
+			margin: 20px 0;
+			color: #5f5570;
+			font-weight: 600;
+			text-align: center;
+		}
+		.input-login-box{
+			position: relative;
+			display: grid;
+			grid-template-columns: 7% 93%;
+			margin: 25px 0;
+			padding: 5px 0;
+			border-bottom: 1px solid #f5f5f5;
+		}
+		.input-login-box:after, .input-login-box:before{
+			content: '';
+			position: absolute;
+			bottom: 0px;
+			width: 0;
+			height: 1px;
+			background: #e6a759;
+			transition: .3s;
+		}
+
+		.input-login-box:after{
+			right: 50%;
+		}
+
+		.input-login-box:before{
+			left: 50%;
+		}
+		
+		.input-login-box.focus:after, .input-login-box.focus:before{
+			width: 50%;
+		}
+
+		.input-login-box.one{
+			margin-top: 0px;
+		}
+		
+		.input-login-box.two{
+			margin-bottom: 4px;
+		}
+		
+		.input-login-box.focus .input-img svg{
+			fill: #e6a759;
+		}
+		.input-login-box.focus .input-section h5{
+			top: -5px;
+			font-size: 0.6rem;
+		}
+
+
+		.input-section {
+		    position: relative;
+		    height: 45px;
+		}
+		
+		.input-login-box.focus .input-section h5{
+			color: #f5b75f;
+		}
+		.input-section h5 {
+		        position: absolute;
+			    top: 50%;
+			    left: 10px;
+			    transform: translateY(-50%);
+			    color: #5f5570;
+			    font-size: 0.8rem;
+			    transition: .3s;
+			    font-weight: 500;
+			    text-transform: capitalize;
+			    margin: 0;
+		}
+
+
+		.input-section .input{
+				position: absolute;
+			    top: 0;
+			    left: 0;
+			    width: 100%;
+			    height: 100%;
+			    border: none;
+			    outline: none;
+			    background: none;
+			    padding: 0.5rem 0.7rem;
+			    font-size: 1rem;
+			    color: #3f3d56;
+			    font-weight: 500;
+		}
+
+		.forget{
+			display: block;
+		    text-align: right;
+		    text-decoration: none;
+		    font-size: 0.8rem;
+		    transition: 0.3s;
+		    color: #e6a759;
+		    margin: 2rem 0;
+		    font-weight: 500;
+		}
+		.forget:hover{
+			text-decoration: none;
+			color: #3a3768;
+		}
+
+		.login-btn {
+		    display: block;
+		    width: 100%;
+		    border-radius: 25px;
+		    font-size: 0.9rem;
+		    border: none;
+		    outline: none;
+		    text-transform: uppercase;
+		    background-image: linear-gradient(to right, #e6a759,#f7ba60,#e6a759);
+		    color: #fff;
+		    font-family: 'Poppins';
+		    background-size: 200%;
+		    transition: .5s;
+		    padding: 10px;
+		    font-weight: 500;
+		}
+
+		.login-btn:hover{
+			background-position: right; 
+		}
+		.input-img {
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		}
+
+		.input-img svg{
+		    width: 15px;
+		    height: 15px;
+		    object-fit: cover;
+		    object-position: center;
+		    fill: #5f5570;
+		    transition: .3s;
+		}
+
+		@media screen and (max-width: 714px){
+			.wrapper {
+			    width: 100%;
+			    display: block;
+			}
+
+			.right-wrapper {
+			    display: none;
+			}
+			.left-wrapper {
+			    display: flex;
+			    justify-content: flex-end;
+			    align-items: center;
+			    width: 100%;
+			    height: 100%;
+			}
+			.login-btn {
+			    margin-top: 2rem;
+			}
+			.avatar {
+			    width: 110px;
+			    object-fit: cover;
+			    object-position: center;
+			    margin: 0 auto;
+			    display: block;
+			}
+		}
+
+	
+
+	

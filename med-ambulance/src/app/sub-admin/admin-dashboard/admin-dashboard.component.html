@@ -33,7 +33,7 @@
                                         <td>{{driver.rideDate | date}}</td>
                                         <td>{{driver.driverName}}</td>
                                         <td>{{driver.driverMobile}}</td>
-                                        <td>{{driver.finalAmount}}</td>
+                                        <td>{{driver.finalAmount | currency:'INR'}}</td>
                                         <td>
                                                 <div class="btn-edit-group">
                                                     <button type="button" class="edit-btn" (click)="openMapModal(driver.pickup,driver.dropOff)" >

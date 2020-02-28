@@ -1,4 +1,76 @@
-<div class="app-component-box" *ngIf="!loginSuccess">
+<div class="allrapper fadeInDown animated" *ngIf="!loginSuccess">
+        <div class="wrapper ">
+            <div class="right-wrapper img">
+                <img src="../../assets/images/right-img.svg" class="img">
+            </div>
+            <div class="left-wrapper">
+            <form [formGroup]="loginForm" class="login-form-class"  autocomplete="off" >
+                <div  formGroupName="login" class="form-group input-box">
+                    <img src="../../assets/images/profile-img.svg" class="avatar">
+                    <h2>welcome</h2>
+    
+                    <div class="input-login-box one">
+    
+                        <div class="input-img">
+                            <svg viewBox="0 0 429.453 429.453">
+                                <path d="M214.727,241.894c-129.045,0-200.098,61.127-200.098,171.886c0,8.882,6.792,15.673,15.673,15.673   h368.849c8.882,0,15.673-6.792,15.673-15.673C414.824,303.02,343.771,241.894,214.727,241.894z" data-original="#4DCFE0" class="active-path"/>
+                                <path d="M214.727,218.906c57.469,0,103.967-50.678,103.967-112.849C318.694,45.453,273.763,0,214.727,0   S110.759,45.453,110.759,106.057C110.759,168.229,157.257,218.906,214.727,218.906z" data-original="#4DCFE0" class="active-path"/>
+                            </svg>
+                        </div>
+    
+                        <div class="input-section">
+                            <h5>user name</h5>
+                            <input type="email" class="form-control  wdt-s" formControlName="email" placeholder="Email Id" autocomplete="off" writeOnly>
+                            <div class="errors" *ngIf="loginForm.get('login').get('email').errors && (loginForm.get('login').get('email').touched || loginForm.get('login').get('email').dirty)">
+                                    <p *ngIf="loginForm.get('login').get('email').errors && loginForm.get('login').get('email').errors.required" class="alert-msg"> Please Enter  Email</p>  
+                                    <p *ngIf="loginForm.get('login').get('email').errors && loginForm.get('login').get('email').errors.pattern" class="alert-msg"> Enter Correct Email</p>
+                                </div>
+                            <!-- <input type="text" name="" class="input"> -->
+                        </div>
+    
+                    </div>
+                    
+                    <div class="input-login-box two">
+    
+                        <div class="input-img">
+                            <svg viewBox="-64 0 512 512">
+                                <path d="m336 192h-16v-64c0-70.59375-57.40625-128-128-128s-128 57.40625-128 128v64h-16c-26.453125 0-48 21.523438-48 48v224c0 26.476562 21.546875 48 48 48h288c26.453125 0 48-21.523438 48-48v-224c0-26.476562-21.546875-48-48-48zm-229.332031-64c0-47.0625 38.269531-85.332031 85.332031-85.332031s85.332031 38.269531 85.332031 85.332031v64h-170.664062zm0 0"/>
+                            </svg>
+                        </div>
+    
+                        <div class="input-section">
+                            <h5>password</h5>
+                            <input type="password" class="form-control wdt-s" formControlName="password" id="signInPass" placeholder="Password" autocomplete="off" writeOnly>
+            <img src="../../assets/images/eye.svg" *ngIf="showPasswords" class="pos-abs" (click)="showPassword('signInPass')">
+            <img src="../../assets/images/close-eye.svg" *ngIf="!showPasswords" class="pos-abs" (click)="showPassword('signInPass')">            
+                        </div>
+    
+                    </div>
+                    <div class="form-check">
+                            <input class="form-check-input form-control" type="checkbox" value="" id="defaultCheck1" formControlName="terms">
+                            <label class="form-check-label" for="defaultCheck1">
+                                I read and agree to the <span class="trm">Terms of Use.</span> 
+                            </label>
+                          </div>
+    
+                    <!-- <a href="#" class="forget">Forget Password ?</a> -->
+                    <button (click)="getLogin()" type="submit" id="signInLogin" class="sign-btn-bg-color">Sign In</button>
+                    <!-- <input type="submit" name="" value="login" class="login-btn"> -->
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+<div class="app-component-box" *ngIf="lloginSuccess">
     <div class="main-box-container" >
         <div class="wrap-container-box">
             <!-- <img src="../../assets/images/watermark.svg" class="water-mrk"> -->
