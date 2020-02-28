@@ -1,3 +1,10 @@
 .record-box tbody tr td {
+   
+}
+.record-box tbody tr td {
+    font-size: 13px;
+    font-weight: 500 !important;
     white-space: unset !important;
+    text-overflow: ellipsis;
+    width: 200px;
 }
