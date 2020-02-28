@@ -36,21 +36,49 @@ export class SideBarComponent implements OnInit {
 					elem.click()
 					jQuery("#allHospital").addClass("active")
 				},100)
-			}
-			if(this.locations == 'addHospital'){
+			}else if(this.locations == 'addHospital'){
 				setTimeout(()=>{
 					jQuery(".left-menu li").removeClass('active');
 					var elem = document.getElementById('hospital');
 					elem.click()
 					jQuery("#addHospital").addClass("active")
 				},100)
-			}
-			if(this.locations == 'allPassengers'){
+			}else if(this.locations == 'allPassengers'){
 				setTimeout(()=>{
 					jQuery(".left-menu li").removeClass('active');
 					jQuery("#allPassengers").addClass("active")
 				},100)
+			}else if(this.locations == 'bookedTrip'){
+				setTimeout(()=>{
+					jQuery(".left-menu li").removeClass('active');
+					var elem = document.getElementById('tripId');
+					elem.click()
+					jQuery("#tripIdB").addClass("active")
+				},100)
+			}else if(this.locations == 'completeTrip'){
+				setTimeout(()=>{
+					jQuery(".left-menu li").removeClass('active');
+					var elem = document.getElementById('tripId');
+					elem.click()
+					jQuery("#tripIdC").addClass("active")
+				},100)
+			}else if(this.locations == 'activeTrip'){
+				setTimeout(()=>{
+					jQuery(".left-menu li").removeClass('active');
+					var elem = document.getElementById('tripId');
+					elem.click()
+					jQuery("#tripIdA").addClass("active")
+				},100)
+			}else if(this.locations == 'cancelTrip'){
+				setTimeout(()=>{
+					jQuery(".left-menu li").removeClass('active');
+					var elem = document.getElementById('tripId');
+					elem.click()
+					jQuery("#tripIdCa").addClass("active")
+				},150)
 			}
+
+
 		}
 	}
 

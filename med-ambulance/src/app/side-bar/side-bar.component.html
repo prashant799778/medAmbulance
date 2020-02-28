@@ -72,7 +72,7 @@
 								<span class="title" (click)="goToPage('dashboard')">Dashboard</span>
 							</a>
 							</li>
-							<li>
+							<li id="tripId">
 								<a href="javascript:void(0)">
 								<span class="sid-icon">
 									<svg  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
@@ -94,10 +94,10 @@
 								<span class="title">Trip</span>
 							</a>
 								<ul class="menu-dropdown">
-									<li (click)="goToPage('trip/activeTrip')"><a href="javascript:void(0)">Active Trips</a></li>
-									<li (click)="goToPage('trip/completeTrip')"><a href="javascript:void(0)">Completed Trips</a></li>
-									<li (click)="goToPage('trip/bookedTrip')"><a href="javascript:void(0)">Booked Trips</a></li>
-									<li (click)="goToPage('trip/cancelTrip')"><a href="javascript:void(0)">Cancel Trips</a></li>
+									<li id="tripIdA" (click)="goToPage('trip/activeTrip')"><a href="javascript:void(0)">Active Trips</a></li>
+									<li id="tripIdC" (click)="goToPage('trip/completeTrip')"><a href="javascript:void(0)">Completed Trips</a></li>
+									<li id="tripIdB" (click)="goToPage('trip/bookedTrip')"><a href="javascript:void(0)">Booked Trips</a></li>
+									<li id="tripIdCa" (click)="goToPage('trip/cancelTrip')"><a href="javascript:void(0)">Cancel Trips</a></li>
 								</ul>
 							</li>
 							<li (click)="goToPage('driver/allDriver')">
