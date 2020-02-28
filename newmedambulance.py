@@ -3927,11 +3927,22 @@ def updateStatus():
             # if (data !=0):
             #     if data[0]['status']==0:
             #         print('111111111111111111')
+
+
             column="status='1'"
             whereCondition= "  driverId = '" + str(driverId)+ "' "
             output1=databasefile.UpdateQuery("driverMaster",column,whereCondition)
             output=output1
             if output!='0':
+                column=  " deviceKey "
+                whereCondition= " userId = '" + str(userId) + "'"
+                deviceKey=databasefile.SelectQuery("userMaster",column,whereCondition)
+                deviceKey=deviceKey["result"]["deviceKey"]
+
+
+
+
+                a = notification.notification1(deviceKey)
                 Data = {"status":"true","message":"","result":output["result"]}                  
                 return Data
             else:

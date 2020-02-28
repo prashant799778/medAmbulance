@@ -10,6 +10,7 @@ import databasefile
 import commonfile
 import requests
 import config
+import producer
 
 
 
@@ -26,4 +27,23 @@ def notification(deviceKey):
     except Exception as e :
         print("Exception--->" + str(e))                                  
         return commonfile.Errormessage()
+
+
+
+
+def notification1(deviceKey):
+    try:
+        # config.data["to"]=str(deviceKey)
+        # print(config.data)
+        r=requests.post(config.URL, headers=config.headers, data=json.dumps(producer.data))
+        response=json.loads(r.text) 
+        if response:
+            return response
+        else:
+            return commonfile.Errormessage()
+    except Exception as e :
+        print("Exception--->" + str(e))                                  
+        return commonfile.Errormessage()        
+
+
 
