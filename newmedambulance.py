@@ -340,10 +340,11 @@ def userSignup():
 
                 if data != "0":
                     column = '*'
+                    WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
                     
-                    data = databasefile.SelectQuery2("userMaster",column,WhereCondition,"",startlimit,endlimit)
-                    print(data)
-                    Data = {"status":"true","message":"","result":data["result"][0]}                  
+                    data111 = databasefile.SelectQuery1("userMaster",column,WhereCondition)
+                    print(data111)
+                    Data = {"status":"true","message":"","result":data111['result']}                  
                     return Data
                 else:
                     return commonfile.Errormessage()
