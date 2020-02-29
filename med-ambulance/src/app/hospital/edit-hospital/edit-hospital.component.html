@@ -1,25 +1,88 @@
 <div class="container-fluid">
-        <form [formGroup]="hospitalForm">
-    
-            <div class="row">
-                <div class="col-sm-12 col-md-12">
-                    <h2 class="box-heading-tp">{{viewEdit}} Hospital</h2>
-                    <div class="top-heading bg-white">
-                        <h2 class="heading-bx">{{viewEdit}} Hospital</h2>
-                        <div class="form-sectionn  p-4">
-                                <div class="inner-f-section">
-                            
+    <form [formGroup]="hospitalForm">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+            
+                <h2 class="box-heading-tp">{{viewEdit}} Hospital</h2>
+                <div class="top-heading bg-white">
+                    <h2 class="heading-bx">Basic Information</h2>
+                    <div class="form-sectionn  p-4">
+                            <div class="inner-f-section">
+                        
+                                    <div class="form-box">
                                         <div class="form-box">
-                                            <div class="form-box">
-                                                <label>Name</label>
-                                                <input type="text" formControlName="hospitalName">
-                                                <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
-                                                    <p>Please enter Name</p>
-                                                </div>
+                                            <label>Name</label>
+                                            <input type="text" formControlName="hospitalName">
+                                            <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                                <p>Please enter Name</p>
                                             </div>
                                         </div>
-                                        <div class="form-box position-relative">
-                                            <label>Facility Type</label>
+                                    </div>
+                                    <div class="form-box position-relative">
+                                        <label>Facility Type</label>
+                                        <ng-select 
+                                            [items]="facityId"
+                                            bindLabel="name"
+                                            bindValue="id"
+                                            labelForId="name"
+                                            multiple = "true"
+                                            [clearable]="false"
+                                            formControlName="facilityId">
+                                        </ng-select>
+                                        <div class="error" *ngIf="hospitalForm.get('facilityId').errors && (hospitalForm.get('facilityId').touched || hospitalForm.get('facilityId').dirty)">
+                                            <p>Please Select Facility</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-box">
+                                        <label>Ambulance Type</label>
+                                        <ng-select 
+                                            [items]="ambType"
+                                            bindLabel="ambulanceType"
+                                            bindValue="id"
+                                            labelForId="ambulanceType"
+                                            multiple = "true"
+                                            [clearable]="false"
+                                            formControlName="ambulanceId">
+                                            </ng-select>
+                                            <div class="error" *ngIf="hospitalForm.get('ambulanceId').errors && (hospitalForm.get('ambulanceId').touched || hospitalForm.get('ambulanceId').dirty)">
+                                            <p>Please Select Ambulance Type</p>
+                                        </div> 
+                                    </div>
+                                    <div class="form-box">
+                                        <label>Address</label>
+                                        <input type="text" formControlName="address">
+                                        <div class="error" *ngIf="hospitalForm.get('address').errors && (hospitalForm.get('address').touched || hospitalForm.get('address').dirty)">
+                                            <p>Please Enter Address</p>
+                                        </div>
+                                    </div>
+        
+                                    <div class="form-box">
+                                        <label>City</label>
+                                        <select formControlName="cityId">
+                                            <option *ngFor="let city of city" [value]="city.id">{{city.name}}</option>
+                                        </select>
+                                        <div class="error" *ngIf="hospitalForm.get('cityId').errors && (hospitalForm.get('cityId').touched || hospitalForm.get('cityId').dirty)">
+                                            <p>Please Select City</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-box">
+                                        <label>Latitude</label>
+                                        <input type="text" formControlName="lat">
+                                        <div class="error" *ngIf="hospitalForm.get('lat').errors && (hospitalForm.get('lat').touched || hospitalForm.get('lat').dirty)">
+                                            <p>Please Enter Latitude</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-box">
+                                        <label>Longitude</label>
+                                        <input type="text" formControlName="lng">
+                                        <div class="error" *ngIf="hospitalForm.get('lng').errors && (hospitalForm.get('lng').touched || hospitalForm.get('lng').dirty)">
+                                            <p>Please Enter Longitude</p>
+                                        </div>
+                                    </div>  
+                                    <div class="form-box">
+                                        <div class="form-box">
+                                            <label>Empanelment</label>
                                             <ng-select 
                                                 [items]="facityId"
                                                 bindLabel="name"
@@ -29,79 +92,291 @@
                                                 [clearable]="false"
                                                 formControlName="facilityId">
                                             </ng-select>
-                                            <div class="error" *ngIf="hospitalForm.get('facilityId').errors && (hospitalForm.get('facilityId').touched || hospitalForm.get('facilityId').dirty)">
-                                                <p>Please Select Facility</p>
+                                            <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                                <p>Please enter Name</p>
                                             </div>
                                         </div>
-                                        <div class="form-box">
-                                            <label>Ambulance Type</label>
-                                            <ng-select 
-                                                [items]="ambType"
-                                                bindLabel="ambulanceType"
-                                                bindValue="id"
-                                                labelForId="ambulanceType"
-                                                multiple = "true"
-                                                [clearable]="false"
-                                                formControlName="ambulanceId">
-                                             </ng-select>
-                                             <div class="error" *ngIf="hospitalForm.get('ambulanceId').errors && (hospitalForm.get('ambulanceId').touched || hospitalForm.get('ambulanceId').dirty)">
-                                                <p>Please Select Ambulance Type</p>
-                                            </div> 
-                                        </div>
-                                        <div class="form-box">
-                                            <label>Address</label>
-                                            <input type="text" formControlName="address">
-                                            <div class="error" *ngIf="hospitalForm.get('address').errors && (hospitalForm.get('address').touched || hospitalForm.get('address').dirty)">
-                                                <p>Please Enter Address</p>
-                                            </div>
-                                        </div>
-            
-                                        <div class="form-box">
-                                            <label>City</label>
-                                            <select formControlName="cityId">
-                                                <option *ngFor="let city of city" [value]="city.id">{{city.name}}</option>
-                                            </select>
-                                            <div class="error" *ngIf="hospitalForm.get('cityId').errors && (hospitalForm.get('cityId').touched || hospitalForm.get('cityId').dirty)">
-                                                <p>Please Select City</p>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="form-box">
-                                            <label>Latitude</label>
-                                            <input type="text" formControlName="lat">
-                                            <div class="error" *ngIf="hospitalForm.get('lat').errors && (hospitalForm.get('lat').touched || hospitalForm.get('lat').dirty)">
-                                                <p>Please Enter Latitude</p>
-                                            </div>
-                                        </div>
-                                        <div class="form-box">
-                                            <label>Longitude</label>
-                                            <input type="text" formControlName="lng">
-                                            <div class="error" *ngIf="hospitalForm.get('lng').errors && (hospitalForm.get('lng').touched || hospitalForm.get('lng').dirty)">
-                                                <p>Please Enter Longitude</p>
-                                            </div>
-                                        </div>    
-                                    </div>
-                            
-                            <div class="btnn-group text-center mt-3 mb-3" *ngIf="views">
-                                    <button (click)="updateData()" type="button" class="sub-btn gp-btn-clr text-white">Update</button>
-                                    <!-- <button (click)="resetForm()" type="button" class="sub-btn gp-btn-clr2 text-white">cancel</button> -->
+                                    </div>  
                                 </div>
-                            <!-- <div class="inner-f-section"> -->
-                               
-                                
-                                <!-- <div class="form-box">
-                                    <label>Category</label>
-                                    <input type="text" formControlName="category">
-                                </div> -->
-                            <!-- </div> -->
-                        </div>
+                        
+                        <div class="btnn-group text-center mt-3 mb-3" *ngIf="views">
+                                <button (click)="updateData()" type="button" class="sub-btn gp-btn-clr text-white">Update</button>
+                                <!-- <button (click)="resetForm()" type="button" class="sub-btn gp-btn-clr2 text-white">cancel</button> -->
+                            </div>
+                        <!-- <div class="inner-f-section"> -->
+                            
+                            
+                            <!-- <div class="form-box">
+                                <label>Category</label>
+                                <input type="text" formControlName="category">
+                            </div> -->
+                        <!-- </div> -->
                     </div>
+                    <h2 class="heading-bx">Key Contact Person Details</h2>
+                    <div class="form-sectionn  p-4">
+                            <div class="inner-f-section">
+                        
+                                    <div class="form-box">
+                                        <div class="form-box">
+                                            <label>Name</label>
+                                            <input type="text" formControlName="hospitalName">
+                                            <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                                <p>Please enter Name</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-box position-relative">
+                                        <label>Moblie</label>
+                                        <input type="text" formControlName="key">
+                                        
+                                        <div class="error" *ngIf="hospitalForm.get('facilityId').errors && (hospitalForm.get('facilityId').touched || hospitalForm.get('facilityId').dirty)">
+                                            <p>Please Select Facility</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-box">
+                                        <label>Line TelePhone No</label>
+                                        <input type="text" formControlName="tele">
+                                            <div class="error" *ngIf="hospitalForm.get('ambulanceId').errors && (hospitalForm.get('ambulanceId').touched || hospitalForm.get('ambulanceId').dirty)">
+                                            <p>Please Select Ambulance Type</p>
+                                        </div> 
+                                    </div>
+                                    <div class="form-box">
+                                        <label>Email</label>
+                                        <input type="text" formControlName="em">
+                                        <div class="error" *ngIf="hospitalForm.get('address').errors && (hospitalForm.get('address').touched || hospitalForm.get('address').dirty)">
+                                            <p>Please Enter Address</p>
+                                        </div>
+                                    </div>
+        
+                                    <div class="form-box">
+                                        <label>Fax</label>
+                                        <input type="text" formControlName="fax">
+                                        <div class="error" *ngIf="hospitalForm.get('cityId').errors && (hospitalForm.get('cityId').touched || hospitalForm.get('cityId').dirty)">
+                                            <p>Please Select City</p>
+                                        </div>
+                                    </div>
+                                    
+                                        
+                                </div>
+                        
+                        <div class="btnn-group text-center mt-3 mb-3" *ngIf="views">
+                                <button (click)="updateData()" type="button" class="sub-btn gp-btn-clr text-white">Update</button>
+                                <!-- <button (click)="resetForm()" type="button" class="sub-btn gp-btn-clr2 text-white">cancel</button> -->
+                            </div>
+                        <!-- <div class="inner-f-section"> -->
+                            
+                            
+                            <!-- <div class="form-box">
+                                <label>Category</label>
+                                <input type="text" formControlName="category">
+                            </div> -->
+                        <!-- </div> -->
+                    </div>
+                    <h2 class="heading-bx">Accreditaion</h2>
+                    <div class="form-sectionn  p-4">
+                            <div class="inner-f-section">
+                        
+                                    <div class="form-box">
+                                        <div class="form-box">
+                                            <label>A</label>
+                                            <input type="text" formControlName="AhospitalName">
+                                            <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                                <p>Please enter Name</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-box">
+                                        <div class="form-box">
+                                            <label>B</label>
+                                            <input type="text" formControlName="BhospitalName">
+                                            <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                                <p>Please enter Name</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-box">
+                                        <div class="form-box">
+                                            <label>C</label>
+                                            <input type="text" formControlName="ChospitalName">
+                                            <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                                <p>Please enter Name</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                        
+                                </div>
+                        
+                        <div class="btnn-group text-center mt-3 mb-3" *ngIf="views">
+                                <button (click)="updateData()" type="button" class="sub-btn gp-btn-clr text-white">Update</button>
+                                <!-- <button (click)="resetForm()" type="button" class="sub-btn gp-btn-clr2 text-white">cancel</button> -->
+                            </div>
+                        <!-- <div class="inner-f-section"> -->
+                            
+                            
+                            <!-- <div class="form-box">
+                                <label>Category</label>
+                                <input type="text" formControlName="category">
+                            </div> -->
+                        <!-- </div> -->
+                    </div>
+                    <h2 class="heading-bx">Emercency Key Contact Person Details</h2>
+                    <div class="form-sectionn  p-4">
+                            <div class="inner-f-section">
+                        
+                                    <div class="form-box">
+                                        <div class="form-box">
+                                            <label>Name</label>
+                                            <input type="text" formControlName="eName">
+                                            <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                                <p>Please enter Name</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-box">
+                                        <div class="form-box">
+                                            <label>Designaton</label>
+                                            <input type="text" formControlName="edesgin">
+                                            <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                                <p>Please enter Name</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-box">
+                                        <div class="form-box">
+                                            <label>Contact no</label>
+                                            <input type="text" formControlName="eCOnt">
+                                            <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                                <p>Please enter Name</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                        
+                                </div>
+                        
+                        <div class="btnn-group text-center mt-3 mb-3" *ngIf="views">
+                                <button (click)="updateData()" type="button" class="sub-btn gp-btn-clr text-white">Update</button>
+                                <!-- <button (click)="resetForm()" type="button" class="sub-btn gp-btn-clr2 text-white">cancel</button> -->
+                            </div>
+                        <!-- <div class="inner-f-section"> -->
+                            
+                            
+                            <!-- <div class="form-box">
+                                <label>Category</label>
+                                <input type="text" formControlName="category">
+                            </div> -->
+                        <!-- </div> -->
+                    </div>
+                    <h2 class="heading-bx">Total Number Of Beds</h2>
+                    <div class="form-sectionn  p-4">
+                            <div class="inner-f-section">
+                        
+                                    <div class="form-box">
+                                        <div class="form-box">
+                                            <label>Casuality/Emergency Beds</label>
+                                            <input type="text" formControlName="eName">
+                                            <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                                <p>Please enter Name</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-box">
+                                        <div class="form-box">
+                                            <label>ICU</label>
+                                            <input type="text" formControlName="edesgin">
+                                            <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                                <p>Please enter Name</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-box">
+                                        <div class="form-box">
+                                            <label>General Beds</label>
+                                            <input type="text" formControlName="eCOnt">
+                                            <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                                <p>Please enter Name</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                        
+                                </div>
+                        
+                        <div class="btnn-group text-center mt-3 mb-3" *ngIf="views">
+                                <button (click)="updateData()" type="button" class="sub-btn gp-btn-clr text-white">Update</button>
+                                <!-- <button (click)="resetForm()" type="button" class="sub-btn gp-btn-clr2 text-white">cancel</button> -->
+                            </div>
+                        <!-- <div class="inner-f-section"> -->
+                            
+                            
+                            <!-- <div class="form-box">
+                                <label>Category</label>
+                                <input type="text" formControlName="category">
+                            </div> -->
+                        <!-- </div> -->
+                    </div>
+                    <h2 class="heading-bx">Total Number Of Doctors</h2>
+                    <div class="form-sectionn  p-4">
+                        <div class="inner-f-section">
+                            <div class="form-box">
+                                <div class="form-box">
+                                    <label>No. of in house Doctors</label>
+                                    <input type="text" formControlName="eName">
+                                    <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                        <p>Please enter Name</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-box">
+                                <div class="form-box">
+                                    <label>No. of in house Specialist/consultants</label>
+                                    <input type="text" formControlName="edesgin">
+                                    <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                        <p>Please enter Name</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                    <h2 class="heading-bx">Emergency Department</h2>
+                    <div class="form-sectionn  p-4">
+                        <div class="inner-f-section">
+                            <div class="form-box">
+                                <div class="form-box">
+                                    <label>Yes</label>
+                                    <input type="checkbox" formControlName="eName">
+                                    <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                        <p>Please enter Name</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-box">
+                                <div class="form-box">
+                                    <label>No</label>
+                                    <input type="checkbox" formControlName="edesgin">
+                                    <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                        <p>Please enter Name</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                        
+                    
+                                    
+                                    
+                                        
+                </div>
+                        
+                <div class="btnn-group text-center mt-3 mb-3" *ngIf="views">
+                        <button (click)="updateData()" type="button" class="sub-btn gp-btn-clr text-white">Update</button>
+                        <!-- <button (click)="resetForm()" type="button" class="sub-btn gp-btn-clr2 text-white">cancel</button> -->
                 </div>
             </div>
-            <!-- <div class="row">
-                <div class="col">
-                    <my-date-picker class="dpk-lk" name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required formControlName="registrationDate"></my-date-picker>
-                </div>
-            </div> -->
-        </form>
-    </div>
+        </div>
+    </form>
+</div>

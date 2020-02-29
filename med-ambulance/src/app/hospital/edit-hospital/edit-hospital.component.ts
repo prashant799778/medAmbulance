@@ -62,7 +62,29 @@ export class EditHospitalComponent implements OnInit {
 			lng: ['',Validators.required],
 			facilityId: ['',Validators.required],
 			cityId: ['',Validators.required],
-			id: ['']
+			id: [''],
+			empanelment: [''],
+
+			keyPersonName: [''],
+			keyPersonTelephone: [''],
+			keyPersonMobileNo: [''],
+			keyPersonEmail: [''],
+			keyPersonFax: [''],
+
+			accreditaionA: [''],
+			accreditaionB: [''],
+			accreditaionC: [''],
+
+			emergencyKeyName: [''],
+			emergencyKeyMobileNo: [''],
+			emergencyKeyDesignation: [''],
+
+			emergencyBed: [''],
+			ICUBed: [''],
+			generalBed: [''],
+
+			inHouseDoctor: [''],
+			inHouseSpecialist: ['']
 		})
 	}
 	initializeForm(){
