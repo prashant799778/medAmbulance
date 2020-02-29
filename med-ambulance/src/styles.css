@@ -118,8 +118,6 @@ body{
 
 /* Left Sidebar Section Css*/
 	.top-logo-side{
-		height: var(--hight);
-		background-color: var(--white);
 		text-decoration: none;
 		padding: 0px 10px;
 	}
@@ -238,7 +236,7 @@ body{
 	.wrapper-container.collapse > .left-sidebar > app-side-bar .top-logo-side > .logo-title{
 		display: none !important;
 	}
-	.wrapper-container.collapse > .left-sidebar > app-side-bar > .left-profile{
+	.wrapper-container.collapse > .left-sidebar > app-side-bar > .all-left-wrapp > .left-profile{
 		display: none !important;
 	}
 	.wrapper-container.collapse > .top-bar{
@@ -756,13 +754,69 @@ img.altr {
     top: 24px;
 }
 /* Modal Css End */
-
-
+.left-up-side-logo {
+	display: flex;
+	height: var(--hight);
+	background-color: var(--white);
+}
+.left-top-bar-sm{
+	display: none !important;
+}
 .wrapper-container.collapse > .left-sidebar li .menu-dropdown {
     display: none !important;
 }
 
+@media screen and (max-width:426px){
+	.logo-title {
+		display: none !important;
+	}
+}
 
+
+@media screen and (max-width:700px){
+	.wrapper-container {
+		display: unset !important;
+	}
+	.left-sidebar {
+		width: 100%;
+		position: unset;
+	}
+
+	.right-top-bar-md {
+		display: none !important;
+	}
+	.left-top-bar-sm{
+		display: block !important;
+	}
+	.right-top-bar-md{
+		display: none !important;
+	}
+	.top-bar {
+		width: 100%;
+		margin-left: 0;
+	}
+	
+	.inner-topbar {
+		position: unset;
+		width: 100%;
+	}
+	.sm-toggle > div {
+		height: 1px;
+		width: 23px;
+		background: #a7b5c6;
+		margin-bottom: 5px;
+	}
+	.wrapper-top-content {
+		display: flex !important;
+		justify-content: flex-end;
+		align-items: center;
+		height: 57px;
+	}
+	.mt-con-1 {
+		margin-top: 1rem !important;
+	}
+
+}
 
 @media screen and (max-width:767px){
 	.srch-option li:last-child{

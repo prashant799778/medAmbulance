@@ -55,7 +55,7 @@ html,body{
 		    align-items: center;
 		    width: 100%;
 		    height: 100%;
-		    padding: 0 18px;
+		    padding: 0 2rem;
 		}
 		form h2 {
 			font-size: 1rem;
@@ -69,9 +69,26 @@ html,body{
 			position: relative;
 			display: grid;
 			grid-template-columns: 12% 76% 12%;
-			margin: 25px 0;
+			margin: 10px 0;
 			padding: 5px 0;
 			border-bottom: 1px solid #f5f5f5;
+		}
+		p.alert-msg {
+			margin: 0;
+			font-size: 0.8rem;
+			color: #ec1802;
+			font-weight: 500;
+			margin-left: 20px;
+		}
+		.label-term {
+			margin-left: 12px;
+		}
+		.input-section input::placeholder {
+			font-size: 0.8rem !important;
+			font-weight: 600;
+		}
+		.msg-sh {
+			height: 20px;
 		}
 		/* .passw{
 			grid-template-columns: 12% 76% 12%;
@@ -122,7 +139,7 @@ html,body{
 
 		.input-section {
 		    position: relative;
-		    height: 45px;
+		    height: 35px;
 		}
 		
 		.input-login-box.focus .input-section h5{
@@ -164,7 +181,7 @@ html,body{
 		    font-size: 0.8rem;
 		    transition: 0.3s;
 		    color: #e6a759;
-		    margin: 2rem 0;
+		    margin: 1.3rem 8px;
 		    font-weight: 500;
 		}
 		.forget:hover{
@@ -227,9 +244,6 @@ html,body{
 			    width: 100%;
 			    height: 100%;
 			}
-			.login-btn {
-			    margin-top: 2rem;
-			}
 			.avatar {
 			    width: 110px;
 			    object-fit: cover;
@@ -239,6 +253,10 @@ html,body{
 			}
 		}
 
-	
+		@media screen and (max-width: 480px){
+			.left-wrapper{
+				padding: unset !important;
+			}
+		}
 
 	

@@ -16,7 +16,34 @@ export class SideBarComponent implements OnInit {
 	subAdmin: boolean;
 
 	constructor(public router:Router,public authsService: AuthsService,public userService:UserService,
-				public local: LocalStorageService) { }
+				public local: LocalStorageService) {
+					(function($) {
+						
+						var $window = $(window),
+					  
+							$html = $('.all-left-wrapp');
+						
+			  
+						function resize() {
+						
+							if ($window.width() < 700) {
+							  console.log("inside if")
+								return $(".all-left-wrapp").addClass('collapse');
+							}
+							else{
+								console.log("inside else")
+								$(".all-left-wrapp").removeClass('collapse');
+								
+							}
+			  
+							
+						}
+						
+						$window
+							.resize(resize)
+							.trigger('resize');
+					})(jQuery);
+				 }
 
 	ngOnInit() {
 		if(this.local.get('userData1') && this.local.get('userData1').userTypeId && this.local.get('userData1').userTypeId == 5){

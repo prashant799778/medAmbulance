@@ -13,7 +13,8 @@ export class HeaderComponent implements OnInit {
   activatedds: boolean;
   constructor(public authsService: AuthsService,
              public local: LocalStorageService) {
-                this.activatedds = false
+                this.activatedds = false;
+               
               }
 
   ngOnInit() {
@@ -24,6 +25,15 @@ export class HeaderComponent implements OnInit {
        jQuery(".wrapper-container").toggleClass("collapse");
       })
     })
+
+    jQuery(document).ready(function(){
+      jQuery(".sm-toggle").click(function(){
+        jQuery(".all-left-wrapp").toggleClass("collapse");
+       })
+     })
+
+        
+
     if(this.local.get('userData1') && this.local.get('userData1')[0] && this.local.get('userData1')[0].userName){
       console.log(this.local.get('userData1')[0].userName)
       this.userName = this.local.get('userData1')[0].userName
