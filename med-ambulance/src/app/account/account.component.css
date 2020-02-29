@@ -20,7 +20,7 @@ html,body{
 		    left: 50%;
 		    transform: translate(-50%,-50%);
 		    padding: 1.3rem;
-		    box-shadow: -6px -6px 9px #FDFDFD, 6px 6px 8px #dadada;
+		    box-shadow: -6px -6px 9px #f3f3f3, 6px 6px 8px #dedede;
 		    border-radius: 25px;
 		}
 
@@ -94,7 +94,7 @@ html,body{
 			grid-template-columns: 12% 76% 12%;
 		} */
 		.box-shaw-input {
-			box-shadow: -4px -4px 6px #fff, 4px 4px 6px #bdbdbd;
+			box-shadow: -6px -6px 9px #f3f3f3, 6px 6px 9px #dedede;
 			border-radius: 25px;
 			border: 0;
 		}
