@@ -593,9 +593,14 @@ input.upload-fil:focus {
 	white-space: nowrap;
 }
 .left-menu {
-  	overflow-y: auto;
-    height: calc(100% - 28%);
+	overflow-y: auto;
+    height: calc(100% - 27%);
     scroll-behavior: smooth;
+}
+.all-left-wrapp {
+    height: 100%;
+    display: block;
+    width: 100%;
 }
 .action-i{
 	fill: #fff !important;
