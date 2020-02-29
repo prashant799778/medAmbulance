@@ -133,6 +133,11 @@ export class DashboardComponent implements OnInit {
 			}
 		})
 	}
+	deleteDriver(id){
+		this.userService.deleteData('Driver',id)
+		
+		jQuery('#deleteModal').modal('show')
+	}
 	
 
 }
