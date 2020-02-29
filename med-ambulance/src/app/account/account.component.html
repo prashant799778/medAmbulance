@@ -19,17 +19,20 @@
                         </div>
     
                         <div class="input-section">
-                            <!-- <h5>user name</h5> -->
                             <input type="email" class="input" formControlName="email" autocomplete="off" writeOnly>
-                            <div class="errors" *ngIf="loginForm.get('login').get('email').errors && (loginForm.get('login').get('email').touched || loginForm.get('login').get('email').dirty)">
+                            <!-- <div class="errors" *ngIf="loginForm.get('login').get('email').errors && (loginForm.get('login').get('email').touched || loginForm.get('login').get('email').dirty)">
                                     <p *ngIf="loginForm.get('login').get('email').errors && loginForm.get('login').get('email').errors.required" class="alert-msg"> Please Enter  Email</p>  
                                     <p *ngIf="loginForm.get('login').get('email').errors && loginForm.get('login').get('email').errors.pattern" class="alert-msg"> Enter Correct Email</p>
-                             </div>
-                            <!-- <input type="text" name="" class="input"> -->
+                             </div> -->
                         </div>
     
                     </div>
-                    
+                    <div class="msg-sh">
+                    <div class="errors" *ngIf="loginForm.get('login').get('email').errors && (loginForm.get('login').get('email').touched || loginForm.get('login').get('email').dirty)">
+                        <p *ngIf="loginForm.get('login').get('email').errors && loginForm.get('login').get('email').errors.required" class="alert-msg"> Please Enter  Email</p>  
+                        <p *ngIf="loginForm.get('login').get('email').errors && loginForm.get('login').get('email').errors.pattern" class="alert-msg"> Enter Correct Email</p>
+                 </div>
+                </div>
                     <div class="input-login-box two passw box-shaw-input ">
     
                         <div class="input-img">
@@ -39,7 +42,6 @@
                         </div>
     
                         <div class="input-section" >
-                            <!-- <h5>password</h5> -->
                             <input type="password" class="input" formControlName="password" id="signInPass" autocomplete="off" writeOnly>
                         </div>
                         <div class="input-img">
@@ -53,16 +55,9 @@
                         <a href="#" class="forget"> I read and agree to the <span class="trm">Terms of Use.</span> </a>
                        
                     </div>
-                    <!-- <div class="form-check">
-                            <input class="form-check-input form-control" type="checkbox" value="" id="defaultCheck1" formControlName="terms">
-                            <label class="form-check-label" for="defaultCheck1">
-                                I read and agree to the <span class="trm">Terms of Use.</span> 
-                            </label>
-                          </div> -->
     
-                    <!-- <a href="#" class="forget">Forget Password ?</a> -->
                     <button (click)="getLogin()" type="submit" id="signInLogin" class="sign-btn-bg-color login-btn">Sign In</button>
-                    <!-- <input type="submit" name="" value="login" class="login-btn"> -->
+
                 </div>
                 </form>
             </div>
