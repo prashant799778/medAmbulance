@@ -21,7 +21,7 @@
                         <div class="input-section">
                             <!-- <h5>user name</h5> -->
                             <input type="email" class="input" formControlName="email" autocomplete="off" writeOnly>
-                            <div class="errors" *ngIf="loginForm.get('login').get('email').errors && (loginForm.get('login').get('email').touched || loginForm.get('login').get('email').dirty)">
+                            <div class="error" *ngIf="loginForm.get('login').get('email').errors && (loginForm.get('login').get('email').touched || loginForm.get('login').get('email').dirty)">
                                     <p *ngIf="loginForm.get('login').get('email').errors && loginForm.get('login').get('email').errors.required" class="alert-msg"> Please Enter  Email</p>  
                                     <p *ngIf="loginForm.get('login').get('email').errors && loginForm.get('login').get('email').errors.pattern" class="alert-msg"> Enter Correct Email</p>
                              </div>
