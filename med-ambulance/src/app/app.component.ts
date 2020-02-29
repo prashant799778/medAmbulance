@@ -133,4 +133,7 @@ export class AppComponent {
 		}
 		
 	}
+	clsoeModal(){
+		jQuery('#deleteModal').modal('hide')
+	}
 }

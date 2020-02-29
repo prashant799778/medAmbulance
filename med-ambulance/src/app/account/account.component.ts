@@ -65,9 +65,9 @@ export class AccountComponent implements OnInit {
 	}
 	getLogin(){
 		
-		if(this.loginForm.get('login').get('terms').value == false){
-			this.errors = 'Please select the terms and conditions'
-		}else{
+		// if(this.loginForm.get('login').get('terms').value == false){
+		// 	this.errors = 'Please select the terms and conditions'
+		// }else{
       let userData = this.loginForm.get('login').value;
       console.log(userData)
 			this.authsService.login(userData).subscribe(resp =>{
@@ -86,7 +86,7 @@ export class AccountComponent implements OnInit {
 					this.errors = resp['message']
 				}
 			})
-		}
+		// }
 
 		
 			
