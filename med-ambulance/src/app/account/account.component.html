@@ -1,11 +1,11 @@
-<div class="allrapper fadeInDown animated" *ngIf="!loginSuccess">
+<div class="allrapper " *ngIf="!loginSuccess">
         <div class="wrapper ">
             <div class="right-wrapper img">
                 <img src="../../assets/images/right-img.svg" class="img">
             </div>
             <div class="left-wrapper">
             <form [formGroup]="loginForm" class="login-form-class"  autocomplete="off" >
-                <div  formGroupName="login" class="form-group input-box">
+                <div  formGroupName="login" class="numl">
                     <img src="../../assets/images/profile-img.svg" class="avatar">
                     <h2>welcome</h2>
     
@@ -19,12 +19,12 @@
                         </div>
     
                         <div class="input-section">
-                            <h5>user name</h5>
-                            <input type="email" class="form-control  wdt-s" formControlName="email" placeholder="Email Id" autocomplete="off" writeOnly>
+                            <!-- <h5>user name</h5> -->
+                            <input type="email" class="input" formControlName="email" autocomplete="off" writeOnly>
                             <div class="errors" *ngIf="loginForm.get('login').get('email').errors && (loginForm.get('login').get('email').touched || loginForm.get('login').get('email').dirty)">
                                     <p *ngIf="loginForm.get('login').get('email').errors && loginForm.get('login').get('email').errors.required" class="alert-msg"> Please Enter  Email</p>  
                                     <p *ngIf="loginForm.get('login').get('email').errors && loginForm.get('login').get('email').errors.pattern" class="alert-msg"> Enter Correct Email</p>
-                                </div>
+                             </div>
                             <!-- <input type="text" name="" class="input"> -->
                         </div>
     
@@ -38,23 +38,26 @@
                             </svg>
                         </div>
     
-                        <div class="input-section">
-                            <h5>password</h5>
-                            <input type="password" class="form-control wdt-s" formControlName="password" id="signInPass" placeholder="Password" autocomplete="off" writeOnly>
-            <img src="../../assets/images/eye.svg" *ngIf="showPasswords" class="pos-abs" (click)="showPassword('signInPass')">
-            <img src="../../assets/images/close-eye.svg" *ngIf="!showPasswords" class="pos-abs" (click)="showPassword('signInPass')">            
+                        <div class="input-section d-flex justify-content-between" >
+                            <!-- <h5>password</h5> -->
+                            <input type="password" class="input" formControlName="password" id="signInPass" autocomplete="off" writeOnly>
+            
+                            <div class="eye-open">
+                            <img src="../../assets/images/eye.svg" *ngIf="showPasswords" class="pos-abs" (click)="showPassword('signInPass')">
+                            <img src="../../assets/images/close-eye.svg" *ngIf="!showPasswords" class="pos-abs" (click)="showPassword('signInPass')">            
+                        </div>
                         </div>
     
                     </div>
-                    <div class="form-check">
+                    <!-- <div class="form-check">
                             <input class="form-check-input form-control" type="checkbox" value="" id="defaultCheck1" formControlName="terms">
                             <label class="form-check-label" for="defaultCheck1">
                                 I read and agree to the <span class="trm">Terms of Use.</span> 
                             </label>
-                          </div>
+                          </div> -->
     
                     <!-- <a href="#" class="forget">Forget Password ?</a> -->
-                    <button (click)="getLogin()" type="submit" id="signInLogin" class="sign-btn-bg-color">Sign In</button>
+                    <button (click)="getLogin()" type="submit" id="signInLogin" class="sign-btn-bg-color login-btn">Sign In</button>
                     <!-- <input type="submit" name="" value="login" class="login-btn"> -->
                 </div>
                 </form>
@@ -68,7 +71,7 @@
 
 
 
-
+<template>
 
 <div class="app-component-box" *ngIf="lloginSuccess">
     <div class="main-box-container" >
@@ -251,4 +254,4 @@
     </div>
 
 
-
+</template>
