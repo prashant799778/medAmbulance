@@ -9,7 +9,7 @@
                     <img src="../../assets/images/profile-img.svg" class="avatar">
                     <h2>welcome</h2>
     
-                    <div class="input-login-box one">
+                    <div class="input-login-box one box-shaw-input ">
     
                         <div class="input-img">
                             <svg viewBox="0 0 429.453 429.453">
@@ -30,7 +30,7 @@
     
                     </div>
                     
-                    <div class="input-login-box two">
+                    <div class="input-login-box two passw box-shaw-input ">
     
                         <div class="input-img">
                             <svg viewBox="-64 0 512 512">
@@ -38,16 +38,20 @@
                             </svg>
                         </div>
     
-                        <div class="input-section d-flex justify-content-between" >
+                        <div class="input-section" >
                             <!-- <h5>password</h5> -->
                             <input type="password" class="input" formControlName="password" id="signInPass" autocomplete="off" writeOnly>
-            
-                            <div class="eye-open">
+                        </div>
+                        <div class="input-img">
                             <img src="../../assets/images/eye.svg" *ngIf="showPasswords" class="pos-abs" (click)="showPassword('signInPass')">
                             <img src="../../assets/images/close-eye.svg" *ngIf="!showPasswords" class="pos-abs" (click)="showPassword('signInPass')">            
                         </div>
-                        </div>
     
+                    </div>
+                    <div class="label-term d-flex align-items-center justify-content-between">
+                        <input class="" type="checkbox" value="" id="defaultCheck1" formControlName="terms">
+                        <a href="#" class="forget"> I read and agree to the <span class="trm">Terms of Use.</span> </a>
+                       
                     </div>
                     <!-- <div class="form-check">
                             <input class="form-check-input form-control" type="checkbox" value="" id="defaultCheck1" formControlName="terms">
