@@ -23,15 +23,6 @@
       })
     </script>
     <script type="text/javascript">
-       jQuery(document).ready(function(){
-     
-     jQuery(".toggle").click(function(){
-       
-       jQuery(".wrapper-container").toggleClass("collapse");
-      })
-    })
-    </script>
-    <script type="text/javascript">
       function uploadFile(target) {
         document.getElementById("file-name").innerHTML = target.files[0].name;
       }
@@ -41,29 +32,25 @@
           document.getElementById("file-namee").innerHTML = target.files[0].name;
         }
         </script>
-        <script type="text/javascript">
-          const inputs= document.querySelectorAll('.input');
-      
-            function focusfun(){
-              let parent = this.parentNode.parentNode;
-              parent.classList.add('focus');
-            }
-      
-            function blurfun(){
-              let parent = this.parentNode.parentNode;
-      
-              if(this.value == ""){
-                parent.classList.remove('focus');
+    
+    <script>
+    (function($) {
+          var $window = $(window),
+              $html = $('.all-left-wrapp');
+
+          function resize() {
+              if ($window.width() < 700) {
+                  return $html.addClass('collapse');
               }
-              
-            }
-      
-            inputs.forEach(input=> {
-              input.addEventListener('focus',focusfun);
-              input.addEventListener('blur',blurfun);
-            })
-      
-        </script>
+
+              $html.removeClass('collapse');
+          }
+          
+          $window
+              .resize(resize)
+              .trigger('resize');
+      })(jQuery);
+    </script>
         <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvO4MiWWER38wQegvOy0VKk_WnNfBuf_Q&callback=initMap" -->
         <!-- async defer></script> -->
 </body>
