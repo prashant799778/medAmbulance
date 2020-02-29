@@ -83,6 +83,10 @@ html,body{
 		.label-term {
 			margin-left: 12px;
 		}
+		.input-section input::placeholder {
+			font-size: 0.8rem !important;
+			font-weight: 600;
+		}
 		.msg-sh {
 			height: 20px;
 		}

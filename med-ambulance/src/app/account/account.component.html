@@ -19,11 +19,7 @@
                         </div>
     
                         <div class="input-section">
-                            <input type="email" class="input" formControlName="email" autocomplete="off" writeOnly>
-                            <!-- <div class="errors" *ngIf="loginForm.get('login').get('email').errors && (loginForm.get('login').get('email').touched || loginForm.get('login').get('email').dirty)">
-                                    <p *ngIf="loginForm.get('login').get('email').errors && loginForm.get('login').get('email').errors.required" class="alert-msg"> Please Enter  Email</p>  
-                                    <p *ngIf="loginForm.get('login').get('email').errors && loginForm.get('login').get('email').errors.pattern" class="alert-msg"> Enter Correct Email</p>
-                             </div> -->
+                            <input type="email" class="input" placeholder="Enter Name / Email" formControlName="email" autocomplete="off" writeOnly>
                         </div>
     
                     </div>
@@ -42,7 +38,7 @@
                         </div>
     
                         <div class="input-section" >
-                            <input type="password" class="input" formControlName="password" id="signInPass" autocomplete="off" writeOnly>
+                            <input type="password" class="input" placeholder="Password" formControlName="password" id="signInPass" autocomplete="off" writeOnly>
                         </div>
                         <div class="input-img">
                             <img src="../../assets/images/eye.svg" *ngIf="showPasswords" class="pos-abs" (click)="showPassword('signInPass')">
