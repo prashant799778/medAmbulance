@@ -64,7 +64,7 @@ export class AccountComponent implements OnInit {
 		}
 	}
 	getLogin(){
-		
+		// console.log("prashant ")
 		if(this.loginForm.get('login').get('terms').value == false){
 			this.errors = 'Please select the terms and conditions'
 		}else{

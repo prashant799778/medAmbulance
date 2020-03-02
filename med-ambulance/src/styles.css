@@ -927,4 +927,9 @@ ul.ant-pagination li {
     i.anticon.ant-pagination-item-link-icon.anticon-double-left {
         position: relative;
         top: -3px;
-    }
+	}
+	
+
+	.ng-value-container .ng-value {
+		margin-right: 12px;
+	}
