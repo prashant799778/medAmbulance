@@ -4001,18 +4001,21 @@ def updateDriverLatLong():
             columns="ambulanceId"
             WhereCondition = " driverId = '" + str(driverId) + "'"
             data111=databasefile.SelectQuery('ambulanceMaster',columns,WhereCondition)
+            print("1111111111")
             if data111['status'] != 'false':
+                print("222222222222")
                 
                 ambulanceId=data111['result']['ambulanceId']
                 WhereCondition2=" ambulanceId= '" + str(ambulanceId) + "'"
                 columns23="lat='" + str(lat) + "',lng='" + str(lng) + "'"
                 data122=databasefile.UpdateQuery('ambulanceRideStatus',columns23,WhereCondition2)
-                
+                print("333333333333")
                 if data122 != "0":
                     data11={"result":"","message":"Updated successfully","status":"true"}
                     return data11
 
                 else:
+                    print("4444444444")
                     data11={"result":"","message":"Not existed  in data","status":"false"}
             
                     return data11
