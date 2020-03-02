@@ -421,10 +421,9 @@ body{
     box-shadow: 0px 7px 7px -4px gray!important;
 }
 
-.edit-btn img, .delet-btn img{
+.edit-btn img, .delet-btn img, .eye-i{
 	width: 15px;
-	position: relative;
-    top: -2px;
+	fill:#fff;
 }
 
 .edit-btn {

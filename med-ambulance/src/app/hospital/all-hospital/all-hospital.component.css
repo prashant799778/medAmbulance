@@ -7,3 +7,9 @@
 .norap table td {
     white-space: unset;
 }
+.edit-btn img, .delet-btn img, .eye-i {
+    width: 15px;
+    position: unset !important;
+    fill: #fff;
+
+}
