@@ -84,7 +84,9 @@ export class EditHospitalComponent implements OnInit {
 			generalBed: [''],
 
 			inHouseDoctor: [''],
-			inHouseSpecialist: ['']
+			inHouseSpecialist: [''],
+
+			emergencyDep: [''],
 		})
 	}
 	initializeForm(){
