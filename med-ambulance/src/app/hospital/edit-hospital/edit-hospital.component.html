@@ -114,11 +114,11 @@
                             </div> -->
                         <!-- </div> -->
                     </div>
-                </div>
+
                   <!-- Basic Information End -->
 
                     <!-- Key Contact Person Details Start -->
-                <div class="top-heading bg-white mr-b">
+
                     <h2 class="heading-bx">Key Contact Person Details</h2>
                     <div class="form-sectionn  p-4">
                             <div class="inner-f-section">
@@ -179,11 +179,11 @@
                             </div> -->
                         <!-- </div> -->
                     </div>
-                </div>
+
                   <!-- Key Contact Person Details End -->
 
                    <!-- Accreditaion Start -->
-                <div class="top-heading bg-white mr-b">
+
                     <h2 class="heading-bx">Accreditaion</h2>
                     <div class="form-sectionn  p-4">
                             <div class="inner-f-section">
@@ -233,11 +233,11 @@
                             </div> -->
                         <!-- </div> -->
                     </div>
-                </div>
+
                  <!-- Accreditaion End -->
 
                   <!-- Emercency Key Contact Person Details Start -->
-                <div class="top-heading bg-white mr-b">
+
                     <h2 class="heading-bx">Emercency Key Contact Person Details</h2>
                     <div class="form-sectionn  p-4">
                             <div class="inner-f-section">
@@ -287,11 +287,11 @@
                             </div> -->
                         <!-- </div> -->
                     </div>
-                </div>
+
                  <!-- Emercency Key Contact Person Details End -->
 
                   <!-- Total Number Of Beds Start -->
-                <div class="top-heading bg-white mr-b">
+
                     <h2 class="heading-bx">Total Number Of Beds</h2>
                     <div class="form-sectionn  p-4">
                             <div class="inner-f-section">
@@ -341,11 +341,11 @@
                             </div> -->
                         <!-- </div> -->
                     </div>
-                </div>
+
                  <!-- Total Number Of Beds End -->
 
                  <!-- Total Number Of Doctors Start -->
-                <div class="top-heading bg-white mr-b">
+
                     <h2 class="heading-bx">Total Number Of Doctors</h2>
                     <div class="form-sectionn  p-4">
                         <div class="inner-f-section">
@@ -369,37 +369,59 @@
                             </div>
                         </div>
                     </div> 
-                </div>
+
                 <!-- Total Number Of Doctors End -->
 
                 <!-- Emergency Department start -->
-                <div class="top-heading bg-white mr-b">   
+  
                     <h2 class="heading-bx">Emergency Department</h2>
                     <div class="form-sectionn  p-4">
-                        <div class="inner-f-section">
-                            <div class="form-box">
-                                <div class="form-box">
+                        <div class="inner-f-section d-flex">
+                            <div class="form-box mr-2">
+                                <div class="check-info">
+                                    <div class="chiller_cb">
+                                      <label for="myCheckbox1">Yes</label>
+                                      <input id="myCheckbox1" type="checkbox" formControlName="eName">
+                                      
+                                      <span></span>
+                                    </div>
+                                    <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                        <p>Please enter Name</p>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-box">
                                     <label>Yes</label>
                                     <input type="checkbox" formControlName="eName">
                                     <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
                                         <p>Please enter Name</p>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="form-box">
-                                <div class="form-box">
+                                <div class="check-info">
+                                    <div class="chiller_cb">
+                                      <label for="myCheckbox2">No</label>
+                                      <input id="myCheckbox2" type="checkbox" formControlName="edesgin">
+                                      
+                                      <span></span>
+                                    </div>
+                                    <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
+                                        <p>Please enter Name</p>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-box">
                                     <label>No</label>
                                     <input type="checkbox" formControlName="edesgin">
                                     <div class="error" *ngIf="hospitalForm.get('hospitalName').errors && (hospitalForm.get('hospitalName').touched || hospitalForm.get('hospitalName').dirty)">
                                         <p>Please enter Name</p>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>    
-                 </div>
-                  <!-- Emergency Department End -->  
 
+                  <!-- Emergency Department End -->  
+                </div>
                 <div class="btnn-group text-center mt-3 mb-3" *ngIf="views">
                         <button (click)="updateData()" type="button" class="sub-btn gp-btn-clr text-white">Update</button>
                         <!-- <button (click)="resetForm()" type="button" class="sub-btn gp-btn-clr2 text-white">cancel</button> -->
