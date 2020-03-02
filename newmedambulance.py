@@ -340,10 +340,11 @@ def userSignup():
 
                 if data != "0":
                     column = '*'
+                    WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
                     
-                    data = databasefile.SelectQuery2("userMaster",column,WhereCondition,"",startlimit,endlimit)
-                    print(data)
-                    Data = {"status":"true","message":"","result":data["result"][0]}                  
+                    data111 = databasefile.SelectQuery1("userMaster",column,WhereCondition)
+                    print(data111)
+                    Data = {"status":"true","message":"","result":data111['result']}                  
                     return Data
                 else:
                     return commonfile.Errormessage()
@@ -373,8 +374,28 @@ def verifyOtp():
             whereCondition= "  otp='" + otp+ "' and mobileNo='" + mobileNo+"'"
             verifyOtp=databasefile.SelectQuery(" userMaster ",column,whereCondition)
             print("verifyOtp======",verifyOtp)
-            if  (verifyOtp["status"]!="false") or verifyOtp!=None: 
-                return verifyOtp
+            if  (verifyOtp["status"]!="false") or verifyOtp!=None:
+                v=verifyOtp['result']['userId']
+                print(v)
+                v2=verifyOtp['result']['userTypeId']
+                if (v2 =='3' ) or (v2=='4'):
+                    column='status'
+                    whereCondition2=" driverId='"+str(v)+"'"
+                    driverstatus=databasefile.SelectQuery('driverMaster',column,whereCondition2)
+                    if driverstatus['status']!='false':
+                        print(driverstatus['result'])
+                        y=driverstatus['result']
+                        verifyOtp['result'].update(y)
+                        return verifyOtp
+                    else:
+                        r={'status':0}
+                        verifyOtp['result'].update(r)    
+                else:
+                    print()
+                    r={'status':0}
+                    verifyOtp['result'].update(r)
+
+                    return verifyOtp
             else:
                 return verifyOtp 
         else:
@@ -3906,11 +3927,22 @@ def updateStatus():
             # if (data !=0):
             #     if data[0]['status']==0:
             #         print('111111111111111111')
+
+
             column="status='1'"
             whereCondition= "  driverId = '" + str(driverId)+ "' "
             output1=databasefile.UpdateQuery("driverMaster",column,whereCondition)
             output=output1
             if output!='0':
+                column=  " deviceKey "
+                whereCondition= " userId = '" + str(userId) + "'"
+                deviceKey=databasefile.SelectQuery("userMaster",column,whereCondition)
+                deviceKey=deviceKey["result"]["deviceKey"]
+
+
+
+
+                a = notification.notification1(deviceKey)
                 Data = {"status":"true","message":"","result":output["result"]}                  
                 return Data
             else:

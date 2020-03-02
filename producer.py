@@ -10,5 +10,3 @@ client.connect("localhost",1883,60)
 while True:
     client.publish("outTopic", '{"userId":"91dbe288564e11ea93d39ebd4d0189fc","ambulanceId":1,"RideId":"cca056e84f1311ea93d39ebd4d0189fc","driverId":1,"lat":28.456788,"lng":77.072472}')
  
-# if __name__ == '__main__':
-    # app.run(host='0.0.0.0', port=5054, debug=True)
