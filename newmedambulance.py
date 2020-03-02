@@ -4016,6 +4016,8 @@ def updateDriverLatLong():
                     data11={"result":"","message":"Not existed  in data","status":"false"}
             
                     return data11
+            else:
+                {"result":"","message":"something went wrong","status":"false"}
 
 
                         
