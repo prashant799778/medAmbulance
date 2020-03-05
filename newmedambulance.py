@@ -3796,7 +3796,64 @@ def myrides():
     except Exception as e :
         print("Exception---->" +str(e))           
         output = {"result":"something went wrong","status":"false"}
-        return output        
+        return output
+
+        
+
+
+@app.route('/myTrip', methods=['POST'])
+def myTrip():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+       
+        commonfile.writeLog("myTrip",inputdata,0)
+        msg="1"
+        if msg == "1":
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
+                
+            if "endLimit" in inputdata:
+                if inputdata['endLimit'] != "":
+                    endlimit =str(inputdata["endLimit"])
+
+                 
+            if "userId" in inputdata:
+                if inputdata['userId'] != "":
+                    userId =str(inputdata["userId"])
+
+            orderby="bm.id"                
+
+                    
+
+
+
+            whereCondition="  and  bm.userId=um.userId and bm.driverId=dm.driverId and dm.driverId='"+str(userId)+"' "
+
+            column="bm.id,bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status"
+            data=databasefile.SelectQueryOrderby("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
+            print(data,"--------------------------------------------------")
+            countdata=databasefile.SelectQuery4("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition)
+           
+            if (data['status']!='false'): 
+                Data = {"result":data['result'],"status":"true","message":"","totalCount":countdata}
+
+                          
+                return Data
+            else:
+                
+                return data
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output         
 
 @app.route('/endRide', methods=['POST'])
 def endRide():
