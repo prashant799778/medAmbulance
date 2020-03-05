@@ -344,7 +344,7 @@ def userSignup():
                     
                     data111 = databasefile.SelectQuery1("userMaster",column,WhereCondition)
                     print(data111,"@@@@@@@@@@@@@@@@@@@@@@@@")
-                    Data = {"status":"true","message":"","result":data111['result']}                  
+                    Data = {"status":"true","message":"","result":data111['result'][0]}                  
                     return Data
                 else:
                     return commonfile.Errormessage()
