@@ -343,7 +343,7 @@ def userSignup():
                     WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
                     
                     data111 = databasefile.SelectQuery1("userMaster",column,WhereCondition)
-                    print(data111)
+                    print(data111,"@@@@@@@@@@@@@@@@@@@@@@@@")
                     Data = {"status":"true","message":"","result":data111['result']}                  
                     return Data
                 else:
