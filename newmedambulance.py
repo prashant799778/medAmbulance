@@ -977,7 +977,7 @@ def addDrivertest():
                     if key == 2:
                         columns = " name,mobileNo,pIDType,pIDNo,pIDFrontFilename,pIDFrontFilepath,pIDBackFilename,pIDBackFilepath,driverId,driverTypeId"          
                         values = " '" + str(name) + "','" + str(mobileNo) + "','" + str(PIDType) + "','" + str(PIDNo) + "','" + str(PIDFrontFilename) + "','" + str(PIDFrontPicPath) + "','" + str(PIDBackFilename) + "', "            
-                        values = values + " '" + str(PIDBackPicPath)+ "','" + str(driverId) + "',,'" + str(driverTypeId) + "'"
+                        values = values + " '" + str(PIDBackPicPath)+ "','" + str(driverId) + "','" + str(driverTypeId) + "'"
                         data = databasefile.InsertQuery("driverMaster",columns,values)
                         if data != "0":
                             column = '*'
@@ -3798,7 +3798,7 @@ def myrides():
         output = {"result":"something went wrong","status":"false"}
         return output
 
-        
+
 
 
 @app.route('/myTrip', methods=['POST'])
