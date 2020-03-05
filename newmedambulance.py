@@ -412,9 +412,51 @@ def verifyOtp():
         return output
 
 
+@app.route('/userProfile', methods=['POST'])
+def userProfile():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+        startlimit,endlimit="",""
+        keyarr = ['userId']
+        commonfile.writeLog("userProfile",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+       
+        if msg == "1":
+            
+        
+
+            
+            
+            if 'userId' in inputdata:
+                userId=inputdata["userId"]    
+                
+            
+            whereCondition= " userId= '"+str(userId)+"' and userTypeId='2' "
+            column='userId,name,mobileNo,password,email'
+
+            
+         
+            data11=databasefile.SelectQuery('userMaster',column,whereCondition)
+         
+
+            if data11['status'] != "false":
+                Data = {"status":"true","message":"data Updated Successfully","result":data11['result']}                  
+                return Data
+            else:
+                data={"status":"false","result":"","message":"Invalid User"}
+                return 
+                        
+        else:
+            return msg 
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"status":"false","message":"something went wrong","result":""}
+        return output           
+
+
 
 @app.route('/updateuserProfile', methods=['POST'])
-def updateDriverProfile():
+def updateuserProfile():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
@@ -1064,7 +1106,102 @@ def addDrivertest():
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
-        return output        
+        return output
+
+@app.route('/driverProfile', methods=['POST'])
+def DriverProfile():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+        startlimit,endlimit="",""
+        keyarr = ['userId']
+        commonfile.writeLog("driverProfile",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+       
+        if msg == "1":
+            
+        
+
+            
+            
+            if 'userId' in inputdata:
+                driverId=inputdata["userId"]    
+                
+            
+            whereCondition= " userId= '"+str(driverId)+"' and userTypeId='3' "
+            column='userId,name,mobileNo,password,email'
+
+            
+         
+            data11=databasefile.SelectQuery('userMaster',column,whereCondition)
+         
+
+            if data11['status'] != "false":
+                Data = {"status":"true","message":"data Updated Successfully","result":data11['result']}                  
+                return Data
+            else:
+                data={"status":"false","result":"","message":"Invalid User"}
+                return 
+                        
+        else:
+            return msg 
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"status":"false","message":"something went wrong","result":""}
+        return output             
+
+@app.route('/updateDriverProfile', methods=['POST'])
+def updateDriverProfile():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+        startlimit,endlimit="",""
+        keyarr = ["name","email","password",'userId']
+        commonfile.writeLog("updateDriverProfile",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+       
+        if msg == "1":
+            name,email,password,userTypeId,mobileNo,gender="","","","","",""
+            column,values="",""
+        
+
+            
+            if 'email' in inputdata:
+                email=inputdata["email"]
+                column=" email='"+str(email)+"' " 
+            if 'name' in inputdata:
+                name=inputdata["name"]
+                column=column+" ,name='"+str(name)+"' "  
+                column2= " name='"+str(name)+"' " 
+            if 'password' in inputdata:
+                password=inputdata["password"]
+                column=column+" ,password= '"+str(password)+"' "                
+            if 'mobileNo' in inputdata:
+                mobileNo=inputdata["mobileNo"]
+                column=column+" ,mobileNo='"+str(mobileNo)+"' "
+                column2=column2+" ,mobileNo='"+str(mobileNo)+"' "  
+
+            if 'userId' in inputdata:
+                driverId=inputdata["userId"]    
+                
+            
+            whereCondition= " driverId= '"+str(driverId)+"' "
+            whereCondition2= " userId ='"+str(driverId)+"' "
+          
+            data=databasefile.UpdateQuery("driverMaster",column,whereCondition)
+            data11=databasefile.UpdateQuery('userMaster',column2,whereCondition)
+         
+
+            if data != "0":
+                Data = {"status":"true","message":"data Updated Successfully","result":"data Updated Successfully"}                  
+                return Data
+            else:
+                return commonfile.Errormessage()
+                        
+        else:
+            return msg 
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"status":"false","message":"something went wrong","result":""}
+        return output                
 
 
 
