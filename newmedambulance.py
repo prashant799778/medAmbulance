@@ -342,9 +342,9 @@ def userSignup():
                     column = '*'
                     WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
                     
-                    data111 = databasefile.SelectQuery1("userMaster",column,WhereCondition)
+                    data111 = databasefile.SelectQuery("userMaster",column,WhereCondition)
                     print(data111,"@@@@@@@@@@@@@@@@@@@@@@@@")
-                    Data = {"status":"true","message":"","result":data111['result'][0]}                  
+                    Data = {"status":"true","message":"","result":data111['result']}                  
                     return Data
                 else:
                     return commonfile.Errormessage()
