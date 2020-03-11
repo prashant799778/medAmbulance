@@ -3831,7 +3831,7 @@ def myTrip():
 
             whereCondition="  and  bm.userId=um.userId and bm.driverId=dm.driverId and dm.driverId='"+str(userId)+"' "
 
-            column="bm.id,bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status"
+            column="bm.id,bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status,bm.finalAmount"
             data=databasefile.SelectQueryOrderby("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
             print(data,"--------------------------------------------------")
             countdata=databasefile.SelectQuery4("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition)
@@ -5099,6 +5099,120 @@ def allhospitalUserMaster1():
 
 
 #==================================hospitaladmins==========================
+
+
+
+@app.route('/getFareManagement', methods=['GET'])
+def getFareManagement():
+    try:
+        msg = "1"
+        if msg=="1":
+            column="Fm.id,Fm.fare,am.ambulanceType as Category,Fm.minimumFare,Fm.minimumDistance,Fm.waitingFare"
+            whereCondition="Fm.CategoryId=am.id"
+            data=databasefile.SelectQuery1("fareManagement as Fm,ambulanceMode",column,whereCondition)
+        
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
+        else:
+            return msg
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+@app.route('/addFare', methods=['POST'])
+def addFare():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['fare','categoryId','minimumFare','minimumDistance','waitingFare']
+        commonfile.writeLog("addFare",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            fare= inputdata["fare"]
+            categoryId= inputdata["categoryId"]
+            minimumFare= inputdata["minimumFare"]
+            minimumDistance= inputdata["minimumDistance"]
+            waitingFare= inputdata["waitingFare"]
+
+            column="*"
+            whereCondition= "categoryId='"+str(categoryId)+ "'"
+            data=databasefile.SelectQuery("fareManagement",column,whereCondition)
+            print(data,'data')
+            if data['status']=='false':
+                column="fare,categoryId,minimumFare,minimumDistance,waitingFare"
+                values="'"+str(fare)+"', '"+str(categoryId)+"','"+str(minimumFare)+"','"+str(minimumDistance)+"','"+str(waitingFare)+"'"
+                insertdata=databasefile.InsertQuery("fareManagement",column,values)
+                column="*"
+                whereCondition= " paymentType='"+str(paymentType)+ "'"
+                data1=databasefile.SelectQuery1("fareManagement",column,whereCondition)
+
+                output= {"result":"User Added Successfully","message":"Inserted Successfully","status":"true"}
+                return output
+            else:
+                whereCondition= "categoryId='"+str(categoryId)+ "'"
+                data2=databasefile.DeleteQuery("fareManagement",whereCondition)
+
+                column="fare,categoryId,minimumFare,minimumDistance,waitingFare"
+                values="'"+str(fare)+"', '"+str(categoryId)+"','"+str(minimumFare)+"','"+str(minimumDistance)+"','"+str(waitingFare)+"'"
+                insertdata=databasefile.InsertQuery("fareManagement",column,values)
+
+                output= {"result":"User Added Successfully","message":"Inserted Successfully","status":"true"}
+                return output
+
+            
+               
+        else:
+
+            return msg 
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+@app.route('/deletefareManagement', methods=['POST'])
+def fareManagement():
+    try: 
+
+        inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+        WhereCondition=""
+  
+        if len(inputdata) > 0:           
+            commonfile.writeLog("deletefareManagement",inputdata,0)
+        
+        keyarr = ['id']
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if "id" in inputdata:
+            if inputdata['id'] != "":
+                Id =inputdata["id"] 
+                WhereCondition=WhereCondition+" and id='"+str(Id)+"'" 
+        if msg == "1":                        
+            
+            data = databasefile.DeleteQuery("fareManagement",WhereCondition)
+
+            if data != "0":
+                return data
+            else:
+                return commonfile.Errormessage()
+        else:
+            return msg
+
+    except Exception as e :
+        print("Exception--->" + str(e))                                  
+        return commonfile.Errormessage()             
+
+
+
+
+
+
 
 
 
