@@ -5102,7 +5102,7 @@ def allhospitalUserMaster1():
 
 
 
-@app.route('/getFareManagement', methods=['GET'])
+@app.route('/getFareManagement', methods=['POST'])
 def getFareManagement():
     try:
         msg = "1"
@@ -5148,9 +5148,7 @@ def addFare():
                 column="fare,categoryId,minimumFare,minimumDistance,waitingFare"
                 values="'"+str(fare)+"', '"+str(categoryId)+"','"+str(minimumFare)+"','"+str(minimumDistance)+"','"+str(waitingFare)+"'"
                 insertdata=databasefile.InsertQuery("fareManagement",column,values)
-                column="*"
-                whereCondition= " paymentType='"+str(paymentType)+ "'"
-                data1=databasefile.SelectQuery1("fareManagement",column,whereCondition)
+               
 
                 output= {"result":"User Added Successfully","message":"Inserted Successfully","status":"true"}
                 return output
