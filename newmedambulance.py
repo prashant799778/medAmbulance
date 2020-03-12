@@ -5404,11 +5404,30 @@ def allhospitalUserMaster1():
 
 @app.route('/getFareManagement', methods=['POST'])
 def getFareManagement():
+
     try:
         msg = "1"
         if msg=="1":
+            inputdata =  commonfile.DecodeInputdata(request.get_data())
+            startlimit,endlimit="",""
+            whereCondition3=""
+
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
+                
+            if "endLimit" in inputdata:
+                if inputdata['endLimit'] != "":
+                    endlimit =str(inputdata["endLimit"])
+
+
+            if "Id" in inputdata:
+                if inputdata['Id'] != "":
+                    Id =int(inputdata["Id"])
+                    whereCondition3=" and Fm.id = '"+str(Id)+"' "
+
             column="Fm.id,Fm.fare as farePerKM,am.ambulanceType as category,Fm.categoryId as ambType,Fm.minimumFare,Fm.minimumDistance,Fm.waitingFare"
-            whereCondition="Fm.categoryId=am.id"
+            whereCondition="Fm.categoryId=am.id"+whereCondition3
             data=databasefile.SelectQuery1("fareManagement as Fm,ambulanceMode as am",column,whereCondition)
         
             if (data!=0):           
