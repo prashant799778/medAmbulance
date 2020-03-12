@@ -32,6 +32,7 @@ export class EditDriverComponent implements OnInit {
 	viewEdit: any;
 	activatedds: boolean;
 	counter: number;
+	dashboard: boolean;
 	public myDatePickerOptions: IMyDpOptions = {
 		dateFormat: 'dd.mm.yyyy',
 	};
@@ -40,7 +41,8 @@ export class EditDriverComponent implements OnInit {
 				public route:ActivatedRoute,
 				public fb: FormBuilder) { 
 		this.showBanner = 0;	
-		this.counter = 0;			
+		this.counter = 0;
+		this.dashboard = false;			
 		this.createTable()
 		this.getCategory()
 	}
@@ -48,6 +50,9 @@ export class EditDriverComponent implements OnInit {
 	ngOnInit() {
 		this.route.queryParams.subscribe(params => {
 			this.driverId = params['driverId'];
+			if(params['dash'] == 'dashboard'){
+				this.dashboard = true;
+			}
 			// let vie = 
 			if( params['view'] == 'view'){
 				this.views= false;

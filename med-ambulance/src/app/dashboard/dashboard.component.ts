@@ -86,7 +86,7 @@ export class DashboardComponent implements OnInit {
 	// }
 	editDriver(id,view){
 		console.log(id)
-		this.router.navigate(['/driver/editDriver'],{queryParams: {driverId : id, view: view}})
+		this.router.navigate(['/driver/editDriver'],{queryParams: {driverId : id, view: view, dash:'dashboard'}})
 	}
 
 	verifiedDriver(id){

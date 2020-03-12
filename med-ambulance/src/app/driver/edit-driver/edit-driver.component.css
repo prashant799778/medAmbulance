@@ -130,3 +130,8 @@ input.upload-fil:focus {
     top: 5px;
     left:1rem;
 }
+.heading-go-back{
+    display: flex;
+    justify-content: space-between;
+
+}
