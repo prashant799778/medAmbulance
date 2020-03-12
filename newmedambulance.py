@@ -5407,9 +5407,9 @@ def getFareManagement():
     try:
         msg = "1"
         if msg=="1":
-            column="Fm.id,Fm.fare,am.ambulanceType as Category,Fm.minimumFare,Fm.minimumDistance,Fm.waitingFare"
-            whereCondition="Fm.CategoryId=am.id"
-            data=databasefile.SelectQuery1("fareManagement as Fm,ambulanceMode",column,whereCondition)
+            column="Fm.id,Fm.fare as farePerKM,am.ambulanceType as category,Fm.categoryId as ambType,Fm.minimumFare,Fm.minimumDistance,Fm.waitingFare"
+            whereCondition="Fm.categoryId=am.id"
+            data=databasefile.SelectQuery1("fareManagement as Fm,ambulanceMode as am",column,whereCondition)
         
             if (data!=0):           
                 Data = {"result":data,"status":"true"}
@@ -5430,12 +5430,12 @@ def addFare():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ['fare','categoryId','minimumFare','minimumDistance','waitingFare']
+        keyarr = ['farePerKM','ambType','minimumFare','minimumDistance','waitingFare']
         commonfile.writeLog("addFare",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg=="1":
-            fare= inputdata["fare"]
-            categoryId= inputdata["categoryId"]
+            fare= inputdata["farePerKM"]
+            categoryId= inputdata["ambType"]
             minimumFare= inputdata["minimumFare"]
             minimumDistance= inputdata["minimumDistance"]
             waitingFare= inputdata["waitingFare"]
