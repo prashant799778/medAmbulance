@@ -79,11 +79,13 @@ export class AccountComponent implements OnInit {
 
 					}else{
 						this.errors = 'you are not authorized Admin'
+						console.log(this.errors)	
 					}
 					
 				}else{
 					this.loginSuccess = false;
 					this.errors = resp['message']
+					console.log(this.errors)
 				}
 			})
 		}

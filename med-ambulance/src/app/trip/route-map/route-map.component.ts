@@ -11,7 +11,7 @@ export class RouteMapComponent implements OnInit {
 	tableHeading = [
 		"No", "Driver Name", "Passenger Name","Trip From", "Trip To","Start Time"
 	]
-	heading='Cancel Trip'
+	heading='Cancelled Trips'
 	cancelTripData = []
   	constructor(public userService: UserService) { }
 

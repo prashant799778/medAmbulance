@@ -55,10 +55,12 @@ export class AppSettings {
     public static updateHospitalAdminStatus = 'updateHospitalAdminStatus';
     public static deletehospitalAdmin = 'deletehospitalAdmin';
     public static currentBooking = 'currentBooking';
+
     
     public static pastBooking = 'pastBooking';
-    // public static promissingIntiatives = 'promissingIntiatives';
-    
+    public static getFareManagement = 'getFareManagement';
+    public static addFare = 'addFare';
+    public static deletefareManagement = 'deletefareManagement';
     
 
     

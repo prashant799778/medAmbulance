@@ -11,11 +11,11 @@
                                 <tr>
                                         <th>No</th>
                                         <th>Image</th>
-                                        <th>Fuel Type</th>
+                                        <!-- <th>Fuel Type</th> -->
                                         <th>Color</th>
                                         <!-- <th>Category</th>
                                         <th>Type</th> -->
-                                        <th>Register Number</th>
+                                        <th>Registeration No.</th>
                                         <th>Driver Name</th>
                                         <!-- <th>Action</th> -->
                                         
@@ -26,7 +26,7 @@
                                       <tr *ngFor="let driver of vehicleData ; let i =  index">
                                             <td>{{i+1}}</td>  
                                             <td><img [src]="driver.ambulanceFilepath" class="al-img"></td>
-                                            <td>{{driver.fueltype}}</td>
+                                            <!-- <td>{{driver.fueltype}}</td> -->
                                             <td>{{driver.color}}</td>
                                             <!-- <td>{{driver.category}}</td>
                                             <td>{{driver.ambulanceType}}</td> -->

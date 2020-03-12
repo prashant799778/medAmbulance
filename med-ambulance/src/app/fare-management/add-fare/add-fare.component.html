@@ -13,9 +13,7 @@
                                 <div class="form-box">
                                     <label>Ambulance Type</label>
                                     <select formControlName="ambType">
-                                        <option value="cng">Gov</option>
-                                        <option value="petrol">Private</option>
-                                        <option value="diesel">Other</option>
+                                        <option *ngFor="let type of ambType" [value]="type.id">{{type.ambulanceType}}</option>
                                     </select>
                                     <!-- <input type="text" formControlName="regNumber"> -->
                                 </div>
@@ -39,7 +37,7 @@
                                 <label>Waiting fare</label>
                                 <input type="text" formControlName="waitFare">
                             </div>
-                            <div class="form-box">
+                            <!-- <div class="form-box">
                                 <div class="inputfile-box">
                                     <input type="file" id="file" class="inputfile" onchange='uploadFile(this)'>
                                     <label for="file" class="file-lab ">
@@ -49,7 +47,7 @@
                                       </span>
                                     </label>
                                   </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="btnn-group text-center mt-3 mb-3">
                                 <button (click)="submitData()" type="button" class="sub-btn gp-btn-clr text-white">submit</button>

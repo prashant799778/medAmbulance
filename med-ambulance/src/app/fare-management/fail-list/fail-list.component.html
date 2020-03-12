@@ -17,13 +17,13 @@
                                 <ng-container *ngIf="fareListData && fareListData.length > 0">
                                     <tr *ngFor="let data of fareListData ; let i =  index">
                                         <td>{{i+1}}</td>  
-                                        <td *ngIf="data && data.vehicleType">{{data.vehicleType}}</td>
+                                        <td *ngIf="data && data.category">{{data.category}}</td>
                                         <td *ngIf="data && data.farePerKM">{{data.farePerKM}}</td>
                                         <td *ngIf="data && data.minFare">{{data.minFare}}</td>
                                         <td *ngIf="data && data.minDistance">{{data.minDistance}}</td>
-                                        <td *ngIf="data && data.waitingFare">{{data.waitingFare}}</td>
+                                        <td *ngIf="data && data.waitFare">{{data.waitFare}}</td>
                                         <td>
-                                            <button type="button" class="acton-btn" (click)="policyDetail(subAdmin.postId, subAdmin.userTypeId)">
+                                            <button type="button" class="acton-btn" (click)="editFare(data.id)">
                                                 <img src="../../assets/images/view.svg" class="action-view">
                                             </button>
                                         </td>

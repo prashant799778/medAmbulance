@@ -37,7 +37,32 @@ export class AddHospitalComponent implements OnInit {
 			lat: ['',Validators.required],
 			lng: ['',Validators.required],
 			facilityId: ['',Validators.required],
-			cityId: ['',Validators.required]
+			cityId: ['',Validators.required],
+
+			empanelment: [''],
+
+			keyPersonName: [''],
+			keyPersonTelephone: [''],
+			keyPersonMobileNo: [''],
+			keyPersonEmail: [''],
+			keyPersonFax: [''],
+
+			accreditaionA: [''],
+			accreditaionB: [''],
+			accreditaionC: [''],
+
+			emergencyKeyName: [''],
+			emergencyKeyMobileNo: [''],
+			emergencyKeyDesignation: [''],
+
+			emergencyBed: [''],
+			ICUBed: [''],
+			generalBed: [''],
+
+			inHouseDoctor: [''],
+			inHouseSpecialist: [''],
+
+			emergencyDep: [''],
 		})
 	}
 
