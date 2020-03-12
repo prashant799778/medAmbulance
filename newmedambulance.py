@@ -379,6 +379,7 @@ def verifyOtp():
                 print(v)
                 v2=verifyOtp['result']['userTypeId']
                 print(v2,"+++++++++++++++=")
+                print(type(v2))
                 if (v2 =='3' ) or (v2=='4'):
                     column='status'
                     whereCondition2=" driverId='"+str(v)+"'"
