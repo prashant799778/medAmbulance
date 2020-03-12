@@ -1461,6 +1461,7 @@ def updateDriverProfile():
         if msg == "1":
             name,email,password,userTypeId,mobileNo,gender="","","","","",""
             column,values="",""
+            columns2,values2="",""
         
 
             
@@ -5410,7 +5411,7 @@ def getFareManagement():
         if msg=="1":
             inputdata =  commonfile.DecodeInputdata(request.get_data())
             startlimit,endlimit="",""
-            whereCondition3=""
+            whereCondition3="  "
 
             if "startLimit" in inputdata:
                 if inputdata['startLimit'] != "":
