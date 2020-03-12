@@ -5422,9 +5422,9 @@ def getFareManagement():
                     endlimit =str(inputdata["endLimit"])
 
 
-            if "Id" in inputdata:
-                if inputdata['Id'] != "":
-                    Id =int(inputdata["Id"])
+            if "id" in inputdata:
+                if inputdata['id'] != "":
+                    Id =int(inputdata["id"])
                     whereCondition3=" and Fm.id = '"+str(Id)+"' "
 
             column="Fm.id,Fm.fare as farePerKM,am.ambulanceType as category,Fm.categoryId as ambType,Fm.minimumFare as minFare,Fm.minimumDistance as minDistance,Fm.waitingFare as waitFare"
