@@ -391,6 +391,7 @@ def verifyOtp():
                         verifyOtp['result'].update(y)
                         return verifyOtp
                     else:
+                        print('qqqqqqqqqqqqqqqqqqqqqqqqqqqq')
                         r={'status':0}
                         verifyOtp['result'].update(r)    
                 else:
