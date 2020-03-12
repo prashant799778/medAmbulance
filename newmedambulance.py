@@ -393,7 +393,8 @@ def verifyOtp():
                     else:
                         print('qqqqqqqqqqqqqqqqqqqqqqqqqqqq')
                         r={'status':0}
-                        verifyOtp['result'].update(r)    
+                        verifyOtp['result'].update(r)
+                        return verifyOtp    
                 else:
                     print('111')
                     r={'status':0}
