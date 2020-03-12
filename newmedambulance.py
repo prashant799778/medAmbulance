@@ -380,7 +380,8 @@ def verifyOtp():
                 v2=verifyOtp['result']['userTypeId']
                 print(v2,"+++++++++++++++=")
                 print(type(v2))
-                if (v2 =='3' ) or (v2=='4'):
+                if (v2 == '3' ) or ( v2== '4'):
+                    print('+++++++++++++++++++===')
                     column='status'
                     whereCondition2=" driverId='"+str(v)+"'"
                     driverstatus=databasefile.SelectQuery('driverMaster',column,whereCondition2)
