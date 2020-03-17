@@ -1492,8 +1492,8 @@ def updateDriverProfile():
             whereCondition= " driverId= '"+str(driverId)+"' "
             whereCondition2= " userId ='"+str(driverId)+"' "
           
-            data=databasefile.UpdateQuery("driverMaster",column,whereCondition)
-            data11=databasefile.UpdateQuery('userMaster',column2,whereCondition)
+            data=databasefile.UpdateQuery("driverMaster",column2,whereCondition)
+            data11=databasefile.UpdateQuery('userMaster',column,whereCondition)
          
 
             if data != "0":
