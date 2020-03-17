@@ -2283,14 +2283,13 @@ def addhospital():
         return output
 
 
-
 @app.route('/addhospital1', methods=['POST'])
 def addhospital1():
     try:
         print('A')
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ['hospitalName','address','ambulanceId','lat','lng','keyPersonName','keyPersonEmail','keyPersonMobileNo','keyPersonTelephone','keyPersonFax','accreditaionA','accreditaionB','accreditaionC','facilityId','hospTypeId','empanelment','serviceTypeId',' landlineTelephoneNo']
+        keyarr = ['hospitalName','address','ambulanceId','emergencyBed','paraMedicalStaff','operationTheatre','inHouseSpecialist','ICUBed','generalBed','inHouseDoctor','lat','lng','keyPersonName','keyPersonEmail','keyPersonMobileNo','keyPersonTelephone','keyPersonFax','accreditaionA','accreditaionB','accreditaionC','facilityId','hospTypeId','empanelment','serviceTypeId','beds','specialities','fixedHours','emergencyKeyName','emergencyKeyMobileNo','emergencyKeyDesignation']
         commonfile.writeLog("addhospital",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg=="1":
@@ -2332,8 +2331,12 @@ def addhospital1():
 
             inHouseDoctor=inputdata ['inHouseDoctor']
             inHouseSpecialist=inputdata['inHouseSpecialist']
+
             paraMedicalStaff=inputdata['paraMedicalStaff']
             operationTheatre=inputdata['operationTheatre']
+            specialities=inputdata['specialities']
+            fixedHours=inputdata['fixedHours']
+            beds=inputdata['beds']
 
 
 
@@ -2429,6 +2432,12 @@ def addhospital1():
                 values="'"+str(mainId)+"','"+str(paraMedicalStaff)+"','"+str(operationTheatre)+"'"
                 insertdata=databasefile.InsertQuery("hospitaloperationparamedicalStaffMaster",column,values)
 
+                column='hospitalId,  fixedHours , beds'
+                values="'"+str(mainId)+"','"+str(fixedHours )+"','"+str(beds)+"'"
+                insertdata=databasefile.InsertQuery(" emergencyDepartMentMaster ",column,values)
+
+
+
 
 
 
@@ -2520,6 +2529,23 @@ def addhospital1():
                     else:
                         output = {"result":"Data already existed in mapping table","status":"true"}
                         return output
+
+                for j in specialities:
+                    print('qqqqqqqqqqqqqqqqqqq')
+
+                    column=" * "
+                    whereCondition="hospitalId='"+str(mainId)+"'  and spId ='"+str(j)+"'"
+                    userHospitalMappingdata = databasefile.SelectQuery1("emergencySpecialistMapping ",column,whereCondition)
+                    print(userHospitalMappingdata,'lets see')
+                    if userHospitalMappingdata==0:
+                        print('CCcccccccccccccccccccccccccccccccccccccccc')
+                        column="hospitalId,spId "
+                        values="'"+str(mainId)+"','"+str(j)+"'"
+                        insertdata=databasefile.InsertQuery("emergencySpecialistMapping",column,values)                
+                       
+                    else:
+                        output = {"result":"Data already existed in mapping table","status":"true"}
+                        return output
                 output = {"result":"Data Inserted Successfully","status":"true"}
                 return output        
         
@@ -2597,6 +2623,23 @@ def addhospital1():
                         column="hospitalId,hlmId   "
                         values="'"+str(mainId)+"','"+str(m)+"'"
                         insertdata=databasefile.InsertQuery("hospitalLabotaryMapping",column,values)                
+                       
+                    else:
+                        output = {"result":"Data already existed in mapping table","status":"true"}
+                        return output
+
+                for j in specialities:
+                    print('qqqqqqqqqqqqqqqqqqq')
+
+                    column=" * "
+                    whereCondition="hospitalId='"+str(mainId)+"'  and spId ='"+str(j)+"'"
+                    userHospitalMappingdata = databasefile.SelectQuery1("emergencySpecialistMapping ",column,whereCondition)
+                    print(userHospitalMappingdata,'lets see')
+                    if userHospitalMappingdata==0:
+                        print('CCcccccccccccccccccccccccccccccccccccccccc')
+                        column="hospitalId,spId "
+                        values="'"+str(mainId)+"','"+str(j)+"'"
+                        insertdata=databasefile.InsertQuery("emergencySpecialistMapping",column,values)                
                        
                     else:
                         output = {"result":"Data already existed in mapping table","status":"true"}
