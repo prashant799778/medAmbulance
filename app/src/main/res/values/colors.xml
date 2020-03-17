@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F44336</color>
+    <color name="colorPrimaryDark">#F44336</color>
+    <color name="colorAccent">#F44336</color>
+    <color name="bhkcolor">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="light_gray">#e2e2e2</color>
+    <color name="white">#ffffff</color>
+    <color name="color">#808080</color>
+    <color name="snck">#e3dede</color>
+
+    <color name="pickup">#9d9d9d</color>
+    <color name="conf">#323643</color>
+    <color name="id">#3d3d3d</color>
+    <color name="menu">#404040</color>
+    <color name="pickupcolor"> #161616</color>
+    <color name="dropcolor">#9d9d9d</color>
+     <color name="line">#a1a1a1</color>
+    <color name="tint">#484848</color>
+    <color name="terms">#707070</color>
+    <color name="agreed">#a1a1a1</color>
+    <color name="item">#111518</color>
+    <color name="black2">#202020</color>
+    <color name="accept">#131313</color>
+
+    <color name="colorAccent1">#FF4081</color>
+<color name="colorPrimaryText">#FFFFFF</color>
+<color name="colorSecondaryText">#C6C6C6</color>
+<color name="colorAccentAlpha60">#96ff4081</color>
+
+    //map
+
+    <color name="blue_accept">#0c7dff</color>
+    <color name="card_background">#ffffff</color>
+    <color name="card_shadow">#10000000</color>
+    <color name="lite_blue">#ff359ff2</color>
+    <color name="window_background">#00000000</color>
+
+    <color name="button_text_color">#595959</color>
+    <color name="input_text_color">#acacac</color>
+
+    <color name="verification_text_color">#777777</color>
+    <color name="mobile_required_text_color">#999999</color>
+
+    <color name="bg_light_grey">#F3F3F3</color>
+
+
+    <color name="transparent_black">#90000000</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="black_overlay_pressed">#40000000</color>
+
+    <color name="red_button">#d54e4e</color>
+    <color name="red_button_50_opacity">#80d54e4e</color>
+
+    <color name="white_50_opacity">#80ffffff</color>
+    <color name="blue_button">#3b5998</color>
+    <color name="blue_button_50_opacity">#803b5998</color>
+
+    <color name="topline_btn">#31ffffff</color>
+    <color name="bottomline_btn">#31000000</color>
+
+    <color name="color_add_more">#1670C0</color>
+    <color name="color_primary">#1277d0</color>
+    <color name="color_primary_dark">#1e88e5</color>
+
+    <color name="color_primary_50percent">#501277d0</color>
+    <color name="color_primary_dark_50percent">#501e88e5</color>
+
+    <color name="step_pager_previous_tab_color">#ffffff</color>
+    <color name="step_pager_selected_tab_color">#ffffff</color>
+    <color name="step_pager_selected_last_tab_color">#ff669900</color>
+    <color name="step_pager_next_tab_color">#10000000</color>
+
+
+    <color name="green_button">#19CD64</color>
+    <color name="green_button_50_opacity">#8019CD64</color>
+
+    <color name="blue">#ffffff</color>
+    <color name="red">#ff5722</color>
+
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="color_transparent">#00000000</color>
+
+    <color name="hint_text_color">#97CEFF</color>
+    <color name="search_bg">#1670C0</color>
+
+    <color name="rangebar_color">#1670C0</color>
+    <color name="range_tick_color">#FFFFFF</color>
+    <color name="skill_primary_color">#1075CD</color>
+    <color name="profileback">#f6f6f6</color>
+
+</resources>

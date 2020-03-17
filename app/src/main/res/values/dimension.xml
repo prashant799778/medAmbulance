@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="filedHeight">58dp</dimen>
+    <dimen name="leftMergin">28dp</dimen>
+    <dimen name="RightMergin">28dp</dimen>
+    <dimen name="HeadingSize">20dp</dimen>
+    <dimen name="textSize">15dp</dimen>
+    <dimen name="marginTop">30dp</dimen>
+    <dimen name="radius">5dp</dimen>
+    <dimen name="elevation">2dp</dimen>
+    <dimen name="cardH">49dp</dimen>
+    <dimen name="cardW">61dp</dimen>
+</resources>

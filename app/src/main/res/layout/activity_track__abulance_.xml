@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.Track_Abulance_Activity">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_ambulance_5"
+        android:layout_gravity="center"
+        >
+
+    </ImageView>
+
+    <com.MedAmbulance.Widget.Atami_Regular
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/booking"
+        android:textSize="22dp"
+        android:layout_marginTop="21dp"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:textColor="@color/conf"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <com.MedAmbulance.Widget.Atami_Regular
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:text="@string/id"
+            android:textSize="12dp"
+            android:textColor="@color/id"
+            />
+
+        <com.MedAmbulance.Widget.Atami_Regular
+            android:id="@+id/user_id_track"
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:textColor="@color/id"
+            android:layout_marginLeft="5dp"
+            android:textSize="12dp"
+            />
+    </LinearLayout>
+</LinearLayout>
+
+    <Button
+        android:id="@+id/track_ambu_btt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/filedHeight"
+        android:text="@string/TrackAmbulance"
+        android:textAllCaps="false"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/RightMergin"
+        android:layout_marginLeft="@dimen/leftMergin"
+        android:textColor="@color/white"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/button_border">
+    </Button>
+</RelativeLayout>

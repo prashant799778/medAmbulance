@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="12.5dp"
+        android:paddingRight="15dp"
+        android:layout_height="68.7dp">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_pic"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/circular_layout">
+
+        </de.hdodenhof.circleimageview.CircleImageView>
+        <LinearLayout
+            android:layout_toRightOf="@id/user_pic"
+            android:layout_width="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_centerVertical="true"
+                android:paddingLeft="13dp"
+                android:paddingRight="15dp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <com.MedAmbulance.Widget.Atami_Bold
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="@string/name"
+                    android:textColor="@color/black2"
+                    android:textSize="17dp" />
+                <com.MedAmbulance.Widget.Atami_Bold
+                    android:id="@+id/fair_trip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right"
+                    android:textSize="17dp"
+                    android:gravity="right"
+                    android:textColor="@color/red"
+                    android:text="Rs 200"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_below="@id/name"
+                android:layout_toRightOf="@id/user_pic"
+                android:layout_width="match_parent"
+                android:layout_centerVertical="true"
+                android:paddingLeft="13dp"
+                android:paddingRight="15dp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <com.MedAmbulance.Widget.Atami_Regular
+                    android:id="@+id/route_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:textColor="@color/tint"
+                    android:textSize="14dp"
+                    android:text="route id"/>
+                <com.MedAmbulance.Widget.Atami_Regular
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textSize="14dp"
+                    android:textColor="@color/tint"
+                    android:text="date"/>
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_marginTop="12dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/agreed"
+            android:gravity="bottom" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
