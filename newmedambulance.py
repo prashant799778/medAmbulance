@@ -4197,7 +4197,9 @@ def driverArriver():
             columns= "onTrip=1 and onDuty=1"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
-                bookRide["message"]="Driver has arrived at your location"             
+                bookRide["message"]="Driver has arrived at your location" 
+                client = mqtt.Client()
+                client.connect("localhost",1883,60)            
                 topic=str(userId)+"/arrive"
                 client.publish(topic, str(bookingDetails)) 
                 return bookRide
@@ -4216,7 +4218,7 @@ def driverArriver():
         return output
 
 
-@app.route('/startRide', methods=['POST'])
+@app.route('/startRide1', methods=['POST'])
 def startRide():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
@@ -4243,9 +4245,11 @@ def startRide():
             columns= "onTrip=1 and onDuty=1"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
-                bookRide["message"]="ride started Successfully"             
+                bookRide["message"]="ride started Successfully" 
+                client = mqtt.Client()
+                client.connect("localhost",1883,60)            
                 topic=str(userId)+"/startRide"
-                client.publish(topic, str(bookingDetails)) 
+                client.publish(topic, str(bookRide1)) 
                 return bookRide
             else:
                 
@@ -4542,7 +4546,7 @@ def myTrip():
         output = {"result":"something went wrong","status":"false"}
         return output         
 
-@app.route('/endRide', methods=['POST'])
+@app.route('/endRide1', methods=['POST'])
 def endRide():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
@@ -4580,7 +4584,7 @@ def endRide():
 
 
 
-@app.route('/cancelRide', methods=['POST'])
+@app.route('/cancelRide1', methods=['POST'])
 def cancelRide():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
@@ -5920,7 +5924,7 @@ def fareManagement():
 ########################################START########################################################
 
 
-@app.route('/startRide1', methods=['POST'])
+@app.route('/startRide', methods=['POST'])
 def startRide1():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
@@ -5965,7 +5969,7 @@ def startRide1():
                     print('Entered')
                     client = mqtt.Client()
                     client.connect("localhost",1883,60)
-                    topic=str(userId)+"/booking"
+                    topic=str(userId)+"/startRide"
                     client.publish(topic, str(bookingDetails)) 
                     #bookRide["message"]="ride started Successfully" 
                     client.disconnect()
@@ -5989,7 +5993,7 @@ def startRide1():
         output = {"result":"something went wrong","status":"false"}
         return output
 
-@app.route('/endRide1', methods=['POST'])
+@app.route('/endRide', methods=['POST'])
 def endRide1():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
@@ -6023,7 +6027,7 @@ def endRide1():
                     print('Entered')
                     client = mqtt.Client()
                     client.connect("localhost",1883,60)
-                    topic=str(userId)+"/booking"
+                    topic=str(userId)+"/endRide"
                     client.publish(topic, str(bookingDetails)) 
                     #bookRide["message"]="ride ended Successfully" 
                     client.disconnect()
@@ -6052,7 +6056,7 @@ def endRide1():
 
 
 
-@app.route('/cancelRide1', methods=['POST'])
+@app.route('/cancelRide', methods=['POST'])
 def cancelRide1():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
@@ -6087,7 +6091,7 @@ def cancelRide1():
                     print('Entered')
                     client = mqtt.Client()
                     client.connect("localhost",1883,60)
-                    topic=str(userId)+"/booking"
+                    topic=str(userId)+"/cancelRide"
                     client.publish(topic, str(bookingDetails)) 
                     #bookRide["message"]="ride Cancelled" 
                     client.disconnect()
