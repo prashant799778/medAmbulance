@@ -5964,7 +5964,7 @@ def startRide1():
                 whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
                 bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
                 print(bookingDetails,"================")
-                bookingDetails["result"]["driverName"]=driverName
+                
                 bookingDetails["message"]="ride started Successfully"  
                 if (bookingDetails!='0'):  
                     print('Entered')
