@@ -2683,14 +2683,14 @@ def addhospital1():
 
 
 
-@app.route('/updateHospital', methods=['POST'])
+@app.route('/updateHospital1', methods=['POST'])
 def updateStatus11():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
         keyarr = ['id','address','ambulanceId','lat','lng','facilityId']
         print(inputdata,"B")
-        commonfile.writeLog("updateHospital",inputdata,0)
+        commonfile.writeLog("updateHospital1",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg =="1":
           
