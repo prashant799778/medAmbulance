@@ -2291,7 +2291,7 @@ def addhospital1():
         print('A')
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ['hospitalName','address','ambulanceId','empanelmentanyOther','emergencyBed','paraMedicalStaff','operationTheatre','inHouseSpecialist','ICUBed','generalBed','inHouseDoctor','lat','lng','keyPersonName','keyPersonEmail','keyPersonMobileNo','keyPersonTelephone','keyPersonFax','accreditaionA','accreditaionB','accreditaionC','facilityId','hospTypeId','empanelment','serviceTypeId','beds','specialities','fixedHours','emergencyKeyName','emergencyKeyMobileNo','emergencyKeyDesignation']
+        keyarr = ['hospitalName','address','ambulanceId','laboratary','empanelmentanyOther','emergencyBed','paraMedicalStaff','operationTheatre','inHouseSpecialist','ICUBed','generalBed','inHouseDoctor','lat','lng','keyPersonName','keyPersonEmail','keyPersonMobileNo','keyPersonTelephone','keyPersonFax','accreditaionA','accreditaionB','accreditaionC','facilityId','hospTypeId','empanelment','serviceTypeId','beds','specialities','fixedHours','emergencyKeyName','emergencyKeyMobileNo','emergencyKeyDesignation']
         commonfile.writeLog("addhospital",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg=="1":
@@ -2303,23 +2303,46 @@ def addhospital1():
 
             empanelmentanyOther= inputdata['empanelmentanyOther']
             anyo=[]
-            for i in empanelmentanyOther:
-                column="id"
-                whereCondition111=" empanelmentType='"+str(i)+"'"
-                data=databasefile.SelectQuery('empanelmentTypeMaster',column,whereCondition111)
-                if data['status'] == 'false':
-                    column1='empanelmentType'
-                    values="'"+str(i)+"'"
-                    insertdata=databasefile.insertdata('empanelmentTypeMaster',column1,values)
-                    data99911=databasefile.SelectQuery1('empanelmentTypeMaster',column,whereCondition111)
-                    Id=data99911[-1]['id']
-                    anyo.append(Id)
-                    for j in anyo:
-                        empanelment.append(j)
+            mm=len(empanelmentanyOther)
+            if mm>0:
+                for i in empanelmentanyOther:
+                    column="id"
+                    whereCondition111=" empanelmentType='"+str(i)+"'"
+                    data=databasefile.SelectQuery('empanelmentTypeMaster',column,whereCondition111)
+                    if data['status'] == 'false':
+                        column1='empanelmentType'
+                        values="'"+str(i)+"'"
+                        insertdata=databasefile.insertdata('empanelmentTypeMaster',column1,values)
+                        data99911=databasefile.SelectQuery1('empanelmentTypeMaster',column,whereCondition111)
+                        Id=data99911[-1]['id']
+                        anyo.append(Id)
+                        for j in anyo:
+                            empanelment.append(j)
 
 
 
             laboratary = inputdata['laboratary']
+
+            laborataryanyOther=inputdata['laborataryanyOther']
+            anyo1=[]
+            mm1=len(laborataryanyOther)
+            if mm1>0:
+                for i in laborataryanyOther:
+                    column="id"
+                    whereCondition111=" labotary  ='"+str(i)+"'"
+                    data=databasefile.SelectQuery('hospitalLabotaryMaster',column,whereCondition111)
+                    if data['status'] == 'false':
+                        column1='labotary '
+                        values="'"+str(i)+"'"
+                        insertdata=databasefile.insertdata('hospitalLabotaryMaster',column1,values)
+                        data99911=databasefile.SelectQuery1('hospitalLabotaryMaster',column,whereCondition111)
+                        Id=data99911[-1]['id']
+                        anyo1.append(Id)
+                        for j in anyo1:
+                            laboratary.append(j)
+
+
+
             print(facility,"++++++++++++++++++++++++++++++++++++++++++")
             
             latitude=inputdata['lat']
@@ -2688,7 +2711,7 @@ def updateStatus11():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ['id','address','ambulanceId','empanelmentanyOther','emergencyBed','paraMedicalStaff','operationTheatre','inHouseSpecialist','ICUBed','generalBed','inHouseDoctor','lat','lng','keyPersonName','keyPersonEmail','keyPersonMobileNo','keyPersonTelephone','keyPersonFax','accreditaionA','accreditaionB','accreditaionC','facilityId','hospTypeId','empanelment','serviceTypeId','beds','specialities','fixedHours','emergencyKeyName','emergencyKeyMobileNo','emergencyKeyDesignation']
+        keyarr = ['id','address','ambulanceId','empanelmentanyOther','laboratary','specialities','emergencyBed','paraMedicalStaff','operationTheatre','inHouseSpecialist','ICUBed','generalBed','inHouseDoctor','lat','lng','keyPersonName','keyPersonEmail','keyPersonMobileNo','keyPersonTelephone','keyPersonFax','accreditaionA','accreditaionB','accreditaionC','facilityId','hospTypeId','empanelment','serviceTypeId','beds','fixedHours','emergencyKeyName','emergencyKeyMobileNo','emergencyKeyDesignation']
         print(inputdata,"B")
         commonfile.writeLog("updateHospital1",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
@@ -2707,21 +2730,46 @@ def updateStatus11():
             longitude=inputdata['lng']
 
             city=inputdata['cityId']
+           
             empanelmentanyOther= inputdata['empanelmentanyOther']
             anyo=[]
-            for i in empanelmentanyOther:
-                column="id"
-                whereCondition111=" empanelmentType='"+str(i)+"'"
-                data=databasefile.SelectQuery('empanelmentTypeMaster',column,whereCondition111)
-                if data['status'] == 'false':
-                    column1='empanelmentType'
-                    values="'"+str(i)+"'"
-                    insertdata=databasefile.insertdata('empanelmentTypeMaster',column1,values)
-                    data99911=databasefile.SelectQuery1('empanelmentTypeMaster',column,whereCondition111)
-                    Id=data99911[-1]['id']
-                    anyo.append(Id)
-                    for j in anyo:
-                        empanelment.append(j)
+            mm=len(empanelmentanyOther)
+            if mm>0:
+                for i in empanelmentanyOther:
+                    column="id"
+                    whereCondition111=" empanelmentType='"+str(i)+"'"
+                    data=databasefile.SelectQuery('empanelmentTypeMaster',column,whereCondition111)
+                    if data['status'] == 'false':
+                        column1='empanelmentType'
+                        values="'"+str(i)+"'"
+                        insertdata=databasefile.insertdata('empanelmentTypeMaster',column1,values)
+                        data99911=databasefile.SelectQuery1('empanelmentTypeMaster',column,whereCondition111)
+                        Id=data99911[-1]['id']
+                        anyo.append(Id)
+                        for j in anyo:
+                            empanelment.append(j)
+
+
+
+            laboratary = inputdata['laboratary']
+
+            laborataryanyOther=inputdata['laborataryanyOther']
+            anyo1=[]
+            mm1=len(laborataryanyOther)
+            if mm1>0:
+                for i in laborataryanyOther:
+                    column="id"
+                    whereCondition111=" labotary  ='"+str(i)+"'"
+                    data=databasefile.SelectQuery('hospitalLabotaryMaster',column,whereCondition111)
+                    if data['status'] == 'false':
+                        column1='labotary '
+                        values="'"+str(i)+"'"
+                        insertdata=databasefile.insertdata('hospitalLabotaryMaster',column1,values)
+                        data99911=databasefile.SelectQuery1('hospitalLabotaryMaster',column,whereCondition111)
+                        Id=data99911[-1]['id']
+                        anyo1.append(Id)
+                        for j in anyo1:
+                            laboratary.append(j)
 
 
 
@@ -6559,7 +6607,31 @@ def hospitalTypeMaster():
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
-        return output  
+        return output 
+
+
+
+@app.route('/emergencyDepartMentSpecialitiesMaster', methods=['GET'])
+def emergencyDepartMentSpecialitiesMaster():
+    try:
+        msg = "1"
+        if msg=="1":
+            column="*"
+            whereCondition=""
+            data=databasefile.SelectQuery1("emergencyDepartMentSpecialitiesMaster",column,whereCondition)
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
+        else:
+            return msg
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output          
+
 
 
 
