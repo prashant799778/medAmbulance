@@ -6004,8 +6004,17 @@ def endRide1():
         commonfile.writeLog("endRide",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
-            ambulanceId= inputdata["ambulanceId"]
-            bookingId=inputdata['bookingId']
+            if "ambulanceId" in inputdata:
+                if inputdata['ambulanceId'] != "":
+                    ambulanceId =(inputdata["ambulanceId"])
+            if "bookingId" in inputdata:
+                    if inputdata['bookingId'] != "":
+                        bookingId =str(inputdata["bookingId"])
+
+            if "userId" in inputdata:
+                if inputdata['userId'] != "":
+                    userId =str(inputdata["userId"])
+                    
             whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"'"
             column=" status=2 "
             bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
