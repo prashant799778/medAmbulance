@@ -2134,7 +2134,7 @@ def allResponder():
         return output
 
 
-
+#previous form
 @app.route('/addhospital', methods=['POST'])
 def addhospital():
     try:
@@ -2282,6 +2282,7 @@ def addhospital():
         output = {"result":"something went wrong","status":"false"}
         return output
 
+#according to new form
 
 @app.route('/addhospital1', methods=['POST'])
 def addhospital1():
@@ -2387,7 +2388,7 @@ def addhospital1():
                 insertdata=databasefile.InsertQuery(" hospitalTypeMapping ",column,values)
 
                 column='hospitalId,serviceTypeId'
-                values="'"+str(mainId)+"','"+str(hospTypeId)+"'"
+                values="'"+str(mainId)+"','"+str(serviceTypeId)+"'"
                 insertdata=databasefile.InsertQuery("hospitalServiceMapping",column,values)
 
 
@@ -2657,6 +2658,282 @@ def addhospital1():
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
         return output
+
+
+
+
+
+@app.route('/updateHospital1', methods=['POST'])
+def updateStatus111():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['id','hospitalName','address','ambulanceId','emergencyBed','paraMedicalStaff','operationTheatre','inHouseSpecialist','ICUBed','generalBed','inHouseDoctor','lat','lng','keyPersonName','keyPersonEmail','keyPersonMobileNo','keyPersonTelephone','keyPersonFax','accreditaionA','accreditaionB','accreditaionC','facilityId','hospTypeId','empanelment','serviceTypeId','beds','specialities','fixedHours','emergencyKeyName','emergencyKeyMobileNo','emergencyKeyDesignation']
+        print(inputdata,"B")
+        commonfile.writeLog("updateHospital",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg =="1":
+          
+            hospitalId = int(inputdata["id"])
+            hospitalName = commonfile.EscapeSpecialChar(inputdata["hospitalName"])
+            address = commonfile.EscapeSpecialChar(inputdata["address"])
+            ambulanceId = inputdata["ambulanceId"]
+            facilityId=inputdata['facilityId']
+            print(facilityId,"++++++++++++++++++++++++++++++++++++++++++")
+            
+            latitude=inputdata['lat']
+
+            longitude=inputdata['lng']
+
+            city=inputdata['cityId']
+
+
+            hospTypeId=inputdata['hospTypeId']
+            serviceTypeId=inputdata['serviceTypeId'] 
+            keyPersonName=inputdata['keyPersonName']
+            keyPersonEmail=inputdata['keyPersonEmail']
+
+            keyPersonMobileNo=inputdata['keyPersonMobileNo']
+            keyPersonMobileNo=inputdata['keyPersonTelephone']
+            keyPersonFax=inputdata['keyPersonFax']
+
+            accreditaionA=inputdata['accreditaionA']
+            accreditaionB=inputdata['accreditaionB']
+            accreditaionC=inputdata['accreditaionC']
+
+            emergencyKeyName=inputdata['emergencyKeyName']
+            emergencyKeyMobileNo=inputdata['emergencyKeyMobileNo']
+            emergencyKeyDesignation=inputdata['emergencyKeyDesignation']
+
+            
+            emergencyBed= inputdata['emergencyBed']
+            ICUBed=inputdata['ICUBed']
+            generalBed=inputdata['generalBed']
+
+            inHouseDoctor=inputdata ['inHouseDoctor']
+            inHouseSpecialist=inputdata['inHouseSpecialist']
+
+            paraMedicalStaff=inputdata['paraMedicalStaff']
+            operationTheatre=inputdata['operationTheatre']
+            specialities=inputdata['specialities']
+            fixedHours=inputdata['fixedHours']
+            beds=inputdata['beds']
+
+            column="hospitalName"
+            whereCondition= "   id = " + str(userId)+ " "
+            data=databasefile.SelectQuery1("hospitalMaster",column,whereCondition)
+            print(data)
+            if (data !=0):
+                print(facilityId,"+++11+++++++++++++++++++++++++++++++++++++++")
+
+                column=" hospitalName= '"+str(hospitalName)+"' "
+                whereCondition="   id = " + str(hospitalId)+ " "
+                data1=databasefile.UpdateQuery('hospitalMaster',column,whereCondition)
+
+                column2="address='"+str(address)+"' ,lat='"+str(latitude)+"' ,lng='"+str(longitude)+"' ,cityId='"+str(city)+"' "
+                whereCondition3=" hospitalId=' " + str(hospitalId)+ " ' "
+                data2=databasefile.UpdateQuery('hospitalLocationMaster',column2,whereCondition3)
+
+
+
+
+
+
+
+
+
+                whereCondition2=" hospital_Id= ' " + str(hospitalId)+ " ' "
+                data3=databasefile.DeleteQuery('hospitalambulanceMapping',whereCondition2)
+
+                whereCondition4= "hospitalId = ' " + str(hospitalId)+ " ' "
+                data4=databasefile.DeleteQuery('hospitalFacilityMapping',whereCondition4)
+
+                whereCondition5= "hospitalId = ' " + str(hospitalId)+ " ' "
+                data5=databasefile.DeleteQuery('empanelmentTypeMapping',whereCondition5)
+
+                whereCondition6= "hospitalId = ' " + str(hospitalId)+ " ' "
+                data6=databasefile.DeleteQuery('hospitalLabotaryMapping',whereCondition6)
+
+                whereCondition7= "hospitalId = ' " + str(hospitalId)+ " ' "
+                data7=databasefile.DeleteQuery('emergencySpecialistMapping',whereCondition7)
+
+                column77="hospTypeId='"+str(serviceTypeId)+"'"
+                
+                insertdata=databasefile.UpdateQuery(" hospitalTypeMapping ",column77,whereCondition7)
+
+
+
+
+                column4="serviceTypeId='"+str(serviceTypeId)+"'"
+               
+                insertdata=databasefile.UpdateQuery("hospitalServiceMapping",column4,whereCondition7)
+
+
+                column="name='"+str(keyPersonName)+"',email='"+str(keyPersonEmail)+"',mobileNo='"+str(keyPersonMobileNo)+"',landlineTelephoneNo='"+str(keyPersonTelephone)+"',fax='"+str(keyPersonFax)+"'"
+                
+                insertdata=databasefile.UpdateQuery("hospitalKeyPersonMaster",column,whereCondition7)
+
+                y1=len(accreditaionA)
+                y2=len(accreditaionB)
+                y3=len(accreditaionC)
+
+                if y1 !=0:
+                    column="accreditationsId='"+str(accreditaionA)+"'"
+                   
+                    insertdata=databasefile.UpdateQuery("hospitalAccreditationsMapping",column,whereCondition7)
+
+                if y2 !=0:
+                    column="accreditationsId='"+str(accreditaionB)+"'"
+                    insertdata=databasefile.UpdateQuery("hospitalAccreditationsMapping",column,whereCondition7)
+
+                if y3 !=0:
+                    column="accreditationsId='"+str(accreditaionC)+"'"
+                    insertdata=databasefile.UpdateQuery("hospitalAccreditationsMapping",column,whereCondition7)
+
+                
+                column="emergencyKeyName= '"+str(emergencyKeyName)+"',emergencyKeyDesignation='"+str(emergencyKeyDesignation)+"',emergencyKeyMobileNo='"+str(emergencyKeyMobileNo)+"'"
+                
+                insertdata=databasefile.UpdateQuery("hospitalemergencyKeyContactMaster",column,whereCondition7)
+
+                column="casuality='"+str(emergencyBed)+"',icu='"+str(ICUBed)+"',generalBed='"+str(generalBed)+"'"
+
+                insertdata=databasefile.UpdateQuery("hospitalemergencyKeyContactMaster",column,whereCondition7)
+
+                column=" inhouseDoctors='"+str(inHouseDoctor)+"', inhouseSpecialists='"+str(inHouseSpecialist)+"'"
+                
+                insertdata=databasefile.UpdateQuery("hospitalDoctorMaster",column,whereCondition7)
+
+
+                column="paramedicalStaff=, operationTheatre="
+                values="'"+str(mainId)+"','"+str(paraMedicalStaff)+"','"+str(operationTheatre)+"'"
+                insertdata=databasefile.UpdateQuery("hospitaloperationparamedicalStaffMaster",column,whereCondition7)
+
+                column=" fixedHours='"+str(fixedHours )+"' , beds='"+str(beds)+"' "
+                insertdata=databasefile.UpdateQuery(" emergencyDepartMentMaster ",column,whereCondition7)
+
+
+
+
+
+
+
+
+                print("aaaa1111111111111111111111111111")
+
+                print(facilityId,"+++2222222222222++++++++++++++++++++++++++++++++++++++")   
+                for i in ambulanceId:
+                    print('a1111111')
+
+                    column=" * "
+                    whereCondition="ambulance_Id='"+str(i)+"'  and hospital_Id='"+str(userId)+"'"
+                    userHospitalMappingdata = databasefile.SelectQuery1("hospitalambulanceMapping",column,whereCondition)
+                    print(userHospitalMappingdata,'lets see')
+                    if userHospitalMappingdata==0:
+                        print('CC')
+                        column="hospital_Id,ambulance_Id"
+                        values="'"+str(userId)+"','"+str(i)+"'"
+                        insertdata=databasefile.InsertQuery("hospitalambulanceMapping",column,values)                
+                       
+                    else:
+                        output = {"result":"Data already existed in mapping table","status":"true"}
+                        return output
+
+                print(facilityId,"+++555++++++++++++++++++++++++++++++++++++++") 
+                print(facilityId,"11111111111111111++++++++++++++++++++++++++++++++++++++++++")        
+
+                for j in facilityId:
+                    print('aaaaaaaaaa')
+                    column=" * "
+                    whereCondition="facilityId='"+str(j)+"'  and hospitalId='"+str(userId)+"'"
+                    userHospitalMappingdata = databasefile.SelectQuery1("hospitalFacilityMapping ",column,whereCondition)
+                    print(userHospitalMappingdata,'lets see')
+                    if userHospitalMappingdata==0:
+                        print('CC')
+                        column="hospitalId,facilityId"
+                        values="'"+str(userId)+"','"+str(j)+"'"
+                        insertdata=databasefile.InsertQuery("hospitalFacilityMapping",column,values)                
+                       
+                    else:
+                        output = {"result":"Data already existed in mapping table","status":"true"}
+                        return output
+
+                for k in empanelment:
+                    print('qqqqqqqqqqqqqqqqqqq')
+
+                    column=" * "
+                    whereCondition=" empanelmentTypeId ='"+str(k)+"'  and hospitalId='"+str(mainId)+"'"
+                    userHospitalMappingdata = databasefile.SelectQuery1("empanelmentTypeMapping ",column,whereCondition)
+                    print(userHospitalMappingdata,'lets see')
+                    if userHospitalMappingdata==0:
+                        print('CCcccccccccccccccccccccccccccccccccccccccc')
+                        column="hospitalId,empanelmentTypeId"
+                        values="'"+str(mainId)+"','"+str(k)+"'"
+                        insertdata=databasefile.InsertQuery("empanelmentTypeMapping",column,values)                
+                       
+                    else:
+                        output = {"result":"Data already existed in mapping table","status":"true"}
+                        return output
+
+                for m in laboratary:
+                    print('qqqqqqqqqqqqqqqqqqq')
+
+                    column=" * "
+                    whereCondition=" hlmId   ='"+str(m)+"'  and hospitalId='"+str(mainId)+"'"
+                    userHospitalMappingdata = databasefile.SelectQuery1("hospitalLabotaryMapping ",column,whereCondition)
+                    print(userHospitalMappingdata,'lets see')
+                    if userHospitalMappingdata==0:
+                        print('CCcccccccccccccccccccccccccccccccccccccccc')
+                        column="hospitalId,hlmId   "
+                        values="'"+str(mainId)+"','"+str(m)+"'"
+                        insertdata=databasefile.InsertQuery("hospitalLabotaryMapping",column,values)                
+                       
+                    else:
+                        output = {"result":"Data already existed in mapping table","status":"true"}
+                        return output
+
+                for j in specialities:
+                    print('qqqqqqqqqqqqqqqqqqq')
+
+                    column=" * "
+                    whereCondition="hospitalId='"+str(mainId)+"'  and spId ='"+str(j)+"'"
+                    userHospitalMappingdata = databasefile.SelectQuery1("emergencySpecialistMapping ",column,whereCondition)
+                    print(userHospitalMappingdata,'lets see')
+                    if userHospitalMappingdata==0:
+                        print('CCcccccccccccccccccccccccccccccccccccccccc')
+                        column="hospitalId,spId "
+                        values="'"+str(mainId)+"','"+str(j)+"'"
+                        insertdata=databasefile.InsertQuery("emergencySpecialistMapping",column,values)                
+                       
+                    else:
+                        output = {"result":"Data already existed in mapping table","status":"true"}
+                        return output
+                
+                output = {"result":"data updated successfully","status":"true","message":"Updated Successfully"}
+                return output                     
+
+
+
+
+
+
+
+
+
+            else:
+                data={"result":"","status":"false","message":"No Data Found"}
+                return data
+        else:
+            return msg         
+ 
+    except KeyError :
+        print("Key Exception---->")   
+        output = {"result":"key error","status":"false"}
+        return output  
+
+    except Exception as e :
+        print("Exceptio`121QWAaUJIHUJG n---->" +str(e))    
+        output = {"result":"somthing went wrong","status":"false"}
+        return output         
 
 
 
@@ -6014,7 +6291,7 @@ def endRide1():
             if "userId" in inputdata:
                 if inputdata['userId'] != "":
                     userId =str(inputdata["userId"])
-                    
+
             whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"'"
             column=" status=2 "
             bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
