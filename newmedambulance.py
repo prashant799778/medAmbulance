@@ -2688,7 +2688,7 @@ def updateStatus11():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ['id','address','ambulanceId','lat','lng','facilityId']
+        keyarr = ['id','address','ambulanceId','empanelmentanyOther','emergencyBed','paraMedicalStaff','operationTheatre','inHouseSpecialist','ICUBed','generalBed','inHouseDoctor','lat','lng','keyPersonName','keyPersonEmail','keyPersonMobileNo','keyPersonTelephone','keyPersonFax','accreditaionA','accreditaionB','accreditaionC','facilityId','hospTypeId','empanelment','serviceTypeId','beds','specialities','fixedHours','emergencyKeyName','emergencyKeyMobileNo','emergencyKeyDesignation']
         print(inputdata,"B")
         commonfile.writeLog("updateHospital1",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
