@@ -4905,7 +4905,7 @@ def updateDriverLatLong():
             
                     return data11
             else:
-                data={"result":"","message":"something went wrong","status":"false"}
+                data={"result":"","message":"please enter keys lat,lng & driverId","status":"false"}
                 return data
 
 
