@@ -6023,7 +6023,8 @@ def endRide1():
                 whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
                 bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
                 print(bookingDetails,"================")
-                bookingDetails["result"]["driverName"]=driverName
+                bookingDetails["message"]="ride Ended Successfully"
+               
                 if (bookingDetails!='0'):  
                     print('Entered')
                     client = mqtt.Client()
@@ -6087,7 +6088,9 @@ def cancelRide1():
                 whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
                 bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
                 print(bookingDetails,"================")
-                bookingDetails["result"]["driverName"]=driverName
+                bookingDetails["message"]="ride Cancelled Successfully" 
+
+               
                 if (bookingDetails!='0'):  
                     print('Entered')
                     client = mqtt.Client()
