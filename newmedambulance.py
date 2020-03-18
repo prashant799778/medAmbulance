@@ -6411,6 +6411,128 @@ def cancelRide1():
 ########################################END##########################################################
 
 
+@app.route('/empanelmentTypeMaster', methods=['GET'])
+def empanelmentTypeMaster():
+    try:
+        msg = "1"
+        if msg=="1":
+            column="*"
+            whereCondition=""
+            data=databasefile.SelectQuery1("empanelmentTypeMaster",column,whereCondition)
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
+        else:
+            return msg
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+@app.route('/hospitalLabotaryMaster', methods=['GET'])
+def hospitalLabotaryMaster():
+    try:
+        msg = "1"
+        if msg=="1":
+            column="*"
+            whereCondition=""
+            data=databasefile.SelectQuery1("hospitalLabotaryMaster",column,whereCondition)
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
+        else:
+            return msg
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output 
+
+
+
+@app.route('/accreditationMaster', methods=['GET'])
+def accreditationMaster():
+    try:
+        msg = "1"
+        if msg=="1":
+            column="*"
+            whereCondition=""
+            data=databasefile.SelectQuery1("accreditationMaster",column,whereCondition)
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
+        else:
+            return msg
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+@app.route('/hospitalServiceMaster', methods=['GET'])
+def hospitalServiceMaster():
+    try:
+        msg = "1"
+        if msg=="1":
+            column="*"
+            whereCondition=""
+            data=databasefile.SelectQuery1("hospitalServiceMaster",column,whereCondition)
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
+        else:
+            return msg
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output 
+
+
+
+@app.route('/hospitalTypeMaster', methods=['GET'])
+def hospitalTypeMaster():
+    try:
+        msg = "1"
+        if msg=="1":
+            column="*"
+            whereCondition=""
+            data=databasefile.SelectQuery1("hospitalTypeMaster",column,whereCondition)
+            if (data!=0):           
+                Data = {"result":data,"status":"true"}
+                return Data
+            else:
+                output = {"result":"No Data Found","status":"false"}
+                return output
+        else:
+            return msg
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output  
+
+
+
+
+
+
+
+
+
+
 
 
 
