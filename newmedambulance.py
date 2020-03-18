@@ -2804,8 +2804,7 @@ def updateStatus111():
                 insertdata=databasefile.UpdateQuery("hospitalDoctorMaster",column,whereCondition7)
 
 
-                column="paramedicalStaff=, operationTheatre="
-                values="'"+str(mainId)+"','"+str(paraMedicalStaff)+"','"+str(operationTheatre)+"'"
+                column="paramedicalStaff='"+str(paraMedicalStaff)+"', operationTheatre='"+str(operationTheatre)+"'"
                 insertdata=databasefile.UpdateQuery("hospitaloperationparamedicalStaffMaster",column,whereCondition7)
 
                 column=" fixedHours='"+str(fixedHours )+"' , beds='"+str(beds)+"' "
