@@ -5953,7 +5953,7 @@ def startRide1():
             if (bookRide!=0):   
                 bookRide["message"]="ride started Successfully"             
                 topic=str(userId)+"/startRide"
-                client.publish(topic, str(bookingDetails)) 
+                
                
             
             
@@ -5965,6 +5965,7 @@ def startRide1():
                 bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
                 print(bookingDetails,"================")
                 bookingDetails["result"]["driverName"]=driverName
+                bookingDetails["message"]="ride started Successfully"  
                 if (bookingDetails!='0'):  
                     print('Entered')
                     client = mqtt.Client()
