@@ -449,7 +449,7 @@ def userProfile():
                 return Data
             else:
                 data={"status":"false","result":"","message":"Invalid User"}
-                return 
+                return data
                         
         else:
             return msg 
@@ -1444,8 +1444,8 @@ def resProfile():
                 Data = {"status":"true","message":"data Updated Successfully","result":data11['result']}                  
                 return Data
             else:
-                data={"status":"false","result":"","message":"Invalid User"}
-                return 
+                data={"status":"false","result":"","message":"Invalid userId"}
+                return data
                         
         else:
             return msg 
@@ -1540,8 +1540,8 @@ def DriverProfile():
                 Data = {"status":"true","message":"data Updated Successfully","result":data11['result']}                  
                 return Data
             else:
-                data={"status":"false","result":"","message":"Invalid User"}
-                return 
+                data={"status":"false","result":"","message":"Invalid userID"}
+                return data
                         
         else:
             return msg 
