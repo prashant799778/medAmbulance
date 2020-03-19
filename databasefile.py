@@ -88,6 +88,30 @@ def SelectQuery1(table,columns,whereCondition):
         return "0"
 
 
+def SelectQueryMaxId(table,columns):
+    try:
+
+        query = " select " + columns + " from " + table + " ;"
+
+        print(query)
+        conn = Connection()      
+        cursor = conn.cursor()
+        cursor.execute(query)
+        data = cursor.fetchall()
+        cursor.close()
+      
+        if data:
+            data = {"status":"true","message":"","result":data}
+        else:
+            data = {"status":"true","message":"No Data Found","result":""}
+
+        return data
+
+    except Exception as e:
+        print("Error--->" + str(e))            
+        return "0"         
+
+
 
 def SelectQuery4(table,columns,whereCondition):
     try:
