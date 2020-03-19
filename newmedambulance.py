@@ -1438,6 +1438,7 @@ def resProfile():
             
          
             data11=databasefile.SelectQuery('userMaster',column,whereCondition)
+            print(data11,"+++")
          
 
             if data11['status'] != "false":
