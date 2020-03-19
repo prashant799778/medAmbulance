@@ -6715,7 +6715,7 @@ def deleteAboutUs():
     except Exception as e :
         print("Exception--->" + str(e))                                  
         return commonfile.Errormessage()
-        
+
 
 @app.route('/allaboutUs', methods=['POST'])
 def allaboutUs():
@@ -6766,7 +6766,7 @@ def support():
 
 
 
-            whereCondition="  and  bm.userId=um.userId and bm.driverId=dm.driverId and um.userId='"+str(userId)+"' "
+            whereCondition="  and  bm.userId=um.userId and bm.driverId=dm.driverId and um.userId='"+str(userId)+"' and bm.status='3' "
 
             column="bm.id,bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status"
             data=databasefile.SelectQueryOrderby("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
