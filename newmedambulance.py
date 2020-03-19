@@ -1442,7 +1442,7 @@ def resProfile():
          
 
             if data11['status'] != "false":
-                Data = {"status":"true","message":"data Updated Successfully","result":data11['result']}                  
+                Data = {"status":"true","message":"","result":data11['result']}                  
                 return Data
             else:
                 data={"status":"false","result":"","message":"Invalid userId"}
@@ -1494,7 +1494,7 @@ def updateresponderProfile():
             whereCondition2= " userId ='"+str(driverId)+"' "
           
             data=databasefile.UpdateQuery("driverMaster",column2,whereCondition)
-            data11=databasefile.UpdateQuery('userMaster',column,whereCondition)
+            data11=databasefile.UpdateQuery('userMaster',column,whereCondition2)
          
 
             if data != "0":
@@ -1590,7 +1590,7 @@ def updateDriverProfile():
             whereCondition2= " userId ='"+str(driverId)+"' "
           
             data=databasefile.UpdateQuery("driverMaster",column2,whereCondition)
-            data11=databasefile.UpdateQuery('userMaster',column,whereCondition)
+            data11=databasefile.UpdateQuery('userMaster',column,whereCondition2)
          
 
             if data != "0":
