@@ -2353,11 +2353,12 @@ def addhospital1():
 
             hospTypeId=inputdata['hospTypeId']
             serviceTypeId=inputdata['serviceTypeId'] 
+            
             keyPersonName=inputdata['keyPersonName']
             keyPersonEmail=inputdata['keyPersonEmail']
 
             keyPersonMobileNo=inputdata['keyPersonMobileNo']
-            keyPersonMobileNo=inputdata['keyPersonTelephone']
+            keyPersonTelephone=inputdata['keyPersonTelephone']
             keyPersonFax=inputdata['keyPersonFax']
 
             accreditaionA=inputdata['accreditaionA']
@@ -2463,9 +2464,10 @@ def addhospital1():
                 values="'"+str(emergencyKeyName)+"','"+str(emergencyKeyDesignation)+"','"+str(emergencyKeyMobileNo)+"','"+str(mainId)+"'"
                 insertdata=databasefile.InsertQuery("hospitalemergencyKeyContactMaster",column,values)
 
+                
                 column='casuality,icu,generalBed,hospitalId'
                 values="'"+str(emergencyBed)+"','"+str(ICUBed)+"','"+str(generalBed)+"','"+str(mainId)+"'"
-                insertdata=databasefile.InsertQuery("hospitalemergencyKeyContactMaster",column,values)
+                insertdata=databasefile.InsertQuery("hospitalBedMaster",column,values)
 
                 column='hospitalId, inhouseDoctors, inhouseSpecialists'
                 values="'"+str(mainId)+"','"+str(inHouseDoctor)+"','"+str(inHouseSpecialist)+"'"
@@ -6630,7 +6632,167 @@ def emergencyDepartMentSpecialitiesMaster():
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
-        return output          
+        return output
+
+#____________
+
+@app.route('/aboutUs', methods=['POST'])
+def aboutUs(): 
+    try: 
+        startlimit,endlimit="",""   
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        aboutId = '1'
+        keyarr = ['description','flag']
+        commonfile.writeLog("aboutUs",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+       
+        if msg == "1":      
+            description = commonfile.EscapeSpecialChar(inputdata["description"])
+            flag = inputdata["flag"]
+            print('====',flag)
+        
+            WhereCondition = " "
+            count = databasefile.SelectCountQuery("aboutUs",WhereCondition,"")
+            
+            if int(count) > 0 and flag == 'n':
+                print('F')         
+                return commonfile.aboutUsDescriptionAlreadyExistMsg()
+            else:
+                if flag == 'n':
+                    columns = " description"          
+                    values = " '" + str(description) + "'"       
+                    data = databasefile.InsertQuery("aboutUs",columns,values)
+                    if data != "0":
+                        column = '*'
+                        WhereCondition = " and description = '" + str(description) + "'"
+                        
+                        data11 = databasefile.SelectQuery("aboutUs",column,WhereCondition,"",startlimit,endlimit)
+                        return data11
+                if flag == 'u':
+                    WhereCondition = " and id='" + str(aboutId) + "'"
+                    column = " description = '" + str(description) + "'"
+                    data = databasefile.UpdateQuery("aboutUs",column,WhereCondition)
+                    return data
+                else:
+                    return commonfile.Errormessage()
+        else:
+            return msg
+
+    except Exception as e:
+        print("Exception--->" + str(e))                                  
+        return commonfile.Errormessage() 
+
+
+@app.route('/deleteAboutUs', methods=['POST'])
+def deleteAboutUs():
+    try:
+
+
+        inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+
+        WhereCondition=""
+  
+        if len(inputdata) > 0:           
+            commonfile.writeLog("deleteAboutUs",inputdata,0)
+        
+        keyarr = ['id']
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if "id" in inputdata:
+            if inputdata['id'] != "":
+                Id =inputdata["id"] 
+                WhereCondition=WhereCondition+" and id='"+str(Id)+"'" 
+        if msg == "1":                        
+            
+            data = databasefile.DeleteQuery("aboutUs",WhereCondition)
+
+            if data != "0":
+                return data
+            else:
+                return commonfile.Errormessage()
+        else:
+            return msg
+
+    except Exception as e :
+        print("Exception--->" + str(e))                                  
+        return commonfile.Errormessage()
+        
+
+@app.route('/allaboutUs', methods=['POST'])
+def allaboutUs():
+    try:
+        columns=" * "
+        
+        data = databasefile.SelectQueryMaxId("aboutUs",columns)
+       
+
+        if data:           
+            Data = {"status":"true","message":"","result":data["result"]}
+            return Data
+        else:
+            output = {"status":"false","message":"No Data Found","result":""}
+            return output
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"status":"false","message":"something went wrong","result":""}
+        return output
+
+
+@app.route('/support', methods=['POST'])
+def support():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+       
+        commonfile.writeLog("support",inputdata,0)
+        msg="1"
+        if msg == "1":
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
+                
+            if "endLimit" in inputdata:
+                if inputdata['endLimit'] != "":
+                    endlimit =str(inputdata["endLimit"])
+
+                 
+            if "userId" in inputdata:
+                if inputdata['userId'] != "":
+                    userId =str(inputdata["userId"])
+
+            orderby="bm.id"                
+
+                    
+
+
+
+            whereCondition="  and  bm.userId=um.userId and bm.driverId=dm.driverId and um.userId='"+str(userId)+"' "
+
+            column="bm.id,bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status"
+            data=databasefile.SelectQueryOrderby("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
+            print(data,"--------------------------------------------------")
+            countdata=databasefile.SelectQuery4("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition)
+           
+            if (data['status']!='false'): 
+                Data = {"result":data['result'],"status":"true","message":"","totalCount":countdata}
+
+                          
+                return Data
+            else:
+                
+                return data
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output         
+
+
 
 
 
