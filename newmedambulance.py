@@ -6768,12 +6768,18 @@ def support():
 
             whereCondition="  and  bm.userId=um.userId and bm.driverId=dm.driverId and um.userId='"+str(userId)+"' and bm.status='3' "
 
-            column="bm.id,bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status"
+            column="bm.id,bm.userMobile,bm.userId,bm.driverId,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,bm.canceledUserId,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status"
             data=databasefile.SelectQueryOrderby("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
             print(data,"--------------------------------------------------")
             countdata=databasefile.SelectQuery4("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition)
            
             if (data['status']!='false'): 
+                for i in data['result']:
+                    if i['canceledUserId'] == i['userId']:
+                        i['canceledBy']=i['userName']
+                    if i['canceledUserId'] == i['driverId']:
+                        i['canceledBy']=i['driverName']
+
                 Data = {"result":data['result'],"status":"true","message":"","totalCount":len(countdata)}
 
                           
