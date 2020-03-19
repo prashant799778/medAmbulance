@@ -358,6 +358,10 @@ document  verification.</string>
     <string name="spt">Support</string>
     <string name="hint">e.g fare information , ambulance type</string>
     <string name="About">about</string>
+    <string name="contactUs">contactUs</string>
+    <string name="description">Description</string>
+    <string name="date">Date</string>
+    <string name="Aboutus">About Us</string>
     <string name="rate">Rate Card</string>
     <string name="selectcatgre">Select Category</string>
     <string name="Totalfare">Total Fare</string>

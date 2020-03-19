@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-121:12
-INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-121:12
-INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-121:12
-INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-121:12
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
+INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
+INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
+INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
 MERGED from [androidx.navigation:navigation-ui:2.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\91c4638cc4295b998a60034fcde58944\navigation-ui-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:2:1-25:12
 MERGED from [com.sun.easysnackbar:easysnackbar:1.0.1] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\f629e9e0d22107caebf0d530c0ea7cdd\jetified-easysnackbar-1.0.1\AndroidManifest.xml:2:1-11:12
@@ -74,20 +74,20 @@ MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] C:\Users\fourbrick\.gra
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\e2041232485bdf4d2a09c36930218fc5\lifecycle-runtime-2.1.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\0b3ed2b8b9ba103e713cc57e24141ba7\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\80494d026c905f06e4c8b45b3569cb2d\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
-INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-121:12
-INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-121:12
-INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-121:12
+INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
+INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
+INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
 	package
 		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:3:5-31
 		INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml
 		INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-121:12
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
 		INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-121:12
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
 		INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:11-69
@@ -136,7 +136,7 @@ ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2
 	android:name
 		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:20:22-72
 application
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:22:5-119:19
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:22:5-120:19
 MERGED from [com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:16:5-23:19
 MERGED from [com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:16:5-23:19
 MERGED from [com.github.shivpujan12:LocationPicker:v1.2] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\54856c988599073776d11b7ccecce341\jetified-LocationPicker-v1.2\AndroidManifest.xml:16:5-18:19
@@ -257,112 +257,116 @@ activity#com.MedAmbulance.Activity.UserPhoneLogin
 ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:54:9-61
 	android:name
 		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:54:19-58
+activity#com.MedAmbulance.Activity.ResponderMapsActivity
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:55:9-77
+	android:name
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:55:19-65
 activity#com.MedAmbulance.Activity.MyNewUserActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:55:9-73
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:56:9-73
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:55:19-61
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:56:19-61
 activity#com.MedAmbulance.Activity.BookAmbulance
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:64:9-60
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:65:9-60
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:64:19-57
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:65:19-57
 activity#com.MedAmbulance.Activity.Track_Abulance_Activity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:65:9-67:48
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:66:9-68:48
 	android:theme
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:67:13-45
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:68:13-45
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:66:13-61
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:67:13-61
 activity#com.MedAmbulance.Activity.Current_Location_Activity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:68:9-70:73
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:69:9-71:73
 	android:label
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:70:13-70
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:71:13-70
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:69:13-63
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:70:13-63
 activity#com.MedAmbulance.Activity.Countinue_As_Acrtivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:71:9-73:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:72:9-74:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:73:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:74:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:72:13-60
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:73:13-60
 activity#com.MedAmbulance.Activity.MyProfile
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:74:9-76:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:75:9-77:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:76:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:77:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:75:13-47
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:76:13-47
 activity#com.MedAmbulance.Activity.Ambulance_Registration_Activity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:77:9-79:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:78:9-80:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:79:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:80:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:78:13-69
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:79:13-69
 activity#com.MedAmbulance.Activity.Driver_Personal_Activty
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:80:9-82:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:81:9-83:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:82:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:83:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:81:13-61
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:82:13-61
 activity#com.MedAmbulance.Activity.Driver_Licence_Activity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:83:9-85:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:84:9-86:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:85:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:86:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:84:13-61
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:85:13-61
 activity#com.MedAmbulance.Activity.AboutActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:86:9-88:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:87:9-89:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:88:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:89:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:87:13-51
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:88:13-51
 activity#com.MedAmbulance.Activity.SupportActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:93:9-95:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:94:9-96:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:95:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:96:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:94:13-53
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:95:13-53
 activity#com.MedAmbulance.Activity.Driver_Registration
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:96:9-98:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:97:9-99:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:98:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:99:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:97:13-57
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:98:13-57
 activity#com.MedAmbulance.Activity.Verification_Activity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:99:9-101:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:100:9-102:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:101:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:102:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:100:13-59
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:101:13-59
 activity#com.MedAmbulance.Activity.Login
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:102:9-104:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:103:9-105:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:104:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:105:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:103:13-43
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:104:13-43
 activity#com.MedAmbulance.Activity.DriverMainActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:105:9-107:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:106:9-108:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:107:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:108:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:106:13-56
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:107:13-56
 activity#com.MedAmbulance.Activity.SplaceActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:108:9-116:20
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:109:9-117:20
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:110:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:111:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:109:13-52
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:110:13-52
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:111:13-115:29
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:112:13-116:29
 action#android.intent.action.MAIN
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:112:17-69
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:113:17-69
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:112:25-66
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:113:25-66
 category#android.intent.category.LAUNCHER
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:114:17-77
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:115:17-77
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:114:27-74
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:115:27-74
 service#org.eclipse.paho.android.service.MqttService
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:118:9-80
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:119:9-80
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:118:18-77
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:119:18-77
 uses-sdk
 INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml

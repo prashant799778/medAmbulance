@@ -445,10 +445,12 @@ public class BookYourRideFrgment extends Fragment implements OnMapReadyCallback,
         });
 
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.map);
-//        mapFragment.getMapAsync(this);
+//
+
+
+        SupportMapFragment mapFragment = (SupportMapFragment)getChildFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
 
         mqttSetup();
@@ -569,7 +571,6 @@ public class BookYourRideFrgment extends Fragment implements OnMapReadyCallback,
                 if (source_location_marker != null) {
                     source_location_marker.remove();
                 }
-
                 LatLng latLng = place.getLatLng();
                 MarkerOptions markerOptions = new MarkerOptions();
                 markerOptions.position(latLng);
@@ -931,7 +932,7 @@ public class BookYourRideFrgment extends Fragment implements OnMapReadyCallback,
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            BookYourRideFrgment.ParserTask parserTask = new BookYourRideFrgment.ParserTask(isBooked);
+            ParserTask parserTask = new ParserTask(isBooked);
             Log.d("result",result);
             // Invokes the thread for parsing the JSON data
             parserTask.execute(result);
@@ -1160,7 +1161,7 @@ public class BookYourRideFrgment extends Fragment implements OnMapReadyCallback,
 
     @Override
     public void onLocationChanged(Location location) {
-
+  Log.d("on location",location.getLatitude()+"");
         mLastLocation = location;
 
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
@@ -1920,7 +1921,7 @@ public class BookYourRideFrgment extends Fragment implements OnMapReadyCallback,
                 }
                 if (!source_location.getText().toString().equals("") && !destination_location.getText().toString().equals("")) {
                     String url = getDirectionsUrl(ambMarker.getPosition() , source_location_marker.getPosition());
-                    BookYourRideFrgment.DownloadTask downloadTask = new BookYourRideFrgment.DownloadTask(true);
+                    DownloadTask downloadTask = new DownloadTask(true);
 
                     // Start downloading json data from Google Directions API
                     downloadTask.execute(url);

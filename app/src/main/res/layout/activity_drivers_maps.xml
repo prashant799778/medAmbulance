@@ -20,26 +20,35 @@
         <RelativeLayout
             android:id="@+id/tool_rel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="5dp"
-            android:paddingBottom="10dp">
+            android:layout_height="40dp">
 
             <ImageView
                 android:id="@+id/openDrawer"
-                android:layout_width="15.9dp"
-                android:layout_height="16dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="12dp"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="0dp"
+                android:padding="13dp"
                 android:src="@drawable/menu2" />
 
-            <ImageButton
+            <com.MedAmbulance.Widget.Atami_Regular
+                android:id="@+id/farg_name"
+                android:layout_width="match_parent"
+                android:textColor="@color/black2"
+                android:textSize="18dp"
+                android:text="@string/Driver"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_centerInParent="true">
+
+            </com.MedAmbulance.Widget.Atami_Regular>
+
+            <ImageView
                 android:id="@+id/bell_tool"
-                android:layout_width="15.9dp"
-                android:layout_height="16dp"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
+                android:padding="12dp"
                 android:src="@drawable/ic_bell" />
         </RelativeLayout>
 

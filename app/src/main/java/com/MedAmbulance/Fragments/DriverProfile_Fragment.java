@@ -17,6 +17,7 @@ import com.MedAmbulance.Comman.MySharedPrefrence;
 
 import com.MedAmbulance.Comman.URLS;
 import com.MedAmbulance.Comman.Utility;
+import com.MedAmbulance.Model.DriverprofileModel;
 import com.MedAmbulance.Model.ProfileModel;
 import com.MedAmbulance.R;
 import com.MedAmbulance.Widget.Atami_regular_EditText;
@@ -114,7 +115,7 @@ public class DriverProfile_Fragment extends Fragment implements MyResult, OnSave
         if (object!=null && status) {
             Gson gson= new GsonBuilder().create();
             try {
-                ProfileModel rm = gson.fromJson(object.getString("result"), new TypeToken<ProfileModel>() {
+                DriverprofileModel rm = gson.fromJson(object.getString("result"), new TypeToken<DriverprofileModel>() {
                 }.getType());
                 Utility.log("DATA", "" + rm.getMobileNo());
                 name.setText(rm.getName());

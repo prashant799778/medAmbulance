@@ -231,6 +231,7 @@ public class AppUtil {
 	
 	public static void showToastMsg(String msg, Context ctx) 
 	{
+		if(ctx!=null)
 		Toast.makeText(ctx, msg, Toast.LENGTH_LONG).show();
 	}
 	

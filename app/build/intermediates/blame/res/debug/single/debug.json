@@ -4,6 +4,10 @@
         "source": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
     {
+        "merged": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_responder_maps.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\src\\main\\res\\layout\\activity_responder_maps.xml"
+    },
+    {
         "merged": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_driver_profile_fragment.xml.flat",
         "source": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\src\\main\\res\\layout\\driver_profile_fragment.xml"
     },
@@ -284,12 +288,12 @@
         "source": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\src\\main\\res\\layout\\fragment_login_.xml"
     },
     {
-        "merged": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_ambulance_5.xml.flat",
-        "source": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\src\\main\\res\\drawable\\ic_ambulance_5.xml"
-    },
-    {
         "merged": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_splce_logo.png.flat",
         "source": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\src\\main\\res\\drawable\\splce_logo.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_ambulance_5.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\src\\main\\res\\drawable\\ic_ambulance_5.xml"
     },
     {
         "merged": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_rotate.xml.flat",
@@ -548,6 +552,10 @@
         "source": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\src\\main\\res\\layout\\activity_user_main.xml"
     },
     {
+        "merged": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_responder_home.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\src\\main\\res\\layout\\fragment_responder_home.xml"
+    },
+    {
         "merged": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_support.xml.flat",
         "source": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\src\\main\\res\\layout\\activity_support.xml"
     },
@@ -644,6 +652,14 @@
         "source": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\src\\main\\res\\drawable-xhdpi\\ic_location_on.png"
     },
     {
+        "merged": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_responder_trip_item_view.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\src\\main\\res\\layout\\responder_trip_item_view.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_support_item_view.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\src\\main\\res\\layout\\support_item_view.xml"
+    },
+    {
         "merged": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\build\\intermediates\\res\\merged\\debug\\raw_uber_style_map.json.flat",
         "source": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\src\\main\\res\\raw\\uber_style_map.json"
     },
@@ -702,6 +718,10 @@
     {
         "merged": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_search.png.flat",
         "source": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\src\\main\\res\\drawable-xxhdpi\\ic_search.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_responder_profile_fragment.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\src\\main\\res\\layout\\responder_profile_fragment.xml"
     },
     {
         "merged": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_location_on.png.flat",

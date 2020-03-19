@@ -54,7 +54,6 @@ public class YourRidesFragment extends Fragment implements MyResult {
         progressDialog.setCancelable(true);
         progressDialog.show();
         mrecyclerView=rootView.findViewById(R.id.Your_Ride);
-
         mrecyclerView.setHasFixedSize(true);
         mrecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         YarrayList= new ArrayList<>();
@@ -91,7 +90,6 @@ public class YourRidesFragment extends Fragment implements MyResult {
             progressDialog.dismiss();
         if(object!=null && status){
             relativeLayout.setVisibility(View.GONE);
-
             Gson gson= new GsonBuilder().create();
             try {
                 ArrayList<YourRidesModel> rm = gson.fromJson(object.getString("result"), new TypeToken<ArrayList<YourRidesModel>>(){}.getType());

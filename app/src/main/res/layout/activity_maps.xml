@@ -46,144 +46,10 @@
         </RelativeLayout>
 
 
-        <LinearLayout
-            android:id="@+id/edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tool_rel"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="16dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_hospital" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <View
-                            android:id="@+id/green_dot"
-                            android:layout_width="6dp"
-                            android:layout_height="6dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="14dp"
-                            android:background="@drawable/green_dot" />
-
-                        <com.MedAmbulance.Widget.Atami_Regular
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="@string/pickup"
-                            android:textColor="@color/pickupcolor"
-                            android:textSize="14dp" />
-
-                    </LinearLayout>
-
-                    <EditText
-                        android:id="@+id/source_location"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="19dp"
-                        android:layout_marginRight="14dp"
-                        android:background="@color/snck"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        android:padding="5dp"
-                        android:textColor="#7e7e7f"
-                        android:textSize="12dp"
-                        />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/edit2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/edit"
-            android:orientation="vertical"
-            android:paddingLeft="56dp"
-            android:visibility="gone">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <View
-                            android:id="@+id/red_dot"
-                            android:layout_width="6dp"
-                            android:layout_height="6dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="14dp"
-                            android:background="@drawable/red_dot" />
-
-                        <com.MedAmbulance.Widget.Atami_Regular
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="@string/drop"
-                            android:textColor="@color/dropcolor"
-                            android:textSize="14dp" />
-
-                    </LinearLayout>
-
-                    <EditText
-                        android:id="@+id/destination_location"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="19dp"
-                        android:layout_marginRight="14dp"
-                        android:background="@color/bg"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        android:padding="5dp"
-                        android:textColor="#7e7e7f"
-                        android:textSize="12dp">
-
-                    </EditText>
-
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/edit2"
+            android:layout_below="@id/tool_rel"
             android:focusable="true"
             android:focusableInTouchMode="true">
 
@@ -195,15 +61,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context="com.anupkumarpanwar.maps.MapsActivity" />
-
-            <ImageView
-                android:id="@+id/ambulance"
-                android:layout_width="30dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/car" />
 
 
             <LinearLayout
@@ -250,69 +107,6 @@
                     android:visibility="gone"></Button>
 
             </LinearLayout>
-
-
-            <!--    <EditText-->
-            <!--        android:id="@+id/source_location"-->
-            <!--       -->
-            <!--        android:layout_width="300dp"-->
-            <!--        android:layout_height="wrap_content"-->
-            <!--        android:layout_alignParentStart="true"-->
-            <!--        android:layout_alignParentLeft="true"-->
-            <!--        android:layout_alignParentTop="true"-->
-            <!--        android:layout_alignParentEnd="true"-->
-            <!--        android:layout_alignParentRight="true"-->
-            <!--        android:background="#ffffff"-->
-            <!--        android:ems="10"-->
-            <!--        android:hint="Where from?"-->
-            <!--        android:inputType="textPersonName"-->
-            <!--        android:paddingLeft="30dp"-->
-            <!--        android:paddingTop="10dp"-->
-            <!--        android:paddingBottom="10dp"-->
-            <!--        android:textColor="#7e7e7f"-->
-            <!--        android:textSize="15dp" />-->
-
-            <!--    <ImageView-->
-            <!--        android:id="@+id/green_dot"-->
-            <!--        android:layout_width="10dp"-->
-            <!--        android:layout_height="10dp"-->
-            <!--        android:layout_alignStart="@+id/source_location"-->
-            <!--        android:layout_alignLeft="@+id/source_location"-->
-            <!--        android:layout_alignBottom="@+id/source_location"-->
-            <!--        android:layout_marginStart="11dp"-->
-            <!--        android:layout_marginLeft="11dp"-->
-            <!--        android:layout_marginBottom="15dp"-->
-            <!--        android:background="#04b904" />-->
-
-            <!--    <EditText-->
-            <!--        android:id="@+id/destination_location"-->
-            <!--        android:layout_width="300dp"-->
-            <!--        android:layout_height="wrap_content"-->
-            <!--        android:layout_below="@+id/green_dot"-->
-            <!--        android:layout_alignParentStart="true"-->
-            <!--        android:layout_alignParentLeft="true"-->
-            <!--        android:layout_alignParentEnd="true"-->
-            <!--        android:layout_alignParentRight="true"-->
-            <!--        android:background="#ffffff"-->
-            <!--        android:ems="10"-->
-            <!--        android:hint="Where to?"-->
-            <!--        android:inputType="textPersonName"-->
-            <!--        android:paddingLeft="30dp"-->
-            <!--        android:paddingTop="10dp"-->
-            <!--        android:paddingBottom="10dp"-->
-            <!--        android:textColor="#7e7e7f"-->
-            <!--        android:textSize="15dp" />-->
-
-            <!--    <ImageView-->
-            <!--        android:id="@+id/red_dot"-->
-            <!--        android:layout_width="10dp"-->
-            <!--        android:layout_height="10dp"-->
-            <!--        android:layout_alignStart="@+id/green_dot"-->
-            <!--        android:layout_alignLeft="@+id/green_dot"-->
-            <!--        android:layout_alignBottom="@+id/destination_location"-->
-            <!--        android:layout_marginBottom="15dp"-->
-            <!--        android:background="#d70407" />-->
-
             <RelativeLayout
                 android:id="@+id/driver_details"
                 android:layout_width="match_parent"

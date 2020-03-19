@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import android.Manifest;
 import android.animation.ValueAnimator;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -133,7 +134,7 @@ public class DriversMapsActivity extends FragmentActivity implements OnMapReadyC
     DrawerLayout drawerLayout;
     ImageView openDrawer;
     ActionBarDrawerToggle actionBarDrawerToggle;
-
+    Dialog dialog;
     private boolean isBook;
     Handler handler;
     int index=0;
@@ -295,6 +296,9 @@ public class DriversMapsActivity extends FragmentActivity implements OnMapReadyC
         reqestTopic=  userId+"/"+"booking";
         locationTopic=  userId;
         ///intialize view
+
+        sharedPreferences.setLoggedIn(true);
+        sharedPreferences.setUserTypeId("3");
         notifications= findViewById(R.id.notification);
         notifications.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -407,8 +411,35 @@ public class DriversMapsActivity extends FragmentActivity implements OnMapReadyC
                 drawerLayout.closeDrawers();
                 break;
             case 5:
+                dialog = new Dialog(DriversMapsActivity.this);
+                dialog.setContentView(R.layout.logout_dialog_box);
+                LinearLayout no=dialog.findViewById(R.id.no);
+                LinearLayout yes=dialog.findViewById(R.id.yes);
+                dialog.getWindow().addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_NEW_TASK );
+                dialog.setCanceledOnTouchOutside(false);
+                int Width =(int) (getResources().getDisplayMetrics().widthPixels*0.95);
+                int Height =(int) (getResources().getDisplayMetrics().heightPixels*0.60);
+                dialog.show();
+                dialog.getWindow().setLayout(Width,Height);
                 drawerLayout.closeDrawers();
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sharedPreferences.setLoggedIn(false);
+                        sharedPreferences.clearData();
+                        dialog.dismiss();
+                        startActivity(new Intent(DriversMapsActivity.this,Countinue_As_Acrtivity.class));
+                        finish();
+                    }
+                });
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
                 break;
+
 
         }
         if (fragment != null) {
@@ -963,7 +994,13 @@ public class DriversMapsActivity extends FragmentActivity implements OnMapReadyC
 
     }
 
-    public void subscribeToTopic( String topic){
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
+
+    public void subscribeToTopic(String topic){
         try {
             mqttAndroidClient.subscribe(topic, 0, null, new IMqttActionListener() {
                 @Override

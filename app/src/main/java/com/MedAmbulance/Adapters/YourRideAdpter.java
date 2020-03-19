@@ -34,20 +34,15 @@ public class YourRideAdpter  extends RecyclerView.Adapter <YourRideAdpter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View v = LayoutInflater.from(Ycontext).inflate(R.layout.responder_trip_item_view,parent,false);
+        return new YourRideAdpter.ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         YourRidesModel currentItem= YarrayList.get(position);
-        String userName=currentItem.getUserName();
-        String date =currentItem.getStartTime();
-        String routeID =currentItem.getBookingId();
 
-        holder.userName.setText(userName);
-        holder.date.setText(date);
-        holder.routeId.setText(routeID);
     }
 
     @Override
@@ -56,7 +51,6 @@ public class YourRideAdpter  extends RecyclerView.Adapter <YourRideAdpter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         ImageView UserImage;
         Atami_Bold userName,fair;
         Atami_Regular routeId,date;

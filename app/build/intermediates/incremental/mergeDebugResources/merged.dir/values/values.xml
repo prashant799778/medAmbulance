@@ -1292,6 +1292,7 @@
     <string name="AIR">AIR</string>
     <string name="ALS">ALS</string>
     <string name="About">about</string>
+    <string name="Aboutus">About Us</string>
     <string name="AmbulanceRegistration">Ambulance Registration</string>
     <string name="Ambulance_Category">Ambulance Category</string>
     <string name="Ambulance_Details">Ambulance Details</string>
@@ -1458,11 +1459,14 @@
     <string name="common_signin_button_text">Sign in</string>
     <string name="common_signin_button_text_long">Sign in with Google</string>
     <string name="confirmpassword">Confirm Password</string>
+    <string name="contactUs">contactUs</string>
     <string name="continue_label">Continue</string>
     <string name="continuie">Continue</string>
     <string name="create_rate_card">Create Rate Card</string>
+    <string name="date">Date</string>
     <string name="define_roundedimageview"/>
     <string name="describe_your_skill">Describe your skill better</string>
+    <string name="description">Description</string>
     <string name="disallow_location">No, I\'l enter detail manually </string>
     <string name="disc"> You have successfully submitted  the documents.
 You will be contacted soon after your

@@ -9,6 +9,15 @@ public class myTripModel {
     String  tripTo;
     String  userMobile;
     String  userName;
+    String finalAmount;
+
+    public String getFinalAmount() {
+        return finalAmount;
+    }
+
+    public void setFinalAmount(String finalAmount) {
+        this.finalAmount = finalAmount;
+    }
 
     public String getBookingId() {
         return bookingId;

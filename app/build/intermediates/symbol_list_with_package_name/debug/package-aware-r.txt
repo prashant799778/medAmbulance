@@ -2256,6 +2256,7 @@ id alert_selection_items_container
 id all
 id always
 id amb
+id ambu_type
 id ambulance
 id ambulanceRegistration
 id amdp_animator
@@ -2290,6 +2291,7 @@ id blocking
 id book_frag
 id book_now
 id booking_details
+id booking_id
 id bottom
 id bottomButtons
 id bottom_sheet
@@ -2357,6 +2359,7 @@ id cut
 id dark
 id date
 id date_lay
+id date_support
 id decline_ride
 id decor_content_parent
 id default_activity_button
@@ -2409,6 +2412,7 @@ id expanded_menu
 id f_image
 id fab_select_location
 id fade
+id fair
 id fair_trip
 id farg_name
 id fastscroll_bubble
@@ -2454,6 +2458,7 @@ id hidden
 id home
 id homeAsUp
 id homeMapFrame
+id hospital_address
 id hybrid
 id icon
 id icon_group
@@ -2517,6 +2522,9 @@ id map_driver
 id masked
 id media_actions
 id message
+id mgs
+id mgs2
+id mgs3
 id middle
 id mini
 id mirror
@@ -2555,6 +2563,7 @@ id notification
 id notification_background
 id notification_main_column
 id notification_main_column_container
+id number
 id off
 id on
 id openDrawer
@@ -2604,6 +2613,7 @@ id progress_horizontal
 id r_date
 id radio
 id rangebar1
+id rate
 id rc_h
 id rc_view
 id recyclerView
@@ -2677,12 +2687,14 @@ id src_in
 id src_over
 id standard
 id start
+id start_address
 id status_bar_bg
 id status_bar_latest_event_content
 id stretch
 id stroke
 id submenuarrow
 id submit_area
+id support_view
 id swipeRefresh
 id switchToDriverMode
 id switch_online
@@ -2733,6 +2745,7 @@ id tl
 id to
 id to_icon
 id tool_accept
+id tool_lin
 id tool_rel
 id toolbar
 id top
@@ -2874,6 +2887,7 @@ layout activity_maps
 layout activity_my_profile
 layout activity_place
 layout activity_rate_card
+layout activity_responder_maps
 layout activity_support
 layout activity_temp
 layout activity_terms_conditions
@@ -2942,6 +2956,7 @@ layout fragment_book_rides_frg
 layout fragment_gallery
 layout fragment_home
 layout fragment_login_
+layout fragment_responder_home
 layout fragment_sign_up_
 layout fragment_slideshow
 layout fragment_user_book_your_ride
@@ -2996,11 +3011,14 @@ layout places_autocomplete_search_bar
 layout popup_loading
 layout rate__card_fragment
 layout request_popup_view
+layout responder_profile_fragment
+layout responder_trip_item_view
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout spinner_layout
 layout support__us_fragment
+layout support_item_view
 layout support_simple_spinner_dropdown_item
 layout test_reflow_chipgroup
 layout toolbar
@@ -3017,6 +3035,7 @@ raw uber_style_map
 string AIR
 string ALS
 string About
+string Aboutus
 string AmbulanceRegistration
 string Ambulance_Category
 string Ambulance_Details
@@ -3183,11 +3202,14 @@ string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
 string confirmpassword
+string contactUs
 string continue_label
 string continuie
 string create_rate_card
+string date
 string define_roundedimageview
 string describe_your_skill
+string description
 string disallow_location
 string disc
 string doneText

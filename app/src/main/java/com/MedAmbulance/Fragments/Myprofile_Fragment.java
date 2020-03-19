@@ -128,7 +128,8 @@ public class Myprofile_Fragment extends Fragment implements MyResult, OnSaveProf
                 email.setText(rm.getEmail());
                 mobile.setText(rm.getMobileNo());
                 password.setText(rm.getPassword());
-//                (((MapsActivity) getActivity())).user_name.setText(rm.getName());
+                m.setMobile(rm.getMobileNo());
+                m.setUserName(rm.getName());
             } catch (JSONException e) {
                 e.printStackTrace();
             }

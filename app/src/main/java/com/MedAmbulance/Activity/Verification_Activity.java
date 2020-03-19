@@ -151,6 +151,7 @@ public class Verification_Activity extends AppCompatActivity implements MyResult
                 }else if(AppUtil.getDatafromJSonObject(result,"userTypeId").equalsIgnoreCase("3")){
                     startActivity(new Intent(Verification_Activity.this, DriversMapsActivity.class));
                 }else if(AppUtil.getDatafromJSonObject(result,"userTypeId").equalsIgnoreCase("4")){
+                    startActivity(new Intent(Verification_Activity.this, ResponderMapsActivity.class));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

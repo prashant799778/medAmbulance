@@ -2,6 +2,8 @@ package com.MedAmbulance.Comman;
 
 import android.view.View;
 
+import com.MedAmbulance.rangebar.Bar;
+
 public class URLS {
     public static String BASE_URL="http://134.209.153.34:5077/";
 
@@ -20,6 +22,9 @@ public class URLS {
 
     public static String DriverProfile =BASE_URL+"driverProfile";
     public static String DriverUpdateProfile =BASE_URL+"updateDriverProfile";
-
+    public static String AboutUs =BASE_URL+"allaboutUs";
     public static String AddLicence=BASE_URL+"";
+    public static  String responderProfile=BASE_URL+"responderProfile";
+    public static String updateresponderProfile=BASE_URL+"updateresponderProfile";
+    public static String Support=BASE_URL+"support";
 }

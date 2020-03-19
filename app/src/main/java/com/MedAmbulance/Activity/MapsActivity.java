@@ -171,12 +171,22 @@ public class MapsActivity extends FragmentActivity implements  MyResult {
         opernDrawer = findViewById(R.id.openDrawer);
         m.setLoggedIn(true);
         m.setUserTypeId("2");
+        user_name.setText(m.getUserName());
+        user_phone_no.setText(m.getMobile());
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.map, bookmyridefragment).commit();
         header.setText("Book Your Rides");
+
+
+
+
+
         opernDrawer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                user_name.setText(m.getUserName());
+                user_phone_no.setText(m.getMobile());
                 drawerLayout = findViewById(R.id.drawerlayut);
                 // If navigation drawer is not open yet, open it else close it.
                 drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -185,6 +195,8 @@ public class MapsActivity extends FragmentActivity implements  MyResult {
                 else drawerLayout.closeDrawer(Gravity.LEFT);
             }
         });
+
+
         DrawerModel[] drawerItem = new DrawerModel[6];
         drawerItem[0] = new DrawerModel(R.drawable.taxi, "Book Your Ride");
         drawerItem[1] = new DrawerModel(R.drawable.your_ride, "My Ride");
@@ -192,6 +204,8 @@ public class MapsActivity extends FragmentActivity implements  MyResult {
         drawerItem[3] = new DrawerModel(R.drawable.support, "Support");
         drawerItem[4] = new DrawerModel(R.drawable.about, "About");
         drawerItem[5] = new DrawerModel(R.drawable.logout, "Logout");
+
+
 
 
         DrawerI_Adapter adapter = new DrawerI_Adapter(this, R.layout.drawer_list_view, drawerItem);
@@ -241,8 +255,6 @@ public class MapsActivity extends FragmentActivity implements  MyResult {
         btnBookNow_layout.setVisibility(View.GONE);
 
 
-        cab = (ImageView) findViewById(R.id.ambulance);
-        cab.setVisibility(View.GONE);
         timer = new Timer();
         markerPoints = new ArrayList<LatLng>();
         StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().build();
@@ -328,7 +340,8 @@ public class MapsActivity extends FragmentActivity implements  MyResult {
 
         switch (position) {
             case 0:
-                fragment = new BookYourRideFrgment();
+                if(! (bookmyridefragment!=null && bookmyridefragment.isVisible()))
+                fragment = bookmyridefragment;
                 header.setText("Book Your Ride");
                 drawerLayout.closeDrawers();
                 break;

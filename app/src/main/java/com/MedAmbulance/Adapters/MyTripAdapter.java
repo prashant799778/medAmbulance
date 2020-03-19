@@ -25,7 +25,6 @@ public class MyTripAdapter extends RecyclerView.Adapter <MyTripAdapter.ViewHolde
        mcontext=context;
        marrayList = myTripModels;
     }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,7 +38,6 @@ public class MyTripAdapter extends RecyclerView.Adapter <MyTripAdapter.ViewHolde
      String userName=currentItem.getUserName();
      String date =currentItem.getStartTime();
      String routeID =currentItem.getBookingId();
-
      holder.userName.setText(userName);
      holder.date.setText(date);
      holder.routeId.setText(routeID);
