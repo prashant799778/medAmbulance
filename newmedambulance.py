@@ -4834,7 +4834,7 @@ def myrides():
             countdata=databasefile.SelectQuery4("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition)
            
             if (data['status']!='false'): 
-                Data = {"result":data['result'],"status":"true","message":"","totalCount":countdata}
+                Data = {"result":data['result'],"status":"true","message":"","totalCount":len(countdata)}
 
                           
                 return Data
@@ -4891,7 +4891,7 @@ def myTrip():
             countdata=databasefile.SelectQuery4("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition)
            
             if (data['status']!='false'): 
-                Data = {"result":data['result'],"status":"true","message":"","totalCount":countdata}
+                Data = {"result":data['result'],"status":"true","message":"","totalCount":len(countdata)}
 
                           
                 return Data
