@@ -1,5 +1,6 @@
 package com.MedAmbulance.Fragments;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
+import com.MedAmbulance.Activity.MapsActivity;
 import com.MedAmbulance.Api_Calling.MyResult;
 import com.MedAmbulance.Api_Calling.OnSaveProfileResult;
 import com.MedAmbulance.Comman.Api_Calling;
@@ -62,7 +64,7 @@ public class Myprofile_Fragment extends Fragment implements MyResult, OnSaveProf
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!name.getText().toString().isEmpty() && !email.getText().toString().isEmpty() && !password.getText().toString().isEmpty() && !mobile.getText().toString().isEmpty()){
+                if(!mobile.getText().toString().isEmpty()){
                     progressDialog = new ProgressDialog(getContext());
                     progressDialog.setMessage("Updating Please wait ...");
                     progressDialog.setCancelable(true);
@@ -126,6 +128,7 @@ public class Myprofile_Fragment extends Fragment implements MyResult, OnSaveProf
                 email.setText(rm.getEmail());
                 mobile.setText(rm.getMobileNo());
                 password.setText(rm.getPassword());
+//                (((MapsActivity) getActivity())).user_name.setText(rm.getName());
             } catch (JSONException e) {
                 e.printStackTrace();
             }

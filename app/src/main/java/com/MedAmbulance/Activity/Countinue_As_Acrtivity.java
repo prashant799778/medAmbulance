@@ -30,8 +30,8 @@ public class Countinue_As_Acrtivity extends AppCompatActivity implements View.On
        switch (v
        .getId()){
            case R.id.responsder:
-              Intent i=new Intent(Countinue_As_Acrtivity.this, UserMainWorkActivity.class);
-              i.putExtra("userType","1");
+              Intent i=new Intent(Countinue_As_Acrtivity.this, UserPhoneLogin.class);
+              i.putExtra("userType","4");
               startActivity(i);
                break;
            case  R.id.user:
@@ -40,7 +40,7 @@ public class Countinue_As_Acrtivity extends AppCompatActivity implements View.On
                startActivity(i1);
                break;
            case R.id.driver:
-               Intent i2=new Intent(Countinue_As_Acrtivity.this, DriverPhoneLogin.class);
+               Intent i2=new Intent(Countinue_As_Acrtivity.this, UserPhoneLogin.class);
                i2.putExtra("userType","3");
                startActivity(i2);
                break;

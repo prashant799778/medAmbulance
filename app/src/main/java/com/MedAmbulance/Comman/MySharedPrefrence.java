@@ -224,7 +224,7 @@ public class MySharedPrefrence {
 
 
     public String getname() {
-        return sharedPreferences.getString("name", "");
+        return sharedPreferences.getString("name", "Name");
     }
 
     public void setipAddress(String dsg) {

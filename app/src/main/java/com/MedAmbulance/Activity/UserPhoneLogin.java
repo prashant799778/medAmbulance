@@ -35,7 +35,7 @@ public class UserPhoneLogin extends AppCompatActivity implements View.OnClickLis
     TextInputEditText usermobile;
     MyResult myResult;
     MySharedPrefrence m;
-    int userTypeID= 2;
+    String userTypeID="";
     String MobilePattern = "[0-9]{10}";
     TextInputLayout u_mobile;
 
@@ -46,12 +46,16 @@ public class UserPhoneLogin extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_phone_login);
-        Animatoo.animateFade(UserPhoneLogin.this);
+        Animatoo.animateSlideLeft(UserPhoneLogin.this);
 
         m=MySharedPrefrence.instanceOf(getApplicationContext());
 
         this.myResult=this;
-
+        Intent intent=getIntent();
+        if(intent!=null)
+        {
+            userTypeID=intent.getStringExtra("userType");
+        }
 
         linearLayout=findViewById(R.id.agree_terms);
         buttonCont=findViewById(R.id.phone_continue);
@@ -68,8 +72,6 @@ public class UserPhoneLogin extends AppCompatActivity implements View.OnClickLis
     public void onBackPressed() {
         super.onBackPressed();
         Animatoo.animateSwipeRight(UserPhoneLogin.this);
-
-
     }
 
     @Override
@@ -117,6 +119,7 @@ public class UserPhoneLogin extends AppCompatActivity implements View.OnClickLis
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Utility.log("SighUpTypeData",""+jsonObject);
         return jsonObject;
 
     }
@@ -135,25 +138,20 @@ public class UserPhoneLogin extends AppCompatActivity implements View.OnClickLis
             try
             {
                 String otp = "";
-//                JSONArray jsonArray= null;
-//                jsonArray = object.getJSONArray("result");
-//                for(int j=0;j<jsonArray.length();j++){
-//                    JSONObject jsonObject= jsonArray.getJSONObject(j);
-//                    otp = jsonObject.getString("otp");
 //                }
                 JSONObject jsonObject= object.getJSONObject("result");
                 otp = jsonObject.getString("otp");
-// m.setMobile(Utility.getValueFromJsonObject(object, "mobileNo"));
-// m.setUserId(Utility.getValueFromJsonObject(object,"userId"));
-// m.setUserTypeId(Utility.getValueFromJsonObject(object,"usertypeId"));
-// m.setcurrentLocation(Utility.getValueFromJsonObject(object,"currentLocation"));
-// m.setcurrentLocationlatlong(Utility.getValueFromJsonObject(object,"currentLocation"));
-// m.setotp(Utility.getValueFromJsonObject(object,"otp"));
-
+                m.setMobile(Utility.getValueFromJsonObject(object, "mobileNo"));
+                m.setUserId(Utility.getValueFromJsonObject(object,"userId"));
+                m.setUserTypeId(Utility.getValueFromJsonObject(object,"usertypeId"));
+                m.setcurrentLocation(Utility.getValueFromJsonObject(object,"currentLocation"));
+                m.setcurrentLocationlatlong(Utility.getValueFromJsonObject(object,"currentLocation"));
+                m.setotp(Utility.getValueFromJsonObject(object,"otp"));
                 Intent verificationIntent = new Intent(UserPhoneLogin.this, Verification_Activity.class);
                 verificationIntent.putExtra("otp", otp);
                 verificationIntent.putExtra("mobile", usermobile.getText().toString());
                 startActivity(verificationIntent);
+                finish();
 
             }
             catch (Exception e) {

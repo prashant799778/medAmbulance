@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Fourbricks\\medAmbulance\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
+            "outputFile": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Mohit\\.gradle\\caches\\transforms-2\\files-2.1\\e3d74671e23c6f6371a3e9d8ae227505\\jetified-material-datepicker-1.3\\res\\values-land\\values-land.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,120,190,250",
-                        "endColumns": "64,69,59,60",
-                        "endOffsets": "115,185,245,306"
-                    },
-                    "to": {
-                        "startLines": "5,6,7,8",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "264,329,399,459",
-                        "endColumns": "64,69,59,60",
-                        "endOffsets": "324,394,454,515"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Mohit\\.gradle\\caches\\transforms-2\\files-2.1\\f7fa931c10060cb31b4ececcd856b65d\\appcompat-1.1.0\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\fourbrick\\.gradle\\caches\\transforms-2\\files-2.1\\f7fa931c10060cb31b4ececcd856b65d\\appcompat-1.1.0\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -31,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Mohit\\.gradle\\caches\\transforms-2\\files-2.1\\fc0b0e953e81b7079b5dc487a2e48a45\\material-1.1.0-alpha02\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\fourbrick\\.gradle\\caches\\transforms-2\\files-2.1\\fc0b0e953e81b7079b5dc487a2e48a45\\material-1.1.0-alpha02\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -47,6 +30,23 @@
                         "endLines": "12",
                         "endColumns": "10",
                         "endOffsets": "687"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fourbrick\\.gradle\\caches\\transforms-2\\files-2.1\\2279be8635938c7cf579ef23227cd60d\\jetified-material-datepicker-1.3\\res\\values-land\\values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,120,190,250",
+                        "endColumns": "64,69,59,60",
+                        "endOffsets": "115,185,245,306"
+                    },
+                    "to": {
+                        "startLines": "5,6,7,8",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "264,329,399,459",
+                        "endColumns": "64,69,59,60",
+                        "endOffsets": "324,394,454,515"
                     }
                 }
             ]

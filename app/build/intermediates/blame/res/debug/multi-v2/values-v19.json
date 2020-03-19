@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Fourbricks\\medAmbulance\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v19\\values-v19.xml",
+            "outputFile": "E:\\New_Git_4_03_2020\\med_ambulance\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v19\\values-v19.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Mohit\\.gradle\\caches\\transforms-2\\files-2.1\\a57dd7f0f0449f0796a52ac15cad301b\\jetified-pix-1.4.4\\res\\values-v19\\values-v19.xml",
+                    "source": "C:\\Users\\fourbrick\\.gradle\\caches\\transforms-2\\files-2.1\\a57dd7f0f0449f0796a52ac15cad301b\\jetified-pix-1.4.4\\res\\values-v19\\values-v19.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",

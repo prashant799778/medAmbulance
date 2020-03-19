@@ -15,7 +15,7 @@
             android:orientation="vertical">
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="82dp">
+                android:layout_height="75dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -38,6 +38,7 @@
                         android:background="@color/white"
                         android:hint="@string/YourName"
                         android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
                         android:textSize="16dp"
                         android:singleLine="true"
                         android:textColor="@color/tint"/>
@@ -57,7 +58,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="82dp">
+                android:layout_height="70dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -80,6 +81,7 @@
                         android:background="@color/white"
                         android:maxLength="10"
                         android:inputType="number"
+                        android:layout_marginTop="10dp"
                         android:hint="@string/mobile"
                         android:layout_marginLeft="16dp"
                         android:textSize="16dp"
@@ -99,7 +101,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="82dp">
+                android:layout_height="75dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -122,6 +124,7 @@
                         android:background="@color/white"
                         android:hint="@string/email"
                         android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
                         android:textSize="16dp"
                         android:singleLine="true"
                         android:textColor="@color/tint"/>
@@ -163,7 +166,9 @@
                         android:background="@color/white"
                         android:hint="@string/passeword"
                         android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
                         android:textSize="16dp"
+                        android:inputType="textPassword"
                         android:singleLine="true"
                         android:textColor="@color/tint"/>
                 </LinearLayout>

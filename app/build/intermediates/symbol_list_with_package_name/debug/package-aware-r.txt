@@ -924,6 +924,7 @@ color background_floating_material_light
 color background_material_dark
 color background_material_light
 color background_tab_pressed
+color bg
 color bg_light_grey
 color bhkcolor
 color black
@@ -2376,6 +2377,7 @@ id disableHome
 id div_mobile
 id div_mobile_edt
 id done
+id dontgetotp
 id drawer_layout
 id drawerlayut
 id driver
@@ -2545,6 +2547,7 @@ id nav_view
 id navigation_header_container
 id never
 id newreq_layout
+id no
 id no_data
 id none
 id normal
@@ -2786,6 +2789,7 @@ id wide
 id withText
 id wrap
 id wrap_content
+id yes
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
 integer app_bar_elevation_anim_duration
@@ -2959,6 +2963,7 @@ layout mtrl_layout_snackbar_include
 layout my_profile_fragment
 layout my_trip_fragment
 layout my_trip_view
+layout mynewuseractivity
 layout nav_header_user_main_work
 layout notification_action
 layout notification_action_tombstone

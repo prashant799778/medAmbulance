@@ -360,7 +360,6 @@ public class DriversMapsActivity extends FragmentActivity implements OnMapReadyC
             }
 
         });
-
         setUpLocation();
 
         setUpMqtt();

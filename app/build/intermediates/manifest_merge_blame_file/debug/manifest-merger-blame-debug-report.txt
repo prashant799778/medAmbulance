@@ -6,137 +6,139 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="24"
-8-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml
+8-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml
+9-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml
 10    <!--
 11         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
 12         Google Maps Android API v2, but you must specify either coarse or fine
 13         location permissions for the 'MyLocation' functionality.
 14    -->
 15    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-15-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:9:5-79
-15-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:9:22-76
+15-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:9:5-79
+15-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:9:22-76
 16    <!--
 17         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
 18         Google Maps Android API v2, but you must specify either coarse or fine
 19         location permissions for the 'MyLocation' functionality.
 20    -->
 21    <uses-permission android:name="android.permission.INTERNET" />
-21-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:15:5-67
-21-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:15:22-64
+21-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:15:5-67
+21-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:15:22-64
 22    <uses-permission android:name="android.permission.WAKE_LOCK" />
-22-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:16:5-68
-22-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:16:22-65
+22-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:16:5-68
+22-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:16:22-65
 23    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-23-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:17:5-81
-23-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:17:22-78
+23-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:17:5-81
+23-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:17:22-78
 24    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-24-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:18:5-79
-24-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:18:22-76
+24-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:18:5-79
+24-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:18:22-76
 25    <uses-permission android:name="android.permission.CALL_PHONE" />
-25-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:19:5-69
-25-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:19:22-66
+25-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:19:5-69
+25-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:19:22-66
 26    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-26-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:20:5-75
-26-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:20:22-72
+26-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:20:5-75
+26-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:20:22-72
 27    <uses-permission android:name="android.permission.CAMERA" />
-27-->[com.fxn769:pix:1.4.4] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:11:5-65
-27-->[com.fxn769:pix:1.4.4] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:11:22-62
+27-->[com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:11:5-65
+27-->[com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:11:22-62
 28    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-28-->[com.fxn769:pix:1.4.4] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:12:5-80
-28-->[com.fxn769:pix:1.4.4] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:12:22-77
+28-->[com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:12:5-80
+28-->[com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:12:22-77
 29    <uses-permission android:name="android.permission.VIBRATE" />
-29-->[com.fxn769:pix:1.4.4] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:13:5-66
-29-->[com.fxn769:pix:1.4.4] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:13:22-63
+29-->[com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:13:5-66
+29-->[com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:13:22-63
 30    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-30-->[com.fxn769:pix:1.4.4] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:14:5-81
-30-->[com.fxn769:pix:1.4.4] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:14:22-78
+30-->[com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:14:5-81
+30-->[com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:14:22-78
 31    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-31-->[com.google.android.libraries.places:places:1.1.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\cd082abebc4d2f40696d3020d5e7619d\jetified-places-1.1.0\AndroidManifest.xml:10:5-76
-31-->[com.google.android.libraries.places:places:1.1.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\cd082abebc4d2f40696d3020d5e7619d\jetified-places-1.1.0\AndroidManifest.xml:10:22-73
+31-->[com.google.android.libraries.places:places:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fd634a6846839a4a9aa42adb4e9b339\jetified-places-1.1.0\AndroidManifest.xml:10:5-76
+31-->[com.google.android.libraries.places:places:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fd634a6846839a4a9aa42adb4e9b339\jetified-places-1.1.0\AndroidManifest.xml:10:22-73
 32
 33    <uses-feature
-33-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\edb03ed300512ae8da7c146a103a6c79\jetified-play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
+33-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\edb03ed300512ae8da7c146a103a6c79\jetified-play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
 34        android:glEsVersion="0x00020000"
-34-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\edb03ed300512ae8da7c146a103a6c79\jetified-play-services-maps-17.0.0\AndroidManifest.xml:27:9-41
+34-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\edb03ed300512ae8da7c146a103a6c79\jetified-play-services-maps-17.0.0\AndroidManifest.xml:27:9-41
 35        android:required="true" />
-35-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\edb03ed300512ae8da7c146a103a6c79\jetified-play-services-maps-17.0.0\AndroidManifest.xml:28:9-32
+35-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\edb03ed300512ae8da7c146a103a6c79\jetified-play-services-maps-17.0.0\AndroidManifest.xml:28:9-32
 36
 37    <application
-37-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:22:5-118:19
+37-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:22:5-119:19
 38        android:allowBackup="true"
-38-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:23:9-35
+38-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:23:9-35
 39        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-39-->[androidx.core:core:1.3.0-alpha02] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\dd84d74b717d5e64a2a5f46d0814ca9c\core-1.3.0-alpha02\AndroidManifest.xml:24:18-86
+39-->[androidx.core:core:1.3.0-alpha02] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\dd84d74b717d5e64a2a5f46d0814ca9c\core-1.3.0-alpha02\AndroidManifest.xml:24:18-86
 40        android:debuggable="true"
 41        android:extractNativeLibs="false"
 42        android:icon="@mipmap/ic_launcher"
-42-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:24:9-43
+42-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:24:9-43
 43        android:label="@string/app_name"
-43-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:25:9-41
+43-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:25:9-41
 44        android:largeHeap="true"
-44-->[com.fxn769:pix:1.4.4] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:17:9-33
+44-->[com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:17:9-33
 45        android:networkSecurityConfig="@xml/network_security_config"
-45-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:26:9-69
+45-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:26:9-69
 46        android:roundIcon="@mipmap/ic_launcher_round"
-46-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:27:9-54
+46-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:27:9-54
 47        android:supportsRtl="true"
-47-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:28:9-35
-48        android:testOnly="true"
-49        android:theme="@style/AppTheme" >
-49-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:29:9-40
-50        <activity android:name="com.MedAmbulance.DriverPhoneLogin" />
-50-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:30:9-63
-50-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:30:19-51
-51        <activity android:name="com.MedAmbulance.Activity.UserModuleActivity" />
-51-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:31:9-65
-51-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:31:19-62
-52        <activity android:name="com.MedAmbulance.Activity.DestinationActivity" />
-52-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:32:9-66
-52-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:32:19-63
-53        <activity android:name="com.MedAmbulance.Activity.AllRequestActivity" />
-53-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:33:9-65
-53-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:33:19-62
-54        <!--
-55             The API key for Google Maps-based APIs is defined as a string resource.
-56             (See the file "res/values/google_maps_api.xml").
-57             Note that the API key is linked to the encryption key used to sign the APK.
-58             You need a different API key for each encryption key, including the release key that is used to
-59             sign the APK for publishing.
-60             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-61        -->
-62        <meta-data
-62-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:42:9-44:55
-63            android:name="com.google.android.geo.API_KEY"
-63-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:43:13-58
-64            android:value="@string/google_maps_key" />
-64-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:44:13-52
-65
-66        <activity
-66-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:46:9-48:67
-67            android:name="com.MedAmbulance.Activity.DriversMapsActivity"
-67-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:47:13-57
-68            android:label="@string/title_activity_drivers_maps" />
-68-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:48:13-64
-69        <activity android:name="com.MedAmbulance.Activity.DriverMapsActivity" />
-69-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:49:9-65
-69-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:49:19-62
-70        <activity android:name="com.MedAmbulance.Activity.MapsActivity" />
-70-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:50:9-59
-70-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:50:19-56
-71        <activity android:name="com.MedAmbulance.Activity.TLTBaseActivity" />
-71-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:51:9-62
-71-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:51:19-59
-72        <activity android:name="com.MedAmbulance.Activity.UserMapActivity" />
-72-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:52:9-62
-72-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:52:19-59
-73        <activity android:name="com.MedAmbulance.Activity.TermsConditions" />
-73-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:53:9-62
-73-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:53:19-59
-74        <activity android:name="com.MedAmbulance.Activity.UserPhoneLogin" />
-74-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:54:9-61
-74-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:54:19-58
+47-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:28:9-35
+48        android:theme="@style/AppTheme" >
+48-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:29:9-40
+49        <activity android:name="com.MedAmbulance.DriverPhoneLogin" />
+49-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:30:9-63
+49-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:30:19-51
+50        <activity android:name="com.MedAmbulance.Activity.UserModuleActivity" />
+50-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:31:9-65
+50-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:31:19-62
+51        <activity android:name="com.MedAmbulance.Activity.DestinationActivity" />
+51-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:32:9-66
+51-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:32:19-63
+52        <activity android:name="com.MedAmbulance.Activity.AllRequestActivity" />
+52-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:33:9-65
+52-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:33:19-62
+53        <!--
+54             The API key for Google Maps-based APIs is defined as a string resource.
+55             (See the file "res/values/google_maps_api.xml").
+56             Note that the API key is linked to the encryption key used to sign the APK.
+57             You need a different API key for each encryption key, including the release key that is used to
+58             sign the APK for publishing.
+59             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+60        -->
+61        <meta-data
+61-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:42:9-44:55
+62            android:name="com.google.android.geo.API_KEY"
+62-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:43:13-58
+63            android:value="@string/google_maps_key" />
+63-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:44:13-52
+64
+65        <activity
+65-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:46:9-48:67
+66            android:name="com.MedAmbulance.Activity.DriversMapsActivity"
+66-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:47:13-57
+67            android:label="@string/title_activity_drivers_maps" />
+67-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:48:13-64
+68        <activity android:name="com.MedAmbulance.Activity.DriverMapsActivity" />
+68-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:49:9-65
+68-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:49:19-62
+69        <activity android:name="com.MedAmbulance.Activity.MapsActivity" />
+69-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:50:9-59
+69-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:50:19-56
+70        <activity android:name="com.MedAmbulance.Activity.TLTBaseActivity" />
+70-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:51:9-62
+70-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:51:19-59
+71        <activity android:name="com.MedAmbulance.Activity.UserMapActivity" />
+71-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:52:9-62
+71-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:52:19-59
+72        <activity android:name="com.MedAmbulance.Activity.TermsConditions" />
+72-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:53:9-62
+72-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:53:19-59
+73        <activity android:name="com.MedAmbulance.Activity.UserPhoneLogin" />
+73-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:54:9-61
+73-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:54:19-58
+74        <activity android:name="com.MedAmbulance.Activity.MyNewUserActivity" />
+74-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:55:9-73
+74-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:55:19-61
 75        <!--
 76             The API key for Google Maps-based APIs is defined as a string resource.
 77             (See the file "res/values/google_maps_api.xml").
@@ -146,173 +148,173 @@
 81             You can define the keys for the debug and release targets in src/debug/ and src/release/.
 82        -->
 83        <activity android:name="com.MedAmbulance.Activity.BookAmbulance" />
-83-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:63:9-60
-83-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:63:19-57
+83-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:64:9-60
+83-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:64:19-57
 84        <activity
-84-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:64:9-66:48
+84-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:65:9-67:48
 85            android:name="com.MedAmbulance.Activity.Track_Abulance_Activity"
-85-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:65:13-61
+85-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:66:13-61
 86            android:theme="@style/googleMap" />
-86-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:66:13-45
+86-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:67:13-45
 87        <activity
-87-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:67:9-69:73
+87-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:68:9-70:73
 88            android:name="com.MedAmbulance.Activity.Current_Location_Activity"
-88-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:68:13-63
+88-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:69:13-63
 89            android:label="@string/title_activity_current__location_" />
-89-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:69:13-70
+89-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:70:13-70
 90        <activity
-90-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:70:9-72:52
+90-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:71:9-73:52
 91            android:name="com.MedAmbulance.Activity.Countinue_As_Acrtivity"
-91-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:71:13-60
+91-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:72:13-60
 92            android:screenOrientation="portrait" />
-92-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:72:13-49
+92-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:73:13-49
 93        <activity
-93-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:73:9-75:52
+93-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:74:9-76:52
 94            android:name="com.MedAmbulance.Activity.MyProfile"
-94-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:74:13-47
+94-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:75:13-47
 95            android:screenOrientation="portrait" />
-95-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:75:13-49
+95-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:76:13-49
 96        <activity
-96-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:76:9-78:52
+96-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:77:9-79:52
 97            android:name="com.MedAmbulance.Activity.Ambulance_Registration_Activity"
-97-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:77:13-69
+97-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:78:13-69
 98            android:screenOrientation="portrait" />
-98-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:78:13-49
+98-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:79:13-49
 99        <activity
-99-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:79:9-81:52
+99-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:80:9-82:52
 100            android:name="com.MedAmbulance.Activity.Driver_Personal_Activty"
-100-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:80:13-61
+100-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:81:13-61
 101            android:screenOrientation="portrait" />
-101-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:81:13-49
+101-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:82:13-49
 102        <activity
-102-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:82:9-84:52
+102-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:83:9-85:52
 103            android:name="com.MedAmbulance.Activity.Driver_Licence_Activity"
-103-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:83:13-61
+103-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:84:13-61
 104            android:screenOrientation="portrait" />
-104-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:84:13-49
+104-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:85:13-49
 105        <activity
-105-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:85:9-87:52
+105-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:86:9-88:52
 106            android:name="com.MedAmbulance.Activity.AboutActivity"
-106-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:86:13-51
+106-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:87:13-51
 107            android:screenOrientation="portrait" />
-107-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:87:13-49
+107-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:88:13-49
 108        <activity
-108-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:85:9-87:52
+108-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:86:9-88:52
 109            android:name="com.MedAmbulance.Activity.AboutActivity"
-109-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:86:13-51
+109-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:87:13-51
 110            android:screenOrientation="portrait" />
-110-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:87:13-49
+110-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:88:13-49
 111        <activity
-111-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:92:9-94:52
+111-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:93:9-95:52
 112            android:name="com.MedAmbulance.Activity.SupportActivity"
-112-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:93:13-53
+112-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:94:13-53
 113            android:screenOrientation="portrait" />
-113-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:94:13-49
+113-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:95:13-49
 114        <activity
-114-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:95:9-97:52
+114-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:96:9-98:52
 115            android:name="com.MedAmbulance.Activity.Driver_Registration"
-115-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:96:13-57
+115-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:97:13-57
 116            android:screenOrientation="portrait" />
-116-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:97:13-49
+116-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:98:13-49
 117        <activity
-117-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:98:9-100:52
+117-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:99:9-101:52
 118            android:name="com.MedAmbulance.Activity.Verification_Activity"
-118-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:99:13-59
+118-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:100:13-59
 119            android:screenOrientation="portrait" />
-119-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:100:13-49
+119-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:101:13-49
 120        <activity
-120-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:101:9-103:52
+120-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:102:9-104:52
 121            android:name="com.MedAmbulance.Activity.Login"
-121-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:102:13-43
+121-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:103:13-43
 122            android:screenOrientation="portrait" />
-122-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:103:13-49
+122-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:104:13-49
 123        <activity
-123-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:104:9-106:52
+123-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:105:9-107:52
 124            android:name="com.MedAmbulance.Activity.DriverMainActivity"
-124-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:105:13-56
+124-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:106:13-56
 125            android:screenOrientation="portrait" />
-125-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:106:13-49
+125-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:107:13-49
 126        <activity
-126-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:107:9-115:20
+126-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:108:9-116:20
 127            android:name="com.MedAmbulance.Activity.SplaceActivity"
-127-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:108:13-52
+127-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:109:13-52
 128            android:screenOrientation="portrait" >
-128-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:109:13-49
+128-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:110:13-49
 129            <intent-filter>
-129-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:110:13-114:29
+129-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:111:13-115:29
 130                <action android:name="android.intent.action.MAIN" />
-130-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:111:17-69
-130-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:111:25-66
+130-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:112:17-69
+130-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:112:25-66
 131
 132                <category android:name="android.intent.category.LAUNCHER" />
-132-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:113:17-77
-132-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:113:27-74
+132-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:114:17-77
+132-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:114:27-74
 133            </intent-filter>
 134        </activity>
 135
 136        <service android:name="org.eclipse.paho.android.service.MqttService" />
-136-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:117:9-80
-136-->D:\Fourbricks\medAmbulance\app\src\main\AndroidManifest.xml:117:18-77
+136-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:118:9-80
+136-->E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:118:18-77
 137
 138        <activity
-138-->[com.fxn769:pix:1.4.4] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:19:9-22:52
+138-->[com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:19:9-22:52
 139            android:name="com.fxn.pix.Pix"
-139-->[com.fxn769:pix:1.4.4] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:20:13-43
+139-->[com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:20:13-43
 140            android:noHistory="true"
-140-->[com.fxn769:pix:1.4.4] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:21:13-37
+140-->[com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:21:13-37
 141            android:screenOrientation="portrait" />
-141-->[com.fxn769:pix:1.4.4] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:22:13-49
+141-->[com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:22:13-49
 142        <activity android:name="com.shivtechs.maplocationpicker.LocationPickerActivity" /> <!-- Autocomplete -->
-142-->[com.github.shivpujan12:LocationPicker:v1.2] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\54856c988599073776d11b7ccecce341\jetified-LocationPicker-v1.2\AndroidManifest.xml:17:9-91
-142-->[com.github.shivpujan12:LocationPicker:v1.2] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\54856c988599073776d11b7ccecce341\jetified-LocationPicker-v1.2\AndroidManifest.xml:17:19-88
+142-->[com.github.shivpujan12:LocationPicker:v1.2] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\54856c988599073776d11b7ccecce341\jetified-LocationPicker-v1.2\AndroidManifest.xml:17:9-91
+142-->[com.github.shivpujan12:LocationPicker:v1.2] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\54856c988599073776d11b7ccecce341\jetified-LocationPicker-v1.2\AndroidManifest.xml:17:19-88
 143        <activity
-143-->[com.google.android.libraries.places:places:1.1.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\cd082abebc4d2f40696d3020d5e7619d\jetified-places-1.1.0\AndroidManifest.xml:16:9-23:20
+143-->[com.google.android.libraries.places:places:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fd634a6846839a4a9aa42adb4e9b339\jetified-places-1.1.0\AndroidManifest.xml:16:9-23:20
 144            android:name="com.google.android.libraries.places.widget.AutocompleteActivity"
-144-->[com.google.android.libraries.places:places:1.1.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\cd082abebc4d2f40696d3020d5e7619d\jetified-places-1.1.0\AndroidManifest.xml:17:13-91
+144-->[com.google.android.libraries.places:places:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fd634a6846839a4a9aa42adb4e9b339\jetified-places-1.1.0\AndroidManifest.xml:17:13-91
 145            android:exported="false"
-145-->[com.google.android.libraries.places:places:1.1.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\cd082abebc4d2f40696d3020d5e7619d\jetified-places-1.1.0\AndroidManifest.xml:18:13-37
+145-->[com.google.android.libraries.places:places:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fd634a6846839a4a9aa42adb4e9b339\jetified-places-1.1.0\AndroidManifest.xml:18:13-37
 146            android:hardwareAccelerated="true"
-146-->[com.google.android.libraries.places:places:1.1.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\cd082abebc4d2f40696d3020d5e7619d\jetified-places-1.1.0\AndroidManifest.xml:19:13-47
+146-->[com.google.android.libraries.places:places:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fd634a6846839a4a9aa42adb4e9b339\jetified-places-1.1.0\AndroidManifest.xml:19:13-47
 147            android:label="@string/places_autocomplete_label"
-147-->[com.google.android.libraries.places:places:1.1.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\cd082abebc4d2f40696d3020d5e7619d\jetified-places-1.1.0\AndroidManifest.xml:20:13-62
+147-->[com.google.android.libraries.places:places:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fd634a6846839a4a9aa42adb4e9b339\jetified-places-1.1.0\AndroidManifest.xml:20:13-62
 148            android:theme="@style/PlacesAutocompleteThemeOverlay"
-148-->[com.google.android.libraries.places:places:1.1.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\cd082abebc4d2f40696d3020d5e7619d\jetified-places-1.1.0\AndroidManifest.xml:21:13-66
+148-->[com.google.android.libraries.places:places:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fd634a6846839a4a9aa42adb4e9b339\jetified-places-1.1.0\AndroidManifest.xml:21:13-66
 149            android:windowSoftInputMode="stateAlwaysVisible|adjustPan" >
-149-->[com.google.android.libraries.places:places:1.1.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\cd082abebc4d2f40696d3020d5e7619d\jetified-places-1.1.0\AndroidManifest.xml:22:13-71
+149-->[com.google.android.libraries.places:places:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fd634a6846839a4a9aa42adb4e9b339\jetified-places-1.1.0\AndroidManifest.xml:22:13-71
 150        </activity> <!-- Needs to be explicitly declared on P+ -->
 151        <uses-library
-151-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\edb03ed300512ae8da7c146a103a6c79\jetified-play-services-maps-17.0.0\AndroidManifest.xml:33:9-35:40
+151-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\edb03ed300512ae8da7c146a103a6c79\jetified-play-services-maps-17.0.0\AndroidManifest.xml:33:9-35:40
 152            android:name="org.apache.http.legacy"
-152-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\edb03ed300512ae8da7c146a103a6c79\jetified-play-services-maps-17.0.0\AndroidManifest.xml:34:13-50
+152-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\edb03ed300512ae8da7c146a103a6c79\jetified-play-services-maps-17.0.0\AndroidManifest.xml:34:13-50
 153            android:required="false" />
-153-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\edb03ed300512ae8da7c146a103a6c79\jetified-play-services-maps-17.0.0\AndroidManifest.xml:35:13-37
+153-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\edb03ed300512ae8da7c146a103a6c79\jetified-play-services-maps-17.0.0\AndroidManifest.xml:35:13-37
 154
 155        <activity
-155-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\6fb3f6cd2b75dfe7dd10f87d94351f9e\jetified-play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+155-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fb3f6cd2b75dfe7dd10f87d94351f9e\jetified-play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
 156            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-156-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\6fb3f6cd2b75dfe7dd10f87d94351f9e\jetified-play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+156-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fb3f6cd2b75dfe7dd10f87d94351f9e\jetified-play-services-base-17.0.0\AndroidManifest.xml:24:13-79
 157            android:exported="false"
-157-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\6fb3f6cd2b75dfe7dd10f87d94351f9e\jetified-play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+157-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fb3f6cd2b75dfe7dd10f87d94351f9e\jetified-play-services-base-17.0.0\AndroidManifest.xml:25:13-37
 158            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-158-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\6fb3f6cd2b75dfe7dd10f87d94351f9e\jetified-play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+158-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fb3f6cd2b75dfe7dd10f87d94351f9e\jetified-play-services-base-17.0.0\AndroidManifest.xml:26:13-72
 159
 160        <meta-data
-160-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\c39f27975e2128f358c90a3c3f9b8fee\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+160-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\c39f27975e2128f358c90a3c3f9b8fee\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
 161            android:name="com.google.android.gms.version"
-161-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\c39f27975e2128f358c90a3c3f9b8fee\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+161-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\c39f27975e2128f358c90a3c3f9b8fee\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
 162            android:value="@integer/google_play_services_version" />
-162-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\c39f27975e2128f358c90a3c3f9b8fee\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+162-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\c39f27975e2128f358c90a3c3f9b8fee\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
 163
 164        <provider
-164-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\87ac5c9302d2cdd805e2f4717a5cf3a7\jetified-lifecycle-process-2.0.0\AndroidManifest.xml:23:9-27:43
+164-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\87ac5c9302d2cdd805e2f4717a5cf3a7\jetified-lifecycle-process-2.0.0\AndroidManifest.xml:23:9-27:43
 165            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-165-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\87ac5c9302d2cdd805e2f4717a5cf3a7\jetified-lifecycle-process-2.0.0\AndroidManifest.xml:24:13-79
+165-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\87ac5c9302d2cdd805e2f4717a5cf3a7\jetified-lifecycle-process-2.0.0\AndroidManifest.xml:24:13-79
 166            android:authorities="com.MedAmbulance.lifecycle-process"
-166-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\87ac5c9302d2cdd805e2f4717a5cf3a7\jetified-lifecycle-process-2.0.0\AndroidManifest.xml:25:13-69
+166-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\87ac5c9302d2cdd805e2f4717a5cf3a7\jetified-lifecycle-process-2.0.0\AndroidManifest.xml:25:13-69
 167            android:exported="false"
-167-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\87ac5c9302d2cdd805e2f4717a5cf3a7\jetified-lifecycle-process-2.0.0\AndroidManifest.xml:26:13-37
+167-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\87ac5c9302d2cdd805e2f4717a5cf3a7\jetified-lifecycle-process-2.0.0\AndroidManifest.xml:26:13-37
 168            android:multiprocess="true" />
-168-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Mohit\.gradle\caches\transforms-2\files-2.1\87ac5c9302d2cdd805e2f4717a5cf3a7\jetified-lifecycle-process-2.0.0\AndroidManifest.xml:27:13-40
+168-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\87ac5c9302d2cdd805e2f4717a5cf3a7\jetified-lifecycle-process-2.0.0\AndroidManifest.xml:27:13-40
 169    </application>
 170
 171</manifest>

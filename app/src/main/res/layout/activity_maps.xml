@@ -20,7 +20,7 @@
                 android:id="@+id/openDrawer"
                 android:layout_width="50dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="18dp"
+                android:layout_marginLeft="0dp"
                 android:padding="13dp"
                 android:src="@drawable/menu2" />
 
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tool_rel"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:orientation="vertical"
             android:visibility="gone">
 
@@ -101,7 +101,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="19dp"
                         android:layout_marginRight="14dp"
-                        android:background="#ffffff"
+                        android:background="@color/snck"
                         android:ems="10"
                         android:inputType="textPersonName"
                         android:padding="5dp"
@@ -163,7 +163,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="19dp"
                         android:layout_marginRight="14dp"
-                        android:background="#ffffff"
+                        android:background="@color/bg"
                         android:ems="10"
                         android:inputType="textPersonName"
                         android:padding="5dp"

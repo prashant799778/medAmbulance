@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.MedAmbulance.R;
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 
 public class SupportActivity extends AppCompatActivity {
 
@@ -17,6 +18,7 @@ public class SupportActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_support);
+        Animatoo.animateSwipeLeft(SupportActivity.this);
 
         move_back = findViewById(R.id.move_back);
         move_back.setOnClickListener(new View.OnClickListener() {
@@ -31,5 +33,6 @@ public class SupportActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Animatoo.animateSwipeRight(SupportActivity.this);
     }
 }
