@@ -216,7 +216,7 @@ def userSignup():
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
        
         if msg == "1":
-            imeiNo,country,city,deviceName,deviceId,deviceType="","","","","",""
+            imeiNo,country,city,deviceName,devicekey,deviceType="","","","","",""
             os,appVersion,notificationToken,ipAddress,userAgent="","","","",""
             currentLocation,currentLocation="",""
             column,values="",""
@@ -290,10 +290,10 @@ def userSignup():
                     values=values+"','"+str(deviceName)
 
 
-                if 'deviceId' in inputdata:
-                    deviceId=inputdata["deviceId"]
-                    column=column+" ,deviceId"
-                    values=values+"','"+str(deviceName)
+                if 'devicekey' in inputdata:
+                    deviceKey=inputdata["devicekey"]
+                    column=column+" ,devicekey"
+                    values=values+"','"+str(deviceKey)
 
                 
                 if 'os' in inputdata:
@@ -370,7 +370,7 @@ def verifyOtp():
             otp=str(inputdata['otp'])
             mobileNo=str(inputdata['mobileNo'])
 
-            column="mobileNo,otp,userTypeId,userId"
+            column="mobileNo,otp,userTypeId,userId,deviceKey"
             whereCondition= "  otp='" + otp+ "' and mobileNo='" + mobileNo+"'"
             verifyOtp=databasefile.SelectQuery(" userMaster ",column,whereCondition)
             print("verifyOtp======",verifyOtp)
