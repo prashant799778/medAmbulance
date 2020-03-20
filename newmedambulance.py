@@ -4559,6 +4559,7 @@ def acceptRide():
             data1= databasefile.SelectQuery("userMaster",columns,whereCondition22)
             print(data1,'data1')
             usermobile=data1['result']['mobileNo']
+            userName=data1['result']['name']
 
 
             whereCondition222="  driverId= '"+str(driverId)+"' "
@@ -4605,6 +4606,7 @@ def acceptRide():
             bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
             print(bookingDetails,"================")
             bookingDetails["result"]["driverName"]=driverName
+            bookingDetails['result']['userName']=userName
             if (bookingDetails!='0'):  
                 print('Entered')
                 client = mqtt.Client()
