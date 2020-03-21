@@ -4660,11 +4660,17 @@ def driverArriver():
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
                 bookRide["message"]="Driver has arrived at your location" 
+                columns="(ar.lat)ambulanceLat,(ar.lng)ambulanceLng, bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
+                columns=columns+",bm.finalAmount,bm.status,bm.pickup,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
+                columns=columns+",bm.driverMobile"
+                whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
+                bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
+                bookingDetails["message"]="Driver has arrived at your location" 
                 client = mqtt.Client()
                 client.connect("localhost",1883,60)            
                 topic=str(userId)+"/arrive"
                 client.publish(topic, str(bookingDetails)) 
-                return bookRide
+                return bookingDetails
             else:
                 
                 return bookRide
