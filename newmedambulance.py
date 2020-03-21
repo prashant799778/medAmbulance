@@ -4657,10 +4657,11 @@ def driverArriver():
                     userId =str(inputdata["userId"])
             
             whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"'"
-            column=" status=1 "
+            column=" status=0 "
             bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
+            print(bookRide)
             whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
-            columns= "onTrip=1 and onDuty=1"
+            columns= "onTrip=0 and onDuty=1"
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
             if (bookRide!=0):   
                 bookRide["message"]="Driver has arrived at your location" 
@@ -4673,7 +4674,10 @@ def driverArriver():
                 client = mqtt.Client()
                 client.connect("localhost",1883,60)            
                 topic=str(userId)+"/arrive"
-                client.publish(topic, str(bookingDetails)) 
+                print(topic,"+driverArrive")
+                client.publish(topic, str(bookingDetails))
+                print(bookingDetails,"@@") 
+
                 return bookingDetails
             else:
                 
