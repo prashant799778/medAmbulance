@@ -4473,8 +4473,9 @@ def bookRide():
         client = mqtt.Client()
         client.connect("localhost",1883,60)
 
-        for i in inputdata["driverId"]: 
-            inputdata["driverId"]=str(i)
+        for i in inputdata["driverId"]:
+
+            #inputdata["driverId"]=str(i)
             #print(inputdata)
             
             
