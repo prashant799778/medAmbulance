@@ -4480,6 +4480,7 @@ def bookRide():
             
             
             topic=str(i)+"/booking"
+            print(topic)
             print("1")
             #print("=================",topic)
             client.publish(topic, str(inputdata))
