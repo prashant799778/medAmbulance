@@ -4370,17 +4370,19 @@ def getNearAmbulancetest():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ['startLocationLat','startLocationLong']
+        keyarr = ['startLocationLat','startLocationLong','driverTypeId']
         commonfile.writeLog("getNearAmbulance",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
             startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
+            driverTypeId=inputdata['driverTypeId']
             column=  "d.driverId, a.ambulanceTypeId,a.ambulanceModeId,d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, b.lat, b.lng,SQRT(POW(69.1 * (b.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - b.lng) * COS(b.lat / 57.3), 2)) AS distance "
-            whereCondition= " a.driverTypeId=1 and d.status=1 and b.onTrip=0 and b.onDuty=1 and a.driverId=d.driverId  and b.ambulanceId=a.ambulanceId HAVING distance < 25 "
+            whereCondition= " a.driverTypeId='"+str()+"'" + " and d.status=1 and b.onTrip=0 and b.onDuty=1 and a.driverId=d.driverId  and b.ambulanceId=a.ambulanceId HAVING distance < 25 "
             orderby="  distance "
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d,ambulanceRideStatus as b",column,whereCondition,"",orderby,"","")
             #print("nearByAmbulance================================",nearByAmbulance)
             nearByAmbulance["ambulanceTypeId"]=list(set([i["ambulanceTypeId"] for i in nearByAmbulance["result"]]))
+            nearByAmbulance["ambulanceModeId"]=list(set([i["ambulanceModeId"] for i in nearByAmbulance["result"]]))
             if (nearByAmbulance!=0):   
                 #for i in nearByAmbulance["result"]: 
                     # topic=str(nearByAmbulance["result"][i]["ambulanceId"])+"/booking"
@@ -4471,6 +4473,7 @@ def acceptRide():
             ambulanceId= databasefile.SelectQuery(" ambulanceMaster ",columns,whereCondition22)
             print(ambulanceId,"ambulanceId==========================")
             ambulanceId=ambulanceId["result"]["ambulanceId"]
+        
         if "driverId" in inputdata:
                 if inputdata['driverId'] != "":
                     driverId =str(inputdata["driverId"])
@@ -6987,6 +6990,7 @@ def acceptResponder():
         if "pickupLocationAddress" in inputdata:
                 if inputdata['pickupLocationAddress'] != "":
                     pickupLocationAddress =str(inputdata["pickupLocationAddress"])
+        
         if "dropLocationLat" in inputdata:
                 if inputdata['dropLocationLat'] != "":
                     dropLocationLat =(inputdata["dropLocationLat"])
