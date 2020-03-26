@@ -7309,7 +7309,7 @@ def responderTrip():
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
        
-        commonfile.writeLog("myTrip",inputdata,0)
+        commonfile.writeLog("responderTrip",inputdata,0)
         msg="1"
         if msg == "1":
             if "startLimit" in inputdata:
