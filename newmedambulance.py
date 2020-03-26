@@ -4376,7 +4376,7 @@ def getNearAmbulancetest():
         if msg == "1":
             startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
             column=  "d.driverId, a.ambulanceTypeId,a.ambulanceModeId,d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, b.lat, b.lng,SQRT(POW(69.1 * (b.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - b.lng) * COS(b.lat / 57.3), 2)) AS distance "
-            whereCondition= "and d.status=1 and b.onTrip=0 and b.onDuty=1 and a.driverId=d.driverId  and b.ambulanceId=a.ambulanceId HAVING distance < 25 "
+            whereCondition= " a.driverTypeId=1 and d.status=1 and b.onTrip=0 and b.onDuty=1 and a.driverId=d.driverId  and b.ambulanceId=a.ambulanceId HAVING distance < 25 "
             orderby="  distance "
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d,ambulanceRideStatus as b",column,whereCondition,"",orderby,"","")
             #print("nearByAmbulance================================",nearByAmbulance)
@@ -4406,57 +4406,6 @@ def getNearAmbulancetest():
 
 
 
-
-@app.route('/getNearByAmbulanceAndResponder', methods=['POST'])
-def getNearByAmbulanceAndResponder():
-    try:
-        inputdata =  commonfile.DecodeInputdata(request.get_data())
-        startlimit,endlimit="",""
-        keyarr = ['startLocationLat','startLocationLong']
-        commonfile.writeLog("getNearAmbulance",inputdata,0)
-        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
-        if msg == "1":
-            
-            #============NearByAmbulance========
-            startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
-            column=  "d.driverId, a.ambulanceTypeId,a.ambulanceModeId,d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, b.lat, b.lng,SQRT(POW(69.1 * (b.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - b.lng) * COS(b.lat / 57.3), 2)) AS distance "
-            whereCondition= "and a.driverTypeId=1 and  d.status=1 and b.onTrip=0 and b.onDuty=1 and a.driverId=d.driverId  and b.ambulanceId=a.ambulanceId HAVING distance < 25 "
-            orderby="  distance "
-            nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d,ambulanceRideStatus as b",column,whereCondition,"",orderby,"","")
-            print("nearByAmbulance================================",nearByAmbulance)
-            nearByAmbulance["ambulanceTypeId"]=list(set([i["ambulanceTypeId"] for i in nearByAmbulance["result"]]))
-            #============NearByAmbulance========
-
-            
-            #============NearByResponder========
-            startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
-            column=  "d.driverId, a.ambulanceTypeId,a.ambulanceModeId,d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, b.lat, b.lng,SQRT(POW(69.1 * (b.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - b.lng) * COS(b.lat / 57.3), 2)) AS distance "
-            whereCondition= "and a.driverTypeId=2 and  d.status=1 and b.onTrip=0 and b.onDuty=1 and a.driverId=d.driverId  and b.ambulanceId=a.ambulanceId HAVING distance < 25 "
-            orderby="  distance "
-            nearByResponder=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d,ambulanceRideStatus as b",column,whereCondition,"",orderby,"","")
-            print("nearByAmbulance================================",nearByResponder)
-            #============NearByResponder========
-
-            if (nearByAmbulance!=0):   
-                #for i in nearByAmbulance["result"]: 
-                    # topic=str(nearByAmbulance["result"][i]["ambulanceId"])+"/booking"
-                    # print(nearByAmbulance["result"][i]["ambulanceId"]) 
-                    # client.publish(topic, "Hello world11111111111111111")
-                    # print("2222222222222")             
-                return {"nearByAmbulance":nearByAmbulance,"nearByResponder":nearByResponder}
-            else:
-                nearByAmbulance["message"]="No Ambulance Found"
-                return nearByAmbulance
-        else:
-            return msg 
-    except KeyError as e:
-        print("Exception---->" +str(e))        
-        output = {"result":"Input Keys are not Found","status":"false"}
-        return output    
-    except Exception as e :
-        print("Exception---->" +str(e))           
-        output = {"result":"something went wrong","status":"false"}
-        return output
 
 
 @app.route('/bookRide', methods=['POST'])
@@ -6912,7 +6861,500 @@ def support():
         return output         
 
 
+#responder______________
 
+
+
+
+
+@app.route('/getNearByResponder', methods=['POST'])
+def getNearByResponder():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['startLocationLat','startLocationLong']
+        commonfile.writeLog("getNearByResponder",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            
+           
+
+            
+            #============NearByResponder========
+            startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
+            column=  "d.driverId,d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, b.lat, b.lng,SQRT(POW(69.1 * (b.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - b.lng) * COS(b.lat / 57.3), 2)) AS distance "
+            whereCondition= "and a.driverTypeId=2 and  d.status=1 and b.onTrip=0 and b.onDuty=1 and a.driverId=d.driverId  and b.ambulanceId=a.ambulanceId HAVING distance < 25 "
+            orderby="  distance "
+            nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d,ambulanceRideStatus as b",column,whereCondition,"",orderby,"","")
+            print("nearByAmbulance================================",nearByAmbulance)
+            #============NearByResponder========
+
+            if (nearByAmbulance!=0):   
+                #for i in nearByAmbulance["result"]: 
+                    # topic=str(nearByAmbulance["result"][i]["ambulanceId"])+"/booking"
+                    # print(nearByAmbulance["result"][i]["ambulanceId"]) 
+                    # client.publish(topic, "Hello world11111111111111111")
+                    # print("2222222222222")             
+                return nearByAmbulance
+            else:
+                nearByAmbulance["message"]="No Ambulance Found"
+                return nearByAmbulance
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+        
+
+@app.route('/bookResponder', methods=['POST'])
+def bookResponder():
+    try:
+        print('A')
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        #inputdata={"ambulanceId":[1,2,3,4],"driverId":[13,14,15,16,17],'startLocationLat':28.583962,'startLocationLong':77.314345,"pickupLocationAddress":" Noida se 15",'dropLocationLat':28.535517,'dropLocationLong':77.391029,"dropLocationAddress":"fortis noida","userId":"8b0e338e522a11ea93d39ebd4d0189fc"}
+        # inputdata1={}
+        # inputdata1["pickupLocationAddress"]=inputdata["pickupLocationAddress"]
+        # inputdata1["dropLocationAddress"]=inputdata["dropLocationAddress"]
+        keyarr = ["ambulanceId","id",'startLocationLat','startLocationLong',"pickupLocationAddress",'dropLocationLat','dropLocationLong',"dropLocationAddress","userId"]
+        client = mqtt.Client()
+        client.connect("localhost",1883,60)
+
+        for i in inputdata["driverId"]:
+
+            #inputdata["driverId"]=str(i)
+            #print(inputdata)
+            
+            
+            topic=str(i)+"/booking"
+            print(topic)
+            print("1")
+            #print("=================",topic)
+            client.publish(topic, str(inputdata))
+            print("2")
+        client.disconnect()    
+             
+        return  {"result":"booking send","status":"True"}
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+
+@app.route('/acceptResponder', methods=['POST'])
+def acceptResponder():
+    try:
+        print('A')
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        print(inputdata)
+        startlimit,endlimit="",""
+        #inputdata={"ambulanceId":3,"id":17,'startLocationLat':28.583962,'startLocationLong':77.314345,"pickupLocationAddress":" Noida se 15",'dropLocationLat':28.535517,'dropLocationLong':77.391029,"dropLocationAddress":"fortis noida","userId":"7795051055a111ea93d39ebd4d0189fc"}
+        #id is driverid
+        print("1111")
+        keyarr = ["driverId",'startLocationLat','startLocationLong',"pickupLocationAddress",'dropLocationLat','dropLocationLong',"dropLocationAddress","userId"]
+        
+        print("2")
+        if "ambulanceId" in inputdata:
+                if inputdata['ambulanceId'] != "":
+                    ambulanceId =str(inputdata["ambulanceId"])
+        else:
+            columns=" ambulanceId "
+            whereCondition22=" driverId= '"+str(inputdata["driverId"])+"'"
+            ambulanceId= databasefile.SelectQuery(" ambulanceMaster ",columns,whereCondition22)
+            print(ambulanceId,"ambulanceId==========================")
+            ambulanceId=ambulanceId["result"]["ambulanceId"]
+        if "driverId" in inputdata:
+                if inputdata['driverId'] != "":
+                    driverId =str(inputdata["driverId"])
+                    print(driverId)
+        if "startLocationLat" in inputdata:
+                if inputdata['startLocationLat'] != "":
+                    startLocationLat =inputdata["startLocationLat"]
+        if "startLocationLong" in inputdata:
+                if inputdata['startLocationLong'] != "":
+                    startLocationLong =inputdata["startLocationLong"]
+        if "pickupLocationAddress" in inputdata:
+                if inputdata['pickupLocationAddress'] != "":
+                    pickupLocationAddress =str(inputdata["pickupLocationAddress"])
+        if "dropLocationLat" in inputdata:
+                if inputdata['dropLocationLat'] != "":
+                    dropLocationLat =(inputdata["dropLocationLat"])
+        if "dropLocationLong" in inputdata:
+                if inputdata['dropLocationLong'] != "":
+                    dropLocationLong =(inputdata["dropLocationLong"])
+        if "dropLocationAddress" in inputdata:
+                if inputdata['dropLocationAddress'] != "":
+                    dropLocationAddress =str(inputdata["dropLocationAddress"])
+
+        if "userId" in inputdata:
+            if inputdata['userId'] != "":
+                userId =str(inputdata["userId"])
+
+        print("3")
+        bookingId = (commonfile.CreateHashKey(driverId,userId)).hex
+
+
+        commonfile.writeLog("bookResponder",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        
+        if msg == "1":
+            print('B')
+            columns="mobileNo,name"
+            whereCondition22="  userId= '"+str(userId)+"' and userTypeId='2' "
+            data1= databasefile.SelectQuery("userMaster",columns,whereCondition22)
+            print(data1,'data1')
+            usermobile=data1['result']['mobileNo']
+            userName=data1['result']['name']
+
+
+            whereCondition222="  driverId= '"+str(driverId)+"' "
+            data11= databasefile.SelectQuery("driverMaster",columns,whereCondition222)
+            print(data11,'--data')
+            driverName=data11['result']['name']
+            drivermobile=data11['result']['mobileNo']
+            
+            R = 6373.0
+            print(R,'R')
+            fromlongitude2= startLocationLong
+            print(fromlongitude2,'fromlong',type(fromlongitude2))
+            fromlatitude2 = startLocationLat
+            # print(fromlongitude2,'fromlong')
+            print('lat',fromlatitude2)
+            distanceLongitude = dropLocationLong - fromlongitude2
+            distanceLatitude = dropLocationLat - fromlatitude2
+            a = sin(distanceLatitude / 2)**2 + cos(fromlatitude2) * cos(dropLocationLat) * sin(distanceLongitude / 2)**2
+            c = 2 * atan2(sqrt(a), sqrt(1 - a))
+            distance = R * c
+            distance2=distance/100
+            Distance=distance2*1.85
+            d=round(Distance)
+            d2 =str(d) +' Km'
+
+
+            finalAmount= d * 11+11
+            print(finalAmount,'final')
+
+
+
+
+            #insertdata
+            columnqq='userMobile,driverMobile,pickup,pickupLatitude,pickupLongitude,dropoff,dropOffLatitude,dropOffLongitude,ambulanceId,userId,driverId,bookingId,totalDistance,finalAmount'
+            values111 = " '"+ str(usermobile) +"','" + str(drivermobile)+"','" + str(pickupLocationAddress)+"','" + str(startLocationLat) +"','" + str(startLocationLong) + "','" + str(dropLocationAddress) + "','" + str(dropLocationLat) 
+            values111=values111+"','" + str(dropLocationLong)+"','" + str(ambulanceId)+"','" + str(userId) +"','" + str(driverId) + "','" + str(bookingId)+ "','" + str(d2) + "','" + str(finalAmount)+"'"
+            data111=databasefile.InsertQuery('bookResponder',columnqq,values111)
+            print(data111,'==data')
+            
+            columns="(ar.lat)ambulanceLat,(ar.lng)ambulanceLng, bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
+            columns=columns+",bm.finalAmount,bm.pickup,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
+            columns=columns+",bm.driverMobile"
+            whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
+            bookingDetails= databasefile.SelectQuery("bookResponder bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
+            print(bookingDetails,"================")
+            bookingDetails["result"]["driverName"]=driverName
+            bookingDetails['result']['userName']=userName
+            if (bookingDetails!='0'):  
+                print('Entered')
+                client = mqtt.Client()
+                client.connect("localhost",1883,60)
+                topic=str(userId)+"/booking"
+                client.publish(topic, str(bookingDetails)) 
+                #bookRide["message"]="ride booked Successfully" 
+                client.disconnect()
+                return bookingDetails
+            else:
+                data={"result":"","message":"No data Found","status":"false"}
+                
+                return data
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+
+@app.route('/startResponder', methods=['POST'])
+def startResponder():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ["ambulanceId","bookingId","userId"]
+        commonfile.writeLog("endRide",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            if "ambulanceId" in inputdata:
+                if inputdata['ambulanceId'] != "":
+                    ambulanceId =(inputdata["ambulanceId"])
+            if "bookingId" in inputdata:
+                    if inputdata['bookingId'] != "":
+                        bookingId =str(inputdata["bookingId"])
+
+            if "userId" in inputdata:
+                if inputdata['userId'] != "":
+                    userId =str(inputdata["userId"])
+            
+            whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"'"
+            column=" status=1 "
+            bookRide=databasefile.UpdateQuery("bookResponder",column,whereCondition)
+            whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
+            columns= "onTrip=1 and onDuty=1"
+            bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
+            if (bookRide!=0):   
+                bookRide["message"]="ride started Successfully"             
+                topic=str(userId)+"/startRide"
+                
+               
+            
+            
+            
+                columns="(ar.lat)ambulanceLat,(ar.lng)ambulanceLng, bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
+                columns=columns+",bm.finalAmount,bm.pickup,bm.status,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
+                columns=columns+",bm.driverMobile"
+                whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
+                bookingDetails= databasefile.SelectQuery("bookResponder bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
+                print(bookingDetails,"================")
+                
+                bookingDetails["message"]="ride started Successfully"  
+                if (bookingDetails!='0'):  
+                    print('Entered')
+                    client = mqtt.Client()
+                    client.connect("localhost",1883,60)
+                    topic=str(userId)+"/startRide"
+                    client.publish(topic, str(bookingDetails)) 
+                    #bookRide["message"]="ride started Successfully" 
+                    client.disconnect()
+                    return bookingDetails
+                else:
+                    data={"result":"","message":"No data Found","status":"false"}
+                    
+                    return data
+            else:
+                data={"result":"","message":"No data Found","status":"false"}
+                return data
+
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+@app.route('/endResponder', methods=['POST'])
+def endResponder():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ["ambulanceId","bookingId"]
+        commonfile.writeLog("endRide",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            if "ambulanceId" in inputdata:
+                if inputdata['ambulanceId'] != "":
+                    ambulanceId =(inputdata["ambulanceId"])
+            if "bookingId" in inputdata:
+                    if inputdata['bookingId'] != "":
+                        bookingId =str(inputdata["bookingId"])
+
+            if "userId" in inputdata:
+                if inputdata['userId'] != "":
+                    userId =str(inputdata["userId"])
+
+            whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"'"
+            column=" status=2 "
+            bookRide=databasefile.UpdateQuery("bookResponder",column,whereCondition)
+            whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
+            columns= "onTrip=0 and onDuty=1"
+            bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
+            if (bookRide!=0):   
+                bookRide["message"]="ride Ended Successfully"             
+               
+            
+            
+                
+                columns="(ar.lat)ambulanceLat,(ar.lng)ambulanceLng, bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
+                columns=columns+",bm.finalAmount,bm.pickup,bm.status,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
+                columns=columns+",bm.driverMobile"
+                whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
+                bookingDetails= databasefile.SelectQuery("bookResponder bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
+                print(bookingDetails,"================")
+                bookingDetails["message"]="ride Ended Successfully"
+               
+                if (bookingDetails!='0'):  
+                    print('Entered')
+                    client = mqtt.Client()
+                    client.connect("localhost",1883,60)
+                    topic=str(userId)+"/endRide"
+                    client.publish(topic, str(bookingDetails)) 
+                    #bookRide["message"]="ride ended Successfully" 
+                    client.disconnect()
+                    return bookingDetails
+                else:
+                    data={"result":"","message":"No data Found","status":"false"}
+                    
+                    return data
+            else:
+                data={"result":"","message":"No data Found","status":"false"}
+                return data
+
+
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+
+
+@app.route('/cancelResponder', methods=['POST'])
+def cancelResponder():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ["ambulanceId","bookingId","userId"]
+        commonfile.writeLog("cancelRide",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            ambulanceId= inputdata["ambulanceId"]
+            bookingId=inputdata['bookingId']
+            userId=inputdata['userId']
+            whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"' and  canceledUserId='"+ str(userId)+"'"
+            column=" status=3"
+            bookRide=databasefile.UpdateQuery("bookResponder",column,whereCondition)
+            whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
+            columns= "onTrip=0 and onDuty=1"
+            bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
+            if (bookRide!=0):   
+                bookRide["message"]="ride Cancelled Successfully"             
+                
+
+           
+                
+                columns="(ar.lat)ambulanceLat,(ar.lng)ambulanceLng, bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
+                columns=columns+",bm.finalAmount,bm.status,bm.pickup,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
+                columns=columns+",bm.driverMobile"
+                whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
+                bookingDetails= databasefile.SelectQuery("bookResponder bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
+                print(bookingDetails,"================")
+                bookingDetails["message"]="ride Cancelled Successfully" 
+
+               
+                if (bookingDetails!='0'):  
+                    print('Entered')
+                    client = mqtt.Client()
+                    client.connect("localhost",1883,60)
+                    topic=str(userId)+"/cancelRide"
+                    client.publish(topic, str(bookingDetails)) 
+                    #bookRide["message"]="ride Cancelled" 
+                    client.disconnect()
+                    return bookingDetails
+                else:
+                    data={"result":"","message":"No data Found","status":"false"}
+                    
+                    return data
+            else:
+                data={"result":"","message":"No data Found","status":"false"}
+                return data
+            
+
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+
+
+@app.route('/responderTrip', methods=['POST'])
+def responderTrip():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+       
+        commonfile.writeLog("myTrip",inputdata,0)
+        msg="1"
+        if msg == "1":
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
+                
+            if "endLimit" in inputdata:
+                if inputdata['endLimit'] != "":
+                    endlimit =str(inputdata["endLimit"])
+
+                 
+            if "userId" in inputdata:
+                if inputdata['userId'] != "":
+                    userId =str(inputdata["userId"])
+
+            orderby="bm.id"                
+
+                    
+
+
+
+            whereCondition="  and  bm.userId=um.userId and bm.driverId=dm.driverId and dm.driverId='"+str(userId)+"' "
+
+            column="bm.id,bm.userMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status,bm.finalAmount"
+            data=databasefile.SelectQueryOrderby("bookResponder as bm,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
+            print(data,"--------------------------------------------------")
+            countdata=databasefile.SelectQuery4("bookResponder as bm,userMaster as um,driverMaster as dm",column,whereCondition)
+           
+            if (data['status']!='false'): 
+                Data = {"result":data['result'],"status":"true","message":"","totalCount":len(countdata)}
+
+                          
+                return Data
+            else:
+                
+                return data
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output    
+
+
+#________________________________________
 
 
 
