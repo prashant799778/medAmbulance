@@ -6506,7 +6506,7 @@ def cancelRide1():
             bookingId=inputdata['bookingId']
             userId=inputdata['userId']
             whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"' and  canceledUserId='"+ str(userId)+"'"
-            column=" status=3"
+            column=" status=3  , canceledUserId='"+str(userId)+"'"
             bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
             whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
             columns= "onTrip=0 and onDuty=1"
@@ -6909,7 +6909,7 @@ def getNearByResponder():
         print("Exception---->" +str(e))           
         output = {"result":"something went wrong","status":"false"}
         return output
-        
+
 
 @app.route('/bookResponder', methods=['POST'])
 def bookResponder():
@@ -7246,7 +7246,7 @@ def cancelResponder():
             bookingId=inputdata['bookingId']
             userId=inputdata['userId']
             whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"' and  canceledUserId='"+ str(userId)+"'"
-            column=" status=3"
+            column=" status='3' , canceledUserId='"+str(userId)+"' "
             bookRide=databasefile.UpdateQuery("bookResponder",column,whereCondition)
             whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
             columns= "onTrip=0 and onDuty=1"
