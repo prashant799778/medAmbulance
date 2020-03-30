@@ -7369,8 +7369,13 @@ def responderTrip():
                     distance=1.84*dis
                     distance2=str(distance) +'Km'
                     del i['distancefromCustomer']
-                    y={"distancefromCustomer":distance2}
-                    i.update(y)
+                    if i['status'] == 0:
+                        y={"distancefromCustomer":distance2}
+                        i.update(y)
+                    else:
+                        y={"distancefromCustomer":" O Km"}
+                        i.update(y)
+
 
                 Data = {"result":data['result'],"status":"true","message":"","totalCount":len(countdata)}
 
