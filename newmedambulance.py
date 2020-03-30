@@ -7366,6 +7366,63 @@ def responderTrip():
 
 
 
+@app.route('/responderArrive', methods=['POST'])
+def driverArriver1():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ["ambulanceId","bookingId","userId"]
+        commonfile.writeLog("responderArrive",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            if "ambulanceId" in inputdata:
+                if inputdata['ambulanceId'] != "":
+                    ambulanceId =(inputdata["ambulanceId"])
+            if "bookingId" in inputdata:
+                    if inputdata['bookingId'] != "":
+                        bookingId =str(inputdata["bookingId"])
+
+            if "userId" in inputdata:
+                if inputdata['userId'] != "":
+                    userId =str(inputdata["userId"])
+            
+            whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"'"
+            column=" status=0 "
+            bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
+            print(bookRide)
+            whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
+            columns= "onTrip=0 and onDuty=1"
+            bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
+            if (bookRide!=0):   
+                bookRide["message"]="Responder has arrived at your location" 
+                columns="(ar.lat)ambulanceLat,(ar.lng)ambulanceLng, bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
+                columns=columns+",bm.finalAmount,bm.status,bm.pickup,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
+                columns=columns+",bm.driverMobile"
+                whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
+                bookingDetails= databasefile.SelectQuery("bookResponder bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
+                bookingDetails["message"]="Responder has arrived at your location" 
+                client = mqtt.Client()
+                client.connect("localhost",1883,60)            
+                topic=str(userId)+"/arrive"
+                print(topic,"+driverArrive")
+                client.publish(topic, str(bookingDetails))
+                print(bookingDetails,"@@") 
+
+                return bookingDetails
+            else:
+                
+                return bookRide
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
 
 
 
