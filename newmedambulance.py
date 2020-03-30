@@ -4926,6 +4926,67 @@ def myrides():
 
 
 
+
+@app.route('/myResponder', methods=['POST'])
+def myrides1():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        whereCondition2=""
+       
+        commonfile.writeLog("myResponder",inputdata,0)
+        msg="1"
+        if msg == "1":
+            if "startLimit" in inputdata:
+                if inputdata['startLimit'] != "":
+                    startlimit =str(inputdata["startLimit"])
+                
+            if "endLimit" in inputdata:
+                if inputdata['endLimit'] != "":
+                    endlimit =str(inputdata["endLimit"])
+
+                 
+            if "userId" in inputdata:
+                if inputdata['userId'] != "":
+                    userId =str(inputdata["userId"])
+
+            if "bookingId" in inputdata:
+                if inputdata['bookingId'] != "":
+                    bookingId =str(inputdata["bookingId"])
+                    whereCondition2=" and bm.bookingId= '"+ str(bookingId)+"'"
+
+            orderby="bm.id"                
+
+                    
+
+
+
+            whereCondition="  and  bm.userId=um.userId and bm.driverId=dm.driverId and um.userId='"+str(userId)+"' "+whereCondition2
+
+            column="bm.id,bm.userMobile,bm.drivermobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.dateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status,bm.finalAmount,bm.totalDistance"
+            data=databasefile.SelectQueryOrderby("bookResponder as bm,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
+            print(data,"--------------------------------------------------")
+            countdata=databasefile.SelectQuery4("bookResponder as bm,userMaster as um,driverMaster as dm",column,whereCondition)
+           
+            if (data['status']!='false'): 
+                Data = {"result":data['result'],"status":"true","message":"","totalCount":len(countdata)}
+
+                          
+                return Data
+            else:
+                
+                return data
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
 @app.route('/myTrip', methods=['POST'])
 def myTrip():
     try:
