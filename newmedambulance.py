@@ -7334,7 +7334,7 @@ def responderTrip():
 
             if "startLocationLong" in inputdata:
                 if inputdata['endLimit'] != "":
-                   startlng =str(inputdata["endLimit"])
+                   startlat =str(inputdata["endLimit"])
 
             if "startLocationLat" in inputdata:
                 if inputdata['startLocationLat'] != "":
