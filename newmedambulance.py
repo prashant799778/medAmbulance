@@ -7361,7 +7361,7 @@ def responderTrip():
             column="bm.id,bm.userMobile,bm.driverMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.dateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status,bm.finalAmount,bm.totalDistance,b.lng,SQRT(POW(69.1 * (b.lat - bm.pickupLatitude, 2) +POW(69.1 * (bm.pickupLongitude - b.lng) * COS(b.lat / 57.3), 2)) AS distancefromCustomer"
             data=databasefile.SelectQueryOrderby("bookResponder as bm,userMaster as um,driverMaster as dm,ambulanceRideStatus as b ",column,whereCondition,"",startlimit,endlimit,orderby)
             print(data,"--------------------------------------------------")
-            countdata=databasefile.SelectQuery4("bookResponder as bm,userMaster as um,driverMaster as dm",column,whereCondition)
+            countdata=databasefile.SelectQuery4("bookResponder as bm,userMaster as um,driverMaster as dm,ambulanceRideStatus as b",column,whereCondition)
            
             if (data['status']!='false'):
                 for i in data['result']:
