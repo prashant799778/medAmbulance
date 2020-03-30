@@ -4910,6 +4910,10 @@ def myrides():
             data2=databasefile.SelectQueryOrderby("bookResponder as bm,userMaster as um,driverMaster as dm",column2,whereCondition3,"",startlimit,endlimit,orderby)
             print(data,"--------------------------------------------------")
             countdata2=databasefile.SelectQuery4("bookResponder as bm,userMaster as um,driverMaster as dm",column2,whereCondition3)
+            
+            if (data2['status']=='false'):
+                data2['result']=[]
+                
            
 
             if (data['status']!='false'): 
