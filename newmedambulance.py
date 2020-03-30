@@ -4931,6 +4931,7 @@ def myTrip():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
+        whereCondition2=""
        
         commonfile.writeLog("myTrip",inputdata,0)
         msg="1"
@@ -4947,6 +4948,10 @@ def myTrip():
             if "userId" in inputdata:
                 if inputdata['userId'] != "":
                     userId =str(inputdata["userId"])
+            if "bookingId" in inputdata:
+                if inputdata['bookingId'] != "":
+                    bookingId =str(inputdata["bookingId"])
+                    whereCondition2=" and bm.bookingId= '"+ str(bookingId)+"'"
 
             orderby="bm.id"                
 
@@ -4954,7 +4959,7 @@ def myTrip():
 
 
 
-            whereCondition="  and  bm.userId=um.userId and bm.driverId=dm.driverId and dm.driverId='"+str(userId)+"' "
+            whereCondition="  and  bm.userId=um.userId and bm.driverId=dm.driverId and dm.driverId='"+str(userId)+"' "+whereCondition2
 
             column="bm.id,bm.userMobile,bm.drivermobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status,bm.finalAmount"
             data=databasefile.SelectQueryOrderby("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
@@ -7314,6 +7319,7 @@ def responderTrip():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
+        whereCondition2=""
        
         commonfile.writeLog("responderTrip",inputdata,0)
         msg="1"
@@ -7330,6 +7336,10 @@ def responderTrip():
             if "userId" in inputdata:
                 if inputdata['userId'] != "":
                     userId =str(inputdata["userId"])
+            if "bookingId" in inputdata:
+                if inputdata['bookingId'] != "":
+                    bookingId =str(inputdata["bookingId"])
+                    whereCondition2=" and bm.bookingId= '"+ str(bookingId)+"'"
 
             orderby="bm.id"                
 
@@ -7337,7 +7347,7 @@ def responderTrip():
 
 
 
-            whereCondition="  and  bm.userId=um.userId and bm.driverId=dm.driverId and dm.driverId='"+str(userId)+"' "
+            whereCondition="  and  bm.userId=um.userId and bm.driverId=dm.driverId and dm.driverId='"+str(userId)+"' "+whereCondition2
 
             column="bm.id,bm.userMobile,bm.driverMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.dateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status,bm.finalAmount"
             data=databasefile.SelectQueryOrderby("bookResponder as bm,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
