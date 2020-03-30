@@ -7412,7 +7412,7 @@ def driverArriver1():
             else:
                 
                 return bookRide
-        else:xdcx
+        else:
             return msg 
     except KeyError as e:
         print("Exception---->" +str(e))        
