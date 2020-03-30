@@ -4886,7 +4886,7 @@ def myrides():
                 if inputdata['userId'] != "":
                     userId =str(inputdata["userId"])
 
-             if "bookingId" in inputdata:
+            if "bookingId" in inputdata:
                 if inputdata['bookingId'] != "":
                     bookingId =str(inputdata["bookingId"])
                     whereCondition2=" and bm.bookingId= '"+ str(bookingId)+"'"
