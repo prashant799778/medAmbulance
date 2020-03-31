@@ -4376,8 +4376,10 @@ def getNearAmbulancetest():
         if msg == "1":
             startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
             driverTypeId=inputdata['driverTypeId']
+            ambulanceTypeId=inputdata['ambulanceTypeId']
+            ambulanceModeId=inputdata['ambulanceModeId']
             column=  "d.driverId, a.ambulanceTypeId,a.ambulanceModeId,d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, b.lat, b.lng,SQRT(POW(69.1 * (b.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - b.lng) * COS(b.lat / 57.3), 2)) AS distance "
-            whereCondition= " and  a.driverTypeId='"+str(driverTypeId)+"'" + " and d.status=1 and b.onTrip=0 and b.onDuty=1 and a.driverId=d.driverId  and b.ambulanceId=a.ambulanceId HAVING distance < 25 "
+            whereCondition= " and  a.driverTypeId='"+str(driverTypeId)+"'" + " and a.ambulanceModeId='"+str(ambulanceModeId)+"'  and a.ambulanceTypeId='"+str(ambulanceTypeId)+"' and d.status=1 and b.onTrip=0 and b.onDuty=1 and a.driverId=d.driverId  and b.ambulanceId=a.ambulanceId HAVING distance < 25 "
             orderby="  distance "
             nearByAmbulance=databasefile.SelectQueryOrderbyAsc("ambulanceMaster a, driverMaster d,ambulanceRideStatus as b",column,whereCondition,"",orderby,"","")
             #print("nearByAmbulance================================",nearByAmbulance)
@@ -7430,26 +7432,15 @@ def responderTrip():
 
 
 
-            whereCondition=" and bm.userId=um.userId and bm.driverId=dm.driverId and a.driverId=dm.driverId and a.ambulanceId=b.ambulanceId  and dm.driverId='"+str(userId)+"' "+whereCondition2
+            whereCondition=" and bm.userId=um.userId and bm.driverId=dm.driverId   and dm.driverId='"+str(userId)+"' "+whereCondition2
 
-            column="bm.id,bm.userMobile,bm.driverMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.dateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status,bm.finalAmount,bm.totalDistance,b.lng,SQRT(POW(69.1 * (b.lat -  "+str(startlat)+", 2) +POW(69.1 * ( "+str(startlng)+"- b.lng) * COS(b.lat / 57.3), 2)) AS distancefromCustomer"
-            data=databasefile.SelectQueryOrderby("bookResponder as bm,userMaster as um,driverMaster as dm, ambulanceRideStatus as b,ambulanceMaster as a",column,whereCondition,"",startlimit,endlimit,orderby)
+            column="bm.id,bm.userMobile,bm.driverMobile,bm.bookingId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.dateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status,bm.finalAmount,bm.totalDistance"
+            data=databasefile.SelectQueryOrderby("bookResponder as bm,userMaster as um,driverMaster as dm",column,whereCondition,"",startlimit,endlimit,orderby)
             print(data,"--------------------------------------------------")
-            countdata=databasefile.SelectQuery4("bookResponder as bm,userMaster as um,driverMaster as dm,ambulanceRideStatus as b,ambulanceMaster as a",column,whereCondition)
+            countdata=databasefile.SelectQuery4("bookResponder as bm,userMaster as um,driverMaster as dm",column,whereCondition)
            
             if (data['status']!='false'):
-                for i in data['result']:
-                    dis=i['distancefromCustomer']
-                    distance=1.84*dis
-                    distance2=str(distance) +'Km'
-                    del i['distancefromCustomer']
-                    if i['status'] == 0:
-                        y={"distancefromCustomer":distance2}
-                        i.update(y)
-                    else:
-                        y={"distancefromCustomer":" O Km"}
-                        i.update(y)
-
+               
 
                 Data = {"result":data['result'],"status":"true","message":"","totalCount":len(countdata)}
 
