@@ -243,7 +243,7 @@ def userSignup():
             column22='userTypeId'
             
             WhereCondition = " and mobileNo = '" + str(mobileNo) + "'"
-            count = databasefile.SelectQuery("userMaster",column22,WhereCondition,"")
+            count = databasefile.SelectQuery("userMaster",column22,WhereCondition)
             
             if count['status']!='false':
                 if (count['result']['userTypeId'] == '2') or (count['result']['userTypeId'] == 2)  :
@@ -397,7 +397,7 @@ def driverSignup():
             column22='userTypeId'
             
             WhereCondition = " and mobileNo = '" + str(mobileNo) + "'"
-            count = databasefile.SelectQuery("userMaster",column22,WhereCondition,"")
+            count = databasefile.SelectQuery("userMaster",column22,WhereCondition)
             
             if count['status']!='false':
                 if (count['result']['userTypeId'] == '3') or (count['result']['userTypeId'] == 3):
