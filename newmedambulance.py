@@ -254,8 +254,8 @@ def userSignup():
                     if updateOtp != "0":
                         column = '*'
                        
-                        data = databasefile.SelectQuery1("userMaster",column,WhereCondition)                  
-                        data1={"result":data,"message":"","status":"true"}
+                        data = databasefile.SelectQuery("userMaster",column,WhereCondition)                  
+                        data1={"result":data['result'],"message":"","status":"true"}
                         return data1
                 else:
                     data={"result":"","status":"false","message":" You already signedUp as a driver"}
