@@ -240,23 +240,25 @@ def userSignup():
             # otp=int(totp.now()[0:4])
 
             UserId = (commonfile.CreateHashKey(mobileNo,userTypeId)).hex
-            
+            column22='userTypeId'
             
             WhereCondition = " and mobileNo = '" + str(mobileNo) + "'"
-            count = databasefile.SelectCountQuery("userMaster",WhereCondition,"")
+            count = databasefile.SelectQuery("userMaster",column22,WhereCondition,"")
             
-            if int(count) > 0:
-                WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
-                column = " otp = '" + str(otp)  + "'"
-                updateOtp = databasefile.UpdateQuery("userMaster",column,WhereCondition)
-                print(updateOtp,'updatedata')
-                if updateOtp != "0":
-                    column = '*'
-                    data = databasefile.SelectQuery("userMaster",column,WhereCondition)                  
-                    print(data,"===================")
-                    return data
+            if count['status']!='false':
+                if (count['result']['userTypeId'] == '2') or (count['result']['userTypeId'] == 2)  :
+                    WhereCondition = " and mobileNo = '" + str(mobileNo) + "'"
+                    column = " otp = '" + str(otp)  + "'"
+                    updateOtp = databasefile.UpdateQuery("userMaster",column,WhereCondition)
+                    print(updateOtp,'updatedata')
+                    if updateOtp != "0":
+                        column = '*'
+                        data = databasefile.SelectQuery1("userMaster",column,WhereCondition)                  
+                        print(data,"===================")
+                        return data
                 else:
-                    return commonfile.Errormessage()
+                    data={"result":"","status":"false","message":" You already signedUp as a driver"}
+                   
                 
             else:
                 if 'imeiNo' in inputdata:
@@ -355,6 +357,155 @@ def userSignup():
         print("Exception---->" +str(e))           
         output = {"status":"false","message":"something went wrong","result":""}
         return output
+
+
+
+@app.route('/driverSignup', methods=['POST'])
+def driverSignup():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+        startlimit,endlimit="",""
+        keyarr = ['mobileNo']
+        commonfile.writeLog("driverSignup",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+       
+        if msg == "1":
+            
+            column,values="",""
+            deviceKey=""
+
+            
+           
+            
+            mobileNo=inputdata["mobileNo"]
+            
+            if 'deviceKey' in inputdata:
+                deviceKey=inputdata["deviceKey"]
+            
+            usertypeId="3"
+            
+          
+            
+            digits = "0123456789"
+            otp = " "
+            for i in range(4):
+                otp += digits[math.floor(random.random() * 10)]
+
+           
+
+            UserId = (commonfile.CreateHashKey(mobileNo,usertypeId)).hex
+            column22='userTypeId'
+            
+            WhereCondition = " and mobileNo = '" + str(mobileNo) + "'"
+            count = databasefile.SelectQuery("userMaster",column22,WhereCondition,"")
+            
+            if count['status']!='false':
+                if (count['result']['userTypeId'] == '3') or (count['result']['userTypeId'] == 3):
+                    WhereCondition = " and mobileNo = '" + str(mobileNo) + "'"
+                    column = " otp = '" + str(otp)  + "'"
+                    updateOtp = databasefile.UpdateQuery("userMaster",column,WhereCondition)
+                    print(updateOtp,'updatedata')
+                    if updateOtp != "0":
+                        column = '*'
+                        data = databasefile.SelectQuery1("userMaster",column,WhereCondition)                  
+                        print(data,"===================")
+                        return data
+                else:
+                    data={"result":"","status":"false","message":"You already signedUp as a user"}
+                   
+                
+            else:
+               
+
+                if 'email' in inputdata:
+                    email=inputdata["email"]
+                    column=column+" ,email"
+                    values=values+"','"+str(email)
+                if 'password' in inputdata:
+                    password=inputdata["password"]
+                    column=column+" ,password"
+                    values=values+"','"+str(password)
+                if 'name' in inputdata:
+                    name=inputdata["name"]
+                    column=column+" ,name"
+                    values=values+"','"+str(name)
+
+
+
+ 
+                currentLocationlatlong=""
+
+                column="mobileNo,userId,otp,userTypeId,deviceKey"+column
+                
+                
+                values=  "'"+str(mobileNo)+"','"+str(UserId)+"','"+str(otp)+"','"+str('2')+"','"+str(deviceKey)+values+ "'"
+                data=databasefile.InsertQuery("userMaster",column,values)
+             
+
+                if data != "0":
+                    column = '*'
+                    
+                    data = databasefile.SelectQuery1("userMaster",column,WhereCondition)
+                    print(data)
+                    Data = {"status":"true","message":"","result":data["result"]}                  
+                    return Data
+                else:
+                    return commonfile.Errormessage()
+                        
+        else:
+            return msg 
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"status":"false","message":"something went wrong","result":""}
+        return output
+
+@app.route('/driverLogin', methods=['POST'])
+def driverlogin():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['password','mobileNo']
+        commonfile.writeLog("driverLogin",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            mobileNo = inputdata["mobileNo"]
+            password = inputdata["password"]
+            column=  "us.mobileNo,us.name,um.usertype,us.userId,us.userTypeId"
+            whereCondition= "us.mobileNo = '" + str(mobileNo) + "' and us.password = '" + password + "'  and  us.userTypeId=um.Id"
+            loginuser=databasefile.SelectQuery1("userMaster as us,usertypeMaster as um",column,whereCondition)
+            if (loginuser!=0):
+                if (loginuser['userTypeId'] == 3) or (loginuser['userTypeId']=='3'):
+                    Data = {"result":loginuser,"message":"","status":"true"}                  
+                    return Data
+                else:
+                    Data = {"result":"","message":"you are not driver,Please go to user ","status":"true"}                  
+                    return Data
+
+            else:
+                data={"status":"Failed","result":"Login Failed"}
+                return data
+
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output        
+
+
+
+
+
+
+
+
+
+
+        
 
 
 @app.route('/verifyOtp', methods=['POST'])
@@ -1623,7 +1774,8 @@ def login():
             column=  "us.mobileNo,us.name,um.usertype,us.userId"
             whereCondition= "us.mobileNo = '" + str(mobileNo) + "' and us.password = '" + password + "'  and  us.usertypeId=um.Id"
             loginuser=databasefile.SelectQuery1("userMaster as us,usertypeMaster as um",column,whereCondition)
-            if (loginuser!=0):   
+            if (loginuser!=0):
+
                 Data = {"result":loginuser,"status":"true"}                  
                 return Data
             else:
