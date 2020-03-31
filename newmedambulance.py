@@ -410,8 +410,8 @@ def driverSignup():
                     if updateOtp != "0":
                         column = '*'
                        
-                        data = databasefile.SelectQuery1("userMaster",column,WhereCondition)                  
-                        data1={"result":data,"message":"","status":"true"}
+                        data = databasefile.SelectQuery("userMaster",column,WhereCondition)                  
+                        data1={"result":data['result'],"message":"","status":"true"}
                         return data1
                 else:
                     data={"result":"","status":"false","message":"You already signedUp as a user"}
@@ -449,9 +449,9 @@ def driverSignup():
                 if data != "0":
                     column = '*'
                     
-                    data = databasefile.SelectQuery1("userMaster",column,WhereCondition)
+                    data = databasefile.SelectQuery("userMaster",column,WhereCondition)
                     print(data)
-                    Data = {"status":"true","message":"","result":data}                  
+                    Data = {"status":"true","message":"","result":data['result']}                  
                     return Data
                 else:
                     return commonfile.Errormessage()
