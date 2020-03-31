@@ -4377,7 +4377,10 @@ def getNearAmbulancetest():
             startlat ,startlng,userId= inputdata["startLocationLat"],inputdata["startLocationLong"],""#,inputdata["userId"]
             driverTypeId=inputdata['driverTypeId']
             ambulanceTypeId=inputdata['ambulanceTypeId']
+
+            print(ambulanceTypeId)
             ambulanceModeId=inputdata['ambulanceModeId']
+            print(ambulanceModeId)
             column=  "d.driverId, a.ambulanceTypeId,a.ambulanceModeId,d.name, d.mobileNo, a.ambulanceId, a.ambulanceNo, b.lat, b.lng,SQRT(POW(69.1 * (b.lat - "+str(startlat)+"), 2) +POW(69.1 * ("+str(startlng)+" - b.lng) * COS(b.lat / 57.3), 2)) AS distance "
             whereCondition= " and  a.driverTypeId='"+str(driverTypeId)+"'" + " and a.ambulanceModeId='"+str(ambulanceModeId)+"'  and a.ambulanceTypeId='"+str(ambulanceTypeId)+"' and d.status=1 and b.onTrip=0 and b.onDuty=1 and a.driverId=d.driverId  and b.ambulanceId=a.ambulanceId HAVING distance < 25 "
             orderby="  distance "
