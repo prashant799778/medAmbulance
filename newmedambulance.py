@@ -449,7 +449,7 @@ def driverSignup():
                 if data != "0":
                     column = '*'
                     
-                    data = databasefile.SelectQuery("userMaster",column,WhereCondition)
+                    data = databasefile.SelectQuery1("userMaster",column,WhereCondition)
                     print(data)
                     Data = {"status":"true","message":"","result":data['result']}                  
                     return Data
