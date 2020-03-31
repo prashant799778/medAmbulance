@@ -400,7 +400,7 @@ def driverSignup():
             count = databasefile.SelectQuery("userMaster",column22,WhereCondition)
             
             if count['status']!='false':
-                if (count['result']['usertypeId'] == '3') or (count['result']['usertypeId'] == 3):
+                if (count['result']['userTypeId'] == '3') or (count['result']['userTypeId'] == 3):
                     WhereCondition = " and mobileNo = '" + str(mobileNo) + "'"
                     column = " otp = '" + str(otp)  + "'"
                     updateOtp = databasefile.UpdateQuery("userMaster",column,WhereCondition)
