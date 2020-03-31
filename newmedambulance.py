@@ -246,7 +246,7 @@ def userSignup():
             count = databasefile.SelectQuery("userMaster",column22,WhereCondition)
             
             if count['status']!='false':
-                if (count['result']['usertypeId'] == '2') or (count['result']['usertypeId'] == 2)  :
+                if (count['result']['userTypeId'] == '2') or (count['result']['userTypeId'] == 2)  :
                     WhereCondition = " and mobileNo = '" + str(mobileNo) + "'"
                     column = " otp = '" + str(otp)  + "'"
                     updateOtp = databasefile.UpdateQuery("userMaster",column,WhereCondition)
@@ -258,6 +258,7 @@ def userSignup():
                         return data
                 else:
                     data={"result":"","status":"false","message":" You already signedUp as a driver"}
+                    return data
                    
                 
             else:
