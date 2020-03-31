@@ -471,7 +471,7 @@ def driverlogin():
             mobileNo = inputdata["mobileNo"]
             password = inputdata["password"]
             column=  "us.mobileNo,us.name,um.usertype,us.userId,us.userTypeId"
-            whereCondition= "us.mobileNo = '" + str(mobileNo) + "' and us.password = '" + password + "'  and  us.userTypeId=um.Id"
+            whereCondition= "us.mobileNo = '" + str(mobileNo) + "' and us.password = '" + str(password) + "'  and  us.userTypeId=um.Id"
             loginuser=databasefile.SelectQuery1("userMaster as us,usertypeMaster as um",column,whereCondition)
             if (loginuser!=0):
                 if (loginuser['userTypeId'] == 3) or (loginuser['userTypeId']=='3'):
