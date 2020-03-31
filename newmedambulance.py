@@ -451,7 +451,7 @@ def driverSignup():
                     
                     data = databasefile.SelectQuery1("userMaster",column,WhereCondition)
                     print(data)
-                    Data = {"status":"true","message":"","result":data['result']}                  
+                    Data = {"status":"true","message":"","result":data}                  
                     return Data
                 else:
                     return commonfile.Errormessage()
