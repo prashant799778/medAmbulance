@@ -410,8 +410,8 @@ def driverSignup():
                         column = '*'
                        
                         data = databasefile.SelectQuery1("userMaster",column,WhereCondition)                  
-                        print(data,"===================")
-                        return data
+                        data1={"result":data,"message":"","status":"true"}
+                        return data1
                 else:
                     data={"result":"","status":"false","message":"You already signedUp as a user"}
                     return data
