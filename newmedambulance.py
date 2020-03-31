@@ -402,12 +402,13 @@ def driverSignup():
             
             if count['status']!='false':
                 if (count['result']['userTypeId'] == '3') or (count['result']['userTypeId'] == 3):
-                    WhereCondition = " and mobileNo = '" + str(mobileNo) + "'"
+                    WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
                     column = " otp = '" + str(otp)  + "'"
                     updateOtp = databasefile.UpdateQuery("userMaster",column,WhereCondition)
                     print(updateOtp,'updatedata')
                     if updateOtp != "0":
                         column = '*'
+                       
                         data = databasefile.SelectQuery1("userMaster",column,WhereCondition)                  
                         print(data,"===================")
                         return data
