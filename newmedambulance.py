@@ -412,6 +412,7 @@ def driverSignup():
                         return data
                 else:
                     data={"result":"","status":"false","message":"You already signedUp as a user"}
+                    return data
                    
                 
             else:
