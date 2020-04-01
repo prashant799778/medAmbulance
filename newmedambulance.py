@@ -1136,7 +1136,7 @@ def addDrivertest():
         print('Hello')
         inputdata=request.form.get('data')
         print(inputdata,'inputdata')
-        keyarr = ['mobileNo','key','name','userTypeId']
+        keyarr = ['mobileNo','key','name','driverTypeId']
         inputdata=json.loads(inputdata)
         # inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
@@ -1148,7 +1148,7 @@ def addDrivertest():
         if msg == "1":
             mobileNo=inputdata['mobileNo']
             name=inputdata['name']
-            driverTypeId=int(inputdata['userTypeId'])
+            driverTypeId=int(inputdata['driverTypeId'])
            
             key = inputdata["key"]
             column = " * "
