@@ -402,7 +402,7 @@ def driverSignup():
             UserId = (commonfile.CreateHashKey(mobileNo,usertypeId)).hex
             column22='userTypeId'
             
-            WhereCondition = "  mobileNo = '" + str(mobileNo) + "' or email='" + str(email) + "' "
+            WhereCondition = "  mobileNo = '" + str(mobileNo) + "' "
             count = databasefile.SelectQuery("userMaster",column22,WhereCondition)
             
             if count['status']!='false':
