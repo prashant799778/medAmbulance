@@ -383,6 +383,7 @@ def driverSignup():
            
             
             mobileNo=inputdata["mobileNo"]
+            email=inputdata['email']
             
             if 'deviceKey' in inputdata:
                 deviceKey=inputdata["deviceKey"]
@@ -401,7 +402,7 @@ def driverSignup():
             UserId = (commonfile.CreateHashKey(mobileNo,usertypeId)).hex
             column22='userTypeId'
             
-            WhereCondition = "  mobileNo = '" + str(mobileNo) + "'"
+            WhereCondition = "  mobileNo = '" + str(mobileNo) + "' or email='" + str(email) + "' "
             count = databasefile.SelectQuery("userMaster",column22,WhereCondition)
             
             if count['status']!='false':
