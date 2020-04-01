@@ -484,13 +484,13 @@ def driverlogin():
             password = inputdata["password"]
             column=  "us.mobileNo,us.name,um.usertype,us.userId,us.userTypeId,us.status"
             whereCondition= "us.mobileNo = '" + str(mobileNo) + "' and us.password = '" + str(password) + "'  and  us.userTypeId=um.Id"
-            loginuser=databasefile.SelectQuery1("userMaster as us,usertypeMaster as um",column,whereCondition)
+            loginuser=databasefile.SelectQuery("userMaster as us,usertypeMaster as um",column,whereCondition)
             print(loginuser)
             if (loginuser!=0):
-                if (loginuser['userTypeId'] == 3) or (loginuser['userTypeId']=='3'):
-                    Data = {"result":loginuser,"message":"","status":"true"}                  
+                if (loginuser['result']['userTypeId'] == 3) or (loginuser['result']['userTypeId']=='3'):
+                    Data = {"result":loginuser['result'],"message":"","status":"true"}                  
                     return Data
-                if (loginuser['userTypeId'] == 2) or (loginuser['userTypeId']=='2'):
+                if (loginuser['result']['userTypeId'] == 2) or (loginuser['result']['userTypeId']=='2'):
                     Data = {"result":"","message":"you are not driver,Please go to user ","status":"true"}                  
                     return Data
                 else:
