@@ -498,7 +498,7 @@ def driverlogin():
                     return Data
 
             else:
-                data={"status":"false","message":"Please enter correct password & mobileNo","result":"Login Failed"}
+                data={"status":"false","message":"Please enter correct password & mobileNo or either you are not a driver","result":"Login Failed"}
                 return data
 
         else:
@@ -637,12 +637,12 @@ def responderLogin():
             password = inputdata["password"]
             column=  "us.mobileNo,us.name,um.usertype,us.userId,us.userTypeId"
             whereCondition= "us.mobileNo = '" + str(mobileNo) + "' and us.password = '" + str(password) + "'  and  us.userTypeId=um.Id"
-            loginuser=databasefile.SelectQuery1("userMaster as us,usertypeMaster as um",column,whereCondition)
-            if (loginuser!=0):
-                if (loginuser['userTypeId'] == 4) or (loginuser['userTypeId']=='4'):
+            loginuser=databasefile.SelectQuery("userMaster as us,usertypeMaster as um",column,whereCondition)
+            if (loginuser['status']!='false'):
+                if (loginuser['result']['userTypeId'] == 4) or (loginuser['result']['userTypeId']=='4'):
                     Data = {"result":loginuser,"message":"","status":"true"}                  
                     return Data
-                if (loginuser['userTypeId'] == 2) or (loginuser['userTypeId']=='2'):
+                if (loginuser['result']['userTypeId'] == 2) or (loginuser['result']['userTypeId']=='2'):
                     Data = {"result":"","message":"you are not driver,Please go to user ","status":"true"}                  
                     return Data
                 else:
@@ -650,7 +650,7 @@ def responderLogin():
                     return Data
 
             else:
-                data={"status":"false","message":"Please enter correct password & mobileNo","result":"Login Failed"}
+                data={"status":"false","message":"Please enter correct password & mobileNo or either you are not a responder","result":"Login Failed"}
                 return data
 
         else:
