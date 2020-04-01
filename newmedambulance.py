@@ -1283,7 +1283,7 @@ def addDrivertest():
                 
                 if data1['status'] == 'false':
                     print('11')
-                    if key == 1:
+                    if (key == 1) or (key =='1'):
                         columns = "name,mobileNo,dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath,driverId,driverTypeId"          
                         values = " '" + str(name) + "','" + str(mobileNo) + "','" + str(DlNo) + "','" + str( dlFrontFilename) + "','" + str(DlFrontPicPath) + "','" + str(dlBackFilename) + "', "            
                         values = values + " '" + str(DlBackPicPath) + "','" + str(driverId) + "','" + str(driverTypeId) + "'"
@@ -1294,7 +1294,7 @@ def addDrivertest():
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
                             return data11
-                    if key == 2:
+                    if (key == 2) or (key =='2'):
                         columns = " name,mobileNo,pIDType,pIDNo,pIDFrontFilename,pIDFrontFilepath,pIDBackFilename,pIDBackFilepath,driverId,driverTypeId"          
                         values = " '" + str(name) + "','" + str(mobileNo) + "','" + str(PIDType) + "','" + str(PIDNo) + "','" + str(PIDFrontFilename) + "','" + str(PIDFrontPicPath) + "','" + str(PIDBackFilename) + "', "            
                         values = values + " '" + str(PIDBackPicPath)+ "','" + str(driverId) + "','" + str(driverTypeId) + "'"
@@ -1306,7 +1306,7 @@ def addDrivertest():
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
                             return data11
                     
-                    if key == 3:
+                    if (key == 3) or (key =='3'):
 
                         columns = " name,mobileNo,driverId,driverTypeId"          
                         values = " '" + str(name) + "','" + str(mobileNo) + "','" + str(driverId) + "','" + str(driverTypeId) + "'"
@@ -1354,7 +1354,7 @@ def addDrivertest():
                 
                 
                 else:
-                    if key == 1:
+                    if (key == 1) or (key =='1'):
                         print('A')
                         WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
                         column = " name='" + str(name) + "' ,dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "',dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "',driverTypeId='" + str(driverTypeId) + "'"
@@ -1362,7 +1362,7 @@ def addDrivertest():
                         data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
                         print(data,'updatedata')
                         return data
-                    if key == 2:
+                    if (key == 2) or (key =='2'):
                         print('B')
                         WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
                         column = "name='" + str(name) + "', pIDType = '" + str(PIDType) + "',pIDNo = '" + str(PIDNo) + "',pIDFrontFilename = '" + str(PIDFrontFilename) + "',pIDFrontFilepath = '" + str(PIDFrontPicPath) + "',pIDBackFilename = '" + str(PIDBackFilename) + "',pIDBackFilepath = '" + str(PIDBackPicPath) + "',driverTypeId='" + str(driverTypeId) + "'"
@@ -1371,7 +1371,7 @@ def addDrivertest():
                         print(data,'updatedata')
                         return data
 
-                    if key == 3:
+                    if (key == 3) or (key =='3'):
                         driver_Id=data1['result']['driverId']
                         columns="ambulanceId"
                         WhereCondition = " driverId = '" + str(driver_Id) + "'"
