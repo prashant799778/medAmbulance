@@ -1356,20 +1356,36 @@ def addDrivertest():
                 else:
                     if (key == 1) or (key =='1'):
                         print('A')
+                        columns="dlNo"
                         WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
-                        column = " name='" + str(name) + "' ,dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "',dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "',driverTypeId='" + str(driverTypeId) + "'"
-                        print(column,'column')
-                        data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
-                        print(data,'updatedata')
-                        return data
+                        data19 = databasefile.SelectQuery("driverMaster",columns,WhereCondition)
+                        if data19['result']['dlNo'] == None:
+
+                            column = " name='" + str(name) + "' ,dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "',dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "',driverTypeId='" + str(driverTypeId) + "'"
+                            print(column,'column')
+                            data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
+                            print(data,'updatedata')
+                            return data
+                        else:
+                            data={"result":"","message":"Already Uploaded","status":"false"}
+                            return data
+
                     if (key == 2) or (key =='2'):
                         print('B')
+                        columns='pIDType,pIDNo'
                         WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
-                        column = "name='" + str(name) + "', pIDType = '" + str(PIDType) + "',pIDNo = '" + str(PIDNo) + "',pIDFrontFilename = '" + str(PIDFrontFilename) + "',pIDFrontFilepath = '" + str(PIDFrontPicPath) + "',pIDBackFilename = '" + str(PIDBackFilename) + "',pIDBackFilepath = '" + str(PIDBackPicPath) + "',driverTypeId='" + str(driverTypeId) + "'"
-                        print(column,'column')
-                        data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
-                        print(data,'updatedata')
-                        return data
+                        data19 = databasefile.SelectQuery("driverMaster",columns,WhereCondition)
+                        if data19['result']['pIDType'] == None:
+                            column = "name='" + str(name) + "', pIDType = '" + str(PIDType) + "',pIDNo = '" + str(PIDNo) + "',pIDFrontFilename = '" + str(PIDFrontFilename) + "',pIDFrontFilepath = '" + str(PIDFrontPicPath) + "',pIDBackFilename = '" + str(PIDBackFilename) + "',pIDBackFilepath = '" + str(PIDBackPicPath) + "',driverTypeId='" + str(driverTypeId) + "'"
+                            print(column,'column')
+                            data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
+                            print(data,'updatedata')
+                            return data
+                        else:
+                            data={"result":"","message":"Already Uploaded","status":"false"}
+                            return data
+
+
 
                     if (key == 3) or (key =='3'):
                         driver_Id=data1['result']['driverId']
@@ -1415,7 +1431,7 @@ def addDrivertest():
 
                             print('q')
                         else:
-                            data11={"result":"","message":"Already Existed","status":"false"}
+                            data11={"result":"","message":"Already Uploaded","status":"false"}
                             return data11
 
 
