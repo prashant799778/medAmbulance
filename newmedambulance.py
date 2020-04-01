@@ -486,7 +486,7 @@ def driverlogin():
             whereCondition= "us.mobileNo = '" + str(mobileNo) + "' and us.password = '" + str(password) + "'  and  us.userTypeId=um.Id"
             loginuser=databasefile.SelectQuery("userMaster as us,usertypeMaster as um",column,whereCondition)
             print(loginuser)
-            if (loginuser!=0):
+            if (loginuser['status']!='false'):
                 if (loginuser['result']['userTypeId'] == 3) or (loginuser['result']['userTypeId']=='3'):
                     Data = {"result":loginuser['result'],"message":"","status":"true"}                  
                     return Data
