@@ -1351,12 +1351,14 @@ def addDrivertest():
                         
 
                         if data122 != "0":
+
                             column = '*'
                             WhereCondition = " mobileNo = '" + str(mobileNo) +  "'"
                             whereCondition="   driverId='" + str(driverid) +  "' "
                             columns22="ambulanceId,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceTypeId,ambulanceNo,driverTypeId"
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
+                            print(data11['result'],"______--")
                             print(data11['result']['dlNo'],"+++++++++")
 
 
