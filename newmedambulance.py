@@ -5753,7 +5753,7 @@ def updateStatus():
                 whereCondition= " userId = '" + str(driverId) + "'"
                 deviceKey=databasefile.SelectQuery("userMaster",column,whereCondition)
                 print(deviceKey,"++++++++++=")
-                # deviceKey=deviceKey["result"]["deviceKey"]
+                deviceKey=deviceKey["result"]["deviceKey"]
                 email=deviceKey['result']['email']
                 name=deviceKey['result']['name']
 
