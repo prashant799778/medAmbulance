@@ -1301,7 +1301,7 @@ def addDrivertest():
                                 whereCondition=" driverId= '"+str(driverId)+"'"
                                 data1111=databasefile.SelectQuery('ambulanceMaster',columns,whereCondition)
                                 print(data1111,"++++++++++++++")
-                                if data1111['status']!='false':
+                                if data1111['status']=='false':
                                     y={'documentStatus':"false"}
                                     data11.update(y)
                                    
