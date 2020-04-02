@@ -1524,7 +1524,9 @@ def addDrivertest():
                             data11={"result":"","message":"Already Uploaded","status":"false"}
                             return data11
 
-
+            else:
+                data={"result":"","message":"Invalid mobileNo","status":"false"}
+                return data
                         
                
         else:
