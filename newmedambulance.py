@@ -5765,14 +5765,14 @@ def updateStatus():
             output=output1
             if output!='0':
                 column=  " deviceKey "
-                whereCondition= " userId = '" + str(userId) + "'"
-                # deviceKey=databasefile.SelectQuery("userMaster",column,whereCondition)
-                # deviceKey=deviceKey["result"]["deviceKey"]
+                whereCondition= " userId = '" + str(driverId) + "'"
+                deviceKey=databasefile.SelectQuery("userMaster",column,whereCondition)
+                deviceKey=deviceKey["result"]["deviceKey"]
 
 
 
 
-                # a = notification.notification1(deviceKey)
+                a = notification.notification1(deviceKey)
                 Data = {"status":"true","message":"","result":output["result"]}                  
                 return Data
             else:
