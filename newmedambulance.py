@@ -1298,8 +1298,9 @@ def addDrivertest():
 
                             if data11['result']['pIDType'] == None:
                                 columns='ambulanceNo'
-                                whereCondition=" driverId=''"+str(driverId)+"'"
+                                whereCondition=" driverId= '"+str(driverId)+"'"
                                 data1111=databasefile.SelectQuery('ambulanceMaster',columns,whereCondition)
+                                print(data1111,"++++++++++++++")
                                 if data1111['status']!='false':
                                     y={'documentStatus':"false"}
                                     data11.update(y)
