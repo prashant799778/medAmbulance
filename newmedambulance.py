@@ -1502,22 +1502,17 @@ def addDrivertest():
                                 data11['result'].update(data12['result'])
                                 data11['result'].update(data12333['result'])
                                 if data11['result']['dlNo'] == None:
-                                    if data11['result']['pIDNo'] == None:
-                                        y={'documentStatus':"false"}
-                                        data11.update(y)
-                                    else:
-                                        y={'documentStatus':"true"}
-                                        data11.update(y)
+                                    y={'documentStatus':"false"}
+                                    data11.update(y)
+                                   
 
-
+                                
+                                if data11['result']['pIDNo'] == None:
+                                    y={'documentStatus':"false"}
+                                    data11.update(y)
                                 else:
-                                    if data11['result']['pIDNo'] == None:
-                                        if data11['result']['dlNo'] == None:
-                                            y={'documentStatus':"false"}
-                                            data11.update(y)
-                                        else:
-                                            y={'documentStatus':"true"}
-                                            data11.update(y)
+                                    y={'documentStatus':"true"}
+                                    data11.update(y)
 
                                         
 
