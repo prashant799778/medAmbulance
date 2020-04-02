@@ -1338,7 +1338,7 @@ def addDrivertest():
                         data = databasefile.InsertQuery("driverMaster",columns,values)
 
                         columns222="driverId"
-                        whereCondition2222=" "
+                        whereCondition2222=" mobileNo = '" + str(mobileNo) +  "' "
                         data99=databasefile.SelectQuery1('driverMaster',columns222,whereCondition2222)
                         data111=data99[-1]
                         driverid=data111["driverId"]
