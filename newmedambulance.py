@@ -5766,7 +5766,7 @@ def updateStatus():
 
 
 
-                a = notification.notification1(deviceKey)
+                #a = notification.notification1(deviceKey)
                 Data = {"status":"true","message":"","result":output["result"]}                  
                 return Data
             else:
