@@ -1291,10 +1291,21 @@ def addDrivertest():
                         if data != "0":
                             column = '*'
                             WhereCondition = " mobileNo = '" + str(mobileNo) +  "'"
+
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
+                            if data11['result']['pIDType'] == None:
+                                columns='ambulanceNo'
+                                whereCondition=" driverId=''"+str(driverId)+"'"
+                                data1111=databasefile.SelectQuery('ambulanceMaster',columns,whereCondition)
+                                if data1111['status']!='false':
+                                    y={'documentStatus':"false"}
+                                    data11.update(y)
+                                   
                             return data11
+
                     if (key == 2) or (key =='2'):
+                        
                         columns = " name,mobileNo,pIDType,pIDNo,pIDFrontFilename,pIDFrontFilepath,pIDBackFilename,pIDBackFilepath,driverId,driverTypeId"          
                         values = " '" + str(name) + "','" + str(mobileNo) + "','" + str(PIDType) + "','" + str(PIDNo) + "','" + str(PIDFrontFilename) + "','" + str(PIDFrontPicPath) + "','" + str(PIDBackFilename) + "', "            
                         values = values + " '" + str(PIDBackPicPath)+ "','" + str(driverId) + "','" + str(driverTypeId) + "'"
@@ -1304,6 +1315,14 @@ def addDrivertest():
                             WhereCondition = " mobileNo = '" + str(mobileNo) +  "'"
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
+                            if data11['result']['dlNo'] == None:
+                                columns='ambulanceNo'
+                                whereCondition=" driverId=''"+str(driverId)+"'"
+                                data1111=databasefile.SelectQuery('ambulanceMaster',columns,whereCondition)
+                                if data1111['status']!='false':
+                                    y={'documentStatus':"false"}
+                                    data11.update(y)
+                                   
                             return data11
                     
                     if (key == 3) or (key =='3'):
@@ -1337,7 +1356,7 @@ def addDrivertest():
 
                             data12=databasefile.SelectQuery("ambulanceMaster",columns22,whereCondition)
 
-                            ambulanceId=data12['ambulanceId']
+                            ambulanceId=data12['result']['ambulanceId']
                             columns23='ambulanceId,lat,lng'
                             values23 = " '" + str(ambulanceId) + "','" + str(lat) + "','" + str(lng) + "'"
                             data122=databasefile.InsertQuery('ambulanceRideStatus',columns23,values23)
@@ -1349,6 +1368,13 @@ def addDrivertest():
 
                             data11.update(data12)
                             data11.update(data12333)
+                            if data11['result']['dlNo'] == None:
+                                if data11['result']['pIDNo'] == None:
+                                    y={'documentStatus':"false"}
+                                    data11.update(y)
+
+                                
+
 
                             return data11
                 
@@ -1365,7 +1391,23 @@ def addDrivertest():
                             print(column,'column')
                             data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
                             print(data,'updatedata')
-                            return data
+                            column = '*'
+                            WhereCondition = " mobileNo = '" + str(mobileNo) +  "'"
+
+                            
+                            data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
+                            if data11['result']['pIDType'] == None:
+                                columns='ambulanceNo'
+                                whereCondition=" driverId=''"+str(driverId)+"'"
+                                data1111=databasefile.SelectQuery('ambulanceMaster',columns,whereCondition)
+                                if data1111['status']!='false':
+                                    y={'documentStatus':"false"}
+                                    data11.update(y)
+                                else:
+                                    y={'documentStatus':"true"}
+                                    data11.update(y)
+
+                            return data11
                         else:
                             data={"result":"","message":"Already Uploaded","status":"false"}
                             return data
@@ -1380,7 +1422,20 @@ def addDrivertest():
                             print(column,'column')
                             data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
                             print(data,'updatedata')
-                            return data
+                            column = '*'
+                            WhereCondition = " mobileNo = '" + str(mobileNo) +  "'"
+                            
+                            data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
+                            if data11['result']['dlNo'] == None:
+                                columns='ambulanceNo'
+                                whereCondition=" driverId=''"+str(driverId)+"'"
+                                data1111=databasefile.SelectQuery('ambulanceMaster',columns,whereCondition)
+                                if data1111['status']!='false':
+                                    y={'documentStatus':"false"}
+                                    data11.update(y)
+                            
+                            return data11
+                        
                         else:
                             data={"result":"","message":"Already Uploaded","status":"false"}
                             return data
@@ -1426,6 +1481,26 @@ def addDrivertest():
 
                                 data11['result'].update(data12['result'])
                                 data11['result'].update(data12333['result'])
+                                if data11['result']['dlNo'] == None:
+                                    if data11['result']['pIDNo'] == None:
+                                        y={'documentStatus':"false"}
+                                        data11.update(y)
+                                    else:
+                                        y={'documentStatus':"true"}
+                                        data11.update(y)
+
+
+                                else:
+                                    if data11['result']['pIDNo'] == None:
+                                        if data11['result']['dlNo'] == None:
+                                            y={'documentStatus':"false"}
+                                            data11.update(y)
+                                        else:
+                                            y={'documentStatus':"true"}
+                                            data11.update(y)
+
+                                        
+
 
                                 return data11
 
@@ -1443,6 +1518,7 @@ def addDrivertest():
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
         return output
+
 
 
 
