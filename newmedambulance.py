@@ -1294,6 +1294,8 @@ def addDrivertest():
 
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
+                            print(data11,"+++++++++++++++++++")
+
                             if data11['result']['pIDType'] == None:
                                 columns='ambulanceNo'
                                 whereCondition=" driverId=''"+str(driverId)+"'"
