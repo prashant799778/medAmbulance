@@ -5746,10 +5746,21 @@ def updateStatus():
             output1=databasefile.UpdateQuery("driverMaster",column,whereCondition)
             output=output1
             if output!='0':
-                column=  " deviceKey "
+                column=  " deviceKey,email,name "
                 whereCondition= " userId = '" + str(driverId) + "'"
                 deviceKey=databasefile.SelectQuery("userMaster",column,whereCondition)
                 deviceKey=deviceKey["result"]["deviceKey"]
+                email=deviceKey['result']['email']
+                name=deviceKey['result']['name']
+
+                message = Mail(
+                    from_email = 'adbcd@medbulance.com',
+                    to_emails = str(email),
+                    subject = "For Verification of documents",
+                    html_content = '<strong>Dear Mr.'+ str(name) +' ,</strong> <br> <br> CONGRATULATIONS!! Your account is active now as the administration verified your documents and found the details authentic.<br> Best Wishes,<br>Team Medbulance')
+                sg = SendGridAPIClient('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')
+                response = sg.send(message)
+           
 
 
 
