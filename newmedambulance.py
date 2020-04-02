@@ -1322,7 +1322,7 @@ def addDrivertest():
                                 columns='ambulanceNo'
                                 whereCondition=" driverId=''"+str(driverId)+"'"
                                 data1111=databasefile.SelectQuery('ambulanceMaster',columns,whereCondition)
-                                if data1111['status']!='false':
+                                if data1111['status']=='false':
                                     y={'documentStatus':"false"}
                                     data11.update(y)
                                    
@@ -1403,7 +1403,7 @@ def addDrivertest():
                                 columns='ambulanceNo'
                                 whereCondition=" driverId=''"+str(driverId)+"'"
                                 data1111=databasefile.SelectQuery('ambulanceMaster',columns,whereCondition)
-                                if data1111['status']!='false':
+                                if data1111['status']=='false':
                                     y={'documentStatus':"false"}
                                     data11.update(y)
                                 else:
@@ -1413,7 +1413,7 @@ def addDrivertest():
                                 columns='ambulanceNo'
                                 whereCondition=" driverId=''"+str(driverId)+"'"
                                 data1111=databasefile.SelectQuery('ambulanceMaster',columns,whereCondition)
-                                if data1111['status']!='false':
+                                if data1111['status']=='false':
                                     y={'documentStatus':"false"}
                                     data11.update(y)
                                 else:
@@ -1443,14 +1443,14 @@ def addDrivertest():
                                 columns='ambulanceNo'
                                 whereCondition=" driverId=''"+str(driverId)+"'"
                                 data1111=databasefile.SelectQuery('ambulanceMaster',columns,whereCondition)
-                                if data1111['status']!='false':
+                                if data1111['status']=='false':
                                     y={'documentStatus':"false"}
                                     data11.update(y)
                             else:
                                 columns='ambulanceNo'
                                 whereCondition=" driverId=''"+str(driverId)+"'"
                                 data1111=databasefile.SelectQuery('ambulanceMaster',columns,whereCondition)
-                                if data1111['status']!='false':
+                                if data1111['status']=='false':
                                     y={'documentStatus':"false"}
                                     data11.update(y)
                             
