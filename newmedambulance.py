@@ -5746,6 +5746,7 @@ def updateStatus():
             output1=databasefile.UpdateQuery("driverMaster",column,whereCondition)
             output=output1
             if output!='0':
+                print(output,"++++++++++++++++++++++++===")
                 column=  " deviceKey,email,name "
                 whereCondition= " userId = '" + str(driverId) + "'"
                 deviceKey=databasefile.SelectQuery("userMaster",column,whereCondition)
