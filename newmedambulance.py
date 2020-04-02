@@ -1402,15 +1402,10 @@ def addDrivertest():
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
                             if data11['result']['pIDType'] == None:
-                                columns='ambulanceNo'
-                                whereCondition=" driverId='"+str(driverId)+"'"
-                                data1111=databasefile.SelectQuery('ambulanceMaster',columns,whereCondition)
-                                if data1111['status']=='false':
+                               
                                     y={'documentStatus':"false"}
                                     data11.update(y)
-                                else:
-                                    y={'documentStatus':"true"}
-                                    data11.update(y)
+                                
                             else:
                                 columns='ambulanceNo'
                                 whereCondition=" driverId='"+str(driverId)+"'"
@@ -1442,12 +1437,8 @@ def addDrivertest():
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
                             if data11['result']['dlNo'] == None:
-                                columns='ambulanceNo'
-                                whereCondition=" driverId='"+str(driverId)+"'"
-                                data1111=databasefile.SelectQuery('ambulanceMaster',columns,whereCondition)
-                                if data1111['status']=='false':
-                                    y={'documentStatus':"false"}
-                                    data11.update(y)
+                                y={'documentStatus':"false"}
+                                data11.update(y)
                             else:
                                 columns='ambulanceNo'
                                 whereCondition=" driverId= '"+str(driverId)+"'"
