@@ -31,6 +31,8 @@ import pyotp
 import socketio
 import paho.mqtt.client as mqtt
 from flask import Flask, render_template
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 # standard Python
 #sio = socketio.Client()
 
@@ -5754,7 +5756,7 @@ def updateStatus():
                 # deviceKey=deviceKey["result"]["deviceKey"]
                 email=deviceKey['result']['email']
                 name=deviceKey['result']['name']
-                
+
 
                 message = Mail(
                     from_email = 'adbcd@medbulance.com',
