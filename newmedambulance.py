@@ -7362,6 +7362,7 @@ def support():
             
             if (data2['status']=='false'):
                 data2['result']=[]
+            if (data2['status']!='false'):
                 for i in data2['result']:
                     if i['canceledUserId'] == i['userId']:
                         i['canceledBy']=i['userName']
