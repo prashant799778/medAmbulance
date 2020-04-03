@@ -5324,7 +5324,7 @@ def myrides():
             whereCondition3=" and bm.ambulanceId= am.ambulanceId and am.ambulanceModeId=aM.Id and  and  bm.userId=um.userId and bm.driverId=dm.driverId and um.userId='"+str(userId)+"' "+whereCondition2
 
             column2="bm.id,bm.userMobile,bm.drivermobile,bm.bookingId,aM.ambulanceType as ambulanceTypeId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.dateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status,bm.finalAmount,bm.totalDistance"
-            data2=databasefile.SelectQueryOrderby("bookResponder as bm,userMaster as um,driverMaster as dm",column2,whereCondition3,"",startlimit,endlimit,orderby)
+            data2=databasefile.SelectQueryOrderby("bookResponder as bm,userMaster as um,driverMaster as dm,ambulanceMaster as am,ambulanceTypeMaster as atm,ambulanceMode as aM",column2,whereCondition3,"",startlimit,endlimit,orderby)
             print(data,"--------------------------------------------------")
             countdata2=databasefile.SelectQuery4("bookResponder as bm,userMaster as um,driverMaster as dm,,ambulanceMaster as am,ambulanceMode as aM",column2,whereCondition3)
             
