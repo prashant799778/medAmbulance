@@ -7345,7 +7345,7 @@ def allcancelquestionss():
 @app.route('/allratingMaster', methods=['POST'])
 def allratingMaster():
     try:
-        columns="id as ratingId,name "
+        columns="id as rating,name "
         
         data = databasefile.SelectQueryMaxId("ratingMaster",columns)
        
@@ -7886,15 +7886,17 @@ def cancelResponder():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ["ambulanceId","bookingId","userId"]
+        keyarr = ["ambulanceId","bookingId","userId","questionId"]
         commonfile.writeLog("cancelRide",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
             ambulanceId= inputdata["ambulanceId"]
             bookingId=inputdata['bookingId']
+            questionId=inputdata['questionId']
+
             userId=inputdata['userId']
             whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"' and  canceledUserId='"+ str(userId)+"'"
-            column=" status='3' , canceledUserId='"+str(userId)+"' "
+            column=" status=3  , canceledUserId='"+str(userId)+"',questionId='"+str(questionId)+"'"
             bookRide=databasefile.UpdateQuery("bookResponder",column,whereCondition)
             whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
             columns= "onTrip=0 and onDuty=1"
