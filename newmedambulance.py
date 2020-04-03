@@ -7345,7 +7345,7 @@ def allcancelquestionss():
 @app.route('/allratingMaster', methods=['POST'])
 def allratingMaster():
     try:
-        columns="id as rating,name "
+        columns="id as ratingId,name "
         
         data = databasefile.SelectQueryMaxId("ratingMaster",columns)
        
