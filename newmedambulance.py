@@ -5334,7 +5334,7 @@ def myrides():
            
 
             if (data['status']!='false'): 
-                Data = {"result":{"ambulance":data['result'],"responder":data2['result']},"status":"true","message":"","ambulanceCount":len(countdata),"respondercount":len(countdata2)}
+                Data = {"result":{"ambulance":data['result'],"responder":data2['result']},"status":"true","message":""}
 
                           
                 return Data
