@@ -7338,7 +7338,97 @@ def allcancelquestionss():
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"status":"false","message":"something went wrong","result":""}
-        return output        
+        return output 
+
+
+
+@app.route('/allratingMaster', methods=['POST'])
+def allratingMaster():
+    try:
+        columns="id as ratingId,name "
+        
+        data = databasefile.SelectQueryMaxId("ratingMaster",columns)
+       
+
+        if data:           
+            Data = {"status":"true","message":"","result":data["result"]}
+            return Data
+        else:
+            output = {"status":"false","message":"No Data Found","result":""}
+            return output
+
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"status":"false","message":"something went wrong","result":""}
+        return output
+
+
+
+
+
+
+
+
+@app.route('/addUserRating', methods=['POST'])
+def addUserRating():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['driverId','bookingId','ratingId']
+        commonfile.writeLog("addpaymentType",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            driverId = inputdata["driverId"]
+            bookingId=inputdata['bookingId']
+            ratingId=inputdata['ratingId']
+            
+           
+            column="driverId,bookingId,ratingId"
+            values="'"+str(driverId)+"' ,'"+str(bookingId)+"','"+str(ratingId)+"'"
+            insertdata=databasefile.InsertQuery("userRating",column,values)
+            
+
+            output= {"result":"User Added Successfully","message":"","status":"true"}
+            return output
+            
+        else:
+            return msg 
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+
+@app.route('/addDriverRating', methods=['POST'])
+def addDriverRating():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ['userId','bookingId','ratingId']
+        commonfile.writeLog("addpaymentType",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg=="1":
+            userId = inputdata["userId"]
+            bookingId=inputdata['bookingId']
+            ratingId=inputdata['ratingId']
+            
+           
+            column="userId,bookingId,ratingId"
+            values="'"+str(userId)+"' ,'"+str(bookingId)+"','"+str(ratingId)+"'"
+            insertdata=databasefile.InsertQuery("driverRating",column,values)
+            
+
+            output= {"result":"User Added Successfully","message":"","status":"true"}
+            return output
+            
+        else:
+            return msg 
+    except Exception as e :
+        print("Exception---->" + str(e))    
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
 
 
 @app.route('/support', methods=['POST'])
