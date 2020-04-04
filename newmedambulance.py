@@ -7493,6 +7493,9 @@ def support():
                         i['canceledBy']=i['userName']
                     if i['canceledUserId'] == i['driverId']:
                         i['canceledBy']=i['driverName'] 
+
+            if (data['status']=='false'):
+                data['result']=[]
                 
            
             if (data['status']!='false'): 
@@ -7507,6 +7510,9 @@ def support():
                           
                 return Data
             else:
+
+                data = {"result":{"ambulance":data['result'],"responder":data2['result']},"status":"true","message":""}
+
                 
                 return data
         else:
