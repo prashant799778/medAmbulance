@@ -46,24 +46,28 @@ def on_message(client, userdata, msg):
     distance2=distance/100
     Distance=distance2*1.85
     if Distance < 0.0012:
-        bookingDetails["message"]="driver Arrived"  
-        if (bookingDetails['status']!='false'):
-            column=" arrivingstatus = '0' "
-            whereCondition=" bookingId ='"+str(bookingId)+"'"
-            a=databasefile.UpdateQuery('bookAmbulance',column,whereCondition)
-            topic=str(userId)+"/notifyRide"
-            #print(topic,"topic==================")
-            data1 = json.dumps(data)
-            #print("11111111111111")
-            #print(data)
-            client = mqtt.Client()
-            client.connect("localhost",1883,60)
-            client.publish(topic, data1)
-            client.disconnect()
-            return bookingDetails
-        else:
-            data={"result":"","message":"Already Reached to driver","status":"false"}
-            return data
+      bookingDetails["message"]="driver Arrived"  
+      
+      if (bookingDetails['status']!='false'):
+        
+        column=" arrivingstatus = '0' "
+        whereCondition=" bookingId ='"+str(bookingId)+"'"
+        a=databasefile.UpdateQuery('bookAmbulance',column,whereCondition)
+        topic=str(userId)+"/notifyRide"
+        #print(topic,"topic==================")
+        data1 = json.dumps(data)
+        #print("11111111111111")
+        #print(data)
+        client = mqtt.Client()
+        client.connect("localhost",1883,60)
+        client.publish(topic, data1)
+        client.disconnect()
+        
+        return bookingDetails
+      
+      else:
+        data={"result":"","message":"Already Reached to driver","status":"false"}
+        return data
 
 
     else:
