@@ -7471,7 +7471,7 @@ def support():
 
 
 
-            whereCondition=" and bm.ambulanceId=am.ambulanceId  and am.ambulanceModeId=aM.Id and  and cq.id=bm.questionId and  am.ambulanceTypeId=atm.id  and  bm.userId=um.userId and bm.driverId=dm.driverId and bm.status='3' and um.userId='"+str(userId)+"' "+whereCondition2
+            whereCondition=" and bm.ambulanceId=am.ambulanceId  and am.ambulanceModeId=aM.Id and   cq.id=bm.questionId and  am.ambulanceTypeId=atm.id  and  bm.userId=um.userId and bm.driverId=dm.driverId and bm.status='3' and um.userId='"+str(userId)+"' "+whereCondition2
 
             column="bm.id,bm.userMobile,bm.drivermobile,bm.bookingId,cq.questions,atm.ambulanceType as ambulanceTypeId ,aM.ambulanceType as ambulanceTypeId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status,bm.finalAmount,bm.totalDistance"
             data=databasefile.SelectQueryOrderby("bookAmbulance as bm,userMaster as um,driverMaster as dm,ambulanceMaster as am,ambulanceTypeMaster as atm,ambulanceMode as aM, cancelquestions  as cq",column,whereCondition,"",startlimit,endlimit,orderby)
