@@ -5330,17 +5330,18 @@ def myrides():
             
             if (data2['status']=='false'):
                 data2['result']=[]
+
+            if (data['status']=='false'):
+                data['result']=[]
                 
            
 
             if (data['status']!='false'): 
                 Data = {"result":{"ambulance":data['result'],"responder":data2['result']},"status":"true","message":""}
-
-                          
                 return Data
-            else:
-                
-                return data
+            else: 
+                Data = {"result":{"ambulance":data['result'],"responder":data2['result']},"status":"true","message":""}
+                return Data
         else:
             return msg 
     except KeyError as e:
