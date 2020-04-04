@@ -8183,7 +8183,7 @@ def notifyRide1():
                     print('Entered')
                     client = mqtt.Client()
                     client.connect("localhost",1883,60)
-                    topic=str(userId)+"/startRide"
+                    topic=str(userId)+"/notifyRide"
                     client.publish(topic, str(bookingDetails)) 
                     #bookRide["message"]="ride started Successfully" 
                     client.disconnect()
@@ -8265,7 +8265,7 @@ def notifyRide11():
                     print('Entered')
                     client = mqtt.Client()
                     client.connect("localhost",1883,60)
-                    topic=str(userId)+"/startRide"
+                    topic=str(userId)+"/notifyRide1"
                     client.publish(topic, str(bookingDetails)) 
                     #bookRide["message"]="ride started Successfully" 
                     client.disconnect()
