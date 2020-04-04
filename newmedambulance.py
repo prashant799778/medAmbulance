@@ -1428,6 +1428,7 @@ def addDrivertest():
                             if data11['result']['dlNo'] == None:
                                 y={'documentStatus':"false"}
                                 data11.update(y)
+
                             else:
                                 columns='ambulanceNo'
                                 whereCondition=" driverId= '"+str(driverId)+"'"
@@ -1487,6 +1488,7 @@ def addDrivertest():
 
                                 data11['result'].update(data12['result'])
                                 data11['result'].update(data12333['result'])
+                                
                                 if data11['result']['dlNo'] == None:
                                     y={'documentStatus':"false"}
                                     data11.update(y)
@@ -1496,7 +1498,8 @@ def addDrivertest():
                                 if data11['result']['pIDNo'] == None:
                                     y={'documentStatus':"false"}
                                     data11.update(y)
-                                else:
+                                
+                                if (data11['result']['dlNo'] != None) and (data11['result']['pIDNo'] != None) :
                                     y={'documentStatus':"true"}
                                     data11.update(y)
 
