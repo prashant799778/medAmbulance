@@ -51,7 +51,7 @@ def on_message(client, userdata, msg):
             column=" arrivingstatus = '0' "
             whereCondition=" bookingId ='"+str(bookingId)+"'"
             a=databasefile.UpdateQuery('bookAmbulance',column,whereCondition)
-            topic=data["userId"]+"/notifyRide1"
+            topic=str(userId)+"/notifyRide1"
             #print(topic,"topic==================")
             data1 = json.dumps(data)
             #print("11111111111111")

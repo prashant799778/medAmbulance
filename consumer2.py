@@ -16,14 +16,7 @@ def on_message(client, userdata, msg):
   # print(msg,"===============")
   # print(data,"============",msg.topic)
   #topic=str(msg.topic)#+"/ambulanceLiveLocation"
-  topic=data["userId"]+"/notifyRide"
-  #print(topic,"topic==================")
-  data1 = json.dumps(data)
-  #print("11111111111111")
-  #print("1")
-  #print(data)
-  client.publish(topic, data1)
-  client.disconnect()
+ 
   #print("2")
   #print("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
   
@@ -36,7 +29,7 @@ def on_message(client, userdata, msg):
     columns="(ar.lat)driverLat,(ar.lng)driverLng, bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
     columns=columns+",bm.finalAmount,bm.pickup,bm.status,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
     columns=columns+",bm.driverMobile"
-    whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
+    whereCondition22=" am.ambulanceId=bm.ambulanceId  and bm.arrivingstatus='1' and bookingId= '"+str(bookingId)+"' "
     bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
     print(bookingDetails,"================")
     userLat=bookingDetails['result']['pickupLatitude']
@@ -53,15 +46,28 @@ def on_message(client, userdata, msg):
     distance2=distance/100
     Distance=distance2*1.85
     if Distance < 0.0012:
-      bookingDetails["message"]="driver Arrived Successfully near user"  
-      if (bookingDetails!='0'):  
-        return bookingDetails
+        bookingDetails["message"]="driver Arrived"  
+        if (bookingDetails['status']!='false'):
+            column=" arrivingstatus = '0' "
+            whereCondition=" bookingId ='"+str(bookingId)+"'"
+            a=databasefile.UpdateQuery('bookAmbulance',column,whereCondition)
+            topic=str(userId)+"/notifyRide"
+            #print(topic,"topic==================")
+            data1 = json.dumps(data)
+            #print("11111111111111")
+            #print(data)
+            client = mqtt.Client()
+            client.connect("localhost",1883,60)
+            client.publish(topic, data1)
+            client.disconnect()
+            return bookingDetails
+        else:
+            data={"result":"","message":"Already Reached to driver","status":"false"}
+            return data
+
+
     else:
-      y=str(Distance) +'Km'
-      y1={"distanceFromLocation":y}
-      bookingDetails['result'].update(y1)
-      data={"result":bookingDetails['result'],"message":" driver has stil not Arrived ","status":"true"}
-      return data
+        pass
   except Exception as e :
   #print("Exception---->" + str(e))    
   output = {"result":"something went wrong","status":"false"}
@@ -70,12 +76,6 @@ def on_message(client, userdata, msg):
 
 
 
-
-client = mqtt.Client()
-client.connect("localhost",1883,60)
-client.on_connect = on_connect
-client.on_message = on_message
-client.loop_forever()
           
 
     
