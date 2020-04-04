@@ -8232,7 +8232,7 @@ def notifyRide11():
 
             if "userId" in inputdata:
                 if inputdata['userId'] != "":
-                    userId =str(inputdata["userId"])A
+                    userId =str(inputdata["userId"])
             lat=data["lat"]
             lng=data["lng"]
 
