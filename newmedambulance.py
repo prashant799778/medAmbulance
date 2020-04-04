@@ -7442,6 +7442,7 @@ def support():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
+        whereCondition2=""
        
         commonfile.writeLog("support",inputdata,0)
         msg="1"
@@ -7458,6 +7459,11 @@ def support():
             if "userId" in inputdata:
                 if inputdata['userId'] != "":
                     userId =str(inputdata["userId"])
+
+            if "bookingId" in inputdata:
+                if inputdata['bookingId'] != "":
+                    bookingId =str(inputdata["bookingId"])
+                    whereCondition2=" and bm.bookingId= '"+ str(bookingId)+"'"
 
             orderby="bm.id"                
 
