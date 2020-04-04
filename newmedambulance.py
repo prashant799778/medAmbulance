@@ -7016,22 +7016,28 @@ def cancelRide1():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ["ambulanceId","bookingId","userId","questionId"]
+        keyarr = ["ambulanceId","bookingId","userId","questionId","driverId"]
         commonfile.writeLog("cancelRide",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
             ambulanceId= inputdata["ambulanceId"]
             bookingId=inputdata['bookingId']
             questionId=inputdata['questionId']
+            driverId=inputdata['driverId']
 
             userId=inputdata['userId']
+
             whereCondition=" ambulanceId= '"+ str(ambulanceId)+"' and bookingId='"+ str(bookingId)+"' and  canceledUserId='"+ str(userId)+"'"
+            
             column=" status=3  , canceledUserId='"+str(userId)+"',questionId='"+str(questionId)+"'"
             bookRide=databasefile.UpdateQuery("bookAmbulance",column,whereCondition)
             whereCondition222=  " ambulanceId= '"+ str(ambulanceId)+"' "
             columns= "onTrip=0 and onDuty=1"
+            
             bookRide1=databasefile.UpdateQuery("ambulanceRideStatus",columns,whereCondition222)
+            
             if (bookRide!=0):   
+            
                 bookRide["message"]="ride Cancelled Successfully"             
                 
 
@@ -7050,7 +7056,7 @@ def cancelRide1():
                     print('Entered')
                     client = mqtt.Client()
                     client.connect("localhost",1883,60)
-                    topic=str(userId)+"/cancelRide"
+                    topic=str(driverId)+"/cancelRide"
                     client.publish(topic, str(bookingDetails)) 
                     #bookRide["message"]="ride Cancelled" 
                     client.disconnect()
