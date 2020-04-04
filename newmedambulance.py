@@ -6994,9 +6994,10 @@ def endRide1():
                     columns2="name as userName"
                     whereCondition222=" userId= '"+str(userid)+"' and usertypeId='2'"
                     u=databasefile.SelectQuery('userMaster',columns2,whereCondition222)
+                    print(u,)
                     u1=u['result']
                     bookingDetails['result'].update(u1)
-                    print(bookingDetails['userName'],"+++++++++++++++++=")
+                    print(bookingDetails['result']['userName'],"+++++++++++++++++=")
 
 
 
