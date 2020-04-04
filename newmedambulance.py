@@ -7476,14 +7476,14 @@ def support():
             column="bm.id,bm.userMobile,bm.drivermobile,bm.bookingId,cq.questions,atm.ambulanceType as ambulanceTypeId ,aM.ambulanceType as ambulanceTypeId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status,bm.finalAmount,bm.totalDistance"
             data=databasefile.SelectQueryOrderby("bookAmbulance as bm,userMaster as um,driverMaster as dm,ambulanceMaster as am,ambulanceTypeMaster as atm,ambulanceMode as aM, cancelquestions  as cq",column,whereCondition,"",startlimit,endlimit,orderby)
             print(data,"--------------------------------------------------")
-            countdata=databasefile.SelectQuery4("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition)
+            # countdata=databasefile.SelectQuery4("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition)
 
             whereCondition3=" and bm.ambulanceId= am.ambulanceId and cq.id=bm.questionId and  am.ambulanceModeId=aM.Id and bm.status='3' and   bm.userId=um.userId and bm.driverId=dm.driverId and um.userId='"+str(userId)+"' "+whereCondition2
 
             column2="bm.id,bm.userMobile,bm.drivermobile,bm.bookingId,cq.questions,aM.ambulanceType as ambulanceTypeId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.dateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status,bm.finalAmount,bm.totalDistance"
             data2=databasefile.SelectQueryOrderby("bookResponder as bm,userMaster as um,driverMaster as dm,ambulanceMaster as am,ambulanceTypeMaster as atm,ambulanceMode as aM, cancelquestions  as cq",column2,whereCondition3,"",startlimit,endlimit,orderby)
             print(data,"--------------------------------------------------")
-            countdata2=databasefile.SelectQuery4("bookResponder as bm,userMaster as um,driverMaster as dm,ambulanceMaster as am,ambulanceMode as aM",column2,whereCondition3)
+            # countdata2=databasefile.SelectQuery4("bookResponder as bm,userMaster as um,driverMaster as dm,ambulanceMaster as am,ambulanceMode as aM",column2,whereCondition3)
             
             if (data2['status']=='false'):
                 data2['result']=[]
