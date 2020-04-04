@@ -8128,6 +8128,170 @@ def driverArriver1():
 
 
 
+@app.route('/notifyRide', methods=['POST'])
+def notifyRide1():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ["ambulanceId","bookingId","userId"]
+        commonfile.writeLog("endRide",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            if "ambulanceId" in inputdata:
+                if inputdata['ambulanceId'] != "":
+                    ambulanceId =(inputdata["ambulanceId"])
+            if "bookingId" in inputdata:
+                    if inputdata['bookingId'] != "":
+                        bookingId =str(inputdata["bookingId"])
+
+            if "userId" in inputdata:
+                if inputdata['userId'] != "":
+                    userId =str(inputdata["userId"])
+
+            columns="(ar.lat)driverLat,(ar.lng)driverLng, bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
+            columns=columns+",bm.finalAmount,bm.pickup,bm.status,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
+            columns=columns+",bm.driverMobile"
+            whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
+            bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
+            print(bookingDetails,"================")
+            driverLat=bookingDetails['result']['driverLat']
+            driverLng=bookingDetails['result']['driverLng']
+            userLat=bookingDetails['result']['pickupLatitude']
+            userLng==bookingDetails['result']['pickupLongitude']
+
+            fromlongitude2= driverLng
+            print(fromlongitude2,'fromlong',type(fromlongitude2))
+            fromlatitude2 = driverLat
+            # print(fromlongitude2,'fromlong')
+            print('lat',fromlatitude2)
+            distanceLongitude = userLng- fromlongitude2
+            distanceLatitude = userLat - fromlatitude2
+            a = sin(distanceLatitude / 2)**2 + cos(fromlatitude2) * cos(userLat) * sin(distanceLongitude / 2)**2
+            c = 2 * atan2(sqrt(a), sqrt(1 - a))
+            
+            distance = R * c
+            distance2=distance/100
+            Distance=distance2*1.85
+
+            if Distance < 0.200:
+
+
+
+            
+                bookingDetails["message"]="driver Arrived Successfully near user"  
+                if (bookingDetails!='0'):  
+                    print('Entered')
+                    client = mqtt.Client()
+                    client.connect("localhost",1883,60)
+                    topic=str(userId)+"/startRide"
+                    client.publish(topic, str(bookingDetails)) 
+                    #bookRide["message"]="ride started Successfully" 
+                    client.disconnect()
+                    return bookingDetails
+            else:
+                y=str(Distance) +'Km'
+                y1={"distanceFromLocation":y}
+                bookingDetails['result'].update(y1)
+                
+                data={"result":bookingDetails['result'],"message":" driver has stil not Arrived ","status":"true"}
+                
+                return data
+            
+
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
+@app.route('/notifyRide1', methods=['POST'])
+def notifyRide11():
+    try:
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        startlimit,endlimit="",""
+        keyarr = ["ambulanceId","bookingId","userId"]
+        commonfile.writeLog("endRide",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        if msg == "1":
+            if "ambulanceId" in inputdata:
+                if inputdata['ambulanceId'] != "":
+                    ambulanceId =(inputdata["ambulanceId"])
+            if "bookingId" in inputdata:
+                    if inputdata['bookingId'] != "":
+                        bookingId =str(inputdata["bookingId"])
+
+            if "userId" in inputdata:
+                if inputdata['userId'] != "":
+                    userId =str(inputdata["userId"])
+
+            columns="(ar.lat)driverLat,(ar.lng)driverLng, bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
+            columns=columns+",bm.finalAmount,bm.pickup,bm.status,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
+            columns=columns+",bm.driverMobile"
+            whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
+            bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
+            print(bookingDetails,"================")
+            driverLat=bookingDetails['result']['driverLat']
+            driverLng=bookingDetails['result']['driverLng']
+            userLat=bookingDetails['result']['dropOffLongitude']
+            userLng==bookingDetails['result']['dropOffLongitude']
+
+            fromlongitude2= driverLng
+            print(fromlongitude2,'fromlong',type(fromlongitude2))
+            fromlatitude2 = driverLat
+            # print(fromlongitude2,'fromlong')
+            print('lat',fromlatitude2)
+            distanceLongitude = userLng- fromlongitude2
+            distanceLatitude = userLat - fromlatitude2
+            a = sin(distanceLatitude / 2)**2 + cos(fromlatitude2) * cos(userLat) * sin(distanceLongitude / 2)**2
+            c = 2 * atan2(sqrt(a), sqrt(1 - a))
+            
+            distance = R * c
+            distance2=distance/100
+            Distance=distance2*1.85
+
+            if Distance < 0.200:
+
+
+
+            
+                bookingDetails["message"]="driver Reached to location Successfully near user"  
+                if (bookingDetails!='0'):  
+                    print('Entered')
+                    client = mqtt.Client()
+                    client.connect("localhost",1883,60)
+                    topic=str(userId)+"/startRide"
+                    client.publish(topic, str(bookingDetails)) 
+                    #bookRide["message"]="ride started Successfully" 
+                    client.disconnect()
+                    return bookingDetails
+            else:
+                y=str(Distance) +'Km'
+                y1={"distanceFromLocation":y}
+                bookingDetails['result'].update(y1)
+                
+                data={"result":bookingDetails['result'],"message":" driver has still not Reached to location","status":"true"}
+                
+                return data
+            
+
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
 
 
 
