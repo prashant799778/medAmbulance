@@ -6986,7 +6986,16 @@ def endRide1():
                 print(bookingDetails,"================")
                 bookingDetails["message"]="ride Ended Successfully"
                
-                if (bookingDetails!='0'):  
+                if (bookingDetails!='0'):
+                    userid=bookingDetails['result']['userId']
+                    columns2="name as userName"
+                    whereCondition222=" userId= '"+str(bookingId)+"' and usertypeId='2'"
+                    u=databasefile.SelectQuery('userMaster',columns2,whereCondition222)
+                    u1=u['result']
+                    bookingDetails['result'].update(u1)
+
+
+
                     print('Entered')
                     client = mqtt.Client()
                     client.connect("localhost",1883,60)
