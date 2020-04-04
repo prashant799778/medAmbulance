@@ -6768,7 +6768,7 @@ def getFareManagement():
                     whereCondition3=" and Fm.categoryId= '"+str(categoryId)+"' "
 
             if "ambType" in inputdata:
-                if inputdata['categoryId'] != "":
+                if inputdata['ambType']!= "":
                     ambType =int(inputdata["ambType"])
                     whereCondition3=" and Fm.categoryId= '"+str(ambType)+"' "
                 
