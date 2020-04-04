@@ -6992,7 +6992,7 @@ def endRide1():
                 if (bookingDetails!='0'):
                     userid=bookingDetails['result']['userId']
                     columns2="name as userName"
-                    whereCondition222=" userId= '"+str(bookingId)+"' and usertypeId='2'"
+                    whereCondition222=" userId= '"+str(userId)+"' and usertypeId='2'"
                     u=databasefile.SelectQuery('userMaster',columns2,whereCondition222)
                     u1=u['result']
                     bookingDetails['result'].update(u1)
