@@ -8133,7 +8133,7 @@ def notifyRide1():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ["ambulanceId","bookingId","userId"]
+        keyarr = ["ambulanceId","bookingId","userId","lat","lng"]
         commonfile.writeLog("endRide",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
@@ -8148,20 +8148,23 @@ def notifyRide1():
                 if inputdata['userId'] != "":
                     userId =str(inputdata["userId"])
 
+            lat=data["lat"]
+            lng=data["lng"]
+
+
             columns="(ar.lat)driverLat,(ar.lng)driverLng, bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
             columns=columns+",bm.finalAmount,bm.pickup,bm.status,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
             columns=columns+",bm.driverMobile"
             whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
             bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
             print(bookingDetails,"================")
-            driverLat=bookingDetails['result']['driverLat']
-            driverLng=bookingDetails['result']['driverLng']
+            
             userLat=bookingDetails['result']['pickupLatitude']
             userLng==bookingDetails['result']['pickupLongitude']
 
-            fromlongitude2= driverLng
+            fromlongitude2= lng
             print(fromlongitude2,'fromlong',type(fromlongitude2))
-            fromlatitude2 = driverLat
+            fromlatitude2 = lat
             # print(fromlongitude2,'fromlong')
             print('lat',fromlatitude2)
             distanceLongitude = userLng- fromlongitude2
@@ -8173,7 +8176,7 @@ def notifyRide1():
             distance2=distance/100
             Distance=distance2*1.85
 
-            if Distance < 0.200:
+            if Distance < 0.0012:
 
 
 
@@ -8215,35 +8218,38 @@ def notifyRide11():
     try:
         inputdata =  commonfile.DecodeInputdata(request.get_data())
         startlimit,endlimit="",""
-        keyarr = ["ambulanceId","bookingId","userId"]
+        keyarr = ["ambulanceId","bookingId","userId","lat","lng"]
         commonfile.writeLog("endRide",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         if msg == "1":
             if "ambulanceId" in inputdata:
                 if inputdata['ambulanceId'] != "":
                     ambulanceId =(inputdata["ambulanceId"])
+            
             if "bookingId" in inputdata:
                     if inputdata['bookingId'] != "":
                         bookingId =str(inputdata["bookingId"])
 
             if "userId" in inputdata:
                 if inputdata['userId'] != "":
-                    userId =str(inputdata["userId"])
+                    userId =str(inputdata["userId"])A
+            lat=data["lat"]
+            lng=data["lng"]
 
+            
             columns="(ar.lat)driverLat,(ar.lng)driverLng, bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
             columns=columns+",bm.finalAmount,bm.pickup,bm.status,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
             columns=columns+",bm.driverMobile"
             whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
             bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
             print(bookingDetails,"================")
-            driverLat=bookingDetails['result']['driverLat']
-            driverLng=bookingDetails['result']['driverLng']
+            
             userLat=bookingDetails['result']['dropOffLongitude']
             userLng==bookingDetails['result']['dropOffLongitude']
 
-            fromlongitude2= driverLng
+            fromlongitude2= lng
             print(fromlongitude2,'fromlong',type(fromlongitude2))
-            fromlatitude2 = driverLat
+            fromlatitude2 = lat
             # print(fromlongitude2,'fromlong')
             print('lat',fromlatitude2)
             distanceLongitude = userLng- fromlongitude2
@@ -8255,7 +8261,7 @@ def notifyRide11():
             distance2=distance/100
             Distance=distance2*1.85
 
-            if Distance < 0.200:
+            if Distance < 0.0012:
 
 
 
