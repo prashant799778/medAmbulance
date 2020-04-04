@@ -6772,7 +6772,7 @@ def getFareManagement():
             data=databasefile.SelectQuery1("fareManagement as Fm,ambulanceMode as am",column,whereCondition)
         
             if (data!=0):           
-                Data = {"result":data,"status":"true"}
+                Data = {"result":data,"message":"","status":"true"}
                 return Data
             else:
                 output = {"result":"No Data Found","status":"false"}
