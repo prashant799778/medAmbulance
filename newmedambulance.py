@@ -6986,7 +6986,7 @@ def endRide1():
                 columns=columns+",bm.driverMobile"
                 whereCondition22=" am.ambulanceId=bm.ambulanceId and bm.driverId=um.userId and bookingId= '"+str(bookingId)+"'"
                 bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar,userMaster as um",columns,whereCondition22)
-                print(bookingDetails,"================")
+                
                 bookingDetails["message"]="ride Ended Successfully"
                
                 if (bookingDetails!='0'):
@@ -6998,6 +6998,7 @@ def endRide1():
                     u1=u['result']
                     bookingDetails['result'].update(u1)
                     print(bookingDetails['result']['userName'],"+++++++++++++++++=")
+                    print(bookingDetails['result'])
 
 
 
