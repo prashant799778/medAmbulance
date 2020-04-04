@@ -5316,7 +5316,7 @@ def myrides():
 
             whereCondition=" and bm.ambulanceId=am.ambulanceId  and am.ambulanceModeId=aM.Id and am.ambulanceTypeId=atm.id  and  bm.userId=um.userId and bm.driverId=dm.driverId and um.userId='"+str(userId)+"' "+whereCondition2
 
-            column="bm.id,bm.userMobile,bm.drivermobile,bm.bookingId,atm.ambulanceType as ambulanceTypeId ,aM.ambulanceType as ambulanceTypeId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status,bm.finalAmount,bm.totalDistance"
+            column="bm.id,bm.userMobile,bm.drivermobile,bm.bookingId,atm.ambulanceType as ambulanceTypeId ,aM.ambulanceType as ambulanceModeId,bm.pickup as tripFrom,bm.dropOff as tripTo,date_format(bm.ateCreate,'%Y-%m-%d %H:%i:%s')startTime,dm.name as driverName,um.name as userName,bm.status,bm.finalAmount,bm.totalDistance"
             data=databasefile.SelectQueryOrderby("bookAmbulance as bm,userMaster as um,driverMaster as dm,ambulanceMaster as am,ambulanceTypeMaster as atm,ambulanceMode as aM",column,whereCondition,"",startlimit,endlimit,orderby)
             print(data,"--------------------------------------------------")
             countdata=databasefile.SelectQuery4("bookAmbulance as bm,userMaster as um,driverMaster as dm",column,whereCondition)
