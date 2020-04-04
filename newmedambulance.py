@@ -6979,7 +6979,7 @@ def endRide1():
             
                 
                 columns="(ar.lat)ambulanceLat,(ar.lng)ambulanceLng, um.name as driverName,bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
-                columns=columns+",bm.finalAmount,bm.pickup,bm.status,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
+                columns=columns+",bm.finalAmount,bm.pickup,bm.userId,bm.status,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
                 columns=columns+",bm.driverMobile"
                 whereCondition22=" am.ambulanceId=bm.ambulanceId and bm.driverId=um.userId and bookingId= '"+str(bookingId)+"'"
                 bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar,userMaster as um",columns,whereCondition22)
