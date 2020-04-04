@@ -6767,6 +6767,13 @@ def getFareManagement():
                     categoryId =int(inputdata["categoryId"])
                     whereCondition3=" and Fm.categoryId= '"+str(categoryId)+"' "
 
+            if "ambType" in inputdata:
+                if inputdata['categoryId'] != "":
+                    ambType =int(inputdata["ambType"])
+                    whereCondition3=" and Fm.categoryId= '"+str(ambType)+"' "
+                
+
+
             column="Fm.id,Fm.fare as farePerKM,am.ambulanceType as category,Fm.categoryId as ambType,Fm.minimumFare as minFare,Fm.minimumDistance as minDistance,Fm.waitingFare as waitFare"
             whereCondition="Fm.categoryId=am.id"+whereCondition3
             data=databasefile.SelectQuery1("fareManagement as Fm,ambulanceMode as am",column,whereCondition)
