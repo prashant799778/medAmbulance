@@ -51,6 +51,7 @@ def on_message(client, userdata, msg):
       bookingDetails["message"]="driver Arrived"  
       
       if (bookingDetails['status']!='false'):
+        bookingDetails["message"]="driver Arrived"  
         
         column=" arrivingstatus = '0' "
         whereCondition=" bookingId ='"+str(bookingId)+"'"
