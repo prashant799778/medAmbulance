@@ -83,9 +83,6 @@ def on_message(client, userdata, msg):
      
   
 
-
-
-
 client = mqtt.Client()
 client.connect("localhost",1883,60)
 
@@ -93,3 +90,4 @@ client.on_connect = on_connect
 client.on_message = on_message
 
 client.loop_forever()
+
