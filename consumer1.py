@@ -33,15 +33,15 @@ def on_message(client, userdata, msg):
 
 
 
-  topic=data["userId"]+"/ambulanceLiveLocation"
+  topic1=data["userId"]+"/ambulanceLiveLocation"
   
-  print(topic,"topic==================")
+  print(topic1,"topic==================")
   data1 = json.dumps(data)
   print("11111111111111")
   
   #print("1")
   #print(data)
-  client.publish(topic, data1)
+  client.publish(topic1, data1)
   client.disconnect()
   #print("2")
   #print("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
