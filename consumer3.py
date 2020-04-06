@@ -70,8 +70,8 @@ def on_message(client, userdata, msg):
     else:
         pass
   except Exception as e :
-  #print("Exception---->" + str(e))    
-  output = {"result":"something went wrong","status":"false"}
+    print("Exception---->" + str(e))    
+    output = {"result":"something went wrong","status":"false"}
      
   
 
