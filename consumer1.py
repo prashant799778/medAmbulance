@@ -11,7 +11,8 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):    
   data = msg.payload.decode('utf-8')
-  #print(data,"===============",type(data))
+
+  print(data,"===============",type(data))
   data = json.loads(data)
   # print(msg,"===============")
   # print(data,"============",msg.topic)
