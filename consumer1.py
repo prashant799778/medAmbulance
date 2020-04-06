@@ -17,11 +17,15 @@ def on_message(client, userdata, msg):
   # print(msg,"===============")
   # print(data,"============",msg.topic)
   print(msg.topic,"1111111111!!!!!!!!!!!")
+  y=msg.topic
+
   #topic=str(msg.topic)#+"/ambulanceLiveLocation"
-  topic=data["userId"]+"/ambulanceLiveLocation"
+  topic=data["driverId"]+"/ambulanceLiveLocation"
+  
   print(topic,"topic==================")
   data1 = json.dumps(data)
   print("11111111111111")
+  
   #print("1")
   #print(data)
   client.publish(topic, data1)
