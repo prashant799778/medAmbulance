@@ -6,7 +6,7 @@ import databasefile
 def on_connect(client, userdata, flags, rc):
   print("-------Connected-------")
   print(client, userdata, flags, rc)
-  client.subscribe("#")
+  client.subscribe("ambulanceLiveLocation")
   #client.publish("#", "Hello world!");
 
 def on_message(client, userdata, msg):    
@@ -53,7 +53,7 @@ def on_message(client, userdata, msg):
         column=" arrivingstatus = '0' "
         whereCondition=" bookingId ='"+str(bookingId)+"'"
         a=databasefile.UpdateQuery('bookAmbulance',column,whereCondition)
-        topic=str(userId)+"/ambulanceLiveLocation"
+        topic=str(userId)+"/arrivingstatus"
         #print(topic,"topic==================")
         data1 = json.dumps(data)
         #print("11111111111111")
