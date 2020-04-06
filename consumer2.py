@@ -33,6 +33,7 @@ def on_message(client, userdata, msg):
     whereCondition22=" am.ambulanceId=bm.ambulanceId  and bm.arrivingstatus='1' and bookingId= '"+str(bookingId)+"' "
     bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
     print(bookingDetails,"================")
+    R = 6373.0
     userLat=bookingDetails['result']['pickupLatitude']
     userLng=bookingDetails['result']['pickupLongitude']
     fromlongitude2= lng

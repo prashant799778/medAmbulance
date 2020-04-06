@@ -26,6 +26,7 @@ def on_message(client, userdata, msg):
     lat=data["lat"]
     lng=data["lng"]
     userId=data['userId']
+    R = 6373.0
     bookingId=data['bookingId']
     columns="(ar.lat)driverLat,(ar.lng)driverLng, bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
     columns=columns+",bm.finalAmount,bm.pickup,bm.status,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
