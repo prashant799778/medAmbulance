@@ -1,6 +1,7 @@
 import paho.mqtt.client as mqtt
 import json
 import databasefile
+from math import sin,cos,sqrt,atan2,radians
 
 
 def on_connect(client, userdata, flags, rc):
@@ -33,6 +34,7 @@ def on_message(client, userdata, msg):
     bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
     print(bookingDetails,"================")
     userLat=bookingDetails['result']['dropOffLatitude']
+    print()
     userLng=bookingDetails['result']['dropOffLongitude']
     fromlongitude2= lng
     print(fromlongitude2,'fromlong',type(fromlongitude2))
