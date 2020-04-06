@@ -33,7 +33,7 @@ def on_message(client, userdata, msg):
     bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
     print(bookingDetails,"================")
     userLat=bookingDetails['result']['dropOffLatitude']
-    userLng==bookingDetails['result']['dropOffLongitude']
+    userLng=bookingDetails['result']['dropOffLongitude']
     fromlongitude2= lng
     print(fromlongitude2,'fromlong',type(fromlongitude2))
     fromlatitude2 = lat
