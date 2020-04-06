@@ -29,7 +29,7 @@ def on_message(client, userdata, msg):
     columns="(ar.lat)driverLat,(ar.lng)driverLng, bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
     columns=columns+",bm.finalAmount,bm.pickup,bm.status,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
     columns=columns+",bm.driverMobile"
-    whereCondition22=" am.ambulanceId=bm.ambulanceId  and bm.arrivingstatus='1' and bookingId= '"+str(bookingId)+"' "
+    whereCondition22=" am.ambulanceId=bm.ambulanceId  and bm. endingStatus='1' and bookingId= '"+str(bookingId)+"' "
     bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
     print(bookingDetails,"================")
     userLat=bookingDetails['result']['dropOffLatitude']
@@ -48,7 +48,7 @@ def on_message(client, userdata, msg):
     if Distance < 70:
         bookingDetails["message"]="driver Reached to desired Location"  
         if (bookingDetails['status']!='false'):
-            column=" arrivingstatus = '0' "
+            column="  endingStatus  = '0' "
             whereCondition=" bookingId ='"+str(bookingId)+"'"
             a=databasefile.UpdateQuery('bookAmbulance',column,whereCondition)
             topic=str(userId)+"/endstatus"
