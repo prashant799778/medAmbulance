@@ -6,7 +6,7 @@ import databasefile
 def on_connect(client, userdata, flags, rc):
   print("-------Connected-------")
   print(client, userdata, flags, rc)
-  client.subscribe("ambulanceLiveLocation")
+  client.subscribe("#")
   #client.publish("#", "Hello world!");
 
 def on_message(client, userdata, msg):    
@@ -16,6 +16,7 @@ def on_message(client, userdata, msg):
   data = json.loads(data)
   # print(msg,"===============")
   # print(data,"============",msg.topic)
+  t=print(msg.topic)
   #topic=str(msg.topic)#+"/ambulanceLiveLocation"
   topic=data["userId"]+"/ambulanceLiveLocation"
   print(topic,"topic==================")
