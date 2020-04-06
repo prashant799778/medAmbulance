@@ -51,6 +51,7 @@ def on_message(client, userdata, msg):
     if Distance < 70:
         bookingDetails["message"]="driver Reached to desired Location"  
         if (bookingDetails['status']!='false'):
+
             column="  endingStatus  = '0' "
             whereCondition=" bookingId ='"+str(bookingId)+"'"
             a=databasefile.UpdateQuery('bookAmbulance',column,whereCondition)
@@ -71,7 +72,8 @@ def on_message(client, userdata, msg):
 
 
     else:
-        pass
+        data={"result":"","message":"Already Reached to driver","status":"false"}
+        return data
   except Exception as e :
     print("Exception---->" + str(e))    
     output = {"result":"something went wrong","status":"false"}

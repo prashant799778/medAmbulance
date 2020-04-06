@@ -75,7 +75,8 @@ def on_message(client, userdata, msg):
 
 
     else:
-        pass
+        data={"result":"","message":"Already Reached to driver","status":"false"}
+        return data
   except Exception as e :
     print("Exception---->" + str(e))    
     output = {"result":"something went wrong","status":"false"}
