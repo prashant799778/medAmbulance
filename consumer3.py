@@ -45,13 +45,14 @@ def on_message(client, userdata, msg):
     distance = R * c
     distance2=distance/100
     Distance=distance2*1.85
-    if Distance < 20:
+    if Distance < 70:
         bookingDetails["message"]="driver Reached to desired Location"  
         if (bookingDetails['status']!='false'):
             column=" arrivingstatus = '0' "
             whereCondition=" bookingId ='"+str(bookingId)+"'"
             a=databasefile.UpdateQuery('bookAmbulance',column,whereCondition)
             topic=str(userId)+"/endstatus"
+            print(topic)
             #print(topic,"topic==================")
             data1 = json.dumps(data)
             #print("11111111111111")
