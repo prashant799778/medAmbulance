@@ -6,7 +6,7 @@ import databasefile
 def on_connect(client, userdata, flags, rc):
   print("-------Connected-------")
   print(client, userdata, flags, rc)
-  client.subscribe("#")
+  client.subscribe("ambulanceLiveLocation")
   #client.publish("#", "Hello world!");
 
 def on_message(client, userdata, msg):    
@@ -83,9 +83,6 @@ def on_message(client, userdata, msg):
      
   
 
-
-
-
 client = mqtt.Client()
 client.connect("localhost",1883,60)
 
@@ -93,3 +90,4 @@ client.on_connect = on_connect
 client.on_message = on_message
 
 client.loop_forever()
+
