@@ -16,7 +16,7 @@ def on_message(client, userdata, msg):
   data = json.loads(data)
   # print(msg,"===============")
   # print(data,"============",msg.topic)
-  t=print(msg.topic,"1111111111")
+  print(msg.topic,"1111111111")
   #topic=str(msg.topic)#+"/ambulanceLiveLocation"
   topic=data["userId"]+"/ambulanceLiveLocation"
   print(topic,"topic==================")
