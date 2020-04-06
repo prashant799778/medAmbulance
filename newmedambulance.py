@@ -2476,7 +2476,7 @@ def alldrivers():
         msg = "1"
         if msg =="1":
             startlimit,endlimit="",""
-            WhereCondition=" and dm.driverId = um.userId and dm.driverTypeId='1'"
+            WhereCondition=" and dm.driverId = um.userId amd um.usertypeId='3' and dm.driverTypeId='1'"
 
             inputdata =  commonfile.DecodeInputdata(request.get_data())  
             if "startLimit" in inputdata:
