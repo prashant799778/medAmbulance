@@ -78,7 +78,13 @@ def on_message(client, userdata, msg):
     output = {"result":"something went wrong","status":"false"}
      
   
+client = mqtt.Client()
+client.connect("localhost",1883,60)
 
+client.on_connect = on_connect
+client.on_message = on_message
+
+client.loop_forever()
 
 
           
