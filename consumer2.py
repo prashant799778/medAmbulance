@@ -45,7 +45,7 @@ def on_message(client, userdata, msg):
     distance = R * c
     distance2=distance/100
     Distance=distance2*1.85
-    if Distance < 0.0012:
+    if Distance < 20:
       bookingDetails["message"]="driver Arrived"  
       
       if (bookingDetails['status']!='false'):
