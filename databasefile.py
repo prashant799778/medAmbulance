@@ -39,7 +39,7 @@ def SelectQuery(table,columns,whereCondition):
                 
         query = " select " + columns + " from " + table + " " + whereCondition  + "  ;"
 
-        #print(query)
+        print(query)
         conn = Connection()      
         cursor = conn.cursor()
         cursor.execute(query)
