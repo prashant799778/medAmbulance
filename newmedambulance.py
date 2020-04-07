@@ -260,8 +260,10 @@ def userSignup():
                         data1={"result":data['result'],"message":"","status":"true"}
                         return data1
                 if (count['result']['userTypeId'] == '3') or (count['result']['userTypeId'] == 3):
+                    
                     data={"result":"","status":"false","message":"You already signedUp as a driver"}
                     return data
+                
                 else:
                     data={"result":"","status":"false","message":"You already signedUp as a responder"}
                     return data
@@ -423,6 +425,7 @@ def driverSignup():
                 if (count['result']['userTypeId'] == '2') or (count['result']['userTypeId'] == 2):
                     data={"result":"","status":"false","message":"You already signedUp as a user"}
                     return data
+                
                 else:
                     data={"result":"","status":"false","message":"You already signedUp as a responder"}
                     return data
@@ -473,6 +476,7 @@ def driverSignup():
         output = {"status":"false","message":"something went wrong","result":""}
         return output
 
+
 @app.route('/driverLogin', methods=['POST'])
 def driverlogin():
     try:
@@ -498,10 +502,10 @@ def driverlogin():
                     Data = {"result":loginuser['result'],"message":"","status":"true"}                  
                     return Data
                 if (loginuser['result']['userTypeId'] == 2) or (loginuser['result']['userTypeId']=='2'):
-                    Data = {"result":"","message":"you are not driver,Please go to user ","status":"true"}                  
+                    Data = {"result":"","message":"you are not driver,Please go to user ","status":"false"}                  
                     return Data
                 else:
-                    Data = {"result":"","message":"you are not driver,Please go to responder ","status":"true"}                  
+                    Data = {"result":"","message":"you are not driver,Please go to responder ","status":"false"}                  
                     return Data
 
             else:
@@ -657,10 +661,10 @@ def responderLogin():
                     Data = {"result":loginuser['result'],"message":"","status":"true"}                  
                     return Data
                 if (loginuser['result']['userTypeId'] == 2) or (loginuser['result']['userTypeId']=='2'):
-                    Data = {"result":"","message":"you are not driver,Please go to user ","status":"true"}                  
+                    Data = {"result":"","message":"you are not driver,Please go to user ","status":"false"}                  
                     return Data
                 else:
-                    Data = {"result":"","message":"you are not driver,Please go to Driver ","status":"true"}                  
+                    Data = {"result":"","message":"you are not driver,Please go to Driver ","status":"false"}                  
                     return Data
 
             else:
