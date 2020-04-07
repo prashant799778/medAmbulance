@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:id="@+id/conf_icon"
+        android:layout_width="100dp"
+        android:visibility="gone"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_group_538">
+
+    </ImageView>
+    <com.example.drivermedambulance.Widget.Atami_Bold
+        android:layout_below="@id/conf_icon"
+        android:id="@+id/booking_con"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:text="@string/Booking_Confirmed"
+        android:textColor="@color/black"
+        android:visibility="invisible"
+        android:textSize="22dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+    </com.example.drivermedambulance.Widget.Atami_Bold>
+
+    <LinearLayout
+        android:layout_below="@id/booking_con"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <com.example.drivermedambulance.Widget.Atami_Regular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bokingid"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/tint"
+            android:textSize="16dp"
+            android:layout_centerInParent="true">
+
+        </com.example.drivermedambulance.Widget.Atami_Regular>
+        <com.example.drivermedambulance.Widget.Atami_Regular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+        </com.example.drivermedambulance.Widget.Atami_Regular>
+    </LinearLayout>
+    <com.example.drivermedambulance.Widget.Atami_Regular
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+    </com.example.drivermedambulance.Widget.Atami_Regular>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:id="@+id/track"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:background="@color/red">
+
+        <com.example.drivermedambulance.Widget.Atami_Bold
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:text="@string/ok">
+
+        </com.example.drivermedambulance.Widget.Atami_Bold>
+    </LinearLayout>
+
+</RelativeLayout>

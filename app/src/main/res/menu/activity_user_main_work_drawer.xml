@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_book_rides"
+            android:icon="@drawable/texi_image"
+            android:title="@string/Book2" />
+
+        <item
+            android:id="@+id/nav_Your_Rides"
+            android:icon="@drawable/your_ride"
+            android:title="Your Rides" />
+
+        <item
+            android:id="@+id/nav_Rate_card"
+            android:icon="@drawable/rate_card"
+            android:title="Rate Card" />
+        <item
+            android:id="@+id/nav_support"
+            android:icon="@drawable/support"
+            android:title="Support" />
+        <item
+            android:id="@+id/nav_us"
+            android:icon="@drawable/about"
+            android:title="@string/About" />
+
+
+    </group>
+</menu>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="100dp"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_height="100dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="50dp"
+            android:scaleType="centerInside"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_hospital"/>
+        <com.example.drivermedambulance.Widget.Atami_Bold
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="@string/Hospital"
+            android:layout_height="wrap_content">
+        </com.example.drivermedambulance.Widget.Atami_Bold>
+    </LinearLayout>
+
+</LinearLayout>
