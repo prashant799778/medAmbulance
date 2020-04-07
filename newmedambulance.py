@@ -619,7 +619,7 @@ def responderSignup():
                 column="mobileNo,userId,otp,userTypeId,deviceKey"+column
                 
                 
-                values=  "'"+str(mobileNo)+"','"+str(UserId)+"','"+str(otp)+"','"+str('3')+"','"+str(deviceKey)+values+ "'"
+                values=  "'"+str(mobileNo)+"','"+str(UserId)+"','"+str(otp)+"','"+str('4')+"','"+str(deviceKey)+values+ "'"
                 data=databasefile.InsertQuery("userMaster",column,values)
              
 
@@ -1956,7 +1956,8 @@ def resProfile():
             
             
             if 'userId' in inputdata:
-                driverId=inputdata["userId"]    
+                driverId=inputdata["userId"]                            
+
                 
             
             whereCondition= " userId= '"+str(driverId)+"' and userTypeId='4' "
@@ -7162,7 +7163,7 @@ def endRide1():
                     columns2="name as userName"
                     whereCondition222=" userId= '"+str(userid)+"' and usertypeId='2'"
                     u=databasefile.SelectQuery('userMaster',columns2,whereCondition222)
-                    print(u,)
+                
                     u1=u['result']
                     bookingDetails['result'].update(u1)
                     print(bookingDetails['result']['userName'],"+++++++++++++++++=")
@@ -8016,7 +8017,6 @@ def startResponder():
         print("Exception---->" +str(e))           
         output = {"result":"something went wrong","status":"false"}
         return output
-
 @app.route('/endResponder', methods=['POST'])
 def endResponder():
     try:
@@ -8049,16 +8049,24 @@ def endResponder():
             
             
                 
-                columns="(ar.lat)ambulanceLat,(ar.lng)ambulanceLng, bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
-                columns=columns+",bm.finalAmount,bm.pickup,bm.status,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
+                columns="(ar.lat)ambulanceLat,(ar.lng)ambulanceLng, um.name as driverName,bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
+                columns=columns+",bm.finalAmount,bm.pickup,bm.userId,bm.status,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
                 columns=columns+",bm.driverMobile"
-                whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
-                bookingDetails= databasefile.SelectQuery("bookResponder bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
-                print(bookingDetails,"================")
+                whereCondition22=" am.ambulanceId=bm.ambulanceId and bm.driverId=um.userId and bookingId= '"+str(bookingId)+"'"
+                bookingDetails= databasefile.SelectQuery("bookResponder bm,ambulanceMaster am,ambulanceRideStatus ar,userMaster as um",columns,whereCondition22)
+                
                 bookingDetails["message"]="ride Ended Successfully"
                
-                if (bookingDetails!='0'):  
-                    print('Entered')
+                if (bookingDetails!='0'):
+                    userid=bookingDetails['result']['userId']
+                    columns2="name as userName"
+                    whereCondition222=" userId= '"+str(userid)+"' and usertypeId='2'"
+                    u=databasefile.SelectQuery('userMaster',columns2,whereCondition222)
+                    
+                    u1=u['result']
+                    bookingDetails['result'].update(u1)
+                    print(bookingDetails['result']['userName'],"+++++++++++++++++=")
+                    print(bookingDetails['result'])
                     client = mqtt.Client()
                     client.connect("localhost",1883,60)
                     topic=str(userId)+"/endRide"
@@ -8085,8 +8093,6 @@ def endResponder():
         print("Exception---->" +str(e))           
         output = {"result":"something went wrong","status":"false"}
         return output
-
-
 
 
 
