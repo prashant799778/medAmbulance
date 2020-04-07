@@ -35,8 +35,43 @@ def on_message(client, userdata, msg):
     whereCondition22=" am.ambulanceId=bm.ambulanceId  and bm. endingStatus='1' and bookingId= '"+str(bookingId)+"' "
     bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
     print(bookingDetails,"================")
+    bookingDetails1=databasefile.SelectQuery("bookResponder bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
+    if bookingDetails1['status'] !='false':
+      userLat=bookingDetails1['result']['dropOffLatitude']
+      userLng=bookingDetails1['result']['dropOffLongitude']
+      fromlongitude2= lng
+      print(fromlongitude2,'fromlong',type(fromlongitude2))
+      fromlatitude2 = lat
+      print('lat',fromlatitude2)
+      distanceLongitude = userLng- fromlongitude2
+      distanceLatitude = userLat - fromlatitude2
+      a = sin(distanceLatitude / 2)**2 + cos(fromlatitude2) * cos(userLat) * sin(distanceLongitude / 2)**2
+      c = 2 * atan2(sqrt(a), sqrt(1 - a))
+      distance = R * c
+      distance2=distance/100
+      Distance=distance2*1.85
+      if Distance < 100:
+          bookingDetails1["message"]="driver Reached to desired Location"  
+          if (bookingDetails1['status']!='false'):
+
+              column="  endingStatus  = '0' "
+              whereCondition=" bookingId ='"+str(bookingId)+"'"
+              a=databasefile.UpdateQuery('bookResponder',column,whereCondition)
+              topic=str(userId)+"/endstatus"
+              print(topic,"+++++++++++++++++++=")
+              #print(topic,"topic==================")
+              data1 = json.dumps(data)
+              #print("11111111111111")
+              #print(data)
+              client = mqtt.Client()
+              client.connect("localhost",1883,60)
+              client.publish(topic, data1)
+              client.disconnect()
+              return bookingDetails1
+
+    
+    
     userLat=bookingDetails['result']['dropOffLatitude']
-    print()
     userLng=bookingDetails['result']['dropOffLongitude']
     fromlongitude2= lng
     print(fromlongitude2,'fromlong',type(fromlongitude2))

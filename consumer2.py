@@ -35,6 +35,46 @@ def on_message(client, userdata, msg):
     whereCondition22=" am.ambulanceId=bm.ambulanceId  and bm.arrivingstatus='1' and bookingId= '"+str(bookingId)+"' "
     bookingDetails= databasefile.SelectQuery("bookAmbulance bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
     print(bookingDetails,"================")
+    bookingDetails1= databasefile.SelectQuery("bookResponder bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
+    if bookingDetails1['status'] !='false':
+      R = 6373.0
+      userLat=bookingDetails1['result']['pickupLatitude']
+      userLng=bookingDetails1['result']['pickupLongitude']
+      fromlongitude2= lng
+      print(fromlongitude2,'fromlong',type(fromlongitude2))
+      fromlatitude2 = lat
+      print('lat',fromlatitude2)
+      distanceLongitude = userLng- fromlongitude2
+      distanceLatitude = userLat - fromlatitude2
+      a = sin(distanceLatitude / 2)**2 + cos(fromlatitude2) * cos(userLat) * sin(distanceLongitude / 2)**2
+      c = 2 * atan2(sqrt(a), sqrt(1 - a))
+      distance = R * c
+      distance2=distance/100
+      Distance=distance2*1.85
+      if Distance < 100:
+        bookingDetails1["message"]="driver Arrived"  
+        
+        if (bookingDetails1['status']!='false'):
+          bookingDetails1["message"]="driver Arrived"  
+          
+          column=" arrivingstatus = '0' "
+          whereCondition=" bookingId ='"+str(bookingId)+"'"
+          a=databasefile.UpdateQuery('bookResponder',column,whereCondition)
+          topic=str(userId)+"/arrivingstatus"
+          print(topic)
+          #print(topic,"topic==================")
+          data1 = json.dumps(data)
+          #print("11111111111111")
+          #print(data)
+          client = mqtt.Client()
+          client.connect("localhost",1883,60)
+          client.publish(topic, data1)
+          client.disconnect()
+          return bookingDetails1
+
+
+
+
     R = 6373.0
     userLat=bookingDetails['result']['pickupLatitude']
     userLng=bookingDetails['result']['pickupLongitude']
