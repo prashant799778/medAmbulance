@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.SplaceActivity">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/splce_logo">
+    </ImageView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="171.7dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/logo1"
+                    android:layout_marginTop="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:visibility="visible"
+                    android:src="@drawable/logo_white"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        <com.example.respondermedambulance.Widget.Atami_Bold
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/HeadingSize"
+            android:text="@string/appversion"
+            android:id="@+id/w"
+            android:textAlignment="gravity"
+            android:textColor="@color/white"
+            android:layout_marginBottom="50dp"
+            android:gravity="center_horizontal"
+            android:layout_alignParentBottom="true">
+        </com.example.respondermedambulance.Widget.Atami_Bold>
+    </RelativeLayout>
+
+</RelativeLayout>

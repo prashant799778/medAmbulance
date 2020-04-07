@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/edit2"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:shadowColor="@color/red"
+                android:layout_height="wrap_content"
+                android:id="@+id/location_switch">
+            </com.google.android.material.switchmaterial.SwitchMaterial>
+            
+            <LinearLayout
+                android:id="@+id/accept_liner"
+                android:layout_below="@id/location_switch"
+                android:layout_width="match_parent"
+                android:visibility="invisible"
+                android:layout_marginTop="13dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="17dp"
+                android:background="@color/red"
+                android:layout_height="70dp">
+
+                <LinearLayout
+                    android:layout_below="@id/location_switch"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="4dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingTop="13dp"
+                    android:paddingLeft="18dp"
+                    android:layout_height="match_parent">
+
+                    <com.example.respondermedambulance.Widget.Atami_Bold
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="17dp"
+                        android:textColor="@color/accept"
+                        android:text="@string/NewRequest"/>
+
+                    <com.example.respondermedambulance.Widget.Atami_Regular
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14dp"
+                        android:textColor="@color/accept"
+                        android:text="@string/accept2"/>
+                </LinearLayout>
+            </LinearLayout>
+            
+            
+        </RelativeLayout>
+    </fragment>
+</RelativeLayout>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingTop="70dp"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_logout">
+
+    </ImageView>
+
+    <com.example.respondermedambulance.Widget.Atami_Bold
+        android:id="@+id/lg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/logo"
+        android:gravity="center_horizontal"
+        android:text="@string/logout2"
+        android:textColor="@color/red"
+        android:textSize="20dp">
+
+    </com.example.respondermedambulance.Widget.Atami_Bold>
+
+    <com.example.respondermedambulance.Widget.Atami_Regular
+        android:id="@+id/lg2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/lg"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:text="@string/logout3"
+        android:textColor="@color/black2"
+        android:textSize="14dp">
+
+    </com.example.respondermedambulance.Widget.Atami_Regular>
+
+    <LinearLayout
+        android:layout_below="@id/lg2"
+        android:layout_marginTop="51dp"
+        android:layout_width="match_parent"
+        android:paddingLeft="26dp"
+        android:weightSum="2"
+        android:paddingRight="26dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/no"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/decline_bck"
+            android:gravity="center"
+            android:text="@string/Decline">
+
+
+            <com.example.respondermedambulance.Widget.Atami_Regular
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/terms"
+                android:text="@string/no"
+                android:textSize="17dp"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/yes"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/accept_bck"
+            android:gravity="center">
+
+
+            <com.example.respondermedambulance.Widget.Atami_Regular
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/yestext"
+                android:textColor="@color/white"
+                android:text="@string/yes"
+                android:textSize="17dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
