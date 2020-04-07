@@ -1971,7 +1971,7 @@ def resProfile():
 
             if data11['status'] != "false":
                 if data11["result"]["profilePic"]==None:
-                    data11["result"]["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/defaultPic.jpg"
+                    data11["result"]["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/profilePic.jpg"
                 else:
                     data11["result"]["profilePic"]=str(ConstantData.GetBaseURL())+str(data11["result"]["profilePic"])
                 
@@ -2094,7 +2094,7 @@ def DriverProfile():
 
             if data11['status'] != "false":
                 if data11["result"]["profilePic"]==None:
-                    data11["result"]["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/defaultPic.jpg"
+                    data11["result"]["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/profilePic.jpg"
                 else:
                     data11["result"]["profilePic"]=str(ConstantData.GetBaseURL())+str(data11["result"]["profilePic"])
                 
