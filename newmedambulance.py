@@ -652,7 +652,7 @@ def responderLogin():
         if msg == "1":
             mobileNo = inputdata["mobileNo"]
             password = inputdata["password"]
-            column=  "us.mobileNo,us.name,um.usertype,us.userId,us.userTypeId,us.profilePic"
+            column=  "us.mobileNo,us.name,um.usertype,us.userId,us.userTypeId,us.profilePic,us.status"
             whereCondition= "us.mobileNo = '" + str(mobileNo) + "' and us.password = '" + str(password) + "'  and  us.userTypeId=um.Id"
             loginuser=databasefile.SelectQuery("userMaster as us,usertypeMaster as um",column,whereCondition)
             if (loginuser['status']!='false'):
