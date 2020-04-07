@@ -1,0 +1,954 @@
+[
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_book_ride.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\fragment_book_ride.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_edit_layout.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\edit_layout.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\anim_slide_in_right.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\anim\\slide_in_right.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_location_off.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-xhdpi\\ic_location_off.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_noti_bell.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-xxhdpi\\noti_bell.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_group_538.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_group_538.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_taxi.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\taxi.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_rectangle_button.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\rectangle_button.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_book_rides_frg.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\fragment_book_rides_frg.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_ambulance.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_ambulance.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_ambulance_5.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_ambulance_5.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_fake_.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\fake_.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_bottom_sheet_fragment.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_share.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\share.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_book_rides_fragment.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\book_rides_fragment.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_responder.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_responder.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_decline_bck.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\decline_bck.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_ambulance__registration_.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_ambulance__registration_.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_green_dot.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\green_dot.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_end_ride_dialog.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\end_ride_dialog.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_ambulance_govt.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_ambulance_govt.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\menu_activity_user_main_work_drawer.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\menu\\activity_user_main_work_drawer.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_car_1.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_car_1.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_frag_your_ride.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\frag_your_ride.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_driver_arrived_popup.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\driver_arrived_popup.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_support_item_view.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\support_item_view.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_my_trip_fragment.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\my_trip_fragment.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_user_module.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_user_module.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_user_book_your_ride.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\fragment_user_book_your_ride.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_logout.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\logout.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_arrows.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-hdpi\\ic_arrows.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_user_profile.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\user_profile.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_noti_bell.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\noti_bell.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_frag_book_your_ride.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\frag_book_your_ride.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_verification_.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_verification_.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_search.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-xxhdpi\\ic_search.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_layout_booking_confirm.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\layout_booking_confirm.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_search.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-anydpi\\ic_search.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_cab_type_item.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\cab_type_item.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_side_nav_bar.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\side_nav_bar.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_drawer_list_view.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\drawer_list_view.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_menu2.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\menu2.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_main_image.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\main_image.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_driver__licence_.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_driver__licence_.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_location_off.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-anydpi\\ic_location_off.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_ambulance_2.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_ambulance_2.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_your__rides.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\fragment_your__rides.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_botom_sheet_view.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\botom_sheet_view.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_search.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-hdpi\\ic_search.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\anim_fadin.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\anim\\fadin.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_driver_request_view.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\driver_request_view.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_driver_profile_fragment.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\driver_profile_fragment.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_maps.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_maps.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_check.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\check.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_my_profile_fragment.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\my_profile_fragment.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_driver__registration.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_driver__registration.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_notification.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\notification.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_circular_layout.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\circular_layout.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_amb_car.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\amb_car.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_test_.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_test_.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_user.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\user.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_red_dot.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\red_dot.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_marker.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\marker.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_support.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\support.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_u_profile.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-xxhdpi\\u_profile.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_user_ride_details.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_user_ride_details.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_enter_otp_dialog.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\enter_otp_dialog.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_logo_white.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\logo_white.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_cancelride.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\cancelride.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_docoments_uploaded_dialog.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\docoments_uploaded_dialog.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\anim_slide_out_left.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\anim\\slide_out_left.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_user_main.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_user_main.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_rider.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\rider.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_arrows.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-anydpi\\ic_arrows.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_accept_ride_dialog.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\accept_ride_dialog.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_noti_2.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\noti_2.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_drivers_maps.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_drivers_maps.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_edit_line_bck.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\edit_line_bck.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_driver.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\driver.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_your_rides.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\fragment_your_rides.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_responder_profile_fragment.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\responder_profile_fragment.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_end_ride2_dialog.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\end_ride2_dialog.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_responder_trip_item_view.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\responder_trip_item_view.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_electronics.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\electronics.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\anim_fadout.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\anim\\fadout.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_marker.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-v24\\marker.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_camera.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_menu_camera.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_phone2.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\phone2.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_pin.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\pin.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_top_snakbar.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\top_snakbar.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_spinner_layout.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\spinner_layout.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_arrows.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-mdpi\\ic_arrows.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_driver_maps.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_driver_maps.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_edit_text_border.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\edit_text_border.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_terms_conditions.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_terms_conditions.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_rotate.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\rotate.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_responder_maps.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_responder_maps.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_location_on.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-hdpi\\ic_location_on.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_custom_dialog.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\custom_dialog.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_tltbase.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_tltbase.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_hospital.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_hospital.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_down_arrow.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_down_arrow.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_roundrect.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\roundrect.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_ambulance_3.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_ambulance_3.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_phone.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\phone.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_custom_progress_dialog.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\custom_progress_dialog.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_my_profile.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_my_profile.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_up_arrow.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\up_arrow.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\bg.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_down_arrow.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\down_arrow.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_boarder_imageview.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\boarder_imageview.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_end__ride_.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_end__ride_.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_accept_request.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\accept_request.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_us.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\us.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\anim_rotate.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\anim\\rotate.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_registration.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\registration.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_cursor.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\cursor.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_button_border.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\button_border.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_responder_home.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\fragment_responder_home.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_marker_new.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\marker_new.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_trash.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\trash.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_search.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-xhdpi\\ic_search.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_driver_main.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_driver_main.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_frag_ratecard.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\frag_ratecard.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_logout.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_logout.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_home.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_location_off.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-xxhdpi\\ic_location_off.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_location_on.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-anydpi\\ic_location_on.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\xml_network_security_config.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\xml\\network_security_config.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_logout_dialog_box.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\logout_dialog_box.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_air_ambulance.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_air_ambulance.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_move.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\move.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_dash_vertical_line.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\dash_vertical_line.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_your_ride.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\your_ride.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_login_.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\fragment_login_.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_all_request.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_all_request.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_new_end_ride_popup.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\new_end_ride_popup.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_current__location_.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_current__location_.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_turn_off.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\turn_off.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_driver__personal__activty.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_driver__personal__activty.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_home.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_home.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_progress_bg.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\progress_bg.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_location_on.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-xxhdpi\\ic_location_on.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_mynewuseractivity.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\mynewuseractivity.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_slideshow.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_menu_slideshow.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_call_bbk.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\call_bbk.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_calendar.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\calendar.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_download.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\download.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_my_ride_layout.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\my_ride_layout.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_book_ambulance_activity.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\book_ambulance_activity.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_support.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_support.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_about.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\about.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_cab.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\cab.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_app_bar_user_main_work.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\app_bar_user_main_work.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_responder.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\responder.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_camera_layout_boarder.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\camera_layout_boarder.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_place.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_place.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_driver_phone_login.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_driver_phone_login.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_content_user_main_work.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\content_user_main_work.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_location_on.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-xhdpi\\ic_location_on.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_profile.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_profile.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_arrow_up.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_arrow_up.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_arrows.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-xhdpi\\ic_arrows.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_upload.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\upload.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_my_trip_view.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\my_trip_view.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_red_circle2.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\red_circle2.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_list_item_your_ride.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\list_item_your_ride.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_about.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_about.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_splce_logo.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\splce_logo.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\font_ab.otf.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\font\\ab.otf"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_details.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_details.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\raw_uber_style_map.json.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\raw\\uber_style_map.json"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_red_circle.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\red_circle.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_move_back.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\move_back.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg_search_edittext.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\bg_search_edittext.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\navigation_mobile_navigation.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\navigation\\mobile_navigation.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_user_map.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_user_map.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_login.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_texi_image.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\texi_image.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_user_main_work.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_user_main_work.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_sign_up_.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\fragment_sign_up_.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_rate_card.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\rate_card.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_arrows.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-xxhdpi\\ic_arrows.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_car.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\car.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_gallery.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\fragment_gallery.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_location_off.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-mdpi\\ic_location_off.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_rate__card_fragment.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\rate__card_fragment.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_amb2.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\amb2.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_location_off.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-hdpi\\ic_location_off.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_nav_header_user_main_work.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\nav_header_user_main_work.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_gallery.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_menu_gallery.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_accept_bck.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\accept_bck.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_ambulance_1.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_ambulance_1.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_driver_pickup_dialog.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\driver_pickup_dialog.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_user_phone_login.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_user_phone_login.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_temp.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_temp.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_bell.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\ic_bell.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_track__abulance_.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_track__abulance_.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_request_popup_view.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\request_popup_view.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_amb.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\amb.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_search.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-mdpi\\ic_search.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_loading.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\loading.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_your_ride.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_your_ride.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_card_row.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\card_row.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_toolbar.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\toolbar.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_one_side_color.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\one_side_color.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\menu_menu.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\menu\\menu.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\menu_user_main_work.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\menu\\user_main_work.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_menu_line.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\menu_line.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_fragment.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\notification_fragment.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_union_8.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\union_8.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_countinue__as__acrtivity.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_countinue__as__acrtivity.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_about_us_fragment.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\about_us_fragment.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_car_texi.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\car_texi.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_boarder1.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\boarder1.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_destination.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_destination.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_destination_marker.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\destination_marker.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_rate_card.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\activity_rate_card.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_support__us_fragment.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\support__us_fragment.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_pickup_bbk.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\pickup_bbk.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_slideshow.xml.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\layout\\fragment_slideshow.xml"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_location_on.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable-mdpi\\ic_location_on.png"
+    },
+    {
+        "merged": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\build\\intermediates\\res\\merged\\debug\\drawable_white_arrow.png.flat",
+        "source": "E:\\New_Git_4_03_2020\\DriverMedAmbulance\\app\\src\\main\\res\\drawable\\white_arrow.png"
+    }
+]
