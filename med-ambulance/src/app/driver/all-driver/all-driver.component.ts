@@ -18,11 +18,17 @@ export class AllDriverComponent implements OnInit {
 	loader: boolean;
 	activatedds: boolean;
 	driverID: any;
+
+	pageSize: any;
+	totalRecords: any;
+	paginationDisplay: boolean;
+
 	constructor(public userService: UserService,
 				public router: Router) { 
 		this.errorMessage = false;
 		this.loader = true;
-		this.activatedds
+		this.activatedds;
+		this.pageSize = 10;
 	}
 
 	ngOnInit() {
@@ -40,42 +46,35 @@ export class AllDriverComponent implements OnInit {
 		this.userService.dataPostApi(data,AppSettings.alldriver).then(resp=>{
 			if(resp['status'] == 'true'){
 				
-				this.errorMessage = false;
-				this.driverData = resp['result']
+				// this.errorMessage = false;
+				// this.driverData = resp['result']
+
+
+
+				// if(resp['status'] == 'true'){
+					this.totalRecords = resp['totalCount']
+					// this.totalRecords = 15;
+					if(this.totalRecords > this.pageSize){
+					  console.log("inside if",this.totalRecords)
+					  this.paginationDisplay = true;
+					  }else{
+						console.log("inside else",this.totalRecords)
+					  this.paginationDisplay = false;
+					  }
+					
+					this.errorMessage = false;
+					this.driverData = resp['result']
+					// this.loader = false;
+				
+
+
+
 				this.loader = false;
 			}else{
 					this.errorMessage = true;
 					this.messageShow = resp['message']
 					this.loader = false;
-				// 	this.driverData = [
-				// 	{	'name':'Vijay Pal',
-				// 		'mobileNo': 8888517655,
-				// 		'email': 'vijay@gmail.com',
-				// 		'currentLocation': 'Noida UP-87',
-				// 		'wallet': 100,
-				// 		'dateCreate': '02/10/2015',
-				// 		'tripCount': 10,
-				// 		'status': 1
-				// 	},
-				// 	{	'name':'Vijay Pal',
-				// 		'mobileNo': 8888517655,
-				// 		'email': 'vijay@gmail.com',
-				// 		'currentLocation': 'Noida UP-87',
-				// 		'wallet': 100,
-				// 		'dateCreate': '02/10/2015',
-				// 		'tripCount': 10,
-				// 		'status': 0
-				// 	},
-				// 	{	'name':'Vijay Pal',
-				// 		'mobileNo': 8888517655,
-				// 		'email': 'vijay@gmail.com',
-				// 		'currentLocation': 'Noida UP-87',
-				// 		'wallet': 100,
-				// 		'dateCreate': '02/10/2015',
-				// 		'tripCount': 10,
-				// 		'status': 2
-				// 	}
-				// ]
+				
 			}
 		})
 		
@@ -102,6 +101,38 @@ export class AllDriverComponent implements OnInit {
 		jQuery('#deleteModal').modal('show')
 	}
 
+	pageChanged(event){
+		console.log(event)
+		// this.pageSize = event;
+		// let totalpagess = (this.totalRecords / 2)
+		let endlimit = this.pageSize;
+		let startlimit = (this.pageSize * event) - this.pageSize;
+		if(endlimit > this.totalRecords){
+		endlimit = this.totalRecords;
+		
+		}else{
+			endlimit = this.pageSize;
+		}
+		
+		let data = {
+			'startLimit': startlimit,
+			'endLimit': endlimit
+		}
+		
+		this.userService.dataPostApi(data,AppSettings.alldriver).then((data: any[]) => {
+		  this.totalRecords = data['totalCount']
+		  console.log(this.totalRecords)
+		  if(this.totalRecords > this.pageSize){
+			console.log("inside if",this.totalRecords)
+			this.paginationDisplay = true;
+			}else{
+			  console.log("inside else",this.totalRecords)
+			this.paginationDisplay = false;
+			}
+		  this.driverData = data['result'];
+		  
+		});
+	}
 
 	VerifyDriver(){
 		let data = {

@@ -18,7 +18,14 @@ export class EditHospitalComponent implements OnInit {
 	city = []
 	hospitalId: any;
 	viewEdit: any;
-	views: boolean
+	views: boolean;
+	emergencyDepart: boolean;
+	empanelType=[]
+	labType=[]
+	accredType=[]
+	serviceType=[]
+	hospMasType=[]
+
 	public myDatePickerOptions: IMyDpOptions = {
 		dateFormat: 'dd.mm.yyyy',
 	};
@@ -87,6 +94,24 @@ export class EditHospitalComponent implements OnInit {
 			inHouseSpecialist: [''],
 
 			emergencyDep: [''],
+			fixedHours: [''],
+			specialities: [''],
+			beds: [''],
+			eName: [''],
+			ename1:['']
+		})
+		this.hospitalForm.get('eName').valueChanges.subscribe(value=>{
+			console.log('hhhhh11111',value)
+			if(value == true){
+				this.emergencyDepart= true;
+				this.hospitalForm.get('ename1').setValue(false) 
+			}
+		})
+		this.hospitalForm.get('ename1').valueChanges.subscribe(value=>{
+			if(value == true){
+				this.emergencyDepart= false;
+				this.hospitalForm.get('eName').setValue(false)
+			}
 		})
 	}
 	initializeForm(){
@@ -99,6 +124,7 @@ export class EditHospitalComponent implements OnInit {
 		this.hospitalForm.disable()
 	}
 
+	
 	// resetForm(){
 	// 	this.hospitalForm.reset();
 	// }
@@ -139,6 +165,23 @@ export class EditHospitalComponent implements OnInit {
 		this.userService.getApiData(AppSettings.selectambulanceTypeMaster).then(resp=>{
 			this.ambType = resp['result']
 		})
+		this.userService.getApiData(AppSettings.empanelmentTypeMaster).then(resp=>{
+			this.empanelType = resp['result']
+		})
+		this.userService.getApiData(AppSettings.hospitalLabotaryMaster).then(resp=>{
+			this.labType = resp['result']
+		})
+		this.userService.getApiData(AppSettings.accreditationMaster).then(resp=>{
+			this.accredType = resp['result']
+		})
+		this.userService.getApiData(AppSettings.hospitalServiceMaster).then(resp=>{
+			this.serviceType = resp['result']
+		})
+		this.userService.getApiData(AppSettings.hospitalTypeMaster).then(resp=>{
+			this.hospMasType = resp['result']
+		})
+
+		
 	}
 	setData(resp){
 		console.log(resp['result'][0].hospitalName)

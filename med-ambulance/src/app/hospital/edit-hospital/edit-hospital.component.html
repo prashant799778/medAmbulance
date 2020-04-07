@@ -171,7 +171,7 @@
 
                    <!-- Accreditaion Start -->
 
-                    <h2 class="heading-bx">Accreditaion</h2>
+                    <h2 class="heading-bx">Accreditation</h2>
                     <div class="form-sectionn  p-4">
                             <div class="inner-f-section">
                         
@@ -214,7 +214,7 @@
 
                   <!-- Emercency Key Contact Person Details Start -->
 
-                    <h2 class="heading-bx">Emercency Key Contact Person Details</h2>
+                    <h2 class="heading-bx">Emergency Key Contact Person Details</h2>
                     <div class="form-sectionn  p-4">
                             <div class="inner-f-section">
                         
@@ -355,7 +355,7 @@
                                 <div class="check-info">
                                     <div class="chiller_cb">
                                       <label for="myCheckbox2">No</label>
-                                      <input id="myCheckbox2" type="checkbox" formControlName="edesgin">
+                                      <input id="myCheckbox2" type="checkbox" formControlName="ename1">
                                       
                                       <span></span>
                                     </div>
@@ -372,7 +372,38 @@
                                 </div> -->
                             </div>
                         </div>
-                    </div>    
+                    </div>   
+                    <div class="form-sectionn  p-4" *ngIf="emergencyDepart">
+                        <div class="inner-f-section">
+                            <div class="form-box">
+                                <div class="form-box">
+                                    <label>Fixed Hour</label>
+                                    <input type="text" formControlName="fixedHours">
+                                    <div class="error" *ngIf="hospitalForm.get('fixedHours').errors && (hospitalForm.get('fixedHours').touched || hospitalForm.get('fixedHours').dirty)">
+                                        <p>Please enter fix hours</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-box">
+                                <div class="form-box">
+                                    <label>Specialities available</label>
+                                    <input type="text" formControlName="specialities">
+                                    <div class="error" *ngIf="hospitalForm.get('specialities').errors && (hospitalForm.get('specialities').touched || hospitalForm.get('specialities').dirty)">
+                                        <p>Please enter specialities</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-box">
+                                <div class="form-box">
+                                    <label>No. of beds</label>
+                                    <input type="text" formControlName="beds">
+                                    <div class="error" *ngIf="hospitalForm.get('beds').errors && (hospitalForm.get('beds').touched || hospitalForm.get('beds').dirty)">
+                                        <p>Please enter Beds</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
 
                   <!-- Emergency Department End -->  
                 </div>

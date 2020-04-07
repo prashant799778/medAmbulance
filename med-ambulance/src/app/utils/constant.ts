@@ -61,8 +61,13 @@ export class AppSettings {
     public static getFareManagement = 'getFareManagement';
     public static addFare = 'addFare';
     public static deletefareManagement = 'deletefareManagement';
+    public static empanelmentTypeMaster = 'empanelmentTypeMaster';
+    public static hospitalLabotaryMaster = 'hospitalLabotaryMaster';
+    public static accreditationMaster = 'accreditationMaster';
+    public static hospitalServiceMaster = 'hospitalServiceMaster';
+    public static hospitalTypeMaster = 'hospitalTypeMaster';
     
-
+    
     
 
     
