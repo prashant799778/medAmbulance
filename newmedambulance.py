@@ -2030,7 +2030,7 @@ def updateresponderProfile():
                 file = request.files.get('postImage')        
                 filename = file.filename or ''  
                 print(filename)               
-                filename= str(userId)+".png"
+                filename= str(driverId)+".png"
                 #filename = filename.replace("'","") 
 
                 #folder path to save campaign image
@@ -2153,7 +2153,7 @@ def updateDriverProfile():
                 file = request.files.get('postImage')        
                 filename = file.filename or ''  
                 print(filename)               
-                filename= str(userId)+".png"
+                filename= str(driverId)+".png"
                 #filename = filename.replace("'","") 
 
                 #folder path to save campaign image
