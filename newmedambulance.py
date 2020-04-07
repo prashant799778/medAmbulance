@@ -484,12 +484,17 @@ def driverlogin():
         if msg == "1":
             mobileNo = inputdata["mobileNo"]
             password = inputdata["password"]
-            column=  "us.mobileNo,us.name,um.usertype,us.userId,us.userTypeId,us.status"
+            column=  "us.mobileNo,us.name,um.usertype,us.userId,us.userTypeId,us.status,us.profilePic"
             whereCondition= "us.mobileNo = '" + str(mobileNo) + "' and us.password = '" + str(password) + "'  and  us.userTypeId=um.Id"
             loginuser=databasefile.SelectQuery("userMaster as us,usertypeMaster as um",column,whereCondition)
             print(loginuser)
             if (loginuser['status']!='false'):
                 if (loginuser['result']['userTypeId'] == 3) or (loginuser['result']['userTypeId']=='3'):
+                    if loginuser["result"]["profilePic"]==None:
+                        loginuser["result"]["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/defaultPic.jpg"
+                    else:
+                       loginuser["result"]["profilePic"]=str(ConstantData.GetBaseURL())+str(loginuser["result"]["profilePic"])
+                
                     Data = {"result":loginuser['result'],"message":"","status":"true"}                  
                     return Data
                 if (loginuser['result']['userTypeId'] == 2) or (loginuser['result']['userTypeId']=='2'):
@@ -513,6 +518,7 @@ def driverlogin():
         print("Exception---->" +str(e))           
         output = {"result":"something went wrong","status":"false"}
         return output        
+        
 
 
 
@@ -570,7 +576,7 @@ def responderSignup():
                         column = '*'
                        
                         data = databasefile.SelectQuery("userMaster",column,WhereCondition)                  
-                        data1={"result":data['result'],"message":"","status":"true"}
+                        data1={"result":"","message":"Already signed Up","status":"false"}
                         return data1
                 if (count['result']['userTypeId'] == '2') or (count['result']['userTypeId'] == 2):
                     data={"result":"","status":"false","message":"You already signedUp as a user"}
@@ -626,6 +632,7 @@ def responderSignup():
         output = {"status":"false","message":"something went wrong","result":""}
         return output
 
+
 @app.route('/responderLogin', methods=['POST'])
 def responderLogin():
     try:
@@ -642,7 +649,12 @@ def responderLogin():
             loginuser=databasefile.SelectQuery("userMaster as us,usertypeMaster as um",column,whereCondition)
             if (loginuser['status']!='false'):
                 if (loginuser['result']['userTypeId'] == 4) or (loginuser['result']['userTypeId']=='4'):
-                    Data = {"result":loginuser,"message":"","status":"true"}                  
+                    if loginuser["result"]["profilePic"]==None:
+                        loginuser["result"]["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/defaultPic.jpg"
+                    else:
+                       loginuser["result"]["profilePic"]=str(ConstantData.GetBaseURL())+str(loginuser["result"]["profilePic"])
+                
+                    Data = {"result":loginuser['result'],"message":"","status":"true"}                  
                     return Data
                 if (loginuser['result']['userTypeId'] == 2) or (loginuser['result']['userTypeId']=='2'):
                     Data = {"result":"","message":"you are not driver,Please go to user ","status":"true"}                  
@@ -664,9 +676,7 @@ def responderLogin():
     except Exception as e :
         print("Exception---->" +str(e))           
         output = {"result":"something went wrong","status":"false"}
-        return output        
-
-
+        return output    
 
 
 
@@ -1534,23 +1544,23 @@ def addDrivertest1():
         print('Hello')
         inputdata=request.form.get('data')
         print(inputdata,'inputdata')
-        keyarr = ['mobileNo','key','name','userTypeId']
+        keyarr = ['mobileNo','key','name','driverTypeId']
         inputdata=json.loads(inputdata)
         # inputdata =  commonfile.DecodeInputdata(request.get_data()) 
         startlimit,endlimit="",""
 
-        commonfile.writeLog("addResponder",inputdata,0)
+        commonfile.writeLog("addDrivertest",inputdata,0)
         msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
         print(msg,'msg')
        
         if msg == "1":
             mobileNo=inputdata['mobileNo']
             name=inputdata['name']
-            driverTypeId=int(inputdata['userTypeId'])
+            driverTypeId=int(inputdata['driverTypeId'])
            
             key = inputdata["key"]
             column = " * "
-            whereCondition= " mobileNo='"+str(mobileNo)+ "' and usertypeId='4'"
+            whereCondition= " mobileNo='"+str(mobileNo)+ "' and usertypeId='4' "
             data= databasefile.SelectQuery("userMaster",column,whereCondition)
 
             column11="id,driverId"
@@ -1565,7 +1575,9 @@ def addDrivertest1():
             driverId=data['result']['userId']
             
             DlNo,dlFrontFilename,DlFrontPicPath,dlBackFilename,DlBackPicPath,PIDType,PIDNo,PIDFrontFilename,PIDFrontPicPath,PIDBackFilename,PIDBackPicPath,TransportType,TransportModel,Color,AmbulanceRegistrationFuel,TypeNo,AIFilename,AIPicPath,AmbulanceModeId,AmbulanceId="","","","","","","","","","","","","","","","","","","0","0"
+            lat,lng="",""
 
+            
             if 'DlNo' in inputdata:
                 DlNo=inputdata["DlNo"]
 
@@ -1681,7 +1693,7 @@ def addDrivertest1():
                 
                 if data1['status'] == 'false':
                     print('11')
-                    if key == 1:
+                    if (key == 1) or (key =='1'):
                         columns = "name,mobileNo,dlNo,dlFrontFilename,dlFrontFilepath,dlBackFilename,dlBackFilepath,driverId,driverTypeId"          
                         values = " '" + str(name) + "','" + str(mobileNo) + "','" + str(DlNo) + "','" + str( dlFrontFilename) + "','" + str(DlFrontPicPath) + "','" + str(dlBackFilename) + "', "            
                         values = values + " '" + str(DlBackPicPath) + "','" + str(driverId) + "','" + str(driverTypeId) + "'"
@@ -1689,10 +1701,17 @@ def addDrivertest1():
                         if data != "0":
                             column = '*'
                             WhereCondition = " mobileNo = '" + str(mobileNo) +  "'"
+
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
+                            print(data11,"+++++++++++++++++++")
+                            y={'documentStatus':"false"}
+                            data11.update(y)
+                                   
                             return data11
-                    if key == 2:
+
+                    if (key == 2) or (key =='2'):
+                        
                         columns = " name,mobileNo,pIDType,pIDNo,pIDFrontFilename,pIDFrontFilepath,pIDBackFilename,pIDBackFilepath,driverId,driverTypeId"          
                         values = " '" + str(name) + "','" + str(mobileNo) + "','" + str(PIDType) + "','" + str(PIDNo) + "','" + str(PIDFrontFilename) + "','" + str(PIDFrontPicPath) + "','" + str(PIDBackFilename) + "', "            
                         values = values + " '" + str(PIDBackPicPath)+ "','" + str(driverId) + "','" + str(driverTypeId) + "'"
@@ -1702,9 +1721,12 @@ def addDrivertest1():
                             WhereCondition = " mobileNo = '" + str(mobileNo) +  "'"
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
+                            y={'documentStatus':"false"}
+                            data11.update(y)
+                                   
                             return data11
                     
-                    if key == 3:
+                    if (key == 3) or (key =='3'):
 
                         columns = " name,mobileNo,driverId,driverTypeId"          
                         values = " '" + str(name) + "','" + str(mobileNo) + "','" + str(driverId) + "','" + str(driverTypeId) + "'"
@@ -1712,30 +1734,33 @@ def addDrivertest1():
                         data = databasefile.InsertQuery("driverMaster",columns,values)
 
                         columns222="driverId"
-                        whereCondition2222=" "
+                        whereCondition2222=" mobileNo = '" + str(mobileNo) +  "' "
                         data99=databasefile.SelectQuery1('driverMaster',columns222,whereCondition2222)
                         data111=data99[-1]
                         driverid=data111["driverId"]
 
                         columns2= "ambulanceNo,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceTypeId,driverId,driverTypeId"
                         values2="'" + str(AmbulanceNo) + "','" + str( TransportType)  + "','" + str(TransportModel) + "','" + str(Color) + "','" + str(AmbulanceRegistrationFuel) + "','" + str(TypeNo) + "','" + str(AIFilename) + "','" + str(AIPicPath) + "','" + str(AmbulanceModeId) + "', "            
-                        values2 = values2 + " '" + str(AmbulanceId) + "','" + str(driverid) + "','" + str(driverTypeId) + "'"
+                        values2 = values2 + " '" + str('0') + "','" + str(driverid) + "','" + str(driverTypeId) + "'"
                         data122=databasefile.InsertQuery("ambulanceMaster",columns2,values2)
                         
                         
 
                         if data122 != "0":
+
                             column = '*'
                             WhereCondition = " mobileNo = '" + str(mobileNo) +  "'"
                             whereCondition="   driverId='" + str(driverid) +  "' "
                             columns22="ambulanceId,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceTypeId,ambulanceNo,driverTypeId"
                             
                             data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
+                            print(data11['result'],"______--")
+                            print(data11['result']['dlNo'],"+++++++++")
 
 
                             data12=databasefile.SelectQuery("ambulanceMaster",columns22,whereCondition)
 
-                            ambulanceId=data12['ambulanceId']
+                            ambulanceId=data12['result']['ambulanceId']
                             columns23='ambulanceId,lat,lng'
                             values23 = " '" + str(ambulanceId) + "','" + str(lat) + "','" + str(lng) + "'"
                             data122=databasefile.InsertQuery('ambulanceRideStatus',columns23,values23)
@@ -1745,31 +1770,92 @@ def addDrivertest1():
 
 
 
-                            data11.update(data12)
-                            data11.update(data12333)
+                            y={'documentStatus':"false"}
+                            data11.update(y)
+
+                                
+
 
                             return data11
                 
                 
                 else:
-                    if key == 1:
+                    if (key == 1) or (key =='1'):
                         print('A')
+                        columns="dlNo"
                         WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
-                        column = " name='" + str(name) + "' ,dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "',dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "',driverTypeId='" + str(driverTypeId) + "'"
-                        print(column,'column')
-                        data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
-                        print(data,'updatedata')
-                        return data
-                    if key == 2:
-                        print('B')
-                        WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
-                        column = "name='" + str(name) + "', pIDType = '" + str(PIDType) + "',pIDNo = '" + str(PIDNo) + "',pIDFrontFilename = '" + str(PIDFrontFilename) + "',pIDFrontFilepath = '" + str(PIDFrontPicPath) + "',pIDBackFilename = '" + str(PIDBackFilename) + "',pIDBackFilepath = '" + str(PIDBackPicPath) + "',driverTypeId='" + str(driverTypeId) + "'"
-                        print(column,'column')
-                        data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
-                        print(data,'updatedata')
-                        return data
+                        data19 = databasefile.SelectQuery("driverMaster",columns,WhereCondition)
+                        if data19['result']['dlNo'] == None:
 
-                    if key == 3:
+                            column = " name='" + str(name) + "' ,dlNo = '" + str(DlNo) + "',dlFrontFilename = '" + str(dlFrontFilename) + "',dlFrontFilepath = '" + str(DlFrontPicPath) + "',dlBackFilename = '" + str(dlBackFilename) + "',dlBackFilepath = '" + str(DlBackPicPath) + "',driverTypeId='" + str(driverTypeId) + "'"
+                            print(column,'column')
+                            data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
+                            print(data,'updatedata')
+                            column = '*'
+                            WhereCondition = " mobileNo = '" + str(mobileNo) +  "'"
+
+                            
+                            data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
+                            if data11['result']['pIDType'] == None:
+                               
+                                    y={'documentStatus':"false"}
+                                    data11.update(y)
+                                
+                            else:
+                                columns='ambulanceNo'
+                                whereCondition=" driverId='"+str(driverId)+"'"
+                                data1111=databasefile.SelectQuery('ambulanceMaster',columns,whereCondition)
+                                if data1111['status']=='false':
+                                    y={'documentStatus':"false"}
+                                    data11.update(y)
+                                else:
+                                    y={'documentStatus':"true"}
+                                    data11.update(y)
+
+                            return data11
+                        else:
+                            data={"result":"","message":"Already Uploaded","status":"false"}
+                            return data
+
+                    if (key == 2) or (key =='2'):
+                        print('B')
+                        columns='pIDType,pIDNo'
+                        WhereCondition = " mobileNo = '" + str(mobileNo) + "'"
+                        data19 = databasefile.SelectQuery("driverMaster",columns,WhereCondition)
+                        if data19['result']['pIDType'] == None:
+                            column = "name='" + str(name) + "', pIDType = '" + str(PIDType) + "',pIDNo = '" + str(PIDNo) + "',pIDFrontFilename = '" + str(PIDFrontFilename) + "',pIDFrontFilepath = '" + str(PIDFrontPicPath) + "',pIDBackFilename = '" + str(PIDBackFilename) + "',pIDBackFilepath = '" + str(PIDBackPicPath) + "',driverTypeId='" + str(driverTypeId) + "'"
+                            print(column,'column')
+                            data = databasefile.UpdateQuery("driverMaster",column,WhereCondition)
+                            print(data,'updatedata')
+                            column = '*'
+                            WhereCondition = " mobileNo = '" + str(mobileNo) +  "'"
+                            
+                            data11 = databasefile.SelectQuery("driverMaster",column,WhereCondition)
+                            if data11['result']['dlNo'] == None:
+                                y={'documentStatus':"false"}
+                                data11.update(y)
+
+                            else:
+                                columns='ambulanceNo'
+                                whereCondition=" driverId= '"+str(driverId)+"'"
+                                data1111=databasefile.SelectQuery('ambulanceMaster',columns,whereCondition)
+                                if data1111['status']=='false':
+                                    y={'documentStatus':"false"}
+                                    data11.update(y)
+                                else:
+                                    y={'documentStatus':"true"}
+                                    data11.update(y)
+
+                            
+                            return data11
+                        
+                        else:
+                            data={"result":"","message":"Already Uploaded","status":"false"}
+                            return data
+
+
+
+                    if (key == 3) or (key =='3'):
                         driver_Id=data1['result']['driverId']
                         columns="ambulanceId"
                         WhereCondition = " driverId = '" + str(driver_Id) + "'"
@@ -1779,7 +1865,7 @@ def addDrivertest1():
                             columns2= "ambulanceNo,transportType,transportModel,color,ambulanceRegistrationFuel,typeNo,ambulanceFilename,ambulanceFilepath,ambulanceModeId,ambulanceTypeId,driverId,driverTypeId"
 
                             values2="'" + str(AmbulanceNo) + "','" + str( TransportType) + "','" + str(TransportModel) + "','" + str(Color) + "','" + str(AmbulanceRegistrationFuel) + "','" + str(TypeNo) + "','" + str(AIFilename) + "','" + str(AIPicPath) + "','" + str(AmbulanceModeId) + "', "            
-                            values2 = values2 + " '" + str(AmbulanceId) + "','" + str(driver_Id) + "','" + str(driverTypeId) + "'"
+                            values2 = values2 + " '" + str('0') + "','" + str(driver_Id) + "','" + str(driverTypeId) + "'"
                             data122=databasefile.InsertQuery("ambulanceMaster",columns2,values2)
                             print(data122,'+++++++++++++++++++')
                             
@@ -1808,15 +1894,34 @@ def addDrivertest1():
 
                                 data11['result'].update(data12['result'])
                                 data11['result'].update(data12333['result'])
+                                
+                                if data11['result']['dlNo'] == None:
+                                    y={'documentStatus':"false"}
+                                    data11.update(y)
+                                   
+
+                                
+                                if data11['result']['pIDNo'] == None:
+                                    y={'documentStatus':"false"}
+                                    data11.update(y)
+                                
+                                if (data11['result']['dlNo'] != None) and (data11['result']['pIDNo'] != None) :
+                                    y={'documentStatus':"true"}
+                                    data11.update(y)
+
+                                        
+
 
                                 return data11
 
                             print('q')
                         else:
-                            data11={"result":"","message":"Already Existed","status":"false"}
+                            data11={"result":"","message":"Already Uploaded","status":"false"}
                             return data11
 
-
+            else:
+                data={"result":"","message":"Invalid mobileNo","status":"false"}
+                return data
                         
                
         else:
@@ -1824,7 +1929,8 @@ def addDrivertest1():
     except Exception as e :
         print("Exception---->" + str(e))    
         output = {"result":"something went wrong","status":"false"}
-        return output 
+        return output
+
 
 @app.route('/responderProfile', methods=['POST'])
 def resProfile():
@@ -1846,7 +1952,7 @@ def resProfile():
                 
             
             whereCondition= " userId= '"+str(driverId)+"' and userTypeId='4' "
-            column='userId,name,mobileNo,password,email'
+            column='userId,name,mobileNo,password,email,profilePic'
 
             
          
@@ -1855,6 +1961,11 @@ def resProfile():
          
 
             if data11['status'] != "false":
+                if data11["result"]["profilePic"]==None:
+                    data11["result"]["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/defaultPic.jpg"
+                else:
+                    data11["result"]["profilePic"]=str(ConstantData.GetBaseURL())+str(data11["result"]["profilePic"])
+                
                 Data = {"status":"true","message":"","result":data11['result']}                  
                 return Data
             else:
@@ -1871,7 +1982,9 @@ def resProfile():
 @app.route('/updateresponderProfile', methods=['POST'])
 def updateresponderProfile():
     try:
-        inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+        inputdata = request.form.get('data') 
+        print("===========================",inputdata)      
+        inputdata = json.loads(inputdata)
         startlimit,endlimit="",""
         keyarr = ["name","email","password",'userId']
         commonfile.writeLog("updateresponderProfile",inputdata,0)
@@ -1881,6 +1994,7 @@ def updateresponderProfile():
             name,email,password,userTypeId,mobileNo,gender="","","","","",""
             column,values="",""
             columns2,values2="",""
+            filename,PicPath="",""
         
 
             
@@ -1900,7 +2014,26 @@ def updateresponderProfile():
                 column2=column2+" ,mobileNo='"+str(mobileNo)+"' "  
 
             if 'userId' in inputdata:
-                driverId=inputdata["userId"]    
+                driverId=inputdata["userId"] 
+
+
+            if 'postImage' in request.files:  
+                print("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
+                file = request.files.get('postImage')        
+                filename = file.filename or ''  
+                print(filename)               
+                filename= str(userId)+".png"
+                #filename = filename.replace("'","") 
+
+                #folder path to save campaign image
+                FolderPath = ConstantData.GetProfilePicPath(filename)  
+
+                filepath = '/profilePic/' + filename    
+                print(filepath,"filepath================")
+                print(FolderPath,"FolderPathFolderPathFolderPathFolderPath")
+                file.save(FolderPath)
+                PicPath = filepath 
+                column= column +" ,profilePic= '" + str(PicPath) + "' "       
                 
             
             whereCondition= " driverId= '"+str(driverId)+"' "
@@ -1943,7 +2076,7 @@ def DriverProfile():
                 
             
             whereCondition= " userId= '"+str(driverId)+"' and userTypeId='3' "
-            column='userId,name,mobileNo,password,email'
+            column='userId,name,mobileNo,password,email,profilePic'
 
             
          
@@ -1951,6 +2084,11 @@ def DriverProfile():
          
 
             if data11['status'] != "false":
+                if data11["result"]["profilePic"]==None:
+                    data11["result"]["profilePic"]=str(ConstantData.GetBaseURL())+"/profilePic/defaultPic.jpg"
+                else:
+                    data11["result"]["profilePic"]=str(ConstantData.GetBaseURL())+str(data11["result"]["profilePic"])
+                
                 Data = {"status":"true","message":"data Updated Successfully","result":data11['result']}                  
                 return Data
             else:
@@ -1967,7 +2105,9 @@ def DriverProfile():
 @app.route('/updateDriverProfile', methods=['POST'])
 def updateDriverProfile():
     try:
-        inputdata =  commonfile.DecodeInputdata(request.get_data()) 
+        inputdata = request.form.get('data') 
+        print("===========================",inputdata)      
+        inputdata = json.loads(inputdata)
         startlimit,endlimit="",""
         keyarr = ["name","email","password",'userId']
         commonfile.writeLog("updateDriverProfile",inputdata,0)
@@ -1975,6 +2115,7 @@ def updateDriverProfile():
        
         if msg == "1":
             name,email,password,userTypeId,mobileNo,gender="","","","","",""
+            filename,PicPath="",""
             column,values="",""
             columns2,values2="",""
         
@@ -1996,7 +2137,26 @@ def updateDriverProfile():
                 column2=column2+" ,mobileNo='"+str(mobileNo)+"' "  
 
             if 'userId' in inputdata:
-                driverId=inputdata["userId"]    
+                driverId=inputdata["userId"] 
+
+
+            if 'postImage' in request.files:  
+                print("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
+                file = request.files.get('postImage')        
+                filename = file.filename or ''  
+                print(filename)               
+                filename= str(userId)+".png"
+                #filename = filename.replace("'","") 
+
+                #folder path to save campaign image
+                FolderPath = ConstantData.GetProfilePicPath(filename)  
+
+                filepath = '/profilePic/' + filename    
+                print(filepath,"filepath================")
+                print(FolderPath,"FolderPathFolderPathFolderPathFolderPath")
+                file.save(FolderPath)
+                PicPath = filepath 
+                column= column +" ,profilePic= '" + str(PicPath) + "' "       
                 
             
             whereCondition= " driverId= '"+str(driverId)+"' "

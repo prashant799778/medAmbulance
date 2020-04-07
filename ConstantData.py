@@ -115,7 +115,7 @@ def GetsecurityCampaignImagePath(filename):
     
 def GetProfilePicPath(filename):
 
-    path = "/var/www/medParliament/backend/med_parliament/profilePic/"+filename
+    path = "/var/www/medambulance/backend/med_ambulance/profilePic/"+filename
     return path
 
 def GetTeamPicPath(filename):
