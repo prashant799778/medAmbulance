@@ -423,13 +423,15 @@ def driverSignup():
                         return data1
                 
                 if (count['result']['userTypeId'] == '2') or (count['result']['userTypeId'] == 2):
-                    print(data)
+                   
                     data={"result":"","status":"false","message":"You already signedUp as a user"}
+                    print(data)
                     return data
                 
                 else:
-                    print(data)
+                    
                     data={"result":"","status":"false","message":"You already signedUp as a responder"}
+                    print(data)
                     return data
                    
                 
