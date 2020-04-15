@@ -20,6 +20,7 @@
         <RelativeLayout
             android:id="@+id/tool_rel"
             android:layout_width="match_parent"
+            android:elevation="5dp"
             android:layout_height="40dp">
 
             <ImageView
@@ -592,6 +593,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="43dp"
+            android:clickable="false"
             android:paddingBottom="10dp">
 
             <LinearLayout
@@ -605,6 +607,7 @@
                     android:id="@+id/profile"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
+                    android:clickable="false"
                     android:background="@drawable/circular_layout"
                     android:padding="5dp">
 

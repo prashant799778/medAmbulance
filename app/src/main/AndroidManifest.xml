@@ -27,7 +27,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DriverPhoneLogin"></activity>
+        <activity android:name=".Activity.End_Ride_Activity"></activity>
+        <activity android:name=".Activity.UserRideDetailsActivity" />
+        <activity android:name=".Activity.DetailsActivity" />
+        <activity android:name=".DriverPhoneLogin" />
         <activity android:name=".Activity.UserModuleActivity" />
         <activity android:name=".Activity.DestinationActivity" />
         <activity android:name=".Activity.AllRequestActivity" />
@@ -43,17 +46,25 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+
+
+
         <activity
             android:name=".Activity.DriversMapsActivity"
-            android:label="@string/title_activity_drivers_maps" />
+            android:label="@string/title_activity_drivers_maps"
+            android:screenOrientation="portrait" />
         <activity android:name=".Activity.DriverMapsActivity" />
-        <activity android:name=".Activity.MapsActivity" />
+        <activity
+            android:name=".Activity.MapsActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".Activity.TLTBaseActivity" />
         <activity android:name=".Activity.UserMapActivity" />
         <activity android:name=".Activity.TermsConditions" />
         <activity android:name=".Activity.UserPhoneLogin" />
-        <activity android:name=".Activity.ResponderMapsActivity"></activity>
-        <activity android:name=".Activity.MyNewUserActivity"></activity>
+        <activity
+            android:name=".Activity.ResponderMapsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activity.MyNewUserActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -90,7 +101,6 @@
         <activity
             android:name=".Activity.AboutActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".Activity.SupportActivity"
             android:screenOrientation="portrait" />
@@ -115,7 +125,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <service android:name="org.eclipse.paho.android.service.MqttService" />
     </application>
 

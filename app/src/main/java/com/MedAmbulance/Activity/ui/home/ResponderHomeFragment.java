@@ -3,13 +3,18 @@ package com.MedAmbulance.Activity.ui.home;
 import android.Manifest;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -23,6 +28,7 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
@@ -32,10 +38,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.MedAmbulance.Activity.DriversMapsActivity;
 import com.MedAmbulance.Comman.MySharedPrefrence;
+import com.MedAmbulance.Comman.Utility;
 import com.MedAmbulance.R;
+import com.MedAmbulance.Widget.Atami_Bold;
 import com.MedAmbulance.Widget.Atami_Regular;
 import com.MedAmbulance.util.AppUtil;
+import com.MedAmbulance.util.DirectionsJSONParser;
 import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -62,6 +72,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import org.eclipse.paho.client.mqttv3.DisconnectedBufferOptions;
@@ -86,81 +97,84 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ResponderHomeFragment extends Fragment implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener
         , LocationListener {
-
     private static final String TAG = "DRIVERS";
-
-    private static final int REQUEST_CHECK_SETTINGS =  93;
-    private   static  final  int PLAYSERVICE_RES__REQUEST_CODE=301;
-
+    private static final int REQUEST_CHECK_SETTINGS = 93;
+    private static final int PLAYSERVICE_RES__REQUEST_CODE = 301;
+    JSONObject ApiResponsejson = new JSONObject();
     private HomeViewModel homeViewModel;
     MySharedPrefrence sharedPreferences;
-    String userId,reqestTopic;
-    String locationTopic="";
+    String userId, reqestTopic;
+    String locationTopic = "", driver_phone = "";
     LinearLayout linearLayout;
     LocationListener locationListener;
     SupportMapFragment mapFragment;
+    Button end_Ride_Btn;
+    private Context mContext;
     SwitchMaterial switchMaterial;
-    Marker mCurrent,mPrev,mSrc,mDest;
-    ArrayList<String> topiclist=new ArrayList<String>();
+    Marker mCurrent, mPrev, mSrc, mDest;
+    ArrayList<String> topiclist = new ArrayList<String>();
     MqttAsyncClient mqttAndroidClient;
     private FusedLocationProviderClient FPclient;
     private LocationRequest locationRequest;
     final String serverUri = "tcp://134.209.153.34:1883";
-    private  Location location,prevlocation;
-    private  GoogleApiClient googleApiClient;
+    private Location location, prevlocation;
+    private GoogleApiClient googleApiClient;
     private boolean isAccepted;
     private JSONObject currentRequest;
-    final String  base_url="http://134.209.153.34:5077/";
+    final String base_url = "http://134.209.153.34:5077/";
     private GoogleMap mMap;
     private boolean isBook;
     private boolean isHide;
+    Button arrived_Btn;
     boolean isMarkerRotating;
     private List<LatLng> polyList;
-    int index=0;
-    int next=0;
-    LatLng end,start;
+    int index = 0;
+    int next = 0;
+    LatLng end, start;
     float v;
-    Double  lng,lat;
-    private  static  final  int PERMISSION_REQUEST_CODE=300;
+
+    Double lng, lat;
+    private static final int PERMISSION_REQUEST_CODE = 300;
     String clientId = "dClient";
 
-    private static  final int UPDATE_INTERVAL=100;
-    private static  final int FASTEST_INTERVAL=3000;
-    private static  final int DISPLACEMENT=10;
+    private static final int UPDATE_INTERVAL = 100;
+    private static final int FASTEST_INTERVAL = 3000;
+    private static final int DISPLACEMENT = 10;
 
-    private Runnable drawPathRunnable=new Runnable() {
+    private Runnable drawPathRunnable = new Runnable() {
         @Override
         public void run() {
-            if(polyList!=null){
-                if(index<polyList.size()-1){
+            if (polyList != null) {
+                if (index < polyList.size() - 1) {
                     index++;
-                    next=index+1;
+                    next = index + 1;
                 }
             }
-            if(index<polyList.size()-1){
-                start= polyList.get(index);
-                end= polyList.get(next);
+            if (index < polyList.size() - 1) {
+                start = polyList.get(index);
+                end = polyList.get(next);
 
             }
 
-            final ValueAnimator valueAnimator=ValueAnimator.ofFloat(0,1);
+            final ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, 1);
             valueAnimator.setDuration(3000);
             valueAnimator.setDuration(3000);
             valueAnimator.setInterpolator(new LinearInterpolator());
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
-                    v= valueAnimator.getAnimatedFraction();
-                    lng=v*end.longitude+(1-v)*start.longitude;
-                    lat =v*end.latitude+(1-v)*start.latitude;
-                    LatLng newPos=new LatLng(lat,lng);
+                    v = valueAnimator.getAnimatedFraction();
+                    lng = v * end.longitude + (1 - v) * start.longitude;
+                    lat = v * end.latitude + (1 - v) * start.latitude;
+                    LatLng newPos = new LatLng(lat, lng);
                     mCurrent.setPosition(newPos);
-                    mCurrent.setAnchor(0.5f,0.5f);
-                    mCurrent.setRotation(getBearing(start,newPos));
+                    mCurrent.setAnchor(0.5f, 0.5f);
+                    mCurrent.setRotation(getBearing(start, newPos));
                     mMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().target(newPos).zoom(15.5f)
                             .build()));
                 }
@@ -170,94 +184,136 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
 
     private float getBearing(LatLng start, LatLng newPos) {
 
-        double lat= Math.abs(start.latitude-end.latitude);
-        double lng=Math.abs(start.longitude-end.longitude);
-        if(start.latitude<end.latitude && start.longitude<end.longitude){
-            return  (float)(Math.toDegrees(Math.atan(lng/lat)));
+        double lat = Math.abs(start.latitude - end.latitude);
+        double lng = Math.abs(start.longitude - end.longitude);
+        if (start.latitude < end.latitude && start.longitude < end.longitude) {
+            return (float) (Math.toDegrees(Math.atan(lng / lat)));
+        } else if (start.latitude >= end.latitude && start.longitude < end.longitude) {
+            return (float) ((90 - Math.toDegrees(Math.atan(lng / lat))) + 90);
+        } else if (start.latitude >= end.latitude && start.longitude >= end.longitude) {
+            return (float) (Math.toDegrees(Math.atan(lng / lat)) + 180);
+        } else if (start.latitude < end.latitude && start.longitude >= end.longitude) {
+            return (float) ((90 - Math.toDegrees(Math.atan(lng / lat))) + 270);
         }
-
-        else  if(start.latitude>=end.latitude && start.longitude<end.longitude){
-            return  (float)((90-Math.toDegrees(Math.atan(lng/lat)))+90);
-        } else  if(start.latitude>=end.latitude && start.longitude>=end.longitude){
-            return  (float)(Math.toDegrees(Math.atan(lng/lat))+180);
-        } else  if(start.latitude<end.latitude && start.longitude>=end.longitude){
-            return  (float)((90-Math.toDegrees(Math.atan(lng/lat)))+270);
-        }
-        return  -1;
+        return -1;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+                             ViewGroup container, final Bundle savedInstanceState) {
 
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_responder_home, container, false);
-        sharedPreferences =  MySharedPrefrence.instanceOf(getContext());
-        userId=sharedPreferences.getUserId();
-        reqestTopic=  userId+"/"+"booking";
-        locationTopic=  userId;
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        mContext=getContext();
+        sharedPreferences = MySharedPrefrence.instanceOf(getContext());
+        userId = sharedPreferences.getUserId();
+        reqestTopic = userId + "/" + "booking";
+        locationTopic = userId;
 
         StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().build();
         StrictMode.setThreadPolicy(threadPolicy);
 
-        locationListener=this;
+        locationListener = this;
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
-        switchMaterial=root.findViewById(R.id.location_switch);
-        switchMaterial=root.findViewById(R.id.location_switch);
-        linearLayout=root.findViewById(R.id.accept_liner);
+        arrived_Btn = root.findViewById(R.id.arrivedBtn);
+        switchMaterial = root.findViewById(R.id.location_switch);
+        switchMaterial = root.findViewById(R.id.location_switch);
+        linearLayout = root.findViewById(R.id.accept_liner);
+        end_Ride_Btn=root.findViewById(R.id.end_Ride_Btn);
         switchMaterial.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isOnline) {
-                if(isOnline){
+                if (isOnline) {
                     startLocationUpdates();
                     //   displayLocation();
-                    if(mCurrent!=null){
+                    if (mCurrent != null) {
                         mCurrent.setVisible(true);
                     }
-                    if(!topiclist.contains(reqestTopic)){
+                    if (!topiclist.contains(reqestTopic)) {
                         topiclist.add(reqestTopic);
                     }
                     coonectMqtt(reqestTopic);
                     linearLayout.setVisibility(View.VISIBLE);
-                    AppUtil.bottomSnakBar(getContext(),mapFragment.getView(),"You are online");
-                }else {
+                    AppUtil.bottomSnakBar(getContext(), mapFragment.getView(), "You are online");
+                } else {
                     try {
                         mqttAndroidClient.disconnect();
                     } catch (MqttException e) {
                         e.printStackTrace();
                     }
                     stopLocationUpdates();
-                    if(mCurrent!=null){
+                    if (mCurrent != null) {
                         mCurrent.setVisible(false);
                     }
                     linearLayout.setVisibility(View.INVISIBLE);
-                    AppUtil.bottomSnakBar(getContext(),mapFragment.getView(),"You are offline");
+                    AppUtil.bottomSnakBar(getContext(), mapFragment.getView(), "You are offline");
                 }
             }
 
         });
-        SupportMapFragment mapFragment = (SupportMapFragment)getChildFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        arrived_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String api_url = base_url + "responderArrive";
+                JSONObject requestData = new JSONObject();
+                try {
+                    requestData.put("bookingId", sharedPreferences.getBookingId());
+                    requestData.put("ambulanceId", sharedPreferences.getAmbulanceId());
+                    requestData.put("userId", sharedPreferences.getBookingUSerId());
+                    requestData.put("driverId", sharedPreferences.getDriverId());
+                    Utility.log("DriverArrivedData", "" + requestData.toString());
+                    JSONObject object = call_api(api_url, requestData.toString());
+                    if (object != null && object.getString("status").equalsIgnoreCase("true")) {
+                        Utility.log("ArrivedResponse", "" + object.toString());
+                        startRide(requestData);
+                        arrived_Btn.setVisibility(View.GONE);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+        end_Ride_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String api_url = base_url + "endResponder ";
+                JSONObject requestData = new JSONObject();
+                try {
+                    requestData.put("bookingId", sharedPreferences.getBookingId());
+                    requestData.put("ambulanceId", sharedPreferences.getAmbulanceId());
+                    requestData.put("userId", sharedPreferences.getBookingUSerId());
+                    requestData.put("driverId", sharedPreferences.getDriverId());
+                    Utility.log("DriverArrivedData", "" + requestData.toString());
+                    JSONObject object = call_api(api_url, requestData.toString());
+                    if (object != null && object.getString("status").equalsIgnoreCase("true")) {
+                        Utility.log("End_Ride_Response", "" + object.toString());
+                        end_Ride_Btn.setVisibility(View.GONE);
+                        OnEndRidePopup();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         setUpLocation();
-
-
         setUpMqtt();
         return root;
     }
 
-    private void setUpMqtt() {
 
+    private void setUpMqtt() {
 
 
         //mqtt
         clientId = clientId + System.currentTimeMillis();
         try {
-            mqttAndroidClient = new MqttAsyncClient( serverUri, clientId,null);
+            mqttAndroidClient = new MqttAsyncClient(serverUri, clientId, null);
 
             mqttAndroidClient.setCallback(new MqttCallbackExtended() {
                 @Override
@@ -266,8 +322,9 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
                     if (reconnect) {
                         addToHistory("Reconnected to : " + serverURI);
 //                    // Because Clean Session is true, we need to re-subscribe
-                        for(String topics:topiclist) {
+                        for (String topics : topiclist) {
                             subscribeToTopic(topics);
+                            Utility.log("SubscribeTOpic", "" + topics);
                         }
 
                     } else {
@@ -282,12 +339,10 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
 
                 @Override
                 public void messageArrived(String topic, MqttMessage message) throws Exception {
-                    addToHistory("Incoming message: " + new String(message.getPayload()));
-
-
-                    if(topic.equalsIgnoreCase(reqestTopic)){
-
-                        final JSONObject jsonObject=new JSONObject( new String(message.getPayload()));
+                    addToHistory("MQTTTTTTTTTT" + "Incoming message: " + new String(message.getPayload()));
+                    Utility.log("MQTTTTTTTTTT", "Arived Message Topic" + topic);
+                    if (topic.equalsIgnoreCase(reqestTopic)) {
+                        final JSONObject jsonObject = new JSONObject(new String(message.getPayload()));
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -295,7 +350,6 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
                             }
                         });
                     }
-
                 }
 
                 @Override
@@ -309,31 +363,55 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
         }
     }
 
-    public void requestPopup(final JSONObject jsonObject){
-        currentRequest=jsonObject;
-        Log.d("popub","new request");
+    public void requestPopup(final JSONObject jsonObject) {
+        currentRequest = jsonObject;
+        Log.d("popub", "new request With data" + jsonObject);
+        final JSONObject jsonObject1 = new JSONObject();
+        try {
+            jsonObject1.put("driverId", "" + sharedPreferences.getUserId());
+            jsonObject1.put("userId", "" + AppUtil.getDatafromJSonObject(jsonObject, "userId"));
+            jsonObject1.put("startLocationLat", Double.parseDouble(AppUtil.getDatafromJSonObject(jsonObject, "startLocationLat")));
+            jsonObject1.put("pickupLocationAddress", "" + AppUtil.getDatafromJSonObject(jsonObject, "pickupLocationAddress"));
+            jsonObject1.put("startLocationLong", Double.parseDouble(AppUtil.getDatafromJSonObject(jsonObject, "startLocationLong")));
+            jsonObject1.put("dropLocationLat", Double.parseDouble(AppUtil.getDatafromJSonObject(jsonObject, "dropLocationLat")));
+            jsonObject1.put("dropLocationLong", Double.parseDouble(AppUtil.getDatafromJSonObject(jsonObject, "dropLocationLong")));
+            jsonObject1.put("dropLocationAddress", "" + AppUtil.getDatafromJSonObject(jsonObject, "dropLocationAddress"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
         @SuppressLint("ResourceType") final CFAlertDialog.Builder builder = new CFAlertDialog.Builder(getContext())
                 .setDialogStyle(CFAlertDialog.CFAlertStyle.BOTTOM_SHEET).setCancelable(false)
 //                .setTitle("You've hit the limit")
-               //    .setDialogBackgroundResource(R.layout.accept_ride_dialog)
+                //    .setDialogBackgroundResource(R.layout.accept_ride_dialog)
 //                .setMessage("Looks like you've hit your usage limit. Upgrade to our paid plan to continue without any limits.")
                 .addButton("Accept", -1, -1, CFAlertDialog.CFAlertActionStyle.POSITIVE, CFAlertDialog.CFAlertActionAlignment.JUSTIFIED, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Toast.makeText(DriversMapsActivity.this, "Upgrade tapped", Toast.LENGTH_SHORT).show();
-
-                        String api_url = base_url+"acceptRide";
-
-                        Log.d("accept",jsonObject.toString());
-                        JSONObject response_data = call_api(api_url, jsonObject.toString());
+                        String api_url = base_url + "acceptResponder";
+                        JSONObject response_data = call_api(api_url, jsonObject1.toString());
                         try {
-                            if(response_data.getString("status").equalsIgnoreCase("true")){
-                                isAccepted=true;
+                            if (response_data.getString("status").equalsIgnoreCase("true")) {
+                                isAccepted = true;
+                                Log.d("acceptResponse", response_data.toString());
                                 dialog.dismiss();
-                                setUiOnAccept(jsonObject);//arrivedPopup(jsonObject);
-                            }else {
-                                isAccepted=false;
-                                AppUtil.topSnakBar(getContext(),mapFragment.getView(),response_data.getString("message"));
+                                arrived_Btn.setVisibility(View.VISIBLE);
+//                                Utility.log("DataAPi",""+response_data);
+//                                Utility.log("Data",""+jsonObject);
+                                JSONObject jsonObject1 = response_data.getJSONObject("result");
+                                sharedPreferences.setAmbulanceId(AppUtil.getDatafromJSonObject(jsonObject1, "ambulanceId"));
+                                sharedPreferences.setBookingId(AppUtil.getDatafromJSonObject(jsonObject1, "bookingId"));
+                                sharedPreferences.setBookingUSerName(AppUtil.getDatafromJSonObject(jsonObject1, "userName"));
+                                sharedPreferences.setBookingUSerMobile(AppUtil.getDatafromJSonObject(jsonObject1, "userMobile"));
+                                sharedPreferences.setDriverId(AppUtil.getDatafromJSonObject(jsonObject1, "driverId"));
+                                sharedPreferences.setBookingUSerId(AppUtil.getDatafromJSonObject(jsonObject, "userId"));
+                                setUiOnAccept(jsonObject, response_data);//arrivedPopup(jsonObject);
+                                linearLayout.setVisibility(View.GONE);
+                            } else {
+                                isAccepted = false;
+                                AppUtil.topSnakBar(getContext(), mapFragment.getView(), response_data.getString("message"));
                             }
                             //  Log.d("accept",response_data.toString());
 
@@ -350,18 +428,14 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
                     }
                 });
         LayoutInflater inflater = getLayoutInflater();
+        View myLayout = inflater.inflate(R.layout.request_popup_view, null, false);
+        Atami_Regular from = myLayout.findViewById(R.id.from);
+        Atami_Regular to = myLayout.findViewById(R.id.to);
+        final Atami_Regular time = myLayout.findViewById(R.id.time);
+        from.setText(AppUtil.getDatafromJSonObject(jsonObject, "pickupLocationAddress"));
+        to.setText(AppUtil.getDatafromJSonObject(jsonObject, "dropLocationAddress"));
 
-
-
-        View myLayout = inflater.inflate(R.layout.request_popup_view,null, false);
-        Atami_Regular from= myLayout.findViewById(R.id.from);
-        Atami_Regular  to= myLayout.findViewById(R.id.to);
-        final Atami_Regular  time= myLayout.findViewById(R.id.time);
-
-        from.setText(AppUtil.getDatafromJSonObject(jsonObject,"pickupLocationAddress"));
-        to.setText(AppUtil.getDatafromJSonObject(jsonObject,"dropLocationAddress"));
-
-        LinearLayout tl= (LinearLayout)myLayout. findViewById(R.id.tl);
+        LinearLayout tl = (LinearLayout) myLayout.findViewById(R.id.tl);
         tl.setVisibility(View.VISIBLE);
 
         new CountDownTimer(30000, 1000) {
@@ -386,24 +460,24 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
 
     private void setUpLocation() {
         if (ActivityCompat.checkSelfPermission(getContext(),
-                Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(getContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
-        ){
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+        ) {
 
-            ActivityCompat.requestPermissions(getActivity(),new String[]{
+            ActivityCompat.requestPermissions(getActivity(), new String[]{
 
                     Manifest.permission.ACCESS_COARSE_LOCATION,
                     Manifest.permission.ACCESS_FINE_LOCATION
 
-            },PERMISSION_REQUEST_CODE);
-        }else {
+            }, PERMISSION_REQUEST_CODE);
+        } else {
 
-            if(checkPlayServices()){
+            if (checkPlayServices()) {
 
                 buildGoogleClient();
                 createLocationRequest();
-                if(switchMaterial.isChecked()){
+                if (switchMaterial.isChecked()) {
                     displayLocation();
                 }
             }
@@ -411,7 +485,7 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
     }
 
     private void createLocationRequest() {
-        locationRequest=new LocationRequest();
+        locationRequest = new LocationRequest();
         locationRequest.setInterval(UPDATE_INTERVAL);
         locationRequest.setFastestInterval(FASTEST_INTERVAL);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -419,7 +493,7 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
     }
 
     private void buildGoogleClient() {
-        googleApiClient=new GoogleApiClient.Builder(getContext()).addConnectionCallbacks(this
+        googleApiClient = new GoogleApiClient.Builder(getContext()).addConnectionCallbacks(this
         ).addOnConnectionFailedListener(this).addApi(LocationServices.API).build();
 
         googleApiClient.connect();
@@ -427,36 +501,36 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
 
     private boolean checkPlayServices() {
 
-        int resultcode= GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
+        int resultcode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
 
-        if(resultcode!= ConnectionResult.SUCCESS){
-            if(GooglePlayServicesUtil.isUserRecoverableError(resultcode)){
+        if (resultcode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultcode)) {
 
-                GooglePlayServicesUtil.getErrorDialog(resultcode,getActivity(),PLAYSERVICE_RES__REQUEST_CODE).show();
-            }else{
+                GooglePlayServicesUtil.getErrorDialog(resultcode, getActivity(), PLAYSERVICE_RES__REQUEST_CODE).show();
+            } else {
 
-                AppUtil.showToastMsg("This Device is Not Supported",getContext());
+                AppUtil.showToastMsg("This Device is Not Supported", getContext());
                 getActivity().finish();
             }
 
             return false;
 
         }
-        return  true;
+        return true;
     }
 
-    private void setUiOnAccept(JSONObject jsonObject) {
-        Log.d("set up ui on accept","");
-        try{
+    private void setUiOnAccept(JSONObject jsonObject, JSONObject apiResponseData) {
+        Log.d("set up ui on accept", ""+jsonObject);
+        try {
 
-            Double srcLat=Double.parseDouble(AppUtil.getDatafromJSonObject(jsonObject,"startLocationLat"));
-            Double srcLng=Double.parseDouble(AppUtil.getDatafromJSonObject(jsonObject,"startLocationLong"));
-            Double  destLat=Double.parseDouble(AppUtil.getDatafromJSonObject(jsonObject,"dropLocationLat"));
-            Double  destLng=Double.parseDouble(AppUtil.getDatafromJSonObject(jsonObject,"dropLocationLong"));
+            Double srcLat = Double.parseDouble(AppUtil.getDatafromJSonObject(jsonObject, "startLocationLat"));
+            Double srcLng = Double.parseDouble(AppUtil.getDatafromJSonObject(jsonObject, "startLocationLong"));
+            Double destLat = Double.parseDouble(AppUtil.getDatafromJSonObject(jsonObject, "dropLocationLat"));
+            Double destLng = Double.parseDouble(AppUtil.getDatafromJSonObject(jsonObject, "dropLocationLong"));
 
 
-            LatLng destination_location=new LatLng(destLat,destLng);
-            LatLng src_location=new LatLng(srcLat,srcLng);
+            LatLng destination_location = new LatLng(destLat, destLng);
+            LatLng src_location = new LatLng(srcLat, srcLng);
             if (mSrc != null) {
                 mSrc.remove();
             }
@@ -474,9 +548,6 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
             if (mDest != null) {
                 mDest.remove();
             }
-
-
-
             MarkerOptions markerOptions1 = new MarkerOptions();
             markerOptions1.position(destination_location);
             markerOptions1.title("Destination");
@@ -487,37 +558,114 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
             markerOptions1.icon(BitmapDescriptorFactory.fromBitmap(dest));
             ///markerOptions.rotation(latLng.getBearing());
             mDest = mMap.addMarker(markerOptions1);
-            if (mSrc!=null && mDest!=null && mCurrent!=null) {
+            if (mSrc != null && mDest != null && mCurrent != null) {
                 String url = getDirectionsUrl(mCurrent.getPosition(), mSrc.getPosition());
                 String url1 = getDirectionsUrl(mSrc.getPosition(), mDest.getPosition());
-//        DownloadTask downloadTask = new DownloadTask(false);
-//
-//           // Start downloading json data from Google Directions API
-//           downloadTask.execute(url1);
+//                DownloadTask downloadTask = new DownloadTask(true);
+//                // Start downloading json data from Google Directions API
+//                downloadTask.execute(url1);
                 DownloadTask downloadTask1 = new DownloadTask(true);
-
                 // Start downloading json data from Google Directions API
                 downloadTask1.execute(url);
                 //Animation
-
-
-
-
             } else {
 
             }
 
-        }catch (Exception e){  Log.d("set up ui on accept",""+e);}
+        } catch (Exception e) {
+            Log.d("set up ui on accept", "" + e);
+        }
 
-        Log.d("set up ui on accept",""+"end");
+        Log.d("set up ui on accept", "" + "end");
 
     }
+
+
+
+
+    private void setUiOnRideStart(JSONObject jsonObject1) {
+        Utility.log("InsideMEtttttttttttt",""+jsonObject1);
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject=jsonObject1.getJSONObject("result");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.d("InsideMEtttttttttttt", ""+jsonObject);
+        try {
+            Log.d("InsideMEtttttttttttt", "!!!!!!!!!!!!!!!!!11");
+
+            Double srcLat = Double.parseDouble(AppUtil.getDatafromJSonObject(jsonObject, "pickupLatitude"));
+            Log.d("InsideMEtttttttttttt", "22222222222222222");
+            Double srcLng = Double.parseDouble(AppUtil.getDatafromJSonObject(jsonObject, "pickupLongitude"));
+            Log.d("InsideMEtttttttttttt", "22222222222222233333333333333333");
+            Double destLat = Double.parseDouble(AppUtil.getDatafromJSonObject(jsonObject, "dropOffLatitude"));
+            Log.d("InsideMEtttttttttttt", "!!!!!!!!!!!!!!!!!444444444444444444444");
+            Double destLng = Double.parseDouble(AppUtil.getDatafromJSonObject(jsonObject, "dropOffLongitude"));
+            Log.d("InsideMEtttttttttttt", "!!!!!!!!!!!!!!!!!155555555555555555");
+            LatLng destination_location = new LatLng(destLat, destLng);
+            Log.d("InsideMEtttttttttttt", "!!!!!!!!!!!!!!!!!116666666666666666666");
+            LatLng src_location = new LatLng(srcLat, srcLng);
+            Utility.log("InsideMEtttttttttttt",""+destLat.toString());
+            Log.d("InsideMEtttttttttttt", "!!!!!!!!!!!!!!!!!17777777777777");
+            Utility.log("InsideMEtttttttttttt",""+src_location.toString());
+            Log.d("InsideMEtttttttttttt", "!!!!!!!!!!!!!!!!!118888888888888888888");
+            if (mSrc != null) {
+                mSrc.remove();
+            }
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(src_location);
+            markerOptions.title("Source");
+
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.marker_new);
+            Bitmap b = bitmapDrawable.getBitmap();
+            Bitmap smallCar = Bitmap.createScaledBitmap(b, 150, 81, false);
+
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallCar));
+//                markerOptions.rotation(location.getBearing());
+            mSrc = mMap.addMarker(markerOptions);
+            if (mDest != null) {
+                mDest.remove();
+            }
+            MarkerOptions markerOptions1 = new MarkerOptions();
+            markerOptions1.position(destination_location);
+            markerOptions1.title("Destination");
+            BitmapDrawable bitmapDrawable1 = (BitmapDrawable) getResources().getDrawable(R.drawable.destination_marker);
+            Bitmap b1 = bitmapDrawable1.getBitmap();
+            Bitmap dest = Bitmap.createScaledBitmap(b1, 150, 81, false);
+
+            markerOptions1.icon(BitmapDescriptorFactory.fromBitmap(dest));
+            ///markerOptions.rotation(latLng.getBearing());
+            mDest = mMap.addMarker(markerOptions1);
+            if (mSrc != null && mDest != null && mCurrent != null) {
+//                String url = getDirectionsUrl(mCurrent.getPosition(), mSrc.getPosition());
+                String url1 = getDirectionsUrl(mSrc.getPosition(), mDest.getPosition());
+                DownloadTask downloadTask = new DownloadTask(true);
+                // Start downloading json data from Google Directions API
+                downloadTask.execute(url1);
+//                DownloadTask downloadTask1 = new DownloadTask(true);
+//                // Start downloading json data from Google Directions API
+//                downloadTask1.execute(url);
+                //Animation
+            } else {
+
+            }
+
+        } catch (Exception e) {
+            Log.d("set up ui on accept", "" + e);
+        }
+
+        Log.d("set up ui on accept", "" + "end");
+
+    }
+
 
     @Override
     public void onResume() {
         super.onResume();
         showGpsSettingsAlert(getContext());
     }
+
 
     private void showGpsSettingsAlert(Context context) {
         GoogleApiClient googleApiClient = new GoogleApiClient.Builder(context)
@@ -560,8 +708,9 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
         });
     }
 
-    public void coonectMqtt(final String topic){
-        addToHistory("topic: " + topic );
+
+    public void coonectMqtt(final String topic) {
+        addToHistory("topic: " + topic);
 
         MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
         mqttConnectOptions.setAutomaticReconnect(true);
@@ -580,6 +729,7 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
                     disconnectedBufferOptions.setDeleteOldestMessages(false);
                     mqttAndroidClient.setBufferOpts(disconnectedBufferOptions);
                     //    publishMessage("topic","connected");
+                    Utility.log("TopicSubscribeDriver", "" + topic);
                     subscribeToTopic(topic);
                 }
 
@@ -587,29 +737,32 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
                     addToHistory("Failed to connect to: " + serverUri);
                     addToHistory("Failed to connect to: " + exception.getMessage());
+                    Utility.log("TopicSubscribeDriver", "" + exception);
                 }
             });
 
 
-        } catch (MqttException ex){
+        } catch (MqttException ex) {
             ex.printStackTrace();
         }
     }
 
 
-    private void addToHistory(String mainText){
-        Log.d("mqtt",mainText);
+    private void addToHistory(String mainText) {
+        Log.d("mqtt", mainText);
 //        System.out.println("LOG: " + mainText);
 //        mAdapter.add(mainText);
 //        Snackbar.make(findViewById(android.R.id.content), mainText, Snackbar.LENGTH_LONG)
 //                .setAction("Action", null).show();
     }
 
-    public void subscribeToTopic( String topic){
+
+    public void subscribeToTopic(String topic) {
         try {
             mqttAndroidClient.subscribe(topic, 0, null, new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
+                    Utility.log("TopicSubscribeDriver", "Subscribed");
                     addToHistory("Subscribed!");
                 }
 
@@ -628,20 +781,20 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
 //                }
 //            });
 
-        } catch (MqttException ex){
+        } catch (MqttException ex) {
             addToHistory("Exception whilst subscribing");
             ex.printStackTrace();
         }
     }
 
-    private void startLocationUpdates() {
-        Log.d("location","request for update");
-        if (ActivityCompat.checkSelfPermission(getContext(),
-                Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(getContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
-        ){
 
+    private void startLocationUpdates() {
+        Log.d("location", "request for update");
+        if (ActivityCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+        ) {
             return;
         }
         FPclient = LocationServices.getFusedLocationProviderClient(getContext());
@@ -649,50 +802,52 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
                 new LocationCallback() {
                     @Override
                     public void onLocationResult(LocationResult locationResult) {
-                        Log.d("aaaaaasd",locationResult.toString());
+                        Log.d("aaaaaasd", locationResult.toString());
 //Get a reference to the database, so your app can perform read and write operations//
 
-                        prevlocation=location;
+                        prevlocation = location;
                         location = locationResult.getLastLocation();
 
                         if (location != null) {
-
-
-                            AppUtil.showToastMsg("new "+ location.getLatitude(),getContext());
+                            AppUtil.showToastMsg("new " + location.getLatitude(), getContext());
 //Save the location data to the database//
                             displayLocation();
 
                         }
                     }
                 }, null);
-        if(googleApiClient.isConnected()){
-            Log.d("location","request for update1");
+        if (googleApiClient!=null && googleApiClient.isConnected()) {
+            Log.d("location", "request for update1");
             //  LocationServices.FusedLocationApi. requestLocationUpdates(googleApiClient,locationRequest, (com.google.android.gms.location.LocationListener) locationListener);
-        }}
+        }
+    }
+
 
     private void stopLocationUpdates() {
-        Log.d("location","stop for update");
+        Log.d("location", "stop for update");
         if (ActivityCompat.checkSelfPermission(getContext(),
-                Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(getContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
-        ){
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+        ) {
 
             return;
         }
-        if(FPclient!=null){
+        if (FPclient != null) {
 
             FPclient.removeLocationUpdates(new LocationCallback());
-            FPclient=null;
+            FPclient = null;
         }
         // LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, (com.google.android.gms.location.LocationListener) locationListener);
     }
 
+
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        if(switchMaterial.isChecked()){
+        if (switchMaterial.isChecked()) {
             startLocationUpdates();
-            displayLocation();}
+            displayLocation();
+        }
     }
 
     @Override
@@ -715,9 +870,9 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        try{
-            boolean isSuccess=googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getContext(),R.raw.uber_style_map));
-        }catch (Exception e){
+        try {
+            boolean isSuccess = googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getContext(), R.raw.uber_style_map));
+        } catch (Exception e) {
             e.printStackTrace();
         }
         mMap = googleMap;
@@ -725,78 +880,74 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
 
     private void displayLocation() {
 
-        Log.d("location","display location");
+        Log.d("location", "display location");
 
-        if (ActivityCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
-        ){
+        if (ActivityCompat.checkSelfPermission(mContext,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(mContext,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+        ) {
 
             return;
         }
         // prevlocation=location;
         //location= LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-        if(location!=null){
+        if (location != null) {
 
-            if(switchMaterial.isChecked()){
+            if (switchMaterial.isChecked()) {
 
-                final    double lat=location.getLatitude();
-                final    double lng=location.getLongitude();
+                final double lat = location.getLatitude();
+                final double lng = location.getLongitude();
 
-                Log.d("mqtt location:",lat+"-"+lng);
+                Log.d("mqtt location:", lat + "-" + lng);
 
-                if(isAccepted && currentRequest!=null){
-                    Log.d("location","need publish");
+                if (isAccepted && currentRequest != null) {
+                    Log.d("location", "need publish");
                     try {
-                        currentRequest.put("ambulanceLat",lat+"");
-                        currentRequest.put("ambulanceLng",lng+"");
+                        currentRequest.put("ambulanceLat", lat + "");
+                        currentRequest.put("ambulanceLng", lng + "");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
-                    publishMessage(locationTopic,currentRequest.toString());
-                }else {
+                    publishMessage(locationTopic, currentRequest.toString());
+                } else {
                     String api_url = base_url + "updateDriverLatLong";
-
-
                     JSONObject jsonObject = new JSONObject();
                     try {
                         jsonObject.put("lat", lat + "");
-
                         jsonObject.put("lng", lng + "");
                         jsonObject.put("driverId", sharedPreferences.getUserId());
                         JSONObject response_data = call_api(api_url, jsonObject.toString());
                         if (response_data != null)
-                            Log.d("send_loc", response_data.toString());
+                            Log.d("send_locYYYYYYYY", response_data.toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-                if(prevlocation==null || mCurrent==null ){
-                    if(mCurrent!=null){
+                if (prevlocation == null || mCurrent == null) {
+                    if (mCurrent != null) {
                         mCurrent.remove();
                     }
-                    MarkerOptions markerOptions= new MarkerOptions();
+                    MarkerOptions markerOptions = new MarkerOptions();
 
                     BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.responder);
                     Bitmap b = bitmapDrawable.getBitmap();
                     Bitmap smallCar = Bitmap.createScaledBitmap(b, 60, 72, false);
 
-                    markerOptions.icon( BitmapDescriptorFactory.fromBitmap(smallCar));
-                    markerOptions.position(new LatLng(lat,lng));
+                    markerOptions.icon(BitmapDescriptorFactory.fromBitmap(smallCar));
+                    markerOptions.position(new LatLng(lat, lng));
                     markerOptions.title("you");
 
-                    mCurrent=mMap.addMarker(markerOptions);
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng),15.0f));
+                    mCurrent = mMap.addMarker(markerOptions);
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 15.0f));
 
-                    Log.d("move"," no move car");
+                    Log.d("move", " no move car");
 
-                }else{
-                    Log.d("move","move car");
+                } else {
+                    Log.d("move", "move car");
                     movecar();
                 }
-                if (mSrc!=null && mDest!=null && mCurrent!=null) {
+                if (mSrc != null && mDest != null && mCurrent != null) {
                     String url = getDirectionsUrl(mCurrent.getPosition(), mSrc.getPosition());
                     String url1 = getDirectionsUrl(mSrc.getPosition(), mDest.getPosition());
 //        DownloadTask downloadTask = new DownloadTask(false);
@@ -810,20 +961,15 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
                     //Animation
 
 
-
-
                 } else {
 
                 }
-                if(prevlocation!=null){
-
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng),15.0f));
-                    rotateMarker(mCurrent, (float) bearingBetweenLocations(prevlocation,location),mMap);
-                    Log.d("bb",(float) bearingBetweenLocations(prevlocation,location)+"");
+                if (prevlocation != null) {
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 15.0f));
+                    rotateMarker(mCurrent, (float) bearingBetweenLocations(prevlocation, location), mMap);
+                    Log.d("bb", (float) bearingBetweenLocations(prevlocation, location) + "");
                 }
-
-
-                if(isBook){
+                if (isBook) {
 //                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng),15.0f));
 //
 //                    rotateMarker(mCurrent,-360,mMap);}else{
@@ -924,15 +1070,15 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
         //}
     }
 
-    public void publishMessage(String locationTopic,String msg){
-        Log.d("location","publish"+msg);
-        Log.d("msgg",locationTopic+"----"+msg);
+    public void publishMessage(String locationTopic, String msg) {
+        Log.d("location", "publish" + msg);
+        Log.d("msgg", locationTopic + "----" + msg);
         try {
             MqttMessage message = new MqttMessage();
             message.setPayload(msg.getBytes());
             mqttAndroidClient.publish(locationTopic, message);
             addToHistory("Message Published");
-            if(!mqttAndroidClient.isConnected()){
+            if (!mqttAndroidClient.isConnected()) {
                 addToHistory(mqttAndroidClient.getBufferedMessageCount() + " messages in buffer.");
             }
         } catch (MqttException e) {
@@ -944,7 +1090,8 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
     public JSONObject call_api(String api_url, String request_data) {
         try {
 
-            Log.d("API_res",api_url);
+            Log.d("API_res", api_url);
+            Log.d("API_resGGGGGGG", request_data);
             URL url = new URL(api_url);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
@@ -965,22 +1112,20 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
             while ((line = bufferedReader.readLine()) != null) {
                 response += line;
             }
-            Log.d("API_res",response);
+            Log.d("API_res", response);
             Log.d("API response", response);
-
             JSONObject response_data = new JSONObject(response);
             return response_data;
-
         } catch (Exception e) {
 //            Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_LONG).show();
-            Log.d("API_res",e.toString());
+            Log.d("API_res", e.toString());
         }
 
         return null;
     }
 
-    public void movecar(){
-        final Location startPosition =prevlocation ;
+    public void movecar() {
+        final Location startPosition = prevlocation;
         final Location finalPosition = location;
         final Handler handler = new Handler();
         final long start = SystemClock.uptimeMillis();
@@ -1001,11 +1146,11 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
                 v = interpolator.getInterpolation(t);
 
                 LatLng currentPosition = new LatLng(
-                        startPosition.getLatitude()*(1-t)+finalPosition.getLatitude()*t,
-                        startPosition.getLongitude()*(1-t)+finalPosition.getLongitude()*t);
+                        startPosition.getLatitude() * (1 - t) + finalPosition.getLatitude() * t,
+                        startPosition.getLongitude() * (1 - t) + finalPosition.getLongitude() * t);
 
                 mCurrent.setPosition(currentPosition);
-                Log.d("move.....................","move car");
+                Log.d("move..................", "move car");
                 // Repeat till progress is complete.
                 if (t < 1) {
                     // Post again 16ms later.
@@ -1015,7 +1160,7 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
                         mCurrent.setVisible(false);
                     } else {
                         mCurrent.setVisible(true);
-                        isHide=true;
+                        isHide = true;
                     }
                 }
             }
@@ -1034,11 +1179,11 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
         String sensor = "sensor=false";
         String key = "key=AIzaSyDRVBkjjZkrZf-_blL06aGAeQ2uSCuJRn8";
         //mode
-        String  mode = "mode=driving";
+        String mode = "mode=driving";
         //transit
-        String   transit = "transit_routing_preference=less_driving";
+        String transit = "transit_routing_preference=less_driving";
         // Building the parameters to the web service
-        String parameters = str_origin + "&" + str_dest + "&" + sensor+"&"+key+"&"+mode +"&"+ transit;
+        String parameters = str_origin + "&" + str_dest + "&" + sensor + "&" + key + "&" + mode + "&" + transit;
 
         // Output format
         String output = "json";
@@ -1047,7 +1192,7 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
         // Building the url to the web service
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
 
-        Log.d("result",url);
+        Log.d("result", url);
 //my code
         // String url =   "http://www.yournavigation.org/api/1.0/gosmore.php?flat="+ origin.latitude+"&flon="+origin.longitude+"&tlat="+ dest.latitude +"&tlon="+ dest.longitude +"&format=geojson";
 
@@ -1056,6 +1201,7 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
 
         return url;
     }
+
     private class DownloadTask extends AsyncTask<String, Void, String> {
         boolean isBooked = false;
 
@@ -1081,6 +1227,16 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
             }
             return data;
         }
+        @Override
+        public void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            ParserTask parserTask = new ParserTask();
+
+            // Invokes the thread for parsing the JSON data
+            parserTask.execute(result);
+        }
+
     }
 
     private String downloadUrl(String strUrl) throws IOException {
@@ -1119,7 +1275,73 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
             urlConnection.disconnect();
         }
         return data;
+
     }
+
+    private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
+
+        // Parsing the data in non-ui thread
+        @Override
+        protected List<List<HashMap<String, String>>> doInBackground(String... jsonData) {
+
+            JSONObject jObject;
+            List<List<HashMap<String, String>>> routes = null;
+
+            try {
+                jObject = new JSONObject(jsonData[0]);
+                DirectionsJSONParser parser = new DirectionsJSONParser();
+
+                // Starts parsing data
+                routes = parser.parse(jObject);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return routes;
+        }
+
+        // Executes in UI thread, after the parsing process
+        @Override
+        protected void onPostExecute(List<List<HashMap<String, String>>> result) {
+            ArrayList<LatLng> points = null;
+            PolylineOptions lineOptions = null;
+            MarkerOptions markerOptions = new MarkerOptions();
+
+            // Traversing through all the routes
+            for (int i = 0; i < result.size(); i++) {
+                points = new ArrayList<LatLng>();
+                lineOptions = new PolylineOptions();
+
+                // Fetching i-th route
+                List<HashMap<String, String>> path = result.get(i);
+
+                // Fetching all the points in i-th route
+                for (int j = 0; j < path.size(); j++) {
+                    HashMap<String, String> point = path.get(j);
+
+                    double lat = Double.parseDouble(point.get("lat"));
+                    double lng = Double.parseDouble(point.get("lng"));
+                    LatLng position = new LatLng(lat, lng);
+
+                    points.add(position);
+                }
+
+                // Adding all the points in the route to LineOptions
+                lineOptions.addAll(points);
+                lineOptions.width(6);
+                lineOptions.color(Color.BLUE);
+            }
+
+            // Drawing polyline in the Google Map for the i-th route
+            try {
+                mMap.addPolyline(lineOptions);
+            } catch (Exception e) {
+//                Do Nothing
+            }
+        }
+    }
+
+
+
 
     private void rotateMarker(final Marker marker, final float toRotation) {
         if(!isMarkerRotating) {
@@ -1191,5 +1413,190 @@ public class ResponderHomeFragment extends Fragment implements OnMapReadyCallbac
                     handler.postDelayed(this,16);                }
             }
         }) ;
+    }
+    private void startRide(final JSONObject jsonObject)
+    {
+        final JSONObject request_Data_startRide=jsonObject;
+        final String api_url = base_url+"startResponder";
+//        JSONObject resultobj = null;
+//        Utility.log("JSonData==============",""+jsonObject);
+//        try {
+//             resultobj=jsonObject.getJSONObject("result");
+//             request_Data_startRide.put("bookingId",AppUtil.getDatafromJSonObject(resultobj,"bookingId"));
+//             request_Data_startRide.put("ambulanceId",AppUtil.getDatafromJSonObject(resultobj,"ambulanceId"));
+//             request_Data_startRide.put("userId",AppUtil.getDatafromJSonObject(jsonObj,"userId"));
+//             request_Data_startRide.put("driverId",AppUtil.getDatafromJSonObject(jsonObj,"driverId"));
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+
+
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                final CFAlertDialog.Builder builder = new CFAlertDialog.Builder(getContext())
+                        .setDialogStyle(CFAlertDialog.CFAlertStyle.BOTTOM_SHEET).setCancelable(false);
+                final CFAlertDialog cfAlertDialog=builder.create();
+                LayoutInflater inflater = getLayoutInflater();
+                View myLayout = inflater.inflate(R.layout.driver_pickup_dialog,null, false);
+                LinearLayout call_btn = myLayout.findViewById(R.id.call);
+                LinearLayout  pick_btn= myLayout.findViewById(R.id.pickup);
+                Atami_Bold username= myLayout.findViewById(R.id.user_name);
+//        builder.setAutoDismissAfter(30000);
+                builder.setHeaderView(myLayout);
+                builder.setFooterView(null);
+//        if(resultobj!=null)
+                username.setText(sharedPreferences.getBookingUSerName());
+                driver_phone=sharedPreferences.getBookingUSerMobile();
+                call_btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+//                        builder.setAutoDismissAfter(1);
+                        cfAlertDialog.dismiss();
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        callIntent.setData(Uri.parse("tel:" + driver_phone));
+                        if (ActivityCompat.checkSelfPermission(getActivity(),
+                                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                            return;
+                        }
+                        startActivity(callIntent);
+                    }
+                });
+                pick_btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        cfAlertDialog.dismiss();
+                        if (request_Data_startRide != null)
+                            ApiResponsejson = call_api(api_url, request_Data_startRide.toString());
+                        try {
+                            if (ApiResponsejson.getString("status").equalsIgnoreCase("true")) {
+                                //arrivedPopup(jsonObject);
+                                setUiOnRideStart(ApiResponsejson);
+                                end_Ride_Btn.setVisibility(View.VISIBLE);
+                                Utility.log("ResponseVAAAG",""+ApiResponsejson.toString());
+                            } else {
+                                AppUtil.topSnakBar(getContext(), mapFragment.getView(), ApiResponsejson.getString("message"));
+                            }
+                        } catch (JSONException j) {
+
+                        }
+                    }
+                });
+// Show the alert
+                cfAlertDialog.show();
+            }
+        });
+
+    }
+
+    private void endRide(JSONObject jsonObject,JSONObject jsonObj)
+    {
+        final JSONObject request_Data_startRide=new JSONObject();
+        final String api_url = base_url+"endResponder";
+        JSONObject resultobj = null;
+        Utility.log("JSonData==============",""+jsonObject);
+        try {
+            resultobj=jsonObject.getJSONObject("result");
+            request_Data_startRide.put("bookingId",AppUtil.getDatafromJSonObject(resultobj,"bookingId"));
+            request_Data_startRide.put("ambulanceId",AppUtil.getDatafromJSonObject(resultobj,"ambulanceId"));
+            request_Data_startRide.put("userId",AppUtil.getDatafromJSonObject(jsonObj,"userId"));
+            request_Data_startRide.put("driverId",AppUtil.getDatafromJSonObject(jsonObj,"driverId"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        final CFAlertDialog.Builder builder = new CFAlertDialog.Builder(getContext())
+                .setDialogStyle(CFAlertDialog.CFAlertStyle.BOTTOM_SHEET).setCancelable(true);
+        LayoutInflater inflater = getLayoutInflater();
+        View myLayout = inflater.inflate(R.layout.end_ride_dialog,null, false);
+        LinearLayout  endRide_btn= myLayout.findViewById(R.id.endRide);
+        Atami_Bold username= myLayout.findViewById(R.id.user_name);
+        Atami_Regular start_Address,end_Address,rate,time,distance;
+        builder.setHeaderView(myLayout);
+        builder.setFooterView(null);
+        if(resultobj!=null)
+            username.setText(AppUtil.getDatafromJSonObject(resultobj,"userName"));
+        endRide_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (request_Data_startRide != null)
+                    ApiResponsejson = call_api(api_url, request_Data_startRide.toString());
+                try {
+                    if (ApiResponsejson.getString("status").equalsIgnoreCase("true")) {
+                        //arrivedPopup(jsonObject);
+                        Utility.log("ResponseVAAAG",""+ApiResponsejson.toString());
+                    } else {
+                        AppUtil.topSnakBar(getContext(), mapFragment.getView(), ApiResponsejson.getString("message"));
+                    }
+                } catch (JSONException j) {
+
+                }
+            }
+        });
+// Show the alert
+        builder.show();
+
+    }
+    private double distanceBetweenTwoPlace(double lat1, double lon1, double lat2, double lon2) {
+        double theta = lon1 - lon2;
+        double dist = Math.sin(deg2rad(lat1))
+                * Math.sin(deg2rad(lat2))
+                + Math.cos(deg2rad(lat1))
+                * Math.cos(deg2rad(lat2))
+                * Math.cos(deg2rad(theta));
+        dist = Math.acos(dist);
+        dist = rad2deg(dist);
+        dist = dist * 60 * 1.1515;
+        return (dist);
+    }
+
+    private double deg2rad(double deg) {
+        return (deg * Math.PI / 180.0);
+    }
+    private double rad2deg(double rad) {
+        return (rad * 180.0 / Math.PI);
+    }
+
+    public void OnEndRidePopup()
+    {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Utility.log("Inside","MEthdei");
+                final Dialog dialog;
+                dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.new_end_ride_popup);
+                LinearLayout no=dialog.findViewById(R.id.no);
+                LinearLayout yes=dialog.findViewById(R.id.yes);
+                Atami_Bold msg=dialog.findViewById(R.id.lg);
+                Atami_Regular yestext=dialog.findViewById(R.id.yestext);yestext.setText("Ok");
+                dialog.getWindow().addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_NEW_TASK );
+                dialog.setCanceledOnTouchOutside(false);
+                int Width =(int) (getResources().getDisplayMetrics().widthPixels*0.95);
+                int Height =(int) (getResources().getDisplayMetrics().heightPixels*0.60);
+                dialog.show();
+                dialog.getWindow().setLayout(Width,Height);
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        mMap.clear();
+                    }
+                });
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        mMap.clear();
+                    }
+                });
+            }
+        });
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mContext=getContext();
     }
 }

@@ -87,7 +87,8 @@
                 android:textColor="@color/terms"
                 android:layout_marginLeft="19.6dp"
                 android:layout_gravity="center_vertical"
-                android:text="Address From"
+                android:text=""
+                android:id="@+id/start_address"
                 android:textSize="17dp"
                 />
         </LinearLayout>
@@ -118,7 +119,8 @@
                 android:textColor="@color/terms"
                 android:layout_marginLeft="19.6dp"
                 android:layout_gravity="center_vertical"
-                android:text="Address to"
+                android:text=""
+                android:id="@+id/end_address"
                 android:textSize="17dp"
                 />
         </LinearLayout>
@@ -170,7 +172,8 @@
             <com.MedAmbulance.Widget.Atami_Regular
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rs 300"
+                android:text=""
+                android:id="@+id/rate"
                 android:textColor="@color/blue_accept"
                 android:layout_alignParentRight="true"
                 android:textSize="17dp" />
@@ -196,9 +199,10 @@
             <com.MedAmbulance.Widget.Atami_Regular
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="8km"
+                android:text=""
                 android:textColor="@color/blue_accept"
                 android:layout_alignParentRight="true"
+                android:id="@+id/distance"
                 android:textSize="17dp" />
         </RelativeLayout>
         <RelativeLayout
@@ -222,8 +226,9 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/time"
                 android:textColor="@color/blue_accept"
-                android:text="1h 10m"
+                android:text=""
                 android:textSize="17dp" />
         </RelativeLayout>
         <LinearLayout
@@ -243,6 +248,7 @@
             <LinearLayout
                 android:layout_width="275dp"
                 android:layout_height="58dp"
+                android:id="@+id/endRide"
                 android:background="@drawable/pickup_bbk"
                 android:gravity="center">
 

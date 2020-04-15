@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:layout_height="match_parent">
-
-
-
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/top"
+        android:visibility="visible"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:id="@+id/enterlayout"
+         android:visibility="gone"
+         android:orientation="vertical">
     <LinearLayout
         android:id="@+id/edit"
         android:layout_marginTop="15dp"
@@ -23,7 +32,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_hospital"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,13 +65,10 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:enabled="false"
                     android:background="@color/bg"
                     android:ems="10"
-
                     android:inputType="textPersonName"
-
-
                     android:textColor="#7e7e7f"
 
 
@@ -74,8 +79,6 @@
 
 
                     />
-
-
             </LinearLayout>
 
         </LinearLayout>
@@ -145,10 +148,156 @@
         </LinearLayout>
 
     </LinearLayout>
+     </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/t1"
+            android:layout_marginVertical="10dp"
+            android:gravity="center_horizontal"
+            android:visibility="visible"
+            android:weightSum="4"
+            android:orientation="horizontal">
+
+
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/normal"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:scaleType="centerCrop"
+                        android:layout_height="60dp"
+                        android:padding="18dp"
+                        android:background="@drawable/boarder_imageview"
+                        android:src="@drawable/ic_car_1"/>
+                    <com.MedAmbulance.Widget.Atami_Bold
+                        android:layout_width="match_parent"
+                        android:textAlignment="gravity"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:text="@string/Normal"
+                        android:layout_height="wrap_content">
+                    </com.MedAmbulance.Widget.Atami_Bold>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp"
+                android:layout_weight="1"
+                android:id="@+id/Govt">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:scaleType="centerCrop"
+                        android:layout_height="60dp"
+                        android:padding="18dp"
+                        android:background="@drawable/boarder_imageview"
+                        android:src="@drawable/ic_ambulance_govt"/>
+                    <com.MedAmbulance.Widget.Atami_Bold
+                        android:layout_width="match_parent"
+                        android:textAlignment="gravity"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:text="@string/Govt"
+                        android:layout_height="wrap_content">
+                    </com.MedAmbulance.Widget.Atami_Bold>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+<com.google.android.material.card.MaterialCardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/hospital"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="0dp"
+    android:layout_weight="1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="60dp"
+            android:scaleType="centerInside"
+            android:layout_height="60dp"
+            android:padding="15dp"
+            android:background="@drawable/boarder_imageview"
+            android:src="@drawable/amb_car"/>
+        <com.MedAmbulance.Widget.Atami_Bold
+            android:layout_width="match_parent"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="@string/Hospital"
+            android:layout_height="wrap_content">
+        </com.MedAmbulance.Widget.Atami_Bold>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp"
+                android:id="@+id/responsder"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:scaleType="centerInside"
+                        android:layout_height="60dp"
+                        android:padding="15dp"
+                        android:background="@drawable/boarder_imageview"
+                        android:src="@drawable/responder"/>
+                    <com.MedAmbulance.Widget.Atami_Bold
+                        android:layout_width="match_parent"
+                        android:textAlignment="gravity"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:text="@string/Responder"
+                        android:layout_height="wrap_content">
+                    </com.MedAmbulance.Widget.Atami_Bold>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </LinearLayout>
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_below="@id/edit2"
+        android:layout_below="@id/top"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -157,6 +306,7 @@
     <ImageView
         android:id="@+id/ambulance"
         android:layout_width="30dp"
+        android:visibility="gone"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
@@ -169,9 +319,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="198dp"
         android:layout_marginBottom="0dp"
-        android:orientation="vertical"
-        android:paddingBottom="30dp">
-
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -186,20 +334,15 @@
                 android:id="@+id/rc_h"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
             </androidx.recyclerview.widget.RecyclerView>
 
 
         </LinearLayout>
-
-
         <Button
             android:id="@+id/btnBookNow"
             android:layout_width="match_parent"
             android:layout_height="@dimen/filedHeight"
-            android:layout_marginLeft="@dimen/leftMergin"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="@dimen/RightMergin"
             android:background="@drawable/button_border"
             android:backgroundTint="@color/red"
             android:text="@string/Book"
@@ -210,10 +353,16 @@
 
     </LinearLayout>
 
+
+
+
+
+
     <RelativeLayout
         android:id="@+id/driver_details"
         android:layout_width="match_parent"
         android:layout_height="145dp"
+        android:visibility="visible"
         android:layout_alignParentBottom="true"
         android:background="#a3a3a3">
 
@@ -321,7 +470,7 @@
                     android:id="@+id/cab_no_a"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="PB01A"
+                    android:text="Ambulance Numer"
                     android:textAlignment="textStart"
                     android:textSize="14dp" />
 
@@ -389,6 +538,168 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottomlayout"
+        android:layout_alignParentBottom="true"
+        android:layout_marginVertical="10dp"
+        android:gravity="center_horizontal"
+        android:layout_marginHorizontal="10dp"
+        android:visibility="gone"
+        android:weightSum="4"
+        android:orientation="horizontal">
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:id="@+id/ALS"
+            android:layout_weight="1"
+            app:cardElevation="0dp"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/boarder1"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:scaleType="centerInside"
+                    android:padding="5dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/amb_car"/>
+                <com.MedAmbulance.Widget.Atami_Bold
+                    android:layout_width="match_parent"
+                    android:textAlignment="gravity"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:text="ALS"
+                    android:textSize="12dp"
+                    android:layout_height="wrap_content">
+                </com.MedAmbulance.Widget.Atami_Bold>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:id="@+id/BLS"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/boarder1"
+                android:layout_gravity="center_vertical"
+
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:padding="5dp"
+                    android:scaleType="centerInside"
+                    android:layout_height="40dp"
+                    android:src="@drawable/amb_car"/>
+                <com.MedAmbulance.Widget.Atami_Bold
+                    android:layout_width="match_parent"
+                    android:textAlignment="gravity"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:text="BLS"
+                    android:textSize="12dp"
+                    android:layout_height="wrap_content">
+                </com.MedAmbulance.Widget.Atami_Bold>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/DBT"
+            android:layout_marginHorizontal="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/boarder1"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:scaleType="centerInside"
+                    android:padding="5dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/amb_car"/>
+                <com.MedAmbulance.Widget.Atami_Bold
+                    android:layout_width="match_parent"
+                    android:textAlignment="gravity"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:text="DBT"
+                    android:textSize="12dp"
+                    android:layout_height="wrap_content">
+                </com.MedAmbulance.Widget.Atami_Bold>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/PVT"
+            app:cardElevation="0dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/boarder1"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:scaleType="centerInside"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:src="@drawable/amb_car"/>
+                <com.MedAmbulance.Widget.Atami_Bold
+                    android:layout_width="match_parent"
+                    android:textAlignment="gravity"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:text="PVT"
+                    android:textSize="12dp"
+                    android:layout_height="wrap_content">
+                </com.MedAmbulance.Widget.Atami_Bold>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:id="@+id/AIR"
+            android:visibility="gone"
+            android:background="@drawable/boarder1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="5dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="40dp"
+                android:scaleType="centerInside"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_air_ambulance"/>
+            <com.MedAmbulance.Widget.Atami_Bold
+                android:layout_width="match_parent"
+                android:textAlignment="gravity"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                android:text="AIR"
+                android:layout_height="wrap_content">
+            </com.MedAmbulance.Widget.Atami_Bold>
+        </LinearLayout>
+    </LinearLayout>
 
 
 </RelativeLayout>

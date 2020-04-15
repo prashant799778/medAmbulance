@@ -122,6 +122,8 @@ public class DriverProfile_Fragment extends Fragment implements MyResult, OnSave
                 email.setText(rm.getEmail());
                 mobile.setText(rm.getMobileNo());
                 password.setText(rm.getPassword());
+                m.setUserName(rm.getName());
+                m.setMobile(rm.getMobileNo());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -134,6 +136,8 @@ public class DriverProfile_Fragment extends Fragment implements MyResult, OnSave
         if (progressDialog!=null && progressDialog.isShowing())
             progressDialog.dismiss();
         if (object!=null && status){
+            m.setMobile(mobile.getText().toString());
+            m.setUserName(name.getText().toString());
             Utility.topSnakBar(getContext(),getActivity().getWindow().getDecorView().getRootView(), Constant.upadate);
 
         }

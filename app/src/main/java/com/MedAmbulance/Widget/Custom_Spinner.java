@@ -2,7 +2,6 @@ package com.MedAmbulance.Widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -14,7 +13,9 @@ import android.widget.TextView;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.MedAmbulance.Comman.Utility;
+import com.MedAmbulance.Fragments.RateCardFragment;
 import com.MedAmbulance.R;
+
 
 import java.util.ArrayList;
 
@@ -22,7 +23,10 @@ public class Custom_Spinner extends AppCompatTextView implements View.OnClickLis
 
     private ArrayList<String> options = new ArrayList<>();
     TextView textView;
+    RateCardFragment rateCardFragment;
     String string="";
+    Custom_Spinner custom_spinner;
+    public static String personalTypeValu="";
 
     public Custom_Spinner(Context context) {
         super(context);
@@ -60,9 +64,12 @@ public class Custom_Spinner extends AppCompatTextView implements View.OnClickLis
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 popupWindow.dismiss();
-                Utility.log("selectedValue",""+options.get(position));
+                Utility.log("selectedValue---"+position,"--"+options.get(position));
                 string=options.get(position);
+                custom_spinner.setTag(String.valueOf((position+1)));
+                custom_spinner.setText(options.get(position));
                 textView.setText(string);
+                rateCardFragment.callApi();
 //                setText((Integer) parent.getSelectedItem());
             }
         });
@@ -70,7 +77,7 @@ public class Custom_Spinner extends AppCompatTextView implements View.OnClickLis
 
         // some other visual settings for popup window
         popupWindow.setFocusable(true);
-         popupWindow.setBackgroundDrawable(getResources().getDrawable(R.color.light_gray));
+         popupWindow.setBackgroundDrawable(getResources().getDrawable(R.color.white));
         popupWindow.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
 
         // set the listview as popup content
@@ -86,7 +93,9 @@ public class Custom_Spinner extends AppCompatTextView implements View.OnClickLis
         }
     }
 
-    public void setOptions(ArrayList<String> options) {
+    public void setOptions(ArrayList<String> options, Custom_Spinner textView, RateCardFragment rateCardFragment) {
         this.options = options;
+        this.custom_spinner=textView;
+        this.rateCardFragment=rateCardFragment;
     }
 }

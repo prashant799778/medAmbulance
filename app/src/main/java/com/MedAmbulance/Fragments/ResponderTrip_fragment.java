@@ -61,7 +61,7 @@ public class ResponderTrip_fragment extends Fragment implements MyResult {
         MarrayList= new ArrayList<>();
         myTripAdapter=new ResponderTripAdapter(getContext(),MarrayList);
         mrecyclerView.setAdapter(myTripAdapter);
-        Api_Calling.postMethodCall(getContext(), URLS.MyTrips,getActivity().getWindow().getDecorView().getRootView(),myResult,"Mytrip",MyTripObject());
+        Api_Calling.postMethodCall(getContext(), URLS.Responder_Trip,getActivity().getWindow().getDecorView().getRootView(),myResult,"Mytrip",MyTripObject());
 
         return rootView;
     }
@@ -70,7 +70,7 @@ public class ResponderTrip_fragment extends Fragment implements MyResult {
         JSONObject jsonObject=new JSONObject();
         try {
             jsonObject.put("userId",""+m.getUserId());
-            Log.d("Mytrip", "profileObject: "+jsonObject);
+            Log.d("ResponderTrip", "profileObject: "+jsonObject);
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -38,17 +38,22 @@ public class SupportAdapters extends RecyclerView.Adapter<SupportAdapters.ViewHo
 
         SupportModel currentItem = marrayList.get(position);
        // String userName = currentItem.getUserName();
-        String date = currentItem.getStartTime();
-        String routeID = currentItem.getBookingId();
-        String startAddress = currentItem.getTripFrom();
-        String HospitalAddress = currentItem.getTripTo();
+//        String date = currentItem.getStartTime();
+//        String routeID = currentItem.getBookingId();
+//        String startAddress = currentItem.getTripFrom();
+//        String HospitalAddress = currentItem.getTripTo();
 
 
       //  holder.userName.setText(userName);
-        holder.date.setText(date);
-        holder.booking_id.setText(routeID);
-        holder.startAddress.setText(startAddress);
-        holder.hospital_address.setText(HospitalAddress);
+        if(currentItem.getStartTime()!=null)
+        holder.date.setText(currentItem.getStartTime());
+        if(currentItem.getId()!=null)
+        holder.booking_id.setText(currentItem.getId());
+        if(currentItem.getTripFrom()!=null)
+        holder.startAddress.setText(currentItem.getTripFrom());
+        if(currentItem.getTripTo()!=null)
+            holder.hospital_address.setText(currentItem.getTripTo());
+
     }
 
     @Override

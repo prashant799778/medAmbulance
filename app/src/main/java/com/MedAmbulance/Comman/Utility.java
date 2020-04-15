@@ -10,10 +10,15 @@ import android.view.View;
 import com.MedAmbulance.R;
 import com.MedAmbulance.Widget.Atami_Bold;
 import com.MedAmbulance.Widget.Atami_Regular;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.sun.easysnackbar.EasySnackBar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Utility {
 
@@ -30,6 +35,18 @@ public class Utility {
         }
         return false;
     }
+
+
+
+    public static void setRoundedImage(Context context, CircleImageView circleImageView, String path)
+    {
+//        Toast.makeText(context, "Before", Toast.LENGTH_SHORT).show();
+        Glide.with(context).load(path).
+                apply(RequestOptions.skipMemoryCacheOf(true)).apply(RequestOptions.encodeQualityOf(100))
+                .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE)).into(circleImageView);
+//        Toast.makeText(context, "After", Toast.LENGTH_SHORT).show();
+    }
+
 
     public static String getValueFromJsonObject(JSONObject jsonObject, String key) {
         String s = "";

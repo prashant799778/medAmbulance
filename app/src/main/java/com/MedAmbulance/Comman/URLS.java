@@ -16,6 +16,7 @@ public class URLS {
     public static String USERSIGNUP =BASE_URL+"userSignup";
     public static String VERIFY =BASE_URL+"verifyOtp";
     public static String MyTrips =BASE_URL+"myTrip";
+    public static String Responder_Trip =BASE_URL+"responderTrip";
     public static String YOUR_RIDE =BASE_URL+"myrides";
     public static String userProfile =BASE_URL+"userProfile";
     public static String userUpdateProfile =BASE_URL+"updateuserProfile";
@@ -25,6 +26,9 @@ public class URLS {
     public static String AboutUs =BASE_URL+"allaboutUs";
     public static String AddLicence=BASE_URL+"";
     public static  String responderProfile=BASE_URL+"responderProfile";
+    public static String allcancelquestions=BASE_URL+"allcancelquestions";
     public static String updateresponderProfile=BASE_URL+"updateresponderProfile";
     public static String Support=BASE_URL+"support";
+    public static String getFareManagement=BASE_URL+"getFareManagement";
+    public static String addUserRating=BASE_URL+"addUserRating";
 }

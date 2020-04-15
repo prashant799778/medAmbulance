@@ -62,4 +62,35 @@
             
         </RelativeLayout>
     </fragment>
+    <Button
+        android:id="@+id/arrivedBtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/filedHeight"
+        android:layout_marginLeft="@dimen/leftMergin"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/RightMergin"
+        android:background="@drawable/button_border"
+        android:backgroundTint="@color/red"
+        android:visibility="gone"
+        android:text="@string/Arrived"
+        android:textAllCaps="false"
+        android:textColor="@color/white">
+    </Button>
+    <Button
+        android:id="@+id/end_Ride_Btn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/filedHeight"
+        android:layout_marginLeft="@dimen/leftMergin"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/RightMergin"
+        android:background="@drawable/button_border"
+        android:backgroundTint="@color/black"
+        android:visibility="gone"
+        android:text="@string/End_Ride"
+        android:textAllCaps="false"
+        android:textColor="@color/white">
+    </Button>
+
 </RelativeLayout>

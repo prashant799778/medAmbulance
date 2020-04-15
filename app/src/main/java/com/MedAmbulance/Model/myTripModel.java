@@ -1,15 +1,37 @@
 package com.MedAmbulance.Model;
 
-public class myTripModel {
+import java.io.Serializable;
+
+public class myTripModel implements Serializable {
     String  bookingId;
     String  driverName;
     String  startTime;
     String  status;
+    String distancefromCustomer;
+
+    public String getDistancefromCustomer() {
+        return distancefromCustomer;
+    }
+
+    public void setDistancefromCustomer(String distancefromCustomer) {
+        this.distancefromCustomer = distancefromCustomer;
+    }
+
     String  tripFrom;
     String  tripTo;
     String  userMobile;
     String  userName;
     String finalAmount;
+
+    public String getTotalDistance() {
+        return totalDistance;
+    }
+
+    public void setTotalDistance(String totalDistance) {
+        this.totalDistance = totalDistance;
+    }
+
+    String totalDistance;
 
     public String getFinalAmount() {
         return finalAmount;

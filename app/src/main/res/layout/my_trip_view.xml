@@ -2,13 +2,13 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="70dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:paddingLeft="12.5dp"
         android:paddingRight="15dp"
-        android:layout_height="68.7dp">
+        android:layout_height="match_parent">
 
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -16,7 +16,7 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/circular_layout">
 
         </de.hdodenhof.circleimageview.CircleImageView>

@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
-INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
-INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
-INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-131:12
+INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-131:12
+INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-131:12
+INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-131:12
 MERGED from [androidx.navigation:navigation-ui:2.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\91c4638cc4295b998a60034fcde58944\navigation-ui-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:2:1-25:12
 MERGED from [com.sun.easysnackbar:easysnackbar:1.0.1] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\f629e9e0d22107caebf0d530c0ea7cdd\jetified-easysnackbar-1.0.1\AndroidManifest.xml:2:1-11:12
@@ -13,6 +13,7 @@ MERGED from [com.google.android.material:material:1.1.0-alpha02] C:\Users\fourbr
 MERGED from [com.andrognito.flashbar:flashbar:1.0.3] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\5f65857f9691f5dfa760536fa7e9b711\jetified-flashbar-1.0.3\AndroidManifest.xml:2:1-11:12
 MERGED from [com.github.mohammadatif:Animatoo:master] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\91b4f06bffa9fc781cfad0ed87185833\jetified-Animatoo-master\AndroidManifest.xml:2:1-11:12
 MERGED from [com.crowdfire.cfalertdialog:cfalertdialog:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\fff3c53d89222d4eca753e766ead9c21\jetified-cfalertdialog-1.1.0\AndroidManifest.xml:2:1-17:12
+MERGED from [com.github.whinc:ratingbar:1.1.1] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\650ee23f27bcc94a1de6cd28f694075b\jetified-ratingbar-1.1.1\AndroidManifest.xml:2:1-16:12
 MERGED from [com.google.android.libraries.places:places:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fd634a6846839a4a9aa42adb4e9b339\jetified-places-1.1.0\AndroidManifest.xml:2:1-26:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\f7fa931c10060cb31b4ececcd856b65d\appcompat-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\75fe1a0d0ea641341446dfd6b8974e96\constraintlayout-1.1.3\AndroidManifest.xml:2:1-11:12
@@ -51,7 +52,7 @@ MERGED from [androidx.transition:transition:1.0.0] C:\Users\fourbrick\.gradle\ca
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\7d7fd0d2929b90b96150578fa61b2794\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [io.fotoapparat:fotoapparat:2.7.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\14983eed2515c07f892f617c5ccf6529\jetified-fotoapparat-2.7.0\AndroidManifest.xml:2:1-13:12
 MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a14ae2a393856b1c4222776799827fd2\exifinterface-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.core:core-ktx:1.3.0-alpha02] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\cc8a7f0eafb01fdc2294a8837ce84607\jetified-core-ktx-1.3.0-alpha02\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.core:core-ktx:1.3.0-beta01] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\4f2920078645e82b3fc11f7b0ea4d638\jetified-core-ktx-1.3.0-beta01\AndroidManifest.xml:2:1-9:12
 MERGED from [com.github.bumptech.glide:gifdecoder:4.10.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\201520ec0a185ec8f3b8dab96cf35d1d\jetified-gifdecoder-4.10.0\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\ad12b5d47f95c8d2598703c1b1f7c267\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity:1.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\8024d43f2ec98c58159e4490c7c84830\jetified-activity-1.0.0\AndroidManifest.xml:17:1-24:12
@@ -63,7 +64,7 @@ MERGED from [androidx.customview:customview:1.0.0] C:\Users\fourbrick\.gradle\ca
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\98533a75c963d389d2db7b5a19727bc5\swiperefreshlayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\48d198bece9830d2bf28cd51b05742db\asynclayoutinflater-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-common:2.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\203e7f3aaaa3b1891420853fa6c8484f\navigation-common-2.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.core:core:1.3.0-alpha02] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\dd84d74b717d5e64a2a5f46d0814ca9c\core-1.3.0-alpha02\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.core:core:1.3.0-beta01] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\4351357e4852555581d7e139d20b709f\core-1.3.0-beta01\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\929ec10604c047a76453df3294ada6ae\versionedparcelable-1.1.0\AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\1d3d300991201f0272c309154f6a5e44\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\b483c59108b83b2c001374a9e1131636\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -74,20 +75,20 @@ MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] C:\Users\fourbrick\.gra
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\e2041232485bdf4d2a09c36930218fc5\lifecycle-runtime-2.1.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\0b3ed2b8b9ba103e713cc57e24141ba7\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\80494d026c905f06e4c8b45b3569cb2d\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
-INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
-INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
-INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
+INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-131:12
+INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-131:12
+INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-131:12
 	package
 		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:3:5-31
 		INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml
 		INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-131:12
 		INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-122:12
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:1-131:12
 		INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2:11-69
@@ -136,7 +137,7 @@ ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:2
 	android:name
 		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:20:22-72
 application
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:22:5-120:19
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:22:5-129:19
 MERGED from [com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:16:5-23:19
 MERGED from [com.fxn769:pix:1.4.4] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a57dd7f0f0449f0796a52ac15cad301b\jetified-pix-1.4.4\AndroidManifest.xml:16:5-23:19
 MERGED from [com.github.shivpujan12:LocationPicker:v1.2] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\54856c988599073776d11b7ccecce341\jetified-LocationPicker-v1.2\AndroidManifest.xml:16:5-18:19
@@ -145,6 +146,8 @@ MERGED from [com.google.android.material:material:1.1.0-alpha02] C:\Users\fourbr
 MERGED from [com.google.android.material:material:1.1.0-alpha02] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\fc0b0e953e81b7079b5dc487a2e48a45\material-1.1.0-alpha02\AndroidManifest.xml:22:5-20
 MERGED from [com.crowdfire.cfalertdialog:cfalertdialog:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\fff3c53d89222d4eca753e766ead9c21\jetified-cfalertdialog-1.1.0\AndroidManifest.xml:11:5-15:19
 MERGED from [com.crowdfire.cfalertdialog:cfalertdialog:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\fff3c53d89222d4eca753e766ead9c21\jetified-cfalertdialog-1.1.0\AndroidManifest.xml:11:5-15:19
+MERGED from [com.github.whinc:ratingbar:1.1.1] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\650ee23f27bcc94a1de6cd28f694075b\jetified-ratingbar-1.1.1\AndroidManifest.xml:11:5-14:19
+MERGED from [com.github.whinc:ratingbar:1.1.1] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\650ee23f27bcc94a1de6cd28f694075b\jetified-ratingbar-1.1.1\AndroidManifest.xml:11:5-14:19
 MERGED from [com.google.android.libraries.places:places:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fd634a6846839a4a9aa42adb4e9b339\jetified-places-1.1.0\AndroidManifest.xml:13:5-24:19
 MERGED from [com.google.android.libraries.places:places:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fd634a6846839a4a9aa42adb4e9b339\jetified-places-1.1.0\AndroidManifest.xml:13:5-24:19
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\75fe1a0d0ea641341446dfd6b8974e96\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
@@ -181,14 +184,14 @@ MERGED from [io.fotoapparat:fotoapparat:2.7.0] C:\Users\fourbrick\.gradle\caches
 MERGED from [io.fotoapparat:fotoapparat:2.7.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\14983eed2515c07f892f617c5ccf6529\jetified-fotoapparat-2.7.0\AndroidManifest.xml:11:5-20
 MERGED from [com.github.bumptech.glide:gifdecoder:4.10.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\201520ec0a185ec8f3b8dab96cf35d1d\jetified-gifdecoder-4.10.0\AndroidManifest.xml:9:5-20
 MERGED from [com.github.bumptech.glide:gifdecoder:4.10.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\201520ec0a185ec8f3b8dab96cf35d1d\jetified-gifdecoder-4.10.0\AndroidManifest.xml:9:5-20
-MERGED from [androidx.core:core:1.3.0-alpha02] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\dd84d74b717d5e64a2a5f46d0814ca9c\core-1.3.0-alpha02\AndroidManifest.xml:24:5-89
-MERGED from [androidx.core:core:1.3.0-alpha02] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\dd84d74b717d5e64a2a5f46d0814ca9c\core-1.3.0-alpha02\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.3.0-beta01] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\4351357e4852555581d7e139d20b709f\core-1.3.0-beta01\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.3.0-beta01] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\4351357e4852555581d7e139d20b709f\core-1.3.0-beta01\AndroidManifest.xml:24:5-89
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\929ec10604c047a76453df3294ada6ae\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\929ec10604c047a76453df3294ada6ae\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\87ac5c9302d2cdd805e2f4717a5cf3a7\jetified-lifecycle-process-2.0.0\AndroidManifest.xml:22:5-28:19
 MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\87ac5c9302d2cdd805e2f4717a5cf3a7\jetified-lifecycle-process-2.0.0\AndroidManifest.xml:22:5-28:19
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.3.0-alpha02] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\dd84d74b717d5e64a2a5f46d0814ca9c\core-1.3.0-alpha02\AndroidManifest.xml:24:18-86
+		ADDED from [androidx.core:core:1.3.0-beta01] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\4351357e4852555581d7e139d20b709f\core-1.3.0-beta01\AndroidManifest.xml:24:18-86
 	android:supportsRtl
 		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:28:9-35
 	android:label
@@ -205,168 +208,186 @@ MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\fourbrick\.gra
 		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:29:9-40
 	android:networkSecurityConfig
 		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:26:9-69
+activity#com.MedAmbulance.Activity.End_Ride_Activity
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:30:9-73
+	android:name
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:30:19-61
+activity#com.MedAmbulance.Activity.UserRideDetailsActivity
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:31:9-70
+	android:name
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:31:19-67
+activity#com.MedAmbulance.Activity.DetailsActivity
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:32:9-62
+	android:name
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:32:19-59
 activity#com.MedAmbulance.DriverPhoneLogin
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:30:9-63
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:33:9-54
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:30:19-51
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:33:19-51
 activity#com.MedAmbulance.Activity.UserModuleActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:31:9-65
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:34:9-65
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:31:19-62
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:34:19-62
 activity#com.MedAmbulance.Activity.DestinationActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:32:9-66
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:35:9-66
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:32:19-63
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:35:19-63
 activity#com.MedAmbulance.Activity.AllRequestActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:33:9-65
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:36:9-65
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:33:19-62
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:36:19-62
 meta-data#com.google.android.geo.API_KEY
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:42:9-44:55
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:45:9-47:55
 	android:value
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:44:13-52
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:47:13-52
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:43:13-58
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:46:13-58
 activity#com.MedAmbulance.Activity.DriversMapsActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:46:9-48:67
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:52:9-55:52
+	android:screenOrientation
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:55:13-49
 	android:label
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:48:13-64
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:54:13-64
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:47:13-57
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:53:13-57
 activity#com.MedAmbulance.Activity.DriverMapsActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:49:9-65
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:56:9-65
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:49:19-62
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:56:19-62
 activity#com.MedAmbulance.Activity.MapsActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:50:9-59
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:57:9-59:52
+	android:screenOrientation
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:59:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:50:19-56
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:58:13-50
 activity#com.MedAmbulance.Activity.TLTBaseActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:51:9-62
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:60:9-62
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:51:19-59
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:60:19-59
 activity#com.MedAmbulance.Activity.UserMapActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:52:9-62
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:61:9-62
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:52:19-59
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:61:19-59
 activity#com.MedAmbulance.Activity.TermsConditions
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:53:9-62
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:62:9-62
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:53:19-59
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:62:19-59
 activity#com.MedAmbulance.Activity.UserPhoneLogin
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:54:9-61
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:63:9-61
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:54:19-58
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:63:19-58
 activity#com.MedAmbulance.Activity.ResponderMapsActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:55:9-77
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:64:9-66:52
+	android:screenOrientation
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:66:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:55:19-65
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:65:13-59
 activity#com.MedAmbulance.Activity.MyNewUserActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:56:9-73
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:67:9-64
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:56:19-61
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:67:19-61
 activity#com.MedAmbulance.Activity.BookAmbulance
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:65:9-60
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:76:9-60
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:65:19-57
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:76:19-57
 activity#com.MedAmbulance.Activity.Track_Abulance_Activity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:66:9-68:48
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:77:9-79:48
 	android:theme
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:68:13-45
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:79:13-45
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:67:13-61
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:78:13-61
 activity#com.MedAmbulance.Activity.Current_Location_Activity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:69:9-71:73
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:80:9-82:73
 	android:label
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:71:13-70
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:82:13-70
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:70:13-63
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:81:13-63
 activity#com.MedAmbulance.Activity.Countinue_As_Acrtivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:72:9-74:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:83:9-85:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:74:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:85:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:73:13-60
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:84:13-60
 activity#com.MedAmbulance.Activity.MyProfile
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:75:9-77:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:86:9-88:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:77:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:88:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:76:13-47
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:87:13-47
 activity#com.MedAmbulance.Activity.Ambulance_Registration_Activity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:78:9-80:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:89:9-91:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:80:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:91:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:79:13-69
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:90:13-69
 activity#com.MedAmbulance.Activity.Driver_Personal_Activty
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:81:9-83:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:92:9-94:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:83:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:94:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:82:13-61
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:93:13-61
 activity#com.MedAmbulance.Activity.Driver_Licence_Activity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:84:9-86:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:95:9-97:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:86:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:97:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:85:13-61
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:96:13-61
 activity#com.MedAmbulance.Activity.AboutActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:87:9-89:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:98:9-100:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:89:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:100:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:88:13-51
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:99:13-51
 activity#com.MedAmbulance.Activity.SupportActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:94:9-96:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:104:9-106:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:96:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:106:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:95:13-53
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:105:13-53
 activity#com.MedAmbulance.Activity.Driver_Registration
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:97:9-99:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:107:9-109:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:99:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:109:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:98:13-57
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:108:13-57
 activity#com.MedAmbulance.Activity.Verification_Activity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:100:9-102:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:110:9-112:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:102:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:112:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:101:13-59
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:111:13-59
 activity#com.MedAmbulance.Activity.Login
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:103:9-105:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:113:9-115:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:105:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:115:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:104:13-43
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:114:13-43
 activity#com.MedAmbulance.Activity.DriverMainActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:106:9-108:52
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:116:9-118:52
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:108:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:118:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:107:13-56
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:117:13-56
 activity#com.MedAmbulance.Activity.SplaceActivity
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:109:9-117:20
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:119:9-127:20
 	android:screenOrientation
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:111:13-49
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:121:13-49
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:110:13-52
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:120:13-52
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:112:13-116:29
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:122:13-126:29
 action#android.intent.action.MAIN
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:113:17-69
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:123:17-69
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:113:25-66
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:123:25-66
 category#android.intent.category.LAUNCHER
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:115:17-77
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:125:17-77
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:115:27-74
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:125:27-74
 service#org.eclipse.paho.android.service.MqttService
-ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:119:9-80
+ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:128:9-80
 	android:name
-		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:119:18-77
+		ADDED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml:128:18-77
 uses-sdk
 INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from E:\New_Git_4_03_2020\med_ambulance\app\src\main\AndroidManifest.xml
@@ -389,6 +410,8 @@ MERGED from [com.github.mohammadatif:Animatoo:master] C:\Users\fourbrick\.gradle
 MERGED from [com.github.mohammadatif:Animatoo:master] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\91b4f06bffa9fc781cfad0ed87185833\jetified-Animatoo-master\AndroidManifest.xml:7:5-9:41
 MERGED from [com.crowdfire.cfalertdialog:cfalertdialog:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\fff3c53d89222d4eca753e766ead9c21\jetified-cfalertdialog-1.1.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.crowdfire.cfalertdialog:cfalertdialog:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\fff3c53d89222d4eca753e766ead9c21\jetified-cfalertdialog-1.1.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.whinc:ratingbar:1.1.1] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\650ee23f27bcc94a1de6cd28f694075b\jetified-ratingbar-1.1.1\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.whinc:ratingbar:1.1.1] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\650ee23f27bcc94a1de6cd28f694075b\jetified-ratingbar-1.1.1\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.android.libraries.places:places:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fd634a6846839a4a9aa42adb4e9b339\jetified-places-1.1.0\AndroidManifest.xml:7:5-44
 MERGED from [com.google.android.libraries.places:places:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\6fd634a6846839a4a9aa42adb4e9b339\jetified-places-1.1.0\AndroidManifest.xml:7:5-44
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\f7fa931c10060cb31b4ececcd856b65d\appcompat-1.1.0\AndroidManifest.xml:20:5-22:41
@@ -465,8 +488,8 @@ MERGED from [io.fotoapparat:fotoapparat:2.7.0] C:\Users\fourbrick\.gradle\caches
 MERGED from [io.fotoapparat:fotoapparat:2.7.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\14983eed2515c07f892f617c5ccf6529\jetified-fotoapparat-2.7.0\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a14ae2a393856b1c4222776799827fd2\exifinterface-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\a14ae2a393856b1c4222776799827fd2\exifinterface-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core-ktx:1.3.0-alpha02] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\cc8a7f0eafb01fdc2294a8837ce84607\jetified-core-ktx-1.3.0-alpha02\AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.core:core-ktx:1.3.0-alpha02] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\cc8a7f0eafb01fdc2294a8837ce84607\jetified-core-ktx-1.3.0-alpha02\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.core:core-ktx:1.3.0-beta01] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\4f2920078645e82b3fc11f7b0ea4d638\jetified-core-ktx-1.3.0-beta01\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.core:core-ktx:1.3.0-beta01] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\4f2920078645e82b3fc11f7b0ea4d638\jetified-core-ktx-1.3.0-beta01\AndroidManifest.xml:5:5-7:41
 MERGED from [com.github.bumptech.glide:gifdecoder:4.10.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\201520ec0a185ec8f3b8dab96cf35d1d\jetified-gifdecoder-4.10.0\AndroidManifest.xml:5:5-7:41
 MERGED from [com.github.bumptech.glide:gifdecoder:4.10.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\201520ec0a185ec8f3b8dab96cf35d1d\jetified-gifdecoder-4.10.0\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\ad12b5d47f95c8d2598703c1b1f7c267\viewpager-1.0.0\AndroidManifest.xml:20:5-44
@@ -489,8 +512,8 @@ MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\fo
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\48d198bece9830d2bf28cd51b05742db\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.navigation:navigation-common:2.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\203e7f3aaaa3b1891420853fa6c8484f\navigation-common-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.navigation:navigation-common:2.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\203e7f3aaaa3b1891420853fa6c8484f\navigation-common-2.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.3.0-alpha02] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\dd84d74b717d5e64a2a5f46d0814ca9c\core-1.3.0-alpha02\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.3.0-alpha02] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\dd84d74b717d5e64a2a5f46d0814ca9c\core-1.3.0-alpha02\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.3.0-beta01] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\4351357e4852555581d7e139d20b709f\core-1.3.0-beta01\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.3.0-beta01] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\4351357e4852555581d7e139d20b709f\core-1.3.0-beta01\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\929ec10604c047a76453df3294ada6ae\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\929ec10604c047a76453df3294ada6ae\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\fourbrick\.gradle\caches\transforms-2\files-2.1\1d3d300991201f0272c309154f6a5e44\documentfile-1.0.0\AndroidManifest.xml:20:5-44

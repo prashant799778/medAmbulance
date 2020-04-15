@@ -45,10 +45,13 @@ document  verification.</string>
     <string name="enterLicenceNumber">Enter Licence Number</string>
     <string name="transportModle">Transport Model</string>
     <string name="Ambulance_Category">Ambulance Category</string>
+    <string name="Ambulance_number">Ambulance Number</string>
     <string name="color">Color</string>
     <string name="Ambulance_Details">Ambulance Details</string>
     <string name="Continue_as">Continue as</string>
     <string name="Responder">Responder</string>
+    <string name="Normal">Normal</string>
+    <string name="Govt">Government</string>
     <string name="Ambulance_Type">Ambulance Type</string>
     <string name="Ambulance_Model">Ambulance Model</string>
     <string name="Registration_No">Registration No.</string>
@@ -61,15 +64,18 @@ document  verification.</string>
     <string name="title_activity_current__location_">Map</string>
     <string name="title_activity_booking_">Map</string>
     <string name="pickup">Pickup From</string>
-    <string name="pickup2">Pick Up</string>
+    <string name="pickup2">Start Trip</string>
     <string name="enterPick"> enter pickup location</string>
     <string name="drop">Enter drop location </string>
+    <string name="verifiedText">You have successfully verified your phone number. Please use your phone number to login</string>
     <string name="ALS">ALS</string>
     <string name="BLS">BLS</string>
     <string name="DBT">DBT</string>
     <string name="PVT">PVT</string>
     <string name="AIR">AIR</string>
     <string name="Book">Book Now</string>
+    <string name="Arrived">Arrived</string>
+    <string name="End_Ride">End Ride</string>
     <string name="Book2">Book Your Ride</string>
     <string name="booking">Booking Confirmed</string>
     <string name="id"> Booking ID : </string>
@@ -365,6 +371,7 @@ document  verification.</string>
     <string name="rate">Rate Card</string>
     <string name="selectcatgre">Select Category</string>
     <string name="Totalfare">Total Fare</string>
+    <string name="Booking_Confirmed">Booking Confirmed</string>
     <string name="plainText"> Lorem ipsum, or lipsum
         as it is sometimes known, is dummy text used in laying out print,
         graphic or web designs. The passage is attributed to an unknown
@@ -388,11 +395,27 @@ document  verification.</string>
     <string name="about">About</string>
     <string name="logout">Logout</string>
     <string name="home_second">home</string>
+    <string name="cancelBooking">Cancel Booking ?</string>
     <string name="title_activity_user_main_work">UserMainWorkActivity</string>
     <string name="nodata">No Data Found....!</string>
     <string name="NewRequest">New Request</string>
-    <string name="logout2">You Will be logout from this device  Permanently....!</string>
+    <string name="DontCancel">Don\'t Cancel</string>
+    <string name="CancelRide">Cancel Ride</string>
+    <string name="endrideText">Your Ride is End ,we hope you enjoy this ride</string>
+    <string name="logout2">Do you want to Logout from this device ?</string>
     <string name="logout3">If you want to logout than click Yes otherwise No</string>
-
-
+    <string name="Driver_Dashboard">Driver Dashboard</string>
+    <string name="Responsder_Dashboard">Responder DashBoard</string>
+    <string name="My_Profile">My Profile</string>
+    <string name="MyTrip">My Trips</string>
+    <string name="yourBill">Your Bill</string>
+    <string name="My_Rides">My Rides</string>
+    <string name="FairPrKm">Fair Per/Km</string>
+    <string name="MinimumDistance">Minimum Distance</string>
+    <string name="MinimumFair">Minimum Fair</string>
+    <string name="waitFair">Wait Fair</string>
+    <string name="OnLineSupport">Online Support</string>
+    <string name="Notification">Notification</string>
+    <string name="Hospital">Hospital</string>
+    <string name="Details">Details</string>
 </resources>

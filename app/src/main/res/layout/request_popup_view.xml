@@ -117,7 +117,7 @@
             android:layout_height="wrap_content">
             <com.MedAmbulance.Widget.Atami_Bold
                 android:id="@+id/to_icon"
-                android:text="From : "
+                android:text="To : "
                 android:textSize="13sp"
                 android:layout_weight="0.7"
                 android:layout_width="match_parent"

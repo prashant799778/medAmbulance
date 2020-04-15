@@ -1,6 +1,7 @@
 package com.MedAmbulance.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.MedAmbulance.Activity.DetailsActivity;
 import com.MedAmbulance.Model.myTripModel;
 import com.MedAmbulance.R;
 import com.MedAmbulance.Widget.Atami_Bold;
@@ -35,11 +37,26 @@ public class ResponderTripAdapter extends RecyclerView.Adapter <ResponderTripAda
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-     myTripModel currentItem= marrayList.get(position);
+     final myTripModel currentItem= marrayList.get(position);
+
+
+     if (currentItem.getStartTime()!=null)
      holder.date.setText(currentItem.getStartTime());
+        if (currentItem.getFinalAmount()!=null)
      holder.rate.setText(currentItem.getFinalAmount());
+        if (currentItem.getTripFrom()!=null)
         holder.start_address.setText(currentItem.getTripFrom());
+        if (currentItem.getTripTo()!=null)
         holder.end_address.setText(currentItem.getTripTo());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mcontext, DetailsActivity.class);
+                intent.putExtra("data",currentItem);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mcontext.startActivity(intent);
+            }
+        });
     }
 
     @Override

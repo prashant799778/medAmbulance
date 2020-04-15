@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.MedAmbulance.Widget.Atami_Regular
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:textColor="@color/solid_black"
+        android:id="@+id/text">
+    </com.MedAmbulance.Widget.Atami_Regular>
+
+
+</LinearLayout>

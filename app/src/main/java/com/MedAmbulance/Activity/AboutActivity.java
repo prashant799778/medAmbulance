@@ -16,6 +16,7 @@ import com.MedAmbulance.Comman.URLS;
 import com.MedAmbulance.Comman.Utility;
 import com.MedAmbulance.R;
 import com.MedAmbulance.Widget.Atami_Regular;
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.gson.JsonArray;
 
 import org.json.JSONException;
@@ -32,6 +33,7 @@ public class AboutActivity extends AppCompatActivity implements MyResult {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        Animatoo.animateSlideLeft(AboutActivity.this);
         this.myResult=this;
         progressDialog = new ProgressDialog(AboutActivity.this);
         progressDialog.setMessage("Loading...");
@@ -55,6 +57,7 @@ public class AboutActivity extends AppCompatActivity implements MyResult {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Animatoo.animateSlideRight(AboutActivity.this);
     }
 
     @Override
@@ -77,4 +80,5 @@ public class AboutActivity extends AppCompatActivity implements MyResult {
         }
 
     }
+
 }

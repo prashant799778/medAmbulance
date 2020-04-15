@@ -25,19 +25,20 @@ public class SplaceActivity extends AppCompatActivity {
             public void run() {
                  if(m.isLoggedIn()){
                      Utility.log("TESTTTTTTTTTT","SUerIdType"+m.getUserTypeId());
-                     if(m.getUserTypeId().equalsIgnoreCase("2")){
+//                     if(m.getUserTypeId().equalsIgnoreCase("2")){
                          startActivity(new Intent(SplaceActivity.this,MapsActivity.class));
                          finish();
-                     }else if(m.getUserTypeId().equalsIgnoreCase("3")){
-                         startActivity(new Intent(SplaceActivity.this,DriversMapsActivity.class));
-                         finish();
-                     }else {
-                         startActivity(new Intent(SplaceActivity.this,ResponderMapsActivity.class));
-                         finish();
-                     }
+//                     }
+//                     else if(m.getUserTypeId().equalsIgnoreCase("3")){
+//                         startActivity(new Intent(SplaceActivity.this,DriversMapsActivity.class));
+//                         finish();
+//                     }else {
+//                         startActivity(new Intent(SplaceActivity.this,ResponderMapsActivity.class));
+//                         finish();
+//                     }
                  }else{
                      Utility.log("TESTTTTTTTTTT","SUerIdTypeLoginStatus false");
-                     startActivity(new Intent(SplaceActivity.this,Countinue_As_Acrtivity.class));
+                     startActivity(new Intent(SplaceActivity.this,UserPhoneLogin.class));
                      finish();
                  }
 

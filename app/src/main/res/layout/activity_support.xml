@@ -7,125 +7,137 @@
     android:background="@color/profileback"
     tools:context=".Activity.SupportActivity">
 
-        <LinearLayout
-            android:id="@+id/tool_lin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+   <androidx.core.widget.NestedScrollView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <LinearLayout
+           android:id="@+id/tool_lin"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/tool_rel"
-                android:elevation="5dp"
-                android:layout_width="match_parent"
-                android:background="@color/white"
-                android:layout_height="54dp">
-
-
-                <ImageView
-                    android:id="@+id/move_back"
-                    android:layout_width="15.9dp"
-                    android:layout_height="17dp"
-                    android:src="@drawable/move_back"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginLeft="20dp"/>
-
-                <com.MedAmbulance.Widget.Atami_Regular
-                    android:layout_width="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_height="wrap_content"
-                    android:text="@string/spt"
-                    android:textColor="@color/black2"
-                    android:textSize="18dp"/>
+           <RelativeLayout
+               android:id="@+id/tool_rel"
+               android:elevation="5dp"
+               android:layout_width="match_parent"
+               android:background="@color/white"
+               android:layout_height="54dp">
 
 
+               <ImageView
+                   android:id="@+id/move_back"
+                   android:layout_width="15.9dp"
+                   android:layout_height="17dp"
+                   android:src="@drawable/move_back"
+                   android:layout_marginTop="16dp"
+                   android:layout_marginLeft="20dp"/>
 
-            </RelativeLayout>
-
-            <com.MedAmbulance.Widget.Atami_Regular
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="18dp"
-                android:text="@string/help"/>
-
-            <com.MedAmbulance.Widget.Atami_Bold
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:textSize="18dp"
-                android:visibility="gone"
-                android:layout_marginTop="14dp"
-                android:text="@string/PicAnother"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="18dp"
-                />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1.5dp"
-                android:visibility="gone"
-                android:background="@color/agreed"/>
-
-            <com.MedAmbulance.Widget.Atami_Regular
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:textSize="18dp"
-                android:layout_marginTop="11dp"
-                android:visibility="gone"
-                android:text="@string/help2"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="18dp"
-                />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginRight="16dp"
-                android:visibility="gone"
-                android:layout_marginLeft="18dp"
-                android:background="@drawable/decline_bck"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/union_8"
-                    />
-
-                <EditText
-                    android:id="@+id/destination_location"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#ffffff"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:textColor="#7e7e7f"
-                    android:hint="@string/hint"
-                    android:padding="5dp"
-                    android:layout_marginLeft="11dp"
-                    android:textSize="14dp"
-                    android:layout_marginRight="14dp">
-
-                </EditText>
-
-            </LinearLayout>
-        </LinearLayout>
+               <com.MedAmbulance.Widget.Atami_Regular
+                   android:layout_width="wrap_content"
+                   android:layout_centerInParent="true"
+                   android:layout_height="wrap_content"
+                   android:text="@string/spt"
+                   android:textColor="@color/black2"
+                   android:textSize="18dp"/>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/support_view"
-        android:layout_below="@id/tool_lin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </androidx.recyclerview.widget.RecyclerView>
 
+           </RelativeLayout>
+
+           <com.MedAmbulance.Widget.Atami_Regular
+               android:layout_width="match_parent"
+               android:layout_height="38dp"
+               android:gravity="center_vertical"
+               android:layout_marginLeft="18dp"
+               android:text="@string/help"/>
+
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+                   <androidx.recyclerview.widget.RecyclerView
+                       android:id="@+id/Your_Ride"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
+                   </androidx.recyclerview.widget.RecyclerView>
+                   <androidx.recyclerview.widget.RecyclerView
+                       android:id="@+id/Your_Ride1"
+                       android:layout_below="@+id/Your_Ride"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
+                   </androidx.recyclerview.widget.RecyclerView>
+               </RelativeLayout>
+
+
+           <com.MedAmbulance.Widget.Atami_Bold
+               android:layout_width="match_parent"
+               android:layout_height="50dp"
+               android:textSize="18dp"
+               android:visibility="visible"
+               android:layout_marginTop="14dp"
+               android:text="@string/PicAnother"
+               android:gravity="center_vertical"
+               android:layout_marginLeft="18dp"
+               />
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="1.5dp"
+               android:visibility="visible"
+               android:background="@color/agreed"/>
+
+           <com.MedAmbulance.Widget.Atami_Regular
+               android:layout_width="match_parent"
+               android:layout_height="50dp"
+               android:textSize="18dp"
+               android:layout_marginTop="11dp"
+               android:visibility="visible"
+               android:text="@string/help2"
+               android:gravity="center_vertical"
+               android:layout_marginLeft="18dp"
+               />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="40dp"
+               android:layout_marginRight="16dp"
+               android:visibility="visible"
+               android:layout_marginLeft="18dp"
+               android:background="@drawable/decline_bck"
+               android:gravity="center_vertical"
+               android:orientation="horizontal">
+
+               <ImageView
+                   android:layout_width="18dp"
+                   android:layout_height="18dp"
+                   android:layout_marginLeft="10dp"
+                   android:src="@drawable/union_8"
+                   />
+
+               <EditText
+                   android:id="@+id/destination_location"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:background="#ffffff"
+                   android:ems="10"
+                   android:inputType="textPersonName"
+                   android:textColor="#7e7e7f"
+                   android:hint="@string/hint"
+                   android:padding="5dp"
+                   android:layout_marginLeft="11dp"
+                   android:textSize="14dp"
+                   android:layout_marginRight="14dp">
+
+               </EditText>
+
+           </LinearLayout>
+       </LinearLayout>
+   </androidx.core.widget.NestedScrollView>
     <RelativeLayout
         android:id="@+id/no_data"
         android:layout_width="match_parent"
+       android:layout_centerInParent="true"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:layout_centerInParent="true">
-
+        >
         <com.MedAmbulance.Widget.Atami_Bold
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

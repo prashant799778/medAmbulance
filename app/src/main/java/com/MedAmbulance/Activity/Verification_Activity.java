@@ -145,14 +145,17 @@ public class Verification_Activity extends AppCompatActivity implements MyResult
 //                startActivity(new Intent(Verification_Activity.this, DriversMapsActivity.class));
 
                 Utility.log("TESTTTTTTTTTT","SUerIdType In Verficaion"+AppUtil.getDatafromJSonObject(result,"userTypeId"));
-                if(AppUtil.getDatafromJSonObject(result,"userTypeId").equalsIgnoreCase("2"))
-                {
+//                if(AppUtil.getDatafromJSonObject(result,"userTypeId").equalsIgnoreCase("2"))
+//                {
                     startActivity(new Intent(Verification_Activity.this, MapsActivity.class));
-                }else if(AppUtil.getDatafromJSonObject(result,"userTypeId").equalsIgnoreCase("3")){
-                    startActivity(new Intent(Verification_Activity.this, DriversMapsActivity.class));
-                }else if(AppUtil.getDatafromJSonObject(result,"userTypeId").equalsIgnoreCase("4")){
-                    startActivity(new Intent(Verification_Activity.this, ResponderMapsActivity.class));
-                }
+                    finish();
+//                }else if(AppUtil.getDatafromJSonObject(result,"userTypeId").equalsIgnoreCase("3")){
+//                    startActivity(new Intent(Verification_Activity.this, DriversMapsActivity.class));
+//                    finish();
+//                }else if(AppUtil.getDatafromJSonObject(result,"userTypeId").equalsIgnoreCase("4")){
+//                    startActivity(new Intent(Verification_Activity.this, ResponderMapsActivity.class));
+//                    finish();
+//                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }

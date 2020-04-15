@@ -258,6 +258,8 @@
     <color name="amdp_red_focused">@color/amdp_accent_color_dark</color>
     <color name="amdp_white">#ffffff</color>
     <color name="amdp_white_smoke">#e3e3e3</color>
+    <color name="androidx_core_ripple_material_light">#1f000000</color>
+    <color name="androidx_core_secondary_text_default_material_light">#8a000000</color>
     <color name="background_floating_material_dark">@color/material_grey_800</color>
     <color name="background_floating_material_light">@android:color/white</color>
     <color name="background_material_dark">@color/material_grey_850</color>
@@ -1299,39 +1301,59 @@
     <string name="Ambulance_Image">Ambulance Image</string>
     <string name="Ambulance_Model">Ambulance Model</string>
     <string name="Ambulance_Type">Ambulance Type</string>
+    <string name="Ambulance_number">Ambulance Number</string>
+    <string name="Arrived">Arrived</string>
     <string name="BLS">BLS</string>
     <string name="Book">Book Now</string>
     <string name="Book2">Book Your Ride</string>
+    <string name="Booking_Confirmed">Booking Confirmed</string>
     <string name="CONTINUE">CONTINUE</string>
+    <string name="CancelRide">Cancel Ride</string>
     <string name="Continue_as">Continue as</string>
     <string name="DBT">DBT</string>
     <string name="Decline"> Decline </string>
+    <string name="Details">Details</string>
     <string name="Didntgetacode">Didn\'t get a code ? </string>
     <string name="Distance">Distance</string>
     <string name="Distance2">Distance from Customer</string>
     <string name="Done">Done</string>
+    <string name="DontCancel">Don\'t Cancel</string>
     <string name="DricerLicenceNumber">Driver Licence Number</string>
     <string name="Driver">Driver</string>
     <string name="DriverLicence">Driver Licence</string>
     <string name="DriverRegistration">Driver Registration</string>
+    <string name="Driver_Dashboard">Driver Dashboard</string>
+    <string name="End_Ride">End Ride</string>
     <string name="Enterotp2">Enter 4 digit number that was sent to your email ID</string>
     <string name="Estimate">Estimate Price</string>
     <string name="Estimate2">Estimated Time</string>
     <string name="FIND">Find Rider</string>
+    <string name="FairPrKm">Fair Per/Km</string>
     <string name="Front">Upload Front Image</string>
     <string name="FuelType">Fuel Type</string>
     <string name="GPSAlertDialogMessage">Please ensure your location is enabled !</string>
+    <string name="Govt">Government</string>
+    <string name="Hospital">Hospital</string>
     <string name="Login">Login</string>
     <string name="LoginNow">Login Now</string>
     <string name="MAP_API_KEY">AIzaSyBg_Wqi5yW1c7-X4cZ3KQj74XWw3ddsI_c</string>
     <string name="MAP_SERVER_API_KEY">AIzaSyCBgliV5FRN8v8yNts926pdu0t4HsWC51U</string>
+    <string name="MinimumDistance">Minimum Distance</string>
+    <string name="MinimumFair">Minimum Fair</string>
+    <string name="MyTrip">My Trips</string>
+    <string name="My_Profile">My Profile</string>
+    <string name="My_Rides">My Rides</string>
     <string name="NewRequest">New Request</string>
+    <string name="Normal">Normal</string>
+    <string name="Notification">Notification</string>
+    <string name="OnLineSupport">Online Support</string>
     <string name="PVT">PVT</string>
     <string name="PersonalId">Personal ID Card</string>
     <string name="PicAnother">PICK ANOTHER BOOKING</string>
     <string name="Registration_No">Registration No.</string>
     <string name="Request">New Request</string>
     <string name="Responder">Responder</string>
+    <string name="Responsder_Dashboard">Responder DashBoard</string>
     <string name="Totalfare">Total Fare</string>
     <string name="TrackAmbulance">Track Ambulance</string>
     <string name="TransportType">Transport Type</string>
@@ -1429,6 +1451,7 @@
     <string name="btn_submit">Submit</string>
     <string name="calling_soon">We are calling you soon..</string>
     <string name="cancel">cancel</string>
+    <string name="cancelBooking">Cancel Booking ?</string>
     <string name="cancle">Cancle</string>
     <string name="cannot_click_image_pix">Can not add more than %s images</string>
     <string name="character_counter_content_description">Characters entered %1$d of %2$d</string>
@@ -1481,6 +1504,7 @@ document  verification.</string>
     <string name="email_verification">A verification link will be sent to your email please verify your email and appear better verified in tribe network</string>
     <string name="encrypted_message">Contacts are encrypted and cant be used for any other purpose including promotions or messaging.</string>
     <string name="end">End Ride</string>
+    <string name="endrideText">Your Ride is End ,we hope you enjoy this ride</string>
     <string name="enrich_profile">Enrich your Profile</string>
     <string name="enter">ENTER OTP</string>
     <string name="enterLicenceNumber">Enter Licence Number</string>
@@ -1623,7 +1647,7 @@ document  verification.</string>
     <string name="location_text">Lets give rest to your finger !</string>
     <string name="login_signup">Log In or Sign Up using</string>
     <string name="logout">Logout</string>
-    <string name="logout2">You Will be logout from this device  Permanently....!</string>
+    <string name="logout2">Do you want to Logout from this device ?</string>
     <string name="logout3">If you want to logout than click Yes otherwise No</string>
     <string name="mandatory">mandatory</string>
     <string name="manufacture_Date">Manufacture Date</string>
@@ -1669,7 +1693,7 @@ document  verification.</string>
     <string name="personalIdNumber">Personal ID Number</string>
     <string name="phone">+91 8039392312</string>
     <string name="pickup">Pickup From</string>
-    <string name="pickup2">Pick Up</string>
+    <string name="pickup2">Start Trip</string>
     <string name="pix_last_month">Last Month</string>
     <string name="pix_last_week">Last Week</string>
     <string name="pix_ok">OK</string>
@@ -1761,17 +1785,20 @@ document  verification.</string>
     <string name="upload_photo_id">Upload Photo Id</string>
     <string name="user">User</string>
     <string name="userName">Username</string>
+    <string name="verifiedText">You have successfully verified your phone number. Please use your phone number to login</string>
     <string name="verify">Verify</string>
     <string name="verifyText">Please check your message
 and enter the verification code we just sent you.
 +91</string>
     <string name="verify_identity">Verify Identity</string>
     <string name="visible_to_you">Visible only to you</string>
+    <string name="waitFair">Wait Fair</string>
     <string name="welcome">Welcome !!</string>
     <string name="workplace">Work Place</string>
     <string name="workplace_msg">Address where people can come to avail your service(s)</string>
     <string name="yes">Yes</string>
     <string name="you_are_in">Yeah! You are in..</string>
+    <string name="yourBill">Your Bill</string>
     <string name="your_ride">Your Rides</string>
     <string name="zip_code">Postal/Zip code</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
@@ -6473,6 +6500,7 @@ and enter the verification code we just sent you.
         <attr format="reference|color" name="connectingLineColor"/>
         <attr format="dimension" name="pinRadius"/>
     </declare-styleable>
+    <declare-styleable name="RatingBar"><attr format="integer" name="rb_max_count"/><attr format="integer" name="rb_count"/><attr format="reference" name="rb_fill"/><attr format="reference" name="rb_empty"/><attr format="dimension" name="rb_space"/><attr format="boolean" name="rb_click_rating"/><attr format="boolean" name="rb_touch_rating"/></declare-styleable>
     <declare-styleable name="RecycleListView">
         <!-- Bottom padding to use when no buttons are present. -->
         <attr format="dimension" name="paddingBottomNoButtons"/>

@@ -33,6 +33,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -107,6 +108,7 @@ public class MapsActivity extends FragmentActivity implements  MyResult {
     int flag = 0;
     boolean isSourceSet = false, tripStarted = false;
     ListView listView;
+    int counter=0;
 
     Atami_Regular header, user_phone_no;
     public Atami_Bold user_name;
@@ -176,7 +178,7 @@ public class MapsActivity extends FragmentActivity implements  MyResult {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.map, bookmyridefragment).commit();
-        header.setText("Book Your Rides");
+        header.setText("Dashboard");
 
 
 
@@ -248,7 +250,6 @@ public class MapsActivity extends FragmentActivity implements  MyResult {
                 drawerLayout.closeDrawers();
             }
         });
-
         btnBookNow_layout = (LinearLayout) findViewById(R.id.btnBookNow_layout);
         btnBookNow = (Button) findViewById(R.id.btnBookNow);
         btnBookNow.setVisibility(View.GONE);
@@ -307,23 +308,6 @@ public class MapsActivity extends FragmentActivity implements  MyResult {
 
     }
 
-
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Animatoo.animateSlideRight(MapsActivity.this);
-        if(bookmyridefragment.isVisible() && bookmyridefragment!=null)
-        {
-            Utility.log("ffffffffffffffffff","ffffffffffffffffffffff");
-           finishAffinity();
-        }else {
-            Utility.log("EEEEEEEEEEEEEEEEEEEEE","EEEEEEEEEEEEEEEEEEEEE");
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.map, bookmyridefragment).commit();
-            header.setText("Book Your Rides");
-        }
-    }
     private class DrawerItemClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -342,13 +326,13 @@ public class MapsActivity extends FragmentActivity implements  MyResult {
             case 0:
                 if(! (bookmyridefragment!=null && bookmyridefragment.isVisible()))
                 fragment = bookmyridefragment;
-                header.setText("Book Your Ride");
+                header.setText("Dashboard");
                 drawerLayout.closeDrawers();
                 break;
 
             case 1:
                 fragment = new YourRidesFragment();
-                header.setText("Your Rides");
+                header.setText("My Rides");
                 drawerLayout.closeDrawers();
                 break;
 
@@ -383,7 +367,7 @@ public class MapsActivity extends FragmentActivity implements  MyResult {
                         m.setLoggedIn(false);
                         m.clearData();
                         dialog.dismiss();
-                        startActivity(new Intent(MapsActivity.this,Countinue_As_Acrtivity.class));
+                        startActivity(new Intent(MapsActivity.this,UserPhoneLogin.class));
                         finish();
                     }
                 });
@@ -408,10 +392,39 @@ public class MapsActivity extends FragmentActivity implements  MyResult {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+//        myprofile_fragment.setImage(requestCode,resultCode,data);
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
-        user_phone_no.setText(m.getMobile());
-        user_name.setText(m.getname());
 
     }
+
+    @Override
+    public void onBackPressed() {
+        if(drawerLayout!=null)
+        drawerLayout.closeDrawers();
+        if(! (bookmyridefragment!=null && bookmyridefragment.isVisible())){
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            counter=0;
+            Utility.log("TESTTTT","ifCondition");
+            fragmentManager.beginTransaction().replace(R.id.map, bookmyridefragment).commit();
+            header.setText("Book Your Ride");}else {
+            counter++;
+            Utility.log("TESTTTT","ElseCondition");
+            if(counter==2)
+//                super.onBackPressed();
+//                System.exit(0);
+                finishAffinity();
+            if(counter==1)
+                Toast.makeText(this, "Tap again to exit", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+
 }

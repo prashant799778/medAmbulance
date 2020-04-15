@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class Api_Calling {
@@ -144,7 +145,7 @@ public class Api_Calling {
         }
     }
 
-    public static void multiPartCall(final Context context, final View view, String URL, final JSONObject jsonObject, final MyResult onResult, final String name) {
+    public static void multiPartCall(final Context context, final View view, String URL, final JSONObject jsonObject, final OnSaveProfileResult onResult, final String name,ArrayList<String>path) {
         if (!Utility.isNetworkConnected(context)) {
             Utility.topSnakBar(context, view, Constant.NO_INTERNET);
         } else {
@@ -155,8 +156,8 @@ public class Api_Calling {
                     try {
                         JSONObject jsonObject1=new JSONObject(response);
                         if(Boolean.parseBoolean(jsonObject1.getString("status"))){
-                            onResult.onResult(jsonObject1,true);}else {
-                            onResult.onResult(null,false);
+                            onResult.saveButtonResult(jsonObject1,true);}else {
+                            onResult.saveButtonResult(null,false);
                             Utility.topSnakBar(context,view, jsonObject1.getString("message"));
                         }
                     } catch (JSONException e) {
@@ -170,7 +171,8 @@ public class Api_Calling {
                 }
             });
             simpleMultiPartRequest.addStringParam("data",""+jsonObject.toString());
-            simpleMultiPartRequest.addStringParam("postImage","");
+            if(path!=null && path.size()>0)
+            simpleMultiPartRequest.addStringParam("postImage",""+new File(path.get(0)));
             try {
                 Utility.log("FinalData",""+simpleMultiPartRequest.getBody());
             } catch (AuthFailureError authFailureError) {

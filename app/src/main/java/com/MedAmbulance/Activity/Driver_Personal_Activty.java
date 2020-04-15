@@ -68,7 +68,7 @@ public class Driver_Personal_Activty extends AppCompatActivity implements View.O
         idList.add("Aadhar Card");
         idList.add("Pen Card");
         idList.add("Driving Licence");
-        idType.setOptions(idList);
+//        idType.setOptions(idList);
 //        idType.setCompoundDrawablePadding(140);
 
 

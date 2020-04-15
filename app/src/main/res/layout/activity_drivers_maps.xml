@@ -591,6 +591,7 @@
             android:id="@+id/top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="false"
             android:layout_marginTop="43dp"
             android:paddingBottom="10dp">
 
@@ -605,6 +606,7 @@
                     android:id="@+id/profile"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
+                    android:clickable="false"
                     android:background="@drawable/circular_layout"
                     android:padding="5dp">
 
@@ -621,6 +623,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/profile"
+                        android:id="@+id/name"
                         android:textColor="@color/black"
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -629,6 +632,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/phone"
+                        android:id="@id/mobile"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 

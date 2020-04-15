@@ -134,8 +134,6 @@ public class ResponderProfile_Fragment extends Fragment implements MyResult, OnS
         }
 
     }
-
-
     @Override
     public void saveButtonResult(JSONObject object, Boolean status) {
         Utility.log("OnResultSave",""+object);
@@ -143,6 +141,8 @@ public class ResponderProfile_Fragment extends Fragment implements MyResult, OnS
             progressDialog.dismiss();
         if (object!=null && status){
           //  Utility.topSnakBar(getContext(),view,"Your profile has been updated");
+            m.setMobile(mobile.getText().toString());
+            m.setUserName(name.getText().toString());
             Utility.topSnakBar(getContext(),getActivity().getWindow().getDecorView().getRootView(), Constant.upadate);
 
         }

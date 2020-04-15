@@ -637,6 +637,13 @@ attr rangeBar
 attr ratingBarStyle
 attr ratingBarStyleIndicator
 attr ratingBarStyleSmall
+attr rb_click_rating
+attr rb_count
+attr rb_empty
+attr rb_fill
+attr rb_max_count
+attr rb_space
+attr rb_touch_rating
 attr reverseLayout
 attr rippleColor
 attr riv_border_color
@@ -919,6 +926,8 @@ color amdp_red
 color amdp_red_focused
 color amdp_white
 color amdp_white_smoke
+color androidx_core_ripple_material_light
+color androidx_core_secondary_text_default_material_light
 color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
@@ -1985,6 +1994,8 @@ drawable avd_show_password
 drawable below_shadow
 drawable bg_dark
 drawable bg_search_edittext
+drawable boarder1
+drawable boarder_imageview
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -1993,6 +2004,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable btnbg
 drawable bubble
 drawable button_border
 drawable cab
@@ -2048,7 +2060,9 @@ drawable edit_layout
 drawable edit_line_bck
 drawable edit_text_border
 drawable electronics
+drawable empty
 drawable fb_button_background_selector
+drawable fill
 drawable focus_inner
 drawable focus_outer
 drawable googleg_disabled_color_18
@@ -2061,10 +2075,12 @@ drawable ic_ambulance_1
 drawable ic_ambulance_2
 drawable ic_ambulance_3
 drawable ic_ambulance_5
+drawable ic_ambulance_govt
 drawable ic_arrow_back_black_24dp
 drawable ic_arrow_up
 drawable ic_arrows
 drawable ic_bell
+drawable ic_car_1
 drawable ic_check_black_24dp
 drawable ic_check_box
 drawable ic_directions_blue_24dp
@@ -2074,6 +2090,7 @@ drawable ic_flash_auto_black_24dp
 drawable ic_flash_off_black_24dp
 drawable ic_flash_on_black_24dp
 drawable ic_google_maps
+drawable ic_group_538
 drawable ic_home
 drawable ic_hospital
 drawable ic_info
@@ -2092,9 +2109,11 @@ drawable ic_my_location_black_24dp
 drawable ic_photo_camera
 drawable ic_place_red_800_24dp
 drawable ic_profile
+drawable ic_responder
 drawable ic_search
 drawable ic_search_black_24dp
 drawable ic_unfold_more_black_24dp
+drawable list_selector
 drawable logo_white
 drawable logout
 drawable main_image
@@ -2174,15 +2193,22 @@ drawable white_arrow
 drawable white_rounded_corner
 drawable your_ride
 font ab
+id AIR
+id ALS
 id ALT
+id BLS
 id B_image
 id CTRL
+id DBT
 id FUNCTION
+id Govt
 id META
+id PVT
 id SHIFT
 id SYM
 id SignTextbutton
 id Your_Ride
+id Your_Ride1
 id accept_decline_layout
 id accept_liner
 id accessibility_action_clickable_span
@@ -2258,6 +2284,7 @@ id always
 id amb
 id ambu_type
 id ambulance
+id ambulanceCategory
 id ambulanceRegistration
 id amdp_animator
 id amdp_cancel
@@ -2275,6 +2302,7 @@ id amdp_month_text_view
 id amdp_ok
 id anchored
 id appbar
+id arrivedBtn
 id arrow1
 id arrow2
 id arrow3
@@ -2288,8 +2316,11 @@ id beginning
 id bell_tool
 id bevel
 id blocking
+id bnuttonlayout
+id bokingid
 id book_frag
 id book_now
+id booking_con
 id booking_details
 id booking_id
 id bottom
@@ -2298,6 +2329,7 @@ id bottom_sheet
 id bottom_sheet_heading_txt
 id bottom_sheet_left_arrow
 id bottom_sheet_right_arrow
+id bottomlayout
 id btnAddressPicker
 id btnBookNow
 id btnBookNow_layout
@@ -2305,6 +2337,7 @@ id btnClose
 id btnEndRide
 id btnSave
 id btnStartRide
+id btnText
 id butt
 id buttonOk
 id buttonPanel
@@ -2348,6 +2381,7 @@ id clip_vertical
 id cnfirm
 id collapseActionView
 id collapsed
+id conf_icon
 id container
 id content
 id contentPanel
@@ -2377,6 +2411,8 @@ id dimensions
 id direct
 id direction_tool
 id disableHome
+id distance
+id distance_from_customer
 id div_mobile
 id div_mobile_edt
 id done
@@ -2390,6 +2426,7 @@ id driver_list_view
 id driver_map_main
 id driver_maps_main
 id driver_name
+id drivername
 id edit
 id edit2
 id edit_query
@@ -2398,11 +2435,16 @@ id emai_update
 id emai_update_div
 id email
 id end
+id endRide
+id end_Ride_Btn
+id end_address
 id end_padder
 id end_trip
 id enterAlways
 id enterAlwaysCollapsed
 id enter_otp_to_start
+id enterlayout
+id estimatePrice
 id etZipCode
 id et_otp
 id exitUntilCollapsed
@@ -2458,6 +2500,7 @@ id hidden
 id home
 id homeAsUp
 id homeMapFrame
+id hospital
 id hospital_address
 id hybrid
 id icon
@@ -2497,6 +2540,7 @@ id line5
 id linearLayout
 id linearLayout1
 id linearLayout2
+id list
 id listMode
 id listPlaces
 id list_image
@@ -2527,6 +2571,8 @@ id mgs2
 id mgs3
 id middle
 id mini
+id minimumDistance
+id minimumfair
 id mirror
 id miter
 id mobile
@@ -2579,6 +2625,7 @@ id password_update_div
 id percent
 id personalId
 id phone_continue
+id pickup
 id pin
 id place_autocomplete_clear_button
 id place_autocomplete_powered_by_google
@@ -2607,6 +2654,7 @@ id places_autocomplete_search_input
 id places_autocomplete_separator
 id places_autocomplete_try_again
 id preview
+id prkm
 id profile
 id progress_circular
 id progress_horizontal
@@ -2614,6 +2662,7 @@ id r_date
 id radio
 id rangebar1
 id rate
+id rating
 id rc_h
 id rc_view
 id recyclerView
@@ -2694,10 +2743,10 @@ id stretch
 id stroke
 id submenuarrow
 id submit_area
-id support_view
 id swipeRefresh
 id switchToDriverMode
 id switch_online
+id t1
 id t_cnfirm
 id t_email
 id t_mobile
@@ -2752,6 +2801,7 @@ id top
 id topPanel
 id topbar
 id touch_outside
+id track
 id track_ambu_btt
 id transition_current_scene
 id transition_layout_save
@@ -2794,15 +2844,18 @@ id user_pic
 id user_pic_name
 id user_profile_pic
 id username
+id value
 id view_offset_helper
 id viewpager
 id visible
 id w
+id waitfair
 id wide
 id withText
 id wrap
 id wrap_content
 id yes
+id yestext
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
 integer app_bar_elevation_anim_duration
@@ -2872,6 +2925,7 @@ layout activity_ambulance__registration_
 layout activity_countinue__as__acrtivity
 layout activity_current__location_
 layout activity_destination
+layout activity_details
 layout activity_driver__licence_
 layout activity_driver__personal__activty
 layout activity_driver__registration
@@ -2879,6 +2933,7 @@ layout activity_driver_main
 layout activity_driver_maps
 layout activity_driver_phone_login
 layout activity_drivers_maps
+layout activity_end__ride_
 layout activity_location_picker
 layout activity_login
 layout activity_main
@@ -2899,6 +2954,7 @@ layout activity_user_main_work
 layout activity_user_map
 layout activity_user_module
 layout activity_user_phone_login
+layout activity_user_ride_details
 layout activity_verification_
 layout activity_your_ride
 layout amdp_date_picker_dialog
@@ -2913,6 +2969,7 @@ layout book_rides_fragment
 layout botom_sheet_view
 layout bottom_sheet_fragment
 layout cab_type_item
+layout cancelbookinglayout
 layout card_row
 layout cfalert_layout
 layout cfdialog_imageview_header
@@ -2941,12 +2998,14 @@ layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout docoments_uploaded_dialog
 layout drawer_list_view
+layout driver_arrived_popup
 layout driver_pickup_dialog
 layout driver_profile_fragment
 layout driver_request_view
 layout end_ride2_dialog
 layout end_ride_dialog
 layout enter_otp_dialog
+layout fake_
 layout flash_bar_view
 layout frag_book_your_ride
 layout frag_ratecard
@@ -2965,6 +3024,7 @@ layout fragment_your_rides
 layout header_row
 layout info_window_layout
 layout inital_image
+layout layout_booking_confirm
 layout layout_custom
 layout layout_custom_snack_bar
 layout list_item_your_ride
@@ -2976,10 +3036,12 @@ layout material_alert_dialog_title
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout my_profile_fragment
+layout my_ride_layout
 layout my_trip_fragment
 layout my_trip_view
 layout mynewuseractivity
 layout nav_header_user_main_work
+layout new_end_ride_popup
 layout notification_action
 layout notification_action_tombstone
 layout notification_fragment
@@ -3016,6 +3078,7 @@ layout responder_trip_item_view
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
+layout singlelayout
 layout spinner_layout
 layout support__us_fragment
 layout support_item_view
@@ -3042,39 +3105,59 @@ string Ambulance_Details
 string Ambulance_Image
 string Ambulance_Model
 string Ambulance_Type
+string Ambulance_number
+string Arrived
 string BLS
 string Book
 string Book2
+string Booking_Confirmed
 string CONTINUE
+string CancelRide
 string Continue_as
 string DBT
 string Decline
+string Details
 string Didntgetacode
 string Distance
 string Distance2
 string Done
+string DontCancel
 string DricerLicenceNumber
 string Driver
 string DriverLicence
 string DriverRegistration
+string Driver_Dashboard
+string End_Ride
 string Enterotp2
 string Estimate
 string Estimate2
 string FIND
+string FairPrKm
 string Front
 string FuelType
 string GPSAlertDialogMessage
+string Govt
+string Hospital
 string Login
 string LoginNow
 string MAP_API_KEY
 string MAP_SERVER_API_KEY
+string MinimumDistance
+string MinimumFair
+string MyTrip
+string My_Profile
+string My_Rides
 string NewRequest
+string Normal
+string Notification
+string OnLineSupport
 string PVT
 string PersonalId
 string PicAnother
 string Registration_No
 string Request
 string Responder
+string Responsder_Dashboard
 string Totalfare
 string TrackAmbulance
 string TransportType
@@ -3172,6 +3255,7 @@ string btn_save
 string btn_submit
 string calling_soon
 string cancel
+string cancelBooking
 string cancle
 string cannot_click_image_pix
 string character_counter_content_description
@@ -3220,6 +3304,7 @@ string email_option
 string email_verification
 string encrypted_message
 string end
+string endrideText
 string enrich_profile
 string enter
 string enterLicenceNumber
@@ -3408,15 +3493,18 @@ string update_now
 string upload_photo_id
 string user
 string userName
+string verifiedText
 string verify
 string verifyText
 string verify_identity
 string visible_to_you
+string waitFair
 string welcome
 string workplace
 string workplace_msg
 string yes
 string you_are_in
+string yourBill
 string your_ride
 string zip_code
 style AlertDialog_AppCompat
@@ -4100,6 +4188,7 @@ styleable PopupWindow android_popupBackground android_popupAnimationStyle overla
 styleable PopupWindowBackgroundState state_above_anchor
 styleable ProgressWheel matProg_barColor matProg_barSpinCycleTime matProg_barWidth matProg_circleRadius matProg_fillRadius matProg_linearProgress matProg_progressIndeterminate matProg_rimColor matProg_rimWidth matProg_spinSpeed
 styleable RangeBar barColor barPaddingBottom barWeight connectingLineColor connectingLineWeight pinColor pinPadding pinRadius rangeBar selectorColor selectorSize textColor tickColor tickEnd tickHeight tickInterval tickStart
+styleable RatingBar rb_click_rating rb_count rb_empty rb_fill rb_max_count rb_space rb_touch_rating
 styleable RecycleListView paddingBottomNoButtons paddingTopNoTitle
 styleable RecyclerView android_orientation android_descendantFocusability fastScrollEnabled fastScrollHorizontalThumbDrawable fastScrollHorizontalTrackDrawable fastScrollVerticalThumbDrawable fastScrollVerticalTrackDrawable layoutManager reverseLayout spanCount stackFromEnd
 styleable RoundedImageView android_scaleType riv_border_color riv_border_width riv_corner_radius riv_corner_radius_bottom_left riv_corner_radius_bottom_right riv_corner_radius_top_left riv_corner_radius_top_right riv_mutate_background riv_oval riv_tile_mode riv_tile_mode_x riv_tile_mode_y

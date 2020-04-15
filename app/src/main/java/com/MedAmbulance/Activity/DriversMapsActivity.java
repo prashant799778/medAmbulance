@@ -33,9 +33,11 @@ import com.MedAmbulance.Fragments.DriverProfile_Fragment;
 import com.MedAmbulance.Fragments.MyTrip_fragment;
 import com.MedAmbulance.Fragments.Myprofile_Fragment;
 import com.MedAmbulance.Fragments.Notifucation_fragment;
+import com.MedAmbulance.Widget.Atami_Bold;
 import com.MedAmbulance.Widget.Atami_Regular;
 import com.MedAmbulance.cognalys.GPSTracker;
 import com.MedAmbulance.util.DirectionsJSONParser;
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.crowdfire.cfalertdialog.CFAlertDialog;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -137,6 +139,10 @@ public class DriversMapsActivity extends FragmentActivity implements OnMapReadyC
     Dialog dialog;
     private boolean isBook;
     Handler handler;
+    int counter=0;
+    Atami_Regular farg_name,mobile;
+    HomeFragment homeFragment;
+    Atami_Bold name;
     int index=0;
     int next=0;
     boolean isMarkerRotating;
@@ -255,20 +261,27 @@ public class DriversMapsActivity extends FragmentActivity implements OnMapReadyC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drivers_maps);
+        Animatoo.animateSlideLeft(DriversMapsActivity.this);
 //bottomsheet
         mBottomSheet = findViewById(R.id.bottom_sheet);
 
         // find arrows
         mLeftArrow = findViewById(R.id.bottom_sheet_left_arrow);
         mRightArrow = findViewById(R.id.bottom_sheet_right_arrow);
+        name=findViewById(R.id.name);
+        mobile=findViewById(R.id.mobile);
 
 ///////////////////////////////////////////////////////////////////////////////DrawerLayout/////////////////////////////////////////////////////////
         listView = findViewById(R.id.driver_list_view);
+        farg_name=findViewById(R.id.farg_name);
         openDrawer=findViewById(R.id.openDrawer);
-
+        homeFragment=new HomeFragment();
         openDrawer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Utility.log("Name","---"+sharedPreferences.getUserName()+"---Mobile---"+sharedPreferences.getMobile());
+                name.setText(sharedPreferences.getUserName());
+                mobile.setText(sharedPreferences.getMobile());
                 drawerLayout = findViewById(R.id.driver_maps_main);
                 // If navigation drawer is not open yet, open it else close it.
                 drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -315,8 +328,9 @@ public class DriversMapsActivity extends FragmentActivity implements OnMapReadyC
 
         ///////////// end
 
-
-
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.driver_map_main, homeFragment).commit();
+        farg_name.setText(getResources().getString(R.string.Driver_Dashboard));
         locationListener=this;
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -388,26 +402,30 @@ public class DriversMapsActivity extends FragmentActivity implements OnMapReadyC
         Fragment fragment = null;
         switch (position)
         {   case 0:
-            fragment = new HomeFragment();
+            if(! (homeFragment!=null && homeFragment.isVisible()))
+            fragment =homeFragment;
             drawerLayout.closeDrawers();
+            farg_name.setText(getResources().getString(R.string.Driver_Dashboard));
             break;
 
             case 1:
                 fragment = new DriverProfile_Fragment();
                 drawerLayout.closeDrawers();
+                farg_name.setText(getResources().getString(R.string.My_Profile));
                 break;
 
             case 2:
                 fragment = new MyTrip_fragment();
                 drawerLayout.closeDrawers();
+                farg_name.setText(getResources().getString(R.string.MyTrip));
                 break;
             case 3:
                 fragment = new Notifucation_fragment();
                 drawerLayout.closeDrawers();
+                farg_name.setText(getResources().getString(R.string.Notification));
                 break;
             case 4:
                // startActivity(new Intent(DriversMapsActivity.this, SupportActivity.class));
-
                 drawerLayout.closeDrawers();
                 break;
             case 5:
@@ -996,8 +1014,22 @@ public class DriversMapsActivity extends FragmentActivity implements OnMapReadyC
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        finishAffinity();
+        if(! (homeFragment!=null && homeFragment.isVisible())){
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            counter=0;
+            Utility.log("TESTTTT","ifCondition");
+            fragmentManager.beginTransaction().replace(R.id.driver_map_main, homeFragment).commit();
+            farg_name.setText(getResources().getString(R.string.Driver_Dashboard));
+             }else {
+            counter++;
+            Utility.log("TESTTTT","ElseCondition");
+            if(counter==2)
+            {
+                super.onBackPressed();
+            }
+            if(counter==1)
+                Toast.makeText(this, "Tap again to exit", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void subscribeToTopic(String topic){
@@ -1926,7 +1958,7 @@ public class DriversMapsActivity extends FragmentActivity implements OnMapReadyC
                         startPosition.getLongitude()*(1-t)+finalPosition.getLongitude()*t);
 
                 mCurrent.setPosition(currentPosition);
-                Log.d("move.....................","move car");
+                Log.d("move.............","move car");
                 // Repeat till progress is complete.
                 if (t < 1) {
                     // Post again 16ms later.

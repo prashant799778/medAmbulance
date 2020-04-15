@@ -35,7 +35,7 @@ public class UserPhoneLogin extends AppCompatActivity implements View.OnClickLis
     TextInputEditText usermobile;
     MyResult myResult;
     MySharedPrefrence m;
-    String userTypeID="";
+    String userTypeID="2";
     String MobilePattern = "[0-9]{10}";
     TextInputLayout u_mobile;
 
@@ -51,11 +51,11 @@ public class UserPhoneLogin extends AppCompatActivity implements View.OnClickLis
         m=MySharedPrefrence.instanceOf(getApplicationContext());
 
         this.myResult=this;
-        Intent intent=getIntent();
-        if(intent!=null)
-        {
-            userTypeID=intent.getStringExtra("userType");
-        }
+//        Intent intent=getIntent();
+//        if(intent!=null)
+//        {
+//            userTypeID=intent.getStringExtra("userType");
+//        }
 
         linearLayout=findViewById(R.id.agree_terms);
         buttonCont=findViewById(R.id.phone_continue);
@@ -151,7 +151,6 @@ public class UserPhoneLogin extends AppCompatActivity implements View.OnClickLis
                 verificationIntent.putExtra("otp", otp);
                 verificationIntent.putExtra("mobile", usermobile.getText().toString());
                 startActivity(verificationIntent);
-                finish();
 
             }
             catch (Exception e) {

@@ -30,6 +30,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -132,6 +133,8 @@ public class ResponderMapsActivity extends FragmentActivity implements OnMapRead
     int index=0;
     int next=0;
     boolean isMarkerRotating;
+    int counter=0;
+
 
     ResponderHomeFragment responderHomeFragment;
     private boolean isAccepted;
@@ -296,7 +299,7 @@ public class ResponderMapsActivity extends FragmentActivity implements OnMapRead
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.driver_map_main, responderHomeFragment).commit();
-        header.setText("Responder");
+        header.setText(getResources().getString(R.string.Responsder_Dashboard));
 
 
         number.setText(sharedPreferences.getMobile());
@@ -396,24 +399,24 @@ public class ResponderMapsActivity extends FragmentActivity implements OnMapRead
             if(! (responderHomeFragment!=null && responderHomeFragment.isVisible()))
             fragment = responderHomeFragment;
             drawerLayout.closeDrawers();
-            header.setText("Responder");
+            header.setText(getResources().getString(R.string.Responsder_Dashboard));
             break;
 
             case 1:
                 fragment = new ResponderProfile_Fragment();
                 drawerLayout.closeDrawers();
-                header.setText("My Profile");
+                header.setText(getResources().getString(R.string.My_Profile));
                 break;
 
             case 2:
                 fragment = new ResponderTrip_fragment();
                 drawerLayout.closeDrawers();
-                header.setText("My Trips");
+                header.setText(getResources().getString(R.string.MyTrip));
                 break;
             case 3:
                 fragment = new Responder_Notifucation_fragment();
                 drawerLayout.closeDrawers();
-                header.setText("Notifications");
+                header.setText(getResources().getString(R.string.Notification));
                 break;
             case 4:
                // startActivity(new Intent(DriversMapsActivity.this, SupportActivity.class));
@@ -637,12 +640,22 @@ public class ResponderMapsActivity extends FragmentActivity implements OnMapRead
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        drawerLayout.closeDrawers();
         if(! (responderHomeFragment!=null && responderHomeFragment.isVisible())){
             FragmentManager fragmentManager = getSupportFragmentManager();
+            counter=0;
             Utility.log("TESTTTT","ifCondition");
-        fragmentManager.beginTransaction().replace(R.id.driver_map_main, responderHomeFragment).commit();}else {
+        fragmentManager.beginTransaction().replace(R.id.driver_map_main, responderHomeFragment).commit();
+            header.setText(getResources().getString(R.string.Responsder_Dashboard));
+        }else {
+            counter++;
             Utility.log("TESTTTT","ElseCondition");
+            if(counter==2)
+            {
+                super.onBackPressed();
+            }
+            if(counter==1)
+                Toast.makeText(this, "Tap again to exit", Toast.LENGTH_SHORT).show();
         }
     }
 

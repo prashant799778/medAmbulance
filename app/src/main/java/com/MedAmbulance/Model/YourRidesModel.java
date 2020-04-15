@@ -1,6 +1,8 @@
 package com.MedAmbulance.Model;
 
-public class YourRidesModel {
+import java.io.Serializable;
+
+public class YourRidesModel implements Serializable {
 
     String  bookingId;
     String  driverName;
@@ -11,6 +13,45 @@ public class YourRidesModel {
     String  userMobile;
     String  userName;
 
+    String finalAmount;
+
+    public String getAmbulanceTypeId() {
+        return ambulanceTypeId;
+    }
+
+    public void setAmbulanceTypeId(String ambulanceTypeId) {
+        this.ambulanceTypeId = ambulanceTypeId;
+    }
+
+    String ambulanceTypeId;
+
+    public String getFinalAmount() {
+        return finalAmount;
+    }
+
+    public void setFinalAmount(String finalAmount) {
+        this.finalAmount = finalAmount;
+    }
+
+    public String getTotalDistance() {
+        return totalDistance;
+    }
+
+    public void setTotalDistance(String totalDistance) {
+        this.totalDistance = totalDistance;
+    }
+
+    String totalDistance;
+
+    String distancefromCustomer;
+
+    public String getDistancefromCustomer() {
+        return distancefromCustomer;
+    }
+
+    public void setDistancefromCustomer(String distancefromCustomer) {
+        this.distancefromCustomer = distancefromCustomer;
+    }
     public String getBookingId() {
         return bookingId;
     }

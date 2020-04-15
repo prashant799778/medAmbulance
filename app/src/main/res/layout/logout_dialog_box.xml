@@ -84,6 +84,7 @@
             <com.MedAmbulance.Widget.Atami_Regular
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/yestext"
                 android:textColor="@color/white"
                 android:text="@string/yes"
                 android:textSize="17dp"

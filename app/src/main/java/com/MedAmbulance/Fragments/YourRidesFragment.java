@@ -13,10 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.MedAmbulance.Adapters.YourRideAdpter;
+import com.MedAmbulance.Adapters.YourRideAdpter1;
 import com.MedAmbulance.Api_Calling.MyResult;
 import com.MedAmbulance.Comman.Api_Calling;
 import com.MedAmbulance.Comman.MySharedPrefrence;
 import com.MedAmbulance.Comman.URLS;
+import com.MedAmbulance.Comman.Utility;
 import com.MedAmbulance.Model.YourRidesModel;
 import com.MedAmbulance.Model.myTripModel;
 import com.MedAmbulance.R;
@@ -40,6 +42,11 @@ public class YourRidesFragment extends Fragment implements MyResult {
     RelativeLayout relativeLayout;
     private ArrayList<YourRidesModel> YarrayList;
 
+
+    private RecyclerView mrecyclerView1;
+    private YourRideAdpter1 yourRideListAdapter1;
+    private ArrayList<YourRidesModel> YarrayList1;
+
     public YourRidesFragment() {
     }
 
@@ -54,15 +61,26 @@ public class YourRidesFragment extends Fragment implements MyResult {
         progressDialog.setCancelable(true);
         progressDialog.show();
         mrecyclerView=rootView.findViewById(R.id.Your_Ride);
-        mrecyclerView.setHasFixedSize(true);
         mrecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        mrecyclerView1=rootView.findViewById(R.id.Your_Ride1);
+        mrecyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
         YarrayList= new ArrayList<>();
         yourRideListAdapter=new YourRideAdpter(getContext(),YarrayList);
         mrecyclerView.setAdapter(yourRideListAdapter);
+
+
+
+        YarrayList1= new ArrayList<>();
+        yourRideListAdapter1=new YourRideAdpter1(getContext(),YarrayList1);
+        mrecyclerView1.setAdapter(yourRideListAdapter1);
+
+
+
         Api_Calling.postMethodCall(getContext(), URLS.YOUR_RIDE,getActivity().getWindow().getDecorView().getRootView(),myResult,"Mytrip",YourRideObject());
-
         return rootView;
-
     }
 
     private JSONObject YourRideObject() {
@@ -85,20 +103,32 @@ public class YourRidesFragment extends Fragment implements MyResult {
     @Override
     public void onResult(JSONObject object, Boolean status) {
 
-        Log.d("AG", "onResult: "+object);
+        Log.d("AGiiiiiiiiiiiiiiiiii", "onResult: "+object);
         if (progressDialog!=null &&  progressDialog.isShowing())
             progressDialog.dismiss();
         if(object!=null && status){
             relativeLayout.setVisibility(View.GONE);
             Gson gson= new GsonBuilder().create();
             try {
-                ArrayList<YourRidesModel> rm = gson.fromJson(object.getString("result"), new TypeToken<ArrayList<YourRidesModel>>(){}.getType());
+                if(object.getJSONObject("result").getJSONArray("ambulance").length()>0){
+                ArrayList<YourRidesModel> rm = gson.fromJson(object.getJSONObject("result").getString("ambulance"), new TypeToken<ArrayList<YourRidesModel>>(){}.getType());
                 YarrayList.clear();
                 YarrayList.addAll(rm);
+                    Utility.log("ArraySize","---1--"+rm.size());
+                yourRideListAdapter.notifyDataSetChanged();}
+                if(object.getJSONObject("result").getJSONArray("responder").length()>0){
+                ArrayList<YourRidesModel> rm1 = gson.fromJson(object.getJSONObject("result").getString("responder"), new TypeToken<ArrayList<YourRidesModel>>(){}.getType());
+                YarrayList1.clear();
+                YarrayList1.addAll(rm1);
+                    Utility.log("ArraySize","---"+rm1.size());
+                yourRideListAdapter1.notifyDataSetChanged();
+                }
+                if(YarrayList1.size()==0 && YarrayList.size()==0)
+                    relativeLayout.setVisibility(View.VISIBLE);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            yourRideListAdapter.notifyDataSetChanged();
+
         }
 
     }

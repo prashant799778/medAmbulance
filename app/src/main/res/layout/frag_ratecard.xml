@@ -31,20 +31,35 @@
                     android:layout_centerVertical="true"
                     android:src="@drawable/texi_image"/>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="32dp"
+                    android:background="@drawable/edit_text_border"
+                    android:layout_marginTop="6dp"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/texi"
+                    android:layout_marginRight="@dimen/leftMergin"
+                    android:layout_marginLeft="@dimen/leftMergin"
                     android:orientation="vertical">
-                    <Spinner
-                        android:id="@+id/spinner1"
-                        android:layout_width="100dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_height="wrap_content"
-                        android:entries="@array/country_arrays"
-                        android:prompt="@string/selectcatgre" />
-                </LinearLayout>
+                    <com.MedAmbulance.Widget.Custom_Spinner
+                        android:layout_width="match_parent"
+                        android:id="@+id/idType"
+                        android:textAlignment="gravity"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="15dp"
+                        android:hint="Select"
+                        android:textColor="@color/black"
+                        android:textSize="14dp"
+                        android:layout_height="match_parent">
+                    </com.MedAmbulance.Widget.Custom_Spinner>
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:padding="12dp"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/download">
+                    </ImageView>
+                </RelativeLayout>
             </RelativeLayout>
 
             <androidx.cardview.widget.CardView
@@ -55,7 +70,7 @@
                 android:layout_margin="7dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginLeft="18dp"
@@ -66,19 +81,18 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/ic_hospital"/>
+                    <com.MedAmbulance.Widget.Atami_Bold
+                        android:layout_width="match_parent"
+                        android:textSize="16dp"
+                        android:gravity="center_vertical"
+                        android:id="@+id/title"
+                        android:layout_marginLeft="20dp"
+                        android:text="@string/Ambulance_Category"
+                        android:textColor="@color/solid_black"
+                        android:layout_height="match_parent">
+                    </com.MedAmbulance.Widget.Atami_Bold>
 
-                    <com.MedAmbulance.Widget.Atami_Regular
-                        android:layout_width="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black2"
-                        android:text="@string/ALS"
-                        android:layout_gravity="center_vertical"
-                        />
                 </LinearLayout>
-
-
-
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -97,16 +111,146 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black2"
-                        android:textSize="16dp"
+                        android:textSize="18dp"
                         android:text="@string/Totalfare"
                         />
 
-                    <com.MedAmbulance.Widget.Atami_Regular
-                        android:layout_width="wrap_content"
-                        android:layout_marginTop="13dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/plainText"/>
-
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="10dp"
+                       android:orientation="vertical">
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:weightSum="2"
+                           android:layout_marginTop="10dp"
+                           android:orientation="horizontal">
+                           <com.MedAmbulance.Widget.Atami_Bold
+                               android:layout_width="match_parent"
+                               android:layout_weight="1"
+                               android:textSize="14dp"
+                               android:text="@string/Ambulance_Category"
+                               android:textColor="@color/solid_black"
+                               android:layout_height="wrap_content">
+                           </com.MedAmbulance.Widget.Atami_Bold>
+                           <com.MedAmbulance.Widget.Atami_Regular
+                               android:layout_width="match_parent"
+                               android:layout_weight="1"
+                               android:textSize="14dp"
+                               android:gravity="right"
+                               android:layout_gravity="right"
+                               android:layout_marginRight="10dp"
+                               android:id="@+id/ambulanceCategory"
+                               android:textColor="@color/solid_black"
+                               android:layout_height="wrap_content">
+                           </com.MedAmbulance.Widget.Atami_Regular>
+                       </LinearLayout>
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:weightSum="2"
+                           android:layout_marginTop="10dp"
+                           android:orientation="horizontal">
+                           <com.MedAmbulance.Widget.Atami_Bold
+                               android:layout_width="match_parent"
+                               android:layout_weight="1"
+                               android:textSize="14dp"
+                               android:text="@string/FairPrKm"
+                               android:textColor="@color/solid_black"
+                               android:layout_height="wrap_content">
+                           </com.MedAmbulance.Widget.Atami_Bold>
+                           <com.MedAmbulance.Widget.Atami_Regular
+                               android:layout_width="match_parent"
+                               android:layout_weight="1"
+                               android:textSize="14dp"
+                               android:gravity="right"
+                               android:layout_gravity="right"
+                               android:layout_marginRight="10dp"
+                               android:id="@+id/prkm"
+                               android:textColor="@color/solid_black"
+                               android:layout_height="wrap_content">
+                           </com.MedAmbulance.Widget.Atami_Regular>
+                       </LinearLayout>
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:weightSum="2"
+                           android:layout_marginTop="10dp"
+                           android:orientation="horizontal">
+                           <com.MedAmbulance.Widget.Atami_Bold
+                               android:layout_width="match_parent"
+                               android:layout_weight="1"
+                               android:textSize="14dp"
+                               android:text="@string/MinimumDistance"
+                               android:textColor="@color/solid_black"
+                               android:layout_height="wrap_content">
+                           </com.MedAmbulance.Widget.Atami_Bold>
+                           <com.MedAmbulance.Widget.Atami_Regular
+                               android:layout_width="match_parent"
+                               android:layout_weight="1"
+                               android:textSize="14dp"
+                               android:gravity="right"
+                               android:layout_gravity="right"
+                               android:layout_marginRight="10dp"
+                               android:id="@+id/minimumDistance"
+                               android:textColor="@color/solid_black"
+                               android:layout_height="wrap_content">
+                           </com.MedAmbulance.Widget.Atami_Regular>
+                       </LinearLayout>
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:weightSum="2"
+                           android:layout_marginTop="10dp"
+                           android:orientation="horizontal">
+                           <com.MedAmbulance.Widget.Atami_Bold
+                               android:layout_width="match_parent"
+                               android:layout_weight="1"
+                               android:textSize="14dp"
+                               android:text="@string/MinimumFair"
+                               android:textColor="@color/solid_black"
+                               android:layout_height="wrap_content">
+                           </com.MedAmbulance.Widget.Atami_Bold>
+                           <com.MedAmbulance.Widget.Atami_Regular
+                               android:layout_width="match_parent"
+                               android:layout_weight="1"
+                               android:gravity="right"
+                               android:layout_gravity="right"
+                               android:layout_marginRight="10dp"
+                               android:textSize="14dp"
+                               android:id="@+id/minimumfair"
+                               android:textColor="@color/solid_black"
+                               android:layout_height="wrap_content">
+                           </com.MedAmbulance.Widget.Atami_Regular>
+                       </LinearLayout>
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:weightSum="2"
+                           android:layout_marginTop="10dp"
+                           android:orientation="horizontal">
+                           <com.MedAmbulance.Widget.Atami_Bold
+                               android:layout_width="match_parent"
+                               android:layout_weight="1"
+                               android:text="@string/waitFair"
+                               android:textSize="14dp"
+                               android:textColor="@color/solid_black"
+                               android:layout_height="wrap_content">
+                           </com.MedAmbulance.Widget.Atami_Bold>
+                           <com.MedAmbulance.Widget.Atami_Regular
+                               android:layout_width="match_parent"
+                               android:layout_weight="1"
+                               android:textSize="14dp"
+                               android:gravity="right"
+                               android:layout_gravity="right"
+                               android:layout_marginRight="10dp"
+                               android:id="@+id/waitfair"
+                               android:textColor="@color/solid_black"
+                               android:layout_height="wrap_content">
+                           </com.MedAmbulance.Widget.Atami_Regular>
+                       </LinearLayout>
+                   </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

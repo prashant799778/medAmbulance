@@ -145,6 +145,8 @@ public class Myprofile_Fragment extends Fragment implements MyResult, OnSaveProf
             progressDialog.dismiss();
         if (object!=null && status){
           //  Utility.topSnakBar(getContext(),view,"Your profile has been updated");
+            m.setMobile(mobile.getText().toString());
+            m.setUserName(name.getText().toString());
             Utility.topSnakBar(getContext(),getActivity().getWindow().getDecorView().getRootView(), Constant.upadate);
 
         }

@@ -43,6 +43,86 @@ public class MySharedPrefrence {
 
     }
 
+
+
+
+    public void setAmbulanceId(String id) {
+        prefEditor.putString("ambid", id);
+        prefEditor.commit();
+    }
+
+    public String getAmbulanceId() {
+        return sharedPreferences.getString("ambid", "");
+
+    }
+
+
+
+
+    public void setBookingId(String id) {
+        prefEditor.putString("bookingid", id);
+        prefEditor.commit();
+    }
+
+    public String getBookingId() {
+        return sharedPreferences.getString("bookingid", "");
+
+    }
+
+
+    public void setDriverId(String id) {
+        prefEditor.putString("driverid", id);
+        prefEditor.commit();
+    }
+
+    public String getDriverId() {
+        return sharedPreferences.getString("driverid", "");
+
+    }
+
+
+
+    public void setBookingUSerId(String id) {
+        prefEditor.putString("setbid", id);
+        prefEditor.commit();
+    }
+
+    public String getBookingUSerId() {
+        return sharedPreferences.getString("setbid", "");
+
+    }
+
+
+
+
+
+    public void setBookingUSerMobile(String id) {
+        prefEditor.putString("setbidm", id);
+        prefEditor.commit();
+    }
+
+    public String getBookingUSerMobile() {
+        return sharedPreferences.getString("setbidm", "");
+
+    }
+
+
+
+    public void setBookingUSerName(String name) {
+        prefEditor.putString("usn", name);
+        prefEditor.commit();
+    }
+
+    public String getBookingUSerName() {
+        return sharedPreferences.getString("usn", "");
+
+    }
+
+
+
+
+
+
     public void setUserId(String id) {
         prefEditor.putString("id", id);
         prefEditor.commit();

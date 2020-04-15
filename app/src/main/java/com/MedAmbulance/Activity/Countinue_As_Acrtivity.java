@@ -33,16 +33,19 @@ public class Countinue_As_Acrtivity extends AppCompatActivity implements View.On
               Intent i=new Intent(Countinue_As_Acrtivity.this, UserPhoneLogin.class);
               i.putExtra("userType","4");
               startActivity(i);
+              finish();
                break;
            case  R.id.user:
                Intent i1=new Intent(Countinue_As_Acrtivity.this, UserPhoneLogin.class);
                i1.putExtra("userType","2");
                startActivity(i1);
+               finish();
                break;
            case R.id.driver:
                Intent i2=new Intent(Countinue_As_Acrtivity.this, UserPhoneLogin.class);
                i2.putExtra("userType","3");
                startActivity(i2);
+               finish();
                break;
        }
 

@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="24"
+        android:minSdkVersion="23"
         android:targetSdkVersion="29" />
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -47,6 +47,9 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+        <activity android:name="com.MedAmbulance.Activity.End_Ride_Activity" />
+        <activity android:name="com.MedAmbulance.Activity.UserRideDetailsActivity" />
+        <activity android:name="com.MedAmbulance.Activity.DetailsActivity" />
         <activity android:name="com.MedAmbulance.DriverPhoneLogin" />
         <activity android:name="com.MedAmbulance.Activity.UserModuleActivity" />
         <activity android:name="com.MedAmbulance.Activity.DestinationActivity" />
@@ -65,14 +68,19 @@
 
         <activity
             android:name="com.MedAmbulance.Activity.DriversMapsActivity"
-            android:label="@string/title_activity_drivers_maps" />
+            android:label="@string/title_activity_drivers_maps"
+            android:screenOrientation="portrait" />
         <activity android:name="com.MedAmbulance.Activity.DriverMapsActivity" />
-        <activity android:name="com.MedAmbulance.Activity.MapsActivity" />
+        <activity
+            android:name="com.MedAmbulance.Activity.MapsActivity"
+            android:screenOrientation="portrait" />
         <activity android:name="com.MedAmbulance.Activity.TLTBaseActivity" />
         <activity android:name="com.MedAmbulance.Activity.UserMapActivity" />
         <activity android:name="com.MedAmbulance.Activity.TermsConditions" />
         <activity android:name="com.MedAmbulance.Activity.UserPhoneLogin" />
-        <activity android:name="com.MedAmbulance.Activity.ResponderMapsActivity" />
+        <activity
+            android:name="com.MedAmbulance.Activity.ResponderMapsActivity"
+            android:screenOrientation="portrait" />
         <activity android:name="com.MedAmbulance.Activity.MyNewUserActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

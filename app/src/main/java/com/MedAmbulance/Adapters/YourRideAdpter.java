@@ -1,6 +1,7 @@
 package com.MedAmbulance.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.MedAmbulance.Activity.UserRideDetailsActivity;
 import com.MedAmbulance.Model.YourRidesModel;
 import com.MedAmbulance.Model.myTripModel;
 import com.MedAmbulance.R;
@@ -34,14 +36,34 @@ public class YourRideAdpter  extends RecyclerView.Adapter <YourRideAdpter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(Ycontext).inflate(R.layout.responder_trip_item_view,parent,false);
+        View v = LayoutInflater.from(Ycontext).inflate(R.layout.my_ride_layout,parent,false);
         return new YourRideAdpter.ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        YourRidesModel currentItem= YarrayList.get(position);
+        final YourRidesModel currentItem= YarrayList.get(position);
+        if(currentItem.getStartTime()!=null)
+            holder.date.setText(currentItem.getStartTime());
+        if(currentItem.getFinalAmount()!=null)
+            holder.rate.setText(currentItem.getFinalAmount());
+        if(currentItem.getTripFrom()!=null)
+            holder.start_Address.setText(currentItem.getTripFrom());
+        if(currentItem.getTripTo()!=null)
+            holder.end_Address.setText(currentItem.getTripTo());
+        holder.ambu_type.setText(currentItem.getAmbulanceTypeId());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Ycontext, UserRideDetailsActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("data",currentItem);
+                Ycontext.startActivity(intent);
+            }
+        });
+
+
 
     }
 
@@ -51,16 +73,14 @@ public class YourRideAdpter  extends RecyclerView.Adapter <YourRideAdpter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView UserImage;
-        Atami_Bold userName,fair;
-        Atami_Regular routeId,date;
+        Atami_Regular rate,date,start_Address,end_Address,ambu_type;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            UserImage=itemView.findViewById(R.id.user_pic);
-            userName=itemView.findViewById(R.id.user_name);
-            fair=itemView.findViewById(R.id.fair_trip);
-            routeId=itemView.findViewById(R.id.route_id);
+            rate=itemView.findViewById(R.id.rate);
             date=itemView.findViewById(R.id.date);
+            start_Address=itemView.findViewById(R.id.start_address);
+            ambu_type=itemView.findViewById(R.id.ambu_type);
+            end_Address=itemView.findViewById(R.id.hospital_address);
         }
     }
 }
