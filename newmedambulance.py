@@ -8615,6 +8615,156 @@ def acceptRide1():
 
 
 
+@app.route('/acceptResponder1', methods=['POST'])
+def acceptResponder1():
+    try:
+        print('A')
+        inputdata =  commonfile.DecodeInputdata(request.get_data())
+        print(inputdata)
+        startlimit,endlimit="",""
+        #inputdata={"ambulanceId":3,"id":17,'startLocationLat':28.583962,'startLocationLong':77.314345,"pickupLocationAddress":" Noida se 15",'dropLocationLat':28.535517,'dropLocationLong':77.391029,"dropLocationAddress":"fortis noida","userId":"7795051055a111ea93d39ebd4d0189fc"}
+        #id is driverid
+        print("1111")
+        keyarr = ["driverId",'startLocationLat','startLocationLong',"pickupLocationAddress",'dropLocationLat','dropLocationLong',"dropLocationAddress","userId"]
+        
+        print("2")
+        if "ambulanceId" in inputdata:
+                if inputdata['ambulanceId'] != "":
+                    ambulanceId =str(inputdata["ambulanceId"])
+        else:
+            columns=" ambulanceId "
+            whereCondition22=" driverId= '"+str(inputdata["driverId"])+"'"
+            ambulanceId= databasefile.SelectQuery(" ambulanceMaster ",columns,whereCondition22)
+            print(ambulanceId,"ambulanceId==========================")
+            ambulanceId=ambulanceId["result"]["ambulanceId"]
+        if "driverId" in inputdata:
+                if inputdata['driverId'] != "":
+                    driverId =str(inputdata["driverId"])
+                    print(driverId)
+        if "startLocationLat" in inputdata:
+                if inputdata['startLocationLat'] != "":
+                    startLocationLat =inputdata["startLocationLat"]
+        if "startLocationLong" in inputdata:
+                if inputdata['startLocationLong'] != "":
+                    startLocationLong =inputdata["startLocationLong"]
+        if "pickupLocationAddress" in inputdata:
+                if inputdata['pickupLocationAddress'] != "":
+                    pickupLocationAddress =str(inputdata["pickupLocationAddress"])
+        
+        if "dropLocationLat" in inputdata:
+                if inputdata['dropLocationLat'] != "":
+                    dropLocationLat =(inputdata["dropLocationLat"])
+        if "dropLocationLong" in inputdata:
+                if inputdata['dropLocationLong'] != "":
+                    dropLocationLong =(inputdata["dropLocationLong"])
+        if "dropLocationAddress" in inputdata:
+                if inputdata['dropLocationAddress'] != "":
+                    dropLocationAddress =str(inputdata["dropLocationAddress"])
+
+        if "userId" in inputdata:
+            if inputdata['userId'] != "":
+                userId =str(inputdata["userId"])
+
+        print("3")
+        bookingId = (commonfile.CreateHashKey(driverId,userId)).hex
+
+
+        commonfile.writeLog("bookResponder",inputdata,0)
+        msg = commonfile.CheckKeyNameBlankValue(keyarr,inputdata)
+        
+        if msg == "1":
+            print('B')
+            columns="mobileNo,name"
+            whereCondition22="  userId= '"+str(userId)+"' and userTypeId='2' "
+            data1= databasefile.SelectQuery("userMaster",columns,whereCondition22)
+            print(data1,'data1')
+            usermobile=data1['result']['mobileNo']
+            userName=data1['result']['name']
+
+
+            whereCondition222="  driverId= '"+str(driverId)+"' "
+            data11= databasefile.SelectQuery("driverMaster",columns,whereCondition222)
+            print(data11,'--data')
+            driverName=data11['result']['name']
+            drivermobile=data11['result']['mobileNo']
+            
+            R = 6373.0
+            print(R,'R')
+            fromlongitude2= startLocationLong
+            print(fromlongitude2,'fromlong',type(fromlongitude2))
+            fromlatitude2 = startLocationLat
+            # print(fromlongitude2,'fromlong')
+            print('lat',fromlatitude2)
+            distanceLongitude = dropLocationLong - fromlongitude2
+            distanceLatitude = dropLocationLat - fromlatitude2
+            a = sin(distanceLatitude / 2)**2 + cos(fromlatitude2) * cos(dropLocationLat) * sin(distanceLongitude / 2)**2
+            c = 2 * atan2(sqrt(a), sqrt(1 - a))
+            distance = R * c
+            distance2=distance/100
+            Distance=distance2*1.85
+            d=round(Distance)
+            d2 =str(d) +' Km'
+
+
+            finalAmount= d * 11+11
+            print(finalAmount,'final')
+
+
+
+
+            #insertdata
+            columnqq='userMobile,driverMobile,pickup,pickupLatitude,pickupLongitude,dropoff,dropOffLatitude,dropOffLongitude,ambulanceId,userId,driverId,bookingId,totalDistance,finalAmount'
+            values111 = " '"+ str(usermobile) +"','" + str(drivermobile)+"','" + str(pickupLocationAddress)+"','" + str(startLocationLat) +"','" + str(startLocationLong) + "','" + str(dropLocationAddress) + "','" + str(dropLocationLat) 
+            values111=values111+"','" + str(dropLocationLong)+"','" + str(ambulanceId)+"','" + str(userId) +"','" + str(driverId) + "','" + str(bookingId)+ "','" + str(d2) + "','" + str(finalAmount)+"'"
+            data111=databasefile.InsertQuery('bookResponder',columnqq,values111)
+            print(data111,'==data')
+            
+            columns="(ar.lat)ambulanceLat,(ar.lng)ambulanceLng, bm.ambulanceId,bm.bookingId,bm.driverId,bm.dropOff,bm.dropOffLatitude,bm.dropOffLongitude"
+            columns=columns+",bm.finalAmount,bm.pickup,bm.pickupLatitude,bm.pickupLongitude,bm.totalDistance,bm.userMobile,am.ambulanceNo "
+            columns=columns+",bm.driverMobile"
+            whereCondition22=" am.ambulanceId=bm.ambulanceId  and bookingId= '"+str(bookingId)+"'"
+            bookingDetails= databasefile.SelectQuery("bookResponder bm,ambulanceMaster am,ambulanceRideStatus ar",columns,whereCondition22)
+            print(bookingDetails,"================")
+            bookingDetails["result"]["driverName"]=driverName
+            bookingDetails['result']['userName']=userName
+            if (bookingDetails!='0'):  
+                print('Entered')
+                client = mqtt.Client()
+                client.connect("localhost",1883,60)
+                topic=str(userId)+"/booking"
+                client.publish(topic, str(bookingDetails)) 
+                #bookRide["message"]="ride booked Successfully" 
+                client.disconnect()
+                data199={ "to":'"'+str(deviceKey)+'"', 
+                           "notification" : {
+                                            "body" :'"'+str(bookingDetails['result'])+'"',
+                                            "OrganizationId":"2",
+                                            "content_available" : "true",
+                                            "priority" : "high",
+                                            "subtitle":'"'+str(userName)+'"',
+                                            "Title":"Booking Details"
+                                            }
+                        }      
+
+                r=requests.post(config.URL, headers=config.headers, data=json.dumps(data199))
+                response=json.loads(r.text)
+                return bookingDetails
+            else:
+                data={"result":"","message":"No data Found","status":"false"}
+                
+                return data
+        else:
+            return msg 
+    except KeyError as e:
+        print("Exception---->" +str(e))        
+        output = {"result":"Input Keys are not Found","status":"false"}
+        return output    
+    except Exception as e :
+        print("Exception---->" +str(e))           
+        output = {"result":"something went wrong","status":"false"}
+        return output
+
+
 
 
 
